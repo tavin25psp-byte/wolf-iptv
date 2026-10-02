@@ -235,9 +235,9 @@ class MainActivity : AppCompatActivity() {
 
         scrollPrincipal.addView(
             conteudo,
-            NestedScrollView.LayoutParams(
-                NestedScrollView.LayoutParams.MATCH_PARENT,
-                NestedScrollView.LayoutParams.WRAP_CONTENT
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
             )
         )
 
@@ -326,9 +326,9 @@ class MainActivity : AppCompatActivity() {
 
         menuScroll.addView(
             menuConteudo,
-            NestedScrollView.LayoutParams(
-                NestedScrollView.LayoutParams.MATCH_PARENT,
-                NestedScrollView.LayoutParams.WRAP_CONTENT
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
             )
         )
 
@@ -729,9 +729,9 @@ class MainActivity : AppCompatActivity() {
 
         horizontal.addView(
             grade,
-            HorizontalScrollView.LayoutParams(
-                HorizontalScrollView.LayoutParams.WRAP_CONTENT,
-                HorizontalScrollView.LayoutParams.WRAP_CONTENT
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.WRAP_CONTENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
             )
         )
 
@@ -1843,8 +1843,9 @@ class MainActivity : AppCompatActivity() {
         campo.textSize =
             18f
 
-        campo.singleLine =
+        campo.setSingleLine(
             true
+        )
 
         campo.isFocusable =
             true
@@ -2363,4 +2364,3 @@ class MainActivity : AppCompatActivity() {
 
         super.onDestroy()
     }
-}
