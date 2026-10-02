@@ -1,26 +1,28 @@
 package com.wolf.iptv
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.text.TextUtils
+import android.view.FocusFinder
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.FrameLayout
-import android.widget.GridLayout
-import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.NestedScrollView
+import java.net.HttpURLConnection
 import java.net.URL
+import kotlin.concurrent.thread
 
 data class Filme(
     val titulo: String,
@@ -35,13 +37,18 @@ class MainActivity : AppCompatActivity() {
     private lateinit var raiz: FrameLayout
     private lateinit var conteudo: LinearLayout
     private lateinit var botaoMenu: TextView
+
     private lateinit var menuLateral: LinearLayout
+    private lateinit var menuScroll: ScrollView
     private lateinit var menuConteudo: LinearLayout
 
     private var menuAberto = false
 
     private val itensMenuFoco =
         mutableListOf<View>()
+
+    private val cacheCapas =
+        HashMap<String, Bitmap>()
 
     private val filmes =
         mutableListOf<Filme>()
@@ -55,13 +62,6 @@ class MainActivity : AppCompatActivity() {
     private val animes =
         mutableListOf<Filme>()
 
-    private val favoritosSalvos =
-        mutableSetOf<String>()
-
-    private val progressoVideos =
-        mutableMapOf<String, Long>()
-
-
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
@@ -70,87 +70,83 @@ class MainActivity : AppCompatActivity() {
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_FULLSCREEN or
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
         criarInterface()
+
         carregarFilmes()
-        carregarDados()
-        carregarProgressos()
-        prepararDados()
-        mostrarTodos()
+
+        mostrarListaCards(
+            filmes
+        )
     }
-
-
-    // ===============================
-    // INTERFACE
-    // ===============================
 
     private fun criarInterface() {
 
-        raiz = FrameLayout(this)
+        raiz =
+            FrameLayout(this)
 
-        val fundo = ImageView(this)
+        raiz.setBackgroundColor(
+            Color.BLACK
+        )
+
+        setContentView(raiz)
+
+        val fundo =
+            ImageView(this)
 
         fundo.scaleType =
             ImageView.ScaleType.CENTER_CROP
+
+        fundo.alpha = 0.55f
+
+        raiz.addView(
+            fundo,
+            FrameLayout.LayoutParams(
+                -1,
+                -1
+            )
+        )
 
         carregarImagem(
             fundo,
             "https://i.postimg.cc/Ghk8PP7w/wolf.png"
         )
 
-        raiz.addView(
-            fundo,
-            FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT
-            )
-        )
-
-
-        val camada = LinearLayout(this)
+        val camada =
+            LinearLayout(this)
 
         camada.orientation =
             LinearLayout.VERTICAL
 
-        camada.setBackgroundColor(
-            Color.argb(
-                130,
-                0,
-                0,
-                0
-            )
+        camada.setPadding(
+            dp(20),
+            dp(12),
+            dp(20),
+            dp(12)
         )
 
         raiz.addView(
             camada,
             FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT
+                -1,
+                -1
             )
         )
 
-
-        val topo = LinearLayout(this)
-
-        topo.gravity =
-            Gravity.CENTER_VERTICAL
-
-        topo.setPadding(
-            dp(15),
-            dp(8),
-            dp(15),
-            dp(8)
-        )
-
-
-        botaoMenu = TextView(this)
+        botaoMenu =
+            TextView(this)
 
         botaoMenu.text =
-            "☰  MENU"
+            "☰  WOLF MENU"
 
-        botaoMenu.textSize =
-            18f
+        botaoMenu.textSize = 18f
+
+        botaoMenu.typeface =
+            Typeface.DEFAULT_BOLD
 
         botaoMenu.setTextColor(
             Color.WHITE
@@ -160,64 +156,31 @@ class MainActivity : AppCompatActivity() {
             Gravity.CENTER
 
         botaoMenu.isFocusable = true
-        botaoMenu.isFocusableInTouchMode = true
+        botaoMenu.isFocusableInTouchMode =
+            true
 
+        botaoMenu.setPadding(
+            dp(15),
+            0,
+            dp(15),
+            0
+        )
 
-        topo.addView(
+        botaoMenu.setBackgroundColor(
+            Color.TRANSPARENT
+        )
+
+        botaoMenu.setOnClickListener {
+            abrirMenu()
+        }
+
+        camada.addView(
             botaoMenu,
             LinearLayout.LayoutParams(
-                dp(150),
+                dp(220),
                 dp(55)
             )
         )
-
-
-        val logo = TextView(this)
-
-        logo.text =
-            "WOLF CHANNEL"
-
-        logo.textSize =
-            25f
-
-        logo.setTextColor(
-            Color.WHITE
-        )
-
-        logo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        logo.gravity =
-            Gravity.CENTER
-
-
-        topo.addView(
-            logo,
-            LinearLayout.LayoutParams(
-                0,
-                dp(55),
-                1f
-            )
-        )
-
-
-        camada.addView(
-            topo,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(70)
-            )
-        )
-
-
-        val scrollPrincipal =
-            NestedScrollView(this)
-
-        scrollPrincipal.isFillViewport =
-            true
-
 
         conteudo =
             LinearLayout(this)
@@ -225,410 +188,245 @@ class MainActivity : AppCompatActivity() {
         conteudo.orientation =
             LinearLayout.VERTICAL
 
-        conteudo.setPadding(
-            dp(15),
-            dp(5),
-            dp(15),
-            dp(30)
-        )
+        conteudo.isFocusable = false
 
+        val scroll =
+            ScrollView(this)
 
-        scrollPrincipal.addView(
+        scroll.isFocusable = false
+
+        scroll.addView(
             conteudo,
-            FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
+            ViewGroup.LayoutParams(
+                -1,
+                -2
             )
         )
-
 
         camada.addView(
-            scrollPrincipal,
+            scroll,
             LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
+                -1,
                 0,
                 1f
             )
         )
-
-
-        // ===============================
-        // MENU LATERAL
-        // ===============================
-
-        menuLateral =
-            LinearLayout(this)
-
-        menuLateral.orientation =
-            LinearLayout.VERTICAL
-
-        menuLateral.setPadding(
-            dp(10),
-            dp(15),
-            dp(10),
-            dp(15)
-        )
-
-        menuLateral.setBackgroundColor(
-            Color.argb(
-                245,
-                8,
-                8,
-                8
-            )
-        )
-
-        menuLateral.visibility =
-            View.GONE
-
-
-        val menuTitulo =
-            TextView(this)
-
-        menuTitulo.text =
-            "WOLF CHANNEL"
-
-        menuTitulo.textSize =
-            23f
-
-        menuTitulo.setTextColor(
-            Color.WHITE
-        )
-
-        menuTitulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        menuTitulo.gravity =
-            Gravity.CENTER
-
-
-        menuLateral.addView(
-            menuTitulo,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(60)
-            )
-        )
-
-
-        val menuScroll =
-            NestedScrollView(this)
-
-
-        menuConteudo =
-            LinearLayout(this)
-
-        menuConteudo.orientation =
-            LinearLayout.VERTICAL
-
-
-        menuScroll.addView(
-            menuConteudo,
-            FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
-            )
-        )
-
-
-        menuLateral.addView(
-            menuScroll,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                0,
-                1f
-            )
-        )
-
-
-        val menuParams =
-            FrameLayout.LayoutParams(
-                dp(390),
-                FrameLayout.LayoutParams.MATCH_PARENT
-            )
-
-        menuParams.gravity =
-            Gravity.START
-
-
-        raiz.addView(
-            menuLateral,
-            menuParams
-        )
-
-
-        setContentView(raiz)
     }
-
-
-    // ===============================
-    // FILMES
-    // ===============================
 
     private fun carregarFilmes() {
 
         filmes.clear()
 
+        filmes.addAll(
+            listOf(
 
-        filmes.add(
-            Filme(
-                "Como Mágica",
-                2026,
-                "Comédia",
-                "https://i.postimg.cc/9z5YzWLn/D-NQ-NP-674318-MLB111141123921-052026-O.webp",
-                "https://wolf-channel-cdn.b-cdn.net/New%20Folder/Como%20M%C3%A1gica.mp4"
-            )
-        )
+                Filme(
+                    "Como Mágica",
+                    2026,
+                    "Comédia",
+                    "https://i.postimg.cc/9z5YzWLn/D-NQ-NP-674318-MLB111141123921-052026-O.webp",
+                    "https://wolf-channel-cdn.b-cdn.net/New%20Folder/Como%20M%C3%A1gica.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Todo Mundo em Pânico 4",
-                2026,
-                "Comédia",
-                "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico.mp4"
-            )
-        )
+                Filme(
+                    "Todo Mundo em Pânico 4",
+                    2026,
+                    "Comédia",
+                    "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Pânico 7",
-                2026,
-                "Terror",
-                "https://i.postimg.cc/FzcqGbHV/images-(3).jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
-            )
-        )
+                Filme(
+                    "Pânico 7",
+                    2026,
+                    "Terror",
+                    "https://i.postimg.cc/FzcqGbHV/images-(3).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Pinóquio",
-                2026,
-                "Animação",
-                "https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"
-            )
-        )
+                Filme(
+                    "Pinóquio",
+                    2026,
+                    "Animação",
+                    "https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Moana",
-                2026,
-                "Animação",
-                "https://i.postimg.cc/pdj7VwhR/moana.jpg",
-                "https://vz-c091a331-1f1.b-cdn.net/199a8bfd-7a6e-4e1a-9cbe-d5ae4881089b/playlist.m3u8"
-            )
-        )
+                Filme(
+                    "Moana",
+                    2026,
+                    "Animação",
+                    "https://i.postimg.cc/pdj7VwhR/moana.jpg",
+                    "https://vz-c091a331-1f1.b-cdn.net/199a8bfd-7a6e-4e1a-9cbe-d5ae4881089b/playlist.m3u8"
+                ),
 
-        filmes.add(
-            Filme(
-                "Como Treinar o Seu Dragão",
-                2026,
-                "Aventura",
-                "https://i.postimg.cc/664hkrZ6/treinar.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
-            )
-        )
+                Filme(
+                    "Como Treinar o Seu Dragão",
+                    2026,
+                    "Aventura",
+                    "https://i.postimg.cc/664hkrZ6/treinar.jpg",
+                    "https://vz-c091a331-1f1.b-cdn.net/555db026-0cb8-4242-9bdd-dd8a0d165d53/playlist.m3u8"
+                ),
 
-        filmes.add(
-            Filme(
-                "Quarteto Fantástico: Primeiro Passo",
-                2026,
-                "Ação",
-                "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"
-            )
-        )
+                Filme(
+                    "Quarteto Fantástico: Primeiro Passo",
+                    2026,
+                    "Ação",
+                    "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Homem-Aranha: Um Novo Dia",
-                2026,
-                "Ação",
-                "https://i.postimg.cc/QCctbsqF/aranha.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
-            )
-        )
+                Filme(
+                    "Homem-Aranha: Um Novo Dia",
+                    2026,
+                    "Ação",
+                    "https://i.postimg.cc/QCctbsqF/aranha.jpg",
+                    "https://vz-c091a331-1f1.b-cdn.net/145cd2d1-82bc-4e35-986c-9137d44cf91a/playlist.m3u8"
+                ),
 
-        filmes.add(
-            Filme(
-                "Conexão Perigosa",
-                2026,
-                "Ação",
-                "https://i.postimg.cc/JhyRxMrH/conexao.jpg",
-                "https://vz-c091a331-1f1.b-cdn.net/78e46f67-4aec-4ba3-b4c4-7072cd6d921b/playlist.m3u8"
-            )
-        )
+                Filme(
+                    "Conexão Perigosa",
+                    2026,
+                    "Ação",
+                    "https://i.postimg.cc/JhyRxMrH/conexao.jpg",
+                    "https://vz-c091a331-1f1.b-cdn.net/78e46f67-4aec-4ba3-b4c4-7072cd6d921b/playlist.m3u8"
+                ),
 
-        filmes.add(
-            Filme(
-                "A Odisseia",
-                2026,
-                "Aventura",
-                "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/BALA-CHANNEL/A%20Odisseia.mp4"
-            )
-        )
+                Filme(
+                    "A Odisseia",
+                    2026,
+                    "Aventura",
+                    "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/BALA-CHANNEL/A%20Odisseia.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Resident Evil",
-                2026,
-                "Terror",
-                "https://i.postimg.cc/3J7DtmC4/evil.jpg",
-                "https://vz-c091a331-1f1.b-cdn.net/5c3bb1d6-a493-4f7e-b6b2-0ec43d5fa911/playlist.m3u8"
-            )
-        )
+                Filme(
+                    "Resident Evil",
+                    2026,
+                    "Terror",
+                    "https://i.postimg.cc/3J7DtmC4/evil.jpg",
+                    "https://vz-c091a331-1f1.b-cdn.net/5c3bb1d6-a493-4f7e-b6b2-0ec43d5fa911/playlist.m3u8"
+                ),
 
-        filmes.add(
-            Filme(
-                "Vingança",
-                2026,
-                "Ação",
-                "https://i.postimg.cc/26M7q6P7/vinganca.jpg",
-                "https://vz-c091a331-1f1.b-cdn.net/10f5522b-3890-48cd-bfb7-89b2806e8269/playlist.m3u8"
-            )
-        )
+                Filme(
+                    "Vingança",
+                    2026,
+                    "Ação",
+                    "https://i.postimg.cc/26M7q6P7/vinganca.jpg",
+                    "https://vz-c091a331-1f1.b-cdn.net/10f5522b-3890-48cd-bfb7-89b2806e8269/playlist.m3u8"
+                ),
 
-        filmes.add(
-            Filme(
-                "A Revolta",
-                2026,
-                "Ação",
-                "https://i.postimg.cc/7YyLx45D/revolta.jpg",
-                "https://vz-c091a331-1f1.b-cdn.net/ae8d06f6-e3da-4705-9a83-313fae7114f9/playlist.m3u8"
-            )
-        )
+                Filme(
+                    "A Revolta",
+                    2026,
+                    "Ação",
+                    "https://i.postimg.cc/7YyLx45D/revolta.jpg",
+                    "https://vz-c091a331-1f1.b-cdn.net/ae8d06f6-e3da-4705-9a83-313fae7114f9/playlist.m3u8"
+                ),
 
-        filmes.add(
-            Filme(
-                "Thunderbolts",
-                2026,
-                "Ação",
-                "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
-                "https://wolf-channel-cdn.b-cdn.net/Bala%20zip/Thunderbolts.mp4"
-            )
-        )
+                Filme(
+                    "Thunderbolts",
+                    2026,
+                    "Ação",
+                    "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
+                    "https://wolf-channel-cdn.b-cdn.net/Bala%20zip/Thunderbolts.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Céu em Fúria",
-                2026,
-                "Ação",
-                "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
-                ""
-            )
-        )
+                Filme(
+                    "Céu em Fúria",
+                    2026,
+                    "Ação",
+                    "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
+                    ""
+                ),
 
-        filmes.add(
-            Filme(
-                "Super Mario Galaxy: O Filme",
-                2026,
-                "Animação",
-                "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
-            )
-        )
+                Filme(
+                    "Super Mario Galaxy: O Filme",
+                    2026,
+                    "Animação",
+                    "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Mufasa: O Rei Leão",
-                2024,
-                "Aventura",
-                "https://i.postimg.cc/mgw3xmpz/917q-7O0TJL.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
-            )
-        )
+                Filme(
+                    "Mufasa: O Rei Leão",
+                    2024,
+                    "Aventura",
+                    "https://i.postimg.cc/mgw3xmpz/917q-7O0TJL.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Coringa: Delírio a Dois",
-                2024,
-                "Drama",
-                "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3Yz-Mt-ZTUw-MC00MGJj-LWFk-NDIt-MDUz-NTUx-Zjg5N2Y4Xk-Ey-Xk-Fqc-Gc-V1.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"
-            )
-        )
+                Filme(
+                    "Coringa: Delírio a Dois",
+                    2024,
+                    "Drama",
+                    "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3Yz-Mt-ZTUw-MC00MGJj-LWFk-NDIt-MDUz-NTUx-Zjg5N2Y4Xk-Ey-Xk-Fqc-Gc-V1.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Deadpool & Wolverine",
-                2024,
-                "Ação",
-                "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4"
-            )
-        )
+                Filme(
+                    "Deadpool & Wolverine",
+                    2024,
+                    "Ação",
+                    "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Jumanji: Bem-Vindo à Selva",
-                2017,
-                "Aventura",
-                "https://i.postimg.cc/k4ptjpsN/jumanji.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/Jumanji%20-%20Bem-Vindo%20%C3%80%20Selva%20-%20Dublado.mp4"
-            )
-        )
+                Filme(
+                    "Jumanji: Bem-Vindo à Selva",
+                    2017,
+                    "Aventura",
+                    "https://i.postimg.cc/k4ptjpsN/jumanji.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Jumanji%20-%20Bem-Vindo%20%C3%80%20Selva%20-%20Dublado.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Kingsman: Agente Secreto",
-                2014,
-                "Ação",
-                "https://i.postimg.cc/0QDbfyzB/kings.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/New%20Folder/New%20Folder/BALA-CHANNEL/Kingsman%20-%20Servi%C3%A7o%20Secreto%20-%20Dublado%20(Series%20Zoiudo).mp4"
-            )
-        )
+                Filme(
+                    "Kingsman: Agente Secreto",
+                    2014,
+                    "Ação",
+                    "https://i.postimg.cc/0QDbfyzB/kings.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/New%20Folder/New%20Folder/BALA-CHANNEL/Kingsman%20-%20Servi%C3%A7o%20Secreto%20-%20Dublado%20(Series%20Zoiudo).mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Deu a Louca nos Bichos",
-                2010,
-                "Comédia",
-                "https://i.postimg.cc/0N7W1734/deu-a-louca-nos-bichos.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/Deu%20A%20Louca%20Nos%20Bichos%20-2010-%20-%20Dublado%20(SeriesZoiudo).mp4"
-            )
-        )
+                Filme(
+                    "Deu a Louca nos Bichos",
+                    2010,
+                    "Comédia",
+                    "https://i.postimg.cc/0N7W1734/deu-a-louca-nos-bichos.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/Deu%20A%20Louca%20Nos%20Bichos%20-2010-%20-%20Dublado%20(SeriesZoiudo).mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Avatar",
-                2009,
-                "Ficção",
-                "https://i.postimg.cc/7LQgchYy/avatar.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/avatar-1080p.mp4"
-            )
-        )
+                Filme(
+                    "Avatar",
+                    2009,
+                    "Ficção",
+                    "https://i.postimg.cc/7LQgchYy/avatar.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/avatar-1080p.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "17 Outra Vez",
-                2009,
-                "Comédia",
-                "https://i.postimg.cc/FFwTzW46/17.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/17%20Outra%20Vez%20-%20Dublado%20(Series%20Zoiudo).mp4"
-            )
-        )
+                Filme(
+                    "17 Outra Vez",
+                    2009,
+                    "Comédia",
+                    "https://i.postimg.cc/FFwTzW46/17.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/17%20Outra%20Vez%20-%20Dublado%20(Series%20Zoiudo).mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "Garota Infernal",
-                2009,
-                "Terror",
-                "https://i.postimg.cc/yNfPHnn8/garota-infernal.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/New%20Folder/Garota%20Infernal.mp4"
-            )
-        )
+                Filme(
+                    "Garota Infernal",
+                    2009,
+                    "Terror",
+                    "https://i.postimg.cc/yNfPHnn8/garota-infernal.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/New%20Folder/Garota%20Infernal.mp4"
+                ),
 
-        filmes.add(
-            Filme(
-                "A Noiva Cadáver",
-                2005,
-                "Animação",
-                "https://i.postimg.cc/Z54FvXD1/noiva.jpg",
-                "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/A%20noiva%20Cad%C3%A1ver.mp4"
+                Filme(
+                    "A Noiva Cadáver",
+                    2005,
+                    "Animação",
+                    "https://i.postimg.cc/Z54FvXD1/noiva.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/A%20noiva%20Cad%C3%A1ver.mp4"
+                )
             )
         )
 
@@ -639,120 +437,91 @@ class MainActivity : AppCompatActivity() {
                 it.titulo
             }
         )
-    }    // ===============================
-    // MOSTRAR CARDS
-    // ===============================
+    }
 
     private fun mostrarListaCards(
-        titulo: String,
         lista: List<Filme>
     ) {
 
-        val tituloView =
-            TextView(this)
+        conteudo.removeAllViews()
 
-        tituloView.text =
-            titulo
+        if (lista.isEmpty()) {
+            mostrarMensagem(
+                "Nenhum conteúdo encontrado."
+            )
+            return
+        }
 
-        tituloView.textSize =
-            24f
+        val colunas = 5
 
-        tituloView.setTextColor(
-            Color.WHITE
-        )
+        var linha =
+            LinearLayout(this)
 
-        tituloView.setTypeface(
-            null,
-            Typeface.BOLD
-        )
+        linha.orientation =
+            LinearLayout.HORIZONTAL
 
-        tituloView.setPadding(
-            dp(5),
-            dp(15),
-            dp(5),
-            dp(10)
-        )
+        linha.gravity =
+            Gravity.TOP
 
         conteudo.addView(
-            tituloView,
+            linha,
             LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(55)
+                -1,
+                dp(320)
             )
         )
 
+        lista.forEachIndexed {
+                indice,
+                filme ->
 
-        val horizontal =
-            HorizontalScrollView(this)
+            if (
+                indice > 0 &&
+                indice % colunas == 0
+            ) {
 
-        horizontal.isHorizontalScrollBarEnabled =
-            false
+                linha =
+                    LinearLayout(this)
 
+                linha.orientation =
+                    LinearLayout.HORIZONTAL
 
-        val grade =
-            GridLayout(this)
+                linha.gravity =
+                    Gravity.TOP
 
-        grade.columnCount =
-            5
-
-        grade.rowCount =
-            GridLayout.UNDEFINED
-
-
-        lista.forEach { filme ->
+                conteudo.addView(
+                    linha,
+                    LinearLayout.LayoutParams(
+                        -1,
+                        dp(320)
+                    )
+                )
+            }
 
             val card =
                 criarCard(filme)
 
-            val params =
-                GridLayout.LayoutParams()
-
-            params.width =
-                dp(240)
-
-            params.height =
-                dp(320)
-
-            params.setMargins(
-                dp(8),
-                dp(8),
-                dp(8),
-                dp(15)
-            )
-
-            grade.addView(
+            linha.addView(
                 card,
-                params
+                LinearLayout.LayoutParams(
+                    0,
+                    dp(310),
+                    1f
+                ).apply {
+                    setMargins(
+                        dp(5),
+                        dp(5),
+                        dp(5),
+                        dp(5)
+                    )
+                }
             )
         }
-
-
-        horizontal.addView(
-            grade,
-            FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.WRAP_CONTENT,
-                FrameLayout.LayoutParams.WRAP_CONTENT
-            )
-        )
-
-
-        conteudo.addView(
-            horizontal,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT
-            )
-        )
     }
-
-
-    // ===============================
-    // CARD
-    // ===============================
 
     private fun criarCard(
         filme: Filme
-    ): LinearLayout {
+    ): View {
 
         val card =
             LinearLayout(this)
@@ -764,38 +533,33 @@ class MainActivity : AppCompatActivity() {
             Gravity.CENTER
 
         card.setPadding(
-            dp(5),
-            dp(5),
-            dp(5),
-            dp(5)
+            dp(4),
+            dp(4),
+            dp(4),
+            dp(4)
         )
 
-        card.isFocusable =
-            true
-
-        card.isFocusableInTouchMode =
-            true
-
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+        card.isClickable = true
 
         val fundoNormal =
             GradientDrawable()
 
-        fundoNormal.setColor(
-            Color.argb(
-                220,
-                15,
-                15,
-                15
-            )
-        )
-
         fundoNormal.cornerRadius =
             dp(10).toFloat()
 
+        fundoNormal.setColor(
+            Color.argb(
+                190,
+                10,
+                10,
+                10
+            )
+        )
 
         card.background =
             fundoNormal
-
 
         val capa =
             ImageView(this)
@@ -807,20 +571,18 @@ class MainActivity : AppCompatActivity() {
             Color.TRANSPARENT
         )
 
-        carregarImagem(
-            capa,
-            filme.capa
-        )
-
-
         card.addView(
             capa,
             LinearLayout.LayoutParams(
-                dp(230),
+                -1,
                 dp(255)
             )
         )
 
+        carregarImagem(
+            capa,
+            filme.capa
+        )
 
         val titulo =
             TextView(this)
@@ -828,169 +590,155 @@ class MainActivity : AppCompatActivity() {
         titulo.text =
             filme.titulo
 
-        titulo.textSize =
-            15f
+        titulo.textSize = 13f
+
+        titulo.maxLines = 2
+
+        titulo.gravity =
+            Gravity.CENTER
 
         titulo.setTextColor(
             Color.WHITE
         )
 
-        titulo.gravity =
-            Gravity.CENTER
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.maxLines =
-            2
-
-        titulo.ellipsize =
-            TextUtils.TruncateAt.END
-
-        titulo.setPadding(
-            dp(5),
-            dp(4),
-            dp(5),
-            dp(0)
-        )
-
+        titulo.typeface =
+            Typeface.DEFAULT_BOLD
 
         card.addView(
             titulo,
             LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(42)
+                -1,
+                dp(45)
             )
         )
-
-
-        val ano =
-            TextView(this)
-
-        ano.text =
-            filme.ano.toString()
-
-        ano.textSize =
-            13f
-
-        ano.setTextColor(
-            Color.LTGRAY
-        )
-
-        ano.gravity =
-            Gravity.CENTER
-
-
-        card.addView(
-            ano,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(22)
-            )
-        )
-
-
-        card.setOnClickListener {
-
-            if (filme.video.isBlank()) {
-
-                Toast.makeText(
-                    this,
-                    "Vídeo ainda não disponível.",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-            } else {
-
-                abrirVideo(filme)
-            }
-        }
-
 
         card.setOnFocusChangeListener {
                 view,
-                ganhouFoco ->
+                foco ->
 
-            aplicarFocoVermelho(
-                view,
-                ganhouFoco
-            )
+            val bg =
+                GradientDrawable()
+
+            bg.cornerRadius =
+                dp(10).toFloat()
+
+            if (foco) {
+
+                bg.setColor(
+                    Color.rgb(
+                        70,
+                        0,
+                        0
+                    )
+                )
+
+                bg.setStroke(
+                    dp(4),
+                    Color.RED
+                )
+
+                view.scaleX = 1.03f
+                view.scaleY = 1.03f
+
+            } else {
+
+                bg.setColor(
+                    Color.argb(
+                        190,
+                        10,
+                        10,
+                        10
+                    )
+                )
+
+                view.scaleX = 1f
+                view.scaleY = 1f
+            }
+
+            view.background =
+                bg
         }
 
+        card.setOnClickListener {
+            abrirVideo(filme)
+        }
 
         return card
     }
 
-
-    // ===============================
-    // CARREGAR IMAGEM
-    // ===============================
-
-    private fun carregarImagem(
-        imageView: ImageView,
-        url: String
+    private fun mostrarFilmes(
+        categoria: String? = null,
+        busca: String? = null
     ) {
 
-        Thread {
+        var lista =
+            filmes.toList()
 
-            try {
+        if (
+            !categoria.isNullOrBlank()
+        ) {
 
-                val conexao =
-                    URL(url).openConnection()
-
-                conexao.connect()
-
-                val bitmap =
-                    BitmapFactory.decodeStream(
-                        conexao.getInputStream()
-                    )
-
-
-                runOnUiThread {
-
-                    if (bitmap != null) {
-
-                        imageView.setImageBitmap(
-                            bitmap
-                        )
-                    }
-                }
-
-            } catch (_: Exception) {
-
-                runOnUiThread {
-
-                    imageView.setImageResource(
-                        android.R.drawable.ic_menu_report_image
+            lista =
+                lista.filter {
+                    it.categoria.equals(
+                        categoria,
+                        true
                     )
                 }
-            }
+        }
 
-        }.start()
+        if (
+            !busca.isNullOrBlank()
+        ) {
+
+            lista =
+                lista.filter {
+                    it.titulo.contains(
+                        busca,
+                        true
+                    )
+                }
+        }
+
+        lista =
+            lista.sortedWith(
+                compareByDescending<Filme> {
+                    it.ano
+                }.thenBy {
+                    it.titulo
+                }
+            )
+
+        mostrarListaCards(
+            lista
+        )
+
+        if (lista.isEmpty()) {
+
+            mostrarMensagem(
+                "Nenhum filme encontrado."
+            )
+        }
     }
-
-
-    // ===============================
-    // ABRIR VÍDEO
-    // ===============================
 
     private fun abrirVideo(
         filme: Filme
     ) {
 
         if (filme.video.isBlank()) {
+
+            mostrarMensagem(
+                "O vídeo de ${filme.titulo} ainda não possui link."
+            )
+
             return
         }
-
 
         val intent =
             Intent(
                 this,
                 PlayerActivity::class.java
             )
-
 
         intent.putExtra(
             "VIDEO_URL",
@@ -1002,518 +750,525 @@ class MainActivity : AppCompatActivity() {
             filme.titulo
         )
 
+        intent.putExtra(
+            "VIDEO_COVER",
+            filme.capa
+        )
+
         startActivity(intent)
-    }
+    }    private fun abrirMenu() {
 
-
-    // ===============================
-    // MENU
-    // ===============================
-
-    private fun abrirMenu() {
+        if (menuAberto) return
 
         menuAberto = true
-
-        menuLateral.visibility =
-            View.VISIBLE
-
-        construirMenuDinamico()
-
-        if (
-            itensMenuFoco.isNotEmpty()
-        ) {
-
-            itensMenuFoco[0]
-                .requestFocus()
-        }
-    }
-
-
-    private fun fecharMenu() {
-
-        menuAberto = false
-
-        menuLateral.visibility =
-            View.GONE
-
-        botaoMenu.requestFocus()
-    }
-
-
-    private fun construirMenuDinamico() {
-
-        menuConteudo.removeAllViews()
-
         itensMenuFoco.clear()
 
+        menuLateral =
+            LinearLayout(this)
 
-        // ===============================
-        // FECHAR
-        // ===============================
+        menuLateral.orientation =
+            LinearLayout.VERTICAL
 
-        adicionarItemMenu(
-            "✕  Fechar"
-        ) {
+        menuLateral.setPadding(
+            dp(12),
+            dp(10),
+            dp(12),
+            dp(10)
+        )
 
+        val fundo =
+            GradientDrawable()
+
+        fundo.setColor(
+            Color.argb(
+                248,
+                5,
+                5,
+                5
+            )
+        )
+
+        fundo.setStroke(
+            dp(2),
+            Color.rgb(
+                100,
+                0,
+                0
+            )
+        )
+
+        menuLateral.background =
+            fundo
+
+        val larguraDp =
+            resources.displayMetrics.widthPixels /
+            resources.displayMetrics.density
+
+        val larguraMenu =
+            if (larguraDp >= 800) {
+                dp(350)
+            } else {
+                dp(310)
+            }
+
+        val parametros =
+            FrameLayout.LayoutParams(
+                larguraMenu,
+                -1
+            )
+
+        parametros.gravity =
+            Gravity.START
+
+        raiz.addView(
+            menuLateral,
+            parametros
+        )
+
+        val topoMenu =
+            LinearLayout(this)
+
+        topoMenu.orientation =
+            LinearLayout.HORIZONTAL
+
+        topoMenu.gravity =
+            Gravity.CENTER_VERTICAL
+
+        val tituloMenu =
+            TextView(this)
+
+        tituloMenu.text =
+            "MENU"
+
+        tituloMenu.textSize = 22f
+
+        tituloMenu.typeface =
+            Typeface.DEFAULT_BOLD
+
+        tituloMenu.setTextColor(
+            Color.WHITE
+        )
+
+        topoMenu.addView(
+            tituloMenu,
+            LinearLayout.LayoutParams(
+                0,
+                dp(55),
+                1f
+            )
+        )
+
+        val fecharX =
+            TextView(this)
+
+        fecharX.text =
+            "✕"
+
+        fecharX.textSize = 32f
+
+        fecharX.gravity =
+            Gravity.CENTER
+
+        fecharX.setTextColor(
+            Color.WHITE
+        )
+
+        fecharX.isFocusable = true
+        fecharX.isFocusableInTouchMode =
+            true
+        fecharX.isClickable = true
+
+        fecharX.setOnClickListener {
             fecharMenu()
         }
 
+        fecharX.setOnFocusChangeListener {
+                view,
+                foco ->
 
-        adicionarSeparadorPremium()
+            val bg =
+                GradientDrawable()
 
+            bg.cornerRadius =
+                dp(12).toFloat()
 
-        // ===============================
-        // PRINCIPAL
-        // ===============================
+            if (foco) {
 
-        adicionarItemMenu(
-            "⌂  Início"
-        ) {
+                bg.setColor(
+                    Color.rgb(
+                        65,
+                        0,
+                        0
+                    )
+                )
 
-            mostrarTodos()
-            fecharMenu()
+                bg.setStroke(
+                    dp(3),
+                    Color.RED
+                )
+
+            } else {
+
+                bg.setColor(
+                    Color.TRANSPARENT
+                )
+            }
+
+            view.background =
+                bg
         }
 
+        topoMenu.addView(
+            fecharX,
+            LinearLayout.LayoutParams(
+                dp(70),
+                dp(55)
+            )
+        )
 
-        adicionarItemMenu(
-            "★  Favoritos (${favoritosSalvos.size})"
-        ) {
+        menuLateral.addView(
+            topoMenu,
+            LinearLayout.LayoutParams(
+                -1,
+                dp(60)
+            )
+        )
 
-            mostrarFavoritos()
-            fecharMenu()
-        }
+        registrarFocoMenu(
+            fecharX
+        )
 
+        adicionarSeparadorPremium(
+            menuLateral
+        )
+
+        menuScroll =
+            ScrollView(this)
+
+        menuScroll.isFocusable =
+            false
+
+        menuScroll.isFocusableInTouchMode =
+            false
+
+        menuScroll.descendantFocusability =
+            ViewGroup.FOCUS_AFTER_DESCENDANTS
+
+        menuConteudo =
+            LinearLayout(this)
+
+        menuConteudo.orientation =
+            LinearLayout.VERTICAL
+
+        menuConteudo.isFocusable =
+            false
+
+        menuConteudo.isFocusableInTouchMode =
+            false
+
+        menuScroll.addView(
+            menuConteudo,
+            ViewGroup.LayoutParams(
+                -1,
+                -2
+            )
+        )
+
+        menuLateral.addView(
+            menuScroll,
+            LinearLayout.LayoutParams(
+                -1,
+                0,
+                1f
+            )
+        )
 
         adicionarItemMenu(
             "▶  Continue assistindo"
         ) {
 
-            mostrarContinuar()
             fecharMenu()
+            mostrarContinueAssistindo()
         }
 
-
         adicionarItemMenu(
-            "⌕  Pesquisa"
+            "♥  Favoritos"
         ) {
 
+            fecharMenu()
+            mostrarFavoritos()
+        }
+
+        adicionarItemMenu(
+            "🔎  Pesquisa"
+        ) {
+
+            fecharMenu()
             abrirPesquisa()
-            fecharMenu()
         }
 
+        adicionarSeparadorPremium(
+            menuConteudo
+        )
 
-        adicionarSeparadorPremium()
-
-
-        // ===============================
-        // FILMES
-        // ===============================
+        adicionarCabecalho(
+            "FILMES",
+            filmes.size
+        )
 
         adicionarItemMenu(
-            "🎬  Filmes (${filmes.size})"
+            "   TODOS (${filmes.size})"
         ) {
-
-            mostrarTodos()
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Ação",
-            filmes.count {
-                it.categoria == "Ação"
-            }
-        ) {
-
-            mostrarCategoria(
-                "Filmes • Ação",
-                "Ação"
-            )
 
             fecharMenu()
+
+            mostrarFilmes()
         }
 
-
-        adicionarCategoria(
-            "Aventura",
-            filmes.count {
-                it.categoria == "Aventura"
-            }
-        ) {
-
-            mostrarCategoria(
-                "Filmes • Aventura",
-                "Aventura"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Comédia",
-            filmes.count {
-                it.categoria == "Comédia"
-            }
-        ) {
-
-            mostrarCategoria(
-                "Filmes • Comédia",
-                "Comédia"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Terror",
-            filmes.count {
-                it.categoria == "Terror"
-            }
-        ) {
-
-            mostrarCategoria(
-                "Filmes • Terror",
-                "Terror"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Animação",
-            filmes.count {
-                it.categoria == "Animação"
-            }
-        ) {
-
-            mostrarCategoria(
-                "Filmes • Animação",
-                "Animação"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Ficção",
-            filmes.count {
-                it.categoria == "Ficção"
-            }
-        ) {
-
-            mostrarCategoria(
-                "Filmes • Ficção",
+        val categoriasFilmes =
+            listOf(
+                "Ação",
+                "Aventura",
+                "Comédia",
+                "Terror",
+                "Animação",
                 "Ficção"
             )
 
-            fecharMenu()
-        }
-
-
-        adicionarSeparadorPremium()
-
-
-        // ===============================
-        // SÉRIES
-        // ===============================
-
-        adicionarItemMenu(
-            "📺  Séries (${series.size})"
-        ) {
-
-            mostrarListaGenerica(
-                "Séries",
-                series
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Ação",
-            series.count {
-                it.categoria == "Ação"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Séries • Ação",
-                series,
-                "Ação"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Comédia",
-            series.count {
-                it.categoria == "Comédia"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Séries • Comédia",
-                series,
-                "Comédia"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Drama",
-            series.count {
-                it.categoria == "Drama"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Séries • Drama",
-                series,
-                "Drama"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Romance",
-            series.count {
-                it.categoria == "Romance"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Séries • Romance",
-                series,
-                "Romance"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarSeparadorPremium()
-
-
-        // ===============================
-        // DORAMAS
-        // ===============================
-
-        adicionarItemMenu(
-            "🎎  Doramas (${doramas.size})"
-        ) {
-
-            mostrarListaGenerica(
-                "Doramas",
-                doramas
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Ação",
-            doramas.count {
-                it.categoria == "Ação"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Doramas • Ação",
-                doramas,
-                "Ação"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Romance",
-            doramas.count {
-                it.categoria == "Romance"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Doramas • Romance",
-                doramas,
-                "Romance"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Drama",
-            doramas.count {
-                it.categoria == "Drama"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Doramas • Drama",
-                doramas,
-                "Drama"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Comédia",
-            doramas.count {
-                it.categoria == "Comédia"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Doramas • Comédia",
-                doramas,
-                "Comédia"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarSeparadorPremium()
-
-
-        // ===============================
-        // ANIME
-        // ===============================
-
-        adicionarItemMenu(
-            "⚔  Anime (${animes.size})"
-        ) {
-
-            mostrarListaGenerica(
-                "Anime",
-                animes
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Ação",
-            animes.count {
-                it.categoria == "Ação"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Anime • Ação",
-                animes,
-                "Ação"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Aventura",
-            animes.count {
-                it.categoria == "Aventura"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Anime • Aventura",
-                animes,
-                "Aventura"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Fantasia",
-            animes.count {
-                it.categoria == "Fantasia"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Anime • Fantasia",
-                animes,
-                "Fantasia"
-            )
-
-            fecharMenu()
-        }
-
-
-        adicionarCategoria(
-            "Comédia",
-            animes.count {
-                it.categoria == "Comédia"
-            }
-        ) {
-
-            mostrarCategoriaLista(
-                "Anime • Comédia",
-                animes,
-                "Comédia"
-            )
-
-            fecharMenu()
-        }
-    }
-
-
-    // ===============================
-    // SEPARADOR
-    // ===============================
-
-    private fun adicionarSeparadorPremium() {
-
-        val linha =
-            View(this)
-
-        linha.setBackgroundColor(
-            Color.DKGRAY
-        )
-
-
-        menuConteudo.addView(
-            linha,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(1)
-            ).apply {
-
-                setMargins(
-                    dp(5),
-                    dp(8),
-                    dp(5),
-                    dp(8)
+        categoriasFilmes.forEach {
+            categoria ->
+
+            adicionarItemMenu(
+                "   $categoria (${contar(
+                    filmes,
+                    categoria
+                )})"
+            ) {
+
+                fecharMenu()
+
+                mostrarFilmes(
+                    categoria = categoria
                 )
             }
+        }
+
+        adicionarSeparadorPremium(
+            menuConteudo
         )
+
+        adicionarCabecalho(
+            "SÉRIES",
+            series.size
+        )
+
+        adicionarItemMenu(
+            "   TODOS (${series.size})"
+        ) {
+
+            fecharMenu()
+
+            mostrarConteudoEspecial(
+                series,
+                "",
+                "Séries"
+            )
+        }
+
+        val categoriasSeries =
+            listOf(
+                "Ação",
+                "Comédia",
+                "Drama",
+                "Romance"
+            )
+
+        categoriasSeries.forEach {
+            categoria ->
+
+            adicionarItemMenu(
+                "   $categoria (${contar(
+                    series,
+                    categoria
+                )})"
+            ) {
+
+                fecharMenu()
+
+                mostrarConteudoEspecial(
+                    series,
+                    categoria,
+                    "Séries"
+                )
+            }
+        }
+
+        adicionarSeparadorPremium(
+            menuConteudo
+        )
+
+        adicionarCabecalho(
+            "DORAMAS",
+            doramas.size
+        )
+
+        adicionarItemMenu(
+            "   TODOS (${doramas.size})"
+        ) {
+
+            fecharMenu()
+
+            mostrarConteudoEspecial(
+                doramas,
+                "",
+                "Doramas"
+            )
+        }
+
+        val categoriasDoramas =
+            listOf(
+                "Ação",
+                "Romance",
+                "Drama",
+                "Comédia"
+            )
+
+        categoriasDoramas.forEach {
+            categoria ->
+
+            adicionarItemMenu(
+                "   $categoria (${contar(
+                    doramas,
+                    categoria
+                )})"
+            ) {
+
+                fecharMenu()
+
+                mostrarConteudoEspecial(
+                    doramas,
+                    categoria,
+                    "Doramas"
+                )
+            }
+        }
+
+        adicionarSeparadorPremium(
+            menuConteudo
+        )
+
+        adicionarCabecalho(
+            "ANIME",
+            animes.size
+        )
+
+        adicionarItemMenu(
+            "   TODOS (${animes.size})"
+        ) {
+
+            fecharMenu()
+
+            mostrarConteudoEspecial(
+                animes,
+                "",
+                "Anime"
+            )
+        }
+
+        val categoriasAnime =
+            listOf(
+                "Ação",
+                "Aventura",
+                "Fantasia",
+                "Comédia"
+            )
+
+        categoriasAnime.forEach {
+            categoria ->
+
+            adicionarItemMenu(
+                "   $categoria (${contar(
+                    animes,
+                    categoria
+                )})"
+            ) {
+
+                fecharMenu()
+
+                mostrarConteudoEspecial(
+                    animes,
+                    categoria,
+                    "Anime"
+                )
+            }
+        }
+
+        adicionarSeparadorPremium(
+            menuConteudo
+        )
+
+        adicionarItemMenu(
+            "✕  FECHAR MENU"
+        ) {
+
+            fecharMenu()
+        }
+
+        if (
+            itensMenuFoco.size > 1
+        ) {
+
+            itensMenuFoco[1]
+                .requestFocus()
+
+        } else {
+
+            fecharX.requestFocus()
+        }
     }
 
+    private fun adicionarCabecalho(
+        texto: String,
+        quantidade: Int
+    ) {
 
-    // ===============================
-    // ITEM DO MENU
-    // ===============================
+        val item =
+            TextView(this)
+
+        item.text =
+            "$texto  ($quantidade)"
+
+        item.textSize = 17f
+
+        item.typeface =
+            Typeface.DEFAULT_BOLD
+
+        item.setTextColor(
+            Color.rgb(
+                255,
+                70,
+                70
+            )
+        )
+
+        item.gravity =
+            Gravity.CENTER_VERTICAL
+
+        item.setPadding(
+            dp(10),
+            dp(8),
+            dp(10),
+            dp(8)
+        )
+
+        menuConteudo.addView(
+            item,
+            LinearLayout.LayoutParams(
+                -1,
+                dp(42)
+            )
+        )
+    }
 
     private fun adicionarItemMenu(
         texto: String,
@@ -1526,8 +1281,7 @@ class MainActivity : AppCompatActivity() {
         item.text =
             texto
 
-        item.textSize =
-            17f
+        item.textSize = 15f
 
         item.setTextColor(
             Color.WHITE
@@ -1537,591 +1291,520 @@ class MainActivity : AppCompatActivity() {
             Gravity.CENTER_VERTICAL
 
         item.setPadding(
-            dp(18),
+            dp(14),
             0,
-            dp(10),
+            dp(8),
             0
         )
 
-        item.isFocusable =
-            true
-
+        item.isFocusable = true
         item.isFocusableInTouchMode =
             true
 
+        item.isClickable = true
 
-        val fundo =
-            GradientDrawable()
+        item.setOnFocusChangeListener {
+                view,
+                foco ->
 
-        fundo.setColor(
-            Color.TRANSPARENT
-        )
+            val bg =
+                GradientDrawable()
 
-        fundo.cornerRadius =
-            dp(8).toFloat()
+            bg.cornerRadius =
+                dp(8).toFloat()
 
-        item.background =
-            fundo
+            if (foco) {
 
+                bg.setColor(
+                    Color.rgb(
+                        65,
+                        0,
+                        0
+                    )
+                )
+
+                bg.setStroke(
+                    dp(2),
+                    Color.RED
+                )
+
+                view.scaleX = 1.02f
+                view.scaleY = 1.02f
+
+                view.post {
+
+                    menuScroll
+                        .smoothScrollTo(
+                            0,
+                            view.top
+                        )
+                }
+
+            } else {
+
+                bg.setColor(
+                    Color.TRANSPARENT
+                )
+
+                view.scaleX = 1f
+                view.scaleY = 1f
+            }
+
+            view.background =
+                bg
+        }
 
         item.setOnClickListener {
             acao()
         }
 
+        item.setOnKeyListener {
+                _,
+                keyCode,
+                event ->
 
-        item.setOnFocusChangeListener {
-                view,
-                ganhouFoco ->
+            if (
+                event.action ==
+                KeyEvent.ACTION_DOWN &&
+                (
+                    keyCode ==
+                    KeyEvent.KEYCODE_DPAD_CENTER ||
+                    keyCode ==
+                    KeyEvent.KEYCODE_ENTER
+                )
+            ) {
 
-            aplicarFocoVermelho(
-                view,
-                ganhouFoco
-            )
+                acao()
+
+                true
+
+            } else {
+
+                false
+            }
         }
-
 
         menuConteudo.addView(
             item,
             LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
+                -1,
                 dp(48)
-            ).apply {
-
-                setMargins(
-                    dp(5),
-                    dp(2),
-                    dp(5),
-                    dp(2)
-                )
-            }
+            )
         )
 
-
-        itensMenuFoco.add(item)
+        registrarFocoMenu(
+            item
+        )
     }
 
-
-    // ===============================
-    // CATEGORIA DO MENU
-    // ===============================
-
-    private fun adicionarCategoria(
-        nome: String,
-        quantidade: Int,
-        acao: () -> Unit
+    private fun registrarFocoMenu(
+        view: View
     ) {
 
-        adicionarItemMenu(
-            "   └ $nome ($quantidade)",
-            acao
-        )
-    }    // ===============================
-    // LISTAS
-    // ===============================
-
-    private fun mostrarTodos() {
-
-        conteudo.removeAllViews()
-
-        mostrarListaCards(
-            "🎬 Filmes",
-            filmes
-        )
-
-        if (series.isNotEmpty()) {
-            mostrarListaCards(
-                "📺 Séries",
-                series
-            )
-        }
-
-        if (doramas.isNotEmpty()) {
-            mostrarListaCards(
-                "🎎 Doramas",
-                doramas
-            )
-        }
-
-        if (animes.isNotEmpty()) {
-            mostrarListaCards(
-                "⚔ Anime",
-                animes
-            )
-        }
-
-        botaoMenu.requestFocus()
+        itensMenuFoco.add(view)
     }
 
+    private fun adicionarSeparadorPremium(
+        destino: ViewGroup
+    ) {
 
-    private fun mostrarCategoria(
-        titulo: String,
-        categoria: String
+        val linha =
+            View(this)
+
+        linha.setBackgroundColor(
+            Color.rgb(
+                70,
+                70,
+                70
+            )
+        )
+
+        val params =
+            LinearLayout.LayoutParams(
+                -1,
+                dp(1)
+            )
+
+        params.setMargins(
+            dp(5),
+            dp(7),
+            dp(5),
+            dp(7)
+        )
+
+        destino.addView(
+            linha,
+            params
+        )
+    }
+
+    private fun fecharMenu() {
+
+        if (!menuAberto) return
+
+        if (
+            ::menuLateral.isInitialized
+        ) {
+
+            raiz.removeView(
+                menuLateral
+            )
+        }
+
+        menuAberto = false
+
+        itensMenuFoco.clear()
+
+        encontrarPrimeiroFocavel(
+            conteudo
+        )?.requestFocus()
+    }
+
+    private fun mostrarConteudoEspecial(
+        listaOriginal: List<Filme>,
+        categoria: String,
+        tipo: String
     ) {
 
         val lista =
-            filmes.filter {
-                it.categoria == categoria
+            if (categoria.isBlank()) {
+
+                listaOriginal
+                    .sortedWith(
+                        compareByDescending<Filme> {
+                            it.ano
+                        }.thenBy {
+                            it.titulo
+                        }
+                    )
+
+            } else {
+
+                listaOriginal
+                    .filter {
+                        it.categoria.equals(
+                            categoria,
+                            true
+                        )
+                    }
+                    .sortedWith(
+                        compareByDescending<Filme> {
+                            it.ano
+                        }.thenBy {
+                            it.titulo
+                        }
+                    )
             }
 
-        mostrarListaGenerica(
-            titulo,
+        mostrarListaCards(
             lista
         )
-    }
-
-
-    private fun mostrarListaGenerica(
-        titulo: String,
-        lista: List<Filme>
-    ) {
-
-        conteudo.removeAllViews()
 
         if (lista.isEmpty()) {
 
             mostrarMensagem(
-                "$titulo\n\nNenhum conteúdo disponível."
+                if (categoria.isBlank()) {
+                    "$tipo está vazio."
+                } else {
+                    "$tipo • $categoria está vazio."
+                }
             )
-
-            return
         }
-
-
-        mostrarListaCards(
-            titulo,
-            lista
-        )
     }
-
-
-    private fun mostrarCategoriaLista(
-        titulo: String,
-        lista: List<Filme>,
-        categoria: String
-    ) {
-
-        val filtrada =
-            lista.filter {
-                it.categoria == categoria
-            }
-
-        mostrarListaGenerica(
-            titulo,
-            filtrada
-        )
-    }
-
-
-    // ===============================
-    // FAVORITOS
-    // ===============================
 
     private fun mostrarFavoritos() {
 
-        conteudo.removeAllViews()
-
-
         val lista =
             filmes.filter {
-                favoritosSalvos.contains(
-                    it.titulo
-                )
+                ehFavorito(it)
             }
 
+        mostrarListaCards(
+            lista
+        )
 
         if (lista.isEmpty()) {
 
             mostrarMensagem(
-                "★ Favoritos\n\n" +
-                "Você ainda não adicionou filmes aos favoritos."
+                "Você ainda não possui favoritos."
             )
-
-            return
         }
-
-
-        mostrarListaCards(
-            "★ Favoritos",
-            lista
-        )
     }
 
+    private fun mostrarContinueAssistindo() {
 
-    // ===============================
-    // CONTINUE ASSISTINDO
-    // ===============================
-
-    private fun mostrarContinuar() {
-
-        conteudo.removeAllViews()
-
+        val prefs =
+            getSharedPreferences(
+                "wolf_progress",
+                MODE_PRIVATE
+            )
 
         val lista =
-            filmes.filter {
-                progressoVideos.containsKey(
-                    it.titulo
-                )
-            }
+            filmes
+                .filter { filme ->
 
+                    prefs.getLong(
+                        filme.video,
+                        0L
+                    ) > 0L
+
+                }
+                .sortedByDescending {
+                    filme ->
+
+                    prefs.getLong(
+                        "${filme.video}_time",
+                        0L
+                    )
+                }
+
+        mostrarListaCards(
+            lista
+        )
 
         if (lista.isEmpty()) {
 
             mostrarMensagem(
-                "▶ Continue assistindo\n\n" +
-                "Nenhum vídeo em andamento."
+                "Ainda não há vídeos para continuar assistindo."
             )
-
-            return
         }
-
-
-        mostrarListaCards(
-            "▶ Continue assistindo",
-            lista
-        )
     }
-
-
-    // ===============================
-    // PESQUISA
-    // ===============================
 
     private fun abrirPesquisa() {
-
-        conteudo.removeAllViews()
-
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            "⌕ Pesquisa"
-
-        titulo.textSize =
-            26f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.setPadding(
-            dp(10),
-            dp(20),
-            dp(10),
-            dp(10)
-        )
-
-
-        conteudo.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(65)
-            )
-        )
-
 
         val campo =
             EditText(this)
 
         campo.hint =
-            "Digite o nome do filme..."
-
-        campo.setHintTextColor(
-            Color.LTGRAY
-        )
+            "Digite o nome do filme"
 
         campo.setTextColor(
             Color.WHITE
         )
 
-        campo.textSize =
-            18f
-
-        campo.setSingleLine(
-            true
+        campo.setHintTextColor(
+            Color.LTGRAY
         )
 
-        campo.isFocusable =
-            true
+        campo.setSingleLine(true)
 
-        campo.isFocusableInTouchMode =
-            true
-
-
-        campo.setBackgroundColor(
-            Color.argb(
-                180,
-                30,
-                30,
-                30
-            )
-        )
-
-
-        conteudo.addView(
-            campo,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(55)
-            ).apply {
-
-                setMargins(
-                    dp(10),
-                    dp(5),
-                    dp(10),
-                    dp(15)
+        val dialog =
+            android.app.AlertDialog
+                .Builder(this)
+                .setTitle(
+                    "Pesquisar"
                 )
-            }
-        )
+                .setView(
+                    campo
+                )
+                .setNegativeButton(
+                    "Cancelar",
+                    null
+                )
+                .setPositiveButton(
+                    "Pesquisar"
+                ) { _, _ ->
 
+                    mostrarFilmes(
+                        busca =
+                            campo.text
+                                .toString()
+                                .trim()
+                    )
+                }
+                .create()
 
-        val botao =
-            TextView(this)
+        dialog.show()
+    }    private fun contar(
+        lista: List<Filme>,
+        categoria: String
+    ): Int {
 
-        botao.text =
-            "PESQUISAR"
-
-        botao.textSize =
-            17f
-
-        botao.setTextColor(
-            Color.WHITE
-        )
-
-        botao.gravity =
-            Gravity.CENTER
-
-        botao.isFocusable =
-            true
-
-        botao.isFocusableInTouchMode =
-            true
-
-
-        val fundo =
-            GradientDrawable()
-
-        fundo.setColor(
-            Color.rgb(
-                150,
-                0,
-                0
-            )
-        )
-
-        fundo.cornerRadius =
-            dp(8).toFloat()
-
-        botao.background =
-            fundo
-
-
-        conteudo.addView(
-            botao,
-            LinearLayout.LayoutParams(
-                dp(180),
-                dp(50)
-            ).apply {
-
-                gravity =
-                    Gravity.CENTER_HORIZONTAL
-            }
-        )
-
-
-        botao.setOnClickListener {
-
-            pesquisar(
-                campo.text.toString()
+        return lista.count {
+            it.categoria.equals(
+                categoria,
+                true
             )
         }
-
-
-        campo.setOnEditorActionListener {
-                _,
-                _,
-                _ ->
-
-            pesquisar(
-                campo.text.toString()
-            )
-
-            true
-        }
-
-
-        campo.requestFocus()
     }
 
+    private fun ehFavorito(
+        filme: Filme
+    ): Boolean {
 
-    private fun pesquisar(
-        texto: String
-    ) {
-
-        val termo =
-            texto.trim()
-
-
-        if (termo.isEmpty()) {
-
-            Toast.makeText(
-                this,
-                "Digite algo para pesquisar.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-
-        val resultados =
-            filmes.filter {
-
-                it.titulo.contains(
-                    termo,
-                    ignoreCase = true
-                )
-            }
-
-
-        conteudo.removeAllViews()
-
-
-        if (resultados.isEmpty()) {
-
-            mostrarMensagem(
-                "Pesquisa\n\n" +
-                "Nenhum resultado encontrado para:\n" +
-                "\"$termo\""
-            )
-
-            return
-        }
-
-
-        mostrarListaCards(
-            "Resultados para \"$termo\"",
-            resultados
+        return getSharedPreferences(
+            "wolf_favoritos",
+            MODE_PRIVATE
+        ).getBoolean(
+            filme.video,
+            false
         )
     }
 
-
-    // ===============================
-    // MENSAGEM
-    // ===============================
-
-    private fun mostrarMensagem(
-        mensagem: String
+    private fun alternarFavorito(
+        filme: Filme
     ) {
 
-        val texto =
-            TextView(this)
-
-        texto.text =
-            mensagem
-
-        texto.textSize =
-            20f
-
-        texto.setTextColor(
-            Color.WHITE
-        )
-
-        texto.gravity =
-            Gravity.CENTER
-
-        texto.setPadding(
-            dp(30),
-            dp(50),
-            dp(30),
-            dp(50)
-        )
-
-
-        conteudo.addView(
-            texto,
-            LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                dp(220)
+        val prefs =
+            getSharedPreferences(
+                "wolf_favoritos",
+                MODE_PRIVATE
             )
-        )
+
+        val novoEstado =
+            !prefs.getBoolean(
+                filme.video,
+                false
+            )
+
+        prefs.edit()
+            .putBoolean(
+                filme.video,
+                novoEstado
+            )
+            .apply()
     }
 
+    private fun encontrarPrimeiroFocavel(
+        view: View
+    ): View? {
 
-    // ===============================
-    // FOCO VERMELHO
-    // ===============================
+        if (
+            view.isFocusable &&
+            view.visibility ==
+            View.VISIBLE
+        ) {
 
-    private fun aplicarFocoVermelho(
-        view: View,
-        ganhouFoco: Boolean
-    ) {
+            return view
+        }
 
-        val fundo =
-            GradientDrawable()
+        if (
+            view is ViewGroup
+        ) {
 
+            for (
+                i in 0 until view.childCount
+            ) {
 
-        if (ganhouFoco) {
+                val encontrado =
+                    encontrarPrimeiroFocavel(
+                        view.getChildAt(i)
+                    )
 
-            fundo.setColor(
-                Color.argb(
-                    235,
-                    30,
-                    30,
-                    30
-                )
+                if (
+                    encontrado != null
+                ) {
+
+                    return encontrado
+                }
+            }
+        }
+
+        return null
+    }
+
+    private fun estaDentroDoMenu(
+        view: View?
+    ): Boolean {
+
+        if (
+            view == null ||
+            !::menuLateral.isInitialized
+        ) {
+
+            return false
+        }
+
+        var atual: View? = view
+
+        while (
+            atual != null
+        ) {
+
+            if (
+                atual === menuLateral
+            ) {
+
+                return true
+            }
+
+            atual =
+                atual.parent as? View
+        }
+
+        return false
+    }
+
+    private fun navegarMenu(
+        direcao: Int
+    ): Boolean {
+
+        if (
+            itensMenuFoco.isEmpty()
+        ) {
+
+            return false
+        }
+
+        val atual =
+            currentFocus
+
+        var indice =
+            itensMenuFoco.indexOf(
+                atual
             )
 
-            fundo.setStroke(
-                dp(3),
-                Color.RED
-            )
+        if (
+            indice < 0
+        ) {
 
-            fundo.cornerRadius =
-                dp(10).toFloat()
-
-            view.scaleX =
-                1.03f
-
-            view.scaleY =
-                1.03f
+            indice = 0
 
         } else {
 
-            fundo.setColor(
-                Color.argb(
-                    220,
-                    15,
-                    15,
-                    15
-                )
-            )
+            indice += direcao
 
-            fundo.cornerRadius =
-                dp(10).toFloat()
+            if (
+                indice < 0
+            ) {
 
-            view.scaleX =
-                1f
+                indice = 0
+            }
 
-            view.scaleY =
-                1f
+            if (
+                indice >
+                itensMenuFoco.lastIndex
+            ) {
+
+                indice =
+                    itensMenuFoco.lastIndex
+            }
         }
 
+        val proximo =
+            itensMenuFoco[indice]
 
-        view.background =
-            fundo
+        proximo.requestFocus()
+
+        proximo.post {
+
+            if (
+                ::menuScroll.isInitialized
+            ) {
+
+                val posicao =
+                    proximo.top -
+                    dp(30)
+
+                menuScroll.smoothScrollTo(
+                    0,
+                    posicao.coerceAtLeast(0)
+                )
+            }
+        }
+
+        return true
     }
-
-
-    // ===============================
-    // D-PAD
-    // ===============================
 
     override fun dispatchKeyEvent(
         event: KeyEvent
@@ -2132,202 +1815,319 @@ class MainActivity : AppCompatActivity() {
             KeyEvent.ACTION_DOWN
         ) {
 
-            when (event.keyCode) {
+            val key =
+                event.keyCode
 
-                KeyEvent.KEYCODE_MENU -> {
+            if (
+                key ==
+                KeyEvent.KEYCODE_MENU
+            ) {
 
-                    if (menuAberto) {
-                        fecharMenu()
-                    } else {
-                        abrirMenu()
+                if (menuAberto) {
+
+                    fecharMenu()
+
+                } else {
+
+                    abrirMenu()
+                }
+
+                return true
+            }
+
+            if (menuAberto) {
+
+                val foco =
+                    currentFocus
+
+                if (
+                    !estaDentroDoMenu(
+                        foco
+                    )
+                ) {
+
+                    if (
+                        itensMenuFoco.isNotEmpty()
+                    ) {
+
+                        itensMenuFoco[0]
+                            .requestFocus()
                     }
 
                     return true
                 }
 
+                when (key) {
 
-                KeyEvent.KEYCODE_DPAD_LEFT -> {
+                    KeyEvent.KEYCODE_DPAD_UP -> {
 
-                    if (
-                        !menuAberto &&
-                        event.repeatCount == 0
-                    ) {
-
-                        val foco =
-                            currentFocus
-
-                        if (
-                            foco == botaoMenu
-                        ) {
-
-                            abrirMenu()
-
-                            return true
-                        }
+                        return navegarMenu(-1)
                     }
-                }
 
+                    KeyEvent.KEYCODE_DPAD_DOWN -> {
 
-                KeyEvent.KEYCODE_DPAD_CENTER,
-                KeyEvent.KEYCODE_ENTER -> {
+                        return navegarMenu(1)
+                    }
 
-                    val foco =
-                        currentFocus
+                    KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                    if (
-                        menuAberto &&
-                        foco is TextView
-                    ) {
+                        return true
+                    }
 
-                        foco.performClick()
+                    KeyEvent.KEYCODE_DPAD_RIGHT -> {
+
+                        return true
+                    }
+
+                    KeyEvent.KEYCODE_DPAD_CENTER,
+                    KeyEvent.KEYCODE_ENTER -> {
+
+                        foco?.performClick()
+
+                        return true
+                    }
+
+                    KeyEvent.KEYCODE_BACK -> {
+
+                        fecharMenu()
 
                         return true
                     }
                 }
+            }
 
+            if (
+                !menuAberto &&
+                key ==
+                KeyEvent.KEYCODE_DPAD_UP
+            ) {
 
-                KeyEvent.KEYCODE_BACK -> {
+                val atual =
+                    currentFocus
 
-                    if (menuAberto) {
+                if (
+                    atual != null &&
+                    atual !== botaoMenu
+                ) {
 
-                        fecharMenu()
+                    val proximo =
+                        FocusFinder
+                            .getInstance()
+                            .findNextFocus(
+                                raiz,
+                                atual,
+                                View.FOCUS_UP
+                            )
 
-                    } else {
+                    if (
+                        proximo == null
+                    ) {
 
-                        finish()
+                        botaoMenu.requestFocus()
+
+                        return true
                     }
+                }
+            }
+
+            if (
+                !menuAberto &&
+                key ==
+                KeyEvent.KEYCODE_DPAD_DOWN
+            ) {
+
+                if (
+                    currentFocus ===
+                    botaoMenu
+                ) {
+
+                    encontrarPrimeiroFocavel(
+                        conteudo
+                    )?.requestFocus()
+
+                    return true
+                }
+            }
+
+            if (
+                !menuAberto &&
+                (
+                    key ==
+                    KeyEvent.KEYCODE_DPAD_LEFT ||
+                    key ==
+                    KeyEvent.KEYCODE_DPAD_RIGHT ||
+                    key ==
+                    KeyEvent.KEYCODE_DPAD_UP ||
+                    key ==
+                    KeyEvent.KEYCODE_DPAD_DOWN
+                )
+            ) {
+
+                val atual =
+                    currentFocus
+
+                if (
+                    atual != null
+                ) {
+
+                    val direcao =
+                        when (key) {
+
+                            KeyEvent.KEYCODE_DPAD_LEFT ->
+                                View.FOCUS_LEFT
+
+                            KeyEvent.KEYCODE_DPAD_RIGHT ->
+                                View.FOCUS_RIGHT
+
+                            KeyEvent.KEYCODE_DPAD_UP ->
+                                View.FOCUS_UP
+
+                            else ->
+                                View.FOCUS_DOWN
+                        }
+
+                    val proximo =
+                        FocusFinder
+                            .getInstance()
+                            .findNextFocus(
+                                raiz,
+                                atual,
+                                direcao
+                            )
+
+                    if (
+                        proximo != null
+                    ) {
+
+                        proximo.requestFocus()
+
+                        return true
+                    }
+                }
+            }
+
+            if (
+                key ==
+                KeyEvent.KEYCODE_BACK
+            ) {
+
+                if (menuAberto) {
+
+                    fecharMenu()
 
                     return true
                 }
             }
         }
-
 
         return super.dispatchKeyEvent(
             event
         )
     }
 
-
-    // ===============================
-    // DADOS
-    // ===============================
-
-    private fun prepararDados() {
-
-        filmes.sortWith(
-            compareByDescending<Filme> {
-                it.ano
-            }.thenBy {
-                it.titulo
-            }
-        )
-    }
-
-
-    private fun carregarDados() {
-
-        val preferencias =
-            getSharedPreferences(
-                "wolf_dados",
-                MODE_PRIVATE
-            )
-
-
-        val favoritos =
-            preferencias.getStringSet(
-                "favoritos",
-                emptySet()
-            )
-
-
-        favoritosSalvos.clear()
-
-        if (favoritos != null) {
-
-            favoritosSalvos.addAll(
-                favoritos
-            )
-        }
-    }
-
-
-    private fun salvarDados() {
-
-        getSharedPreferences(
-            "wolf_dados",
-            MODE_PRIVATE
-        )
-            .edit()
-            .putStringSet(
-                "favoritos",
-                favoritosSalvos
-            )
-            .apply()
-    }
-
-
-    // ===============================
-    // PROGRESSO
-    // ===============================
-
-    private fun carregarProgressos() {
-
-        val preferencias =
-            getSharedPreferences(
-                "wolf_progressos",
-                MODE_PRIVATE
-            )
-
-
-        progressoVideos.clear()
-
-
-        filmes.forEach { filme ->
-
-            val valor =
-                preferencias.getLong(
-                    filme.titulo,
-                    0L
-                )
-
-
-            if (valor > 0L) {
-
-                progressoVideos[
-                    filme.titulo
-                ] = valor
-            }
-        }
-    }
-
-
-    private fun salvarProgresso(
-        titulo: String,
-        posicao: Long
+    private fun carregarImagem(
+        imageView: ImageView,
+        url: String
     ) {
 
-        progressoVideos[
-            titulo
-        ] = posicao
+        if (url.isBlank()) return
 
+        val imagemCache =
+            cacheCapas[url]
 
-        getSharedPreferences(
-            "wolf_progressos",
-            MODE_PRIVATE
-        )
-            .edit()
-            .putLong(
-                titulo,
-                posicao
+        if (imagemCache != null) {
+
+            imageView.setImageBitmap(
+                imagemCache
             )
-            .apply()
+
+            return
+        }
+
+        thread {
+
+            var conexao:
+                HttpURLConnection? = null
+
+            try {
+
+                conexao =
+                    URL(url)
+                        .openConnection()
+                            as HttpURLConnection
+
+                conexao.connectTimeout =
+                    5000
+
+                conexao.readTimeout =
+                    7000
+
+                conexao.doInput =
+                    true
+
+                conexao.useCaches =
+                    true
+
+                conexao.setRequestProperty(
+                    "Cache-Control",
+                    "max-age=86400"
+                )
+
+                conexao.connect()
+
+                val bitmap =
+                    BitmapFactory
+                        .decodeStream(
+                            conexao.inputStream
+                        )
+
+                if (
+                    bitmap != null
+                ) {
+
+                    cacheCapas[url] =
+                        bitmap
+
+                    runOnUiThread {
+
+                        if (
+                            imageView.visibility ==
+                            View.VISIBLE
+                        ) {
+
+                            imageView.setImageBitmap(
+                                bitmap
+                            )
+                        }
+                    }
+                }
+
+            } catch (
+                _: Exception
+            ) {
+
+            } finally {
+
+                try {
+                    conexao?.disconnect()
+                } catch (
+                    _: Exception
+                ) {
+                }
+            }
+        }
     }
 
+    private fun mostrarMensagem(
+        mensagem: String
+    ) {
 
-    // ===============================
-    // UTILITÁRIO
-    // ===============================
+        Toast.makeText(
+            this,
+            mensagem,
+            Toast.LENGTH_SHORT
+        ).show()
+    }
 
     private fun dp(
         valor: Int
@@ -2335,32 +2135,9 @@ class MainActivity : AppCompatActivity() {
 
         return (
             valor *
-            resources.displayMetrics.density
+            resources
+                .displayMetrics
+                .density
         ).toInt()
     }
-
-
-    // ===============================
-    // VOLTANDO PARA A TELA
-    // ===============================
-
-    override fun onResume() {
-
-        super.onResume()
-
-        if (
-            ::botaoMenu.isInitialized &&
-            !menuAberto
-        ) {
-
-            botaoMenu.requestFocus()
-        }
-    }
-
-
-    override fun onDestroy() {
-
-        salvarDados()
-
-        super.onDestroy()
-    }
+}
