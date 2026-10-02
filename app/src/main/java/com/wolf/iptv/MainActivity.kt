@@ -30,8 +30,10 @@ class MainActivity : AppCompatActivity() {
 
         val botao = Button(this)
 
-        botao.text = "TESTAR PLAYER"
+        botao.text = "TESTAR FILME"
         botao.textSize = 18f
+        botao.isFocusable = true
+        botao.isFocusableInTouchMode = true
 
         botao.setOnClickListener {
 
@@ -39,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             intent.putExtra(
                 "VIDEO_URL",
-                "https://storage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                "https://vz-c091a331-1f1.b-cdn.net/7e4da3e7-be60-47f7-ab66-bbc6c5c273d6/playlist.m3u8"
             )
 
             startActivity(intent)
@@ -53,12 +55,15 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val espaco = LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.WRAP_CONTENT,
-            40
-        )
+        val espaco = TextView(this)
 
-        layout.addView(TextView(this), espaco)
+        layout.addView(
+            espaco,
+            LinearLayout.LayoutParams(
+                1,
+                40
+            )
+        )
 
         layout.addView(
             botao,
@@ -69,5 +74,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         setContentView(layout)
+
+        botao.requestFocus()
     }
 }
