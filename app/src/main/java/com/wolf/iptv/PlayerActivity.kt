@@ -128,6 +128,8 @@ class PlayerActivity : AppCompatActivity() {
 
             player?.setMediaItem(mediaItem)
             player?.prepare()
+
+            // Começa automaticamente
             player?.playWhenReady = true
 
         } catch (e: Exception) {
@@ -146,7 +148,11 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
 
-        if (event.action == KeyEvent.ACTION_DOWN) {
+        // Só processa o comando quando a tecla é SOLTA.
+        // Isso evita o controle enviar dois comandos
+        // enquanto o botão está sendo pressionado.
+
+        if (event.action == KeyEvent.ACTION_UP) {
 
             when (event.keyCode) {
 
@@ -168,7 +174,9 @@ class PlayerActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
                     player?.let {
-                        it.seekTo(it.currentPosition + 10_000)
+                        it.seekTo(
+                            it.currentPosition + 10_000
+                        )
                     }
 
                     return true
@@ -202,7 +210,13 @@ class PlayerActivity : AppCompatActivity() {
 
         super.onPause()
 
-        player?.pause()
+        // NÃO pausar o player aqui.
+        //
+        // Na TV, eventos de foco/atividade podem chamar
+        // onPause() mesmo sem o usuário querer pausar o vídeo.
+        //
+        // O botão OK/ENTER é quem controla pausa/despausa.
+
     }
 
     override fun onDestroy() {
