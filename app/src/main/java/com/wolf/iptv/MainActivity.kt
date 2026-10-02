@@ -7,10 +7,12 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.HorizontalScrollView
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -216,12 +218,12 @@ class MainActivity : Activity() {
 
         val fundo = ImageView(this)
 
-        fundo.layoutParams = ViewGroup.LayoutParams(
+        fundo.scaleType = ImageView.ScaleType.CENTER_CROP
+
+        fundo.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
-
-        fundo.scaleType = ImageView.ScaleType.CENTER_CROP
 
         carregarImagem(
             fundo,
@@ -233,27 +235,15 @@ class MainActivity : Activity() {
         raiz.orientation = LinearLayout.VERTICAL
         raiz.setBackgroundColor(Color.TRANSPARENT)
 
-        raiz.layoutParams = ViewGroup.LayoutParams(
+        raiz.layoutParams = FrameLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
         )
 
-        val camada = android.widget.FrameLayout(this)
-
-        camada.layoutParams = ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
-        )
+        val camada = FrameLayout(this)
 
         camada.addView(fundo)
-
-        camada.addView(
-            raiz,
-            android.widget.FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
+        camada.addView(raiz)
 
         setContentView(camada)
 
@@ -270,7 +260,7 @@ class MainActivity : Activity() {
 
         header.orientation = LinearLayout.HORIZONTAL
         header.gravity = Gravity.CENTER_VERTICAL
-        header.setPadding(55, 28, 55, 10)
+        header.setPadding(55, 25, 55, 10)
 
         header.layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
@@ -293,26 +283,25 @@ class MainActivity : Activity() {
             )
         )
 
-        val status = TextView(this)
+        val info = TextView(this)
 
-        status.text = "FILMES • SÉRIES • DORAMAS"
-        status.textSize = 13f
-        status.setTextColor(Color.WHITE)
-        status.alpha = 0.75f
-        status.gravity = Gravity.CENTER_VERTICAL
+        info.text = "FILMES • SÉRIES • DORAMAS"
+        info.textSize = 13f
+        info.setTextColor(Color.WHITE)
+        info.alpha = 0.8f
 
-        header.addView(status)
+        header.addView(info)
 
         raiz.addView(header)
     }
 
     private fun criarAbas(raiz: LinearLayout) {
 
-        val abasScroll = HorizontalScrollView(this)
+        val scroll = HorizontalScrollView(this)
 
-        abasScroll.isHorizontalScrollBarEnabled = false
+        scroll.isHorizontalScrollBarEnabled = false
 
-        abasScroll.layoutParams = LinearLayout.LayoutParams(
+        scroll.layoutParams = LinearLayout.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             65
         )
@@ -342,24 +331,20 @@ class MainActivity : Activity() {
             aba.isFocusable = true
             aba.isClickable = true
 
-            aba.setOnFocusChangeListener { view, temFoco ->
+            aba.alpha =
+                if (nome == abaAtual) 1f else 0.65f
 
-                if (temFoco) {
+            aba.setOnFocusChangeListener { view, foco ->
 
+                if (foco) {
                     view.scaleX = 1.08f
                     view.scaleY = 1.08f
                     view.alpha = 1f
-
                 } else {
-
                     view.scaleX = 1f
                     view.scaleY = 1f
-
-                    if (nome == abaAtual) {
-                        view.alpha = 1f
-                    } else {
-                        view.alpha = 0.65f
-                    }
+                    view.alpha =
+                        if (nome == abaAtual) 1f else 0.65f
                 }
             }
 
@@ -373,37 +358,19 @@ class MainActivity : Activity() {
                     mostrarMensagemSemConteudo(nome)
                 }
 
-                atualizarAbas(abas)
+                for (i in 0 until abas.childCount) {
+                    val item = abas.getChildAt(i) as TextView
+                    item.alpha =
+                        if (item.text.toString() == abaAtual) 1f
+                        else 0.65f
+                }
             }
 
             abas.addView(aba)
-
-            if (nome == "FILMES") {
-                aba.alpha = 1f
-            } else {
-                aba.alpha = 0.65f
-            }
         }
 
-        abasScroll.addView(abas)
-
-        raiz.addView(abasScroll)
-
-        atualizarAbas(abas)
-    }
-
-    private fun atualizarAbas(abas: LinearLayout) {
-
-        for (i in 0 until abas.childCount) {
-
-            val view = abas.getChildAt(i) as TextView
-
-            if (view.text.toString() == abaAtual) {
-                view.alpha = 1f
-            } else {
-                view.alpha = 0.65f
-            }
-        }
+        scroll.addView(abas)
+        raiz.addView(scroll)
     }
 
     private fun criarAreaConteudo(raiz: LinearLayout) {
@@ -433,64 +400,67 @@ class MainActivity : Activity() {
 
         conteudo.removeAllViews()
 
-        criarTituloCategoria(
-            "Filmes em destaque"
-        )
+        criarTituloCategoria("Filmes em destaque")
+
+        var linha = criarNovaLinha()
+        var contador = 0
+
+        for (filme in filmes) {
+
+            linha.addView(criarCard(filme))
+
+            contador++
+
+            if (contador == 5) {
+
+                adicionarLinha(linha)
+
+                linha = criarNovaLinha()
+                contador = 0
+            }
+        }
+
+        if (contador > 0) {
+
+            while (contador < 5) {
+
+                val espaco = View(this)
+
+                linha.addView(
+                    espaco,
+                    LinearLayout.LayoutParams(
+                        0,
+                        280,
+                        1f
+                    )
+                )
+
+                contador++
+            }
+
+            adicionarLinha(linha)
+        }
+    }
+
+    private fun criarNovaLinha(): LinearLayout {
 
         val linha = LinearLayout(this)
 
         linha.orientation = LinearLayout.HORIZONTAL
         linha.gravity = Gravity.TOP
 
-        var contador = 0
+        return linha
+    }
 
-        for (filme in filmes) {
+    private fun adicionarLinha(linha: LinearLayout) {
 
-            val card = criarCard(filme)
-
-            linha.addView(card)
-
-            contador++
-
-            if (contador == 5) {
-
-                conteudo.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        300
-                    )
-                )
-
-                linha.removeAllViews()
-
-                contador = 0
-            }
-        }
-
-        if (linha.childCount > 0) {
-
-            while (linha.childCount < 5) {
-
-                val vazio = View(this)
-
-                linha.addView(
-                    vazio,
-                    LinearLayout.LayoutParams(
-                        170,
-                        280
-                    )
-                )
-            }
-
-            conteudo.addView(
-                linha,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    300
-                )
+        conteudo.addView(
+            linha,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                300
             )
-        }
+        )
     }
 
     private fun criarTituloCategoria(titulo: String) {
@@ -518,10 +488,8 @@ class MainActivity : Activity() {
 
         card.orientation = LinearLayout.VERTICAL
         card.gravity = Gravity.TOP
-
         card.isFocusable = true
         card.isClickable = true
-
         card.setPadding(6, 5, 6, 5)
 
         val parametros = LinearLayout.LayoutParams(
@@ -537,8 +505,9 @@ class MainActivity : Activity() {
         val capa = ImageView(this)
 
         capa.scaleType = ImageView.ScaleType.CENTER_CROP
-
-        capa.setBackgroundColor(Color.rgb(25, 25, 25))
+        capa.setBackgroundColor(
+            Color.rgb(25, 25, 25)
+        )
 
         card.addView(
             capa,
@@ -563,8 +532,7 @@ class MainActivity : Activity() {
         titulo.setTextColor(Color.WHITE)
         titulo.typeface = Typeface.DEFAULT_BOLD
         titulo.maxLines = 1
-        titulo.ellipsize = android.text.TextUtils.TruncateAt.END
-        titulo.gravity = Gravity.CENTER_VERTICAL
+        titulo.ellipsize = TextUtils.TruncateAt.END
 
         card.addView(
             titulo,
@@ -579,7 +547,6 @@ class MainActivity : Activity() {
         ano.text = filme.ano.toString()
         ano.textSize = 12f
         ano.setTextColor(Color.LTGRAY)
-        ano.gravity = Gravity.CENTER_VERTICAL
 
         card.addView(
             ano,
@@ -593,26 +560,20 @@ class MainActivity : Activity() {
 
             if (foco) {
 
-                view.scaleX = 1.10f
-                view.scaleY = 1.10f
+                view.scaleX = 1.08f
+                view.scaleY = 1.08f
                 view.alpha = 1f
-
                 view.bringToFront()
-
-                titulo.setTextColor(Color.WHITE)
 
             } else {
 
                 view.scaleX = 1f
                 view.scaleY = 1f
-                view.alpha = 0.88f
-
-                titulo.setTextColor(Color.WHITE)
+                view.alpha = 0.9f
             }
         }
 
         card.setOnClickListener {
-
             abrirFilme(filme)
         }
 
@@ -623,10 +584,15 @@ class MainActivity : Activity() {
 
         conteudo.removeAllViews()
 
+        val caixa = LinearLayout(this)
+
+        caixa.orientation = LinearLayout.VERTICAL
+        caixa.gravity = Gravity.CENTER
+
         val titulo = TextView(this)
 
         titulo.text = nome
-        titulo.textSize = 24f
+        titulo.textSize = 25f
         titulo.setTextColor(Color.WHITE)
         titulo.typeface = Typeface.DEFAULT_BOLD
         titulo.gravity = Gravity.CENTER
@@ -639,11 +605,8 @@ class MainActivity : Activity() {
         mensagem.textSize = 18f
         mensagem.setTextColor(Color.LTGRAY)
         mensagem.gravity = Gravity.CENTER
+        mensagem.setPadding(0, 15, 0, 0)
 
-        val caixa = LinearLayout(this)
-
-        caixa.orientation = LinearLayout.VERTICAL
-        caixa.gravity = Gravity.CENTER
         caixa.addView(titulo)
         caixa.addView(mensagem)
 
@@ -698,13 +661,12 @@ class MainActivity : Activity() {
 
                 conexao.connect()
 
-                val input = conexao.inputStream
-
                 val bitmap: Bitmap? =
-                    BitmapFactory.decodeStream(input)
+                    BitmapFactory.decodeStream(
+                        conexao.inputStream
+                    )
 
-                input.close()
-
+                conexao.inputStream.close()
                 conexao.disconnect()
 
                 if (bitmap != null) {
@@ -727,16 +689,6 @@ class MainActivity : Activity() {
         if (event.action == KeyEvent.ACTION_DOWN) {
 
             when (event.keyCode) {
-
-                KeyEvent.KEYCODE_DPAD_DOWN -> {
-
-                    return super.dispatchKeyEvent(event)
-                }
-
-                KeyEvent.KEYCODE_DPAD_UP -> {
-
-                    return super.dispatchKeyEvent(event)
-                }
 
                 KeyEvent.KEYCODE_DPAD_CENTER,
                 KeyEvent.KEYCODE_ENTER -> {
