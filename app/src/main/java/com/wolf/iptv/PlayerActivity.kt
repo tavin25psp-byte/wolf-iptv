@@ -39,13 +39,12 @@ class PlayerActivity : AppCompatActivity() {
         playerView.useController = true
         playerView.controllerShowTimeoutMs = 5000
 
-        container.addView(
-            playerView,
-            FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT
-            )
+        val playerParams = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT,
+            FrameLayout.LayoutParams.MATCH_PARENT
         )
+
+        container.addView(playerView, playerParams)
 
         erroTexto = TextView(this)
         erroTexto.textSize = 18f
@@ -55,7 +54,164 @@ class PlayerActivity : AppCompatActivity() {
         erroTexto.setPadding(40, 40, 40, 40)
         erroTexto.visibility = View.GONE
 
-        container.addView(
-            erroTexto,
-            FrameLayout.LayoutParams(
-                FrameLayout
+        val erroParams = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.MATCH_PARENT,
+            FrameLayout.LayoutParams.MATCH_PARENT
+        )
+
+        container.addView(erroTexto, erroParams)
+
+        setContentView(container)
+
+        iniciarPlayer()
+    }
+
+    private fun iniciarPlayer() {
+
+        val url = intent.getStringExtra("VIDEO_URL")
+
+        if (url.isNullOrBlank()) {
+            mostrarErro("Nenhuma URL de vídeo foi recebida.")
+            return
+        }
+
+        try {
+
+            player = ExoPlayer.Builder(this).build()
+
+            playerView.player = player
+
+            player?.addListener(object : Player.Listener {
+
+                override fun onPlaybackStateChanged(state: Int) {
+
+                    when (state) {
+
+                        Player.STATE_BUFFERING -> {
+                            erroTexto.visibility = View.GONE
+                        }
+
+                        Player.STATE_READY -> {
+                            erroTexto.visibility = View.GONE
+                        }
+
+                        Player.STATE_ENDED -> {
+                        }
+
+                        Player.STATE_IDLE -> {
+                        }
+                    }
+                }
+
+                override fun onPlayerError(error: PlaybackException) {
+
+                    mostrarErro(
+                        "Erro ao reproduzir o vídeo:\n\n" +
+                        error.errorCodeName
+                    )
+                }
+            })
+
+            val uri = Uri.parse(url)
+
+            val builder = MediaItem.Builder()
+                .setUri(uri)
+
+            if (url.contains(".m3u8", ignoreCase = true)) {
+
+                builder.setMimeType(
+                    MimeTypes.APPLICATION_M3U8
+                )
+            }
+
+            val mediaItem = builder.build()
+
+            player?.setMediaItem(mediaItem)
+            player?.prepare()
+            player?.playWhenReady = true
+
+        } catch (e: Exception) {
+
+            mostrarErro(
+                "Erro ao abrir o player:\n\n${e.message}"
+            )
+        }
+    }
+
+    private fun mostrarErro(mensagem: String) {
+
+        erroTexto.text = mensagem
+        erroTexto.visibility = View.VISIBLE
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+
+        if (event.action == KeyEvent.ACTION_DOWN) {
+
+            when (event.keyCode) {
+
+                KeyEvent.KEYCODE_DPAD_CENTER,
+                KeyEvent.KEYCODE_ENTER -> {
+
+                    player?.let {
+
+                        if (it.isPlaying) {
+                            it.pause()
+                        } else {
+                            it.play()
+                        }
+                    }
+
+                    return true
+                }
+
+                KeyEvent.KEYCODE_DPAD_RIGHT -> {
+
+                    player?.let {
+                        it.seekTo(it.currentPosition + 10_000)
+                    }
+
+                    return true
+                }
+
+                KeyEvent.KEYCODE_DPAD_LEFT -> {
+
+                    player?.let {
+                        it.seekTo(
+                            (it.currentPosition - 10_000)
+                                .coerceAtLeast(0)
+                        )
+                    }
+
+                    return true
+                }
+
+                KeyEvent.KEYCODE_BACK -> {
+
+                    finish()
+
+                    return true
+                }
+            }
+        }
+
+        return super.dispatchKeyEvent(event)
+    }
+
+    override fun onPause() {
+
+        super.onPause()
+
+        player?.pause()
+    }
+
+    override fun onDestroy() {
+
+        playerView.player = null
+
+        player?.release()
+        player = null
+
+        super.onDestroy()
+    }
+}
