@@ -7,7 +7,6 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.view.FocusFinder
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
@@ -79,24 +78,18 @@ class MainActivity : AppCompatActivity() {
 
         carregarFilmes()
 
-        mostrarListaCards(
-            filmes
-        )
+        mostrarListaCards(filmes)
     }
 
     private fun criarInterface() {
 
-        raiz =
-            FrameLayout(this)
+        raiz = FrameLayout(this)
 
-        raiz.setBackgroundColor(
-            Color.BLACK
-        )
+        raiz.setBackgroundColor(Color.BLACK)
 
         setContentView(raiz)
 
-        val fundo =
-            ImageView(this)
+        val fundo = ImageView(this)
 
         fundo.scaleType =
             ImageView.ScaleType.CENTER_CROP
@@ -105,10 +98,7 @@ class MainActivity : AppCompatActivity() {
 
         raiz.addView(
             fundo,
-            FrameLayout.LayoutParams(
-                -1,
-                -1
-            )
+            FrameLayout.LayoutParams(-1, -1)
         )
 
         carregarImagem(
@@ -116,8 +106,7 @@ class MainActivity : AppCompatActivity() {
             "https://i.postimg.cc/Ghk8PP7w/wolf.png"
         )
 
-        val camada =
-            LinearLayout(this)
+        val camada = LinearLayout(this)
 
         camada.orientation =
             LinearLayout.VERTICAL
@@ -131,14 +120,10 @@ class MainActivity : AppCompatActivity() {
 
         raiz.addView(
             camada,
-            FrameLayout.LayoutParams(
-                -1,
-                -1
-            )
+            FrameLayout.LayoutParams(-1, -1)
         )
 
-        botaoMenu =
-            TextView(this)
+        botaoMenu = TextView(this)
 
         botaoMenu.text =
             "☰  WOLF MENU"
@@ -148,16 +133,13 @@ class MainActivity : AppCompatActivity() {
         botaoMenu.typeface =
             Typeface.DEFAULT_BOLD
 
-        botaoMenu.setTextColor(
-            Color.WHITE
-        )
+        botaoMenu.setTextColor(Color.WHITE)
 
         botaoMenu.gravity =
             Gravity.CENTER
 
         botaoMenu.isFocusable = true
-        botaoMenu.isFocusableInTouchMode =
-            true
+        botaoMenu.isFocusableInTouchMode = true
 
         botaoMenu.setPadding(
             dp(15),
@@ -182,25 +164,20 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        conteudo =
-            LinearLayout(this)
+        conteudo = LinearLayout(this)
 
         conteudo.orientation =
             LinearLayout.VERTICAL
 
         conteudo.isFocusable = false
 
-        val scroll =
-            ScrollView(this)
+        val scroll = ScrollView(this)
 
         scroll.isFocusable = false
 
         scroll.addView(
             conteudo,
-            ViewGroup.LayoutParams(
-                -1,
-                -2
-            )
+            ViewGroup.LayoutParams(-1, -2)
         )
 
         camada.addView(
@@ -237,6 +214,14 @@ class MainActivity : AppCompatActivity() {
                 ),
 
                 Filme(
+                    "Pânico 7",
+                    2026,
+                    "Terror",
+                    "https://i.postimg.cc/FzcqGbHV/images-(3).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
+                ),
+
+                Filme(
                     "Pinóquio",
                     2026,
                     "Animação",
@@ -257,7 +242,7 @@ class MainActivity : AppCompatActivity() {
                     2026,
                     "Aventura",
                     "https://i.postimg.cc/664hkrZ6/treinar.jpg",
-                    "https://vz-c091a331-1f1.b-cdn.net/555db026-0cb8-4242-9bdd-dd8a0d165d53/playlist.m3u8"
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
                 ),
 
                 Filme(
@@ -273,7 +258,7 @@ class MainActivity : AppCompatActivity() {
                     2026,
                     "Ação",
                     "https://i.postimg.cc/QCctbsqF/aranha.jpg",
-                    "https://vz-c091a331-1f1.b-cdn.net/145cd2d1-82bc-4e35-986c-9137d44cf91a/playlist.m3u8"
+                    "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
                 ),
 
                 Filme(
@@ -338,6 +323,14 @@ class MainActivity : AppCompatActivity() {
                     "Animação",
                     "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
                     "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
+                ),
+
+                Filme(
+                    "Mufasa: O Rei Leão",
+                    2024,
+                    "Aventura",
+                    "https://i.postimg.cc/mgw3xmpz/917q-7O0TJL.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
                 ),
 
                 Filme(
@@ -440,8 +433,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         lista.forEachIndexed {
-                indice,
-                filme ->
+            indice,
+            filme ->
 
             if (
                 indice > 0 &&
@@ -535,10 +528,6 @@ class MainActivity : AppCompatActivity() {
         capa.scaleType =
             ImageView.ScaleType.FIT_CENTER
 
-        capa.setBackgroundColor(
-            Color.TRANSPARENT
-        )
-
         card.addView(
             capa,
             LinearLayout.LayoutParams(
@@ -581,8 +570,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         card.setOnFocusChangeListener {
-                view,
-                foco ->
+            view,
+            foco ->
 
             val bg =
                 GradientDrawable()
@@ -623,8 +612,7 @@ class MainActivity : AppCompatActivity() {
                 view.scaleY = 1f
             }
 
-            view.background =
-                bg
+            view.background = bg
         }
 
         card.setOnClickListener {
@@ -642,9 +630,7 @@ class MainActivity : AppCompatActivity() {
         var lista =
             filmes.toList()
 
-        if (
-            !categoria.isNullOrBlank()
-        ) {
+        if (!categoria.isNullOrBlank()) {
 
             lista =
                 lista.filter {
@@ -655,9 +641,7 @@ class MainActivity : AppCompatActivity() {
                 }
         }
 
-        if (
-            !busca.isNullOrBlank()
-        ) {
+        if (!busca.isNullOrBlank()) {
 
             lista =
                 lista.filter {
@@ -677,9 +661,7 @@ class MainActivity : AppCompatActivity() {
                 }
             )
 
-        mostrarListaCards(
-            lista
-        )
+        mostrarListaCards(lista)
 
         if (lista.isEmpty()) {
 
@@ -770,7 +752,7 @@ class MainActivity : AppCompatActivity() {
 
         val larguraDp =
             resources.displayMetrics.widthPixels /
-            resources.displayMetrics.density
+                resources.displayMetrics.density
 
         val larguraMenu =
             if (larguraDp >= 800) {
@@ -792,8 +774,6 @@ class MainActivity : AppCompatActivity() {
             menuLateral,
             parametros
         )
-
-        // CABEÇALHO FIXO
 
         val topoMenu =
             LinearLayout(this)
@@ -844,8 +824,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         fecharX.isFocusable = true
-        fecharX.isFocusableInTouchMode =
-            true
+        fecharX.isFocusableInTouchMode = true
         fecharX.isClickable = true
 
         fecharX.setOnClickListener {
@@ -853,8 +832,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         fecharX.setOnFocusChangeListener {
-                view,
-                foco ->
+            view,
+            foco ->
 
             val bg =
                 GradientDrawable()
@@ -912,16 +891,11 @@ class MainActivity : AppCompatActivity() {
             menuLateral
         )
 
-        // ÁREA ROLÁVEL
-
         menuScroll =
             ScrollView(this)
 
-        menuScroll.isFocusable =
-            false
-
-        menuScroll.isFocusableInTouchMode =
-            false
+        menuScroll.isFocusable = false
+        menuScroll.isFocusableInTouchMode = false
 
         menuScroll.descendantFocusability =
             ViewGroup.FOCUS_AFTER_DESCENDANTS
@@ -932,11 +906,8 @@ class MainActivity : AppCompatActivity() {
         menuConteudo.orientation =
             LinearLayout.VERTICAL
 
-        menuConteudo.isFocusable =
-            false
-
-        menuConteudo.isFocusableInTouchMode =
-            false
+        menuConteudo.isFocusable = false
+        menuConteudo.isFocusableInTouchMode = false
 
         menuScroll.addView(
             menuConteudo,
@@ -983,21 +954,16 @@ class MainActivity : AppCompatActivity() {
             menuConteudo
         )
 
-        // FILMES
-
         adicionarCabecalho(
             "FILMES",
             filmes.size
         )
-
-        // TODOS
 
         adicionarItemMenu(
             "   TODOS (${filmes.size})"
         ) {
 
             fecharMenu()
-
             mostrarFilmes()
         }
 
@@ -1032,8 +998,6 @@ class MainActivity : AppCompatActivity() {
         adicionarSeparadorPremium(
             menuConteudo
         )
-
-        // SÉRIES
 
         adicionarCabecalho(
             "SÉRIES",
@@ -1085,8 +1049,6 @@ class MainActivity : AppCompatActivity() {
             menuConteudo
         )
 
-        // DORAMAS
-
         adicionarCabecalho(
             "DORAMAS",
             doramas.size
@@ -1136,8 +1098,6 @@ class MainActivity : AppCompatActivity() {
         adicionarSeparadorPremium(
             menuConteudo
         )
-
-        // ANIME
 
         adicionarCabecalho(
             "ANIME",
@@ -1280,14 +1240,12 @@ class MainActivity : AppCompatActivity() {
         )
 
         item.isFocusable = true
-        item.isFocusableInTouchMode =
-            true
-
+        item.isFocusableInTouchMode = true
         item.isClickable = true
 
         item.setOnFocusChangeListener {
-                view,
-                foco ->
+            view,
+            foco ->
 
             val bg =
                 GradientDrawable()
@@ -1315,11 +1273,10 @@ class MainActivity : AppCompatActivity() {
 
                 view.post {
 
-                    menuScroll
-                        .smoothScrollTo(
-                            0,
-                            view.top
-                        )
+                    menuScroll.smoothScrollTo(
+                        0,
+                        view.top
+                    )
                 }
 
             } else {
@@ -1341,9 +1298,9 @@ class MainActivity : AppCompatActivity() {
         }
 
         item.setOnKeyListener {
-                _,
-                keyCode,
-                event ->
+            _,
+            keyCode,
+            event ->
 
             if (
                 event.action ==
@@ -1357,7 +1314,6 @@ class MainActivity : AppCompatActivity() {
             ) {
 
                 acao()
-
                 true
 
             } else {
@@ -1529,9 +1485,9 @@ class MainActivity : AppCompatActivity() {
                         filme.video,
                         0L
                     ) > 0L
-
                 }
                 .sortedByDescending {
+
                     filme ->
 
                     prefs.getLong(
@@ -1800,8 +1756,6 @@ class MainActivity : AppCompatActivity() {
             val key =
                 event.keyCode
 
-            // BOTÃO MENU DO CONTROLE
-
             if (
                 key ==
                 KeyEvent.KEYCODE_MENU
@@ -1818,8 +1772,6 @@ class MainActivity : AppCompatActivity() {
 
                 return true
             }
-
-            // MENU ABERTO
 
             if (menuAberto) {
 
@@ -1847,16 +1799,12 @@ class MainActivity : AppCompatActivity() {
 
                     KeyEvent.KEYCODE_DPAD_UP -> {
 
-                        return navegarMenu(
-                            -1
-                        )
+                        return navegarMenu(-1)
                     }
 
                     KeyEvent.KEYCODE_DPAD_DOWN -> {
 
-                        return navegarMenu(
-                            1
-                        )
+                        return navegarMenu(1)
                     }
 
                     KeyEvent.KEYCODE_DPAD_LEFT -> {
@@ -1885,8 +1833,6 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
-            // MENU FECHADO
 
             if (
                 !menuAberto &&
@@ -1922,8 +1868,6 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            // DOWN NO BOTÃO MENU
-
             if (
                 !menuAberto &&
                 key ==
@@ -1942,8 +1886,6 @@ class MainActivity : AppCompatActivity() {
                     return true
                 }
             }
-
-            // NAVEGAÇÃO DOS CARDS
 
             if (
                 !menuAberto &&
@@ -2091,10 +2033,9 @@ class MainActivity : AppCompatActivity() {
                             View.VISIBLE
                         ) {
 
-                            imageView
-                                .setImageBitmap(
-                                    bitmap
-                                )
+                            imageView.setImageBitmap(
+                                bitmap
+                            )
                         }
                     }
                 }
