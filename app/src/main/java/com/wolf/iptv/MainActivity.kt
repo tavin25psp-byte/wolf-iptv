@@ -265,7 +265,7 @@ class MainActivity : AppCompatActivity() {
                     2026,
                     "Aventura",
                     "https://i.postimg.cc/664hkrZ6/treinar.jpg",
-                    "https://vz-c091a331-1f1.b-cdn.net/555db026-0cb8-4242-9bdd-dd8a0d165d53/playlist.m3u8"
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
                 ),
 
                 Filme(
@@ -281,7 +281,7 @@ class MainActivity : AppCompatActivity() {
                     2026,
                     "Ação",
                     "https://i.postimg.cc/QCctbsqF/aranha.jpg",
-                    "https://vz-c091a331-1f1.b-cdn.net/145cd2d1-82bc-4e35-986c-9137d44cf91a/playlist.m3u8"
+                    "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
                 ),
 
                 Filme(
