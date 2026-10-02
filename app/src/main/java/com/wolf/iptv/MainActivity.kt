@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
@@ -224,7 +223,8 @@ class MainActivity : AppCompatActivity() {
 
         val fundo = ImageView(this)
 
-        fundo.scaleType = ImageView.ScaleType.CENTER_CROP
+        fundo.scaleType =
+            ImageView.ScaleType.CENTER_CROP
 
         carregarImagem(
             fundo,
@@ -254,7 +254,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         val camada = LinearLayout(this)
-        camada.orientation = LinearLayout.VERTICAL
+
+        camada.orientation =
+            LinearLayout.VERTICAL
 
         val topo = FrameLayout(this)
 
@@ -266,28 +268,45 @@ class MainActivity : AppCompatActivity() {
         logo.setTypeface(null, Typeface.BOLD)
         logo.gravity = Gravity.CENTER_VERTICAL
 
-        val logoParams = FrameLayout.LayoutParams(
-            400,
-            75
-        )
+        val logoParams =
+            FrameLayout.LayoutParams(
+                400,
+                75
+            )
 
-        logoParams.gravity = Gravity.START
-        logoParams.setMargins(30, 15, 0, 0)
+        logoParams.gravity =
+            Gravity.START
+
+        logoParams.setMargins(
+            30,
+            15,
+            0,
+            0
+        )
 
         topo.addView(
             logo,
             logoParams
         )
 
-        val botaoMenu = criarBotaoTopo()
+        val botaoMenu =
+            criarBotaoTopo()
 
-        val menuParams = FrameLayout.LayoutParams(
-            75,
-            65
+        val menuParams =
+            FrameLayout.LayoutParams(
+                75,
+                65
+            )
+
+        menuParams.gravity =
+            Gravity.END
+
+        menuParams.setMargins(
+            0,
+            20,
+            25,
+            0
         )
-
-        menuParams.gravity = Gravity.END
-        menuParams.setMargins(0, 20, 25, 0)
 
         topo.addView(
             botaoMenu,
@@ -302,22 +321,38 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        conteudo = LinearLayout(this)
-        conteudo.orientation = LinearLayout.VERTICAL
-        conteudo.setPadding(25, 10, 25, 40)
+        conteudo =
+            LinearLayout(this)
+
+        conteudo.orientation =
+            LinearLayout.VERTICAL
+
+        conteudo.setPadding(
+            25,
+            10,
+            25,
+            40
+        )
 
         mostrarFilmes()
 
-        val scroll = ScrollView(this)
+        val scroll =
+            ScrollView(this)
 
         scroll.isFillViewport = true
-        scroll.overScrollMode = View.OVER_SCROLL_NEVER
+        scroll.overScrollMode =
+            View.OVER_SCROLL_NEVER
 
+        /*
+         * CORREÇÃO DO ERRO:
+         * Usamos FrameLayout.LayoutParams
+         * em vez de ScrollView.LayoutParams.
+         */
         scroll.addView(
             conteudo,
-            ScrollView.LayoutParams(
-                ScrollView.LayoutParams.MATCH_PARENT,
-                ScrollView.LayoutParams.WRAP_CONTENT
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
             )
         )
 
@@ -352,21 +387,37 @@ class MainActivity : AppCompatActivity() {
         botao.gravity = Gravity.CENTER
         botao.setTextColor(Color.WHITE)
 
-        val normal = GradientDrawable()
-        normal.setColor(Color.argb(190, 15, 15, 18))
+        val normal =
+            GradientDrawable()
+
+        normal.setColor(
+            Color.argb(190, 15, 15, 18)
+        )
+
         normal.cornerRadius = 18f
 
-        val foco = GradientDrawable()
-        foco.setColor(Color.rgb(40, 40, 45))
+        val foco =
+            GradientDrawable()
+
+        foco.setColor(
+            Color.rgb(40, 40, 45)
+        )
+
         foco.cornerRadius = 18f
-        foco.setStroke(2, Color.WHITE)
+
+        foco.setStroke(
+            2,
+            Color.WHITE
+        )
 
         botao.background = normal
 
         botao.isFocusable = true
         botao.isClickable = true
 
-        botao.setOnFocusChangeListener { view, temFoco ->
+        botao.setOnFocusChangeListener {
+                view,
+                temFoco ->
 
             if (temFoco) {
                 view.background = foco
@@ -390,16 +441,26 @@ class MainActivity : AppCompatActivity() {
 
         val titulo = TextView(this)
 
-        titulo.text = if (categoria == null) {
-            "FILMES"
-        } else {
-            categoria.uppercase()
-        }
+        titulo.text =
+            if (categoria == null) {
+                "FILMES"
+            } else {
+                categoria.uppercase()
+            }
 
         titulo.textSize = 21f
         titulo.setTextColor(Color.WHITE)
-        titulo.setTypeface(null, Typeface.BOLD)
-        titulo.setPadding(8, 10, 8, 18)
+        titulo.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
+        titulo.setPadding(
+            8,
+            10,
+            8,
+            18
+        )
 
         conteudo.addView(
             titulo,
@@ -409,25 +470,29 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val lista = if (categoria == null) {
-            filmes
-        } else {
-            filmes.filter {
-                it.categoria.equals(
-                    categoria,
-                    ignoreCase = true
-                )
+        val lista =
+            if (categoria == null) {
+                filmes
+            } else {
+                filmes.filter {
+                    it.categoria.equals(
+                        categoria,
+                        ignoreCase = true
+                    )
+                }
             }
-        }
 
-        var linha: LinearLayout? = null
+        var linha:
+                LinearLayout? = null
+
         var quantidade = 0
 
         lista.forEach { filme ->
 
             if (quantidade == 0) {
 
-                linha = LinearLayout(this)
+                linha =
+                    LinearLayout(this)
 
                 linha!!.orientation =
                     LinearLayout.HORIZONTAL
@@ -451,7 +516,12 @@ class MainActivity : AppCompatActivity() {
                     260,
                     1f
                 ).apply {
-                    setMargins(8, 8, 8, 8)
+                    setMargins(
+                        8,
+                        8,
+                        8,
+                        8
+                    )
                 }
             )
 
@@ -467,35 +537,61 @@ class MainActivity : AppCompatActivity() {
         filme: Filme
     ): FrameLayout {
 
-        val card = FrameLayout(this)
+        val card =
+            FrameLayout(this)
 
         card.isFocusable = true
         card.isClickable = true
         card.isFocusableInTouchMode = true
 
-        val fundoNormal = GradientDrawable()
+        val fundoNormal =
+            GradientDrawable()
+
         fundoNormal.setColor(
-            Color.argb(190, 10, 10, 12)
-        )
-        fundoNormal.cornerRadius = 14f
-        fundoNormal.setStroke(
-            1,
-            Color.argb(100, 255, 255, 255)
+            Color.argb(
+                190,
+                10,
+                10,
+                12
+            )
         )
 
-        val fundoFoco = GradientDrawable()
-        fundoFoco.setColor(
-            Color.argb(235, 25, 25, 30)
+        fundoNormal.cornerRadius = 14f
+
+        fundoNormal.setStroke(
+            1,
+            Color.argb(
+                100,
+                255,
+                255,
+                255
+            )
         )
+
+        val fundoFoco =
+            GradientDrawable()
+
+        fundoFoco.setColor(
+            Color.argb(
+                235,
+                25,
+                25,
+                30
+            )
+        )
+
         fundoFoco.cornerRadius = 14f
+
         fundoFoco.setStroke(
             3,
             Color.WHITE
         )
 
-        card.background = fundoNormal
+        card.background =
+            fundoNormal
 
-        val imagem = ImageView(this)
+        val imagem =
+            ImageView(this)
 
         imagem.scaleType =
             ImageView.ScaleType.FIT_CENTER
@@ -520,34 +616,62 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val faixa = TextView(this)
+        val faixa =
+            TextView(this)
 
         faixa.text =
             "${filme.titulo}\n${filme.ano}"
 
         faixa.textSize = 13f
         faixa.setTextColor(Color.WHITE)
-        faixa.setTypeface(null, Typeface.BOLD)
-        faixa.gravity = Gravity.CENTER_VERTICAL
-        faixa.setPadding(10, 4, 10, 4)
 
-        val faixaFundo = GradientDrawable()
+        faixa.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
+        faixa.gravity =
+            Gravity.CENTER_VERTICAL
+
+        faixa.setPadding(
+            10,
+            4,
+            10,
+            4
+        )
+
+        val faixaFundo =
+            GradientDrawable()
 
         faixaFundo.setColor(
-            Color.argb(220, 0, 0, 0)
+            Color.argb(
+                220,
+                0,
+                0,
+                0
+            )
         )
 
         faixaFundo.cornerRadius = 10f
 
-        faixa.background = faixaFundo
+        faixa.background =
+            faixaFundo
 
-        val faixaParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            48
+        val faixaParams =
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                48
+            )
+
+        faixaParams.gravity =
+            Gravity.BOTTOM
+
+        faixaParams.setMargins(
+            6,
+            0,
+            6,
+            6
         )
-
-        faixaParams.gravity = Gravity.BOTTOM
-        faixaParams.setMargins(6, 0, 6, 6)
 
         card.addView(
             faixa,
@@ -583,7 +707,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         card.setOnClickListener {
-
             abrirVideo(filme)
         }
 
@@ -633,7 +756,11 @@ class MainActivity : AppCompatActivity() {
             if (foco) {
 
                 v.setBackgroundColor(
-                    Color.rgb(40, 40, 45)
+                    Color.rgb(
+                        40,
+                        40,
+                        45
+                    )
                 )
 
             } else {
@@ -652,7 +779,8 @@ class MainActivity : AppCompatActivity() {
 
         menuAberto = true
 
-        val painel = LinearLayout(this)
+        val painel =
+            LinearLayout(this)
 
         painel.orientation =
             LinearLayout.VERTICAL
@@ -664,26 +792,39 @@ class MainActivity : AppCompatActivity() {
             25
         )
 
-        val fundo = GradientDrawable()
+        val fundo =
+            GradientDrawable()
 
         fundo.setColor(
-            Color.rgb(10, 10, 13)
+            Color.rgb(
+                10,
+                10,
+                13
+            )
         )
 
         fundo.cornerRadius = 28f
 
         fundo.setStroke(
             2,
-            Color.rgb(55, 55, 60)
+            Color.rgb(
+                55,
+                55,
+                60
+            )
         )
 
         painel.background = fundo
 
-        val titulo = TextView(this)
+        val titulo =
+            TextView(this)
 
-        titulo.text = "WOLF CHANNEL"
+        titulo.text =
+            "WOLF CHANNEL"
+
         titulo.textSize = 23f
         titulo.setTextColor(Color.WHITE)
+
         titulo.setTypeface(
             null,
             Typeface.BOLD
@@ -704,12 +845,20 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val subtitulo = TextView(this)
+        val subtitulo =
+            TextView(this)
 
-        subtitulo.text = "NAVEGAÇÃO"
+        subtitulo.text =
+            "NAVEGAÇÃO"
+
         subtitulo.textSize = 11f
+
         subtitulo.setTextColor(
-            Color.rgb(145, 145, 150)
+            Color.rgb(
+                145,
+                145,
+                150
+            )
         )
 
         subtitulo.setTypeface(
@@ -717,7 +866,8 @@ class MainActivity : AppCompatActivity() {
             Typeface.BOLD
         )
 
-        subtitulo.letterSpacing = 0.15f
+        subtitulo.letterSpacing =
+            0.15f
 
         subtitulo.setPadding(
             5,
@@ -734,18 +884,27 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val scroll = ScrollView(this)
+        val scroll =
+            ScrollView(this)
 
         scroll.isFillViewport = true
+
         scroll.overScrollMode =
             View.OVER_SCROLL_NEVER
 
-        val lista = LinearLayout(this)
+        val lista =
+            LinearLayout(this)
 
         lista.orientation =
             LinearLayout.VERTICAL
 
-        scroll.addView(lista)
+        scroll.addView(
+            lista,
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.WRAP_CONTENT
+            )
+        )
 
         painel.addView(
             scroll,
@@ -768,7 +927,9 @@ class MainActivity : AppCompatActivity() {
             "Continue assistindo"
         )
 
-        adicionarSeparadorPremium(lista)
+        adicionarSeparadorPremium(
+            lista
+        )
 
         adicionarTituloPremium(
             lista,
@@ -817,7 +978,9 @@ class MainActivity : AppCompatActivity() {
             "ficcao"
         )
 
-        adicionarSeparadorPremium(lista)
+        adicionarSeparadorPremium(
+            lista
+        )
 
         adicionarTituloPremium(
             lista,
@@ -852,7 +1015,9 @@ class MainActivity : AppCompatActivity() {
             "romance"
         )
 
-        adicionarSeparadorPremium(lista)
+        adicionarSeparadorPremium(
+            lista
+        )
 
         adicionarTituloPremium(
             lista,
@@ -887,7 +1052,9 @@ class MainActivity : AppCompatActivity() {
             "comedia"
         )
 
-        adicionarSeparadorPremium(lista)
+        adicionarSeparadorPremium(
+            lista
+        )
 
         adicionarTituloPremium(
             lista,
@@ -952,13 +1119,30 @@ class MainActivity : AppCompatActivity() {
             .setDuration(220)
             .start()
 
-        painel.isFocusableInTouchMode = true
+        painel.isFocusableInTouchMode =
+            true
 
         painel.post {
 
             if (lista.childCount > 0) {
-                lista.getChildAt(0)
-                    .requestFocus()
+
+                var primeiroFoco: View? = null
+
+                for (
+                    i in 0 until lista.childCount
+                ) {
+
+                    val item =
+                        lista.getChildAt(i)
+
+                    if (item.isFocusable) {
+
+                        primeiroFoco = item
+                        break
+                    }
+                }
+
+                primeiroFoco?.requestFocus()
             }
         }
     }
@@ -968,13 +1152,18 @@ class MainActivity : AppCompatActivity() {
         texto: String
     ) {
 
-        val titulo = TextView(this)
+        val titulo =
+            TextView(this)
 
         titulo.text = texto
         titulo.textSize = 11f
 
         titulo.setTextColor(
-            Color.rgb(125, 125, 130)
+            Color.rgb(
+                125,
+                125,
+                130
+            )
         )
 
         titulo.setTypeface(
@@ -982,7 +1171,8 @@ class MainActivity : AppCompatActivity() {
             Typeface.BOLD
         )
 
-        titulo.letterSpacing = 0.18f
+        titulo.letterSpacing =
+            0.18f
 
         titulo.setPadding(
             12,
@@ -1006,7 +1196,8 @@ class MainActivity : AppCompatActivity() {
         texto: String
     ) {
 
-        val item = TextView(this)
+        val item =
+            TextView(this)
 
         item.text =
             "$icone    $texto"
@@ -1030,7 +1221,9 @@ class MainActivity : AppCompatActivity() {
         item.isFocusable = true
         item.isClickable = true
 
-        aplicarEstiloFocoPremium(item)
+        aplicarEstiloFocoPremium(
+            item
+        )
 
         item.setOnClickListener {
 
@@ -1064,7 +1257,8 @@ class MainActivity : AppCompatActivity() {
         categoria: String
     ) {
 
-        val item = TextView(this)
+        val item =
+            TextView(this)
 
         item.text =
             "›   $texto"
@@ -1072,7 +1266,11 @@ class MainActivity : AppCompatActivity() {
         item.textSize = 15f
 
         item.setTextColor(
-            Color.rgb(215, 215, 220)
+            Color.rgb(
+                215,
+                215,
+                220
+            )
         )
 
         item.gravity =
@@ -1088,7 +1286,9 @@ class MainActivity : AppCompatActivity() {
         item.isFocusable = true
         item.isClickable = true
 
-        aplicarEstiloFocoPremium(item)
+        aplicarEstiloFocoPremium(
+            item
+        )
 
         item.setOnClickListener {
 
@@ -1158,7 +1358,11 @@ class MainActivity : AppCompatActivity() {
             GradientDrawable()
 
         foco.setColor(
-            Color.rgb(35, 35, 40)
+            Color.rgb(
+                35,
+                35,
+                40
+            )
         )
 
         foco.cornerRadius = 16f
@@ -1168,7 +1372,8 @@ class MainActivity : AppCompatActivity() {
             Color.WHITE
         )
 
-        item.background = normal
+        item.background =
+            normal
 
         item.setOnFocusChangeListener {
                 view,
@@ -1176,7 +1381,8 @@ class MainActivity : AppCompatActivity() {
 
             if (ganhouFoco) {
 
-                view.background = foco
+                view.background =
+                    foco
 
                 view.animate()
                     .scaleX(1.02f)
@@ -1186,7 +1392,8 @@ class MainActivity : AppCompatActivity() {
 
             } else {
 
-                view.background = normal
+                view.background =
+                    normal
 
                 view.animate()
                     .scaleX(1f)
@@ -1201,10 +1408,15 @@ class MainActivity : AppCompatActivity() {
         lista: LinearLayout
     ) {
 
-        val linha = View(this)
+        val linha =
+            View(this)
 
         linha.setBackgroundColor(
-            Color.rgb(45, 45, 50)
+            Color.rgb(
+                45,
+                45,
+                50
+            )
         )
 
         val parametros =
@@ -1268,12 +1480,19 @@ class MainActivity : AppCompatActivity() {
         mensagem: String
     ) {
 
-        val aviso = TextView(this)
+        val aviso =
+            TextView(this)
 
         aviso.text = mensagem
         aviso.textSize = 17f
-        aviso.setTextColor(Color.WHITE)
-        aviso.gravity = Gravity.CENTER
+
+        aviso.setTextColor(
+            Color.WHITE
+        )
+
+        aviso.gravity =
+            Gravity.CENTER
+
         aviso.setTypeface(
             null,
             Typeface.BOLD
@@ -1283,17 +1502,26 @@ class MainActivity : AppCompatActivity() {
             GradientDrawable()
 
         fundo.setColor(
-            Color.rgb(20, 20, 23)
+            Color.rgb(
+                20,
+                20,
+                23
+            )
         )
 
         fundo.cornerRadius = 18f
 
         fundo.setStroke(
             2,
-            Color.rgb(70, 70, 75)
+            Color.rgb(
+                70,
+                70,
+                75
+            )
         )
 
-        aviso.background = fundo
+        aviso.background =
+            fundo
 
         val parametros =
             FrameLayout.LayoutParams(
@@ -1323,7 +1551,10 @@ class MainActivity : AppCompatActivity() {
                         .setDuration(180)
                         .withEndAction {
 
-                            if (aviso.parent != null) {
+                            if (
+                                aviso.parent != null
+                            ) {
+
                                 raiz.removeView(
                                     aviso
                                 )
@@ -1340,6 +1571,10 @@ class MainActivity : AppCompatActivity() {
         imagem: ImageView,
         url: String
     ) {
+
+        if (url.isBlank()) {
+            return
+        }
 
         thread {
 
@@ -1408,37 +1643,6 @@ class MainActivity : AppCompatActivity() {
                         fecharMenu()
 
                         return true
-                    }
-                }
-
-                KeyEvent.KEYCODE_DPAD_LEFT -> {
-
-                    if (menuAberto) {
-
-                        return super.dispatchKeyEvent(
-                            event
-                        )
-                    }
-                }
-
-                KeyEvent.KEYCODE_DPAD_RIGHT -> {
-
-                    if (menuAberto) {
-
-                        return super.dispatchKeyEvent(
-                            event
-                        )
-                    }
-                }
-
-                KeyEvent.KEYCODE_DPAD_CENTER,
-                KeyEvent.KEYCODE_ENTER -> {
-
-                    if (menuAberto) {
-
-                        return super.dispatchKeyEvent(
-                            event
-                        )
                     }
                 }
             }
