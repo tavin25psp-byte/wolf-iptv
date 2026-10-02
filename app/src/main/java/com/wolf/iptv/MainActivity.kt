@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         val botao = Button(this)
 
-        botao.text = "TESTAR FILME"
+        botao.text = "TESTAR JUMANJI"
         botao.textSize = 18f
         botao.isFocusable = true
         botao.isFocusableInTouchMode = true
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
 
             intent.putExtra(
                 "VIDEO_URL",
-                "https://vz-c091a331-1f1.b-cdn.net/7e4da3e7-be60-47f7-ab66-bbc6c5c273d6/playlist.m3u8"
+                "https://wolf-channel-cdn.b-cdn.net/Jumanji%20-%20Bem-Vindo%20%C3%80%20Selva%20-%20Dublado.mp4"
             )
 
             startActivity(intent)
