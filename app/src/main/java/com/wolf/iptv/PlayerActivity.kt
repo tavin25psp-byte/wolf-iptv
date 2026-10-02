@@ -1,11 +1,16 @@
 package com.wolf.iptv
 
+import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
+import android.widget.TextView
+import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.media3.common.MediaItem
+import androidx.media3.common.MimeTypes
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
@@ -15,6 +20,7 @@ class PlayerActivity : AppCompatActivity() {
 
     private var player: ExoPlayer? = null
     private lateinit var playerView: PlayerView
+    private lateinit var erroTexto: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,12 +33,37 @@ class PlayerActivity : AppCompatActivity() {
             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
+        val container = FrameLayout(this)
+
         playerView = PlayerView(this)
-
         playerView.useController = true
-        playerView.controllerShowTimeoutMs = 4000
+        playerView.controllerShowTimeoutMs = 5000
 
-        setContentView(playerView)
+        container.addView(
+            playerView,
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        erroTexto = TextView(this)
+        erroTexto.textSize = 18f
+        erroTexto.setTextColor(Color.WHITE)
+        erroTexto.setBackgroundColor(Color.BLACK)
+        erroTexto.gravity = Gravity.CENTER
+        erroTexto.setPadding(40, 40, 40, 40)
+        erroTexto.visibility = View.GONE
+
+        container.addView(
+            erroTexto,
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        setContentView(container)
 
         iniciarPlayer()
     }
@@ -42,48 +73,72 @@ class PlayerActivity : AppCompatActivity() {
         val url = intent.getStringExtra("VIDEO_URL")
 
         if (url.isNullOrBlank()) {
-            finish()
+            mostrarErro("Nenhuma URL de vídeo foi recebida.")
             return
         }
 
-        player = ExoPlayer.Builder(this).build()
+        try {
 
-        playerView.player = player
+            player = ExoPlayer.Builder(this).build()
 
-        player?.addListener(object : Player.Listener {
+            playerView.player = player
 
-            override fun onPlaybackStateChanged(playbackState: Int) {
+            player?.addListener(object : Player.Listener {
 
-                when (playbackState) {
+                override fun onPlaybackStateChanged(state: Int) {
 
-                    Player.STATE_BUFFERING -> {
-                        // Carregando
-                    }
+                    when (state) {
 
-                    Player.STATE_READY -> {
-                        // Pronto para reproduzir
-                    }
+                        Player.STATE_BUFFERING -> {
+                            erroTexto.visibility = View.GONE
+                        }
 
-                    Player.STATE_ENDED -> {
-                        // Terminou
-                    }
+                        Player.STATE_READY -> {
+                            erroTexto.visibility = View.GONE
+                        }
 
-                    Player.STATE_IDLE -> {
-                        // Parado
+                        Player.STATE_ENDED -> {
+                            // Vídeo terminou
+                        }
+
+                        Player.STATE_IDLE -> {
+                            // Player parado
+                        }
                     }
                 }
-            }
 
-            override fun onPlayerError(error: PlaybackException) {
-                // Erro de reprodução
-            }
-        })
+                override fun onPlayerError(error: PlaybackException) {
 
-        val mediaItem = MediaItem.fromUri(Uri.parse(url))
+                    mostrarErro(
+                        "Erro ao reproduzir o vídeo:\n\n" +
+                        error.errorCodeName
+                    )
+                }
+            })
 
-        player?.setMediaItem(mediaItem)
-        player?.prepare()
-        player?.playWhenReady = true
+            val mediaItem = MediaItem.Builder()
+                .setUri(Uri.parse(url))
+                .setMimeType(MimeTypes.APPLICATION_M3U8)
+                .build()
+
+            player?.setMediaItem(mediaItem)
+
+            player?.prepare()
+
+            player?.playWhenReady = true
+
+        } catch (e: Exception) {
+
+            mostrarErro(
+                "Erro ao abrir o player:\n\n${e.message}"
+            )
+        }
+    }
+
+    private fun mostrarErro(mensagem: String) {
+
+        erroTexto.text = mensagem
+        erroTexto.visibility = View.VISIBLE
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
@@ -96,6 +151,7 @@ class PlayerActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_ENTER -> {
 
                     player?.let {
+
                         if (it.isPlaying) {
                             it.pause()
                         } else {
@@ -143,6 +199,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
+
         playerView.player = null
 
         player?.release()
