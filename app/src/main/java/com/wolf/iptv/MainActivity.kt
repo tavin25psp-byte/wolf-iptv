@@ -36,7 +36,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var raiz: FrameLayout
     private lateinit var conteudo: LinearLayout
     private lateinit var botaoMenu: TextView
+
     private lateinit var menuLateral: LinearLayout
+    private lateinit var menuScroll: ScrollView
+    private lateinit var menuConteudo: LinearLayout
 
     private var menuAberto = false
 
@@ -192,7 +195,7 @@ class MainActivity : AppCompatActivity() {
             "17 Outra Vez",
             2009,
             "Comédia",
-            "https://i.postimg.cc/FFwTzW46/17.jpg",
+            "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/17%20Outra%20Vez%20-%20Dublado%20(Series%20Zoiudo).mp4",
             "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/17%20Outra%20Vez%20-%20Dublado%20(Series%20Zoiudo).mp4"
         ),
 
@@ -237,7 +240,9 @@ class MainActivity : AppCompatActivity() {
         raiz = FrameLayout(this)
 
         val fundo = ImageView(this)
-        fundo.scaleType = ImageView.ScaleType.CENTER_CROP
+
+        fundo.scaleType =
+            ImageView.ScaleType.CENTER_CROP
 
         carregarImagem(
             fundo,
@@ -250,6 +255,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         val sombra = View(this)
+
         sombra.setBackgroundColor(
             Color.argb(145, 0, 0, 0)
         )
@@ -260,7 +266,10 @@ class MainActivity : AppCompatActivity() {
         )
 
         val principal = LinearLayout(this)
-        principal.orientation = LinearLayout.VERTICAL
+
+        principal.orientation =
+            LinearLayout.VERTICAL
+
         principal.setPadding(
             dp(18),
             dp(10),
@@ -274,7 +283,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         val topo = LinearLayout(this)
-        topo.gravity = Gravity.CENTER_VERTICAL
+
+        topo.gravity =
+            Gravity.CENTER_VERTICAL
 
         botaoMenu = TextView(this)
 
@@ -287,26 +298,8 @@ class MainActivity : AppCompatActivity() {
         botaoMenu.isFocusableInTouchMode = true
         botaoMenu.isClickable = true
 
-        botaoMenu.setOnFocusChangeListener { v, foco ->
-            val fundoBotao = GradientDrawable()
-            fundoBotao.cornerRadius = dp(10).toFloat()
-
-            if (foco) {
-                fundoBotao.setColor(Color.rgb(55, 0, 0))
-                fundoBotao.setStroke(
-                    dp(2),
-                    Color.RED
-                )
-            } else {
-                fundoBotao.setColor(
-                    Color.argb(130, 0, 0, 0)
-                )
-            }
-
-            v.background = fundoBotao
-        }
-
         botaoMenu.setOnClickListener {
+
             if (menuAberto) {
                 fecharMenu()
             } else {
@@ -327,8 +320,8 @@ class MainActivity : AppCompatActivity() {
         titulo.text = "WOLF CHANNEL"
         titulo.textSize = 24f
         titulo.setTextColor(Color.WHITE)
-        titulo.typeface = Typeface.DEFAULT_BOLD
-        titulo.gravity = Gravity.CENTER_VERTICAL
+        titulo.typeface =
+            Typeface.DEFAULT_BOLD
 
         topo.addView(
             titulo,
@@ -345,8 +338,6 @@ class MainActivity : AppCompatActivity() {
 
         scroll.isFocusable = false
         scroll.isFocusableInTouchMode = false
-        scroll.descendantFocusability =
-            ViewGroup.FOCUS_AFTER_DESCENDANTS
 
         conteudo = LinearLayout(this)
 
@@ -354,7 +345,6 @@ class MainActivity : AppCompatActivity() {
             LinearLayout.VERTICAL
 
         conteudo.isFocusable = false
-        conteudo.isFocusableInTouchMode = false
 
         scroll.addView(conteudo)
 
@@ -512,25 +502,21 @@ class MainActivity : AppCompatActivity() {
         card.orientation =
             LinearLayout.VERTICAL
 
-        card.gravity = Gravity.CENTER
+        card.gravity =
+            Gravity.CENTER
 
         card.isFocusable = true
         card.isClickable = true
         card.isFocusableInTouchMode = true
-
-        card.setPadding(
-            dp(3),
-            dp(3),
-            dp(3),
-            dp(3)
-        )
 
         aplicarEstadoCard(
             card,
             false
         )
 
-        card.setOnFocusChangeListener { view, foco ->
+        card.setOnFocusChangeListener {
+                view,
+                foco ->
 
             aplicarEstadoCard(
                 view as LinearLayout,
@@ -556,79 +542,21 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val linhaTitulo =
-            LinearLayout(this)
-
-        linhaTitulo.orientation =
-            LinearLayout.HORIZONTAL
-
-        linhaTitulo.gravity =
-            Gravity.CENTER_VERTICAL
-
         val nome = TextView(this)
 
-        nome.text = filme.titulo
+        nome.text =
+            filme.titulo
+
         nome.textSize = 13f
         nome.setTextColor(Color.WHITE)
         nome.gravity = Gravity.CENTER
         nome.maxLines = 2
 
-        nome.setPadding(
-            dp(4),
-            dp(2),
-            dp(2),
-            0
-        )
-
-        linhaTitulo.addView(
+        card.addView(
             nome,
             LinearLayout.LayoutParams(
-                0,
-                dp(42),
-                1f
-            )
-        )
-
-        val favorito =
-            TextView(this)
-
-        favorito.text =
-            if (ehFavorito(filme))
-                "♥"
-            else
-                "♡"
-
-        favorito.textSize = 22f
-        favorito.setTextColor(Color.WHITE)
-        favorito.gravity = Gravity.CENTER
-
-        favorito.isFocusable = false
-        favorito.isClickable = true
-
-        favorito.setOnClickListener {
-
-            alternarFavorito(filme)
-
-            favorito.text =
-                if (ehFavorito(filme))
-                    "♥"
-                else
-                    "♡"
-        }
-
-        linhaTitulo.addView(
-            favorito,
-            LinearLayout.LayoutParams(
-                dp(38),
-                dp(42)
-            )
-        )
-
-        card.addView(
-            linhaTitulo,
-            LinearLayout.LayoutParams(
                 -1,
-                dp(42)
+                dp(40)
             )
         )
 
@@ -653,26 +581,6 @@ class MainActivity : AppCompatActivity() {
             abrirVideo(filme)
         }
 
-        card.setOnLongClickListener {
-
-            alternarFavorito(filme)
-
-            favorito.text =
-                if (ehFavorito(filme))
-                    "♥"
-                else
-                    "♡"
-
-            mostrarMensagem(
-                if (ehFavorito(filme))
-                    "Adicionado aos favoritos"
-                else
-                    "Removido dos favoritos"
-            )
-
-            true
-        }
-
         card.setOnKeyListener {
                 _,
                 keyCode,
@@ -694,7 +602,6 @@ class MainActivity : AppCompatActivity() {
                 true
 
             } else {
-
                 false
             }
         }
@@ -716,7 +623,11 @@ class MainActivity : AppCompatActivity() {
         if (focado) {
 
             fundo.setColor(
-                Color.rgb(55, 0, 0)
+                Color.rgb(
+                    55,
+                    0,
+                    0
+                )
             )
 
             fundo.setStroke(
@@ -794,7 +705,6 @@ class MainActivity : AppCompatActivity() {
         if (menuAberto) return
 
         menuAberto = true
-
         itensMenuFoco.clear()
 
         menuLateral = LinearLayout(this)
@@ -806,7 +716,7 @@ class MainActivity : AppCompatActivity() {
             dp(12),
             dp(10),
             dp(12),
-            dp(12)
+            dp(10)
         )
 
         val fundo =
@@ -814,7 +724,7 @@ class MainActivity : AppCompatActivity() {
 
         fundo.setColor(
             Color.argb(
-                245,
+                248,
                 5,
                 5,
                 5
@@ -824,13 +734,14 @@ class MainActivity : AppCompatActivity() {
         fundo.setStroke(
             dp(2),
             Color.rgb(
-                80,
+                100,
                 0,
                 0
             )
         )
 
-        menuLateral.background = fundo
+        menuLateral.background =
+            fundo
 
         val larguraTela =
             resources.displayMetrics.widthPixels
@@ -845,20 +756,21 @@ class MainActivity : AppCompatActivity() {
             else
                 dp(310)
 
-        val params =
+        val parametros =
             FrameLayout.LayoutParams(
                 larguraMenu,
                 -1
             )
 
-        params.gravity =
+        parametros.gravity =
             Gravity.START
 
         raiz.addView(
             menuLateral,
-            params
+            parametros
         )
 
+        // CABEÇALHO FIXO
         val topoMenu =
             LinearLayout(this)
 
@@ -895,9 +807,13 @@ class MainActivity : AppCompatActivity() {
             TextView(this)
 
         fecharX.text = "✕"
-        fecharX.textSize = 26f
-        fecharX.gravity = Gravity.CENTER
-        fecharX.setTextColor(Color.WHITE)
+        fecharX.textSize = 32f
+        fecharX.gravity =
+            Gravity.CENTER
+
+        fecharX.setTextColor(
+            Color.WHITE
+        )
 
         fecharX.isFocusable = true
         fecharX.isFocusableInTouchMode = true
@@ -908,27 +824,27 @@ class MainActivity : AppCompatActivity() {
         }
 
         fecharX.setOnFocusChangeListener {
-                v,
+                view,
                 foco ->
 
             val bg =
                 GradientDrawable()
 
             bg.cornerRadius =
-                dp(8).toFloat()
+                dp(12).toFloat()
 
             if (foco) {
 
                 bg.setColor(
                     Color.rgb(
-                        75,
+                        65,
                         0,
                         0
                     )
                 )
 
                 bg.setStroke(
-                    dp(2),
+                    dp(3),
                     Color.RED
                 )
 
@@ -939,13 +855,13 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-            v.background = bg
+            view.background = bg
         }
 
         topoMenu.addView(
             fecharX,
             LinearLayout.LayoutParams(
-                dp(55),
+                dp(70),
                 dp(55)
             )
         )
@@ -954,7 +870,7 @@ class MainActivity : AppCompatActivity() {
             topoMenu,
             LinearLayout.LayoutParams(
                 -1,
-                dp(55)
+                dp(60)
             )
         )
 
@@ -964,9 +880,42 @@ class MainActivity : AppCompatActivity() {
 
         adicionarSeparadorPremium()
 
+        // AQUI COMEÇA A ÁREA QUE ROLA
+        menuScroll =
+            ScrollView(this)
+
+        menuScroll.isFocusable = false
+        menuScroll.isFocusableInTouchMode = false
+
+        menuConteudo =
+            LinearLayout(this)
+
+        menuConteudo.orientation =
+            LinearLayout.VERTICAL
+
+        menuConteudo.isFocusable = false
+
+        menuScroll.addView(
+            menuConteudo,
+            ScrollView.LayoutParams(
+                -1,
+                -2
+            )
+        )
+
+        menuLateral.addView(
+            menuScroll,
+            LinearLayout.LayoutParams(
+                -1,
+                0,
+                1f
+            )
+        )
+
         adicionarItemMenu(
             "▶  Continue assistindo"
         ) {
+
             fecharMenu()
             mostrarContinueAssistindo()
         }
@@ -974,6 +923,7 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "♥  Favoritos"
         ) {
+
             fecharMenu()
             mostrarFavoritos()
         }
@@ -981,12 +931,14 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "🔎  Pesquisa"
         ) {
+
             fecharMenu()
             abrirPesquisa()
         }
 
         adicionarSeparadorPremium()
 
+        // FILMES
         adicionarCabecalho(
             "FILMES",
             filmes.size
@@ -1002,7 +954,8 @@ class MainActivity : AppCompatActivity() {
                 "Ficção"
             )
 
-        categoriasFilmes.forEach { categoria ->
+        categoriasFilmes.forEach {
+            categoria ->
 
             adicionarItemMenu(
                 "   $categoria (${contar(
@@ -1021,6 +974,7 @@ class MainActivity : AppCompatActivity() {
 
         adicionarSeparadorPremium()
 
+        // SÉRIES
         adicionarCabecalho(
             "SÉRIES",
             series.size
@@ -1034,7 +988,8 @@ class MainActivity : AppCompatActivity() {
                 "Romance"
             )
 
-        categoriasSeries.forEach { categoria ->
+        categoriasSeries.forEach {
+            categoria ->
 
             adicionarItemMenu(
                 "   $categoria (${contar(
@@ -1055,6 +1010,7 @@ class MainActivity : AppCompatActivity() {
 
         adicionarSeparadorPremium()
 
+        // DORAMAS
         adicionarCabecalho(
             "DORAMAS",
             doramas.size
@@ -1068,7 +1024,8 @@ class MainActivity : AppCompatActivity() {
                 "Comédia"
             )
 
-        categoriasDoramas.forEach { categoria ->
+        categoriasDoramas.forEach {
+            categoria ->
 
             adicionarItemMenu(
                 "   $categoria (${contar(
@@ -1089,6 +1046,7 @@ class MainActivity : AppCompatActivity() {
 
         adicionarSeparadorPremium()
 
+        // ANIME
         adicionarCabecalho(
             "ANIME",
             animes.size
@@ -1102,7 +1060,8 @@ class MainActivity : AppCompatActivity() {
                 "Comédia"
             )
 
-        categoriasAnime.forEach { categoria ->
+        categoriasAnime.forEach {
+            categoria ->
 
             adicionarItemMenu(
                 "   $categoria (${contar(
@@ -1129,9 +1088,12 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
         }
 
-        encontrarPrimeiroFocavel(
-            menuLateral
-        )?.requestFocus()
+        // Começa no primeiro item abaixo do cabeçalho
+        if (itensMenuFoco.size > 1) {
+            itensMenuFoco[1].requestFocus()
+        } else {
+            fecharX.requestFocus()
+        }
     }
 
     private fun adicionarCabecalho(
@@ -1168,7 +1130,7 @@ class MainActivity : AppCompatActivity() {
             dp(8)
         )
 
-        menuLateral.addView(
+        menuConteudo.addView(
             item,
             LinearLayout.LayoutParams(
                 -1,
@@ -1234,6 +1196,18 @@ class MainActivity : AppCompatActivity() {
                 view.scaleX = 1.02f
                 view.scaleY = 1.02f
 
+                // Garante que o item focado fique visível
+                view.post {
+
+                    val y =
+                        view.top
+
+                    menuScroll.smoothScrollTo(
+                        0,
+                        y
+                    )
+                }
+
             } else {
 
                 bg.setColor(
@@ -1272,12 +1246,11 @@ class MainActivity : AppCompatActivity() {
                 true
 
             } else {
-
                 false
             }
         }
 
-        menuLateral.addView(
+        menuConteudo.addView(
             item,
             LinearLayout.LayoutParams(
                 -1,
@@ -1321,10 +1294,20 @@ class MainActivity : AppCompatActivity() {
             dp(7)
         )
 
-        menuLateral.addView(
-            linha,
-            params
-        )
+        if (::menuConteudo.isInitialized) {
+
+            menuConteudo.addView(
+                linha,
+                params
+            )
+
+        } else {
+
+            menuLateral.addView(
+                linha,
+                params
+            )
+        }
     }
 
     private fun fecharMenu() {
@@ -1369,9 +1352,7 @@ class MainActivity : AppCompatActivity() {
                     }
                 )
 
-        mostrarListaCards(
-            lista
-        )
+        mostrarListaCards(lista)
 
         if (lista.isEmpty()) {
 
@@ -1384,17 +1365,9 @@ class MainActivity : AppCompatActivity() {
     private fun mostrarFavoritos() {
 
         val lista =
-            filmes
-                .filter {
-                    ehFavorito(it)
-                }
-                .sortedWith(
-                    compareByDescending<Filme> {
-                        it.ano
-                    }.thenBy {
-                        it.titulo
-                    }
-                )
+            filmes.filter {
+                ehFavorito(it)
+            }
 
         mostrarListaCards(
             lista
@@ -1410,21 +1383,20 @@ class MainActivity : AppCompatActivity() {
             )
 
         val lista =
-            filmes
-                .filter { filme ->
+            filmes.filter { filme ->
 
-                    prefs.getLong(
-                        filme.video,
-                        0L
-                    ) > 0L
-                }
-                .sortedByDescending { filme ->
+                prefs.getLong(
+                    filme.video,
+                    0L
+                ) > 0L
 
-                    prefs.getLong(
-                        "${filme.video}_time",
-                        0L
-                    )
-                }
+            }.sortedByDescending { filme ->
+
+                prefs.getLong(
+                    "${filme.video}_time",
+                    0L
+                )
+            }
 
         mostrarListaCards(
             lista
@@ -1474,33 +1446,17 @@ class MainActivity : AppCompatActivity() {
                     "Pesquisar"
                 ) { _, _ ->
 
-                    val texto =
-                        campo.text
-                            .toString()
-                            .trim()
-
                     mostrarFilmes(
-                        busca = texto
+                        busca =
+                            campo.text
+                                .toString()
+                                .trim()
                     )
                 }
                 .create()
 
-        dialog.setOnShowListener {
-
-            campo.requestFocus()
-
-            dialog.window
-                ?.setSoftInputMode(
-                    android.view.WindowManager
-                        .LayoutParams
-                        .SOFT_INPUT_STATE_ALWAYS_VISIBLE
-                )
-        }
-
         dialog.show()
-    }
-
-    private fun contar(
+    }    private fun contar(
         lista: List<Filme>,
         categoria: String
     ): Int {
@@ -1548,27 +1504,34 @@ class MainActivity : AppCompatActivity() {
                 novoEstado
             )
             .apply()
-    }    private fun encontrarPrimeiroFocavel(
+    }
+
+    private fun encontrarPrimeiroFocavel(
         view: View
     ): View? {
 
         if (
             view.isFocusable &&
-            view.visibility == View.VISIBLE
+            view.visibility ==
+            View.VISIBLE
         ) {
             return view
         }
 
         if (view is ViewGroup) {
 
-            for (i in 0 until view.childCount) {
+            for (
+                i in 0 until view.childCount
+            ) {
 
                 val encontrado =
                     encontrarPrimeiroFocavel(
                         view.getChildAt(i)
                     )
 
-                if (encontrado != null) {
+                if (
+                    encontrado != null
+                ) {
                     return encontrado
                 }
             }
@@ -1592,7 +1555,9 @@ class MainActivity : AppCompatActivity() {
 
         while (atual != null) {
 
-            if (atual === menuLateral) {
+            if (
+                atual === menuLateral
+            ) {
                 return true
             }
 
@@ -1607,14 +1572,14 @@ class MainActivity : AppCompatActivity() {
         direcao: Int
     ): Boolean {
 
-        val atual =
-            currentFocus ?: return false
-
         if (
             itensMenuFoco.isEmpty()
         ) {
             return false
         }
+
+        val atual =
+            currentFocus
 
         var indice =
             itensMenuFoco.indexOf(
@@ -1622,28 +1587,41 @@ class MainActivity : AppCompatActivity() {
             )
 
         if (indice < 0) {
-
             indice = 0
-
         } else {
 
             indice += direcao
 
             if (indice < 0) {
-                indice =
-                    itensMenuFoco.lastIndex
+                indice = 0
             }
 
             if (
                 indice >
                 itensMenuFoco.lastIndex
             ) {
-                indice = 0
+                indice =
+                    itensMenuFoco.lastIndex
             }
         }
 
-        itensMenuFoco[indice]
-            .requestFocus()
+        val proximo =
+            itensMenuFoco[indice]
+
+        proximo.requestFocus()
+
+        proximo.post {
+
+            if (
+                ::menuScroll.isInitialized
+            ) {
+
+                menuScroll.smoothScrollTo(
+                    0,
+                    proximo.top
+                )
+            }
+        }
 
         return true
     }
@@ -1660,6 +1638,7 @@ class MainActivity : AppCompatActivity() {
             val key =
                 event.keyCode
 
+            // BOTÃO MENU DO CONTROLE
             if (
                 key ==
                 KeyEvent.KEYCODE_MENU
@@ -1674,20 +1653,26 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
+            // MENU ABERTO
             if (menuAberto) {
 
-                val focoAtual =
+                val foco =
                     currentFocus
 
+                // Nunca deixa os cards de trás receberem D-pad
                 if (
                     !estaDentroDoMenu(
-                        focoAtual
+                        foco
                     )
                 ) {
 
-                    encontrarPrimeiroFocavel(
-                        menuLateral
-                    )?.requestFocus()
+                    if (
+                        itensMenuFoco.isNotEmpty()
+                    ) {
+
+                        itensMenuFoco[0]
+                            .requestFocus()
+                    }
 
                     return true
                 }
@@ -1696,16 +1681,12 @@ class MainActivity : AppCompatActivity() {
 
                     KeyEvent.KEYCODE_DPAD_UP -> {
 
-                        return navegarMenu(
-                            -1
-                        )
+                        return navegarMenu(-1)
                     }
 
                     KeyEvent.KEYCODE_DPAD_DOWN -> {
 
-                        return navegarMenu(
-                            1
-                        )
+                        return navegarMenu(1)
                     }
 
                     KeyEvent.KEYCODE_DPAD_LEFT -> {
@@ -1724,9 +1705,18 @@ class MainActivity : AppCompatActivity() {
 
                         return true
                     }
+
+                    KeyEvent.KEYCODE_DPAD_CENTER,
+                    KeyEvent.KEYCODE_ENTER -> {
+
+                        foco?.performClick()
+
+                        return true
+                    }
                 }
             }
 
+            // MENU FECHADO
             if (
                 !menuAberto &&
                 key ==
@@ -1750,7 +1740,9 @@ class MainActivity : AppCompatActivity() {
                                 View.FOCUS_UP
                             )
 
-                    if (proximo == null) {
+                    if (
+                        proximo == null
+                    ) {
 
                         botaoMenu.requestFocus()
 
@@ -1765,11 +1757,9 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_DPAD_DOWN
             ) {
 
-                val atual =
-                    currentFocus
-
                 if (
-                    atual === botaoMenu
+                    currentFocus ===
+                    botaoMenu
                 ) {
 
                     encontrarPrimeiroFocavel(
@@ -1780,6 +1770,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+            // NAVEGAÇÃO DOS CARDS
             if (
                 !menuAberto &&
                 (
@@ -1824,7 +1815,9 @@ class MainActivity : AppCompatActivity() {
                                 direcao
                             )
 
-                    if (proximo != null) {
+                    if (
+                        proximo != null
+                    ) {
 
                         proximo.requestFocus()
 
@@ -1884,7 +1877,9 @@ class MainActivity : AppCompatActivity() {
 
                 conexao.disconnect()
 
-                if (bitmap != null) {
+                if (
+                    bitmap != null
+                ) {
 
                     runOnUiThread {
 
@@ -1895,7 +1890,6 @@ class MainActivity : AppCompatActivity() {
                 }
 
             } catch (_: Exception) {
-
             }
         }
     }
@@ -1917,7 +1911,9 @@ class MainActivity : AppCompatActivity() {
 
         return (
             valor *
-            resources.displayMetrics.density
+            resources
+                .displayMetrics
+                .density
         ).toInt()
     }
 }
