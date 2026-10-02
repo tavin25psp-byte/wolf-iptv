@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.view.FocusFinder
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
@@ -326,6 +327,22 @@ class MainActivity : AppCompatActivity() {
                 ),
 
                 Filme(
+                    "Coringa: Delírio a Dois",
+                    2024,
+                    "Drama",
+                    "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3Yz-Mt-ZTUw-MC00MGJj-LWFk-NDIt-MDUz-NTUx-Zjg5N2Y4Xk-Ey-Xk-Fqc-Gc-V1.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"
+                ),
+
+                Filme(
+                    "Deadpool & Wolverine",
+                    2024,
+                    "Ação",
+                    "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4"
+                ),
+
+                Filme(
                     "Mufasa: O Rei Leão",
                     2024,
                     "Aventura",
@@ -398,18 +415,18 @@ class MainActivity : AppCompatActivity() {
                 it.titulo
             }
         )
-    }
-
-    private fun mostrarListaCards(
+    }    private fun mostrarListaCards(
         lista: List<Filme>
     ) {
 
         conteudo.removeAllViews()
 
         if (lista.isEmpty()) {
+
             mostrarMensagem(
                 "Nenhum conteúdo encontrado."
             )
+
             return
         }
 
@@ -469,6 +486,7 @@ class MainActivity : AppCompatActivity() {
                     dp(310),
                     1f
                 ).apply {
+
                     setMargins(
                         dp(5),
                         dp(5),
@@ -706,7 +724,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         startActivity(intent)
-    }    private fun abrirMenu() {
+    }
+
+    private fun abrirMenu() {
 
         if (menuAberto) return
 
@@ -993,9 +1013,7 @@ class MainActivity : AppCompatActivity() {
                     categoria = categoria
                 )
             }
-        }
-
-        adicionarSeparadorPremium(
+    }        adicionarSeparadorPremium(
             menuConteudo
         )
 
@@ -1009,12 +1027,7 @@ class MainActivity : AppCompatActivity() {
         ) {
 
             fecharMenu()
-
-            mostrarConteudoEspecial(
-                series,
-                "",
-                "Séries"
-            )
+            mostrarListaCards(series)
         }
 
         val categoriasSeries =
@@ -1037,10 +1050,13 @@ class MainActivity : AppCompatActivity() {
 
                 fecharMenu()
 
-                mostrarConteudoEspecial(
-                    series,
-                    categoria,
-                    "Séries"
+                mostrarListaCards(
+                    series.filter {
+                        it.categoria.equals(
+                            categoria,
+                            true
+                        )
+                    }
                 )
             }
         }
@@ -1059,12 +1075,7 @@ class MainActivity : AppCompatActivity() {
         ) {
 
             fecharMenu()
-
-            mostrarConteudoEspecial(
-                doramas,
-                "",
-                "Doramas"
-            )
+            mostrarListaCards(doramas)
         }
 
         val categoriasDoramas =
@@ -1087,10 +1098,13 @@ class MainActivity : AppCompatActivity() {
 
                 fecharMenu()
 
-                mostrarConteudoEspecial(
-                    doramas,
-                    categoria,
-                    "Doramas"
+                mostrarListaCards(
+                    doramas.filter {
+                        it.categoria.equals(
+                            categoria,
+                            true
+                        )
+                    }
                 )
             }
         }
@@ -1109,12 +1123,7 @@ class MainActivity : AppCompatActivity() {
         ) {
 
             fecharMenu()
-
-            mostrarConteudoEspecial(
-                animes,
-                "",
-                "Anime"
-            )
+            mostrarListaCards(animes)
         }
 
         val categoriasAnime =
@@ -1137,35 +1146,23 @@ class MainActivity : AppCompatActivity() {
 
                 fecharMenu()
 
-                mostrarConteudoEspecial(
-                    animes,
-                    categoria,
-                    "Anime"
+                mostrarListaCards(
+                    animes.filter {
+                        it.categoria.equals(
+                            categoria,
+                            true
+                        )
+                    }
                 )
             }
         }
 
-        adicionarSeparadorPremium(
-            menuConteudo
-        )
-
-        adicionarItemMenu(
-            "✕  FECHAR MENU"
-        ) {
-
-            fecharMenu()
-        }
-
         if (
-            itensMenuFoco.size > 1
+            itensMenuFoco.isNotEmpty()
         ) {
 
-            itensMenuFoco[1]
+            itensMenuFoco[0]
                 .requestFocus()
-
-        } else {
-
-            fecharX.requestFocus()
         }
     }
 
@@ -1180,26 +1177,23 @@ class MainActivity : AppCompatActivity() {
         item.text =
             "$texto  ($quantidade)"
 
-        item.textSize = 17f
+        item.textSize =
+            17f
 
         item.typeface =
             Typeface.DEFAULT_BOLD
 
         item.setTextColor(
-            Color.rgb(
-                255,
-                70,
-                70
-            )
+            Color.RED
         )
 
         item.gravity =
             Gravity.CENTER_VERTICAL
 
         item.setPadding(
-            dp(10),
+            dp(12),
             dp(8),
-            dp(10),
+            dp(12),
             dp(8)
         )
 
@@ -1207,7 +1201,7 @@ class MainActivity : AppCompatActivity() {
             item,
             LinearLayout.LayoutParams(
                 -1,
-                dp(42)
+                dp(48)
             )
         )
     }
@@ -1223,7 +1217,8 @@ class MainActivity : AppCompatActivity() {
         item.text =
             texto
 
-        item.textSize = 15f
+        item.textSize =
+            16f
 
         item.setTextColor(
             Color.WHITE
@@ -1233,15 +1228,19 @@ class MainActivity : AppCompatActivity() {
             Gravity.CENTER_VERTICAL
 
         item.setPadding(
-            dp(14),
+            dp(15),
             0,
-            dp(8),
+            dp(10),
             0
         )
 
         item.isFocusable = true
         item.isFocusableInTouchMode = true
         item.isClickable = true
+
+        item.setOnClickListener {
+            acao()
+        }
 
         item.setOnFocusChangeListener {
             view,
@@ -1268,58 +1267,15 @@ class MainActivity : AppCompatActivity() {
                     Color.RED
                 )
 
-                view.scaleX = 1.02f
-                view.scaleY = 1.02f
-
-                view.post {
-
-                    menuScroll.smoothScrollTo(
-                        0,
-                        view.top
-                    )
-                }
-
             } else {
 
                 bg.setColor(
                     Color.TRANSPARENT
                 )
-
-                view.scaleX = 1f
-                view.scaleY = 1f
             }
 
             view.background =
                 bg
-        }
-
-        item.setOnClickListener {
-            acao()
-        }
-
-        item.setOnKeyListener {
-            _,
-            keyCode,
-            event ->
-
-            if (
-                event.action ==
-                KeyEvent.ACTION_DOWN &&
-                (
-                    keyCode ==
-                    KeyEvent.KEYCODE_DPAD_CENTER ||
-                    keyCode ==
-                    KeyEvent.KEYCODE_ENTER
-                )
-            ) {
-
-                acao()
-                true
-
-            } else {
-
-                false
-            }
         }
 
         menuConteudo.addView(
@@ -1330,9 +1286,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        registrarFocoMenu(
-            item
-        )
+        registrarFocoMenu(item)
     }
 
     private fun registrarFocoMenu(
@@ -1343,7 +1297,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun adicionarSeparadorPremium(
-        destino: ViewGroup
+        pai: LinearLayout
     ) {
 
         val linha =
@@ -1357,203 +1311,24 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val params =
+        pai.addView(
+            linha,
             LinearLayout.LayoutParams(
                 -1,
                 dp(1)
-            )
+            ).apply {
 
-        params.setMargins(
-            dp(5),
-            dp(7),
-            dp(5),
-            dp(7)
-        )
-
-        destino.addView(
-            linha,
-            params
-        )
-    }
-
-    private fun fecharMenu() {
-
-        if (!menuAberto) return
-
-        if (
-            ::menuLateral.isInitialized
-        ) {
-
-            raiz.removeView(
-                menuLateral
-            )
-        }
-
-        menuAberto = false
-
-        itensMenuFoco.clear()
-
-        encontrarPrimeiroFocavel(
-            conteudo
-        )?.requestFocus()
-    }
-
-    private fun mostrarConteudoEspecial(
-        listaOriginal: List<Filme>,
-        categoria: String,
-        tipo: String
-    ) {
-
-        val lista =
-            if (categoria.isBlank()) {
-
-                listaOriginal
-                    .sortedWith(
-                        compareByDescending<Filme> {
-                            it.ano
-                        }.thenBy {
-                            it.titulo
-                        }
-                    )
-
-            } else {
-
-                listaOriginal
-                    .filter {
-                        it.categoria.equals(
-                            categoria,
-                            true
-                        )
-                    }
-                    .sortedWith(
-                        compareByDescending<Filme> {
-                            it.ano
-                        }.thenBy {
-                            it.titulo
-                        }
-                    )
+                setMargins(
+                    dp(8),
+                    dp(5),
+                    dp(8),
+                    dp(5)
+                )
             }
-
-        mostrarListaCards(
-            lista
         )
-
-        if (lista.isEmpty()) {
-
-            mostrarMensagem(
-                if (categoria.isBlank()) {
-                    "$tipo está vazio."
-                } else {
-                    "$tipo • $categoria está vazio."
-                }
-            )
-        }
     }
 
-    private fun mostrarFavoritos() {
-
-        val lista =
-            filmes.filter {
-                ehFavorito(it)
-            }
-
-        mostrarListaCards(
-            lista
-        )
-
-        if (lista.isEmpty()) {
-
-            mostrarMensagem(
-                "Você ainda não possui favoritos."
-            )
-        }
-    }
-
-    private fun mostrarContinueAssistindo() {
-
-        val prefs =
-            getSharedPreferences(
-                "wolf_progress",
-                MODE_PRIVATE
-            )
-
-        val lista =
-            filmes
-                .filter { filme ->
-
-                    prefs.getLong(
-                        filme.video,
-                        0L
-                    ) > 0L
-                }
-                .sortedByDescending {
-
-                    filme ->
-
-                    prefs.getLong(
-                        "${filme.video}_time",
-                        0L
-                    )
-                }
-
-        mostrarListaCards(
-            lista
-        )
-
-        if (lista.isEmpty()) {
-
-            mostrarMensagem(
-                "Ainda não há vídeos para continuar assistindo."
-            )
-        }
-    }
-
-    private fun abrirPesquisa() {
-
-        val campo =
-            EditText(this)
-
-        campo.hint =
-            "Digite o nome do filme"
-
-        campo.setTextColor(
-            Color.WHITE
-        )
-
-        campo.setHintTextColor(
-            Color.LTGRAY
-        )
-
-        campo.setSingleLine(true)
-
-        val dialog =
-            android.app.AlertDialog
-                .Builder(this)
-                .setTitle(
-                    "Pesquisar"
-                )
-                .setView(
-                    campo
-                )
-                .setNegativeButton(
-                    "Cancelar",
-                    null
-                )
-                .setPositiveButton(
-                    "Pesquisar"
-                ) { _, _ ->
-
-                    mostrarFilmes(
-                        busca =
-                            campo.text
-                                .toString()
-                                .trim()
-                    )
-                }
-                .create()
-
-        dialog.show()
-    }    private fun contar(
+    private fun contar(
         lista: List<Filme>,
         categoria: String
     ): Int {
@@ -1566,182 +1341,376 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun ehFavorito(
-        filme: Filme
-    ): Boolean {
+    private fun fecharMenu() {
 
-        return getSharedPreferences(
-            "wolf_favoritos",
-            MODE_PRIVATE
-        ).getBoolean(
-            filme.video,
-            false
+        if (!menuAberto) return
+
+        menuAberto = false
+
+        if (
+            ::menuLateral.isInitialized
+        ) {
+
+            raiz.removeView(
+                menuLateral
+            )
+        }
+
+        botaoMenu.requestFocus()
+    }
+
+    private fun mostrarMensagem(
+        mensagem: String
+    ) {
+
+        conteudo.removeAllViews()
+
+        val texto =
+            TextView(this)
+
+        texto.text =
+            mensagem
+
+        texto.textSize =
+            20f
+
+        texto.setTextColor(
+            Color.WHITE
+        )
+
+        texto.gravity =
+            Gravity.CENTER
+
+        conteudo.addView(
+            texto,
+            LinearLayout.LayoutParams(
+                -1,
+                dp(150)
+            )
+        )
+    }    private fun mostrarFavoritos() {
+
+        // Base preparada para os favoritos.
+        // Os favoritos serão persistidos quando adicionarmos
+        // o armazenamento local definitivo.
+
+        mostrarMensagem(
+            "Nenhum favorito adicionado ainda."
         )
     }
 
-    private fun alternarFavorito(
-        filme: Filme
-    ) {
+    private fun mostrarContinueAssistindo() {
 
-        val prefs =
-            getSharedPreferences(
-                "wolf_favoritos",
-                MODE_PRIVATE
-            )
+        // Base preparada para continuar assistindo.
+        // O player já envia o título e a capa do conteúdo.
 
-        val novoEstado =
-            !prefs.getBoolean(
-                filme.video,
-                false
-            )
-
-        prefs.edit()
-            .putBoolean(
-                filme.video,
-                novoEstado
-            )
-            .apply()
+        mostrarMensagem(
+            "Nenhum conteúdo em andamento."
+        )
     }
 
-    private fun encontrarPrimeiroFocavel(
-        view: View
-    ): View? {
+    private fun abrirPesquisa() {
 
-        if (
-            view.isFocusable &&
-            view.visibility ==
-            View.VISIBLE
-        ) {
+        conteudo.removeAllViews()
 
-            return view
-        }
+        val titulo =
+            TextView(this)
 
-        if (
-            view is ViewGroup
-        ) {
+        titulo.text =
+            "PESQUISAR"
 
-            for (
-                i in 0 until view.childCount
-            ) {
+        titulo.textSize =
+            24f
 
-                val encontrado =
-                    encontrarPrimeiroFocavel(
-                        view.getChildAt(i)
-                    )
+        titulo.typeface =
+            Typeface.DEFAULT_BOLD
 
-                if (
-                    encontrado != null
-                ) {
+        titulo.setTextColor(
+            Color.WHITE
+        )
 
-                    return encontrado
-                }
-            }
-        }
+        titulo.setPadding(
+            dp(10),
+            dp(10),
+            dp(10),
+            dp(15)
+        )
 
-        return null
-    }
-
-    private fun estaDentroDoMenu(
-        view: View?
-    ): Boolean {
-
-        if (
-            view == null ||
-            !::menuLateral.isInitialized
-        ) {
-
-            return false
-        }
-
-        var atual: View? = view
-
-        while (
-            atual != null
-        ) {
-
-            if (
-                atual === menuLateral
-            ) {
-
-                return true
-            }
-
-            atual =
-                atual.parent as? View
-        }
-
-        return false
-    }
-
-    private fun navegarMenu(
-        direcao: Int
-    ): Boolean {
-
-        if (
-            itensMenuFoco.isEmpty()
-        ) {
-
-            return false
-        }
-
-        val atual =
-            currentFocus
-
-        var indice =
-            itensMenuFoco.indexOf(
-                atual
+        conteudo.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                -1,
+                dp(55)
             )
+        )
 
-        if (
-            indice < 0
-        ) {
+        val campo =
+            EditText(this)
 
-            indice = 0
+        campo.hint =
+            "Digite o nome do filme..."
 
-        } else {
+        campo.textSize =
+            18f
 
-            indice += direcao
+        campo.setSingleLine(true)
 
-            if (
-                indice < 0
-            ) {
+        campo.setTextColor(
+            Color.WHITE
+        )
 
-                indice = 0
+        campo.setHintTextColor(
+            Color.LTGRAY
+        )
+
+        campo.setPadding(
+            dp(15),
+            0,
+            dp(15),
+            0
+        )
+
+        campo.isFocusable = true
+        campo.isFocusableInTouchMode = true
+
+        val fundoCampo =
+            GradientDrawable()
+
+        fundoCampo.cornerRadius =
+            dp(10).toFloat()
+
+        fundoCampo.setColor(
+            Color.argb(
+                210,
+                20,
+                20,
+                20
+            )
+        )
+
+        fundoCampo.setStroke(
+            dp(2),
+            Color.RED
+        )
+
+        campo.background =
+            fundoCampo
+
+        conteudo.addView(
+            campo,
+            LinearLayout.LayoutParams(
+                -1,
+                dp(60)
+            ).apply {
+
+                setMargins(
+                    dp(10),
+                    dp(5),
+                    dp(10),
+                    dp(15)
+                )
             }
+        )
 
-            if (
-                indice >
-                itensMenuFoco.lastIndex
-            ) {
+        val botao =
+            TextView(this)
 
-                indice =
-                    itensMenuFoco.lastIndex
-            }
-        }
+        botao.text =
+            "🔎  PESQUISAR"
 
-        val proximo =
-            itensMenuFoco[indice]
+        botao.textSize =
+            17f
 
-        proximo.requestFocus()
+        botao.typeface =
+            Typeface.DEFAULT_BOLD
 
-        proximo.post {
+        botao.gravity =
+            Gravity.CENTER
 
-            if (
-                ::menuScroll.isInitialized
-            ) {
+        botao.setTextColor(
+            Color.WHITE
+        )
 
-                val posicao =
-                    proximo.top -
-                    dp(30)
+        botao.isFocusable = true
+        botao.isFocusableInTouchMode = true
+        botao.isClickable = true
 
-                menuScroll.smoothScrollTo(
-                    0,
-                    posicao.coerceAtLeast(0)
+        botao.setPadding(
+            dp(15),
+            0,
+            dp(15),
+            0
+        )
+
+        aplicarFocoVermelho(botao)
+
+        botao.setOnClickListener {
+
+            val texto =
+                campo.text
+                    .toString()
+                    .trim()
+
+            if (texto.isBlank()) {
+
+                mostrarFilmes()
+
+            } else {
+
+                mostrarFilmes(
+                    busca = texto
                 )
             }
         }
 
-        return true
+        conteudo.addView(
+            botao,
+            LinearLayout.LayoutParams(
+                dp(220),
+                dp(55)
+            ).apply {
+
+                setMargins(
+                    dp(10),
+                    0,
+                    dp(10),
+                    dp(20)
+                )
+            }
+        )
+
+        campo.setOnEditorActionListener {
+            _,
+            _,
+            _ ->
+
+            botao.performClick()
+
+            true
+        }
+
+        campo.requestFocus()
+    }
+
+    private fun aplicarFocoVermelho(
+        view: View
+    ) {
+
+        view.setOnFocusChangeListener {
+            v,
+            foco ->
+
+            val bg =
+                GradientDrawable()
+
+            bg.cornerRadius =
+                dp(10).toFloat()
+
+            if (foco) {
+
+                bg.setColor(
+                    Color.rgb(
+                        65,
+                        0,
+                        0
+                    )
+                )
+
+                bg.setStroke(
+                    dp(3),
+                    Color.RED
+                )
+
+                v.scaleX = 1.03f
+                v.scaleY = 1.03f
+
+            } else {
+
+                bg.setColor(
+                    Color.TRANSPARENT
+                )
+
+                v.scaleX = 1f
+                v.scaleY = 1f
+            }
+
+            v.background =
+                bg
+        }
+    }
+
+    private fun carregarImagem(
+        imageView: ImageView,
+        endereco: String
+    ) {
+
+        if (endereco.isBlank()) return
+
+        cacheCapas[endereco]?.let {
+
+            imageView.setImageBitmap(it)
+
+            return
+        }
+
+        thread {
+
+            try {
+
+                val conexao =
+                    URL(endereco)
+                        .openConnection()
+                        as HttpURLConnection
+
+                conexao.connectTimeout =
+                    10000
+
+                conexao.readTimeout =
+                    15000
+
+                conexao.doInput =
+                    true
+
+                conexao.connect()
+
+                val bitmap =
+                    conexao.inputStream.use {
+                        BitmapFactory.decodeStream(
+                            it
+                        )
+                    }
+
+                conexao.disconnect()
+
+                if (bitmap != null) {
+
+                    cacheCapas[
+                        endereco
+                    ] = bitmap
+
+                    runOnUiThread {
+
+                        imageView.setImageBitmap(
+                            bitmap
+                        )
+                    }
+                }
+
+            } catch (_: Exception) {
+                // Mantém o card funcionando mesmo
+                // se a imagem não carregar.
+            }
+        }
+    }
+
+    private fun dp(
+        valor: Int
+    ): Int {
+
+        return (
+            valor *
+            resources.displayMetrics.density
+        ).toInt()
     }
 
     override fun dispatchKeyEvent(
@@ -1753,329 +1722,59 @@ class MainActivity : AppCompatActivity() {
             KeyEvent.ACTION_DOWN
         ) {
 
-            val key =
-                event.keyCode
+            when (event.keyCode) {
 
-            if (
-                key ==
-                KeyEvent.KEYCODE_MENU
-            ) {
+                KeyEvent.KEYCODE_BACK -> {
 
-                if (menuAberto) {
-
-                    fecharMenu()
-
-                } else {
-
-                    abrirMenu()
-                }
-
-                return true
-            }
-
-            if (menuAberto) {
-
-                val foco =
-                    currentFocus
-
-                if (
-                    !estaDentroDoMenu(
-                        foco
-                    )
-                ) {
-
-                    if (
-                        itensMenuFoco.isNotEmpty()
-                    ) {
-
-                        itensMenuFoco[0]
-                            .requestFocus()
-                    }
-
-                    return true
-                }
-
-                when (key) {
-
-                    KeyEvent.KEYCODE_DPAD_UP -> {
-
-                        return navegarMenu(-1)
-                    }
-
-                    KeyEvent.KEYCODE_DPAD_DOWN -> {
-
-                        return navegarMenu(1)
-                    }
-
-                    KeyEvent.KEYCODE_DPAD_LEFT -> {
-
-                        return true
-                    }
-
-                    KeyEvent.KEYCODE_DPAD_RIGHT -> {
-
-                        return true
-                    }
-
-                    KeyEvent.KEYCODE_DPAD_CENTER,
-                    KeyEvent.KEYCODE_ENTER -> {
-
-                        foco?.performClick()
-
-                        return true
-                    }
-
-                    KeyEvent.KEYCODE_BACK -> {
+                    if (menuAberto) {
 
                         fecharMenu()
 
                         return true
                     }
                 }
-            }
 
-            if (
-                !menuAberto &&
-                key ==
-                KeyEvent.KEYCODE_DPAD_UP
-            ) {
+                KeyEvent.KEYCODE_MENU -> {
 
-                val atual =
-                    currentFocus
+                    if (!menuAberto) {
 
-                if (
-                    atual != null &&
-                    atual !== botaoMenu
-                ) {
-
-                    val proximo =
-                        FocusFinder
-                            .getInstance()
-                            .findNextFocus(
-                                raiz,
-                                atual,
-                                View.FOCUS_UP
-                            )
-
-                    if (
-                        proximo == null
-                    ) {
-
-                        botaoMenu.requestFocus()
+                        abrirMenu()
 
                         return true
                     }
                 }
-            }
 
-            if (
-                !menuAberto &&
-                key ==
-                KeyEvent.KEYCODE_DPAD_DOWN
-            ) {
+                KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                if (
-                    currentFocus ===
-                    botaoMenu
-                ) {
-
-                    encontrarPrimeiroFocavel(
-                        conteudo
-                    )?.requestFocus()
-
-                    return true
-                }
-            }
-
-            if (
-                !menuAberto &&
-                (
-                    key ==
-                    KeyEvent.KEYCODE_DPAD_LEFT ||
-                    key ==
-                    KeyEvent.KEYCODE_DPAD_RIGHT ||
-                    key ==
-                    KeyEvent.KEYCODE_DPAD_UP ||
-                    key ==
-                    KeyEvent.KEYCODE_DPAD_DOWN
-                )
-            ) {
-
-                val atual =
-                    currentFocus
-
-                if (
-                    atual != null
-                ) {
-
-                    val direcao =
-                        when (key) {
-
-                            KeyEvent.KEYCODE_DPAD_LEFT ->
-                                View.FOCUS_LEFT
-
-                            KeyEvent.KEYCODE_DPAD_RIGHT ->
-                                View.FOCUS_RIGHT
-
-                            KeyEvent.KEYCODE_DPAD_UP ->
-                                View.FOCUS_UP
-
-                            else ->
-                                View.FOCUS_DOWN
-                        }
-
-                    val proximo =
-                        FocusFinder
-                            .getInstance()
-                            .findNextFocus(
-                                raiz,
-                                atual,
-                                direcao
-                            )
-
-                    if (
-                        proximo != null
-                    ) {
-
-                        proximo.requestFocus()
-
-                        return true
-                    }
-                }
-            }
-
-            if (
-                key ==
-                KeyEvent.KEYCODE_BACK
-            ) {
-
-                if (menuAberto) {
-
-                    fecharMenu()
-
-                    return true
-                }
-            }
-        }
-
-        return super.dispatchKeyEvent(
-            event
-        )
-    }
-
-    private fun carregarImagem(
-        imageView: ImageView,
-        url: String
-    ) {
-
-        if (url.isBlank()) return
-
-        val imagemCache =
-            cacheCapas[url]
-
-        if (imagemCache != null) {
-
-            imageView.setImageBitmap(
-                imagemCache
-            )
-
-            return
-        }
-
-        thread {
-
-            var conexao:
-                HttpURLConnection? = null
-
-            try {
-
-                conexao =
-                    URL(url)
-                        .openConnection()
-                            as HttpURLConnection
-
-                conexao.connectTimeout =
-                    5000
-
-                conexao.readTimeout =
-                    7000
-
-                conexao.doInput =
-                    true
-
-                conexao.useCaches =
-                    true
-
-                conexao.setRequestProperty(
-                    "Cache-Control",
-                    "max-age=86400"
-                )
-
-                conexao.connect()
-
-                val bitmap =
-                    BitmapFactory
-                        .decodeStream(
-                            conexao.inputStream
-                        )
-
-                if (
-                    bitmap != null
-                ) {
-
-                    cacheCapas[url] =
-                        bitmap
-
-                    runOnUiThread {
+                    if (menuAberto) {
 
                         if (
-                            imageView.visibility ==
-                            View.VISIBLE
+                            itensMenuFoco
+                                .any {
+                                    it.hasFocus()
+                                }
                         ) {
-
-                            imageView.setImageBitmap(
-                                bitmap
-                            )
+                            return super
+                                .dispatchKeyEvent(
+                                    event
+                                )
                         }
                     }
                 }
 
-            } catch (
-                _: Exception
-            ) {
+                KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
-            } finally {
+                    if (menuAberto) {
 
-                try {
-                    conexao?.disconnect()
-                } catch (
-                    _: Exception
-                ) {
-                }
-            }
-        }
-    }
-
-    private fun mostrarMensagem(
-        mensagem: String
-    ) {
-
-        Toast.makeText(
-            this,
-            mensagem,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    private fun dp(
-        valor: Int
-    ): Int {
-
-        return (
-            valor *
-            resources
-                .displayMetrics
-                .density
-        ).toInt()
-    }
-}
+                        if (
+                            itensMenuFoco
+                                .any {
+                                    it.hasFocus()
+                                }
+                        ) {
+                            return super
+                                .dispatchKeyEvent(
+                                    event
+                                )
+                        }
+                    }
