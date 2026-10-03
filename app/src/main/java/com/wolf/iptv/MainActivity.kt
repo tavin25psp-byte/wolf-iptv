@@ -383,9 +383,15 @@ private fun carregarFilmes() {
 
     thread {
 
+        var conexao: HttpURLConnection? = null
+
         try {
 
-            val conexao =
+            // ===============================
+            // CONEXÃO
+            // ===============================
+
+            conexao =
                 URL(CATALOGO_URL)
                     .openConnection() as HttpURLConnection
 
@@ -403,9 +409,24 @@ private fun carregarFilmes() {
 
             val codigo = conexao.responseCode
 
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "HTTP: $codigo"
+            )
+
+            // ===============================
+            // VERIFICA HTTP
+            // ===============================
+
             if (codigo !in 200..299) {
-                throw Exception("HTTP $codigo")
+                throw Exception(
+                    "HTTP $codigo"
+                )
             }
+
+            // ===============================
+            // LÊ JSON
+            // ===============================
 
             val resposta =
                 conexao.inputStream
@@ -414,14 +435,38 @@ private fun carregarFilmes() {
                         it.readText()
                     }
 
-            conexao.disconnect()
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "Tamanho do JSON: ${resposta.length} caracteres"
+            )
 
             if (resposta.isBlank()) {
-                throw Exception("Catálogo vazio")
+                throw Exception(
+                    "Catálogo vazio"
+                )
             }
 
+            // Mostra o início da resposta
+            // para identificar HTML/erro do GitHub
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "Início do JSON: " +
+                    resposta.take(200)
+            )
+
+            // ===============================
+            // PARSE DO JSON
+            // ===============================
+
             val raizJson =
-                JSONObject(resposta.trim())
+                JSONObject(
+                    resposta.trim()
+                )
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "JSON interpretado com sucesso"
+            )
 
             // ===============================
             // FILMES
@@ -433,25 +478,46 @@ private fun carregarFilmes() {
             val jsonFilmes =
                 raizJson.optJSONArray("filmes")
 
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "Array filmes encontrado: " +
+                    (jsonFilmes != null)
+            )
+
             if (jsonFilmes != null) {
 
-                for (i in 0 until jsonFilmes.length()) {
+                android.util.Log.d(
+                    "WOLF_CATALOGO",
+                    "Filmes no JSON: " +
+                        jsonFilmes.length()
+                )
+
+                for (
+                    i in 0 until
+                        jsonFilmes.length()
+                ) {
 
                     try {
 
                         val item =
-                            jsonFilmes.optJSONObject(i)
+                            jsonFilmes
+                                .optJSONObject(i)
                                 ?: continue
 
                         val titulo =
-                            item.optString("titulo").trim()
+                            item
+                                .optString("titulo")
+                                .trim()
 
                         if (titulo.isBlank()) {
                             continue
                         }
 
                         val ano =
-                            item.optInt("ano", 0)
+                            item.optInt(
+                                "ano",
+                                0
+                            )
 
                         val categoria =
                             item.optString(
@@ -460,10 +526,14 @@ private fun carregarFilmes() {
                             ).trim()
 
                         val capa =
-                            item.optString("capa").trim()
+                            item
+                                .optString("capa")
+                                .trim()
 
                         val video =
-                            item.optString("video").trim()
+                            item
+                                .optString("video")
+                                .trim()
 
                         novaListaFilmes.add(
                             Filme(
@@ -475,13 +545,22 @@ private fun carregarFilmes() {
                             )
                         )
 
-                    } catch (_: Exception) {
-                        // ignora somente o item com erro
+                    } catch (e: Exception) {
+
+                        android.util.Log.e(
+                            "WOLF_CATALOGO",
+                            "Erro no filme $i",
+                            e
+                        )
                     }
                 }
             }
 
-            // Filmes mais novos primeiro
+            // ===============================
+            // ORDENA FILMES
+            // MAIS NOVOS PRIMEIRO
+            // ===============================
+
             novaListaFilmes.sortWith(
                 compareByDescending<Filme> {
                     it.ano
@@ -495,17 +574,33 @@ private fun carregarFilmes() {
             // ===============================
 
             fun lerSeries(
-                array: JSONArray?
+                array: JSONArray?,
+                nomeArray: String
             ): MutableList<Serie> {
 
                 val resultado =
                     mutableListOf<Serie>()
 
                 if (array == null) {
+
+                    android.util.Log.d(
+                        "WOLF_CATALOGO",
+                        "$nomeArray: array não encontrado"
+                    )
+
                     return resultado
                 }
 
-                for (i in 0 until array.length()) {
+                android.util.Log.d(
+                    "WOLF_CATALOGO",
+                    "$nomeArray no JSON: " +
+                        array.length()
+                )
+
+                for (
+                    i in 0 until
+                        array.length()
+                ) {
 
                     try {
 
@@ -514,7 +609,9 @@ private fun carregarFilmes() {
                                 ?: continue
 
                         val titulo =
-                            item.optString("titulo").trim()
+                            item
+                                .optString("titulo")
+                                .trim()
 
                         if (titulo.isBlank()) {
                             continue
@@ -527,13 +624,17 @@ private fun carregarFilmes() {
                             ).trim()
 
                         val capa =
-                            item.optString("capa").trim()
+                            item
+                                .optString("capa")
+                                .trim()
 
                         val temporadas =
                             mutableListOf<Temporada>()
 
                         val jsonTemporadas =
-                            item.optJSONArray("temporadas")
+                            item.optJSONArray(
+                                "temporadas"
+                            )
 
                         if (jsonTemporadas != null) {
 
@@ -560,9 +661,13 @@ private fun carregarFilmes() {
 
                                     val jsonEpisodios =
                                         temporadaJson
-                                            .optJSONArray("episodios")
+                                            .optJSONArray(
+                                                "episodios"
+                                            )
 
-                                    if (jsonEpisodios != null) {
+                                    if (
+                                        jsonEpisodios != null
+                                    ) {
 
                                         for (
                                             e in 0 until
@@ -613,8 +718,14 @@ private fun carregarFilmes() {
                                                     )
                                                 }
 
-                                            } catch (_: Exception) {
-                                                // ignora episódio com erro
+                                            } catch (e: Exception) {
+
+                                                android.util.Log.e(
+                                                    "WOLF_CATALOGO",
+                                                    "Erro no episódio " +
+                                                        "$e de $titulo",
+                                                    e
+                                                )
                                             }
                                         }
                                     }
@@ -628,8 +739,14 @@ private fun carregarFilmes() {
                                         )
                                     )
 
-                                } catch (_: Exception) {
-                                    // ignora temporada com erro
+                                } catch (e: Exception) {
+
+                                    android.util.Log.e(
+                                        "WOLF_CATALOGO",
+                                        "Erro na temporada " +
+                                            "$t de $titulo",
+                                        e
+                                    )
                                 }
                             }
                         }
@@ -643,60 +760,151 @@ private fun carregarFilmes() {
                             )
                         )
 
-                    } catch (_: Exception) {
-                        // ignora série com erro
+                    } catch (e: Exception) {
+
+                        android.util.Log.e(
+                            "WOLF_CATALOGO",
+                            "Erro no item $i de $nomeArray",
+                            e
+                        )
                     }
                 }
 
                 return resultado
             }
 
+            // ===============================
+            // CARREGA CATEGORIAS
+            // ===============================
+
             val novasSeries =
                 lerSeries(
-                    raizJson.optJSONArray("series")
+                    raizJson.optJSONArray("series"),
+                    "SÉRIES"
                 )
 
             val novosDoramas =
                 lerSeries(
-                    raizJson.optJSONArray("doramas")
+                    raizJson.optJSONArray("doramas"),
+                    "DORAMAS"
                 )
 
             val novosAnimes =
                 lerSeries(
-                    raizJson.optJSONArray("animes")
+                    raizJson.optJSONArray("animes"),
+                    "ANIMES"
                 )
 
             // ===============================
-            // ATUALIZA A INTERFACE
+            // LOG FINAL
+            // ===============================
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "=============================="
+            )
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "CATÁLOGO PROCESSADO"
+            )
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "Filmes: ${novaListaFilmes.size}"
+            )
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "Séries: ${novasSeries.size}"
+            )
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "Doramas: ${novosDoramas.size}"
+            )
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "Animes: ${novosAnimes.size}"
+            )
+
+            android.util.Log.d(
+                "WOLF_CATALOGO",
+                "=============================="
+            )
+
+            // ===============================
+            // ATUALIZA INTERFACE
             // ===============================
 
             runOnUiThread {
 
                 filmes.clear()
-                filmes.addAll(novaListaFilmes)
+                filmes.addAll(
+                    novaListaFilmes
+                )
 
                 series.clear()
-                series.addAll(novasSeries)
+                series.addAll(
+                    novasSeries
+                )
 
                 doramas.clear()
-                doramas.addAll(novosDoramas)
+                doramas.addAll(
+                    novosDoramas
+                )
 
                 animes.clear()
-                animes.addAll(novosAnimes)
+                animes.addAll(
+                    novosAnimes
+                )
 
-                mostrarListaCards(filmes)
+                mostrarListaCards(
+                    filmes
+                )
 
                 Toast.makeText(
                     this,
-                    "WOLF IPTV: " +
-                        "${filmes.size} filmes • " +
-                        "${series.size} séries",
+                    "CATÁLOGO OK\n" +
+                        "HTTP: $codigo\n" +
+                        "JSON: ${resposta.length()} caracteres\n" +
+                        "Filmes: ${filmes.size}\n" +
+                        "Séries: ${series.size}\n" +
+                        "Doramas: ${doramas.size}\n" +
+                        "Animes: ${animes.size}",
                     Toast.LENGTH_LONG
                 ).show()
             }
 
         } catch (e: Exception) {
 
+            android.util.Log.e(
+                "WOLF_CATALOGO",
+                "=============================="
+            )
+
+            android.util.Log.e(
+                "WOLF_CATALOGO",
+                "ERRO REAL NO CATÁLOGO",
+                e
+            )
+
+            android.util.Log.e(
+                "WOLF_CATALOGO",
+                "Tipo: ${e.javaClass.name}"
+            )
+
+            android.util.Log.e(
+                "WOLF_CATALOGO",
+                "Mensagem: ${e.message}"
+            )
+
+            android.util.Log.e(
+                "WOLF_CATALOGO",
+                "=============================="
+            )
+
             runOnUiThread {
 
                 filmes.clear()
@@ -704,18 +912,22 @@ private fun carregarFilmes() {
                 doramas.clear()
                 animes.clear()
 
-                mostrarListaCards(filmes)
+                mostrarListaCards(
+                    filmes
+                )
 
                 Toast.makeText(
                     this,
-                    "Erro no catálogo: " +
-                        (
-                            e.message
-                                ?: "erro desconhecido"
-                        ),
+                    "ERRO NO CATÁLOGO\n" +
+                        "${e.javaClass.simpleName}\n" +
+                        "${e.message ?: "erro desconhecido"}",
                     Toast.LENGTH_LONG
                 ).show()
             }
+
+        } finally {
+
+            conexao?.disconnect()
         }
     }
 }
