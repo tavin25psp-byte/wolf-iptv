@@ -509,7 +509,7 @@ private fun carregarFilmes() {
     }
 }
 
-}private fun carregarSeries() {
+private fun carregarSeries() {
     // Séries, doramas e animes agora vêm do catalogo.json
 }
 
