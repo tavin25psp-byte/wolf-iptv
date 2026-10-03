@@ -89,11 +89,8 @@ override fun onCreate(savedInstanceState: Bundle?) {
 super.onCreate(savedInstanceState)
 super.onCreate(savedInstanceState)
 
-Toast.makeText(
-    this,
-    "WOLF TESTE - MainActivity iniciou",
-    Toast.LENGTH_LONG
-).show()
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
 
 window.decorView.systemUiVisibility =
 View.SYSTEM_UI_FLAG_FULLSCREEN or
