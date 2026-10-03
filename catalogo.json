@@ -8,6 +8,13 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Jurassic%20World%20Recome%C3%A7o.mp4"
     },
     {
+      "titulo": "The Flash",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/SxvNfKMf/4500101g-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/The%20Flash.mp4"
+    },
+    {
       "titulo": "Missão: Impossível – O Acerto Final",
       "ano": 2025,
       "categoria": "Ação",
@@ -195,7 +202,7 @@
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/J7fYDKXH/images-(17).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Morte%20de%20Robin%20Hood.mp4"
-    }    ,
+    },
     {
       "titulo": "Destruição Iminente",
       "ano": 2024,
@@ -392,113 +399,91 @@
       "capa": "https://i.postimg.cc/yWC72Btj/Joker-(2019)-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Coringa.mp4"
     }
-  ],"series": [
-  {
-    "titulo": "Spaide Noir",
-    "categoria": "Ação",
-    "capa": "https://i.postimg.cc/R0dfWdj7/alright-people-whove-seen-spider-noir-should-i-watch-it-in-v0-73e3ew89v94h1-(1).jpg",
-    "temporadas": [
-      {
-        "numero": 1,
-        "episodios": [
-          {
-            "numero": 1,
-            "titulo": "Entre no meu Escritório",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Entre%20no%20meu%20Escrit%C3%B3rio.mp4"
-          },
-          {
-            "numero": 2,
-            "titulo": "Pisando em Ovos",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Pisando%20em%20Ovos.mp4"
-          },
-          {
-            "numero": 3,
-            "titulo": "Falsidade",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Falsidade.mp4"
-          },
-          {
-            "numero": 4,
-            "titulo": "Nunca Repita o Mesmo Erro",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20Nunca%20Repita%20o%20Mesmo%20Erro.mp4"
-          },
-          {
-            "numero": 5,
-            "titulo": "Traição",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20Trai%C3%A7%C3%A3o.mp4"
-          },
-          {
-            "numero": 6,
-            "titulo": "Pesadelo na Maca",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%206%20-%20Pesadelo%20na%20Maca.mp4"
-          },
-          {
-            "numero": 7,
-            "titulo": "Herói de Ninguém",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%207%20-%20Her%C3%B3i%20de%20Ningu%C3%A9m.mp4"
-          },
-          {
-            "numero": 8,
-            "titulo": "O Homem Mascarado",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%208%20-%20O%20Homem%20Mascarado.mp4"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "titulo": "Avatar: A Lenda de Aang",
-    "categoria": "Aventura",
-    "capa": "https://i.postimg.cc/BvWjsB3G/Avatar-The-Last-Airbender-2024-series-poster-(1).jpg",
-    "temporadas": [
-      {
-        "numero": 1,
-        "episodios": [
-          {
-            "numero": 1,
-            "titulo": "Aang",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Aang.mp4"
-          },
-          {
-            "numero": 2,
-            "titulo": "Guerreiros",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Guerreiros.mp4"
-          },
-          {
-            "numero": 3,
-            "titulo": "Omashu",
-            "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Omashu.mp4"
-          },
-          {
-            "numero": 4,
-            "titulo": "No Escuro",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20No%20escuro.mp4"
-          },
-          {
-            "numero": 5,
-            "titulo": "O Mundo Espiritual",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20O%20Mundo%20Espiritual.mp4"
-          },
-          {
-            "numero": 6,
-            "titulo": "Máscaras",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%206%20-%20M%C3%A1scaras.mp4"
-          },
-          {
-            "numero": 7,
-            "titulo": "O Norte",
-            "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%207%20-%20O%20Norte.mp4"
-          },
-          {
-            "numero": 8,
-            "titulo": "Episódio 8",
-            "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%208%20-%20Epis%C3%B3dio%208.mp4"
-          }
-        ]
-      }
-    ]
-  }
-],
-  
-  "doramas": [],
-  "animes": []
-}
+  ],
+  "series": [
+    {
+      "titulo": "Spaide Noir",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/R0dfWdj7/alright-people-whove-seen-spider-noir-should-i-watch-it-in-v0-73e3ew89v94h1-(1).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Entre no meu Escritório",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Entre%20no%20meu%20Escrit%C3%B3rio.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Pisando em Ovos",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Pisando%20em%20Ovos.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Falsidade",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Falsidade.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Nunca Repita o Mesmo Erro",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20Nunca%20Repita%20o%20Mesmo%20Erro.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Traição",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20Trai%C3%A7%C3%A3o.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Pesadelo na Maca",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%206%20-%20Pesadelo%20na%20Maca.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Herói de Ninguém",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%207%20-%20Her%C3%B3i%20de%20Ningu%C3%A9m.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "O Homem Mascarado",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%208%20-%20O%20Homem%20Mascarado.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Avatar: A Lenda de Aang",
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/BvWjsB3G/Avatar-The-Last-Airbender-2024-series-poster-(1).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Aang",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Aang.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Guerreiros",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Guerreiros.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Omashu",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Omashu.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "No Escuro",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20No%20escuro.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "O Mundo Espiritual",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20O%20Mundo%20Espiritual.mp4"
+            },
+ 
