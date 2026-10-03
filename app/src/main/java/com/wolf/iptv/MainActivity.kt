@@ -375,499 +375,512 @@ class MainActivity : AppCompatActivity() {
             } catch (_: Exception) {
             }
         }
-    }    private fun carregarFilmes() {
+    }// ===============================
+// CARREGAR CATÁLOGO
+// ===============================
 
-        thread {
+private fun carregarFilmes() {
 
-            var conexao:
-                HttpURLConnection? = null
+    thread {
 
-            try {
+        var conexao: HttpURLConnection? = null
 
-                conexao =
-                    URL(CATALOGO_URL)
-                        .openConnection()
-                            as HttpURLConnection
+        try {
 
-                conexao.connectTimeout =
-                    20000
+            conexao =
+                URL(CATALOGO_URL)
+                    .openConnection() as HttpURLConnection
 
-                conexao.readTimeout =
-                    20000
+            conexao.connectTimeout = 20000
+            conexao.readTimeout = 20000
+            conexao.requestMethod = "GET"
+            conexao.doInput = true
 
-                conexao.requestMethod =
-                    "GET"
+            conexao.setRequestProperty(
+                "User-Agent",
+                "Mozilla/5.0"
+            )
 
-                conexao.doInput = true
+            conexao.connect()
 
-                conexao.setRequestProperty(
-                    "User-Agent",
-                    "Mozilla/5.0"
+            val codigo =
+                conexao.responseCode
+
+            if (codigo !in 200..299) {
+                throw Exception(
+                    "HTTP $codigo"
+                )
+            }
+
+            val resposta =
+                conexao.inputStream
+                    .bufferedReader(
+                        Charsets.UTF_8
+                    )
+                    .use {
+                        it.readText()
+                    }
+
+            if (resposta.isBlank()) {
+                throw Exception(
+                    "Catálogo vazio"
+                )
+            }
+
+            val texto =
+                resposta.trim()
+
+            val raizJson =
+                JSONObject(texto)
+
+
+            // ===============================
+            // FILMES
+            // ===============================
+
+            val novosFilmes =
+                ArrayList<Filme>()
+
+            val listaFilmes =
+                raizJson.optJSONArray(
+                    "filmes"
                 )
 
-                conexao.connect()
+            if (listaFilmes != null) {
 
-                val codigo =
-                    conexao.responseCode
+                for (i in 0 until listaFilmes.length()) {
 
-                android.util.Log.d(
-                    "WOLF_CATALOGO",
-                    "HTTP: $codigo"
-                )
+                    try {
 
-                if (codigo !in 200..299) {
+                        val item =
+                            listaFilmes.getJSONObject(i)
 
-                    throw Exception(
-                        "HTTP $codigo"
-                    )
-                }
+                        val titulo =
+                            item.optString(
+                                "titulo",
+                                ""
+                            )
 
-                val resposta =
-                    conexao.inputStream
-                        .bufferedReader(
-                            Charsets.UTF_8
-                        )
-                        .use {
-                            it.readText()
-                        }
+                        val ano =
+                            item.optInt(
+                                "ano",
+                                0
+                            )
 
-                android.util.Log.d(
-                    "WOLF_CATALOGO",
-                    "Tamanho do JSON: " +
-                        resposta.length +
-                        " caracteres"
-                )
+                        val categoria =
+                            item.optString(
+                                "categoria",
+                                ""
+                            )
 
-                if (resposta.isBlank()) {
+                        val capa =
+                            item.optString(
+                                "capa",
+                                ""
+                            )
 
-                    throw Exception(
-                        "Catálogo vazio"
-                    )
-                }
+                        val video =
+                            item.optString(
+                                "video",
+                                ""
+                            )
 
-                android.util.Log.d(
-                    "WOLF_CATALOGO",
-                    "Início do JSON: " +
-                        resposta.take(200)
-                )
+                        if (
+                            titulo.isNotBlank()
+                        ) {
 
-                val raizJson =
-                    JSONObject(
-                        resposta.trim()
-                    )
-
-                android.util.Log.d(
-                    "WOLF_CATALOGO",
-                    "JSON interpretado com sucesso"
-                )
-
-                val novaListaFilmes =
-                    mutableListOf<Filme>()
-
-                val jsonFilmes =
-                    raizJson.optJSONArray(
-                        "filmes"
-                    )
-
-                if (jsonFilmes != null) {
-
-                    android.util.Log.d(
-                        "WOLF_CATALOGO",
-                        "Filmes no JSON: " +
-                            jsonFilmes.length()
-                    )
-
-                    for (
-                        i in 0 until
-                            jsonFilmes.length()
-                    ) {
-
-                        try {
-
-                            val item =
-                                jsonFilmes
-                                    .optJSONObject(i)
-                                    ?: continue
-
-                            val titulo =
-                                item.optString(
-                                    "titulo"
-                                ).trim()
-
-                            if (
-                                titulo.isBlank()
-                            ) {
-                                continue
-                            }
-
-                            val ano =
-                                item.optInt(
-                                    "ano",
-                                    0
-                                )
-
-                            val categoria =
-                                item.optString(
-                                    "categoria",
-                                    "Filmes"
-                                ).trim()
-
-                            val capa =
-                                item.optString(
-                                    "capa"
-                                ).trim()
-
-                            val video =
-                                item.optString(
-                                    "video"
-                                ).trim()
-
-                            novaListaFilmes.add(
+                            novosFilmes.add(
                                 Filme(
                                     titulo = titulo,
                                     ano = ano,
-                                    categoria =
-                                        categoria,
+                                    categoria = categoria,
                                     capa = capa,
                                     video = video
                                 )
                             )
-
-                        } catch (
-                            erroFilme:
-                                Exception
-                        ) {
-
-                            android.util.Log.e(
-                                "WOLF_CATALOGO",
-                                "Erro no filme $i",
-                                erroFilme
-                            )
                         }
-                    }
-                }
 
-                novaListaFilmes.sortWith(
-                    compareByDescending<Filme> {
-                        it.ano
-                    }.thenBy {
-                        it.titulo
-                    }
-                )
-
-                fun lerSeries(
-                    array: JSONArray?,
-                    nomeArray: String
-                ): MutableList<Serie> {
-
-                    val resultado =
-                        mutableListOf<Serie>()
-
-                    if (array == null) {
-
-                        android.util.Log.d(
-                            "WOLF_CATALOGO",
-                            "$nomeArray: array não encontrado"
-                        )
-
-                        return resultado
-                    }
-
-                    for (
-                        i in 0 until
-                            array.length()
+                    } catch (
+                        erroFilme: Exception
                     ) {
 
-                        try {
+                        // Ignora somente o item
+                        // com erro e continua lendo
+                    }
+                }
+            }
 
-                            val item =
-                                array
-                                    .optJSONObject(i)
-                                    ?: continue
 
-                            val titulo =
-                                item.optString(
-                                    "titulo"
-                                ).trim()
+            // ===============================
+            // ORDENA FILMES
+            // ===============================
+            // Os filmes mais novos ficam
+            // primeiro.
 
-                            if (
-                                titulo.isBlank()
+            novosFilmes.sortWith(
+                compareByDescending<Filme> {
+                    it.ano
+                }.thenBy {
+                    it.titulo.lowercase()
+                }
+            )
+
+
+            // ===============================
+            // FUNÇÃO PARA LER SÉRIES
+            // ===============================
+
+            fun lerSeries(
+                array: JSONArray?
+            ): ArrayList<Serie> {
+
+                val resultado =
+                    ArrayList<Serie>()
+
+                if (array == null) {
+                    return resultado
+                }
+
+                for (
+                    i in 0 until array.length()
+                ) {
+
+                    try {
+
+                        val objeto =
+                            array.getJSONObject(i)
+
+                        val titulo =
+                            objeto.optString(
+                                "titulo",
+                                ""
+                            )
+
+                        val categoria =
+                            objeto.optString(
+                                "categoria",
+                                ""
+                            )
+
+                        val capa =
+                            objeto.optString(
+                                "capa",
+                                ""
+                            )
+
+                        val temporadas =
+                            ArrayList<Temporada>()
+
+                        val arrayTemporadas =
+                            objeto.optJSONArray(
+                                "temporadas"
+                            )
+
+
+                        // ===============================
+                        // TEMPORADAS
+                        // ===============================
+
+                        if (
+                            arrayTemporadas != null
+                        ) {
+
+                            for (
+                                t in 0 until
+                                    arrayTemporadas.length()
                             ) {
-                                continue
-                            }
 
-                            val categoria =
-                                item.optString(
-                                    "categoria",
-                                    "Séries"
-                                ).trim()
+                                try {
 
-                            val capa =
-                                item.optString(
-                                    "capa"
-                                ).trim()
+                                    val objetoTemporada =
+                                        arrayTemporadas
+                                            .getJSONObject(t)
 
-                            val temporadas =
-                                mutableListOf<Temporada>()
-
-                            val jsonTemporadas =
-                                item.optJSONArray(
-                                    "temporadas"
-                                )
-
-                            if (
-                                jsonTemporadas != null
-                            ) {
-
-                                for (
-                                    t in 0 until
-                                        jsonTemporadas.length()
-                                ) {
-
-                                    try {
-
-                                        val temporadaJson =
-                                            jsonTemporadas
-                                                .optJSONObject(t)
-                                                ?: continue
-
-                                        val numeroTemporada =
-                                            temporadaJson
-                                                .optInt(
-                                                    "numero",
-                                                    t + 1
-                                                )
-
-                                        val episodios =
-                                            mutableListOf<Episodio>()
-
-                                        val jsonEpisodios =
-                                            temporadaJson
-                                                .optJSONArray(
-                                                    "episodios"
-                                                )
-
-                                        if (
-                                            jsonEpisodios != null
-                                        ) {
-
-                                            for (
-                                                ep in 0 until
-                                                    jsonEpisodios.length()
-                                            ) {
-
-                                                try {
-
-                                                    val episodioJson =
-                                                        jsonEpisodios
-                                                            .optJSONObject(ep)
-                                                            ?: continue
-
-                                                    val numeroEpisodio =
-                                                        episodioJson
-                                                            .optInt(
-                                                                "numero",
-                                                                ep + 1
-                                                            )
-
-                                                    val tituloEpisodio =
-                                                        episodioJson
-                                                            .optString(
-                                                                "titulo"
-                                                            )
-                                                            .trim()
-
-                                                    val videoEpisodio =
-                                                        episodioJson
-                                                            .optString(
-                                                                "video"
-                                                            )
-                                                            .trim()
-
-                                                    if (
-                                                        tituloEpisodio
-                                                            .isNotBlank()
-                                                    ) {
-
-                                                        episodios.add(
-                                                            Episodio(
-                                                                numero =
-                                                                    numeroEpisodio,
-                                                                titulo =
-                                                                    tituloEpisodio,
-                                                                video =
-                                                                    videoEpisodio
-                                                            )
-                                                        )
-                                                    }
-
-                                                } catch (
-                                                    erroEpisodio:
-                                                        Exception
-                                                ) {
-
-                                                    android.util.Log.e(
-                                                        "WOLF_CATALOGO",
-                                                        "Erro no episódio $ep",
-                                                        erroEpisodio
-                                                    )
-                                                }
-                                            }
-                                        }
-
-                                        temporadas.add(
-                                            Temporada(
-                                                numero =
-                                                    numeroTemporada,
-                                                episodios =
-                                                    episodios
+                                    val numeroTemporada =
+                                        objetoTemporada
+                                            .optInt(
+                                                "numero",
+                                                t + 1
                                             )
-                                        )
 
-                                    } catch (
-                                        erroTemporada:
-                                            Exception
+                                    val episodios =
+                                        ArrayList<Episodio>()
+
+                                    val arrayEpisodios =
+                                        objetoTemporada
+                                            .optJSONArray(
+                                                "episodios"
+                                            )
+
+
+                                    // ===============================
+                                    // EPISÓDIOS
+                                    // ===============================
+
+                                    if (
+                                        arrayEpisodios != null
                                     ) {
 
-                                        android.util.Log.e(
-                                            "WOLF_CATALOGO",
-                                            "Erro na temporada $t",
-                                            erroTemporada
-                                        )
+                                        for (
+                                            e in 0 until
+                                                arrayEpisodios.length()
+                                        ) {
+
+                                            try {
+
+                                                val objetoEpisodio =
+                                                    arrayEpisodios
+                                                        .getJSONObject(e)
+
+                                                val numeroEpisodio =
+                                                    objetoEpisodio
+                                                        .optInt(
+                                                            "numero",
+                                                            e + 1
+                                                        )
+
+                                                val tituloEpisodio =
+                                                    objetoEpisodio
+                                                        .optString(
+                                                            "titulo",
+                                                            ""
+                                                        )
+
+                                                val videoEpisodio =
+                                                    objetoEpisodio
+                                                        .optString(
+                                                            "video",
+                                                            ""
+                                                        )
+
+                                                episodios.add(
+                                                    Episodio(
+                                                        numero =
+                                                            numeroEpisodio,
+
+                                                        titulo =
+                                                            tituloEpisodio,
+
+                                                        video =
+                                                            videoEpisodio
+                                                    )
+                                                )
+
+                                            } catch (
+                                                erroEpisodio:
+                                                Exception
+                                            ) {
+
+                                                // Continua
+                                            }
+                                        }
                                     }
+
+
+                                    temporadas.add(
+                                        Temporada(
+                                            numero =
+                                                numeroTemporada,
+
+                                            episodios =
+                                                episodios
+                                        )
+                                    )
+
+                                } catch (
+                                    erroTemporada:
+                                    Exception
+                                ) {
+
+                                    // Continua
                                 }
                             }
+                        }
+
+
+                        if (
+                            titulo.isNotBlank()
+                        ) {
 
                             resultado.add(
                                 Serie(
-                                    titulo = titulo,
+                                    titulo =
+                                        titulo,
+
                                     categoria =
                                         categoria,
-                                    capa = capa,
+
+                                    capa =
+                                        capa,
+
                                     temporadas =
                                         temporadas
                                 )
                             )
-
-                        } catch (
-                            erroItem:
-                                Exception
-                        ) {
-
-                            android.util.Log.e(
-                                "WOLF_CATALOGO",
-                                "Erro no item $i de $nomeArray",
-                                erroItem
-                            )
                         }
+
+                    } catch (
+                        erroItem: Exception
+                    ) {
+
+                        // Continua lendo
                     }
-
-                    return resultado
                 }
 
-                val novasSeries =
-                    lerSeries(
-                        raizJson.optJSONArray(
-                            "series"
-                        ),
-                        "SÉRIES"
+                return resultado
+            }
+
+
+            // ===============================
+            // SÉRIES
+            // ===============================
+
+            val novasSeries =
+                lerSeries(
+                    raizJson.optJSONArray(
+                        "series"
                     )
-
-                val novosDoramas =
-                    lerSeries(
-                        raizJson.optJSONArray(
-                            "doramas"
-                        ),
-                        "DORAMAS"
-                    )
-
-                val novosAnimes =
-                    lerSeries(
-                        raizJson.optJSONArray(
-                            "animes"
-                        ),
-                        "ANIMES"
-                    )
-
-                runOnUiThread {
-
-                    filmes.clear()
-                    filmes.addAll(
-                        novaListaFilmes
-                    )
-
-                    series.clear()
-                    series.addAll(
-                        novasSeries
-                    )
-
-                    doramas.clear()
-                    doramas.addAll(
-                        novosDoramas
-                    )
-
-                    animes.clear()
-                    animes.addAll(
-                        novosAnimes
-                    )
-
-                    mostrarListaCards(
-                        filmes
-                    )
-
-                    Toast.makeText(
-                        this,
-                        "CATÁLOGO OK\n" +
-                            "HTTP: $codigo\n" +
-                            "JSON: ${resposta.length} caracteres\n" +
-                            "Filmes: ${filmes.size}\n" +
-                            "Séries: ${series.size}\n" +
-                            "Doramas: ${doramas.size}\n" +
-                            "Animes: ${animes.size}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-
-            } catch (erro: Exception) {
-
-                android.util.Log.e(
-                    "WOLF_CATALOGO",
-                    "ERRO REAL NO CATÁLOGO",
-                    erro
                 )
 
-                runOnUiThread {
 
-                    filmes.clear()
-                    series.clear()
-                    doramas.clear()
-                    animes.clear()
+            // ===============================
+            // DORAMAS
+            // ===============================
 
-                    mostrarListaCards(
-                        filmes
+            val novosDoramas =
+                lerSeries(
+                    raizJson.optJSONArray(
+                        "doramas"
                     )
+                )
 
-                    Toast.makeText(
-                        this,
-                        "ERRO NO CATÁLOGO\n" +
-                            "${erro.javaClass.simpleName}\n" +
-                            "${erro.message ?: "erro desconhecido"}",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
 
-            } finally {
+            // ===============================
+            // ANIMES
+            // ===============================
 
-                conexao?.disconnect()
+            val novosAnimes =
+                lerSeries(
+                    raizJson.optJSONArray(
+                        "animes"
+                    )
+                )
+
+
+            // ===============================
+            // ATUALIZAR INTERFACE
+            // ===============================
+
+            runOnUiThread {
+
+                filmes.clear()
+                filmes.addAll(
+                    novosFilmes
+                )
+
+                series.clear()
+                series.addAll(
+                    novasSeries
+                )
+
+                doramas.clear()
+                doramas.addAll(
+                    novosDoramas
+                )
+
+                animes.clear()
+                animes.addAll(
+                    novosAnimes
+                )
+
+
+                // ===============================
+                // MOSTRA FILMES
+                // ===============================
+
+                mostrarListaCards(
+                    filmes
+                )
+
+
+                Toast.makeText(
+                    this@MainActivity,
+                    "Catálogo carregado: " +
+                        "${filmes.size} filmes, " +
+                        "${series.size} séries, " +
+                        "${doramas.size} doramas e " +
+                        "${animes.size} animes",
+                    Toast.LENGTH_LONG
+                ).show()
             }
+
+        } catch (
+            erro: Exception
+        ) {
+
+            runOnUiThread {
+
+                filmes.clear()
+                series.clear()
+                doramas.clear()
+                animes.clear()
+
+                conteudo.removeAllViews()
+
+                val erroTexto =
+                    TextView(this@MainActivity)
+
+                erroTexto.text =
+                    "ERRO NO CATÁLOGO\n\n" +
+                    "${erro.message ?: "Erro desconhecido"}"
+
+                erroTexto.textSize =
+                    20f
+
+                erroTexto.setTextColor(
+                    Color.WHITE
+                )
+
+                erroTexto.gravity =
+                    Gravity.CENTER
+
+                erroTexto.setPadding(
+                    dp(30),
+                    dp(30),
+                    dp(30),
+                    dp(30)
+                )
+
+                conteudo.addView(
+                    erroTexto
+                )
+
+                Toast.makeText(
+                    this@MainActivity,
+                    "Erro ao carregar catálogo",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+
+        } finally {
+
+            conexao?.disconnect()
         }
     }
+}
 
-    private fun carregarSeries() {
 
-        // Filmes, séries, doramas e animes
-        // são carregados pelo catalogo.json.
-    }    private fun mostrarListaCards(
+// ===============================
+// CARREGAR SÉRIES
+// ===============================
+
+private fun carregarSeries() {
+
+    // Séries, doramas e animes
+    // já são carregados junto
+    // pelo catalogo.json em
+    // carregarFilmes().
+}    private fun mostrarListaCards(
         lista: List<Filme>
     ) {
 
