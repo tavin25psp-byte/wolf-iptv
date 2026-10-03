@@ -55,7 +55,7 @@ data class Serie(
 class MainActivity : AppCompatActivity() {
 
     private val CATALOGO_URL =
-        "https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/refs/heads/main/catalogo.json"
+        "https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/main/catalogo.json"
 
     private lateinit var raiz: FrameLayout
     private lateinit var conteudo: LinearLayout
@@ -115,8 +115,7 @@ class MainActivity : AppCompatActivity() {
         carregarFilmes()
         carregarSeries()
     }
-
-    private fun criarInterface() {
+        private fun criarInterface() {
 
         raiz = FrameLayout(this)
 
@@ -375,512 +374,416 @@ class MainActivity : AppCompatActivity() {
             } catch (_: Exception) {
             }
         }
-    }// ===============================
-// CARREGAR CATÁLOGO
-// ===============================
+    }
 
-private fun carregarFilmes() {
+    private fun carregarFilmes() {
 
-    thread {
+        thread {
 
-        var conexao: HttpURLConnection? = null
+            var conexao: HttpURLConnection? = null
 
-        try {
+            try {
 
-            conexao =
-                URL(CATALOGO_URL)
-                    .openConnection() as HttpURLConnection
+                conexao =
+                    URL(CATALOGO_URL)
+                        .openConnection() as HttpURLConnection
 
-            conexao.connectTimeout = 20000
-            conexao.readTimeout = 20000
-            conexao.requestMethod = "GET"
-            conexao.doInput = true
+                conexao.connectTimeout = 20000
+                conexao.readTimeout = 20000
+                conexao.requestMethod = "GET"
+                conexao.doInput = true
 
-            conexao.setRequestProperty(
-                "User-Agent",
-                "Mozilla/5.0"
-            )
-
-            conexao.connect()
-
-            val codigo =
-                conexao.responseCode
-
-            if (codigo !in 200..299) {
-                throw Exception(
-                    "HTTP $codigo"
+                conexao.setRequestProperty(
+                    "User-Agent",
+                    "Mozilla/5.0"
                 )
-            }
 
-            val resposta =
-                conexao.inputStream
-                    .bufferedReader(
-                        Charsets.UTF_8
+                conexao.connect()
+
+                val codigo =
+                    conexao.responseCode
+
+                if (codigo !in 200..299) {
+                    throw Exception(
+                        "HTTP $codigo"
                     )
-                    .use {
-                        it.readText()
-                    }
+                }
 
-            if (resposta.isBlank()) {
-                throw Exception(
-                    "Catálogo vazio"
-                )
-            }
-
-            val texto =
-                resposta.trim()
-
-            val raizJson =
-                JSONObject(texto)
-
-
-            // ===============================
-            // FILMES
-            // ===============================
-
-            val novosFilmes =
-                ArrayList<Filme>()
-
-            val listaFilmes =
-                raizJson.optJSONArray(
-                    "filmes"
-                )
-
-            if (listaFilmes != null) {
-
-                for (i in 0 until listaFilmes.length()) {
-
-                    try {
-
-                        val item =
-                            listaFilmes.getJSONObject(i)
-
-                        val titulo =
-                            item.optString(
-                                "titulo",
-                                ""
-                            )
-
-                        val ano =
-                            item.optInt(
-                                "ano",
-                                0
-                            )
-
-                        val categoria =
-                            item.optString(
-                                "categoria",
-                                ""
-                            )
-
-                        val capa =
-                            item.optString(
-                                "capa",
-                                ""
-                            )
-
-                        val video =
-                            item.optString(
-                                "video",
-                                ""
-                            )
-
-                        if (
-                            titulo.isNotBlank()
-                        ) {
-
-                            novosFilmes.add(
-                                Filme(
-                                    titulo = titulo,
-                                    ano = ano,
-                                    categoria = categoria,
-                                    capa = capa,
-                                    video = video
-                                )
-                            )
+                val resposta =
+                    conexao.inputStream
+                        .bufferedReader(
+                            Charsets.UTF_8
+                        )
+                        .use {
+                            it.readText()
                         }
 
-                    } catch (
-                        erroFilme: Exception
-                    ) {
+                if (resposta.isBlank()) {
+                    throw Exception(
+                        "Catálogo vazio"
+                    )
+                }
 
-                        // Ignora somente o item
-                        // com erro e continua lendo
+                val texto =
+                    resposta.trim()
+
+                val raizJson =
+                    JSONObject(texto)
+
+                val novosFilmes =
+                    ArrayList<Filme>()
+
+                val listaFilmes =
+                    raizJson.optJSONArray(
+                        "filmes"
+                    )
+
+                if (listaFilmes != null) {
+
+                    for (i in 0 until listaFilmes.length()) {
+
+                        try {
+
+                            val item =
+                                listaFilmes.getJSONObject(i)
+
+                            val titulo =
+                                item.optString(
+                                    "titulo",
+                                    ""
+                                )
+
+                            val ano =
+                                item.optInt(
+                                    "ano",
+                                    0
+                                )
+
+                            val categoria =
+                                item.optString(
+                                    "categoria",
+                                    ""
+                                )
+
+                            val capa =
+                                item.optString(
+                                    "capa",
+                                    ""
+                                )
+
+                            val video =
+                                item.optString(
+                                    "video",
+                                    ""
+                                )
+
+                            if (
+                                titulo.isNotBlank()
+                            ) {
+
+                                novosFilmes.add(
+                                    Filme(
+                                        titulo = titulo,
+                                        ano = ano,
+                                        categoria = categoria,
+                                        capa = capa,
+                                        video = video
+                                    )
+                                )
+                            }
+
+                        } catch (_: Exception) {}
                     }
                 }
-            }
 
+                novosFilmes.sortWith(
+                    compareByDescending<Filme> {
+                        it.ano
+                    }.thenBy {
+                        it.titulo.lowercase()
+                    }
+                )
 
-            // ===============================
-            // ORDENA FILMES
-            // ===============================
-            // Os filmes mais novos ficam
-            // primeiro.
+                fun lerSeries(
+                    array: JSONArray?
+                ): ArrayList<Serie> {
 
-            novosFilmes.sortWith(
-                compareByDescending<Filme> {
-                    it.ano
-                }.thenBy {
-                    it.titulo.lowercase()
-                }
-            )
+                    val resultado =
+                        ArrayList<Serie>()
 
+                    if (array == null) {
+                        return resultado
+                    }
 
-            // ===============================
-            // FUNÇÃO PARA LER SÉRIES
-            // ===============================
+                    for (
+                        i in 0 until array.length()
+                    ) {
 
-            fun lerSeries(
-                array: JSONArray?
-            ): ArrayList<Serie> {
+                        try {
 
-                val resultado =
-                    ArrayList<Serie>()
+                            val objeto =
+                                array.getJSONObject(i)
 
-                if (array == null) {
+                            val titulo =
+                                objeto.optString(
+                                    "titulo",
+                                    ""
+                                )
+
+                            val categoria =
+                                objeto.optString(
+                                    "categoria",
+                                    ""
+                                )
+
+                            val capa =
+                                objeto.optString(
+                                    "capa",
+                                    ""
+                                )
+
+                            val temporadas =
+                                ArrayList<Temporada>()
+
+                            val arrayTemporadas =
+                                objeto.optJSONArray(
+                                    "temporadas"
+                                )
+
+                            if (
+                                arrayTemporadas != null
+                            ) {
+
+                                for (
+                                    t in 0 until
+                                        arrayTemporadas.length()
+                                ) {
+
+                                    try {
+
+                                        val objetoTemporada =
+                                            arrayTemporadas
+                                                .getJSONObject(t)
+
+                                        val numeroTemporada =
+                                            objetoTemporada
+                                                .optInt(
+                                                    "numero",
+                                                    t + 1
+                                                )
+
+                                        val episodios =
+                                            ArrayList<Episodio>()
+
+                                        val arrayEpisodios =
+                                            objetoTemporada
+                                                .optJSONArray(
+                                                    "episodios"
+                                                )
+
+                                        if (
+                                            arrayEpisodios != null
+                                        ) {
+
+                                            for (
+                                                e in 0 until
+                                                    arrayEpisodios.length()
+                                            ) {
+
+                                                try {
+
+                                                    val objetoEpisodio =
+                                                        arrayEpisodios
+                                                            .getJSONObject(e)
+
+                                                    val numeroEpisodio =
+                                                        objetoEpisodio
+                                                            .optInt(
+                                                                "numero",
+                                                                e + 1
+                                                            )
+
+                                                    val tituloEpisodio =
+                                                        objetoEpisodio
+                                                            .optString(
+                                                                "titulo",
+                                                                ""
+                                                            )
+
+                                                    val videoEpisodio =
+                                                        objetoEpisodio
+                                                            .optString(
+                                                                "video",
+                                                                ""
+                                                            )
+
+                                                    episodios.add(
+                                                        Episodio(
+                                                            numero =
+                                                                numeroEpisodio,
+                                                            titulo =
+                                                                tituloEpisodio,
+                                                            video =
+                                                                videoEpisodio
+                                                        )
+                                                    )
+
+                                                } catch (_: Exception) {}
+                                            }
+                                        }
+
+                                        temporadas.add(
+                                            Temporada(
+                                                numero =
+                                                    numeroTemporada,
+                                                episodios =
+                                                    episodios
+                                            )
+                                        )
+
+                                    } catch (_: Exception) {}
+                                }
+                            }
+
+                            if (
+                                titulo.isNotBlank()
+                            ) {
+
+                                resultado.add(
+                                    Serie(
+                                        titulo =
+                                            titulo,
+                                        categoria =
+                                            categoria,
+                                        capa =
+                                            capa,
+                                        temporadas =
+                                            temporadas
+                                    )
+                                )
+                            }
+
+                        } catch (_: Exception) {}
+                    }
+
                     return resultado
                 }
 
-                for (
-                    i in 0 until array.length()
-                ) {
+                val novasSeries =
+                    lerSeries(
+                        raizJson.optJSONArray(
+                            "series"
+                        )
+                    )
 
-                    try {
+                val novosDoramas =
+                    lerSeries(
+                        raizJson.optJSONArray(
+                            "doramas"
+                        )
+                    )
 
-                        val objeto =
-                            array.getJSONObject(i)
+                val novosAnimes =
+                    lerSeries(
+                        raizJson.optJSONArray(
+                            "animes"
+                        )
+                    )
 
-                        val titulo =
-                            objeto.optString(
-                                "titulo",
-                                ""
-                            )
+                runOnUiThread {
 
-                        val categoria =
-                            objeto.optString(
-                                "categoria",
-                                ""
-                            )
+                    filmes.clear()
+                    filmes.addAll(
+                        novosFilmes
+                    )
 
-                        val capa =
-                            objeto.optString(
-                                "capa",
-                                ""
-                            )
+                    series.clear()
+                    series.addAll(
+                        novasSeries
+                    )
 
-                        val temporadas =
-                            ArrayList<Temporada>()
+                    doramas.clear()
+                    doramas.addAll(
+                        novosDoramas
+                    )
 
-                        val arrayTemporadas =
-                            objeto.optJSONArray(
-                                "temporadas"
-                            )
+                    animes.clear()
+                    animes.addAll(
+                        novosAnimes
+                    )
 
+                    mostrarListaCards(
+                        filmes
+                    )
 
-                        // ===============================
-                        // TEMPORADAS
-                        // ===============================
-
-                        if (
-                            arrayTemporadas != null
-                        ) {
-
-                            for (
-                                t in 0 until
-                                    arrayTemporadas.length()
-                            ) {
-
-                                try {
-
-                                    val objetoTemporada =
-                                        arrayTemporadas
-                                            .getJSONObject(t)
-
-                                    val numeroTemporada =
-                                        objetoTemporada
-                                            .optInt(
-                                                "numero",
-                                                t + 1
-                                            )
-
-                                    val episodios =
-                                        ArrayList<Episodio>()
-
-                                    val arrayEpisodios =
-                                        objetoTemporada
-                                            .optJSONArray(
-                                                "episodios"
-                                            )
-
-
-                                    // ===============================
-                                    // EPISÓDIOS
-                                    // ===============================
-
-                                    if (
-                                        arrayEpisodios != null
-                                    ) {
-
-                                        for (
-                                            e in 0 until
-                                                arrayEpisodios.length()
-                                        ) {
-
-                                            try {
-
-                                                val objetoEpisodio =
-                                                    arrayEpisodios
-                                                        .getJSONObject(e)
-
-                                                val numeroEpisodio =
-                                                    objetoEpisodio
-                                                        .optInt(
-                                                            "numero",
-                                                            e + 1
-                                                        )
-
-                                                val tituloEpisodio =
-                                                    objetoEpisodio
-                                                        .optString(
-                                                            "titulo",
-                                                            ""
-                                                        )
-
-                                                val videoEpisodio =
-                                                    objetoEpisodio
-                                                        .optString(
-                                                            "video",
-                                                            ""
-                                                        )
-
-                                                episodios.add(
-                                                    Episodio(
-                                                        numero =
-                                                            numeroEpisodio,
-
-                                                        titulo =
-                                                            tituloEpisodio,
-
-                                                        video =
-                                                            videoEpisodio
-                                                    )
-                                                )
-
-                                            } catch (
-                                                erroEpisodio:
-                                                Exception
-                                            ) {
-
-                                                // Continua
-                                            }
-                                        }
-                                    }
-
-
-                                    temporadas.add(
-                                        Temporada(
-                                            numero =
-                                                numeroTemporada,
-
-                                            episodios =
-                                                episodios
-                                        )
-                                    )
-
-                                } catch (
-                                    erroTemporada:
-                                    Exception
-                                ) {
-
-                                    // Continua
-                                }
-                            }
-                        }
-
-
-                        if (
-                            titulo.isNotBlank()
-                        ) {
-
-                            resultado.add(
-                                Serie(
-                                    titulo =
-                                        titulo,
-
-                                    categoria =
-                                        categoria,
-
-                                    capa =
-                                        capa,
-
-                                    temporadas =
-                                        temporadas
-                                )
-                            )
-                        }
-
-                    } catch (
-                        erroItem: Exception
-                    ) {
-
-                        // Continua lendo
-                    }
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Catálogo carregado: " +
+                            "${filmes.size} filmes, " +
+                            "${series.size} séries, " +
+                            "${doramas.size} doramas e " +
+                            "${animes.size} animes",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
 
-                return resultado
-            }
+            } catch (
+                erro: Exception
+            ) {
 
+                runOnUiThread {
 
-            // ===============================
-            // SÉRIES
-            // ===============================
+                    filmes.clear()
+                    series.clear()
+                    doramas.clear()
+                    animes.clear()
 
-            val novasSeries =
-                lerSeries(
-                    raizJson.optJSONArray(
-                        "series"
+                    conteudo.removeAllViews()
+
+                    val erroTexto =
+                        TextView(this@MainActivity)
+
+                    erroTexto.text =
+                        "ERRO NO CATÁLOGO\n\n" +
+                        "${erro.message ?: "Erro desconhecido"}"
+
+                    erroTexto.textSize =
+                        20f
+
+                    erroTexto.setTextColor(
+                        Color.WHITE
                     )
-                )
 
+                    erroTexto.gravity =
+                        Gravity.CENTER
 
-            // ===============================
-            // DORAMAS
-            // ===============================
-
-            val novosDoramas =
-                lerSeries(
-                    raizJson.optJSONArray(
-                        "doramas"
+                    erroTexto.setPadding(
+                        dp(30),
+                        dp(30),
+                        dp(30),
+                        dp(30)
                     )
-                )
 
-
-            // ===============================
-            // ANIMES
-            // ===============================
-
-            val novosAnimes =
-                lerSeries(
-                    raizJson.optJSONArray(
-                        "animes"
+                    conteudo.addView(
+                        erroTexto
                     )
-                )
 
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Erro ao carregar catálogo",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
 
-            // ===============================
-            // ATUALIZAR INTERFACE
-            // ===============================
+            } finally {
 
-            runOnUiThread {
-
-                filmes.clear()
-                filmes.addAll(
-                    novosFilmes
-                )
-
-                series.clear()
-                series.addAll(
-                    novasSeries
-                )
-
-                doramas.clear()
-                doramas.addAll(
-                    novosDoramas
-                )
-
-                animes.clear()
-                animes.addAll(
-                    novosAnimes
-                )
-
-
-                // ===============================
-                // MOSTRA FILMES
-                // ===============================
-
-                mostrarListaCards(
-                    filmes
-                )
-
-
-                Toast.makeText(
-                    this@MainActivity,
-                    "Catálogo carregado: " +
-                        "${filmes.size} filmes, " +
-                        "${series.size} séries, " +
-                        "${doramas.size} doramas e " +
-                        "${animes.size} animes",
-                    Toast.LENGTH_LONG
-                ).show()
+                conexao?.disconnect()
             }
-
-        } catch (
-            erro: Exception
-        ) {
-
-            runOnUiThread {
-
-                filmes.clear()
-                series.clear()
-                doramas.clear()
-                animes.clear()
-
-                conteudo.removeAllViews()
-
-                val erroTexto =
-                    TextView(this@MainActivity)
-
-                erroTexto.text =
-                    "ERRO NO CATÁLOGO\n\n" +
-                    "${erro.message ?: "Erro desconhecido"}"
-
-                erroTexto.textSize =
-                    20f
-
-                erroTexto.setTextColor(
-                    Color.WHITE
-                )
-
-                erroTexto.gravity =
-                    Gravity.CENTER
-
-                erroTexto.setPadding(
-                    dp(30),
-                    dp(30),
-                    dp(30),
-                    dp(30)
-                )
-
-                conteudo.addView(
-                    erroTexto
-                )
-
-                Toast.makeText(
-                    this@MainActivity,
-                    "Erro ao carregar catálogo",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-
-        } finally {
-
-            conexao?.disconnect()
         }
     }
-}
 
-
-// ===============================
-// CARREGAR SÉRIES
-// ===============================
-
-private fun carregarSeries() {
-
-    // Séries, doramas e animes
-    // já são carregados junto
-    // pelo catalogo.json em
-    // carregarFilmes().
-}    private fun mostrarListaCards(
+    private fun carregarSeries() {}
+        private fun mostrarListaCards(
         lista: List<Filme>
     ) {
 
@@ -1466,7 +1369,9 @@ private fun carregarSeries() {
             cardsAtuais[0]
                 .requestFocus()
         }
-    }    private fun criarCardTemporada(
+    }
+
+    private fun criarCardTemporada(
         serie: Serie,
         temporada: Temporada
     ): View {
@@ -1834,8 +1739,7 @@ private fun carregarSeries() {
 
         startActivity(intent)
     }
-
-    private fun adicionarItemMenu(
+        private fun adicionarItemMenu(
         texto: String,
         acao: () -> Unit
     ) {
@@ -2301,356 +2205,357 @@ private fun carregarSeries() {
                     it.categoria == "Terror"
                 }
             )
-        }// ===============================
-// DORAMAS
-// ===============================
-
-adicionarTituloMenu("DORAMAS")
-
-adicionarItemMenu("Todos os Doramas") {
-    mostrarListaSeries(doramas)
-}
-
-adicionarItemMenu("Romance") {
-    mostrarListaSeries(
-        doramas.filter {
-            it.categoria.equals("romance", true)
         }
-    )
-}
+                // ===============================
+        // DORAMAS
+        // ===============================
 
-adicionarItemMenu("Ação") {
-    mostrarListaSeries(
-        doramas.filter {
-            it.categoria.equals("acao", true)
-        }
-    )
-}
+        adicionarTituloMenu("DORAMAS")
 
-adicionarItemMenu("Comédia") {
-    mostrarListaSeries(
-        doramas.filter {
-            it.categoria.equals("comedia", true)
-        }
-    )
-}
-
-adicionarItemMenu("Terror") {
-    mostrarListaSeries(
-        doramas.filter {
-            it.categoria.equals("terror", true)
-        }
-    )
-}
-
-
-// ===============================
-// ANIME
-// ===============================
-
-adicionarTituloMenu("ANIME")
-
-adicionarItemMenu("Todos os Animes") {
-    mostrarListaSeries(animes)
-}
-
-adicionarItemMenu("Ação") {
-    mostrarListaSeries(
-        animes.filter {
-            it.categoria.equals("acao", true)
-        }
-    )
-}
-
-adicionarItemMenu("Comédia") {
-    mostrarListaSeries(
-        animes.filter {
-            it.categoria.equals("comedia", true)
-        }
-    )
-}
-
-adicionarItemMenu("Terror") {
-    mostrarListaSeries(
-        animes.filter {
-            it.categoria.equals("terror", true)
-        }
-    )
-}
-
-
-// ===============================
-// FOCO INICIAL DO MENU
-// ===============================
-
-botaoFecharMenu.requestFocus()
-
-}
-
-
-// ===============================
-// TÍTULO DO MENU
-// ===============================
-
-private fun adicionarTituloMenu(
-    texto: String
-) {
-
-    val titulo = TextView(this)
-
-    titulo.text = texto
-
-    titulo.textSize = 16f
-
-    titulo.setTextColor(
-        Color.LTGRAY
-    )
-
-    titulo.setPadding(
-        dp(18),
-        dp(18),
-        dp(12),
-        dp(8)
-    )
-
-    titulo.isFocusable = false
-
-    menuConteudo.addView(
-        titulo
-    )
-}
-
-
-// ===============================
-// FECHAR MENU
-// ===============================
-
-private fun fecharMenu() {
-
-    menuAberto = false
-
-    menuLateral.visibility =
-        View.GONE
-
-    botaoMenu.requestFocus()
-}
-
-
-// ===============================
-// MOVIMENTAÇÃO DO MENU
-// ===============================
-
-private fun moverMenu(
-    direcao: Int
-) {
-
-    if (itensMenuFoco.isEmpty()) {
-        return
-    }
-
-    var indice =
-        itensMenuFoco.indexOfFirst {
-            it.hasFocus()
+        adicionarItemMenu("Todos os Doramas") {
+            mostrarListaSeries(doramas)
         }
 
-    if (indice < 0) {
-        indice = 0
-    }
-
-    indice += direcao
-
-    if (indice < 0) {
-        indice =
-            itensMenuFoco.size - 1
-    }
-
-    if (indice >= itensMenuFoco.size) {
-        indice = 0
-    }
-
-    val proximo =
-        itensMenuFoco[indice]
-
-    proximo.requestFocus()
-
-    ajustarScrollMenu(
-        proximo
-    )
-}
-
-
-// ===============================
-// AJUSTAR SCROLL DO MENU
-// ===============================
-
-private fun ajustarScrollMenu(
-    view: View
-) {
-
-    view.post {
-
-        menuScroll.smoothScrollTo(
-            0,
-            view.top
-        )
-    }
-}
-
-
-// ===============================
-// MOVIMENTAÇÃO DOS CARDS
-// ===============================
-
-private fun moverCard(
-    direcao: Int
-) {
-
-    if (cardsAtuais.isEmpty()) {
-        return
-    }
-
-    var indice =
-        cardsAtuais.indexOfFirst {
-            it.hasFocus()
+        adicionarItemMenu("Romance") {
+            mostrarListaSeries(
+                doramas.filter {
+                    it.categoria.equals("romance", true)
+                }
+            )
         }
 
-    if (indice < 0) {
-        indice = indiceCardAtual
+        adicionarItemMenu("Ação") {
+            mostrarListaSeries(
+                doramas.filter {
+                    it.categoria.equals("acao", true)
+                }
+            )
+        }
+
+        adicionarItemMenu("Comédia") {
+            mostrarListaSeries(
+                doramas.filter {
+                    it.categoria.equals("comedia", true)
+                }
+            )
+        }
+
+        adicionarItemMenu("Terror") {
+            mostrarListaSeries(
+                doramas.filter {
+                    it.categoria.equals("terror", true)
+                }
+            )
+        }
+
+
+        // ===============================
+        // ANIME
+        // ===============================
+
+        adicionarTituloMenu("ANIME")
+
+        adicionarItemMenu("Todos os Animes") {
+            mostrarListaSeries(animes)
+        }
+
+        adicionarItemMenu("Ação") {
+            mostrarListaSeries(
+                animes.filter {
+                    it.categoria.equals("acao", true)
+                }
+            )
+        }
+
+        adicionarItemMenu("Comédia") {
+            mostrarListaSeries(
+                animes.filter {
+                    it.categoria.equals("comedia", true)
+                }
+            )
+        }
+
+        adicionarItemMenu("Terror") {
+            mostrarListaSeries(
+                animes.filter {
+                    it.categoria.equals("terror", true)
+                }
+            )
+        }
+
+
+        // ===============================
+        // FOCO INICIAL DO MENU
+        // ===============================
+
+        botaoFecharMenu.requestFocus()
+
     }
 
-    indice += direcao
 
-    if (indice < 0) {
-        indice = 0
-    }
+    // ===============================
+    // TÍTULO DO MENU
+    // ===============================
 
-    if (indice >= cardsAtuais.size) {
-        indice =
-            cardsAtuais.size - 1
-    }
-
-    indiceCardAtual = indice
-
-    cardsAtuais[indice].requestFocus()
-}
-
-
-// ===============================
-// PESQUISA
-// ===============================
-
-private fun abrirPesquisa() {
-
-    val campo =
-        EditText(this)
-
-    campo.hint =
-        "Digite o nome..."
-
-    campo.textSize =
-        20f
-
-    campo.setSingleLine(true)
-
-    campo.isFocusable = true
-    campo.isFocusableInTouchMode = true
-
-    campo.requestFocus()
-
-    Toast.makeText(
-        this,
-        "Use a busca pelo menu",
-        Toast.LENGTH_SHORT
-    ).show()
-}
-
-
-// ===============================
-// CONTROLE DO D-PAD
-// ===============================
-
-override fun dispatchKeyEvent(
-    event: KeyEvent
-): Boolean {
-
-    if (
-        event.action ==
-        KeyEvent.ACTION_DOWN
+    private fun adicionarTituloMenu(
+        texto: String
     ) {
 
-        when (event.keyCode) {
+        val titulo = TextView(this)
 
-            KeyEvent.KEYCODE_MENU -> {
+        titulo.text = texto
 
-                if (menuAberto) {
-                    fecharMenu()
-                } else {
-                    abrirMenu()
-                }
+        titulo.textSize = 16f
 
-                return true
+        titulo.setTextColor(
+            Color.LTGRAY
+        )
+
+        titulo.setPadding(
+            dp(18),
+            dp(18),
+            dp(12),
+            dp(8)
+        )
+
+        titulo.isFocusable = false
+
+        menuConteudo.addView(
+            titulo
+        )
+    }
+
+
+    // ===============================
+    // FECHAR MENU
+    // ===============================
+
+    private fun fecharMenu() {
+
+        menuAberto = false
+
+        menuLateral.visibility =
+            View.GONE
+
+        botaoMenu.requestFocus()
+    }
+
+
+    // ===============================
+    // MOVIMENTAÇÃO DO MENU
+    // ===============================
+
+    private fun moverMenu(
+        direcao: Int
+    ) {
+
+        if (itensMenuFoco.isEmpty()) {
+            return
+        }
+
+        var indice =
+            itensMenuFoco.indexOfFirst {
+                it.hasFocus()
             }
 
+        if (indice < 0) {
+            indice = 0
+        }
 
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
+        indice += direcao
 
-                if (!menuAberto) {
+        if (indice < 0) {
+            indice =
+                itensMenuFoco.size - 1
+        }
 
-                    moverCard(-1)
+        if (indice >= itensMenuFoco.size) {
+            indice = 0
+        }
 
-                    return true
-                }
-            }
+        val proximo =
+            itensMenuFoco[indice]
 
+        proximo.requestFocus()
 
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-
-                if (!menuAberto) {
-
-                    moverCard(1)
-
-                    return true
-                }
-            }
-
-
-            KeyEvent.KEYCODE_DPAD_UP -> {
-
-                if (menuAberto) {
-
-                    moverMenu(-1)
-
-                    return true
-                }
-            }
+        ajustarScrollMenu(
+            proximo
+        )
+    }
 
 
-            KeyEvent.KEYCODE_DPAD_DOWN -> {
+    // ===============================
+    // AJUSTAR SCROLL DO MENU
+    // ===============================
 
-                if (menuAberto) {
+    private fun ajustarScrollMenu(
+        view: View
+    ) {
 
-                    moverMenu(1)
+        view.post {
 
-                    return true
-                }
-            }
-
-
-            KeyEvent.KEYCODE_BACK -> {
-
-                if (menuAberto) {
-
-                    fecharMenu()
-
-                    return true
-                }
-            }
+            menuScroll.smoothScrollTo(
+                0,
+                view.top
+            )
         }
     }
 
-    return super.dispatchKeyEvent(
-        event
-    )
-}
+
+    // ===============================
+    // MOVIMENTAÇÃO DOS CARDS
+    // ===============================
+
+    private fun moverCard(
+        direcao: Int
+    ) {
+
+        if (cardsAtuais.isEmpty()) {
+            return
+        }
+
+        var indice =
+            cardsAtuais.indexOfFirst {
+                it.hasFocus()
+            }
+
+        if (indice < 0) {
+            indice = indiceCardAtual
+        }
+
+        indice += direcao
+
+        if (indice < 0) {
+            indice = 0
+        }
+
+        if (indice >= cardsAtuais.size) {
+            indice =
+                cardsAtuais.size - 1
+        }
+
+        indiceCardAtual = indice
+
+        cardsAtuais[indice].requestFocus()
+    }
+
+
+    // ===============================
+    // PESQUISA
+    // ===============================
+
+    private fun abrirPesquisa() {
+
+        val campo =
+            EditText(this)
+
+        campo.hint =
+            "Digite o nome..."
+
+        campo.textSize =
+            20f
+
+        campo.setSingleLine(true)
+
+        campo.isFocusable = true
+        campo.isFocusableInTouchMode = true
+
+        campo.requestFocus()
+
+        Toast.makeText(
+            this,
+            "Use a busca pelo menu",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+
+    // ===============================
+    // CONTROLE DO D-PAD
+    // ===============================
+
+    override fun dispatchKeyEvent(
+        event: KeyEvent
+    ): Boolean {
+
+        if (
+            event.action ==
+            KeyEvent.ACTION_DOWN
+        ) {
+
+            when (event.keyCode) {
+
+                KeyEvent.KEYCODE_MENU -> {
+
+                    if (menuAberto) {
+                        fecharMenu()
+                    } else {
+                        abrirMenu()
+                    }
+
+                    return true
+                }
+
+
+                KeyEvent.KEYCODE_DPAD_LEFT -> {
+
+                    if (!menuAberto) {
+
+                        moverCard(-1)
+
+                        return true
+                    }
+                }
+
+
+                KeyEvent.KEYCODE_DPAD_RIGHT -> {
+
+                    if (!menuAberto) {
+
+                        moverCard(1)
+
+                        return true
+                    }
+                }
+
+
+                KeyEvent.KEYCODE_DPAD_UP -> {
+
+                    if (menuAberto) {
+
+                        moverMenu(-1)
+
+                        return true
+                    }
+                }
+
+
+                KeyEvent.KEYCODE_DPAD_DOWN -> {
+
+                    if (menuAberto) {
+
+                        moverMenu(1)
+
+                        return true
+                    }
+                }
+
+
+                KeyEvent.KEYCODE_BACK -> {
+
+                    if (menuAberto) {
+
+                        fecharMenu()
+
+                        return true
+                    }
+                }
+            }
+        }
+
+        return super.dispatchKeyEvent(
+            event
+        )
+    }
 
 }
