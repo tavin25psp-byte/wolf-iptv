@@ -2017,7 +2017,7 @@ class MainActivity : AppCompatActivity() {
 
         adicionarItemMenu(
             "🔥  Ação (${filmes.count {
-                it.categoria == "Ação"
+                it.categoria.equals("Ação", true)
             }})"
         ) {
 
@@ -2025,14 +2025,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria == "Ação"
+                    it.categoria.equals("Ação", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "🏹  Aventura (${filmes.count {
-                it.categoria == "Aventura"
+                it.categoria.equals("Aventura", true)
             }})"
         ) {
 
@@ -2040,14 +2040,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria == "Aventura"
+                    it.categoria.equals("Aventura", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "🧸  Animação (${filmes.count {
-                it.categoria == "Animação"
+                it.categoria.equals("Animação", true)
             }})"
         ) {
 
@@ -2055,14 +2055,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria == "Animação"
+                    it.categoria.equals("Animação", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "😂  Comédia (${filmes.count {
-                it.categoria == "Comédia"
+                it.categoria.equals("Comédia", true)
             }})"
         ) {
 
@@ -2070,14 +2070,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria == "Comédia"
+                    it.categoria.equals("Comédia", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "🎭  Drama (${filmes.count {
-                it.categoria == "Drama"
+                it.categoria.equals("Drama", true)
             }})"
         ) {
 
@@ -2085,14 +2085,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria == "Drama"
+                    it.categoria.equals("Drama", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "👻  Terror (${filmes.count {
-                it.categoria == "Terror"
+                it.categoria.equals("Terror", true)
             }})"
         ) {
 
@@ -2100,14 +2100,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria == "Terror"
+                    it.categoria.equals("Terror", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "🚀  Ficção (${filmes.count {
-                it.categoria == "Ficção"
+                it.categoria.equals("Ficção", true)
             }})"
         ) {
 
@@ -2115,7 +2115,7 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria == "Ficção"
+                    it.categoria.equals("Ficção", true)
                 }
             )
         }
@@ -2134,7 +2134,7 @@ class MainActivity : AppCompatActivity() {
 
         adicionarItemMenu(
             "🔥  Ação (${series.count {
-                it.categoria == "Ação"
+                it.categoria.equals("Ação", true)
             }})"
         ) {
 
@@ -2142,14 +2142,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaSeries(
                 series.filter {
-                    it.categoria == "Ação"
+                    it.categoria.equals("Ação", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "🏹  Aventura (${series.count {
-                it.categoria == "Aventura"
+                it.categoria.equals("Aventura", true)
             }})"
         ) {
 
@@ -2157,14 +2157,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaSeries(
                 series.filter {
-                    it.categoria == "Aventura"
+                    it.categoria.equals("Aventura", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "😂  Comédia (${series.count {
-                it.categoria == "Comédia"
+                it.categoria.equals("Comédia", true)
             }})"
         ) {
 
@@ -2172,14 +2172,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaSeries(
                 series.filter {
-                    it.categoria == "Comédia"
+                    it.categoria.equals("Comédia", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "🎭  Drama (${series.count {
-                it.categoria == "Drama"
+                it.categoria.equals("Drama", true)
             }})"
         ) {
 
@@ -2187,14 +2187,14 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaSeries(
                 series.filter {
-                    it.categoria == "Drama"
+                    it.categoria.equals("Drama", true)
                 }
             )
         }
 
         adicionarItemMenu(
             "👻  Terror (${series.count {
-                it.categoria == "Terror"
+                it.categoria.equals("Terror", true)
             }})"
         ) {
 
@@ -2202,7 +2202,7 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaSeries(
                 series.filter {
-                    it.categoria == "Terror"
+                    it.categoria.equals("Terror", true)
                 }
             )
         }
@@ -2212,11 +2212,19 @@ class MainActivity : AppCompatActivity() {
 
         adicionarTituloMenu("DORAMAS")
 
-        adicionarItemMenu("Todos os Doramas") {
+        adicionarItemMenu(
+            "📺  Todos os Doramas (${doramas.size})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(doramas)
         }
 
-        adicionarItemMenu("Romance") {
+        adicionarItemMenu(
+            "💖  Romance (${doramas.count {
+                it.categoria.equals("romance", true)
+            }})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria.equals("romance", true)
@@ -2224,7 +2232,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        adicionarItemMenu("Ação") {
+        adicionarItemMenu(
+            "🔥  Ação (${doramas.count {
+                it.categoria.equals("acao", true)
+            }})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria.equals("acao", true)
@@ -2232,7 +2245,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        adicionarItemMenu("Comédia") {
+        adicionarItemMenu(
+            "😂  Comédia (${doramas.count {
+                it.categoria.equals("comedia", true)
+            }})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria.equals("comedia", true)
@@ -2240,7 +2258,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        adicionarItemMenu("Terror") {
+        adicionarItemMenu(
+            "👻  Terror (${doramas.count {
+                it.categoria.equals("terror", true)
+            }})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria.equals("terror", true)
@@ -2255,11 +2278,19 @@ class MainActivity : AppCompatActivity() {
 
         adicionarTituloMenu("ANIME")
 
-        adicionarItemMenu("Todos os Animes") {
+        adicionarItemMenu(
+            "🍥  Todos os Animes (${animes.size})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(animes)
         }
 
-        adicionarItemMenu("Ação") {
+        adicionarItemMenu(
+            "🔥  Ação (${animes.count {
+                it.categoria.equals("acao", true)
+            }})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(
                 animes.filter {
                     it.categoria.equals("acao", true)
@@ -2267,7 +2298,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        adicionarItemMenu("Comédia") {
+        adicionarItemMenu(
+            "😂  Comédia (${animes.count {
+                it.categoria.equals("comedia", true)
+            }})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(
                 animes.filter {
                     it.categoria.equals("comedia", true)
@@ -2275,7 +2311,12 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        adicionarItemMenu("Terror") {
+        adicionarItemMenu(
+            "👻  Terror (${animes.count {
+                it.categoria.equals("terror", true)
+            }})"
+        ) {
+            fecharMenu()
             mostrarListaSeries(
                 animes.filter {
                     it.categoria.equals("terror", true)
