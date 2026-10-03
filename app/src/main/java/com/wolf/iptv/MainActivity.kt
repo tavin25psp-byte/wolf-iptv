@@ -868,7 +868,7 @@ private fun carregarFilmes() {
                     this,
                     "CATÁLOGO OK\n" +
                         "HTTP: $codigo\n" +
-                        "JSON: ${resposta.length()} caracteres\n" +
+                        "JSON: ${resposta.length} caracteres\n"
                         "Filmes: ${filmes.size}\n" +
                         "Séries: ${series.size}\n" +
                         "Doramas: ${doramas.size}\n" +
