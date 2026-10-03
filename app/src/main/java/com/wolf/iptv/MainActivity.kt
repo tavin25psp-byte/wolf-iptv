@@ -1969,6 +1969,18 @@ class MainActivity : AppCompatActivity() {
         )
 
         adicionarItemMenu(
+            "🔄  Atualizar catálogo"
+        ) {
+            fecharMenu()
+            Toast.makeText(
+                this,
+                "Atualizando catálogo...",
+                Toast.LENGTH_SHORT
+            ).show()
+            carregarFilmes()
+        }
+
+        adicionarItemMenu(
             "▶  Continuar assistindo"
         ) {
 
