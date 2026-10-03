@@ -58,6 +58,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var menuLateral: LinearLayout
     private lateinit var menuScroll: ScrollView
     private lateinit var menuConteudo: LinearLayout
+    private lateinit var botaoFecharMenu: TextView
 
     private var menuAberto = false
 
@@ -113,11 +114,14 @@ class MainActivity : AppCompatActivity() {
 
         raiz = FrameLayout(this)
 
-        raiz.setBackgroundColor(Color.BLACK)
+        raiz.setBackgroundColor(
+            Color.BLACK
+        )
 
         setContentView(raiz)
 
-        val fundo = ImageView(this)
+        val fundo =
+            ImageView(this)
 
         fundo.scaleType =
             ImageView.ScaleType.CENTER_CROP
@@ -142,7 +146,10 @@ class MainActivity : AppCompatActivity() {
                     )
 
                 runOnUiThread {
-                    fundo.setImageBitmap(bitmap)
+
+                    fundo.setImageBitmap(
+                        bitmap
+                    )
                 }
 
                 conexao.disconnect()
@@ -159,7 +166,8 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val camada = LinearLayout(this)
+        val camada =
+            LinearLayout(this)
 
         camada.orientation =
             LinearLayout.VERTICAL
@@ -179,13 +187,18 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        botaoMenu = TextView(this)
+        botaoMenu =
+            TextView(this)
 
-        botaoMenu.text = "☰  WOLF MENU"
+        botaoMenu.text =
+            "☰  WOLF MENU"
 
-        botaoMenu.textSize = 20f
+        botaoMenu.textSize =
+            20f
 
-        botaoMenu.setTextColor(Color.WHITE)
+        botaoMenu.setTextColor(
+            Color.WHITE
+        )
 
         botaoMenu.setTypeface(
             null,
@@ -207,14 +220,21 @@ class MainActivity : AppCompatActivity() {
         botaoMenu.isFocusableInTouchMode =
             true
 
+        botaoMenu.isClickable = true
+
+        botaoMenu.isEnabled = true
+
         botaoMenu.background =
             criarFundoCard(false)
 
         botaoMenu.setOnFocusChangeListener {
-                _, foco ->
+                view,
+                foco ->
 
-            botaoMenu.background =
+            view.background =
                 criarFundoCard(foco)
+
+            view.invalidate()
         }
 
         botaoMenu.setOnClickListener {
@@ -229,24 +249,33 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        val scroll = ScrollView(this)
+        val scroll =
+            ScrollView(this)
 
         scroll.isFocusable = false
         scroll.isFocusableInTouchMode = false
-        scroll.isVerticalScrollBarEnabled = false
-        scroll.isHorizontalScrollBarEnabled = false
+
+        scroll.isVerticalScrollBarEnabled =
+            false
+
+        scroll.isHorizontalScrollBarEnabled =
+            false
+
         scroll.overScrollMode =
             View.OVER_SCROLL_NEVER
 
         scroll.descendantFocusability =
             ViewGroup.FOCUS_AFTER_DESCENDANTS
 
-        conteudo = LinearLayout(this)
+        conteudo =
+            LinearLayout(this)
 
         conteudo.orientation =
             LinearLayout.VERTICAL
 
-        scroll.addView(conteudo)
+        scroll.addView(
+            conteudo
+        )
 
         camada.addView(
             scroll,
@@ -260,11 +289,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun dp(
         valor: Int
-    ): Int =
-        (
+    ): Int {
+
+        return (
             valor *
             resources.displayMetrics.density
         ).toInt()
+    }
 
     private fun criarFundoCard(
         foco: Boolean = false
@@ -275,7 +306,7 @@ class MainActivity : AppCompatActivity() {
 
         fundo.setColor(
             if (foco) {
-                Color.rgb(35, 35, 35)
+                Color.rgb(45, 45, 45)
             } else {
                 Color.rgb(18, 18, 18)
             }
@@ -285,15 +316,34 @@ class MainActivity : AppCompatActivity() {
             dp(8).toFloat()
 
         fundo.setStroke(
-            if (foco) dp(3) else dp(1),
+            if (foco) {
+                dp(4)
+            } else {
+                dp(1)
+            },
             if (foco) {
                 Color.RED
             } else {
-                Color.rgb(55, 55, 55)
+                Color.rgb(
+                    55,
+                    55,
+                    55
+                )
             }
         )
 
         return fundo
+    }
+
+    private fun aplicarFoco(
+        view: View,
+        foco: Boolean
+    ) {
+
+        view.background =
+            criarFundoCard(foco)
+
+        view.invalidate()
     }
 
     private fun carregarImagem(
@@ -763,8 +813,7 @@ private fun carregarSeries() {
         vazio.text =
             "Nenhum filme encontrado."
 
-        vazio.textSize =
-            20f
+        vazio.textSize = 20f
 
         vazio.setTextColor(
             Color.WHITE
@@ -799,8 +848,8 @@ private fun carregarSeries() {
     )
 
     lista.forEachIndexed {
-            indice,
-            filme ->
+        indice,
+        filme ->
 
         if (
             indice > 0 &&
@@ -849,9 +898,9 @@ private fun carregarSeries() {
         cardsFilmes.isNotEmpty()
     ) {
 
-        cardsFilmes[0].post {
+        indiceCardAtual = 0
 
-            indiceCardAtual = 0
+        cardsFilmes[0].post {
 
             cardsFilmes[0].requestFocus()
 
@@ -871,12 +920,15 @@ private fun criarCard(
 
     card.isFocusable = true
 
-    card.isFocusableInTouchMode = true
+    card.isFocusableInTouchMode =
+        true
+
+    card.isClickable = true
+
+    card.isEnabled = true
 
     card.background =
         criarFundoCard(false)
-
-    card.isClickable = true
 
     val imagem =
         ImageView(this)
@@ -889,6 +941,7 @@ private fun criarCard(
     )
 
     imagem.isFocusable = false
+    imagem.isClickable = false
 
     card.addView(
         imagem,
@@ -909,8 +962,7 @@ private fun criarCard(
     ano.text =
         filme.ano.toString()
 
-    ano.textSize =
-        12f
+    ano.textSize = 12f
 
     ano.setTextColor(
         Color.WHITE
@@ -929,6 +981,7 @@ private fun criarCard(
     )
 
     ano.isFocusable = false
+    ano.isClickable = false
 
     val anoParams =
         FrameLayout.LayoutParams(
@@ -951,8 +1004,7 @@ private fun criarCard(
     titulo.text =
         filme.titulo
 
-    titulo.textSize =
-        14f
+    titulo.textSize = 14f
 
     titulo.setTextColor(
         Color.WHITE
@@ -983,6 +1035,7 @@ private fun criarCard(
     )
 
     titulo.isFocusable = false
+    titulo.isClickable = false
 
     val tituloParams =
         FrameLayout.LayoutParams(
@@ -999,10 +1052,13 @@ private fun criarCard(
     )
 
     card.setOnFocusChangeListener {
-            _, foco ->
+            view,
+            foco ->
 
-        card.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
     }
 
     card.setOnClickListener {
@@ -1021,65 +1077,58 @@ private fun rolarParaCard(
     card: View
 ) {
 
+    val parent =
+        card.parent
+
+    val linha =
+        parent as? View ?: return
+
     val scroll =
-        card.parent?.parent?.parent
+        linha.parent?.parent as? ScrollView
+            ?: return
+
+    val topo =
+        linha.top
+
+    val baixo =
+        linha.bottom
+
+    val atual =
+        scroll.scrollY
+
+    val altura =
+        scroll.height
+
+    val margem =
+        dp(20)
 
     if (
-        scroll is ScrollView
+        topo <
+        atual + margem
     ) {
 
-        val linha =
-            card.parent as? View
+        scroll.scrollTo(
+            0,
+            maxOf(
+                0,
+                topo - margem
+            )
+        )
 
-        if (linha != null) {
+    } else if (
+        baixo >
+        atual + altura - margem
+    ) {
 
-            val y =
-                linha.top
-
-            val altura =
-                scroll.height
-
-            val topoAtual =
-                scroll.scrollY
-
-            val margem =
-                dp(15)
-
-            val cardTopo =
-                y
-
-            val cardBaixo =
-                y + card.height
-
-            if (
-                cardTopo <
-                topoAtual + margem
-            ) {
-
-                scroll.scrollTo(
-                    0,
-                    maxOf(
-                        0,
-                        cardTopo - margem
-                    )
-                )
-
-            } else if (
-                cardBaixo >
-                topoAtual + altura - margem
-            ) {
-
-                scroll.scrollTo(
-                    0,
-                    maxOf(
-                        0,
-                        cardBaixo -
-                        altura +
-                        margem
-                    )
-                )
-            }
-        }
+        scroll.scrollTo(
+            0,
+            maxOf(
+                0,
+                baixo -
+                altura +
+                margem
+            )
+        )
     }
 }
 
@@ -1145,9 +1194,7 @@ private fun mostrarConteudoEspecial(
             }
         }
 
-    mostrarListaSeries(
-        lista
-    )
+    mostrarListaSeries(lista)
 }
 
 private fun mostrarListaSeries(
@@ -1167,8 +1214,7 @@ private fun mostrarListaSeries(
         vazio.text =
             "Nenhum conteúdo encontrado."
 
-        vazio.textSize =
-            20f
+        vazio.textSize = 20f
 
         vazio.setTextColor(
             Color.WHITE
@@ -1200,8 +1246,8 @@ private fun mostrarListaSeries(
     )
 
     lista.forEachIndexed {
-            indice,
-            serie ->
+        indice,
+        serie ->
 
         if (
             indice > 0 &&
@@ -1247,6 +1293,8 @@ private fun mostrarListaSeries(
         cardsFilmes.isNotEmpty()
     ) {
 
+        indiceCardAtual = 0
+
         cardsFilmes[0].post {
 
             cardsFilmes[0].requestFocus()
@@ -1281,13 +1329,12 @@ private fun criarCardSerie(
         FrameLayout(this)
 
     card.isFocusable = true
-
     card.isFocusableInTouchMode = true
+    card.isClickable = true
+    card.isEnabled = true
 
     card.background =
         criarFundoCard(false)
-
-    card.isClickable = true
 
     val imagem =
         ImageView(this)
@@ -1300,6 +1347,7 @@ private fun criarCardSerie(
     )
 
     imagem.isFocusable = false
+    imagem.isClickable = false
 
     card.addView(
         imagem,
@@ -1320,8 +1368,7 @@ private fun criarCardSerie(
     titulo.text =
         serie.titulo
 
-    titulo.textSize =
-        14f
+    titulo.textSize = 14f
 
     titulo.setTextColor(
         Color.WHITE
@@ -1352,6 +1399,7 @@ private fun criarCardSerie(
     )
 
     titulo.isFocusable = false
+    titulo.isClickable = false
 
     val tituloParams =
         FrameLayout.LayoutParams(
@@ -1368,10 +1416,13 @@ private fun criarCardSerie(
     )
 
     card.setOnFocusChangeListener {
-            _, foco ->
+            view,
+            foco ->
 
-        card.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
     }
 
     card.setOnClickListener {
@@ -1383,9 +1434,7 @@ private fun criarCardSerie(
             )
         }
 
-        mostrarTemporadas(
-            serie
-        )
+        mostrarTemporadas(serie)
     }
 
     return card
@@ -1400,25 +1449,16 @@ private fun listaSeriesAtual():
         series.any {
             it.titulo ==
                 "Spaide Noir"
-        } -> {
+        } -> series
 
-            series
-        }
-
-        doramas.isNotEmpty() -> {
-
+        doramas.isNotEmpty() ->
             doramas
-        }
 
-        animes.isNotEmpty() -> {
-
+        animes.isNotEmpty() ->
             animes
-        }
 
-        else -> {
-
+        else ->
             series
-        }
     }
     }private fun mostrarTemporadas(
     serie: Serie
@@ -1435,8 +1475,7 @@ private fun listaSeriesAtual():
     titulo.text =
         "${serie.titulo}\n\nTEMPORADAS"
 
-    titulo.textSize =
-        22f
+    titulo.textSize = 22f
 
     titulo.setTextColor(
         Color.WHITE
@@ -1485,7 +1524,7 @@ private fun listaSeriesAtual():
     )
 
     serie.temporadas.forEach {
-            temporada ->
+        temporada ->
 
         val card =
             criarCardTemporada(
@@ -1549,10 +1588,9 @@ private fun criarCardTemporada(
         FrameLayout(this)
 
     card.isFocusable = true
-
     card.isFocusableInTouchMode = true
-
     card.isClickable = true
+    card.isEnabled = true
 
     card.background =
         criarFundoCard(false)
@@ -1563,8 +1601,7 @@ private fun criarCardTemporada(
     titulo.text =
         "TEMPORADA ${temporada.numero}\n\n${temporada.episodios.size} episódios"
 
-    titulo.textSize =
-        18f
+    titulo.textSize = 18f
 
     titulo.setTextColor(
         Color.WHITE
@@ -1596,19 +1633,19 @@ private fun criarCardTemporada(
     )
 
     card.setOnFocusChangeListener {
-            _, foco ->
+            view,
+            foco ->
 
-        card.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
     }
 
     card.setOnClickListener {
 
         historicoConteudo.add {
-
-            mostrarTemporadas(
-                serie
-            )
+            mostrarTemporadas(serie)
         }
 
         mostrarEpisodios(
@@ -1636,8 +1673,7 @@ private fun mostrarEpisodios(
     titulo.text =
         "${serie.titulo}\nTEMPORADA ${temporada.numero}"
 
-    titulo.textSize =
-        21f
+    titulo.textSize = 21f
 
     titulo.setTextColor(
         Color.WHITE
@@ -1669,7 +1705,7 @@ private fun mostrarEpisodios(
     )
 
     temporada.episodios.forEach {
-            episodio ->
+        episodio ->
 
         val card =
             criarCardEpisodio(
@@ -1744,10 +1780,9 @@ private fun criarCardEpisodio(
     )
 
     card.isFocusable = true
-
     card.isFocusableInTouchMode = true
-
     card.isClickable = true
+    card.isEnabled = true
 
     card.background =
         criarFundoCard(false)
@@ -1758,8 +1793,7 @@ private fun criarCardEpisodio(
     texto.text =
         "EP ${episodio.numero}  •  ${episodio.titulo}"
 
-    texto.textSize =
-        16f
+    texto.textSize = 16f
 
     texto.setTextColor(
         Color.WHITE
@@ -1785,10 +1819,13 @@ private fun criarCardEpisodio(
     )
 
     card.setOnFocusChangeListener {
-            _, foco ->
+            view,
+            foco ->
 
-        card.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
     }
 
     card.setOnClickListener {
@@ -1811,8 +1848,7 @@ private fun adicionarBotaoVoltar(
     voltar.text =
         "← VOLTAR"
 
-    voltar.textSize =
-        17f
+    voltar.textSize = 17f
 
     voltar.setTextColor(
         Color.WHITE
@@ -1827,19 +1863,21 @@ private fun adicionarBotaoVoltar(
         Gravity.CENTER
 
     voltar.isFocusable = true
-
     voltar.isFocusableInTouchMode = true
-
     voltar.isClickable = true
+    voltar.isEnabled = true
 
     voltar.background =
         criarFundoCard(false)
 
     voltar.setOnFocusChangeListener {
-            _, foco ->
+            view,
+            foco ->
 
-        voltar.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
     }
 
     voltar.setOnClickListener {
@@ -1972,8 +2010,7 @@ private fun abrirVideo(
     titulo.text =
         "WOLF MENU"
 
-    titulo.textSize =
-        20f
+    titulo.textSize = 20f
 
     titulo.setTextColor(
         Color.WHITE
@@ -1998,44 +2035,49 @@ private fun abrirVideo(
         )
     )
 
-    val fechar =
+    botaoFecharMenu =
         TextView(this)
 
-    fechar.text =
+    botaoFecharMenu.text =
         "✕"
 
-    fechar.textSize =
-        24f
+    botaoFecharMenu.textSize = 24f
 
-    fechar.setTextColor(
+    botaoFecharMenu.setTextColor(
         Color.WHITE
     )
 
-    fechar.gravity =
+    botaoFecharMenu.gravity =
         Gravity.CENTER
 
-    fechar.isFocusable =
+    botaoFecharMenu.isFocusable = true
+
+    botaoFecharMenu.isFocusableInTouchMode =
         true
 
-    fechar.isFocusableInTouchMode =
-        true
+    botaoFecharMenu.isClickable = true
 
-    fechar.background =
+    botaoFecharMenu.isEnabled = true
+
+    botaoFecharMenu.background =
         criarFundoCard(false)
 
-    fechar.setOnFocusChangeListener {
-            _, foco ->
+    botaoFecharMenu.setOnFocusChangeListener {
+            view,
+            foco ->
 
-        fechar.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
     }
 
-    fechar.setOnClickListener {
+    botaoFecharMenu.setOnClickListener {
         fecharMenu()
     }
 
     cabecalho.addView(
-        fechar,
+        botaoFecharMenu,
         LinearLayout.LayoutParams(
             dp(55),
             dp(55)
@@ -2049,18 +2091,10 @@ private fun abrirVideo(
     menuScroll =
         ScrollView(this)
 
-    menuScroll.isFocusable =
-        false
-
-    menuScroll.isFocusableInTouchMode =
-        false
-
-    menuScroll.isVerticalScrollBarEnabled =
-        false
-
-    menuScroll.isHorizontalScrollBarEnabled =
-        false
-
+    menuScroll.isFocusable = false
+    menuScroll.isFocusableInTouchMode = false
+    menuScroll.isVerticalScrollBarEnabled = false
+    menuScroll.isHorizontalScrollBarEnabled = false
     menuScroll.overScrollMode =
         View.OVER_SCROLL_NEVER
 
@@ -2091,7 +2125,6 @@ private fun abrirVideo(
     ) {
 
         fecharMenu()
-
         mostrarContinueAssistindo()
     }
 
@@ -2100,7 +2133,6 @@ private fun abrirVideo(
     ) {
 
         fecharMenu()
-
         mostrarFavoritos()
     }
 
@@ -2109,7 +2141,6 @@ private fun abrirVideo(
     ) {
 
         fecharMenu()
-
         abrirPesquisa()
     }
 
@@ -2122,28 +2153,20 @@ private fun abrirVideo(
     ) {
 
         fecharMenu()
-
-        mostrarListaCards(
-            filmes
-        )
+        mostrarListaCards(filmes)
     }
 
-    val categoriasFilmes =
-        listOf(
-            "Ação",
-            "Aventura",
-            "Animação",
-            "Comédia",
-            "Drama",
-            "Terror",
-            "Ficção"
-        )
+    listOf(
+        "Ação",
+        "Aventura",
+        "Animação",
+        "Comédia",
+        "Drama",
+        "Terror",
+        "Ficção"
+    ).forEach {
 
-    categoriasFilmes.forEach {
-
-        adicionarCategoriaFilmes(
-            it
-        )
+        adicionarCategoriaFilmes(it)
     }
 
     adicionarSeparadorPremium(
@@ -2163,20 +2186,15 @@ private fun abrirVideo(
         )
     }
 
-    val categoriasSeries =
-        listOf(
-            "Ação",
-            "Aventura",
-            "Comédia",
-            "Drama",
-            "Terror"
-        )
+    listOf(
+        "Ação",
+        "Aventura",
+        "Comédia",
+        "Drama",
+        "Terror"
+    ).forEach {
 
-    categoriasSeries.forEach {
-
-        adicionarCategoriaSeries(
-            it
-        )
+        adicionarCategoriaSeries(it)
     }
 
     adicionarSeparadorPremium(
@@ -2196,19 +2214,14 @@ private fun abrirVideo(
         )
     }
 
-    val categoriasDoramas =
-        listOf(
-            "Ação",
-            "Romance",
-            "Drama",
-            "Comédia"
-        )
+    listOf(
+        "Ação",
+        "Romance",
+        "Drama",
+        "Comédia"
+    ).forEach {
 
-    categoriasDoramas.forEach {
-
-        adicionarCategoriaDoramas(
-            it
-        )
+        adicionarCategoriaDoramas(it)
     }
 
     adicionarSeparadorPremium(
@@ -2228,19 +2241,14 @@ private fun abrirVideo(
         )
     }
 
-    val categoriasAnimes =
-        listOf(
-            "Ação",
-            "Aventura",
-            "Comédia",
-            "Fantasia"
-        )
+    listOf(
+        "Ação",
+        "Aventura",
+        "Comédia",
+        "Fantasia"
+    ).forEach {
 
-    categoriasAnimes.forEach {
-
-        adicionarCategoriaAnimes(
-            it
-        )
+        adicionarCategoriaAnimes(it)
     }
 
     if (
@@ -2251,7 +2259,8 @@ private fun abrirVideo(
 
         itensMenuFoco[0].post {
 
-            itensMenuFoco[0].requestFocus()
+            itensMenuFoco[0]
+                .requestFocus()
 
             ajustarScrollMenu(
                 itensMenuFoco[0]
@@ -2296,8 +2305,7 @@ private fun adicionarItemMenu(
     item.text =
         texto
 
-    item.textSize =
-        16f
+    item.textSize = 16f
 
     item.setTextColor(
         Color.WHITE
@@ -2319,25 +2327,28 @@ private fun adicionarItemMenu(
     )
 
     item.isFocusable = true
-
-    item.isFocusableInTouchMode =
-        true
-
+    item.isFocusableInTouchMode = true
     item.isClickable = true
+    item.isEnabled = true
 
     item.background =
         criarFundoCard(false)
 
     item.setOnFocusChangeListener {
-            _, foco ->
+            view,
+            foco ->
 
-        item.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
 
         if (foco) {
 
             val indice =
-                itensMenuFoco.indexOf(item)
+                itensMenuFoco.indexOf(
+                    view
+                )
 
             if (indice >= 0) {
                 indiceMenuAtual = indice
@@ -2357,9 +2368,7 @@ private fun adicionarItemMenu(
         )
     )
 
-    itensMenuFoco.add(
-        item
-    )
+    itensMenuFoco.add(item)
 }
 
 private fun adicionarSeparadorPremium(
@@ -2372,8 +2381,7 @@ private fun adicionarSeparadorPremium(
     separador.text =
         texto
 
-    separador.textSize =
-        14f
+    separador.textSize = 14f
 
     separador.setTextColor(
         Color.RED
@@ -2630,8 +2638,7 @@ private fun quantidadeSeries(
     texto.text =
         "★ FAVORITOS\n\nNenhum conteúdo favoritado."
 
-    texto.textSize =
-        20f
+    texto.textSize = 20f
 
     texto.setTextColor(
         Color.WHITE
@@ -2671,8 +2678,7 @@ private fun mostrarContinueAssistindo() {
     texto.text =
         "▶ CONTINUE ASSISTINDO\n\nNenhum conteúdo para continuar."
 
-    texto.textSize =
-        20f
+    texto.textSize = 20f
 
     texto.setTextColor(
         Color.WHITE
@@ -2720,15 +2726,12 @@ private fun abrirPesquisa() {
         Color.WHITE
     )
 
-    campo.textSize =
-        18f
+    campo.textSize = 18f
 
     campo.setSingleLine(true)
 
     campo.isFocusable = true
-
-    campo.isFocusableInTouchMode =
-        true
+    campo.isFocusableInTouchMode = true
 
     campo.setPadding(
         dp(15),
@@ -2738,7 +2741,11 @@ private fun abrirPesquisa() {
     )
 
     campo.setBackgroundColor(
-        Color.rgb(25, 25, 25)
+        Color.rgb(
+            25,
+            25,
+            25
+        )
     )
 
     conteudo.addView(
@@ -2755,8 +2762,7 @@ private fun abrirPesquisa() {
     botao.text =
         "PESQUISAR"
 
-    botao.textSize =
-        17f
+    botao.textSize = 17f
 
     botao.setTextColor(
         Color.WHITE
@@ -2771,20 +2777,20 @@ private fun abrirPesquisa() {
         Gravity.CENTER
 
     botao.isFocusable = true
-
-    botao.isFocusableInTouchMode =
-        true
-
+    botao.isFocusableInTouchMode = true
     botao.isClickable = true
 
     botao.background =
         criarFundoCard(false)
 
     botao.setOnFocusChangeListener {
-            _, foco ->
+            view,
+            foco ->
 
-        botao.background =
-            criarFundoCard(foco)
+        aplicarFoco(
+            view,
+            foco
+        )
     }
 
     botao.setOnClickListener {
@@ -2855,8 +2861,7 @@ private fun pesquisar(
 private fun alternarFavorito(
     filme: Filme
 ) {
-    // Reservado para o sistema
-    // de favoritos.
+    // Reservado para favoritos.
 }
 
 override fun dispatchKeyEvent(
@@ -2887,14 +2892,69 @@ override fun dispatchKeyEvent(
 
             KeyEvent.KEYCODE_DPAD_UP -> {
 
-                moverMenu(-1)
+                if (
+                    botaoFecharMenu.hasFocus()
+                ) {
+
+                    if (
+                        itensMenuFoco.isNotEmpty()
+                    ) {
+
+                        indiceMenuAtual =
+                            itensMenuFoco.lastIndex
+
+                        val item =
+                            itensMenuFoco[
+                                indiceMenuAtual
+                            ]
+
+                        item.requestFocus()
+
+                        ajustarScrollMenu(item)
+                    }
+
+                } else {
+
+                    moverMenu(-1)
+                }
 
                 return true
             }
 
             KeyEvent.KEYCODE_DPAD_DOWN -> {
 
-                moverMenu(1)
+                if (
+                    botaoFecharMenu.hasFocus()
+                ) {
+
+                    if (
+                        itensMenuFoco.isNotEmpty()
+                    ) {
+
+                        indiceMenuAtual = 0
+
+                        val item =
+                            itensMenuFoco[0]
+
+                        item.requestFocus()
+
+                        ajustarScrollMenu(item)
+                    }
+
+                } else {
+
+                    if (
+                        indiceMenuAtual ==
+                        itensMenuFoco.lastIndex
+                    ) {
+
+                        botaoFecharMenu.requestFocus()
+
+                    } else {
+
+                        moverMenu(1)
+                    }
+                }
 
                 return true
             }
@@ -2902,15 +2962,20 @@ override fun dispatchKeyEvent(
             KeyEvent.KEYCODE_DPAD_LEFT,
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
-                // O menu é vertical.
-                // Não deixa o Android
-                // tentar navegar como celular.
-
                 return true
             }
 
             KeyEvent.KEYCODE_DPAD_CENTER,
             KeyEvent.KEYCODE_ENTER -> {
+
+                if (
+                    botaoFecharMenu.hasFocus()
+                ) {
+
+                    fecharMenu()
+
+                    return true
+                }
 
                 if (
                     indiceMenuAtual >= 0 &&
@@ -2926,13 +2991,7 @@ override fun dispatchKeyEvent(
                 return true
             }
 
-            KeyEvent.KEYCODE_BACK -> {
-
-                fecharMenu()
-
-                return true
-            }
-
+            KeyEvent.KEYCODE_BACK,
             KeyEvent.KEYCODE_MENU -> {
 
                 fecharMenu()
@@ -2955,6 +3014,13 @@ override fun dispatchKeyEvent(
     ) {
 
         KeyEvent.KEYCODE_DPAD_LEFT -> {
+
+            if (
+                botaoMenu.hasFocus()
+            ) {
+
+                return true
+            }
 
             if (
                 cardsFilmes.isNotEmpty()
@@ -2992,14 +3058,13 @@ override fun dispatchKeyEvent(
 
                     indiceCardAtual = 0
 
-                    cardsFilmes[0]
-                        .requestFocus()
+                    val card =
+                        cardsFilmes[0]
 
-                    cardsFilmes[0].post {
+                    card.requestFocus()
 
-                        rolarParaCard(
-                            cardsFilmes[0]
-                        )
+                    card.post {
+                        rolarParaCard(card)
                     }
                 }
 
@@ -3055,9 +3120,7 @@ override fun dispatchKeyEvent(
                 return true
             }
 
-            super.dispatchKeyEvent(
-                event
-            )
+            finish()
 
             return true
         }
