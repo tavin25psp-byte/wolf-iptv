@@ -865,19 +865,22 @@ private fun carregarFilmes() {
                 )
 
                 Toast.makeText(
-                    this,
-                    "CATÁLOGO OK\n" +
-                        "HTTP: $codigo\n" +
-                        "JSON: ${resposta.length} caracteres\n"
-                        "Filmes: ${filmes.size}\n" +
-                        "Séries: ${series.size}\n" +
-                        "Doramas: ${doramas.size}\n" +
-                        "Animes: ${animes.size}",
-                    Toast.LENGTH_LONG
-                ).show()
+    this,
+    "CATÁLOGO OK\n" +
+        "HTTP: $codigo\n" +
+        "JSON: ${resposta.length} caracteres\n" +
+        "Filmes: ${filmes.size}\n" +
+        "Séries: ${series.size}\n" +
+        "Doramas: ${doramas.size}\n" +
+        "Animes: ${animes.size}",
+    Toast.LENGTH_LONG
+).show()
             }
 
         } catch (e: Exception) {
+            }
+
+        
 
             android.util.Log.e(
                 "WOLF_CATALOGO",
