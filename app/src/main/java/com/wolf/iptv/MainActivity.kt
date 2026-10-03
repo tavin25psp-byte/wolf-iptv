@@ -2249,7 +2249,6 @@ adicionarItemMenu(
 }
 
 botaoFecharMenu.requestFocus()
-
 }
 
 
@@ -2295,7 +2294,7 @@ private fun fecharMenu() {
 
 
 // ===============================
-// MOVER FOCO DO MENU
+// MOVER MENU
 // ===============================
 
 private fun moverMenu(
@@ -2326,7 +2325,7 @@ private fun moverMenu(
 
 
 // ===============================
-// AJUSTAR SCROLL DO MENU
+// SCROLL DO MENU
 // ===============================
 
 private fun ajustarScrollMenu(
@@ -2344,14 +2343,14 @@ private fun ajustarScrollMenu(
 
         if (top < scrollTop) {
 
-            menuScroll.smoothScrollTo(
+            menuScroll.scrollTo(
                 0,
-                top - dp(20)
+                maxOf(0, top - dp(20))
             )
 
         } else if (bottom > scrollBottom) {
 
-            menuScroll.smoothScrollTo(
+            menuScroll.scrollTo(
                 0,
                 bottom - menuScroll.height + dp(20)
             )
@@ -2361,7 +2360,7 @@ private fun ajustarScrollMenu(
 
 
 // ===============================
-// MOVER CARDS
+// MOVER CARD
 // ===============================
 
 private fun moverCard(
@@ -2380,20 +2379,6 @@ private fun moverCard(
     indiceCardAtual = novoIndice
 
     cardsAtuais[indiceCardAtual].requestFocus()
-
-    cardsAtuais[indiceCardAtual].post {
-
-        val view =
-            cardsAtuais[indiceCardAtual]
-
-        val scrollParent =
-            view.parent as? HorizontalScrollView
-
-        scrollParent?.smoothScrollTo(
-            view.left - dp(20),
-            0
-        )
-    }
 }
 
 
@@ -2406,103 +2391,24 @@ private fun abrirPesquisa() {
     val campo = EditText(this)
 
     campo.hint = "Digite o nome..."
-    campo.setTextColor(Color.WHITE)
-    campo.setHintTextColor(Color.GRAY)
     campo.textSize = 18f
     campo.setSingleLine(true)
 
-    val container = LinearLayout(this)
-
-    container.orientation =
-        LinearLayout.VERTICAL
-
-    container.setPadding(
-        dp(30),
-        dp(30),
-        dp(30),
-        dp(30)
-    )
-
-    val titulo = TextView(this)
-
-    titulo.text = "🔎 Pesquisar"
-    titulo.textSize = 24f
-    titulo.setTextColor(Color.WHITE)
-
-    container.addView(titulo)
-
-    container.addView(
-        campo,
-        LinearLayout.LayoutParams(
-            LinearLayout.LayoutParams.MATCH_PARENT,
-            dp(60)
-        )
-    )
-
-    val dialog = AlertDialog.Builder(this)
-        .setView(container)
-        .setPositiveButton("Buscar") { _, _ ->
-
-            val termo =
-                campo.text.toString()
-                    .trim()
-                    .lowercase()
-
-            if (termo.isEmpty()) {
-                return@setPositiveButton
-            }
-
-            val filmesEncontrados =
-                filmes.filter {
-                    it.titulo.lowercase()
-                        .contains(termo)
-                }
-
-            val seriesEncontradas =
-                series.filter {
-                    it.titulo.lowercase()
-                        .contains(termo)
-                }
-
-            if (filmesEncontrados.isNotEmpty()) {
-
-                mostrarListaCards(
-                    filmesEncontrados
-                )
-
-            } else if (seriesEncontradas.isNotEmpty()) {
-
-                mostrarListaSeries(
-                    seriesEncontradas
-                )
-
-            } else {
-
-                Toast.makeText(
-                    this,
-                    "Nenhum resultado encontrado",
-                    Toast.LENGTH_SHORT
-                ).show()
-            }
-        }
-        .setNegativeButton(
-            "Cancelar",
-            null
-        )
-        .create()
-
-    dialog.setOnShowListener {
-
-        campo.requestFocus()
-
-        dialog.window?.setBackgroundDrawable(
-            ColorDrawable(
-                Color.rgb(25, 25, 25)
-            )
+    val resultado = filmes.filter {
+        it.titulo.lowercase().contains(
+            campo.text.toString()
+                .trim()
+                .lowercase()
         )
     }
 
-    dialog.show()
+    campo.requestFocus()
+
+    Toast.makeText(
+        this,
+        "Use a busca pelo menu",
+        Toast.LENGTH_SHORT
+    ).show()
 }
 
 
