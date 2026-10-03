@@ -495,9 +495,7 @@ class MainActivity : AppCompatActivity() {
                     "Animação",
                     "https://i.postimg.cc/5t0bhHHr/images-(6).jpg",
                     "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4"
-                ),
-
-                Filme(
+                ),                Filme(
                     "Jumanji: Bem-Vindo à Selva",
                     2017,
                     "Aventura",
@@ -551,6 +549,74 @@ class MainActivity : AppCompatActivity() {
                     "Animação",
                     "https://i.postimg.cc/Z54FvXD1/noiva.jpg",
                     "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/A%20noiva%20Cad%C3%A1ver.mp4"
+                ),
+
+                // ==========================================
+                // NOVOS FILMES
+                // ==========================================
+
+                Filme(
+                    "Gran Turismo – De Jogador a Corredor",
+                    2023,
+                    "Ação",
+                    "https://i.postimg.cc/YSVWsL2p/images-(7).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Gran%20Turismo%20%E2%80%93%20De%20Jogador%20a%20Corredor.mp4"
+                ),
+
+                Filme(
+                    "Besouro Azul",
+                    2023,
+                    "Ação",
+                    "https://i.postimg.cc/fTjYRbCr/images-(9).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Besouro%20Azul.mp4"
+                ),
+
+                Filme(
+                    "A Pequena Sereia",
+                    2023,
+                    "Aventura",
+                    "https://i.postimg.cc/vmDPnnSb/images-(10).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Pequena%20Sereia.mp4"
+                ),
+
+                Filme(
+                    "A Fera",
+                    2022,
+                    "Ação",
+                    "https://i.postimg.cc/GhQzSKW1/images-(11).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/A%20Fera.mp4"
+                ),
+
+                Filme(
+                    "Mortal Kombat 2",
+                    2025,
+                    "Ação",
+                    "https://i.postimg.cc/ZRxyK7Fh/images-(13).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Mortal%20Kombat%202.mp4"
+                ),
+
+                Filme(
+                    "O Projeto Adam",
+                    2022,
+                    "Ficção",
+                    "https://i.postimg.cc/rp8T2fm3/images-(15).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/O%20Projeto%20Adam.mp4"
+                ),
+
+                Filme(
+                    "Uncharted: Fora do Mapa",
+                    2022,
+                    "Aventura",
+                    "https://i.postimg.cc/wvNYhZbd/Uncharted-Official-Poster-(1).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Uncharted%20Fora%20do%20Mapa.mp4"
+                ),
+
+                Filme(
+                    "Morbius",
+                    2022,
+                    "Ação",
+                    "https://i.postimg.cc/YCTX10c0/Morbius-cartaz-(1).jpg",
+                    "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Morbius.mp4"
                 )
             )
         )
@@ -559,7 +625,9 @@ class MainActivity : AppCompatActivity() {
             compareByDescending<Filme> { it.ano }
                 .thenBy { it.titulo }
         )
-    }    private fun carregarSeries() {
+    }
+
+    private fun carregarSeries() {
 
         series.clear()
         doramas.clear()
@@ -618,9 +686,7 @@ class MainActivity : AppCompatActivity() {
                     )
                 )
             )
-        )
-
-        series.add(
+        )        series.add(
             Serie(
                 "Avatar: A Lenda de Aang",
                 "Aventura",
@@ -1121,7 +1187,6 @@ class MainActivity : AppCompatActivity() {
             ImageView.ScaleType.CENTER_CROP
 
         imagem.isFocusable = false
-        imagem.isClickable = false
 
         carregarImagem(
             imagem,
@@ -1146,13 +1211,14 @@ class MainActivity : AppCompatActivity() {
                 0,
                 0
             )
+
         )
 
         card.addView(
             sombra,
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(62),
+                dp(58),
                 Gravity.BOTTOM
             )
         )
@@ -1184,7 +1250,7 @@ class MainActivity : AppCompatActivity() {
             titulo,
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(62),
+                dp(58),
                 Gravity.BOTTOM
             )
         )
@@ -1210,7 +1276,9 @@ class MainActivity : AppCompatActivity() {
 
         card.setOnClickListener {
 
-            mostrarTemporadas(serie)
+            mostrarTemporadas(
+                serie
+            )
         }
 
         return card
@@ -1230,10 +1298,10 @@ class MainActivity : AppCompatActivity() {
             TextView(this)
 
         titulo.text =
-            "📺 ${serie.titulo}"
+            "${serie.titulo} — TEMPORADAS"
 
         titulo.textSize =
-            24f
+            22f
 
         titulo.setTextColor(
             Color.WHITE
@@ -1244,14 +1312,23 @@ class MainActivity : AppCompatActivity() {
             Typeface.BOLD
         )
 
+        titulo.gravity =
+            Gravity.CENTER_VERTICAL
+
         titulo.setPadding(
             dp(10),
-            dp(8),
-            dp(10),
-            dp(8)
+            0,
+            0,
+            0
         )
 
-        conteudo.addView(titulo)
+        conteudo.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(65)
+            )
+        )
 
         var linhaAtual:
             LinearLayout? = null
@@ -1272,7 +1349,7 @@ class MainActivity : AppCompatActivity() {
                     linhaAtual,
                     LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(160)
+                        dp(150)
                     )
                 )
             }
@@ -1289,7 +1366,7 @@ class MainActivity : AppCompatActivity() {
                 card,
                 LinearLayout.LayoutParams(
                     0,
-                    dp(140),
+                    dp(135),
                     1f
                 ).apply {
 
@@ -1400,10 +1477,10 @@ class MainActivity : AppCompatActivity() {
             TextView(this)
 
         titulo.text =
-            "${serie.titulo} • Temporada ${temporada.numero}"
+            "${serie.titulo} — TEMPORADA ${temporada.numero}"
 
         titulo.textSize =
-            23f
+            22f
 
         titulo.setTextColor(
             Color.WHITE
@@ -1414,14 +1491,23 @@ class MainActivity : AppCompatActivity() {
             Typeface.BOLD
         )
 
+        titulo.gravity =
+            Gravity.CENTER_VERTICAL
+
         titulo.setPadding(
             dp(10),
-            dp(8),
-            dp(10),
-            dp(8)
+            0,
+            0,
+            0
         )
 
-        conteudo.addView(titulo)
+        conteudo.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(65)
+            )
+        )
 
         var linhaAtual:
             LinearLayout? = null
@@ -1442,7 +1528,7 @@ class MainActivity : AppCompatActivity() {
                     linhaAtual,
                     LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(155)
+                        dp(145)
                     )
                 )
             }
@@ -1459,7 +1545,7 @@ class MainActivity : AppCompatActivity() {
                 card,
                 LinearLayout.LayoutParams(
                     0,
-                    dp(135),
+                    dp(130),
                     1f
                 ).apply {
 
@@ -1549,7 +1635,7 @@ class MainActivity : AppCompatActivity() {
         card.setOnClickListener {
 
             abrirVideo(
-                "${serie.titulo} - EP ${episodio.numero} - ${episodio.titulo}",
+                "${serie.titulo} - EP ${episodio.numero}",
                 episodio.video,
                 serie.capa
             )
@@ -1562,6 +1648,8 @@ class MainActivity : AppCompatActivity() {
 
         menuAberto = true
 
+        itensMenuFoco.clear()
+
         menuLateral =
             LinearLayout(this)
 
@@ -1569,46 +1657,38 @@ class MainActivity : AppCompatActivity() {
             LinearLayout.VERTICAL
 
         menuLateral.setBackgroundColor(
-            Color.rgb(8, 8, 8)
+            Color.argb(
+                245,
+                10,
+                10,
+                10
+            )
         )
 
         menuLateral.setPadding(
-            dp(12),
-            dp(12),
-            dp(12),
-            dp(12)
+            dp(15),
+            dp(15),
+            dp(10),
+            dp(15)
         )
-
-        val params =
-            FrameLayout.LayoutParams(
-                dp(340),
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-
-        params.gravity =
-            Gravity.START
 
         raiz.addView(
             menuLateral,
-            params
-        )
-
-        val topo =
-            LinearLayout(this)
-
-        topo.orientation =
-            LinearLayout.HORIZONTAL
-
-        topo.gravity =
-            Gravity.CENTER_VERTICAL
-
-        menuLateral.addView(
-            topo,
-            LinearLayout.LayoutParams(
+            FrameLayout.LayoutParams(
+                dp(340),
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(65)
+                Gravity.START
             )
         )
+
+        val cabecalho =
+            LinearLayout(this)
+
+        cabecalho.orientation =
+            LinearLayout.HORIZONTAL
+
+        cabecalho.gravity =
+            Gravity.CENTER_VERTICAL
 
         val titulo =
             TextView(this)
@@ -1617,7 +1697,7 @@ class MainActivity : AppCompatActivity() {
             "WOLF MENU"
 
         titulo.textSize =
-            21f
+            22f
 
         titulo.setTextColor(
             Color.WHITE
@@ -1628,14 +1708,11 @@ class MainActivity : AppCompatActivity() {
             Typeface.BOLD
         )
 
-        titulo.gravity =
-            Gravity.CENTER_VERTICAL
-
-        topo.addView(
+        cabecalho.addView(
             titulo,
             LinearLayout.LayoutParams(
                 0,
-                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(55),
                 1f
             )
         )
@@ -1647,7 +1724,7 @@ class MainActivity : AppCompatActivity() {
             "✕"
 
         botaoFecharMenu.textSize =
-            25f
+            28f
 
         botaoFecharMenu.setTextColor(
             Color.WHITE
@@ -1664,21 +1741,14 @@ class MainActivity : AppCompatActivity() {
             criarFundoCard(false)
 
         botaoFecharMenu.setOnFocusChangeListener {
-                _,
-                foco ->
+                _, foco ->
 
             if (foco) {
-
-                botaoFecharMenu.background =
-                    criarFundoCard(true)
 
                 botaoFecharMenu.foreground =
                     criarBordaVermelha()
 
             } else {
-
-                botaoFecharMenu.background =
-                    criarFundoCard(false)
 
                 botaoFecharMenu.foreground =
                     null
@@ -1689,12 +1759,16 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
         }
 
-        topo.addView(
+        cabecalho.addView(
             botaoFecharMenu,
             LinearLayout.LayoutParams(
-                dp(58),
-                dp(58)
+                dp(55),
+                dp(55)
             )
+        )
+
+        menuLateral.addView(
+            cabecalho
         )
 
         menuScroll =
@@ -1722,8 +1796,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        itensMenuFoco.clear()
-
         adicionarItemMenu(
             "▶  Continuar assistindo"
         ) {
@@ -1738,12 +1810,14 @@ class MainActivity : AppCompatActivity() {
             "★  Favoritos"
         ) {
             mostrarFavoritos()
+            fecharMenu()
         }
 
         adicionarItemMenu(
             "⌕  Pesquisa"
         ) {
             abrirPesquisa()
+            fecharMenu()
         }
 
         adicionarSeparador("FILMES")
@@ -1755,38 +1829,27 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
         }
 
-        val categoriasFilmes =
-            listOf(
-                "Ação",
-                "Aventura",
-                "Animação",
-                "Comédia",
-                "Drama",
-                "Terror",
-                "Ficção"
-            )
-
-        categoriasFilmes.forEach { categoria ->
-
-            val quantidade =
-                filmes.count {
-                    it.categoria.equals(
-                        categoria,
-                        true
-                    )
-                }
+        listOf(
+            "Ação",
+            "Aventura",
+            "Animação",
+            "Comédia",
+            "Drama",
+            "Terror",
+            "Ficção"
+        ).forEach { categoria ->
 
             adicionarItemMenu(
-                "   $categoria ($quantidade)"
+                "   $categoria (${filmes.count { it.categoria == categoria }})"
             ) {
 
-                mostrarListaCards(
+                val filtrados =
                     filmes.filter {
-                        it.categoria.equals(
-                            categoria,
-                            true
-                        )
+                        it.categoria == categoria
                     }
+
+                mostrarListaCards(
+                    filtrados
                 )
 
                 fecharMenu()
@@ -1798,42 +1861,29 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "📺  Todas as séries (${series.size})"
         ) {
-
             mostrarListaSeries(series)
-
             fecharMenu()
         }
 
-        val categoriasSeries =
-            listOf(
-                "Ação",
-                "Aventura",
-                "Comédia",
-                "Drama",
-                "Terror"
-            )
-
-        categoriasSeries.forEach { categoria ->
-
-            val quantidade =
-                series.count {
-                    it.categoria.equals(
-                        categoria,
-                        true
-                    )
-                }
+        listOf(
+            "Ação",
+            "Aventura",
+            "Comédia",
+            "Drama",
+            "Terror"
+        ).forEach { categoria ->
 
             adicionarItemMenu(
-                "   $categoria ($quantidade)"
+                "   $categoria (${series.count { it.categoria == categoria }})"
             ) {
 
-                mostrarListaSeries(
+                val filtradas =
                     series.filter {
-                        it.categoria.equals(
-                            categoria,
-                            true
-                        )
+                        it.categoria == categoria
                     }
+
+                mostrarListaSeries(
+                    filtradas
                 )
 
                 fecharMenu()
@@ -1845,9 +1895,7 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "🎭  Todos os doramas (${doramas.size})"
         ) {
-
             mostrarListaSeries(doramas)
-
             fecharMenu()
         }
 
@@ -1859,16 +1907,16 @@ class MainActivity : AppCompatActivity() {
         ).forEach { categoria ->
 
             adicionarItemMenu(
-                "   $categoria (0)"
+                "   $categoria (${doramas.count { it.categoria == categoria }})"
             ) {
 
-                mostrarListaSeries(
+                val filtradas =
                     doramas.filter {
-                        it.categoria.equals(
-                            categoria,
-                            true
-                        )
+                        it.categoria == categoria
                     }
+
+                mostrarListaSeries(
+                    filtradas
                 )
 
                 fecharMenu()
@@ -1880,9 +1928,7 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "⚡  Todos os animes (${animes.size})"
         ) {
-
             mostrarListaSeries(animes)
-
             fecharMenu()
         }
 
@@ -1894,26 +1940,23 @@ class MainActivity : AppCompatActivity() {
         ).forEach { categoria ->
 
             adicionarItemMenu(
-                "   $categoria (0)"
+                "   $categoria (${animes.count { it.categoria == categoria }})"
             ) {
 
-                mostrarListaSeries(
+                val filtradas =
                     animes.filter {
-                        it.categoria.equals(
-                            categoria,
-                            true
-                        )
+                        it.categoria == categoria
                     }
+
+                mostrarListaSeries(
+                    filtradas
                 )
 
                 fecharMenu()
             }
         }
 
-        if (itensMenuFoco.isNotEmpty()) {
-
-            itensMenuFoco[0].requestFocus()
-        }
+        botaoFecharMenu.requestFocus()
     }
 
     private fun adicionarSeparador(
@@ -1942,14 +1985,11 @@ class MainActivity : AppCompatActivity() {
             Gravity.CENTER_VERTICAL
 
         separador.setPadding(
-            dp(10),
             dp(12),
-            dp(10),
-            dp(4)
+            dp(12),
+            dp(5),
+            dp(5)
         )
-
-        separador.isFocusable =
-            false
 
         menuConteudo.addView(
             separador,
@@ -1972,24 +2012,19 @@ class MainActivity : AppCompatActivity() {
             texto
 
         item.textSize =
-            17f
+            16f
 
         item.setTextColor(
             Color.WHITE
-        )
-
-        item.setTypeface(
-            null,
-            Typeface.BOLD
         )
 
         item.gravity =
             Gravity.CENTER_VERTICAL
 
         item.setPadding(
-            dp(15),
+            dp(12),
             0,
-            dp(10),
+            dp(8),
             0
         )
 
@@ -2001,8 +2036,7 @@ class MainActivity : AppCompatActivity() {
             criarFundoCard(false)
 
         item.setOnFocusChangeListener {
-                _,
-                foco ->
+                _, foco ->
 
             if (foco) {
 
@@ -2030,14 +2064,14 @@ class MainActivity : AppCompatActivity() {
             item,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(55)
+                dp(48)
             ).apply {
 
                 setMargins(
                     0,
-                    dp(3),
+                    dp(2),
                     0,
-                    dp(3)
+                    dp(2)
                 )
             }
         )
@@ -2055,47 +2089,35 @@ class MainActivity : AppCompatActivity() {
             menuLateral
         )
 
+        itensMenuFoco.clear()
+
         botaoMenu.requestFocus()
     }
 
     private fun moverMenu(
-        direcao: Int
+        deslocamento: Int
     ) {
 
-        if (itensMenuFoco.isEmpty()) {
-            return
-        }
+        if (itensMenuFoco.isEmpty()) return
 
         val atual =
-            itensMenuFoco.indexOf(
-                currentFocus
+            itensMenuFoco.indexOfFirst {
+                it.hasFocus()
+            }
+
+        var novo =
+            if (atual == -1)
+                0
+            else
+                atual + deslocamento
+
+        novo =
+            novo.coerceIn(
+                0,
+                itensMenuFoco.lastIndex
             )
 
-        if (atual < 0) {
-
-            itensMenuFoco[0].requestFocus()
-
-            return
-        }
-
-        val novo =
-            atual + direcao
-
-        if (novo < 0) {
-            return
-        }
-
-        if (novo >
-            itensMenuFoco.lastIndex
-        ) {
-
-            botaoFecharMenu.requestFocus()
-
-            return
-        }
-
-        itensMenuFoco[novo]
-            .requestFocus()
+        itensMenuFoco[novo].requestFocus()
 
         ajustarScrollMenu(
             itensMenuFoco[novo]
@@ -2106,93 +2128,76 @@ class MainActivity : AppCompatActivity() {
         view: View
     ) {
 
-        val top =
-            view.top
+        menuScroll.post {
 
-        val bottom =
-            view.bottom
-
-        val visivelTop =
-            menuScroll.scrollY
-
-        val visivelBottom =
-            visivelTop +
-            menuScroll.height
-
-        if (top < visivelTop) {
-
-            menuScroll.scrollTo(
+            menuScroll.smoothScrollTo(
                 0,
-                top
-            )
-
-        } else if (
-            bottom > visivelBottom
-        ) {
-
-            menuScroll.scrollTo(
-                0,
-                bottom -
-                    menuScroll.height
-            )
-        }
-    }    private fun moverCard(
-        deslocamento: Int
-    ) {
-
-        if (cardsAtuais.isEmpty()) {
-            return
-        }
-
-        val atual =
-            cardsAtuais.indexOf(
-                currentFocus
-            )
-
-        if (atual < 0) {
-
-            cardsAtuais[0].requestFocus()
-
-            indiceCardAtual = 0
-
-            return
-        }
-
-        val novo =
-            (atual + deslocamento)
-                .coerceIn(
-                    0,
-                    cardsAtuais.lastIndex
-                )
-
-        if (novo != atual) {
-
-            indiceCardAtual = novo
-
-            cardsAtuais[novo]
-                .requestFocus()
-
-            rolarParaCard(
-                cardsAtuais[novo]
+                view.top -
+                    dp(80)
             )
         }
     }
 
-    private fun rolarParaCard(
-        card: View
+    private fun moverCard(
+        deslocamento: Int
     ) {
 
-        card.post {
+        if (cardsAtuais.isEmpty()) return
 
-            card.requestRectangleOnScreen(
-                android.graphics.Rect(
-                    0,
-                    0,
-                    card.width,
-                    card.height
-                ),
-                true
+        indiceCardAtual =
+            (
+                indiceCardAtual +
+                deslocamento
+            ).coerceIn(
+                0,
+                cardsAtuais.lastIndex
             )
+
+        cardsAtuais[
+            indiceCardAtual
+        ].requestFocus()
+
+        rolarParaCard(
+            cardsAtuais[
+                indiceCardAtual
+            ]
+        )
+    }
+
+    private fun rolarParaCard(
+        view: View
+    ) {
+
+        view.post {
+
+            var atual =
+                view
+
+            while (
+                atual.parent != null &&
+                atual.parent is View
+            ) {
+
+                val pai =
+                    atual.parent as View
+
+                if (pai is ScrollView) {
+
+                    val posicao =
+                        view.top
+
+                    pai.smoothScrollTo(
+                        0,
+                        posicao -
+                            dp(80)
+                    )
+
+                    break
+                }
+
+                atual =
+                    pai
+            }
         }
     }
 
@@ -2205,20 +2210,9 @@ class MainActivity : AppCompatActivity() {
                 )
             }
 
-        if (lista.isEmpty()) {
-
-            Toast.makeText(
-                this,
-                "Nenhum favorito ainda",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-        mostrarListaCards(lista)
-
-        fecharMenu()
+        mostrarListaCards(
+            lista
+        )
     }
 
     private fun abrirPesquisa() {
@@ -2227,23 +2221,38 @@ class MainActivity : AppCompatActivity() {
             EditText(this)
 
         campo.hint =
-            "Digite o nome"
-
-        campo.setSingleLine(true)
+            "Pesquisar..."
 
         campo.setTextColor(
             Color.WHITE
         )
 
         campo.setHintTextColor(
-            Color.LTGRAY
+            Color.GRAY
+        )
+
+        campo.textSize =
+            18f
+
+        campo.setSingleLine(true)
+
+        campo.setPadding(
+            dp(15),
+            0,
+            dp(15),
+            0
         )
 
         val dialog =
-            androidx.appcompat.app.AlertDialog
-                .Builder(this)
-                .setTitle("Pesquisar")
-                .setView(campo)
+            android.app.AlertDialog.Builder(
+                this
+            )
+                .setTitle(
+                    "Pesquisar no WOLF CHANNEL"
+                )
+                .setView(
+                    campo
+                )
                 .setPositiveButton(
                     "Pesquisar"
                 ) { _, _ ->
@@ -2270,38 +2279,32 @@ class MainActivity : AppCompatActivity() {
         texto: String
     ) {
 
-        if (texto.isBlank()) {
-            return
-        }
-
         val termo =
             texto.trim()
 
-        val encontrados =
+        if (termo.isEmpty()) return
+
+        val resultados =
             filmes.filter {
 
                 it.titulo.contains(
                     termo,
-                    true
+                    ignoreCase = true
                 )
             }
 
-        if (encontrados.isEmpty()) {
+        mostrarListaCards(
+            resultados
+        )
+
+        if (resultados.isEmpty()) {
 
             Toast.makeText(
                 this,
-                "Nenhum resultado para $termo",
+                "Nenhum filme encontrado",
                 Toast.LENGTH_SHORT
             ).show()
-
-            return
         }
-
-        mostrarListaCards(
-            encontrados
-        )
-
-        fecharMenu()
     }
 
     override fun dispatchKeyEvent(
@@ -2317,156 +2320,30 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        val tecla =
-            event.keyCode
-
-        // =================================
-        // MENU ABERTO
-        // =================================
-
-        if (menuAberto) {
-
-            when (tecla) {
-
-                KeyEvent.KEYCODE_DPAD_UP -> {
-
-                    if (
-                        currentFocus ==
-                        botaoFecharMenu
-                    ) {
-
-                        if (
-                            itensMenuFoco.isNotEmpty()
-                        ) {
-
-                            itensMenuFoco.last()
-                                .requestFocus()
-
-                            ajustarScrollMenu(
-                                itensMenuFoco.last()
-                            )
-                        }
-
-                    } else {
-
-                        moverMenu(-1)
-                    }
-
-                    return true
-                }
-
-                KeyEvent.KEYCODE_DPAD_DOWN -> {
-
-                    if (
-                        currentFocus ==
-                        botaoFecharMenu
-                    ) {
-
-                        if (
-                            itensMenuFoco.isNotEmpty()
-                        ) {
-
-                            itensMenuFoco[0]
-                                .requestFocus()
-
-                            ajustarScrollMenu(
-                                itensMenuFoco[0]
-                            )
-                        }
-
-                    } else {
-
-                        val atual =
-                            itensMenuFoco.indexOf(
-                                currentFocus
-                            )
-
-                        if (
-                            atual >= 0 &&
-                            atual ==
-                            itensMenuFoco.lastIndex
-                        ) {
-
-                            botaoFecharMenu
-                                .requestFocus()
-
-                        } else {
-
-                            moverMenu(1)
-                        }
-                    }
-
-                    return true
-                }
-
-                KeyEvent.KEYCODE_DPAD_LEFT,
-                KeyEvent.KEYCODE_DPAD_RIGHT -> {
-
-                    return true
-                }
-
-                KeyEvent.KEYCODE_DPAD_CENTER,
-                KeyEvent.KEYCODE_ENTER -> {
-
-                    currentFocus?.performClick()
-
-                    return true
-                }
-
-                KeyEvent.KEYCODE_BACK -> {
-
-                    fecharMenu()
-
-                    return true
-                }
-
-                KeyEvent.KEYCODE_MENU -> {
-
-                    fecharMenu()
-
-                    return true
-                }
-            }
-
-            return true
-        }
-
-        // =================================
-        // MENU FECHADO
-        // =================================
-
-        when (tecla) {
-
-            // =============================
-            // CIMA
-            // =============================
+        when (event.keyCode) {
 
             KeyEvent.KEYCODE_DPAD_UP -> {
 
-                if (
-                    currentFocus ==
-                    botaoMenu
-                ) {
+                if (menuAberto) {
+
+                    moverMenu(-1)
 
                     return true
                 }
 
-                val atual =
-                    cardsAtuais.indexOf(
-                        currentFocus
-                    )
+                if (
+                    botaoMenu.hasFocus()
+                ) {
+                    return true
+                }
 
-                if (atual >= 0) {
+                if (
+                    cardsAtuais.isNotEmpty()
+                ) {
 
-                    /*
-                     * PRIMEIRA FILEIRA
-                     *
-                     * 1  2  3  4  5
-                     * ↑  ↑  ↑  ↑  ↑
-                     *       MENU
-                     */
-
-                    if (atual < 5) {
+                    if (
+                        indiceCardAtual < 5
+                    ) {
 
                         botaoMenu.requestFocus()
 
@@ -2479,25 +2356,27 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            // =============================
-            // BAIXO
-            // =============================
-
             KeyEvent.KEYCODE_DPAD_DOWN -> {
 
+                if (menuAberto) {
+
+                    moverMenu(1)
+
+                    return true
+                }
+
                 if (
-                    currentFocus ==
-                    botaoMenu
+                    botaoMenu.hasFocus()
                 ) {
 
                     if (
                         cardsAtuais.isNotEmpty()
                     ) {
 
+                        indiceCardAtual = 0
+
                         cardsAtuais[0]
                             .requestFocus()
-
-                        indiceCardAtual = 0
                     }
 
                     return true
@@ -2508,34 +2387,20 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            // =============================
-            // ESQUERDA
-            // =============================
-
             KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                if (
-                    currentFocus ==
-                    botaoMenu
-                ) {
-
+                if (menuAberto) {
                     return true
                 }
 
-                val atual =
-                    cardsAtuais.indexOf(
-                        currentFocus
-                    )
-
-                if (atual >= 0) {
+                if (
+                    !botaoMenu.hasFocus() &&
+                    cardsAtuais.isNotEmpty()
+                ) {
 
                     if (
-                        atual % 5 == 0
+                        indiceCardAtual % 5 != 0
                     ) {
-
-                        return true
-
-                    } else {
 
                         moverCard(-1)
                     }
@@ -2544,66 +2409,78 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
-            // =============================
-            // DIREITA
-            // =============================
-
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
+                if (menuAberto) {
+                    return true
+                }
+
                 if (
-                    currentFocus ==
-                    botaoMenu
+                    !botaoMenu.hasFocus() &&
+                    cardsAtuais.isNotEmpty()
                 ) {
+
+                    moverCard(1)
+                }
+
+                return true
+            }
+
+            KeyEvent.KEYCODE_ENTER,
+            KeyEvent.KEYCODE_DPAD_CENTER -> {
+
+                if (menuAberto) {
+
+                    val atual =
+                        itensMenuFoco
+                            .firstOrNull {
+                                it.hasFocus()
+                            }
+
+                    atual?.performClick()
 
                     return true
                 }
 
-                moverCard(1)
+                if (
+                    botaoMenu.hasFocus()
+                ) {
 
-                return true
+                    abrirMenu()
+
+                    return true
+                }
+
+                if (
+                    cardsAtuais.isNotEmpty()
+                ) {
+
+                    cardsAtuais[
+                        indiceCardAtual
+                    ].performClick()
+
+                    return true
+                }
             }
-
-            // =============================
-            // OK
-            // =============================
-
-            KeyEvent.KEYCODE_DPAD_CENTER,
-            KeyEvent.KEYCODE_ENTER -> {
-
-                currentFocus?.performClick()
-
-                return true
-            }
-
-            // =============================
-            // BOTÃO MENU FÍSICO
-            // =============================
 
             KeyEvent.KEYCODE_MENU -> {
 
-                abrirMenu()
+                if (!menuAberto) {
 
-                return true
+                    abrirMenu()
+
+                    return true
+                }
             }
-
-            // =============================
-            // VOLTAR
-            // =============================
 
             KeyEvent.KEYCODE_BACK -> {
 
-                if (
-                    menuAberto
-                ) {
+                if (menuAberto) {
 
                     fecharMenu()
 
                     return true
                 }
-
-                finish()
-
-                return true
             }
         }
 
@@ -2618,9 +2495,9 @@ class MainActivity : AppCompatActivity() {
 
             fecharMenu()
 
-            return
-        }
+        } else {
 
-        super.onBackPressed()
+            super.onBackPressed()
+        }
     }
 }
