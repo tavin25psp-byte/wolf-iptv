@@ -303,21 +303,40 @@ private fun carregarFilmes() {
             conexao.readTimeout = 15000
             conexao.requestMethod = "GET"
             conexao.doInput = true
+            conexao.setRequestProperty(
+                "User-Agent",
+                "Mozilla/5.0"
+            )
+
             conexao.connect()
+
+            val codigo = conexao.responseCode
+
+            if (codigo !in 200..299) {
+                throw Exception("HTTP $codigo")
+            }
 
             val resposta =
                 conexao.inputStream
-                    .bufferedReader()
+                    .bufferedReader(Charsets.UTF_8)
                     .use { it.readText() }
 
             conexao.disconnect()
 
-            val raizJson = JSONObject(resposta)
+            val texto = resposta.trim()
 
-            val novaListaFilmes = mutableListOf<Filme>()
+            if (texto.isBlank()) {
+                throw Exception("Catálogo vazio")
+            }
+
+            val raizJson = JSONObject(texto)
+
+            val novaListaFilmes =
+                mutableListOf<Filme>()
 
             val jsonFilmes =
-                raizJson.optJSONArray("filmes") ?: JSONArray()
+                raizJson.optJSONArray("filmes")
+                    ?: JSONArray()
 
             for (i in 0 until jsonFilmes.length()) {
 
@@ -325,19 +344,19 @@ private fun carregarFilmes() {
                     jsonFilmes.getJSONObject(i)
 
                 val titulo =
-                    item.optString("titulo")
+                    item.optString("titulo").trim()
 
                 val ano =
-                    item.optInt("ano")
+                    item.optInt("ano", 0)
 
                 val categoria =
-                    item.optString("categoria")
+                    item.optString("categoria").trim()
 
                 val capa =
-                    item.optString("capa")
+                    item.optString("capa").trim()
 
                 val video =
-                    item.optString("video")
+                    item.optString("video").trim()
 
                 if (
                     titulo.isNotBlank() &&
@@ -346,11 +365,11 @@ private fun carregarFilmes() {
 
                     novaListaFilmes.add(
                         Filme(
-                            titulo,
-                            ano,
-                            categoria,
-                            capa,
-                            video
+                            titulo = titulo,
+                            ano = ano,
+                            categoria = categoria,
+                            capa = capa,
+                            video = video
                         )
                     )
                 }
@@ -373,13 +392,13 @@ private fun carregarFilmes() {
                         array.getJSONObject(i)
 
                     val titulo =
-                        item.optString("titulo")
+                        item.optString("titulo").trim()
 
                     val categoria =
-                        item.optString("categoria")
+                        item.optString("categoria").trim()
 
                     val capa =
-                        item.optString("capa")
+                        item.optString("capa").trim()
 
                     val temporadas =
                         mutableListOf<Temporada>()
@@ -394,14 +413,18 @@ private fun carregarFilmes() {
                             jsonTemporadas.getJSONObject(t)
 
                         val numeroTemporada =
-                            temporadaJson.optInt("numero")
+                            temporadaJson.optInt(
+                                "numero",
+                                t + 1
+                            )
 
                         val episodios =
                             mutableListOf<Episodio>()
 
                         val jsonEpisodios =
-                            temporadaJson.optJSONArray("episodios")
-                                ?: JSONArray()
+                            temporadaJson.optJSONArray(
+                                "episodios"
+                            ) ?: JSONArray()
 
                         for (e in 0 until jsonEpisodios.length()) {
 
@@ -409,27 +432,39 @@ private fun carregarFilmes() {
                                 jsonEpisodios.getJSONObject(e)
 
                             val numeroEpisodio =
-                                episodioJson.optInt("numero")
+                                episodioJson.optInt(
+                                    "numero",
+                                    e + 1
+                                )
 
                             val tituloEpisodio =
-                                episodioJson.optString("titulo")
+                                episodioJson
+                                    .optString("titulo")
+                                    .trim()
 
                             val videoEpisodio =
-                                episodioJson.optString("video")
+                                episodioJson
+                                    .optString("video")
+                                    .trim()
 
-                            episodios.add(
-                                Episodio(
-                                    numeroEpisodio,
-                                    tituloEpisodio,
-                                    videoEpisodio
+                            if (
+                                tituloEpisodio.isNotBlank()
+                            ) {
+
+                                episodios.add(
+                                    Episodio(
+                                        numero = numeroEpisodio,
+                                        titulo = tituloEpisodio,
+                                        video = videoEpisodio
+                                    )
                                 )
-                            )
+                            }
                         }
 
                         temporadas.add(
                             Temporada(
-                                numeroTemporada,
-                                episodios
+                                numero = numeroTemporada,
+                                episodios = episodios
                             )
                         )
                     }
@@ -441,10 +476,10 @@ private fun carregarFilmes() {
 
                         resultado.add(
                             Serie(
-                                titulo,
-                                categoria,
-                                capa,
-                                temporadas
+                                titulo = titulo,
+                                categoria = categoria,
+                                capa = capa,
+                                temporadas = temporadas
                             )
                         )
                     }
@@ -486,9 +521,15 @@ private fun carregarFilmes() {
                 animes.addAll(novosAnimes)
 
                 mostrarListaCards(filmes)
+
+                Toast.makeText(
+                    this,
+                    "${filmes.size} filmes • ${series.size} séries carregados",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
-        } catch (_: Exception) {
+        } catch (e: Exception) {
 
             runOnUiThread {
 
@@ -501,13 +542,14 @@ private fun carregarFilmes() {
 
                 Toast.makeText(
                     this,
-                    "Não foi possível carregar o catálogo",
+                    "Erro ao carregar catálogo: ${e.message}",
                     Toast.LENGTH_LONG
                 ).show()
             }
         }
     }
 }
+                                
 
 private fun carregarSeries() {
     // Séries, doramas e animes agora vêm do catalogo.json
