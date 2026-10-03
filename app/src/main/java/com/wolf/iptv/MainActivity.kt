@@ -7,6 +7,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
@@ -122,13 +123,18 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(raiz)
 
+        // ===============================
+        // TEMA WOLF
+        // ===============================
+
         val fundo =
             ImageView(this)
 
         fundo.scaleType =
             ImageView.ScaleType.CENTER_CROP
 
-        fundo.alpha = 0.55f
+        fundo.alpha =
+            0.55f
 
         thread {
 
@@ -165,6 +171,10 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        // ===============================
+        // CAMADA PRINCIPAL
+        // ===============================
+
         val camada =
             LinearLayout(this)
 
@@ -185,6 +195,10 @@ class MainActivity : AppCompatActivity() {
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
         )
+
+        // ===============================
+        // BOTÃO WOLF MENU
+        // ===============================
 
         botaoMenu =
             TextView(this)
@@ -207,38 +221,28 @@ class MainActivity : AppCompatActivity() {
         botaoMenu.gravity =
             Gravity.CENTER
 
-        botaoMenu.setPadding(
-            dp(15),
-            0,
-            dp(15),
-            0
-        )
+        botaoMenu.isFocusable =
+            true
 
-        botaoMenu.isFocusable = true
-        botaoMenu.isFocusableInTouchMode = true
-        botaoMenu.isClickable = true
+        botaoMenu.isFocusableInTouchMode =
+            true
+
+        botaoMenu.isClickable =
+            true
 
         botaoMenu.background =
             criarFundoCard(false)
 
-        botaoMenu.setOnFocusChangeListener { _, foco ->
+        botaoMenu.setOnFocusChangeListener {
+                _,
+                foco ->
 
-            if (foco) {
-
-                botaoMenu.background =
-                    criarFundoCard(true)
-
-                botaoMenu.foreground =
-                    criarBordaVermelha()
-
-            } else {
-
-                botaoMenu.background =
-                    criarFundoCard(false)
-
-                botaoMenu.foreground = null
-            }
+            botaoMenu.background =
+                criarFundoCard(foco)
         }
+
+        // IMPORTANTE:
+        // Só abre ao apertar OK.
 
         botaoMenu.setOnClickListener {
             abrirMenu()
@@ -252,11 +256,18 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        // ===============================
+        // ÁREA DOS CARDS
+        // ===============================
+
         val scroll =
             ScrollView(this)
 
-        scroll.isFocusable = false
-        scroll.isFocusableInTouchMode = false
+        scroll.isFocusable =
+            false
+
+        scroll.isFocusableInTouchMode =
+            false
 
         conteudo =
             LinearLayout(this)
@@ -264,7 +275,9 @@ class MainActivity : AppCompatActivity() {
         conteudo.orientation =
             LinearLayout.VERTICAL
 
-        scroll.addView(conteudo)
+        scroll.addView(
+            conteudo
+        )
 
         camada.addView(
             scroll,
@@ -276,12 +289,137 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    private fun dp(valor: Int): Int {
+    private fun dp(
+        valor: Int
+    ): Int {
+
         return (
             valor *
             resources.displayMetrics.density
         ).toInt()
-    }    private fun carregarFilmes() {
+    }
+
+    // ===============================
+    // FUNDO
+    // ===============================
+
+    private fun criarFundoCard(
+        foco: Boolean
+    ): GradientDrawable {
+
+        val fundo =
+            GradientDrawable()
+
+        fundo.setColor(
+            Color.argb(
+                if (foco) 235 else 190,
+                10,
+                10,
+                10
+            )
+        )
+
+        fundo.cornerRadius =
+            dp(8).toFloat()
+
+        if (foco) {
+
+            fundo.setStroke(
+                dp(4),
+                Color.RED
+            )
+        }
+
+        return fundo
+    }
+
+    // ===============================
+    // BORDA VERMELHA
+    // ===============================
+
+    private fun criarBordaVermelha(): GradientDrawable {
+
+        val borda =
+            GradientDrawable()
+
+        borda.setColor(
+            Color.TRANSPARENT
+        )
+
+        borda.cornerRadius =
+            dp(8).toFloat()
+
+        borda.setStroke(
+            dp(4),
+            Color.RED
+        )
+
+        return borda
+    }
+
+    // ===============================
+    // IMAGENS
+    // ===============================
+
+    private fun carregarImagem(
+        url: String,
+        imagem: ImageView
+    ) {
+
+        if (url.isEmpty()) {
+            return
+        }
+
+        val cache =
+            cacheCapas[url]
+
+        if (cache != null) {
+
+            imagem.setImageBitmap(
+                cache
+            )
+
+            return
+        }
+
+        thread {
+
+            try {
+
+                val conexao =
+                    URL(url)
+                        .openConnection()
+                        as HttpURLConnection
+
+                conexao.connect()
+
+                val bitmap =
+                    BitmapFactory.decodeStream(
+                        conexao.inputStream
+                    )
+
+                conexao.disconnect()
+
+                if (bitmap != null) {
+
+                    cacheCapas[url] =
+                        bitmap
+
+                    runOnUiThread {
+                        imagem.setImageBitmap(
+                            bitmap
+                        )
+                    }
+                }
+
+            } catch (_: Exception) {
+            }
+        }
+    }    // ===============================
+    // FILMES
+    // ===============================
+
+    private fun carregarFilmes() {
 
         filmes.clear()
 
@@ -444,8 +582,6 @@ class MainActivity : AppCompatActivity() {
                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
             )
         )
-
-        // NOVOS FILMES
 
         filmes.add(
             Filme(
@@ -697,23 +833,22 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // ORGANIZA:
-        // filmes de ano mais novo primeiro
-        // e, dentro do mesmo ano, por título.
-
         filmes.sortWith(
-            compareByDescending<Filme> { it.ano }
-                .thenBy { it.titulo }
+            compareByDescending<Filme> {
+                it.ano
+            }.thenBy {
+                it.titulo
+            }
         )
-    }    private fun carregarSeries() {
+    }    // ===============================
+    // SÉRIES
+    // ===============================
+
+    private fun carregarSeries() {
 
         series.clear()
         doramas.clear()
         animes.clear()
-
-        // =========================
-        // SPAIDE NOIR
-        // =========================
 
         series.add(
             Serie(
@@ -724,49 +859,41 @@ class MainActivity : AppCompatActivity() {
                     Temporada(
                         1,
                         listOf(
-
                             Episodio(
                                 1,
                                 "Entre no meu Escritório",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Entre%20no%20meu%20Escrit%C3%B3rio.mp4"
                             ),
-
                             Episodio(
                                 2,
                                 "Pisando em Ovos",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Pisando%20em%20Ovos.mp4"
                             ),
-
                             Episodio(
                                 3,
                                 "Falsidade",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Falsidade.mp4"
                             ),
-
                             Episodio(
                                 4,
                                 "Nunca Repita o Mesmo Erro",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20Nunca%20Repita%20o%20Mesmo%20Erro.mp4"
                             ),
-
                             Episodio(
                                 5,
                                 "Traição",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20Trai%C3%A7%C3%A3o.mp4"
                             ),
-
                             Episodio(
                                 6,
                                 "Pesadelo na Maca",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%206%20-%20Pesadelo%20na%20Maca.mp4"
                             ),
-
                             Episodio(
                                 7,
                                 "Herói de Ninguém",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%207%20-%20Her%C3%B3i%20de%20Ningu%C3%A9m.mp4"
                             ),
-
                             Episodio(
                                 8,
                                 "O Homem Mascarado",
@@ -778,10 +905,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // =========================
-        // AVATAR: A LENDA DE AANG
-        // =========================
-
         series.add(
             Serie(
                 "Avatar: A Lenda de Aang",
@@ -791,49 +914,41 @@ class MainActivity : AppCompatActivity() {
                     Temporada(
                         1,
                         listOf(
-
                             Episodio(
                                 1,
                                 "Aang",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Aang.mp4"
                             ),
-
                             Episodio(
                                 2,
                                 "Guerreiros",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Guerreiros.mp4"
                             ),
-
                             Episodio(
                                 3,
                                 "Omashu",
                                 "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Omashu.mp4"
                             ),
-
                             Episodio(
                                 4,
                                 "No Escuro",
                                 "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20No%20escuro.mp4"
                             ),
-
                             Episodio(
                                 5,
                                 "O Mundo Espiritual",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20O%20Mundo%20Espiritual.mp4"
                             ),
-
                             Episodio(
                                 6,
                                 "Máscaras",
                                 "https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%206%20-%20M%C3%A1scaras.mp4"
                             ),
-
                             Episodio(
                                 7,
                                 "O Norte",
                                 "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%207%20-%20O%20Norte.mp4"
                             ),
-
                             Episodio(
                                 8,
                                 "Episódio 8",
@@ -844,178 +959,27 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         )
-
-        // =========================
-        // DORAMAS
-        // =========================
-
-        // Nenhum dorama cadastrado ainda.
-
-        // =========================
-        // ANIMES
-        // =========================
-
-        // Nenhum anime cadastrado ainda.
     }
 
     // ===============================
-    // FUNDO DOS CARDS
-    // ===============================
-
-    private fun criarFundoCard(
-        foco: Boolean
-    ): GradientDrawable {
-
-        val fundo =
-            GradientDrawable()
-
-        fundo.setColor(
-            Color.argb(
-                if (foco) 230 else 190,
-                20,
-                20,
-                20
-            )
-        )
-
-        fundo.cornerRadius =
-            dp(8).toFloat()
-
-        return fundo
-    }
-
-    // ===============================
-    // BORDA VERMELHA
-    // ===============================
-
-    private fun criarBordaVermelha(): GradientDrawable {
-
-        val borda =
-            GradientDrawable()
-
-        borda.setColor(
-            Color.TRANSPARENT
-        )
-
-        borda.cornerRadius =
-            dp(8).toFloat()
-
-        borda.setStroke(
-            dp(4),
-            Color.RED
-        )
-
-        return borda
-    }
-
-    // ===============================
-    // CARREGAR IMAGEM
-    // ===============================
-
-    private fun carregarImagem(
-        url: String,
-        imagem: ImageView
-    ) {
-
-        if (url.isEmpty()) {
-            return
-        }
-
-        val cache =
-            cacheCapas[url]
-
-        if (cache != null) {
-
-            imagem.setImageBitmap(
-                cache
-            )
-
-            return
-        }
-
-        thread {
-
-            try {
-
-                val conexao =
-                    URL(url)
-                        .openConnection()
-                        as HttpURLConnection
-
-                conexao.connect()
-
-                val bitmap =
-                    BitmapFactory.decodeStream(
-                        conexao.inputStream
-                    )
-
-                conexao.disconnect()
-
-                if (bitmap != null) {
-
-                    cacheCapas[url] =
-                        bitmap
-
-                    runOnUiThread {
-
-                        imagem.setImageBitmap(
-                            bitmap
-                        )
-                    }
-                }
-
-            } catch (_: Exception) {
-            }
-        }
-    }    // ===============================
-    // MOSTRAR FILMES
+    // LISTA DE FILMES
     // ===============================
 
     private fun mostrarListaCards(
         lista: List<Filme>
     ) {
 
-        historicoConteudo.clear()
+        conteudo.removeAllViews()
 
         cardsAtuais.clear()
 
         indiceCardAtual = 0
 
-        conteudo.removeAllViews()
+        var linha: LinearLayout? = null
 
-        if (lista.isEmpty()) {
-
-            val vazio =
-                TextView(this)
-
-            vazio.text =
-                "Nenhum filme encontrado"
-
-            vazio.textSize =
-                22f
-
-            vazio.setTextColor(
-                Color.WHITE
-            )
-
-            vazio.gravity =
-                Gravity.CENTER
-
-            conteudo.addView(
-                vazio,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    dp(150)
-                )
-            )
-
-            return
-        }
-
-        var linha:
-            LinearLayout? = null
-
-        lista.forEachIndexed { indice, filme ->
+        lista.forEachIndexed {
+                indice,
+                filme ->
 
             if (indice % 5 == 0) {
 
@@ -1026,13 +990,13 @@ class MainActivity : AppCompatActivity() {
                     LinearLayout.HORIZONTAL
 
                 linha!!.gravity =
-                    Gravity.CENTER_VERTICAL
+                    Gravity.TOP
 
                 conteudo.addView(
                     linha,
                     LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(265)
+                        dp(350)
                     )
                 )
             }
@@ -1040,38 +1004,38 @@ class MainActivity : AppCompatActivity() {
             val card =
                 criarCard(filme)
 
+            cardsAtuais.add(
+                card
+            )
+
             linha!!.addView(
                 card,
                 LinearLayout.LayoutParams(
-                    dp(245),
-                    dp(245)
+                    0,
+                    dp(335),
+                    1f
                 ).apply {
 
                     leftMargin =
-                        dp(5)
+                        dp(4)
 
                     rightMargin =
-                        dp(5)
+                        dp(4)
+
+                    bottomMargin =
+                        dp(12)
                 }
             )
-
-            cardsAtuais.add(card)
         }
 
         if (cardsAtuais.isNotEmpty()) {
 
             cardsAtuais[0].requestFocus()
-
-            indiceCardAtual = 0
-
-            rolarParaCard(
-                cardsAtuais[0]
-            )
         }
     }
 
     // ===============================
-    // CRIAR CARD DE FILME
+    // CARD DE FILME
     // ===============================
 
     private fun criarCard(
@@ -1085,14 +1049,17 @@ class MainActivity : AppCompatActivity() {
         card.isFocusableInTouchMode = true
         card.isClickable = true
 
-        card.background =
-            criarFundoCard(false)
+        // CAPA
 
         val imagem =
             ImageView(this)
 
         imagem.scaleType =
-            ImageView.ScaleType.CENTER_CROP
+            ImageView.ScaleType.FIT_CENTER
+
+        imagem.setBackgroundColor(
+            Color.TRANSPARENT
+        )
 
         carregarImagem(
             filme.capa,
@@ -1103,77 +1070,124 @@ class MainActivity : AppCompatActivity() {
             imagem,
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
+                dp(275)
             )
         )
 
-        val sombra =
+        // INFORMAÇÕES
+
+        val informacoes =
+            LinearLayout(this)
+
+        informacoes.orientation =
+            LinearLayout.VERTICAL
+
+        informacoes.setPadding(
+            dp(8),
+            dp(3),
+            dp(8),
+            dp(3)
+        )
+
+        informacoes.setBackgroundColor(
+            Color.argb(
+                235,
+                10,
+                10,
+                10
+            )
+        )
+
+        card.addView(
+            informacoes,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(60),
+                Gravity.BOTTOM
+            )
+        )
+
+        val titulo =
             TextView(this)
 
-        sombra.setBackgroundColor(
-            Color.argb(
-                210,
-                0,
-                0,
-                0
-            )
-        )
-
-        sombra.gravity =
-            Gravity.CENTER_VERTICAL
-
-        sombra.setPadding(
-            dp(10),
-            dp(5),
-            dp(10),
-            dp(5)
-        )
-
-        sombra.text =
+        titulo.text =
             filme.titulo
 
-        sombra.textSize =
-            15f
+        titulo.textSize =
+            14f
 
-        sombra.setTextColor(
+        titulo.setTextColor(
             Color.WHITE
         )
 
-        sombra.setTypeface(
+        titulo.setTypeface(
             null,
             Typeface.BOLD
         )
 
-        val params =
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(55),
-                Gravity.BOTTOM
-            )
+        titulo.maxLines =
+            1
 
-        card.addView(
-            sombra,
-            params
+        titulo.ellipsize =
+            TextUtils.TruncateAt.END
+
+        informacoes.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(28)
+            )
         )
 
-        card.setOnFocusChangeListener { _, foco ->
+        val detalhes =
+            TextView(this)
 
-            if (foco) {
+        detalhes.text =
+            "${filme.ano} • ${filme.categoria}"
 
-                card.background =
-                    criarFundoCard(true)
+        detalhes.textSize =
+            12f
 
-                card.foreground =
-                    criarBordaVermelha()
+        detalhes.setTextColor(
+            Color.LTGRAY
+        )
 
-            } else {
+        informacoes.addView(
+            detalhes,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(22)
+            )
+        )
 
-                card.background =
-                    criarFundoCard(false)
+        // BORDA
 
-                card.foreground =
-                    null
-            }
+        val borda =
+            View(this)
+
+        borda.background =
+            criarBordaVermelha()
+
+        borda.visibility =
+            View.GONE
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        card.setOnFocusChangeListener {
+                _,
+                foco ->
+
+            borda.visibility =
+                if (foco)
+                    View.VISIBLE
+                else
+                    View.GONE
         }
 
         card.setOnClickListener {
@@ -1182,6 +1196,594 @@ class MainActivity : AppCompatActivity() {
                 filme.titulo,
                 filme.video,
                 filme.capa
+            )
+        }
+
+        return card
+    }    // ===============================
+    // LISTA DE SÉRIES
+    // ===============================
+
+    private fun mostrarListaSeries(
+        lista: List<Serie>
+    ) {
+
+        conteudo.removeAllViews()
+
+        cardsAtuais.clear()
+
+        indiceCardAtual = 0
+
+        var linha: LinearLayout? = null
+
+        lista.forEachIndexed {
+                indice,
+                serie ->
+
+            if (indice % 5 == 0) {
+
+                linha =
+                    LinearLayout(this)
+
+                linha!!.orientation =
+                    LinearLayout.HORIZONTAL
+
+                conteudo.addView(
+                    linha,
+                    LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        dp(300)
+                    )
+                )
+            }
+
+            val card =
+                criarCardSerie(serie)
+
+            cardsAtuais.add(
+                card
+            )
+
+            linha!!.addView(
+                card,
+                LinearLayout.LayoutParams(
+                    0,
+                    dp(285),
+                    1f
+                ).apply {
+
+                    leftMargin = dp(4)
+                    rightMargin = dp(4)
+                    bottomMargin = dp(10)
+                }
+            )
+        }
+
+        if (cardsAtuais.isNotEmpty()) {
+            cardsAtuais[0].requestFocus()
+        }
+    }
+
+    // ===============================
+    // CARD DE SÉRIE
+    // ===============================
+
+    private fun criarCardSerie(
+        serie: Serie
+    ): FrameLayout {
+
+        val card =
+            FrameLayout(this)
+
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+        card.isClickable = true
+
+        val imagem =
+            ImageView(this)
+
+        imagem.scaleType =
+            ImageView.ScaleType.FIT_CENTER
+
+        carregarImagem(
+            serie.capa,
+            imagem
+        )
+
+        card.addView(
+            imagem,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(225)
+            )
+        )
+
+        val info =
+            LinearLayout(this)
+
+        info.orientation =
+            LinearLayout.VERTICAL
+
+        info.setPadding(
+            dp(8),
+            dp(4),
+            dp(8),
+            dp(4)
+        )
+
+        info.setBackgroundColor(
+            Color.argb(
+                235,
+                10,
+                10,
+                10
+            )
+        )
+
+        card.addView(
+            info,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(60),
+                Gravity.BOTTOM
+            )
+        )
+
+        val titulo =
+            TextView(this)
+
+        titulo.text =
+            serie.titulo
+
+        titulo.textSize =
+            14f
+
+        titulo.setTextColor(
+            Color.WHITE
+        )
+
+        titulo.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
+        titulo.maxLines = 1
+
+        titulo.ellipsize =
+            TextUtils.TruncateAt.END
+
+        info.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(28)
+            )
+        )
+
+        val categoria =
+            TextView(this)
+
+        categoria.text =
+            serie.categoria
+
+        categoria.textSize =
+            12f
+
+        categoria.setTextColor(
+            Color.LTGRAY
+        )
+
+        info.addView(
+            categoria
+        )
+
+        val borda =
+            View(this)
+
+        borda.background =
+            criarBordaVermelha()
+
+        borda.visibility =
+            View.GONE
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        card.setOnFocusChangeListener {
+                _,
+                foco ->
+
+            borda.visibility =
+                if (foco)
+                    View.VISIBLE
+                else
+                    View.GONE
+        }
+
+        card.setOnClickListener {
+            mostrarTemporadas(serie)
+        }
+
+        return card
+    }
+
+    // ===============================
+    // TEMPORADAS
+    // ===============================
+
+    private fun mostrarTemporadas(
+        serie: Serie
+    ) {
+
+        historicoConteudo.add {
+            mostrarListaSeries(series)
+        }
+
+        conteudo.removeAllViews()
+
+        cardsAtuais.clear()
+
+        indiceCardAtual = 0
+
+        val titulo =
+            TextView(this)
+
+        titulo.text =
+            "${serie.titulo} • TEMPORADAS"
+
+        titulo.textSize =
+            24f
+
+        titulo.setTextColor(
+            Color.WHITE
+        )
+
+        titulo.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
+        titulo.setPadding(
+            dp(10),
+            dp(15),
+            dp(10),
+            dp(15)
+        )
+
+        conteudo.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(65)
+            )
+        )
+
+        var linha: LinearLayout? = null
+
+        serie.temporadas.forEachIndexed {
+                indice,
+                temporada ->
+
+            if (indice % 5 == 0) {
+
+                linha =
+                    LinearLayout(this)
+
+                linha!!.orientation =
+                    LinearLayout.HORIZONTAL
+
+                conteudo.addView(
+                    linha,
+                    LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        dp(170)
+                    )
+                )
+            }
+
+            val card =
+                criarCardTemporada(
+                    serie,
+                    temporada
+                )
+
+            cardsAtuais.add(
+                card
+            )
+
+            linha!!.addView(
+                card,
+                LinearLayout.LayoutParams(
+                    0,
+                    dp(150),
+                    1f
+                ).apply {
+
+                    leftMargin = dp(5)
+                    rightMargin = dp(5)
+                }
+            )
+        }
+
+        if (cardsAtuais.isNotEmpty()) {
+            cardsAtuais[0].requestFocus()
+        }
+    }
+
+    private fun criarCardTemporada(
+        serie: Serie,
+        temporada: Temporada
+    ): FrameLayout {
+
+        val card =
+            FrameLayout(this)
+
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+
+        val texto =
+            TextView(this)
+
+        texto.text =
+            "TEMPORADA ${temporada.numero}\n\n${temporada.episodios.size} episódios"
+
+        texto.textSize =
+            17f
+
+        texto.gravity =
+            Gravity.CENTER
+
+        texto.setTextColor(
+            Color.WHITE
+        )
+
+        texto.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
+        texto.background =
+            criarFundoCard(false)
+
+        card.addView(
+            texto,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        val borda =
+            View(this)
+
+        borda.background =
+            criarBordaVermelha()
+
+        borda.visibility =
+            View.GONE
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        card.setOnFocusChangeListener {
+                _,
+                foco ->
+
+            borda.visibility =
+                if (foco)
+                    View.VISIBLE
+                else
+                    View.GONE
+        }
+
+        card.setOnClickListener {
+            mostrarEpisodios(
+                serie,
+                temporada
+            )
+        }
+
+        return card
+    }
+
+    // ===============================
+    // EPISÓDIOS
+    // ===============================
+
+    private fun mostrarEpisodios(
+        serie: Serie,
+        temporada: Temporada
+    ) {
+
+        historicoConteudo.add {
+            mostrarTemporadas(serie)
+        }
+
+        conteudo.removeAllViews()
+
+        cardsAtuais.clear()
+
+        indiceCardAtual = 0
+
+        val titulo =
+            TextView(this)
+
+        titulo.text =
+            "${serie.titulo} • TEMPORADA ${temporada.numero}"
+
+        titulo.textSize =
+            22f
+
+        titulo.setTextColor(
+            Color.WHITE
+        )
+
+        titulo.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
+        titulo.setPadding(
+            dp(10),
+            dp(15),
+            dp(10),
+            dp(15)
+        )
+
+        conteudo.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(65)
+            )
+        )
+
+        var linha: LinearLayout? = null
+
+        temporada.episodios.forEachIndexed {
+                indice,
+                episodio ->
+
+            if (indice % 5 == 0) {
+
+                linha =
+                    LinearLayout(this)
+
+                linha!!.orientation =
+                    LinearLayout.HORIZONTAL
+
+                conteudo.addView(
+                    linha,
+                    LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        dp(170)
+                    )
+                )
+            }
+
+            val card =
+                criarCardEpisodio(
+                    serie,
+                    episodio
+                )
+
+            cardsAtuais.add(
+                card
+            )
+
+            linha!!.addView(
+                card,
+                LinearLayout.LayoutParams(
+                    0,
+                    dp(150),
+                    1f
+                ).apply {
+
+                    leftMargin = dp(5)
+                    rightMargin = dp(5)
+                }
+            )
+        }
+
+        if (cardsAtuais.isNotEmpty()) {
+            cardsAtuais[0].requestFocus()
+        }
+    }
+
+    private fun criarCardEpisodio(
+        serie: Serie,
+        episodio: Episodio
+    ): FrameLayout {
+
+        val card =
+            FrameLayout(this)
+
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+
+        val texto =
+            TextView(this)
+
+        texto.text =
+            "EP ${episodio.numero}\n${episodio.titulo}"
+
+        texto.textSize =
+            15f
+
+        texto.gravity =
+            Gravity.CENTER
+
+        texto.setTextColor(
+            Color.WHITE
+        )
+
+        texto.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
+        texto.setPadding(
+            dp(8),
+            dp(8),
+            dp(8),
+            dp(8)
+        )
+
+        texto.background =
+            criarFundoCard(false)
+
+        card.addView(
+            texto,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        val borda =
+            View(this)
+
+        borda.background =
+            criarBordaVermelha()
+
+        borda.visibility =
+            View.GONE
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        card.setOnFocusChangeListener {
+                _,
+                foco ->
+
+            borda.visibility =
+                if (foco)
+                    View.VISIBLE
+                else
+                    View.GONE
+        }
+
+        card.setOnClickListener {
+
+            abrirVideo(
+                "${serie.titulo} - EP ${episodio.numero}",
+                episodio.video,
+                serie.capa
             )
         }
 
@@ -1198,11 +1800,11 @@ class MainActivity : AppCompatActivity() {
         capa: String
     ) {
 
-        if (video.isEmpty()) {
+        if (video.isBlank()) {
 
             Toast.makeText(
                 this,
-                "Vídeo ainda não disponível",
+                "Vídeo indisponível",
                 Toast.LENGTH_SHORT
             ).show()
 
@@ -1231,599 +1833,8 @@ class MainActivity : AppCompatActivity() {
         )
 
         startActivity(intent)
-    }
-
-    // ===============================
-    // MOSTRAR SÉRIES
-    // ===============================
-
-    private fun mostrarListaSeries(
-        lista: List<Serie>
-    ) {
-
-        historicoConteudo.clear()
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        conteudo.removeAllViews()
-
-        if (lista.isEmpty()) {
-
-            val vazio =
-                TextView(this)
-
-            vazio.text =
-                "Nenhuma série encontrada"
-
-            vazio.textSize =
-                22f
-
-            vazio.setTextColor(
-                Color.WHITE
-            )
-
-            vazio.gravity =
-                Gravity.CENTER
-
-            conteudo.addView(
-                vazio,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    dp(150)
-                )
-            )
-
-            return
-        }
-
-        var linha:
-            LinearLayout? = null
-
-        lista.forEachIndexed { indice, serie ->
-
-            if (indice % 5 == 0) {
-
-                linha =
-                    LinearLayout(this)
-
-                linha!!.orientation =
-                    LinearLayout.HORIZONTAL
-
-                linha!!.gravity =
-                    Gravity.CENTER_VERTICAL
-
-                conteudo.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(265)
-                    )
-                )
-            }
-
-            val card =
-                criarCardSerie(
-                    serie
-                )
-
-            linha!!.addView(
-                card,
-                LinearLayout.LayoutParams(
-                    dp(245),
-                    dp(245)
-                ).apply {
-
-                    leftMargin =
-                        dp(5)
-
-                    rightMargin =
-                        dp(5)
-                }
-            )
-
-            cardsAtuais.add(card)
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-
-            cardsAtuais[0].requestFocus()
-
-            indiceCardAtual = 0
-
-            rolarParaCard(
-                cardsAtuais[0]
-            )
-        }
-    }
-
-    // ===============================
-    // CARD DE SÉRIE
-    // ===============================
-
-    private fun criarCardSerie(
-        serie: Serie
-    ): FrameLayout {
-
-        val card =
-            FrameLayout(this)
-
-        card.isFocusable = true
-        card.isFocusableInTouchMode = true
-        card.isClickable = true
-
-        card.background =
-            criarFundoCard(false)
-
-        val imagem =
-            ImageView(this)
-
-        imagem.scaleType =
-            ImageView.ScaleType.CENTER_CROP
-
-        carregarImagem(
-            serie.capa,
-            imagem
-        )
-
-        card.addView(
-            imagem,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            serie.titulo
-
-        titulo.textSize =
-            15f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.gravity =
-            Gravity.CENTER_VERTICAL
-
-        titulo.setPadding(
-            dp(10),
-            dp(5),
-            dp(10),
-            dp(5)
-        )
-
-        titulo.setBackgroundColor(
-            Color.argb(
-                210,
-                0,
-                0,
-                0
-            )
-        )
-
-        card.addView(
-            titulo,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(55),
-                Gravity.BOTTOM
-            )
-        )
-
-        card.setOnFocusChangeListener { _, foco ->
-
-            if (foco) {
-
-                card.background =
-                    criarFundoCard(true)
-
-                card.foreground =
-                    criarBordaVermelha()
-
-            } else {
-
-                card.background =
-                    criarFundoCard(false)
-
-                card.foreground =
-                    null
-            }
-        }
-
-        card.setOnClickListener {
-
-            mostrarTemporadas(
-                serie
-            )
-        }
-
-        return card
-    }
-
-    // ===============================
-    // TEMPORADAS
-    // ===============================
-
-    private fun mostrarTemporadas(
-        serie: Serie
-    ) {
-
-        historicoConteudo.add {
-            mostrarListaSeries(
-                series
-            )
-        }
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        conteudo.removeAllViews()
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            "${serie.titulo}  •  TEMPORADAS"
-
-        titulo.textSize =
-            24f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.setPadding(
-            dp(10),
-            dp(10),
-            dp(10),
-            dp(10)
-        )
-
-        conteudo.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(65)
-            )
-        )
-
-        var linha:
-            LinearLayout? = null
-
-        serie.temporadas.forEachIndexed { indice, temporada ->
-
-            if (indice % 5 == 0) {
-
-                linha =
-                    LinearLayout(this)
-
-                linha!!.orientation =
-                    LinearLayout.HORIZONTAL
-
-                linha!!.gravity =
-                    Gravity.CENTER_VERTICAL
-
-                conteudo.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(170)
-                    )
-                )
-            }
-
-            val card =
-                criarCardTemporada(
-                    serie,
-                    temporada
-                )
-
-            linha!!.addView(
-                card,
-                LinearLayout.LayoutParams(
-                    dp(140),
-                    dp(140)
-                ).apply {
-
-                    leftMargin =
-                        dp(5)
-
-                    rightMargin =
-                        dp(5)
-                }
-            )
-
-            cardsAtuais.add(card)
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-
-            cardsAtuais[0].requestFocus()
-
-            indiceCardAtual = 0
-
-            rolarParaCard(
-                cardsAtuais[0]
-            )
-        }
-    }
-
-    // ===============================
-    // CARD DE TEMPORADA
-    // ===============================
-
-    private fun criarCardTemporada(
-        serie: Serie,
-        temporada: Temporada
-    ): TextView {
-
-        val card =
-            TextView(this)
-
-        card.isFocusable = true
-        card.isFocusableInTouchMode = true
-        card.isClickable = true
-
-        card.gravity =
-            Gravity.CENTER
-
-        card.text =
-            "TEMPORADA ${temporada.numero}\n\n${temporada.episodios.size} episódios"
-
-        card.textSize =
-            18f
-
-        card.setTextColor(
-            Color.WHITE
-        )
-
-        card.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        card.background =
-            criarFundoCard(false)
-
-        card.setOnFocusChangeListener { _, foco ->
-
-            if (foco) {
-
-                card.background =
-                    criarFundoCard(true)
-
-                card.foreground =
-                    criarBordaVermelha()
-
-            } else {
-
-                card.background =
-                    criarFundoCard(false)
-
-                card.foreground =
-                    null
-            }
-        }
-
-        card.setOnClickListener {
-
-            mostrarEpisodios(
-                serie,
-                temporada
-            )
-        }
-
-        return card
-    }
-
-    // ===============================
-    // EPISÓDIOS
-    // ===============================
-
-    private fun mostrarEpisodios(
-        serie: Serie,
-        temporada: Temporada
-    ) {
-
-        historicoConteudo.add {
-            mostrarTemporadas(
-                serie
-            )
-        }
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        conteudo.removeAllViews()
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            "${serie.titulo}  •  TEMPORADA ${temporada.numero}"
-
-        titulo.textSize =
-            24f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.setPadding(
-            dp(10),
-            dp(10),
-            dp(10),
-            dp(10)
-        )
-
-        conteudo.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(65)
-            )
-        )
-
-        var linha:
-            LinearLayout? = null
-
-        temporada.episodios.forEachIndexed { indice, episodio ->
-
-            if (indice % 5 == 0) {
-
-                linha =
-                    LinearLayout(this)
-
-                linha!!.orientation =
-                    LinearLayout.HORIZONTAL
-
-                linha!!.gravity =
-                    Gravity.CENTER_VERTICAL
-
-                conteudo.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(165)
-                    )
-                )
-            }
-
-            val card =
-                criarCardEpisodio(
-                    serie,
-                    episodio
-                )
-
-            linha!!.addView(
-                card,
-                LinearLayout.LayoutParams(
-                    dp(135),
-                    dp(135)
-                ).apply {
-
-                    leftMargin =
-                        dp(5)
-
-                    rightMargin =
-                        dp(5)
-                }
-            )
-
-            cardsAtuais.add(card)
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-
-            cardsAtuais[0].requestFocus()
-
-            indiceCardAtual = 0
-
-            rolarParaCard(
-                cardsAtuais[0]
-            )
-        }
-    }
-
-    // ===============================
-    // CARD DE EPISÓDIO
-    // ===============================
-
-    private fun criarCardEpisodio(
-        serie: Serie,
-        episodio: Episodio
-    ): TextView {
-
-        val card =
-            TextView(this)
-
-        card.isFocusable = true
-        card.isFocusableInTouchMode = true
-        card.isClickable = true
-
-        card.gravity =
-            Gravity.CENTER
-
-        card.text =
-            "EP ${episodio.numero}\n\n${episodio.titulo}"
-
-        card.textSize =
-            15f
-
-        card.setTextColor(
-            Color.WHITE
-        )
-
-        card.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        card.setPadding(
-            dp(8),
-            dp(8),
-            dp(8),
-            dp(8)
-        )
-
-        card.background =
-            criarFundoCard(false)
-
-        card.setOnFocusChangeListener { _, foco ->
-
-            if (foco) {
-
-                card.background =
-                    criarFundoCard(true)
-
-                card.foreground =
-                    criarBordaVermelha()
-
-            } else {
-
-                card.background =
-                    criarFundoCard(false)
-
-                card.foreground =
-                    null
-            }
-        }
-
-        card.setOnClickListener {
-
-            abrirVideo(
-                "${serie.titulo} - EP ${episodio.numero} - ${episodio.titulo}",
-                episodio.video,
-                serie.capa
-            )
-        }
-
-        return card
     }    // ===============================
-    // ABRIR MENU
+    // MENU
     // ===============================
 
     private fun abrirMenu() {
@@ -1854,23 +1865,27 @@ class MainActivity : AppCompatActivity() {
         menuLateral.setPadding(
             dp(15),
             dp(10),
-            dp(10),
+            dp(15),
             dp(10)
         )
 
-        val parametros =
+        val params =
             FrameLayout.LayoutParams(
-                dp(340),
+                dp(360),
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
 
-        parametros.gravity =
+        params.gravity =
             Gravity.START
 
         raiz.addView(
             menuLateral,
-            parametros
+            params
         )
+
+        // ===============================
+        // CABEÇALHO
+        // ===============================
 
         val cabecalho =
             LinearLayout(this)
@@ -1880,14 +1895,6 @@ class MainActivity : AppCompatActivity() {
 
         cabecalho.gravity =
             Gravity.CENTER_VERTICAL
-
-        menuLateral.addView(
-            cabecalho,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(65)
-            )
-        )
 
         val titulo =
             TextView(this)
@@ -1907,14 +1914,11 @@ class MainActivity : AppCompatActivity() {
             Typeface.BOLD
         )
 
-        titulo.gravity =
-            Gravity.CENTER_VERTICAL
-
         cabecalho.addView(
             titulo,
             LinearLayout.LayoutParams(
                 0,
-                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(55),
                 1f
             )
         )
@@ -1926,14 +1930,14 @@ class MainActivity : AppCompatActivity() {
             "✕"
 
         botaoFecharMenu.textSize =
-            28f
+            25f
+
+        botaoFecharMenu.gravity =
+            Gravity.CENTER
 
         botaoFecharMenu.setTextColor(
             Color.WHITE
         )
-
-        botaoFecharMenu.gravity =
-            Gravity.CENTER
 
         botaoFecharMenu.isFocusable =
             true
@@ -1941,34 +1945,15 @@ class MainActivity : AppCompatActivity() {
         botaoFecharMenu.isFocusableInTouchMode =
             true
 
-        botaoFecharMenu.isClickable =
-            true
+        botaoFecharMenu.setOnFocusChangeListener {
+                _,
+                foco ->
 
-        botaoFecharMenu.background =
-            criarFundoCard(false)
-
-        botaoFecharMenu.setOnFocusChangeListener { _, foco ->
-
-            if (foco) {
-
-                botaoFecharMenu.background =
-                    criarFundoCard(true)
-
-                botaoFecharMenu.foreground =
-                    criarBordaVermelha()
-
-            } else {
-
-                botaoFecharMenu.background =
-                    criarFundoCard(false)
-
-                botaoFecharMenu.foreground =
-                    null
-            }
+            botaoFecharMenu.background =
+                criarFundoCard(foco)
         }
 
         botaoFecharMenu.setOnClickListener {
-
             fecharMenu()
         }
 
@@ -1980,13 +1965,18 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+        menuLateral.addView(
+            cabecalho
+        )
+
+        // ===============================
+        // SCROLL
+        // ===============================
+
         menuScroll =
             ScrollView(this)
 
         menuScroll.isFocusable =
-            false
-
-        menuScroll.isFocusableInTouchMode =
             false
 
         menuConteudo =
@@ -2009,16 +1999,15 @@ class MainActivity : AppCompatActivity() {
         )
 
         // ===============================
-        // MENU PRINCIPAL
+        // ITENS
         // ===============================
 
         adicionarItemMenu(
             "▶  Continuar assistindo"
         ) {
-
             Toast.makeText(
                 this,
-                "Nenhum conteúdo para continuar",
+                "Continue assistindo",
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -2026,15 +2015,15 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "★  Favoritos"
         ) {
-
             mostrarFavoritos()
+            fecharMenu()
         }
 
         adicionarItemMenu(
             "⌕  Pesquisa"
         ) {
-
             abrirPesquisa()
+            fecharMenu()
         }
 
         adicionarSeparador(
@@ -2044,12 +2033,8 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "🎬  Todos os filmes (${filmes.size})"
         ) {
-
+            mostrarListaCards(filmes)
             fecharMenu()
-
-            mostrarListaCards(
-                filmes
-            )
         }
 
         val categoriasFilmes =
@@ -2065,21 +2050,11 @@ class MainActivity : AppCompatActivity() {
 
         categoriasFilmes.forEach { categoria ->
 
-            val quantidade =
-                filmes.count {
-                    it.categoria.equals(
-                        categoria,
-                        ignoreCase = true
-                    )
-                }
-
             adicionarItemMenu(
-                "$categoria ($quantidade)"
+                "   $categoria"
             ) {
 
-                fecharMenu()
-
-                val filtrados =
+                val lista =
                     filmes.filter {
                         it.categoria.equals(
                             categoria,
@@ -2088,14 +2063,12 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 mostrarListaCards(
-                    filtrados
+                    lista
                 )
+
+                fecharMenu()
             }
         }
-
-        // ===============================
-        // SÉRIES
-        // ===============================
 
         adicionarSeparador(
             "SÉRIES"
@@ -2104,12 +2077,8 @@ class MainActivity : AppCompatActivity() {
         adicionarItemMenu(
             "📺  Todas as séries (${series.size})"
         ) {
-
+            mostrarListaSeries(series)
             fecharMenu()
-
-            mostrarListaSeries(
-                series
-            )
         }
 
         val categoriasSeries =
@@ -2123,21 +2092,11 @@ class MainActivity : AppCompatActivity() {
 
         categoriasSeries.forEach { categoria ->
 
-            val quantidade =
-                series.count {
-                    it.categoria.equals(
-                        categoria,
-                        ignoreCase = true
-                    )
-                }
-
             adicionarItemMenu(
-                "$categoria ($quantidade)"
+                "   $categoria"
             ) {
 
-                fecharMenu()
-
-                val filtradas =
+                val lista =
                     series.filter {
                         it.categoria.equals(
                             categoria,
@@ -2146,14 +2105,12 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 mostrarListaSeries(
-                    filtradas
+                    lista
                 )
+
+                fecharMenu()
             }
         }
-
-        // ===============================
-        // DORAMAS
-        // ===============================
 
         adicionarSeparador(
             "DORAMAS"
@@ -2163,54 +2120,36 @@ class MainActivity : AppCompatActivity() {
             "🎭  Todos os doramas (${doramas.size})"
         ) {
 
-            fecharMenu()
-
             mostrarListaSeries(
                 doramas
             )
+
+            fecharMenu()
         }
 
-        val categoriasDoramas =
-            listOf(
-                "Ação",
-                "Romance",
-                "Drama",
-                "Comédia"
-            )
-
-        categoriasDoramas.forEach { categoria ->
-
-            val quantidade =
-                doramas.count {
-                    it.categoria.equals(
-                        categoria,
-                        ignoreCase = true
-                    )
-                }
+        listOf(
+            "Ação",
+            "Romance",
+            "Drama",
+            "Comédia"
+        ).forEach { categoria ->
 
             adicionarItemMenu(
-                "$categoria ($quantidade)"
+                "   $categoria"
             ) {
 
-                fecharMenu()
-
-                val filtrados =
+                mostrarListaSeries(
                     doramas.filter {
                         it.categoria.equals(
                             categoria,
-                            ignoreCase = true
+                            true
                         )
                     }
-
-                mostrarListaSeries(
-                    filtrados
                 )
+
+                fecharMenu()
             }
         }
-
-        // ===============================
-        // ANIME
-        // ===============================
 
         adicionarSeparador(
             "ANIME"
@@ -2220,63 +2159,38 @@ class MainActivity : AppCompatActivity() {
             "⚡  Todos os animes (${animes.size})"
         ) {
 
-            fecharMenu()
-
             mostrarListaSeries(
                 animes
             )
+
+            fecharMenu()
         }
 
-        val categoriasAnime =
-            listOf(
-                "Ação",
-                "Aventura",
-                "Comédia",
-                "Fantasia"
-            )
-
-        categoriasAnime.forEach { categoria ->
-
-            val quantidade =
-                animes.count {
-                    it.categoria.equals(
-                        categoria,
-                        ignoreCase = true
-                    )
-                }
+        listOf(
+            "Ação",
+            "Aventura",
+            "Comédia",
+            "Fantasia"
+        ).forEach { categoria ->
 
             adicionarItemMenu(
-                "$categoria ($quantidade)"
+                "   $categoria"
             ) {
 
-                fecharMenu()
-
-                val filtrados =
+                mostrarListaSeries(
                     animes.filter {
                         it.categoria.equals(
                             categoria,
-                            ignoreCase = true
+                            true
                         )
                     }
-
-                mostrarListaSeries(
-                    filtrados
                 )
+
+                fecharMenu()
             }
         }
 
-        if (itensMenuFoco.isNotEmpty()) {
-
-            itensMenuFoco[0].requestFocus()
-
-            ajustarScrollMenu(
-                itensMenuFoco[0]
-            )
-
-        } else {
-
-            botaoFecharMenu.requestFocus()
-        }
+        botaoFecharMenu.requestFocus()
     }
 
     // ===============================
@@ -2287,39 +2201,39 @@ class MainActivity : AppCompatActivity() {
         texto: String
     ) {
 
-        val separador =
+        val item =
             TextView(this)
 
-        separador.text =
+        item.text =
             texto
 
-        separador.textSize =
+        item.textSize =
             14f
 
-        separador.setTextColor(
-            Color.LTGRAY
+        item.setTextColor(
+            Color.RED
         )
 
-        separador.setTypeface(
+        item.setTypeface(
             null,
             Typeface.BOLD
         )
 
-        separador.gravity =
+        item.gravity =
             Gravity.CENTER_VERTICAL
 
-        separador.setPadding(
-            dp(12),
-            dp(12),
-            dp(5),
-            dp(5)
+        item.setPadding(
+            dp(10),
+            dp(8),
+            dp(10),
+            dp(8)
         )
 
         menuConteudo.addView(
-            separador,
+            item,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(45)
+                dp(40)
             )
         )
     }
@@ -2340,7 +2254,7 @@ class MainActivity : AppCompatActivity() {
             texto
 
         item.textSize =
-            17f
+            16f
 
         item.setTextColor(
             Color.WHITE
@@ -2349,10 +2263,15 @@ class MainActivity : AppCompatActivity() {
         item.gravity =
             Gravity.CENTER_VERTICAL
 
+        item.setTypeface(
+            null,
+            Typeface.BOLD
+        )
+
         item.setPadding(
-            dp(15),
+            dp(12),
             0,
-            dp(10),
+            dp(12),
             0
         )
 
@@ -2368,45 +2287,30 @@ class MainActivity : AppCompatActivity() {
         item.background =
             criarFundoCard(false)
 
-        item.setOnFocusChangeListener { _, foco ->
+        item.setOnFocusChangeListener {
+                _,
+                foco ->
 
-            if (foco) {
-
-                item.background =
-                    criarFundoCard(true)
-
-                item.foreground =
-                    criarBordaVermelha()
-
-            } else {
-
-                item.background =
-                    criarFundoCard(false)
-
-                item.foreground =
-                    null
-            }
+            item.background =
+                criarFundoCard(
+                    foco
+                )
         }
 
         item.setOnClickListener {
-
             acao()
         }
+
+        itensMenuFoco.add(
+            item
+        )
 
         menuConteudo.addView(
             item,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(50)
-            ).apply {
-
-                bottomMargin =
-                    dp(3)
-            }
-        )
-
-        itensMenuFoco.add(
-            item
+            )
         )
     }
 
@@ -2422,85 +2326,32 @@ class MainActivity : AppCompatActivity() {
 
         menuAberto = false
 
-        itensMenuFoco.clear()
-
         if (::menuLateral.isInitialized) {
-
             raiz.removeView(
                 menuLateral
             )
         }
 
-        botaoMenu.requestFocus()
+        itensMenuFoco.clear()
+
+        if (cardsAtuais.isNotEmpty()) {
+
+            val indice =
+                indiceCardAtual.coerceIn(
+                    0,
+                    cardsAtuais.lastIndex
+                )
+
+            cardsAtuais[indice]
+                .requestFocus()
+
+        } else {
+
+            botaoMenu.requestFocus()
+        }
     }
 
     // ===============================
-    // MOVER MENU
-    // ===============================
-
-    private fun moverMenu(
-        deslocamento: Int
-    ) {
-
-        if (itensMenuFoco.isEmpty()) {
-            return
-        }
-
-        val atual =
-            itensMenuFoco.indexOfFirst {
-                it.hasFocus()
-            }
-
-        val indiceAtual =
-            if (atual >= 0) {
-                atual
-            } else {
-                0
-            }
-
-        var novoIndice =
-            indiceAtual + deslocamento
-
-        if (novoIndice < 0) {
-            novoIndice = 0
-        }
-
-        if (novoIndice >= itensMenuFoco.size) {
-            novoIndice =
-                itensMenuFoco.size - 1
-        }
-
-        itensMenuFoco[
-            novoIndice
-        ].requestFocus()
-
-        ajustarScrollMenu(
-            itensMenuFoco[
-                novoIndice
-            ]
-        )
-    }
-
-    // ===============================
-    // AJUSTAR SCROLL DO MENU
-    // ===============================
-
-    private fun ajustarScrollMenu(
-        view: View
-    ) {
-
-        if (!::menuScroll.isInitialized) {
-            return
-        }
-
-        menuScroll.post {
-
-            menuScroll.smoothScrollTo(
-                0,
-                view.top - dp(30)
-            )
-        }
-    }    // ===============================
     // MOVER CARD
     // ===============================
 
@@ -2512,35 +2363,35 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        var novoIndice =
-            indiceCardAtual + deslocamento
+        val atual =
+            cardsAtuais.indexOfFirst {
+                it.hasFocus()
+            }
 
-        if (novoIndice < 0) {
-            novoIndice = 0
+        if (atual < 0) {
+            return
         }
 
-        if (novoIndice >= cardsAtuais.size) {
-            novoIndice =
-                cardsAtuais.size - 1
+        val novo =
+            atual + deslocamento
+
+        if (
+            novo < 0 ||
+            novo >= cardsAtuais.size
+        ) {
+            return
         }
 
         indiceCardAtual =
-            novoIndice
+            novo
 
-        cardsAtuais[
-            indiceCardAtual
-        ].requestFocus()
+        cardsAtuais[novo]
+            .requestFocus()
 
         rolarParaCard(
-            cardsAtuais[
-                indiceCardAtual
-            ]
+            cardsAtuais[novo]
         )
     }
-
-    // ===============================
-    // ROLAR ATÉ O CARD
-    // ===============================
 
     private fun rolarParaCard(
         view: View
@@ -2548,25 +2399,19 @@ class MainActivity : AppCompatActivity() {
 
         view.post {
 
-            var pai =
-                view.parent
-
-            while (
-                pai != null &&
-                pai !is ScrollView
-            ) {
-
-                pai =
-                    pai.parent
+            view.parent?.let {
+                (it as? ViewGroup)
             }
 
-            if (pai is ScrollView) {
-
-                pai.smoothScrollTo(
+            view.requestRectangleOnScreen(
+                android.graphics.Rect(
                     0,
-                    view.top - dp(20)
-                )
-            }
+                    0,
+                    view.width,
+                    view.height
+                ),
+                true
+            )
         }
     }
 
@@ -2575,8 +2420,6 @@ class MainActivity : AppCompatActivity() {
     // ===============================
 
     private fun mostrarFavoritos() {
-
-        fecharMenu()
 
         val lista =
             filmes.filter {
@@ -2596,77 +2439,26 @@ class MainActivity : AppCompatActivity() {
 
     private fun abrirPesquisa() {
 
-        fecharMenu()
-
         conteudo.removeAllViews()
 
         cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            "PESQUISAR"
-
-        titulo.textSize =
-            24f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.setPadding(
-            dp(10),
-            dp(10),
-            dp(10),
-            dp(10)
-        )
-
-        conteudo.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(60)
-            )
-        )
 
         val campo =
             EditText(this)
 
         campo.hint =
-            "Digite o nome do filme..."
-
-        campo.setHintTextColor(
-            Color.LTGRAY
-        )
+            "Digite o nome do filme"
 
         campo.setTextColor(
             Color.WHITE
         )
 
+        campo.setHintTextColor(
+            Color.LTGRAY
+        )
+
         campo.textSize =
-            18f
-
-        campo.setSingleLine(
-            true
-        )
-
-        campo.setPadding(
-            dp(15),
-            0,
-            dp(15),
-            0
-        )
-
-        campo.background =
-            criarFundoCard(false)
+            20f
 
         campo.isFocusable =
             true
@@ -2678,107 +2470,24 @@ class MainActivity : AppCompatActivity() {
             campo,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(60)
-            ).apply {
-
-                leftMargin =
-                    dp(10)
-
-                rightMargin =
-                    dp(10)
-
-                bottomMargin =
-                    dp(15)
-            }
-        )
-
-        val botao =
-            TextView(this)
-
-        botao.text =
-            "PESQUISAR"
-
-        botao.textSize =
-            18f
-
-        botao.setTextColor(
-            Color.WHITE
-        )
-
-        botao.gravity =
-            Gravity.CENTER
-
-        botao.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        botao.isFocusable =
-            true
-
-        botao.isFocusableInTouchMode =
-            true
-
-        botao.isClickable =
-            true
-
-        botao.background =
-            criarFundoCard(false)
-
-        botao.setOnFocusChangeListener { _, foco ->
-
-            if (foco) {
-
-                botao.background =
-                    criarFundoCard(true)
-
-                botao.foreground =
-                    criarBordaVermelha()
-
-            } else {
-
-                botao.background =
-                    criarFundoCard(false)
-
-                botao.foreground =
-                    null
-            }
-        }
-
-        botao.setOnClickListener {
-
-            pesquisar(
-                campo.text.toString()
+                dp(65)
             )
-        }
-
-        conteudo.addView(
-            botao,
-            LinearLayout.LayoutParams(
-                dp(220),
-                dp(55)
-            ).apply {
-
-                leftMargin =
-                    dp(10)
-            }
         )
-
-        campo.setOnEditorActionListener { _, _, _ ->
-
-            pesquisar(
-                campo.text.toString()
-            )
-
-            true
-        }
 
         campo.requestFocus()
-    }
 
-    // ===============================
-    // EXECUTAR PESQUISA
-    // ===============================
+        campo.setOnEditorActionListener {
+                _,
+                _,
+                _ ->
+
+            pesquisar(
+                campo.text.toString()
+            )
+
+            true
+        }
+    }
 
     private fun pesquisar(
         texto: String
@@ -2788,43 +2497,25 @@ class MainActivity : AppCompatActivity() {
             texto.trim()
 
         if (busca.isEmpty()) {
-
-            Toast.makeText(
-                this,
-                "Digite algo para pesquisar",
-                Toast.LENGTH_SHORT
-            ).show()
-
+            mostrarListaCards(filmes)
             return
         }
 
-        val resultados =
+        val resultado =
             filmes.filter {
-
                 it.titulo.contains(
                     busca,
                     ignoreCase = true
                 )
             }
 
-        if (resultados.isEmpty()) {
-
-            Toast.makeText(
-                this,
-                "Nenhum resultado encontrado",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
         mostrarListaCards(
-            resultados
+            resultado
         )
     }
 
     // ===============================
-    // CONTROLE D-PAD
+    // CONTROLE REMOTO
     // ===============================
 
     override fun dispatchKeyEvent(
@@ -2840,13 +2531,15 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        // ===============================
+        // ===========================
         // MENU ABERTO
-        // ===============================
+        // ===========================
 
         if (menuAberto) {
 
-            when (event.keyCode) {
+            when (
+                event.keyCode
+            ) {
 
                 KeyEvent.KEYCODE_DPAD_UP -> {
 
@@ -2865,9 +2558,6 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_DPAD_LEFT,
                 KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
-                    // Não deixa o foco sair
-                    // horizontalmente do menu.
-
                     return true
                 }
 
@@ -2875,15 +2565,21 @@ class MainActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_ENTER -> {
 
                     val foco =
-                        currentFocus
+                        if (
+                            botaoFecharMenu.hasFocus()
+                        ) {
 
-                    if (
-                        foco != null &&
-                        foco.isClickable
-                    ) {
+                            botaoFecharMenu
 
-                        foco.performClick()
-                    }
+                        } else {
+
+                            itensMenuFoco
+                                .firstOrNull {
+                                    it.hasFocus()
+                                }
+                        }
+
+                    foco?.performClick()
 
                     return true
                 }
@@ -2897,30 +2593,25 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
-            return super.dispatchKeyEvent(
-                event
-            )
+            return true
         }
 
-        // ===============================
+        // ===========================
         // MENU FECHADO
-        // ===============================
+        // ===========================
 
-        when (event.keyCode) {
-
-            KeyEvent.KEYCODE_MENU -> {
-
-                abrirMenu()
-
-                return true
-            }
+        when (
+            event.keyCode
+        ) {
 
             KeyEvent.KEYCODE_DPAD_UP -> {
 
-                if (cardsAtuais.isEmpty()) {
+                // Se está no botão,
+                // não faz nada.
 
-                    botaoMenu.requestFocus()
-
+                if (
+                    botaoMenu.hasFocus()
+                ) {
                     return true
                 }
 
@@ -2929,22 +2620,17 @@ class MainActivity : AppCompatActivity() {
                         it.hasFocus()
                     }
 
-                if (atual < 0) {
+                // PRIMEIRO CARD:
+                // sobe para WOLF MENU.
+
+                if (atual == 0) {
 
                     botaoMenu.requestFocus()
 
                     return true
                 }
 
-                // Primeira fileira:
-                // sobe para o WOLF MENU.
-
-                if (atual < 5) {
-
-                    botaoMenu.requestFocus()
-
-                    return true
-                }
+                // Uma fileira para cima.
 
                 moverCard(-5)
 
@@ -2952,9 +2638,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             KeyEvent.KEYCODE_DPAD_DOWN -> {
-
-                // Se o WOLF MENU estiver focado,
-                // desce para o primeiro card.
 
                 if (
                     botaoMenu.hasFocus()
@@ -2964,72 +2647,23 @@ class MainActivity : AppCompatActivity() {
                         cardsAtuais.isNotEmpty()
                     ) {
 
-                        indiceCardAtual = 0
-
                         cardsAtuais[0]
                             .requestFocus()
-
-                        rolarParaCard(
-                            cardsAtuais[0]
-                        )
                     }
 
                     return true
                 }
 
-                if (cardsAtuais.isEmpty()) {
-                    return true
-                }
-
-                val atual =
-                    cardsAtuais.indexOfFirst {
-                        it.hasFocus()
-                    }
-
-                if (atual < 0) {
-                    return true
-                }
-
-                // Desce exatamente uma fileira.
-
-                if (
-                    atual + 5 <
-                    cardsAtuais.size
-                ) {
-
-                    moverCard(5)
-                }
+                moverCard(5)
 
                 return true
             }
 
             KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                if (botaoMenu.hasFocus()) {
-                    return true
-                }
-
-                if (cardsAtuais.isEmpty()) {
-                    return true
-                }
-
-                val atual =
-                    cardsAtuais.indexOfFirst {
-                        it.hasFocus()
-                    }
-
-                if (atual <= 0) {
-                    return true
-                }
-
-                // Não deixa passar para a
-                // coluna anterior quando já
-                // está na primeira coluna.
-
                 if (
-                    atual % 5 == 0
+                    botaoMenu.hasFocus()
                 ) {
-
                     return true
                 }
 
@@ -3040,32 +2674,9 @@ class MainActivity : AppCompatActivity() {
 
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
-                if (botaoMenu.hasFocus()) {
-                    return true
-                }
-
-                if (cardsAtuais.isEmpty()) {
-                    return true
-                }
-
-                val atual =
-                    cardsAtuais.indexOfFirst {
-                        it.hasFocus()
-                    }
-
-                if (atual < 0) {
-                    return true
-                }
-
-                // Não deixa passar para uma
-                // nova linha pela direita.
-
                 if (
-                    atual % 5 == 4 ||
-                    atual + 1 >=
-                    cardsAtuais.size
+                    botaoMenu.hasFocus()
                 ) {
-
                     return true
                 }
 
@@ -3077,16 +2688,32 @@ class MainActivity : AppCompatActivity() {
             KeyEvent.KEYCODE_DPAD_CENTER,
             KeyEvent.KEYCODE_ENTER -> {
 
-                val foco =
-                    currentFocus
+                // WOLF MENU:
+                // só abre com OK.
 
                 if (
-                    foco != null &&
-                    foco.isClickable
+                    botaoMenu.hasFocus()
                 ) {
 
-                    foco.performClick()
+                    abrirMenu()
+
+                    return true
                 }
+
+                val foco =
+                    cardsAtuais
+                        .firstOrNull {
+                            it.hasFocus()
+                        }
+
+                foco?.performClick()
+
+                return true
+            }
+
+            KeyEvent.KEYCODE_MENU -> {
+
+                abrirMenu()
 
                 return true
             }
@@ -3099,9 +2726,7 @@ class MainActivity : AppCompatActivity() {
 
                     val voltar =
                         historicoConteudo
-                            .removeAt(
-                                historicoConteudo.size - 1
-                            )
+                            .removeLast()
 
                     voltar()
 
@@ -3120,11 +2745,70 @@ class MainActivity : AppCompatActivity() {
     }
 
     // ===============================
-    // BOTÃO VOLTAR
+    // MOVIMENTO DO MENU
     // ===============================
 
-    @Deprecated(
-        "Deprecated in Java"
+    private fun moverMenu(
+        deslocamento: Int
+    ) {
+
+        if (
+            itensMenuFoco.isEmpty()
+        ) {
+            return
+        }
+
+        val atual =
+            itensMenuFoco.indexOfFirst {
+                it.hasFocus()
+            }
+
+        if (atual < 0) {
+
+            itensMenuFoco[0]
+                .requestFocus()
+
+            return
+        }
+
+        val novo =
+            atual + deslocamento
+
+        if (
+            novo < 0 ||
+            novo >= itensMenuFoco.size
+        ) {
+            return
+        }
+
+        itensMenuFoco[novo]
+            .requestFocus()
+
+        ajustarScrollMenu(
+            itensMenuFoco[novo]
+        )
+    }
+
+    private fun ajustarScrollMenu(
+        view: View
+    ) {
+
+        view.post {
+
+            menuScroll.scrollTo(
+                0,
+                view.top -
+                    dp(80)
+            )
+        }
+    }
+
+    // ===============================
+    // BACK
+    // ===============================
+
+    @Suppress(
+        "DEPRECATION"
     )
     override fun onBackPressed() {
 
@@ -3141,9 +2825,7 @@ class MainActivity : AppCompatActivity() {
 
             val voltar =
                 historicoConteudo
-                    .removeAt(
-                        historicoConteudo.size - 1
-                    )
+                    .removeLast()
 
             voltar()
 
