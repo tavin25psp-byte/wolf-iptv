@@ -21,6 +21,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONArray
+import org.json.JSONObject
 import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
@@ -290,219 +291,226 @@ imagem.setImageBitmap(bitmap)
 
 private fun carregarFilmes() {
 
-thread {
+    thread {
 
-try {
+        try {
 
-val conexao =
-URL(CATALOGO_FILMES_URL)
-.openConnection() as HttpURLConnection
+            val conexao =
+                URL(CATALOGO_FILMES_URL)
+                    .openConnection() as HttpURLConnection
 
-conexao.connectTimeout = 15000
-conexao.readTimeout = 15000
-conexao.requestMethod = "GET"
-conexao.doInput = true
-conexao.connect()
+            conexao.connectTimeout = 15000
+            conexao.readTimeout = 15000
+            conexao.requestMethod = "GET"
+            conexao.doInput = true
+            conexao.connect()
 
-val resposta =
-conexao.inputStream
-.bufferedReader()
-.use { it.readText() }
+            val resposta =
+                conexao.inputStream
+                    .bufferedReader()
+                    .use { it.readText() }
 
-conexao.disconnect()
+            conexao.disconnect()
 
-val lista = mutableListOf<Filme>()
+            val raizJson = JSONObject(resposta)
 
-val json = JSONArray(resposta)
+            val novaListaFilmes = mutableListOf<Filme>()
 
-for (i in 0 until json.length()) {
+            val jsonFilmes =
+                raizJson.optJSONArray("filmes") ?: JSONArray()
 
-val item =
-json.getJSONObject(i)
+            for (i in 0 until jsonFilmes.length()) {
 
-val titulo =
-item.optString("titulo")
+                val item =
+                    jsonFilmes.getJSONObject(i)
 
-val ano =
-item.optInt("ano")
+                val titulo =
+                    item.optString("titulo")
 
-val categoria =
-item.optString("categoria")
+                val ano =
+                    item.optInt("ano")
 
-val capa =
-item.optString("capa")
+                val categoria =
+                    item.optString("categoria")
 
-val video =
-item.optString("video")
+                val capa =
+                    item.optString("capa")
 
-if (
-titulo.isNotBlank() &&
-capa.isNotBlank()
-) {
+                val video =
+                    item.optString("video")
 
-lista.add(
-Filme(
-titulo,
-ano,
-categoria,
-capa,
-video
-)
-)
+                if (
+                    titulo.isNotBlank() &&
+                    capa.isNotBlank()
+                ) {
 
-}
+                    novaListaFilmes.add(
+                        Filme(
+                            titulo,
+                            ano,
+                            categoria,
+                            capa,
+                            video
+                        )
+                    )
+                }
+            }
 
-}
+            novaListaFilmes.sortByDescending {
+                it.ano
+            }
 
-lista.sortByDescending {
-it.ano
-}
+            fun lerSeries(
+                array: JSONArray
+            ): MutableList<Serie> {
 
-runOnUiThread {
+                val resultado =
+                    mutableListOf<Serie>()
 
-filmes.clear()
-filmes.addAll(lista)
+                for (i in 0 until array.length()) {
 
-mostrarListaCards(filmes)
+                    val item =
+                        array.getJSONObject(i)
 
-}
+                    val titulo =
+                        item.optString("titulo")
 
-} catch (_: Exception) {
+                    val categoria =
+                        item.optString("categoria")
 
-runOnUiThread {
+                    val capa =
+                        item.optString("capa")
 
-filmes.clear()
+                    val temporadas =
+                        mutableListOf<Temporada>()
 
-mostrarListaCards(filmes)
+                    val jsonTemporadas =
+                        item.optJSONArray("temporadas")
+                            ?: JSONArray()
 
-Toast.makeText(
-this,
-"Não foi possível carregar o catálogo",
-Toast.LENGTH_LONG
-).show()
+                    for (t in 0 until jsonTemporadas.length()) {
 
-}
+                        val temporadaJson =
+                            jsonTemporadas.getJSONObject(t)
 
-}
+                        val numeroTemporada =
+                            temporadaJson.optInt("numero")
 
+                        val episodios =
+                            mutableListOf<Episodio>()
+
+                        val jsonEpisodios =
+                            temporadaJson.optJSONArray("episodios")
+                                ?: JSONArray()
+
+                        for (e in 0 until jsonEpisodios.length()) {
+
+                            val episodioJson =
+                                jsonEpisodios.getJSONObject(e)
+
+                            val numeroEpisodio =
+                                episodioJson.optInt("numero")
+
+                            val tituloEpisodio =
+                                episodioJson.optString("titulo")
+
+                            val videoEpisodio =
+                                episodioJson.optString("video")
+
+                            episodios.add(
+                                Episodio(
+                                    numeroEpisodio,
+                                    tituloEpisodio,
+                                    videoEpisodio
+                                )
+                            )
+                        }
+
+                        temporadas.add(
+                            Temporada(
+                                numeroTemporada,
+                                episodios
+                            )
+                        )
+                    }
+
+                    if (
+                        titulo.isNotBlank() &&
+                        capa.isNotBlank()
+                    ) {
+
+                        resultado.add(
+                            Serie(
+                                titulo,
+                                categoria,
+                                capa,
+                                temporadas
+                            )
+                        )
+                    }
+                }
+
+                return resultado
+            }
+
+            val novasSeries =
+                lerSeries(
+                    raizJson.optJSONArray("series")
+                        ?: JSONArray()
+                )
+
+            val novosDoramas =
+                lerSeries(
+                    raizJson.optJSONArray("doramas")
+                        ?: JSONArray()
+                )
+
+            val novosAnimes =
+                lerSeries(
+                    raizJson.optJSONArray("animes")
+                        ?: JSONArray()
+                )
+
+            runOnUiThread {
+
+                filmes.clear()
+                filmes.addAll(novaListaFilmes)
+
+                series.clear()
+                series.addAll(novasSeries)
+
+                doramas.clear()
+                doramas.addAll(novosDoramas)
+
+                animes.clear()
+                animes.addAll(novosAnimes)
+
+                mostrarListaCards(filmes)
+            }
+
+        } catch (_: Exception) {
+
+            runOnUiThread {
+
+                filmes.clear()
+                series.clear()
+                doramas.clear()
+                animes.clear()
+
+                mostrarListaCards(filmes)
+
+                Toast.makeText(
+                    this,
+                    "Não foi possível carregar o catálogo",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
+    }
 }
 
 }private fun carregarSeries() {
-
-series.clear()
-doramas.clear()
-animes.clear()
-
-series.add(
-Serie(
-"Spaide Noir",
-"Ação",
-"https://i.postimg.cc/R0dfWdj7/alright-people-whove-seen-spider-noir-should-i-watch-it-in-v0-73e3ew89v94h1-(1).jpg",
-listOf(
-Temporada(
-1,
-listOf(
-Episodio(
-1,
-"Entre no meu Escritório",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Entre%20no%20meu%20Escrit%C3%B3rio.mp4"
-),
-Episodio(
-2,
-"Pisando em Ovos",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Pisando%20em%20Ovos.mp4"
-),
-Episodio(
-3,
-"Falsidade",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Falsidade.mp4"
-),
-Episodio(
-4,
-"Nunca Repita o Mesmo Erro",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20Nunca%20Repita%20o%20Mesmo%20Erro.mp4"
-),
-Episodio(
-5,
-"Traição",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20Trai%C3%A7%C3%A3o.mp4"
-),
-Episodio(
-6,
-"Pesadelo na Maca",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%206%20-%20Pesadelo%20na%20Maca.mp4"
-),
-Episodio(
-7,
-"Herói de Ninguém",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%207%20-%20Her%C3%B3i%20de%20Ningu%C3%A9m.mp4"
-),
-Episodio(
-8,
-"O Homem Mascarado",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%208%20-%20O%20Homem%20Mascarado.mp4"
-)
-)
-)
-)
-)
-)
-
-series.add(
-Serie(
-"Avatar: A Lenda de Aang",
-"Aventura",
-"https://i.postimg.cc/BvWjsB3G/Avatar-The-Last-Airbender-2024-series-poster-(1).jpg",
-listOf(
-Temporada(
-1,
-listOf(
-Episodio(
-1,
-"Aang",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%201%20-%20Aang.mp4"
-),
-Episodio(
-2,
-"Guerreiros",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%202%20-%20Guerreiros.mp4"
-),
-Episodio(
-3,
-"Omashu",
-"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%203%20-%20Omashu.mp4"
-),
-Episodio(
-4,
-"No Escuro",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%204%20-%20No%20escuro.mp4"
-),
-Episodio(
-5,
-"O Mundo Espiritual",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%205%20-%20O%20Mundo%20Espiritual.mp4"
-),
-Episodio(
-6,
-"Máscaras",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%206%20-%20M%C3%A1scaras.mp4"
-),
-Episodio(
-7,
-"O Norte",
-"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%207%20-%20O%20Norte.mp4"
-),
-Episodio(
-8,
-"Episódio 8",
-"https://wolf-channel-cdn.b-cdn.net/Filmes%20/S%C3%A9ries%20/S%C3%A9ries%20/S%C3%A9ries%20/Temporada%201%20Epis%C3%B3dio%208%20-%20Epis%C3%B3dio%208.mp4"
-)
-)
-)
-)
-)
-)
-
+    // Séries, doramas e animes agora vêm do catalogo.json
 }
 
 private fun mostrarListaCards(lista: List<Filme>) {
