@@ -375,7 +375,11 @@ class MainActivity : AppCompatActivity() {
             } catch (_: Exception) {
             }
         }
-    }private fun carregarFilmes() {
+    }// ===============================
+// PARTE 2 — CARREGAMENTO DO CATÁLOGO
+// ===============================
+
+private fun carregarFilmes() {
 
     thread {
 
@@ -385,8 +389,8 @@ class MainActivity : AppCompatActivity() {
                 URL(CATALOGO_URL)
                     .openConnection() as HttpURLConnection
 
-            conexao.connectTimeout = 15000
-            conexao.readTimeout = 15000
+            conexao.connectTimeout = 20000
+            conexao.readTimeout = 20000
             conexao.requestMethod = "GET"
             conexao.doInput = true
 
@@ -397,98 +401,87 @@ class MainActivity : AppCompatActivity() {
 
             conexao.connect()
 
-            val codigo =
-                conexao.responseCode
+            val codigo = conexao.responseCode
 
             if (codigo !in 200..299) {
-                throw Exception(
-                    "HTTP $codigo"
-                )
+                throw Exception("HTTP $codigo")
             }
 
             val resposta =
                 conexao.inputStream
-                    .bufferedReader(
-                        Charsets.UTF_8
-                    )
+                    .bufferedReader(Charsets.UTF_8)
                     .use {
                         it.readText()
                     }
 
             conexao.disconnect()
 
-            val texto =
-                resposta.trim()
-
-            if (texto.isBlank()) {
-                throw Exception(
-                    "Catálogo vazio"
-                )
+            if (resposta.isBlank()) {
+                throw Exception("Catálogo vazio")
             }
 
             val raizJson =
-                JSONObject(texto)
+                JSONObject(resposta.trim())
+
+            // ===============================
+            // FILMES
+            // ===============================
 
             val novaListaFilmes =
                 mutableListOf<Filme>()
 
             val jsonFilmes =
-                raizJson.optJSONArray(
-                    "filmes"
-                ) ?: JSONArray()
+                raizJson.optJSONArray("filmes")
 
-            for (
-                i in 0 until
-                jsonFilmes.length()
-            ) {
+            if (jsonFilmes != null) {
 
-                val item =
-                    jsonFilmes
-                        .getJSONObject(i)
+                for (i in 0 until jsonFilmes.length()) {
 
-                val titulo =
-                    item.optString(
-                        "titulo"
-                    ).trim()
+                    try {
 
-                val ano =
-                    item.optInt(
-                        "ano",
-                        0
-                    )
+                        val item =
+                            jsonFilmes.optJSONObject(i)
+                                ?: continue
 
-                val categoria =
-                    item.optString(
-                        "categoria"
-                    ).trim()
+                        val titulo =
+                            item.optString("titulo").trim()
 
-                val capa =
-                    item.optString(
-                        "capa"
-                    ).trim()
+                        if (titulo.isBlank()) {
+                            continue
+                        }
 
-                val video =
-                    item.optString(
-                        "video"
-                    ).trim()
+                        val ano =
+                            item.optInt("ano", 0)
 
-                if (
-                    titulo.isNotBlank() &&
-                    capa.isNotBlank()
-                ) {
+                        val categoria =
+                            item.optString(
+                                "categoria",
+                                "Filmes"
+                            ).trim()
 
-                    novaListaFilmes.add(
-                        Filme(
-                            titulo = titulo,
-                            ano = ano,
-                            categoria = categoria,
-                            capa = capa,
-                            video = video
+                        val capa =
+                            item.optString("capa").trim()
+
+                        val video =
+                            item.optString("video").trim()
+
+                        novaListaFilmes.add(
+                            Filme(
+                                titulo = titulo,
+                                ano = ano,
+                                categoria = categoria,
+                                capa = capa,
+                                video = video
+                            )
                         )
-                    )
+
+                    } catch (_: Exception) {
+                        // ignora somente o item com erro
+                    }
                 }
             }
 
+            // Filmes mais novos primeiro
             novaListaFilmes.sortWith(
                 compareByDescending<Filme> {
                     it.ano
@@ -497,142 +490,161 @@ class MainActivity : AppCompatActivity() {
                 }
             )
 
+            // ===============================
+            // SÉRIES / DORAMAS / ANIMES
+            // ===============================
+
             fun lerSeries(
-                array: JSONArray
+                array: JSONArray?
             ): MutableList<Serie> {
 
                 val resultado =
                     mutableListOf<Serie>()
 
-                for (
-                    i in 0 until
-                    array.length()
-                ) {
+                if (array == null) {
+                    return resultado
+                }
 
-                    val item =
-                        array.getJSONObject(i)
+                for (i in 0 until array.length()) {
 
-                    val titulo =
-                        item.optString(
-                            "titulo"
-                        ).trim()
+                    try {
 
-                    val categoria =
-                        item.optString(
-                            "categoria"
-                        ).trim()
+                        val item =
+                            array.optJSONObject(i)
+                                ?: continue
 
-                    val capa =
-                        item.optString(
-                            "capa"
-                        ).trim()
+                        val titulo =
+                            item.optString("titulo").trim()
 
-                    val temporadas =
-                        mutableListOf<Temporada>()
+                        if (titulo.isBlank()) {
+                            continue
+                        }
 
-                    val jsonTemporadas =
-                        item.optJSONArray(
-                            "temporadas"
-                        ) ?: JSONArray()
+                        val categoria =
+                            item.optString(
+                                "categoria",
+                                "Séries"
+                            ).trim()
 
-                    for (
-                        t in 0 until
-                        jsonTemporadas.length()
-                    ) {
+                        val capa =
+                            item.optString("capa").trim()
 
-                        val temporadaJson =
-                            jsonTemporadas
-                                .getJSONObject(t)
+                        val temporadas =
+                            mutableListOf<Temporada>()
 
-                        val numeroTemporada =
-                            temporadaJson.optInt(
-                                "numero",
-                                t + 1
-                            )
+                        val jsonTemporadas =
+                            item.optJSONArray("temporadas")
 
-                        val episodios =
-                            mutableListOf<Episodio>()
+                        if (jsonTemporadas != null) {
 
-                        val jsonEpisodios =
-                            temporadaJson
-                                .optJSONArray(
-                                    "episodios"
-                                ) ?: JSONArray()
-
-                        for (
-                            e in 0 until
-                            jsonEpisodios.length()
-                        ) {
-
-                            val episodioJson =
-                                jsonEpisodios
-                                    .getJSONObject(e)
-
-                            val numeroEpisodio =
-                                episodioJson.optInt(
-                                    "numero",
-                                    e + 1
-                                )
-
-                            val tituloEpisodio =
-                                episodioJson
-                                    .optString(
-                                        "titulo"
-                                    )
-                                    .trim()
-
-                            val videoEpisodio =
-                                episodioJson
-                                    .optString(
-                                        "video"
-                                    )
-                                    .trim()
-
-                            if (
-                                tituloEpisodio
-                                    .isNotBlank()
+                            for (
+                                t in 0 until
+                                    jsonTemporadas.length()
                             ) {
 
-                                episodios.add(
-                                    Episodio(
-                                        numero =
-                                            numeroEpisodio,
-                                        titulo =
-                                            tituloEpisodio,
-                                        video =
-                                            videoEpisodio
+                                try {
+
+                                    val temporadaJson =
+                                        jsonTemporadas
+                                            .optJSONObject(t)
+                                            ?: continue
+
+                                    val numeroTemporada =
+                                        temporadaJson.optInt(
+                                            "numero",
+                                            t + 1
+                                        )
+
+                                    val episodios =
+                                        mutableListOf<Episodio>()
+
+                                    val jsonEpisodios =
+                                        temporadaJson
+                                            .optJSONArray("episodios")
+
+                                    if (jsonEpisodios != null) {
+
+                                        for (
+                                            e in 0 until
+                                                jsonEpisodios.length()
+                                        ) {
+
+                                            try {
+
+                                                val episodioJson =
+                                                    jsonEpisodios
+                                                        .optJSONObject(e)
+                                                        ?: continue
+
+                                                val numeroEpisodio =
+                                                    episodioJson.optInt(
+                                                        "numero",
+                                                        e + 1
+                                                    )
+
+                                                val tituloEpisodio =
+                                                    episodioJson
+                                                        .optString(
+                                                            "titulo"
+                                                        )
+                                                        .trim()
+
+                                                val videoEpisodio =
+                                                    episodioJson
+                                                        .optString(
+                                                            "video"
+                                                        )
+                                                        .trim()
+
+                                                if (
+                                                    tituloEpisodio
+                                                        .isNotBlank()
+                                                ) {
+
+                                                    episodios.add(
+                                                        Episodio(
+                                                            numero =
+                                                                numeroEpisodio,
+                                                            titulo =
+                                                                tituloEpisodio,
+                                                            video =
+                                                                videoEpisodio
+                                                        )
+                                                    )
+                                                }
+
+                                            } catch (_: Exception) {
+                                                // ignora episódio com erro
+                                            }
+                                        }
+                                    }
+
+                                    temporadas.add(
+                                        Temporada(
+                                            numero =
+                                                numeroTemporada,
+                                            episodios =
+                                                episodios
+                                        )
                                     )
-                                )
+
+                                } catch (_: Exception) {
+                                    // ignora temporada com erro
+                                }
                             }
                         }
 
-                        temporadas.add(
-                            Temporada(
-                                numero =
-                                    numeroTemporada,
-                                episodios =
-                                    episodios
-                            )
-                        )
-                    }
-
-                    if (
-                        titulo.isNotBlank() &&
-                        capa.isNotBlank()
-                    ) {
-
                         resultado.add(
                             Serie(
-                                titulo =
-                                    titulo,
-                                categoria =
-                                    categoria,
-                                capa =
-                                    capa,
-                                temporadas =
-                                    temporadas
+                                titulo = titulo,
+                                categoria = categoria,
+                                capa = capa,
+                                temporadas = temporadas
                             )
                         )
+
+                    } catch (_: Exception) {
+                        // ignora série com erro
                     }
                 }
 
@@ -641,56 +653,45 @@ class MainActivity : AppCompatActivity() {
 
             val novasSeries =
                 lerSeries(
-                    raizJson.optJSONArray(
-                        "series"
-                    ) ?: JSONArray()
+                    raizJson.optJSONArray("series")
                 )
 
             val novosDoramas =
                 lerSeries(
-                    raizJson.optJSONArray(
-                        "doramas"
-                    ) ?: JSONArray()
+                    raizJson.optJSONArray("doramas")
                 )
 
             val novosAnimes =
                 lerSeries(
-                    raizJson.optJSONArray(
-                        "animes"
-                    ) ?: JSONArray()
+                    raizJson.optJSONArray("animes")
                 )
+
+            // ===============================
+            // ATUALIZA A INTERFACE
+            // ===============================
 
             runOnUiThread {
 
                 filmes.clear()
-                filmes.addAll(
-                    novaListaFilmes
-                )
+                filmes.addAll(novaListaFilmes)
 
                 series.clear()
-                series.addAll(
-                    novasSeries
-                )
+                series.addAll(novasSeries)
 
                 doramas.clear()
-                doramas.addAll(
-                    novosDoramas
-                )
+                doramas.addAll(novosDoramas)
 
                 animes.clear()
-                animes.addAll(
-                    novosAnimes
-                )
+                animes.addAll(novosAnimes)
 
-                mostrarListaCards(
-                    filmes
-                )
+                mostrarListaCards(filmes)
 
                 Toast.makeText(
                     this,
-                    "${filmes.size} filmes • " +
-                        "${series.size} séries carregados",
-                    Toast.LENGTH_SHORT
+                    "WOLF IPTV: " +
+                        "${filmes.size} filmes • " +
+                        "${series.size} séries",
+                    Toast.LENGTH_LONG
                 ).show()
             }
 
@@ -703,14 +704,15 @@ class MainActivity : AppCompatActivity() {
                 doramas.clear()
                 animes.clear()
 
-                mostrarListaCards(
-                    filmes
-                )
+                mostrarListaCards(filmes)
 
                 Toast.makeText(
                     this,
-                    "Erro ao carregar catálogo: " +
-                        e.message,
+                    "Erro no catálogo: " +
+                        (
+                            e.message
+                                ?: "erro desconhecido"
+                        ),
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -718,11 +720,11 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+
 private fun carregarSeries() {
 
-    // Séries, doramas e animes
-    // são carregados junto com o
-    // catalogo.json.
+    // Filmes, séries, doramas e animes
+    // são carregados pelo catalogo.json.
 }private fun mostrarListaCards(
     lista: List<Filme>
 ) {
