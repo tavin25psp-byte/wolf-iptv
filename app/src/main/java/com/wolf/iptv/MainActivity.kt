@@ -2288,320 +2288,282 @@ class MainActivity : AppCompatActivity() {
                     it.categoria == "Terror"
                 }
             )
-        }        adicionarTituloMenu(
-            "DORAMAS"
-        )
+        }// ===============================
+// DORAMAS
+// ===============================
 
-        adicionarItemMenu(
-            "💗  Todos os Doramas (${doramas.size})"
-        ) {
+adicionarTituloMenu("DORAMAS")
 
-            fecharMenu()
-            mostrarListaSeries(doramas)
+adicionarItemMenu("Todos os Doramas") {
+    mostrarListaSeries(doramas)
+}
+
+adicionarItemMenu("Romance") {
+    mostrarListaSeries(
+        doramas.filter {
+            it.categoria.equals("romance", true)
         }
+    )
+}
 
-        adicionarItemMenu(
-            "❤️  Romance (${doramas.count {
-                it.categoria == "Romance"
-            }})"
-        ) {
-
-            fecharMenu()
-
-            mostrarListaSeries(
-                doramas.filter {
-                    it.categoria == "Romance"
-                }
-            )
+adicionarItemMenu("Ação") {
+    mostrarListaSeries(
+        doramas.filter {
+            it.categoria.equals("acao", true)
         }
+    )
+}
 
-        adicionarItemMenu(
-            "⚔️  Ação (${doramas.count {
-                it.categoria == "Ação"
-            }})"
-        ) {
-
-            fecharMenu()
-
-            mostrarListaSeries(
-                doramas.filter {
-                    it.categoria == "Ação"
-                }
-            )
+adicionarItemMenu("Comédia") {
+    mostrarListaSeries(
+        doramas.filter {
+            it.categoria.equals("comedia", true)
         }
+    )
+}
 
-        adicionarItemMenu(
-            "😂  Comédia (${doramas.count {
-                it.categoria == "Comédia"
-            }})"
-        ) {
-
-            fecharMenu()
-
-            mostrarListaSeries(
-                doramas.filter {
-                    it.categoria == "Comédia"
-                }
-            )
+adicionarItemMenu("Terror") {
+    mostrarListaSeries(
+        doramas.filter {
+            it.categoria.equals("terror", true)
         }
+    )
+}
 
-        adicionarItemMenu(
-            "👻  Terror (${doramas.count {
-                it.categoria == "Terror"
-            }})"
-        ) {
 
-            fecharMenu()
+// ===============================
+// ANIME
+// ===============================
 
-            mostrarListaSeries(
-                doramas.filter {
-                    it.categoria == "Terror"
-                }
-            )
+adicionarTituloMenu("ANIME")
+
+adicionarItemMenu("Todos os Animes") {
+    mostrarListaSeries(animes)
+}
+
+adicionarItemMenu("Ação") {
+    mostrarListaSeries(
+        animes.filter {
+            it.categoria.equals("acao", true)
         }
+    )
+}
 
-        adicionarTituloMenu(
-            "ANIME"
-        )
-
-        adicionarItemMenu(
-            "🎌  Todos os Animes (${animes.size})"
-        ) {
-
-            fecharMenu()
-            mostrarListaSeries(animes)
+adicionarItemMenu("Comédia") {
+    mostrarListaSeries(
+        animes.filter {
+            it.categoria.equals("comedia", true)
         }
+    )
+}
 
-        adicionarItemMenu(
-            "⚔️  Ação (${animes.count {
-                it.categoria == "Ação"
-            }})"
-        ) {
-
-            fecharMenu()
-
-            mostrarListaSeries(
-                animes.filter {
-                    it.categoria == "Ação"
-                }
-            )
+adicionarItemMenu("Terror") {
+    mostrarListaSeries(
+        animes.filter {
+            it.categoria.equals("terror", true)
         }
+    )
+}
 
-        adicionarItemMenu(
-            "😂  Comédia (${animes.count {
-                it.categoria == "Comédia"
-            }})"
-        ) {
 
-            fecharMenu()
+// ===============================
+// FOCO INICIAL DO MENU
+// ===============================
 
-            mostrarListaSeries(
-                animes.filter {
-                    it.categoria == "Comédia"
-                }
-            )
-        }
+botaoFecharMenu.requestFocus()
 
-        adicionarItemMenu(
-            "👻  Terror (${animes.count {
-                it.categoria == "Terror"
-            }})"
-        ) {
+}
 
-            fecharMenu()
 
-            mostrarListaSeries(
-                animes.filter {
-                    it.categoria == "Terror"
-                }
-            )
-        }
+// ===============================
+// TÍTULO DO MENU
+// ===============================
 
-        botaoFecharMenu.requestFocus()
+private fun adicionarTituloMenu(
+    texto: String
+) {
+
+    val titulo = TextView(this)
+
+    titulo.text = texto
+
+    titulo.textSize = 16f
+
+    titulo.setTextColor(
+        Color.LTGRAY
+    )
+
+    titulo.setPadding(
+        dp(18),
+        dp(18),
+        dp(12),
+        dp(8)
+    )
+
+    titulo.isFocusable = false
+
+    menuConteudo.addView(
+        titulo
+    )
+}
+
+
+// ===============================
+// FECHAR MENU
+// ===============================
+
+private fun fecharMenu() {
+
+    menuAberto = false
+
+    menuLateral.visibility =
+        View.GONE
+
+    botaoMenu.requestFocus()
+}
+
+
+// ===============================
+// MOVIMENTAÇÃO DO MENU
+// ===============================
+
+private fun moverMenu(
+    direcao: Int
+) {
+
+    if (itensMenuFoco.isEmpty()) {
+        return
     }
 
-    private fun adicionarTituloMenu(
-        texto: String
+    var indice =
+        itensMenuFoco.indexOfFirst {
+            it.hasFocus()
+        }
+
+    if (indice < 0) {
+        indice = 0
+    }
+
+    indice += direcao
+
+    if (indice < 0) {
+        indice =
+            itensMenuFoco.size - 1
+    }
+
+    if (indice >= itensMenuFoco.size) {
+        indice = 0
+    }
+
+    val proximo =
+        itensMenuFoco[indice]
+
+    proximo.requestFocus()
+
+    ajustarScrollMenu(
+        proximo
+    )
+}
+
+
+// ===============================
+// AJUSTAR SCROLL DO MENU
+// ===============================
+
+private fun ajustarScrollMenu(
+    view: View
+) {
+
+    view.post {
+
+        menuScroll.smoothScrollTo(
+            0,
+            view.top
+        )
+    }
+}
+
+
+// ===============================
+// MOVIMENTAÇÃO DOS CARDS
+// ===============================
+
+private fun moverCard(
+    direcao: Int
+) {
+
+    if (cardsAtuais.isEmpty()) {
+        return
+    }
+
+    var indice =
+        cardsAtuais.indexOfFirst {
+            it.hasFocus()
+        }
+
+    if (indice < 0) {
+        indice = indiceCardAtual
+    }
+
+    indice += direcao
+
+    if (indice < 0) {
+        indice = 0
+    }
+
+    if (indice >= cardsAtuais.size) {
+        indice =
+            cardsAtuais.size - 1
+    }
+
+    indiceCardAtual = indice
+
+    cardsAtuais[indice].requestFocus()
+}
+
+
+// ===============================
+// PESQUISA
+// ===============================
+
+private fun abrirPesquisa() {
+
+    val campo =
+        EditText(this)
+
+    campo.hint =
+        "Digite o nome..."
+
+    campo.textSize =
+        20f
+
+    campo.setSingleLine(true)
+
+    campo.isFocusable = true
+    campo.isFocusableInTouchMode = true
+
+    campo.requestFocus()
+
+    Toast.makeText(
+        this,
+        "Use a busca pelo menu",
+        Toast.LENGTH_SHORT
+    ).show()
+}
+
+
+// ===============================
+// CONTROLE DO D-PAD
+// ===============================
+
+override fun dispatchKeyEvent(
+    event: KeyEvent
+): Boolean {
+
+    if (
+        event.action ==
+        KeyEvent.ACTION_DOWN
     ) {
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            texto
-
-        titulo.textSize =
-            16f
-
-        titulo.setTextColor(
-            Color.LTGRAY
-        )
-
-        titulo.setPadding(
-            dp(18),
-            dp(18),
-            dp(12),
-            dp(8)
-        )
-
-        titulo.isFocusable =
-            false
-
-        menuConteudo.addView(
-            titulo
-        )
-    }
-
-    private fun fecharMenu() {
-
-        menuAberto = false
-
-        menuLateral.visibility =
-            View.GONE
-
-        botaoMenu.requestFocus()
-    }
-
-    private fun moverMenu(
-        direcao: Int
-    ) {
-
-        if (itensMenuFoco.isEmpty()) {
-            return
-        }
-
-        var atual =
-            itensMenuFoco.indexOfFirst {
-                it.hasFocus()
-            }
-
-        if (atual < 0) {
-            atual = 0
-        }
-
-        val novo =
-            atual + direcao
-
-        if (
-            novo in itensMenuFoco.indices
-        ) {
-
-            itensMenuFoco[novo]
-                .requestFocus()
-
-            ajustarScrollMenu(
-                itensMenuFoco[novo]
-            )
-        }
-    }
-
-    private fun ajustarScrollMenu(
-        view: View
-    ) {
-
-        menuScroll.post {
-
-            val top =
-                view.top
-
-            val bottom =
-                view.bottom
-
-            val scrollTop =
-                menuScroll.scrollY
-
-            val scrollBottom =
-                scrollTop +
-                menuScroll.height
-
-            if (top < scrollTop) {
-
-                menuScroll.scrollTo(
-                    0,
-                    maxOf(
-                        0,
-                        top - dp(20)
-                    )
-                )
-
-            } else if (
-                bottom > scrollBottom
-            ) {
-
-                menuScroll.scrollTo(
-                    0,
-                    bottom -
-                        menuScroll.height +
-                        dp(20)
-                )
-            }
-        }
-    }
-
-    private fun moverCard(
-        direcao: Int
-    ) {
-
-        if (cardsAtuais.isEmpty()) {
-            return
-        }
-
-        val novoIndice =
-            indiceCardAtual +
-                direcao
-
-        if (
-            novoIndice !in
-            cardsAtuais.indices
-        ) {
-            return
-        }
-
-        indiceCardAtual =
-            novoIndice
-
-        cardsAtuais[
-            indiceCardAtual
-        ].requestFocus()
-    }
-
-    private fun abrirPesquisa() {
-
-        val campo =
-            EditText(this)
-
-        campo.hint =
-            "Digite o nome..."
-
-        campo.textSize =
-            18f
-
-        campo.setSingleLine(
-            true
-        )
-
-        campo.requestFocus()
-
-        Toast.makeText(
-            this,
-            "Use a busca pelo menu",
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-    override fun dispatchKeyEvent(
-        event: KeyEvent
-    ): Boolean {
-
-        if (
-            event.action !=
-            KeyEvent.ACTION_DOWN
-        ) {
-
-            return super.dispatchKeyEvent(
-                event
-            )
-        }
 
         when (event.keyCode) {
 
@@ -2616,6 +2578,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
 
+
             KeyEvent.KEYCODE_DPAD_LEFT -> {
 
                 if (!menuAberto) {
@@ -2625,6 +2588,7 @@ class MainActivity : AppCompatActivity() {
                     return true
                 }
             }
+
 
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
@@ -2636,6 +2600,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+
             KeyEvent.KEYCODE_DPAD_UP -> {
 
                 if (menuAberto) {
@@ -2645,6 +2610,7 @@ class MainActivity : AppCompatActivity() {
                     return true
                 }
             }
+
 
             KeyEvent.KEYCODE_DPAD_DOWN -> {
 
@@ -2656,6 +2622,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
 
+
             KeyEvent.KEYCODE_BACK -> {
 
                 if (menuAberto) {
@@ -2666,9 +2633,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-        return super.dispatchKeyEvent(
-            event
-        )
     }
+
+    return super.dispatchKeyEvent(
+        event
+    )
+}
+
 }
