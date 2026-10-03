@@ -64,7 +64,7 @@
   },
   {
     "titulo": "Todo Mundo em Pânico 4",
-    "ano": 2026,
+    "ano": 2006,
     "categoria": "Comédia",
     "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico.mp4"
@@ -82,7 +82,7 @@
     "categoria": "Animação",
     "capa": "https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"
-  },
+  }  ,
   {
     "titulo": "Moana",
     "ano": 2026,
@@ -92,13 +92,14 @@
   },
   {
     "titulo": "Como Treinar o Seu Dragão",
-    "ano": 2026,
+    "ano": 2025,
     "categoria": "Aventura",
     "capa": "https://i.postimg.cc/664hkrZ6/treinar.jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
-  },  {
+  },
+  {
     "titulo": "Quarteto Fantástico: Primeiro Passo",
-    "ano": 2026,
+    "ano": 2025,
     "categoria": "Ação",
     "capa": "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"
@@ -147,7 +148,7 @@
   },
   {
     "titulo": "Thunderbolts",
-    "ano": 2026,
+    "ano": 2025,
     "categoria": "Ação",
     "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
     "video": "https://wolf-channel-cdn.b-cdn.net/Bala%20zip/Thunderbolts.mp4"
@@ -157,7 +158,7 @@
     "ano": 2026,
     "categoria": "Ação",
     "capa": "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
-    "video": ""
+    "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
   },
   {
     "titulo": "Super Mario Galaxy: O Filme",
@@ -165,7 +166,7 @@
     "categoria": "Animação",
     "capa": "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
-  },
+  }  ,
   {
     "titulo": "Golpe Explosivo",
     "ano": 2025,
@@ -193,7 +194,7 @@
     "categoria": "Aventura",
     "capa": "https://i.postimg.cc/J7fYDKXH/images-(17).jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Morte%20de%20Robin%20Hood.mp4"
-  }  ,
+  },
   {
     "titulo": "Destruição Iminente",
     "ano": 2024,
@@ -242,7 +243,7 @@
     "categoria": "Drama",
     "capa": "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3Yz-Mt-ZTUw-MC00MGJj-LWFk-NDIt-MDUz-NTUx-Zjg5N2Y4Xk-Ey-Xk-Fqc-Gc-V1.jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"
-  },
+  }  ,
   {
     "titulo": "Deadpool & Wolverine",
     "ano": 2024,
@@ -326,7 +327,7 @@
     "categoria": "Ação",
     "capa": "https://i.postimg.cc/YCTX10c0/Morbius-cartaz-(1).jpg",
     "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Morbius.mp4"
-  },
+  }  ,
   {
     "titulo": "Jumanji: Bem-Vindo à Selva",
     "ano": 2017,
