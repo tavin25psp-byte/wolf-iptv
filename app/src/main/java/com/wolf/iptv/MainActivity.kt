@@ -1979,7 +1979,6 @@ class MainActivity : AppCompatActivity() {
             "🔥  Ação (${series.count { it.categoria == "Ação" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 series.filter {
                     it.categoria == "Ação"
@@ -1991,7 +1990,6 @@ class MainActivity : AppCompatActivity() {
             "🏹  Aventura (${series.count { it.categoria == "Aventura" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 series.filter {
                     it.categoria == "Aventura"
@@ -2003,7 +2001,6 @@ class MainActivity : AppCompatActivity() {
             "😂  Comédia (${series.count { it.categoria == "Comédia" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 series.filter {
                     it.categoria == "Comédia"
@@ -2015,7 +2012,6 @@ class MainActivity : AppCompatActivity() {
             "🎭  Drama (${series.count { it.categoria == "Drama" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 series.filter {
                     it.categoria == "Drama"
@@ -2027,7 +2023,6 @@ class MainActivity : AppCompatActivity() {
             "👻  Terror (${series.count { it.categoria == "Terror" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 series.filter {
                     it.categoria == "Terror"
@@ -2052,7 +2047,6 @@ class MainActivity : AppCompatActivity() {
             "🔥  Ação (${doramas.count { it.categoria == "Ação" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria == "Ação"
@@ -2064,7 +2058,6 @@ class MainActivity : AppCompatActivity() {
             "❤️  Romance (${doramas.count { it.categoria == "Romance" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria == "Romance"
@@ -2076,7 +2069,6 @@ class MainActivity : AppCompatActivity() {
             "🎭  Drama (${doramas.count { it.categoria == "Drama" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria == "Drama"
@@ -2088,7 +2080,6 @@ class MainActivity : AppCompatActivity() {
             "😂  Comédia (${doramas.count { it.categoria == "Comédia" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 doramas.filter {
                     it.categoria == "Comédia"
@@ -2113,7 +2104,6 @@ class MainActivity : AppCompatActivity() {
             "🔥  Ação (${animes.count { it.categoria == "Ação" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 animes.filter {
                     it.categoria == "Ação"
@@ -2125,7 +2115,6 @@ class MainActivity : AppCompatActivity() {
             "🏹  Aventura (${animes.count { it.categoria == "Aventura" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 animes.filter {
                     it.categoria == "Aventura"
@@ -2137,7 +2126,6 @@ class MainActivity : AppCompatActivity() {
             "😂  Comédia (${animes.count { it.categoria == "Comédia" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 animes.filter {
                     it.categoria == "Comédia"
@@ -2149,7 +2137,6 @@ class MainActivity : AppCompatActivity() {
             "✨  Fantasia (${animes.count { it.categoria == "Fantasia" }})"
         ) {
             fecharMenu()
-
             mostrarListaSeries(
                 animes.filter {
                     it.categoria == "Fantasia"
