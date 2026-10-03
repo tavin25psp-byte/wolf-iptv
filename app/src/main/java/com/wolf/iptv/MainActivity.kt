@@ -2158,9 +2158,7 @@ adicionarItemMenu(
 }
 
 adicionarItemMenu(
-    "❤️  Romance (${doramas.count {
-        it.categoria == "Romance"
-    }})"
+    "❤️  Romance (${doramas.count { it.categoria == "Romance" }})"
 ) {
     fecharMenu()
     mostrarListaSeries(
@@ -2171,9 +2169,7 @@ adicionarItemMenu(
 }
 
 adicionarItemMenu(
-    "⚔️  Ação (${doramas.count {
-        it.categoria == "Ação"
-    }})"
+    "⚔️  Ação (${doramas.count { it.categoria == "Ação" }})"
 ) {
     fecharMenu()
     mostrarListaSeries(
@@ -2184,9 +2180,7 @@ adicionarItemMenu(
 }
 
 adicionarItemMenu(
-    "😂  Comédia (${doramas.count {
-        it.categoria == "Comédia"
-    }})"
+    "😂  Comédia (${doramas.count { it.categoria == "Comédia" }})"
 ) {
     fecharMenu()
     mostrarListaSeries(
@@ -2197,9 +2191,7 @@ adicionarItemMenu(
 }
 
 adicionarItemMenu(
-    "👻  Terror (${doramas.count {
-        it.categoria == "Terror"
-    }})"
+    "👻  Terror (${doramas.count { it.categoria == "Terror" }})"
 ) {
     fecharMenu()
     mostrarListaSeries(
@@ -2224,9 +2216,7 @@ adicionarItemMenu(
 }
 
 adicionarItemMenu(
-    "⚔️  Ação (${animes.count {
-        it.categoria == "Ação"
-    }})"
+    "⚔️  Ação (${animes.count { it.categoria == "Ação" }})"
 ) {
     fecharMenu()
     mostrarListaSeries(
@@ -2237,9 +2227,7 @@ adicionarItemMenu(
 }
 
 adicionarItemMenu(
-    "😂  Comédia (${animes.count {
-        it.categoria == "Comédia"
-    }})"
+    "😂  Comédia (${animes.count { it.categoria == "Comédia" }})"
 ) {
     fecharMenu()
     mostrarListaSeries(
@@ -2250,9 +2238,7 @@ adicionarItemMenu(
 }
 
 adicionarItemMenu(
-    "👻  Terror (${animes.count {
-        it.categoria == "Terror"
-    }})"
+    "👻  Terror (${animes.count { it.categoria == "Terror" }})"
 ) {
     fecharMenu()
     mostrarListaSeries(
@@ -2261,11 +2247,6 @@ adicionarItemMenu(
         }
     )
 }
-
-
-// ===============================
-// FOCO INICIAL DO MENU
-// ===============================
 
 botaoFecharMenu.requestFocus()
 
@@ -2402,7 +2383,8 @@ private fun moverCard(
 
     cardsAtuais[indiceCardAtual].post {
 
-        val view = cardsAtuais[indiceCardAtual]
+        val view =
+            cardsAtuais[indiceCardAtual]
 
         val scrollParent =
             view.parent as? HorizontalScrollView
@@ -2427,7 +2409,6 @@ private fun abrirPesquisa() {
     campo.setTextColor(Color.WHITE)
     campo.setHintTextColor(Color.GRAY)
     campo.textSize = 18f
-
     campo.setSingleLine(true)
 
     val container = LinearLayout(this)
@@ -2504,7 +2485,10 @@ private fun abrirPesquisa() {
                 ).show()
             }
         }
-        .setNegativeButton("Cancelar", null)
+        .setNegativeButton(
+            "Cancelar",
+            null
+        )
         .create()
 
     dialog.setOnShowListener {
