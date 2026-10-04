@@ -428,20 +428,26 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
     }
   ],
-  "series": [
+  "series": [],
+  "animes": [],
+  "doramas": [
     {
       "titulo": "Cães de Caça",
       "ano": 2023,
       "categoria": "Dorama",
       "capa": "https://i.postimg.cc/vm7VVvx5/1217360.jpg",
-      "episodios": [
+      "temporadas": [
         {
           "temporada": 1,
-          "episodio": 1,
-          "titulo": "Episódio 1",
-          "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/C%C3%A3es%20de%20Ca%C3%A7a%20S01E01%20WEB-DL%201080p%20x264%20DUAL%205.1.mp4"
+          "episodios": [
+            {
+              "episodio": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/C%C3%A3es%20de%20Ca%C3%A7a%20S01E01%20WEB-DL%201080p%20x264%20DUAL%205.1.mp4"
+            }
+          ]
         }
       ]
     }
   ]
-    }
+}
