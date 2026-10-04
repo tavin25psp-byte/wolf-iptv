@@ -1,6 +1,7 @@
 package com.wolf.iptv
 
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
@@ -40,7 +41,7 @@ class PlayerActivity : AppCompatActivity() {
     )
 
     private val nomesZoom = arrayOf(
-        "Normal",
+        "1.0×   Normal",
         "1.1×",
         "1.25×",
         "1.5×",
@@ -59,7 +60,6 @@ class PlayerActivity : AppCompatActivity() {
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
         criarInterface()
-
         iniciarPlayer()
     }
 
@@ -71,29 +71,21 @@ class PlayerActivity : AppCompatActivity() {
 
         container = FrameLayout(this)
 
-        // =====================================================
         // PLAYER
-        // =====================================================
-
         playerView = PlayerView(this)
 
         playerView.useController = true
         playerView.controllerShowTimeoutMs = 5000
 
-        val playerParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            FrameLayout.LayoutParams.MATCH_PARENT
-        )
-
         container.addView(
             playerView,
-            playerParams
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
         )
 
-        // =====================================================
-        // TEXTO DE ERRO
-        // =====================================================
-
+        // ERRO
         erroTexto = TextView(this)
 
         erroTexto.textSize = 18f
@@ -110,14 +102,12 @@ class PlayerActivity : AppCompatActivity() {
 
         erroTexto.visibility = View.GONE
 
-        val erroParams = FrameLayout.LayoutParams(
-            FrameLayout.LayoutParams.MATCH_PARENT,
-            FrameLayout.LayoutParams.MATCH_PARENT
-        )
-
         container.addView(
             erroTexto,
-            erroParams
+            FrameLayout.LayoutParams(
+                FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT
+            )
         )
 
         // =====================================================
@@ -127,34 +117,23 @@ class PlayerActivity : AppCompatActivity() {
         engrenagem = TextView(this)
 
         engrenagem.text = "⚙"
-        engrenagem.textSize = 28f
+        engrenagem.textSize = 25f
         engrenagem.setTextColor(Color.WHITE)
-
         engrenagem.gravity = Gravity.CENTER
 
-        engrenagem.setBackgroundColor(
-            Color.argb(
-                170,
-                0,
-                0,
-                0
+        engrenagem.background =
+            fundoArredondado(
+                Color.argb(170, 10, 10, 10),
+                18f
             )
-        )
-
-        engrenagem.setPadding(
-            12,
-            8,
-            12,
-            8
-        )
 
         engrenagem.isFocusable = true
         engrenagem.isClickable = true
 
         val engrenagemParams =
             FrameLayout.LayoutParams(
-                70,
-                70
+                58,
+                58
             )
 
         engrenagemParams.gravity =
@@ -162,8 +141,8 @@ class PlayerActivity : AppCompatActivity() {
 
         engrenagemParams.setMargins(
             0,
-            25,
-            25,
+            24,
+            24,
             0
         )
 
@@ -172,13 +151,12 @@ class PlayerActivity : AppCompatActivity() {
             engrenagemParams
         )
 
-        // TOQUE NO CELULAR
         engrenagem.setOnClickListener {
             abrirMenuZoom()
         }
 
         // =====================================================
-        // MENU
+        // MENU DE ZOOM
         // =====================================================
 
         menuZoom = LinearLayout(this)
@@ -187,20 +165,17 @@ class PlayerActivity : AppCompatActivity() {
             LinearLayout.VERTICAL
 
         menuZoom.setPadding(
-            25,
-            25,
-            25,
-            25
+            22,
+            22,
+            22,
+            22
         )
 
-        menuZoom.setBackgroundColor(
-            Color.argb(
-                235,
-                20,
-                20,
-                20
+        menuZoom.background =
+            fundoArredondado(
+                Color.argb(235, 18, 18, 18),
+                24f
             )
-        )
 
         menuZoom.visibility =
             View.GONE
@@ -209,7 +184,7 @@ class PlayerActivity : AppCompatActivity() {
 
         val menuParams =
             FrameLayout.LayoutParams(
-                360,
+                390,
                 FrameLayout.LayoutParams.WRAP_CONTENT
             )
 
@@ -218,8 +193,8 @@ class PlayerActivity : AppCompatActivity() {
 
         menuParams.setMargins(
             0,
-            105,
-            25,
+            94,
+            24,
             0
         )
 
@@ -234,45 +209,74 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // BOTÕES DE ZOOM
+    // FUNDO ARREDONDADO
+    // =========================================================
+
+    private fun fundoArredondado(
+        cor: Int,
+        raio: Float
+    ): GradientDrawable {
+
+        return GradientDrawable().apply {
+
+            setColor(cor)
+
+            cornerRadius = raio
+
+            setStroke(
+                1,
+                Color.argb(
+                    60,
+                    255,
+                    255,
+                    255
+                )
+            )
+        }
+    }
+
+    // =========================================================
+    // BOTÕES
     // =========================================================
 
     private fun criarBotoesZoom() {
 
         menuZoom.removeAllViews()
 
+        // TÍTULO
         val titulo = TextView(this)
 
-        titulo.text = "⚙  ZOOM"
+        titulo.text = "⚙  Zoom da imagem"
         titulo.textSize = 20f
         titulo.setTextColor(Color.WHITE)
 
         titulo.gravity =
-            Gravity.CENTER
+            Gravity.CENTER_VERTICAL
 
         titulo.setPadding(
-            10,
-            10,
-            10,
-            20
+            12,
+            0,
+            12,
+            16
         )
 
         menuZoom.addView(
             titulo,
             LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
-                70
+                65
             )
         )
 
+        // OPÇÕES
         for (i in nomesZoom.indices) {
 
             val botao = Button(this)
 
-            botao.text =
-                nomesZoom[i]
-
-            botao.textSize = 17f
+            atualizarBotao(
+                botao,
+                i
+            )
 
             botao.isFocusable = true
             botao.isClickable = true
@@ -283,21 +287,91 @@ class PlayerActivity : AppCompatActivity() {
 
                 aplicarZoom()
 
-                fecharMenuZoom()
+                atualizarBotoes()
+
             }
 
             menuZoom.addView(
                 botao,
                 LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
-                    65
+                    62
                 )
             )
+        }
+
+        atualizarBotoes()
+    }
+
+    // =========================================================
+    // ATUALIZAR BOTÕES
+    // =========================================================
+
+    private fun atualizarBotoes() {
+
+        for (i in nomesZoom.indices) {
+
+            val view =
+                menuZoom.getChildAt(i + 1)
+
+            if (view is Button) {
+
+                atualizarBotao(
+                    view,
+                    i
+                )
+            }
+        }
+    }
+
+    private fun atualizarBotao(
+        botao: Button,
+        indice: Int
+    ) {
+
+        if (indice == zoomAtual) {
+
+            botao.text =
+                "✓  ${nomesZoom[indice]}"
+
+            botao.setTextColor(
+                Color.WHITE
+            )
+
+            botao.background =
+                fundoArredondado(
+                    Color.rgb(
+                        45,
+                        45,
+                        45
+                    ),
+                    16f
+                )
+
+        } else {
+
+            botao.text =
+                "    ${nomesZoom[indice]}"
+
+            botao.setTextColor(
+                Color.LTGRAY
+            )
+
+            botao.background =
+                fundoArredondado(
+                    Color.argb(
+                        80,
+                        255,
+                        255,
+                        255
+                    ),
+                    16f
+                )
         }
     }
 
     // =========================================================
-    // ABRIR MENU
+    // ABRIR
     // =========================================================
 
     private fun abrirMenuZoom() {
@@ -307,14 +381,16 @@ class PlayerActivity : AppCompatActivity() {
         menuZoom.visibility =
             View.VISIBLE
 
-        // Primeiro botão recebe foco na TV
         if (menuZoom.childCount > 1) {
-            menuZoom.getChildAt(1).requestFocus()
+
+            menuZoom
+                .getChildAt(zoomAtual + 1)
+                .requestFocus()
         }
     }
 
     // =========================================================
-    // FECHAR MENU
+    // FECHAR
     // =========================================================
 
     private fun fecharMenuZoom() {
@@ -328,7 +404,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // APLICAR ZOOM
+    // ZOOM
     // =========================================================
 
     private fun aplicarZoom() {
@@ -382,13 +458,11 @@ class PlayerActivity : AppCompatActivity() {
                         when (state) {
 
                             Player.STATE_BUFFERING -> {
-
                                 erroTexto.visibility =
                                     View.GONE
                             }
 
                             Player.STATE_READY -> {
-
                                 erroTexto.visibility =
                                     View.GONE
                             }
@@ -432,11 +506,8 @@ class PlayerActivity : AppCompatActivity() {
                 )
             }
 
-            val mediaItem =
-                builder.build()
-
             player?.setMediaItem(
-                mediaItem
+                builder.build()
             )
 
             player?.prepare()
@@ -476,7 +547,10 @@ class PlayerActivity : AppCompatActivity() {
         event: KeyEvent
     ): Boolean {
 
-        if (event.action != KeyEvent.ACTION_UP) {
+        if (
+            event.action !=
+            KeyEvent.ACTION_UP
+        ) {
             return super.dispatchKeyEvent(event)
         }
 
@@ -515,9 +589,8 @@ class PlayerActivity : AppCompatActivity() {
                     val foco =
                         currentFocus
 
-                    if (
-                        foco is Button
-                    ) {
+                    if (foco is Button) {
+
                         foco.performClick()
                     }
 
@@ -529,7 +602,7 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // =====================================================
-        // PLAYER NORMAL
+        // PLAYER
         // =====================================================
 
         when (event.keyCode) {
@@ -567,28 +640,22 @@ class PlayerActivity : AppCompatActivity() {
 
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
-                player?.let {
-
-                    it.seekTo(
-                        it.currentPosition +
-                                10_000
-                    )
-                }
+                player?.seekTo(
+                    player!!.currentPosition +
+                            10_000
+                )
 
                 return true
             }
 
             KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                player?.let {
-
-                    it.seekTo(
-                        (
-                            it.currentPosition -
-                                    10_000
-                        ).coerceAtLeast(0)
-                    )
-                }
+                player?.seekTo(
+                    (
+                        player!!.currentPosition -
+                                10_000
+                    ).coerceAtLeast(0)
+                )
 
                 return true
             }
@@ -605,7 +672,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // MOVER PELO MENU COM D-PAD
+    // FOCO DO MENU
     // =========================================================
 
     private fun moverFocoZoom(
@@ -613,10 +680,16 @@ class PlayerActivity : AppCompatActivity() {
     ) {
 
         val foco =
-            currentFocus ?: return
+            currentFocus
 
         var indice =
-            menuZoom.indexOfChild(foco)
+            if (foco != null) {
+                menuZoom.indexOfChild(
+                    foco
+                )
+            } else {
+                zoomAtual + 1
+            }
 
         if (indice < 1) {
             indice = 1
@@ -625,6 +698,7 @@ class PlayerActivity : AppCompatActivity() {
         indice += direcao
 
         if (indice < 1) {
+
             indice =
                 menuZoom.childCount - 1
         }
@@ -633,6 +707,7 @@ class PlayerActivity : AppCompatActivity() {
             indice >=
             menuZoom.childCount
         ) {
+
             indice = 1
         }
 
@@ -649,7 +724,7 @@ class PlayerActivity : AppCompatActivity() {
 
         super.onPause()
 
-        // Não pausar o player aqui.
+        // Não pausar automaticamente.
     }
 
     // =========================================================
