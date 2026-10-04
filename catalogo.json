@@ -152,7 +152,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/C%C3%A9u%20em%20f%C3%úria%20.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
     },
     {
       "titulo": "Coringa",
@@ -411,7 +411,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/BALG-CHANNEL/A%20Odisseia.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/A%20Odisseia.mp4"
     },
     {
       "titulo": "Thunderbolts",
@@ -465,7 +465,7 @@
             },
             {
               "episodio": 6,
-              "titulo": "Episodio 6",
+              "titulo": "Episódio 6",
               "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E06.mp4"
             },
             {
@@ -504,4 +504,5 @@
       ]
     }
   ]
-}
+    }
+      
