@@ -1,6 +1,34 @@
 {
   "filmes": [
     {
+      "titulo": "O Mundo Depois de Nós",
+      "ano": 2023,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/KYrTcZy8/images-(43).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4"
+    },
+    {
+      "titulo": "Acerto de Sangue",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/tavin%20filmes%20/Acerto%20de%20Sangue.mp4"
+    },
+    {
+      "titulo": "O Justiceiro: Uma Última Morte",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/X74Y3wYK/images-(45).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/tavin%20filmes%20/tavin%20filmes%20/O%20Justiceiro%20Uma%20%C3%9Altima%20Morte.mp4"
+    },
+    {
+      "titulo": "Jack Ryan de Tom Clancy: Guerra Fantasma",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VNjhYb6W/images-(49).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/tavin%20filmes%20/tavin%20filmes%20/Jack%20Ryan%20de%20Tom%20Clancy%20Guerra%20Fantasma.mp4"
+    },
+    {
       "titulo": "Supergirl",
       "ano": 2026,
       "categoria": "Ação",
@@ -111,8 +139,7 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/mgw3xmpz/917q-7O0TJL.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
-    },
-    {
+    }    {
       "titulo": "O Fim da Rua",
       "ano": 2025,
       "categoria": "Ação",
@@ -125,7 +152,8 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/kgp9wwT0/MV5BZTM5MTY3Nj-Qt-OWUx-YS00Yz-Ji-LWJi-ZGEt-MDZm-ZWY3ZGZk-N2Mw-Xk-Ey-Xk-Fqc-Gc-V1-(3).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Blades%20of%20The%20Guardians.mp4"
-    },    {
+    },
+    {
       "titulo": "Besouro Azul",
       "ano": 2023,
       "categoria": "Ação",
@@ -236,7 +264,8 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/76GM6jnH/sony-banner-venom-1400x2100.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Venom%20A%20%C3%9Altima%20Rodada.mp4"
-    },    {
+    },
+    {
       "titulo": "Fogo Contra Fogo",
       "ano": 2025,
       "categoria": "Ação",
@@ -256,8 +285,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/bvbwwTSQ/images-(26).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Miss%C3%A3o%20Imposs%C3%ADvel%20%26%238211%3B%20O%20Acerto%20Final.mp4"
-    },
-    {
+    }    {
       "titulo": "Mortal Kombat 2",
       "ano": 2025,
       "categoria": "Ação",
@@ -269,7 +297,7 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/k5SB4JPc/images-(22).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"
     },
     {
       "titulo": "Duna: Parte Dois",
@@ -297,7 +325,7 @@
       "ano": 2022,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/wvNYhZbd/Uncharted-Official-Poster-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Uncharted%20Fora%20do%20Mapa.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Uncharted%20Fora%20do%20Mapa.mp4"
     },
     {
       "titulo": "Jogos Mortais X",
@@ -332,7 +360,7 @@
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
     },
     {
       "titulo": "The Flash",
@@ -354,7 +382,8 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Super%20Mario%20Bros.%20O%20Filme.mp4"
-    },    {
+    },
+    {
       "titulo": "Guardiões da Galáxia Vol. 3",
       "ano": 2023,
       "categoria": "Ação",
@@ -395,8 +424,7 @@
       "categoria": "Ficção",
       "capa": "https://i.postimg.cc/7LQgchYy/avatar.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/avatar-1080p.mp4"
-    },
-    {
+    }    {
       "titulo": "Como Mágica",
       "ano": 2026,
       "categoria": "Fantasia",
