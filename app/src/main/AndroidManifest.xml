@@ -1,43 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<adaptive-icon
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <background android:drawable="@color/icon_background" />
 
-    <uses-feature
-        android:name="android.software.leanback"
-        android:required="false" />
+    <foreground android:drawable="@drawable/wolf_logo" />
 
-    <uses-feature
-        android:name="android.hardware.touchscreen"
-        android:required="false" />
-
-    <application
-        android:allowBackup="true"
-        android:label="WOLF IPTV"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher"
-        android:supportsRtl="true"
-        android:theme="@style/Theme.WolfIPTV">
-
-        <activity
-            android:name=".PlayerActivity"
-            android:screenOrientation="landscape"
-            android:exported="false" />
-
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="landscape"
-            android:exported="true">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
-            </intent-filter>
-
-        </activity>
-
-    </application>
-
-</manifest>
+</adaptive-icon>
