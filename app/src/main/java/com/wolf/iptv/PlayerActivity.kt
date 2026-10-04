@@ -27,7 +27,6 @@ class PlayerActivity : AppCompatActivity() {
     private lateinit var container: FrameLayout
     private lateinit var playerView: PlayerView
     private lateinit var erroTexto: TextView
-    private lateinit var engrenagem: TextView
     private lateinit var menuZoom: LinearLayout
 
     private var menuAberto = false
@@ -122,62 +121,7 @@ class PlayerActivity : AppCompatActivity() {
         )
 
         // =====================================================
-        // ENGRENAGEM INFERIOR
-        // =====================================================
-
-        engrenagem = TextView(this)
-
-        engrenagem.text = "⚙"
-        engrenagem.textSize = 23f
-        engrenagem.setTextColor(Color.WHITE)
-
-        engrenagem.gravity = Gravity.CENTER
-
-        engrenagem.background =
-            fundoArredondado(
-                Color.argb(
-                    235,
-                    15,
-                    15,
-                    15
-                ),
-                18f
-            )
-
-        engrenagem.isFocusable = true
-        engrenagem.isClickable = true
-
-        /*
-         * A engrenagem fica na parte inferior,
-         * junto à região dos controles do player.
-         */
-        val engrenagemParams =
-            FrameLayout.LayoutParams(
-                58,
-                58
-            )
-
-        engrenagemParams.gravity =
-            Gravity.BOTTOM or Gravity.END
-
-        engrenagemParams.setMargins(
-            0,
-            0,
-            28,
-            48
-        )
-
-        container.addView(
-            engrenagem,
-            engrenagemParams
-        )
-
-        engrenagem.setOnClickListener {
-            abrirMenuZoom()
-        }
-
-        // =====================================================
-        // MENU DE ZOOM
+        // MENU ZOOM
         // =====================================================
 
         menuZoom = LinearLayout(this)
@@ -195,23 +139,20 @@ class PlayerActivity : AppCompatActivity() {
         menuZoom.background =
             fundoArredondado(
                 Color.rgb(
-                    12,
-                    12,
-                    12
+                    10,
+                    10,
+                    10
                 ),
                 24f
             )
 
-        menuZoom.elevation = 25f
+        menuZoom.elevation = 30f
 
         menuZoom.visibility =
             View.GONE
 
         menuZoom.isFocusable = true
 
-        /*
-         * Menu aparece acima da engrenagem inferior.
-         */
         val menuParams =
             FrameLayout.LayoutParams(
                 390,
@@ -236,6 +177,53 @@ class PlayerActivity : AppCompatActivity() {
         criarBotoesZoom()
 
         setContentView(container)
+
+        /*
+         * Espera os controles do Media3 aparecerem
+         * e procura a engrenagem que JÁ EXISTE.
+         */
+        playerView.postDelayed({
+
+            conectarEngrenagemNativa()
+
+        }, 300)
+    }
+
+    // =========================================================
+    // ENCONTRAR ENGRENAGEM DO PLAYER
+    // =========================================================
+
+    private fun conectarEngrenagemNativa() {
+
+        /*
+         * O Media3 usa o ID "exo_settings"
+         * para o botão de configurações em layouts
+         * que possuem essa engrenagem.
+         */
+        val id =
+            resources.getIdentifier(
+                "exo_settings",
+                "id",
+                packageName
+            )
+
+        if (id == 0) {
+            return
+        }
+
+        val botao =
+            playerView.findViewById<View>(id)
+
+        botao?.let {
+
+            it.setOnClickListener {
+
+                abrirMenuZoom()
+            }
+
+            it.isFocusable = true
+            it.isClickable = true
+        }
     }
 
     // =========================================================
@@ -256,7 +244,7 @@ class PlayerActivity : AppCompatActivity() {
             setStroke(
                 2,
                 Color.argb(
-                    90,
+                    100,
                     255,
                     255,
                     255
@@ -278,8 +266,7 @@ class PlayerActivity : AppCompatActivity() {
         titulo.text =
             "⚙  Zoom da imagem"
 
-        titulo.textSize =
-            20f
+        titulo.textSize = 20f
 
         titulo.setTextColor(
             Color.WHITE
@@ -313,11 +300,8 @@ class PlayerActivity : AppCompatActivity() {
                 i
             )
 
-            botao.isFocusable =
-                true
-
-            botao.isClickable =
-                true
+            botao.isFocusable = true
+            botao.isClickable = true
 
             botao.setOnClickListener {
 
@@ -452,32 +436,17 @@ class PlayerActivity : AppCompatActivity() {
         menuZoom.visibility =
             View.GONE
 
-        engrenagem.requestFocus()
+        playerView.requestFocus()
     }
 
     // =========================================================
-    // ZOOM
+    // ZOOM SOMENTE NO VÍDEO
     // =========================================================
 
     private fun aplicarZoom() {
 
         val escala =
             zooms[zoomAtual]
-
-        /*
-         * IMPORTANTE:
-         *
-         * O PlayerView inteiro NÃO recebe scale.
-         *
-         * Assim:
-         *
-         * ▶ Play não aumenta
-         * ━ Barra não aumenta
-         * ⏱ Tempo não aumenta
-         * ⚙ Engrenagem não aumenta
-         *
-         * Apenas a superfície do vídeo recebe o zoom.
-         */
 
         val superficie =
             playerView.videoSurfaceView
@@ -490,17 +459,19 @@ class PlayerActivity : AppCompatActivity() {
             it.pivotY =
                 it.height / 2f
 
-            it.scaleX =
-                1.0f
+            /*
+             * Mantém a largura.
+             * Amplia somente verticalmente.
+             *
+             * Isso reduz as barras de cima/baixo
+             * sem aumentar a barra de reprodução.
+             */
+            it.scaleX = 1.0f
 
-            it.scaleY =
-                escala
+            it.scaleY = escala
 
-            it.translationX =
-                0f
-
-            it.translationY =
-                0f
+            it.translationX = 0f
+            it.translationY = 0f
         }
     }
 
@@ -556,6 +527,8 @@ class PlayerActivity : AppCompatActivity() {
                                 playerView.post {
 
                                     aplicarZoom()
+
+                                    conectarEngrenagemNativa()
                                 }
                             }
 
@@ -650,7 +623,7 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // =====================================================
-        // MENU DE ZOOM
+        // MENU ABERTO
         // =====================================================
 
         if (menuAberto) {
@@ -697,42 +670,25 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // =====================================================
-        // CONTROLE DO PLAYER
+        // PLAYER
         // =====================================================
 
         when (event.keyCode) {
 
-            KeyEvent.KEYCODE_DPAD_DOWN -> {
-
-                /*
-                 * Ao apertar para baixo,
-                 * leva o foco para a engrenagem.
-                 */
-                engrenagem.requestFocus()
-
-                return true
-            }
-
             KeyEvent.KEYCODE_DPAD_CENTER,
             KeyEvent.KEYCODE_ENTER -> {
 
-                if (
-                    engrenagem.hasFocus()
-                ) {
-
-                    abrirMenuZoom()
-
-                    return true
-                }
-
+                /*
+                 * Se o foco estiver na engrenagem nativa,
+                 * o próprio clique já abre o menu.
+                 *
+                 * Caso esteja no vídeo, play/pause.
+                 */
                 player?.let {
 
                     if (it.isPlaying) {
-
                         it.pause()
-
                     } else {
-
                         it.play()
                     }
                 }
