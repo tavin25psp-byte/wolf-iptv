@@ -138,7 +138,7 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/J7fYDKXH/images-(17).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/A%20Morte%20de%20Robin%20Hood.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Morte%20de%20Robin%20Hood.mp4"
     },
     {
       "titulo": "A Pequena Sereia",
@@ -152,7 +152,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
     },
     {
       "titulo": "Coringa",
@@ -327,7 +327,7 @@
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Megatubar%C3%A3o%202.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
     },
     {
       "titulo": "The Flash",
@@ -411,7 +411,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/A%20Odisseia.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/BALA-CHANNEL/A%20Odisseia.mp4"
     },
     {
       "titulo": "Thunderbolts",
@@ -504,5 +504,4 @@
       ]
     }
   ]
-    }
-      
+}
