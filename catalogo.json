@@ -55,7 +55,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Destrui%C3%A7%C3%A3o%20Iminente.mp4"
-    }    },
+    },
     {
       "titulo": "Divertida Mente 2",
       "ano": 2024,
@@ -111,7 +111,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Fim%20da%20Rua.mp4"
-    }    },
+    },
     {
       "titulo": "Blades of The Guardians",
       "ano": 2025,
@@ -167,7 +167,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4"
-    }    },
+    },
     {
       "titulo": "Gato de Botas 2: O Último Pedido",
       "ano": 2022,
@@ -223,7 +223,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/501RTBcx/1193847-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Teen%20Wolf%20O%20Filme.mp4"
-    }    },
+    },
     {
       "titulo": "Venom: A Última Rodada",
       "ano": 2024,
@@ -279,7 +279,7 @@
       "categoria": "Ficção",
       "capa": "https://i.postimg.cc/rp8T2fm3/images-(15).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/O%20Projeto%20Adam.mp4"
-    }    },
+    },
     {
       "titulo": "Aquaman 2: O Reino Perdido",
       "ano": 2023,
@@ -313,7 +313,7 @@
       "ano": 2022,
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/VkMCSkzP/images-(16).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Sonic%202%20O%20Filme.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Sonic%202%20O%20Filme.mp4"
     },
     {
       "titulo": "Top Gun: Maverick",
@@ -327,7 +327,7 @@
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
     },
     {
       "titulo": "The Flash",
@@ -335,7 +335,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/SxvNfKMf/4500101g-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/The%20Flash.mp4"
-    }    },
+    },
     {
       "titulo": "Barbie",
       "ano": 2023,
@@ -348,7 +348,7 @@
       "ano": 2023,
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Super%20Mario%20Bros.%20O%20Filme.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Super%20Mario%20Bros.%20O%20Filme.mp4"
     },
     {
       "titulo": "Guardiões da Galáxia Vol. 3",
@@ -391,7 +391,7 @@
       "categoria": "Ficção",
       "capa": "https://i.postimg.cc/7LQgchYy/avatar.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/avatar-1080p.mp4"
-    }    },
+    },
     {
       "titulo": "Como Mágica",
       "ano": 2026,
@@ -444,4 +444,4 @@
       ]
     }
   ]
-}
+    }
