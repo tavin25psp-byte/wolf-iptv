@@ -428,7 +428,8 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
     }
   ],
-  "series": [
+  "series": [],
+  "doramas": [
     {
       "titulo": "Cães de Caça",
       "ano": 2023,
@@ -444,4 +445,4 @@
       ]
     }
   ]
-    }
+}
