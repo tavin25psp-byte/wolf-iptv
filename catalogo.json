@@ -166,7 +166,7 @@
       "ano": 2024,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26%20Wolverine.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20-%20Wolverine.mp4"
     },
     {
       "titulo": "Gato de Botas 2: O Último Pedido",
@@ -250,7 +250,7 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/bvbwwTSQ/images-(26).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Miss%C3%A3o%20Imposs%C3%ADvel%20%26%238211%3B%20O%20Acerto%20Final.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Miss%C3%A3o%20Imposs%C3%ADvel%20-%20O%20Acerto%20Final.mp4"
     },
     {
       "titulo": "Mortal Kombat 2",
@@ -306,7 +306,7 @@
       "ano": 2023,
       "categoria": "Terror",
       "capa": "https://i.postimg.cc/fRQwgdrH/images-(29).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Jogos%20Mortais%20X.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Jogos%20Mortais%20X.mp4"
     },
     {
       "titulo": "As Tartarugas Ninja: Caos Mutante",
@@ -467,7 +467,7 @@
             },
             {
               "episodio": 5,
-              "titulo": "Episodio 5",
+              "titulo": "Episódio 5",
               "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E05.mp4"
             },
             {
@@ -488,4 +488,5 @@
           ]
         }
       ]
-    
+    }
+  
