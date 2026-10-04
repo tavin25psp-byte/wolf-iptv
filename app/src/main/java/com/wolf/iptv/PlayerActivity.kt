@@ -79,10 +79,9 @@ class PlayerActivity : AppCompatActivity() {
         playerView = PlayerView(this)
 
         playerView.useController = true
+
         playerView.controllerShowTimeoutMs = 5000
 
-        // Preenche a tela sem deformar o vídeo.
-        // O corte fica sempre centralizado.
         playerView.resizeMode =
             AspectRatioFrameLayout.RESIZE_MODE_ZOOM
 
@@ -123,25 +122,35 @@ class PlayerActivity : AppCompatActivity() {
         )
 
         // =====================================================
-        // ENGRENAGEM
+        // ENGRENAGEM INFERIOR
         // =====================================================
 
         engrenagem = TextView(this)
 
         engrenagem.text = "⚙"
-        engrenagem.textSize = 25f
+        engrenagem.textSize = 23f
         engrenagem.setTextColor(Color.WHITE)
+
         engrenagem.gravity = Gravity.CENTER
 
         engrenagem.background =
             fundoArredondado(
-                Color.argb(170, 10, 10, 10),
+                Color.argb(
+                    235,
+                    15,
+                    15,
+                    15
+                ),
                 18f
             )
 
         engrenagem.isFocusable = true
         engrenagem.isClickable = true
 
+        /*
+         * A engrenagem fica na parte inferior,
+         * junto à região dos controles do player.
+         */
         val engrenagemParams =
             FrameLayout.LayoutParams(
                 58,
@@ -149,13 +158,13 @@ class PlayerActivity : AppCompatActivity() {
             )
 
         engrenagemParams.gravity =
-            Gravity.TOP or Gravity.END
+            Gravity.BOTTOM or Gravity.END
 
         engrenagemParams.setMargins(
             0,
-            24,
-            24,
-            0
+            0,
+            28,
+            48
         )
 
         container.addView(
@@ -168,7 +177,7 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // =====================================================
-        // MENU ZOOM
+        // MENU DE ZOOM
         // =====================================================
 
         menuZoom = LinearLayout(this)
@@ -177,23 +186,32 @@ class PlayerActivity : AppCompatActivity() {
             LinearLayout.VERTICAL
 
         menuZoom.setPadding(
-            22,
-            22,
-            22,
-            22
+            20,
+            20,
+            20,
+            20
         )
 
         menuZoom.background =
             fundoArredondado(
-                Color.argb(235, 18, 18, 18),
+                Color.rgb(
+                    12,
+                    12,
+                    12
+                ),
                 24f
             )
+
+        menuZoom.elevation = 25f
 
         menuZoom.visibility =
             View.GONE
 
         menuZoom.isFocusable = true
 
+        /*
+         * Menu aparece acima da engrenagem inferior.
+         */
         val menuParams =
             FrameLayout.LayoutParams(
                 390,
@@ -201,13 +219,13 @@ class PlayerActivity : AppCompatActivity() {
             )
 
         menuParams.gravity =
-            Gravity.TOP or Gravity.END
+            Gravity.BOTTOM or Gravity.END
 
         menuParams.setMargins(
             0,
-            94,
-            24,
-            0
+            0,
+            28,
+            120
         )
 
         container.addView(
@@ -221,7 +239,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // FUNDO ARREDONDADO
+    // FUNDO
     // =========================================================
 
     private fun fundoArredondado(
@@ -236,9 +254,9 @@ class PlayerActivity : AppCompatActivity() {
             cornerRadius = raio
 
             setStroke(
-                1,
+                2,
                 Color.argb(
-                    60,
+                    90,
                     255,
                     255,
                     255
@@ -257,9 +275,15 @@ class PlayerActivity : AppCompatActivity() {
 
         val titulo = TextView(this)
 
-        titulo.text = "⚙  Zoom da imagem"
-        titulo.textSize = 20f
-        titulo.setTextColor(Color.WHITE)
+        titulo.text =
+            "⚙  Zoom da imagem"
+
+        titulo.textSize =
+            20f
+
+        titulo.setTextColor(
+            Color.WHITE
+        )
 
         titulo.gravity =
             Gravity.CENTER_VERTICAL
@@ -268,7 +292,7 @@ class PlayerActivity : AppCompatActivity() {
             12,
             0,
             12,
-            16
+            14
         )
 
         menuZoom.addView(
@@ -281,15 +305,19 @@ class PlayerActivity : AppCompatActivity() {
 
         for (i in nomesZoom.indices) {
 
-            val botao = Button(this)
+            val botao =
+                Button(this)
 
             atualizarBotao(
                 botao,
                 i
             )
 
-            botao.isFocusable = true
-            botao.isClickable = true
+            botao.isFocusable =
+                true
+
+            botao.isClickable =
+                true
 
             botao.setOnClickListener {
 
@@ -305,7 +333,15 @@ class PlayerActivity : AppCompatActivity() {
                 LinearLayout.LayoutParams(
                     LinearLayout.LayoutParams.MATCH_PARENT,
                     62
-                )
+                ).apply {
+
+                    setMargins(
+                        0,
+                        4,
+                        0,
+                        4
+                    )
+                }
             )
         }
 
@@ -321,7 +357,9 @@ class PlayerActivity : AppCompatActivity() {
         for (i in nomesZoom.indices) {
 
             val view =
-                menuZoom.getChildAt(i + 1)
+                menuZoom.getChildAt(
+                    i + 1
+                )
 
             if (view is Button) {
 
@@ -341,18 +379,20 @@ class PlayerActivity : AppCompatActivity() {
         if (indice == zoomAtual) {
 
             botao.text =
-                "✓  ${nomesZoom[indice]}"
+                "✓   ${nomesZoom[indice]}"
 
             botao.setTextColor(
                 Color.WHITE
             )
 
+            botao.textSize = 17f
+
             botao.background =
                 fundoArredondado(
                     Color.rgb(
-                        45,
-                        45,
-                        45
+                        55,
+                        55,
+                        55
                     ),
                     16f
                 )
@@ -360,19 +400,20 @@ class PlayerActivity : AppCompatActivity() {
         } else {
 
             botao.text =
-                "    ${nomesZoom[indice]}"
+                "     ${nomesZoom[indice]}"
 
             botao.setTextColor(
                 Color.LTGRAY
             )
 
+            botao.textSize = 17f
+
             botao.background =
                 fundoArredondado(
-                    Color.argb(
-                        80,
-                        255,
-                        255,
-                        255
+                    Color.rgb(
+                        28,
+                        28,
+                        28
                     ),
                     16f
                 )
@@ -393,7 +434,9 @@ class PlayerActivity : AppCompatActivity() {
         if (menuZoom.childCount > 1) {
 
             menuZoom
-                .getChildAt(zoomAtual + 1)
+                .getChildAt(
+                    zoomAtual + 1
+                )
                 .requestFocus()
         }
     }
@@ -413,7 +456,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ZOOM CENTRALIZADO
+    // ZOOM
     // =========================================================
 
     private fun aplicarZoom() {
@@ -421,24 +464,44 @@ class PlayerActivity : AppCompatActivity() {
         val escala =
             zooms[zoomAtual]
 
-        // Centro horizontal
-        playerView.pivotX =
-            playerView.width / 2f
+        /*
+         * IMPORTANTE:
+         *
+         * O PlayerView inteiro NÃO recebe scale.
+         *
+         * Assim:
+         *
+         * ▶ Play não aumenta
+         * ━ Barra não aumenta
+         * ⏱ Tempo não aumenta
+         * ⚙ Engrenagem não aumenta
+         *
+         * Apenas a superfície do vídeo recebe o zoom.
+         */
 
-        // Centro vertical
-        playerView.pivotY =
-            playerView.height / 2f
+        val superficie =
+            playerView.videoSurfaceView
 
-        // Aplica o zoom igualmente
-        playerView.scaleX =
-            escala
+        superficie?.let {
 
-        playerView.scaleY =
-            escala
+            it.pivotX =
+                it.width / 2f
 
-        // Garante que não fique deslocado
-        playerView.translationX = 0f
-        playerView.translationY = 0f
+            it.pivotY =
+                it.height / 2f
+
+            it.scaleX =
+                1.0f
+
+            it.scaleY =
+                escala
+
+            it.translationX =
+                0f
+
+            it.translationY =
+                0f
+        }
     }
 
     // =========================================================
@@ -480,17 +543,18 @@ class PlayerActivity : AppCompatActivity() {
                         when (state) {
 
                             Player.STATE_BUFFERING -> {
+
                                 erroTexto.visibility =
                                     View.GONE
                             }
 
                             Player.STATE_READY -> {
+
                                 erroTexto.visibility =
                                     View.GONE
 
-                                // Reaplica o zoom depois
-                                // que o PlayerView tiver tamanho.
                                 playerView.post {
+
                                     aplicarZoom()
                                 }
                             }
@@ -579,11 +643,14 @@ class PlayerActivity : AppCompatActivity() {
             event.action !=
             KeyEvent.ACTION_UP
         ) {
-            return super.dispatchKeyEvent(event)
+
+            return super.dispatchKeyEvent(
+                event
+            )
         }
 
         // =====================================================
-        // MENU ABERTO
+        // MENU DE ZOOM
         // =====================================================
 
         if (menuAberto) {
@@ -630,13 +697,17 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // =====================================================
-        // PLAYER
+        // CONTROLE DO PLAYER
         // =====================================================
 
         when (event.keyCode) {
 
-            KeyEvent.KEYCODE_DPAD_UP -> {
+            KeyEvent.KEYCODE_DPAD_DOWN -> {
 
+                /*
+                 * Ao apertar para baixo,
+                 * leva o foco para a engrenagem.
+                 */
                 engrenagem.requestFocus()
 
                 return true
@@ -657,8 +728,11 @@ class PlayerActivity : AppCompatActivity() {
                 player?.let {
 
                     if (it.isPlaying) {
+
                         it.pause()
+
                     } else {
+
                         it.play()
                     }
                 }
@@ -668,22 +742,28 @@ class PlayerActivity : AppCompatActivity() {
 
             KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
-                player?.seekTo(
-                    player!!.currentPosition +
-                            10_000
-                )
+                player?.let {
+
+                    it.seekTo(
+                        it.currentPosition +
+                                10_000
+                    )
+                }
 
                 return true
             }
 
             KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                player?.seekTo(
-                    (
-                        player!!.currentPosition -
-                                10_000
-                    ).coerceAtLeast(0)
-                )
+                player?.let {
+
+                    it.seekTo(
+                        (
+                            it.currentPosition -
+                                    10_000
+                        ).coerceAtLeast(0)
+                    )
+                }
 
                 return true
             }
@@ -696,7 +776,9 @@ class PlayerActivity : AppCompatActivity() {
             }
         }
 
-        return super.dispatchKeyEvent(event)
+        return super.dispatchKeyEvent(
+            event
+        )
     }
 
     // =========================================================
@@ -723,6 +805,7 @@ class PlayerActivity : AppCompatActivity() {
             }
 
         if (indice < 1) {
+
             indice = 1
         }
 
