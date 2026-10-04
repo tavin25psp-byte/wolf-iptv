@@ -5,6 +5,6 @@
 
     <background android:drawable="@color/icon_background" />
 
-    <foreground android:drawable="@drawable/tv_icon" />
+    <foreground android:drawable="@drawable/wolf_logo" />
 
 </adaptive-icon>
