@@ -118,14 +118,14 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/XYyYqBNV/kung-fu-panda-4-cartaz-1zso1c-717x1200-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Kung%20Fu%20Panda%204.mp4"
-    }    },
+    },
     {
       "titulo": "Meu Malvado Favorito 4",
       "ano": 2024,
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/5t0bhHHr/images-(6).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4"
-    },
+    }    ,
     {
       "titulo": "Moana",
       "ano": 2016,
@@ -222,7 +222,7 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/4xqDnRp0/Jurassic-World-Recomec-o-1.webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Jurassic%20World%20Recome%C3%A7o.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Jurassic%20World%20Recome%C3%A7o.mp4"
     },
     {
       "titulo": "Planeta dos Macacos: O Reinado",
@@ -237,7 +237,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/GhQzSKW1/images-(11).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/A%20Fera.mp4"
-    }    },
+    }    ,
     {
       "titulo": "Avatar: O Caminho da Água",
       "ano": 2022,
@@ -356,13 +356,13 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Top%20Gun%20Maverick.mp4"
-    }    },
+    }    ,
     {
       "titulo": "Megatubarão 2",
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
     },
     {
       "titulo": "The Flash",
