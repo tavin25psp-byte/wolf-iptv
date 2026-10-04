@@ -662,6 +662,8 @@ class PlayerActivity : AppCompatActivity() {
     // D-PAD
     // =========================================================
 
+    private var bloqueioDpadZoom = false
+
     override fun dispatchKeyEvent(
         event: KeyEvent
     ): Boolean {
@@ -812,12 +814,20 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // NAVEGAÇÃO DO MENU
+    // NAVEGAÇÃO DO MENU ZOOM
+    // 1 TOQUE = 1 OPÇÃO
     // =========================================================
 
     private fun moverFocoZoom(
         direcao: Int
     ) {
+
+        if (bloqueioDpadZoom) {
+
+            return
+        }
+
+        bloqueioDpadZoom = true
 
         val foco =
             currentFocus
@@ -860,6 +870,12 @@ class PlayerActivity : AppCompatActivity() {
         proximo.requestFocus()
 
         atualizarBotoes()
+
+        menuZoom.postDelayed({
+
+            bloqueioDpadZoom = false
+
+        }, 180)
     }
 
     // =========================================================
