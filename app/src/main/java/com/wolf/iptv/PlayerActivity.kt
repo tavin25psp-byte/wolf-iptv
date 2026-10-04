@@ -17,6 +17,7 @@ import androidx.media3.common.MimeTypes
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 
 class PlayerActivity : AppCompatActivity() {
@@ -71,11 +72,19 @@ class PlayerActivity : AppCompatActivity() {
 
         container = FrameLayout(this)
 
+        // =====================================================
         // PLAYER
+        // =====================================================
+
         playerView = PlayerView(this)
 
         playerView.useController = true
         playerView.controllerShowTimeoutMs = 5000
+
+        // Preenche a tela sem deformar o vídeo.
+        // O corte fica sempre centralizado.
+        playerView.resizeMode =
+            AspectRatioFrameLayout.RESIZE_MODE_ZOOM
 
         container.addView(
             playerView,
@@ -85,7 +94,10 @@ class PlayerActivity : AppCompatActivity() {
             )
         )
 
+        // =====================================================
         // ERRO
+        // =====================================================
+
         erroTexto = TextView(this)
 
         erroTexto.textSize = 18f
@@ -156,7 +168,7 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // =====================================================
-        // MENU DE ZOOM
+        // MENU ZOOM
         // =====================================================
 
         menuZoom = LinearLayout(this)
@@ -236,14 +248,13 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // BOTÕES
+    // BOTÕES DE ZOOM
     // =========================================================
 
     private fun criarBotoesZoom() {
 
         menuZoom.removeAllViews()
 
-        // TÍTULO
         val titulo = TextView(this)
 
         titulo.text = "⚙  Zoom da imagem"
@@ -268,7 +279,6 @@ class PlayerActivity : AppCompatActivity() {
             )
         )
 
-        // OPÇÕES
         for (i in nomesZoom.indices) {
 
             val botao = Button(this)
@@ -288,7 +298,6 @@ class PlayerActivity : AppCompatActivity() {
                 aplicarZoom()
 
                 atualizarBotoes()
-
             }
 
             menuZoom.addView(
@@ -371,7 +380,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ABRIR
+    // ABRIR MENU
     // =========================================================
 
     private fun abrirMenuZoom() {
@@ -390,7 +399,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // FECHAR
+    // FECHAR MENU
     // =========================================================
 
     private fun fecharMenuZoom() {
@@ -404,7 +413,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ZOOM
+    // ZOOM CENTRALIZADO
     // =========================================================
 
     private fun aplicarZoom() {
@@ -412,11 +421,24 @@ class PlayerActivity : AppCompatActivity() {
         val escala =
             zooms[zoomAtual]
 
+        // Centro horizontal
+        playerView.pivotX =
+            playerView.width / 2f
+
+        // Centro vertical
+        playerView.pivotY =
+            playerView.height / 2f
+
+        // Aplica o zoom igualmente
         playerView.scaleX =
             escala
 
         playerView.scaleY =
             escala
+
+        // Garante que não fique deslocado
+        playerView.translationX = 0f
+        playerView.translationY = 0f
     }
 
     // =========================================================
@@ -465,6 +487,12 @@ class PlayerActivity : AppCompatActivity() {
                             Player.STATE_READY -> {
                                 erroTexto.visibility =
                                     View.GONE
+
+                                // Reaplica o zoom depois
+                                // que o PlayerView tiver tamanho.
+                                playerView.post {
+                                    aplicarZoom()
+                                }
                             }
 
                             Player.STATE_ENDED -> {
@@ -684,10 +712,13 @@ class PlayerActivity : AppCompatActivity() {
 
         var indice =
             if (foco != null) {
+
                 menuZoom.indexOfChild(
                     foco
                 )
+
             } else {
+
                 zoomAtual + 1
             }
 
@@ -724,7 +755,7 @@ class PlayerActivity : AppCompatActivity() {
 
         super.onPause()
 
-        // Não pausar automaticamente.
+        // Não pausa automaticamente.
     }
 
     // =========================================================
