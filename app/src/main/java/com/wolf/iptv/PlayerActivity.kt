@@ -73,10 +73,6 @@ class PlayerActivity : AppCompatActivity() {
 
         container = FrameLayout(this)
 
-        // =====================================================
-        // PLAYER
-        // =====================================================
-
         playerView = PlayerView(this)
 
         playerView.useController = true
@@ -94,7 +90,7 @@ class PlayerActivity : AppCompatActivity() {
         )
 
         // =====================================================
-        // TEXTO DE ERRO
+        // ERRO
         // =====================================================
 
         erroTexto = TextView(this)
@@ -122,7 +118,7 @@ class PlayerActivity : AppCompatActivity() {
         )
 
         // =====================================================
-        // MENU DE ZOOM
+        // MENU ZOOM
         // =====================================================
 
         menuZoom = LinearLayout(this)
@@ -143,12 +139,12 @@ class PlayerActivity : AppCompatActivity() {
                 24f
             )
 
-        menuZoom.elevation = 40f
+        menuZoom.elevation = 30f
 
         menuZoom.visibility =
             View.GONE
 
-        menuZoom.isFocusable = false
+        menuZoom.isFocusable = true
 
         val menuParams =
             FrameLayout.LayoutParams(
@@ -175,13 +171,11 @@ class PlayerActivity : AppCompatActivity() {
 
         setContentView(container)
 
-        // Espera os controles do Media3 aparecerem.
-        playerView.postDelayed(
-            {
-                conectarEngrenagemNativa()
-            },
-            400
-        )
+        playerView.postDelayed({
+
+            conectarEngrenagemNativa()
+
+        }, 300)
     }
 
     // =========================================================
@@ -196,56 +190,54 @@ class PlayerActivity : AppCompatActivity() {
             packageName
         )
 
-        if (id == 0) {
-            return
-        }
+        if (id == 0) return
 
-        val botao =
+        val engrenagem =
             playerView.findViewById<View>(id)
 
-        if (botao == null) {
-            return
-        }
+        engrenagem?.let { botao ->
 
-        engrenagemNativa = botao
+            engrenagemNativa = botao
 
-        botao.isFocusable = true
-        botao.isClickable = true
+            botao.isFocusable = true
+            botao.isClickable = true
 
-        botao.setOnClickListener {
+            botao.setOnClickListener {
 
-            if (menuAberto) {
-                fecharMenuZoom()
-            } else {
-                abrirMenuZoom()
+                if (menuAberto) {
+
+                    fecharMenuZoom()
+
+                } else {
+
+                    abrirMenuZoom()
+                }
             }
-        }
 
-        botao.setOnFocusChangeListener {
-                view,
-                temFoco ->
+            botao.setOnFocusChangeListener { view, temFoco ->
 
-            if (temFoco && !menuAberto) {
+                if (temFoco && !menuAberto) {
 
-                view.background =
-                    fundoArredondado(
-                        Color.rgb(
-                            190,
-                            0,
-                            0
-                        ),
-                        14f
-                    )
+                    view.background =
+                        fundoArredondado(
+                            Color.rgb(
+                                190,
+                                0,
+                                0
+                            ),
+                            14f
+                        )
 
-            } else {
+                } else {
 
-                view.background = null
+                    view.background = null
+                }
             }
         }
     }
 
     // =========================================================
-    // FUNDO ARREDONDADO
+    // FUNDO
     // =========================================================
 
     private fun fundoArredondado(
@@ -269,19 +261,13 @@ class PlayerActivity : AppCompatActivity() {
                 )
             )
         }
-    }
-
-    // =========================================================
-    // CRIAR BOTÕES DE ZOOM
+    }    // =========================================================
+    // BOTÕES ZOOM
     // =========================================================
 
     private fun criarBotoesZoom() {
 
         menuZoom.removeAllViews()
-
-        // =====================================================
-        // TÍTULO
-        // =====================================================
 
         val titulo = TextView(this)
 
@@ -304,8 +290,6 @@ class PlayerActivity : AppCompatActivity() {
             14
         )
 
-        titulo.isFocusable = false
-
         menuZoom.addView(
             titulo,
             LinearLayout.LayoutParams(
@@ -314,13 +298,7 @@ class PlayerActivity : AppCompatActivity() {
             )
         )
 
-        // =====================================================
-        // ZOOMS
-        // =====================================================
-
         for (i in nomesZoom.indices) {
-
-            val indice = i
 
             val botao =
                 Button(this)
@@ -330,16 +308,10 @@ class PlayerActivity : AppCompatActivity() {
 
             atualizarBotao(
                 botao,
-                indice
+                i
             )
 
-            // =================================================
-            // FOCO
-            // =================================================
-
-            botao.setOnFocusChangeListener {
-                    view,
-                    temFoco ->
+            botao.setOnFocusChangeListener { view, temFoco ->
 
                 if (temFoco) {
 
@@ -353,38 +325,24 @@ class PlayerActivity : AppCompatActivity() {
                             16f
                         )
 
-                    if (view is Button) {
-
-                        view.setTextColor(
-                            Color.WHITE
-                        )
-                    }
-
                 } else {
 
                     atualizarBotao(
-                        view as Button,
-                        indice
+                        botao,
+                        i
                     )
                 }
             }
 
-            // =================================================
-            // CLIQUE
-            // =================================================
-
             botao.setOnClickListener {
 
-                zoomAtual = indice
+                zoomAtual = i
 
                 aplicarZoom()
 
                 atualizarBotoes()
 
-                // Mantém o foco no botão escolhido.
-                botao.post {
-                    botao.requestFocus()
-                }
+                botao.requestFocus()
             }
 
             menuZoom.addView(
@@ -408,7 +366,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ATUALIZAR TODOS OS BOTÕES
+    // ATUALIZAR BOTÕES
     // =========================================================
 
     private fun atualizarBotoes() {
@@ -428,15 +386,11 @@ class PlayerActivity : AppCompatActivity() {
                         fundoArredondado(
                             Color.rgb(
                                 190,
-                                0,
+                                                               0,
                                 0
                             ),
                             16f
                         )
-
-                    view.setTextColor(
-                        Color.WHITE
-                    )
 
                 } else {
 
@@ -448,10 +402,6 @@ class PlayerActivity : AppCompatActivity() {
             }
         }
     }
-
-    // =========================================================
-    // ATUALIZAR UM BOTÃO
-    // =========================================================
 
     private fun atualizarBotao(
         botao: Button,
@@ -510,7 +460,6 @@ class PlayerActivity : AppCompatActivity() {
 
         menuAberto = true
 
-        // Remove destaque da engrenagem enquanto o menu está aberto.
         engrenagemNativa?.background = null
 
         menuZoom.visibility =
@@ -518,18 +467,22 @@ class PlayerActivity : AppCompatActivity() {
 
         atualizarBotoes()
 
-        // Foco direto no zoom atualmente selecionado.
-        val botaoZoom =
-            menuZoom.getChildAt(
-                zoomAtual + 1
-            )
+        if (menuZoom.childCount > 1) {
 
-        botaoZoom.isFocusable = true
+            menuZoom
+                .getChildAt(
+                    zoomAtual + 1
+                )
+                .post {
 
-        botaoZoom.requestFocus()
+                    menuZoom
+                        .getChildAt(
+                            zoomAtual + 1
+                        )
+                        .requestFocus()
 
-        botaoZoom.post {
-            botaoZoom.requestFocus()
+                    atualizarBotoes()
+                }
         }
     }
 
@@ -544,16 +497,9 @@ class PlayerActivity : AppCompatActivity() {
         menuZoom.visibility =
             View.GONE
 
-        // Devolve o foco para a engrenagem.
-        engrenagemNativa?.let {
+        engrenagemNativa?.post {
 
-            it.isFocusable = true
-
-            it.requestFocus()
-
-            it.post {
-                it.requestFocus()
-            }
+            engrenagemNativa?.requestFocus()
         }
     }
 
@@ -577,13 +523,6 @@ class PlayerActivity : AppCompatActivity() {
             it.pivotY =
                 it.height / 2f
 
-            /*
-             * O zoom é aplicado somente
-             * na superfície do vídeo.
-             *
-             * Os controles do PlayerView
-             * não são ampliados.
-             */
             it.scaleX = 1.0f
             it.scaleY = escala
 
@@ -650,11 +589,9 @@ class PlayerActivity : AppCompatActivity() {
                             }
 
                             Player.STATE_ENDED -> {
-                                // Vídeo terminou.
                             }
 
                             Player.STATE_IDLE -> {
-                                // Player parado.
                             }
                         }
                     }
@@ -677,10 +614,6 @@ class PlayerActivity : AppCompatActivity() {
             val builder =
                 MediaItem.Builder()
                     .setUri(uri)
-
-            // =================================================
-            // M3U8
-            // =================================================
 
             if (
                 url.contains(
@@ -713,7 +646,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // MOSTRAR ERRO
+    // ERRO
     // =========================================================
 
     private fun mostrarErro(
@@ -725,9 +658,7 @@ class PlayerActivity : AppCompatActivity() {
 
         erroTexto.visibility =
             View.VISIBLE
-    }
-
-    // =========================================================
+    }    // =========================================================
     // D-PAD
     // =========================================================
 
@@ -735,9 +666,6 @@ class PlayerActivity : AppCompatActivity() {
         event: KeyEvent
     ): Boolean {
 
-        /*
-         * Só processa quando a tecla foi solta.
-         */
         if (
             event.action !=
             KeyEvent.ACTION_UP
@@ -756,20 +684,12 @@ class PlayerActivity : AppCompatActivity() {
 
             when (event.keyCode) {
 
-                // -------------------------------------------------
-                // BACK FECHA
-                // -------------------------------------------------
-
                 KeyEvent.KEYCODE_BACK -> {
 
                     fecharMenuZoom()
 
                     return true
                 }
-
-                // -------------------------------------------------
-                // SETA PARA CIMA
-                // -------------------------------------------------
 
                 KeyEvent.KEYCODE_DPAD_UP -> {
 
@@ -778,20 +698,12 @@ class PlayerActivity : AppCompatActivity() {
                     return true
                 }
 
-                // -------------------------------------------------
-                // SETA PARA BAIXO
-                // -------------------------------------------------
-
                 KeyEvent.KEYCODE_DPAD_DOWN -> {
 
                     moverFocoZoom(1)
 
                     return true
                 }
-
-                // -------------------------------------------------
-                // OK
-                // -------------------------------------------------
 
                 KeyEvent.KEYCODE_DPAD_CENTER,
                 KeyEvent.KEYCODE_ENTER -> {
@@ -802,18 +714,10 @@ class PlayerActivity : AppCompatActivity() {
                     if (foco is Button) {
 
                         foco.performClick()
-
-                        foco.post {
-                            foco.requestFocus()
-                        }
                     }
 
                     return true
                 }
-
-                // -------------------------------------------------
-                // ESQUERDA FECHA
-                // -------------------------------------------------
 
                 KeyEvent.KEYCODE_DPAD_LEFT -> {
 
@@ -823,9 +727,163 @@ class PlayerActivity : AppCompatActivity() {
                 }
             }
 
-            /*
-             * Enquanto o menu está aberto,
-             * nenhuma outra tecla pode entregar
-             * o foco aos controles do player.
-             */
-            return t
+            return true
+        }
+
+        // =====================================================
+        // PLAYER
+        // =====================================================
+
+        when (event.keyCode) {
+
+            KeyEvent.KEYCODE_DPAD_CENTER,
+            KeyEvent.KEYCODE_ENTER -> {
+
+                val foco =
+                    currentFocus
+
+                val engrenagem =
+                    engrenagemNativa
+
+                if (
+                    foco != null &&
+                    foco == engrenagem
+                ) {
+
+                    abrirMenuZoom()
+
+                    return true
+                }
+
+                player?.let {
+
+                    if (it.isPlaying) {
+
+                        it.pause()
+
+                    } else {
+
+                        it.play()
+                    }
+                }
+
+                return true
+            }
+
+            KeyEvent.KEYCODE_DPAD_RIGHT -> {
+
+                player?.let {
+
+                    it.seekTo(
+                        it.currentPosition +
+                                10_000
+                    )
+                }
+
+                return true
+            }
+
+            KeyEvent.KEYCODE_DPAD_LEFT -> {
+
+                player?.let {
+
+                    it.seekTo(
+                        (
+                            it.currentPosition -
+                                    10_000
+                        ).coerceAtLeast(0)
+                    )
+                }
+
+                return true
+            }
+
+            KeyEvent.KEYCODE_BACK -> {
+
+                finish()
+
+                return true
+            }
+        }
+
+        return super.dispatchKeyEvent(
+            event
+        )
+    }
+
+    // =========================================================
+    // NAVEGAÇÃO DO MENU
+    // =========================================================
+
+    private fun moverFocoZoom(
+        direcao: Int
+    ) {
+
+        val foco =
+            currentFocus
+
+        val indiceAtual =
+            if (
+                foco != null &&
+                menuZoom.indexOfChild(foco) >= 1
+            ) {
+
+                menuZoom.indexOfChild(foco)
+
+            } else {
+
+                zoomAtual + 1
+            }
+
+        var indice =
+            indiceAtual + direcao
+
+        if (indice < 1) {
+
+            indice =
+                menuZoom.childCount - 1
+        }
+
+        if (
+            indice >=
+            menuZoom.childCount
+        ) {
+
+            indice = 1
+        }
+
+        val proximo =
+            menuZoom.getChildAt(indice)
+
+        proximo.isFocusable = true
+
+        proximo.requestFocus()
+
+        atualizarBotoes()
+    }
+
+    // =========================================================
+    // PAUSE
+    // =========================================================
+
+    override fun onPause() {
+
+        super.onPause()
+    }
+
+    // =========================================================
+    // DESTROY
+    // =========================================================
+
+    override fun onDestroy() {
+
+        playerView.player =
+            null
+
+        player?.release()
+
+        player = null
+
+        super.onDestroy()
+    }
+}
