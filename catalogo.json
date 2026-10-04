@@ -96,7 +96,7 @@
       "ano": 2016,
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/pdj7VwhR/moana.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Moana.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/BALA-CHANNEL/Moana.mp4.zip"
     },
     {
       "titulo": "Mufasa: O Rei Leão",
@@ -166,7 +166,7 @@
       "ano": 2024,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Deadpool%20%26%20Wolverine.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26%20Wolverine.mp4"
     },
     {
       "titulo": "Gato de Botas 2: O Último Pedido",
@@ -187,7 +187,7 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/4xqDnRp0/Jurassic-World-Recomec-o-1.webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Jurassic%20World%20Recome%C3%A7o.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Jurassic%20World%20Recome%C3%A7o.mp4"
     },
     {
       "titulo": "Planeta dos Macacos: O Reinado",
@@ -293,6 +293,13 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/wvNYhZbd/Uncharted-Official-Poster-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Uncharted%20Fora%20do%20Mapa.mp4"
+    },
+    {
+      "titulo": "Morbius",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/vHM5tTdM/Morbius-cartaz-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Morbius.mp4"
     },
     {
       "titulo": "Jogos Mortais X",
