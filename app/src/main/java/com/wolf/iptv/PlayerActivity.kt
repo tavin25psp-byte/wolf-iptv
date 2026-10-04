@@ -662,47 +662,66 @@ class PlayerActivity : AppCompatActivity() {
     // D-PAD
     // =========================================================
 
-    private var bloqueioDpadZoom = false
+    private var zoomTeclaPressionada = false
 
     override fun dispatchKeyEvent(
         event: KeyEvent
     ): Boolean {
 
-        if (
-            event.action !=
-            KeyEvent.ACTION_UP
-        ) {
-
-            return super.dispatchKeyEvent(
-                event
-            )
-        }
-
         // =====================================================
-        // MENU DE ZOOM ABERTO
+        // MENU DE ZOOM
         // =====================================================
 
         if (menuAberto) {
 
             when (event.keyCode) {
 
-                KeyEvent.KEYCODE_BACK -> {
-
-                    fecharMenuZoom()
-
-                    return true
-                }
-
-                KeyEvent.KEYCODE_DPAD_UP -> {
-
-                    moverFocoZoom(-1)
-
-                    return true
-                }
-
+                KeyEvent.KEYCODE_DPAD_UP,
                 KeyEvent.KEYCODE_DPAD_DOWN -> {
 
-                    moverFocoZoom(1)
+                    // Bloqueia completamente o foco automático
+                    // do Android enquanto o menu está aberto.
+
+                    if (event.action ==
+                        KeyEvent.ACTION_DOWN
+                    ) {
+
+                        if (
+                            event.repeatCount > 0 ||
+                            zoomTeclaPressionada
+                        ) {
+                            return true
+                        }
+
+                        zoomTeclaPressionada = true
+
+                        return true
+                    }
+
+                    if (event.action ==
+                        KeyEvent.ACTION_UP
+                    ) {
+
+                        if (!zoomTeclaPressionada) {
+                            return true
+                        }
+
+                        zoomTeclaPressionada = false
+
+                        if (
+                            event.keyCode ==
+                            KeyEvent.KEYCODE_DPAD_UP
+                        ) {
+
+                            moverFocoZoom(-1)
+
+                        } else {
+
+                            moverFocoZoom(1)
+                        }
+
+                        return true
+                    }
 
                     return true
                 }
@@ -710,12 +729,31 @@ class PlayerActivity : AppCompatActivity() {
                 KeyEvent.KEYCODE_DPAD_CENTER,
                 KeyEvent.KEYCODE_ENTER -> {
 
-                    val foco =
-                        currentFocus
+                    if (
+                        event.action ==
+                        KeyEvent.ACTION_UP
+                    ) {
 
-                    if (foco is Button) {
+                        val foco =
+                            currentFocus
 
-                        foco.performClick()
+                        if (foco is Button) {
+
+                            foco.performClick()
+                        }
+                    }
+
+                    return true
+                }
+
+                KeyEvent.KEYCODE_BACK -> {
+
+                    if (
+                        event.action ==
+                        KeyEvent.ACTION_UP
+                    ) {
+
+                        fecharMenuZoom()
                     }
 
                     return true
@@ -723,18 +761,37 @@ class PlayerActivity : AppCompatActivity() {
 
                 KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                    fecharMenuZoom()
+                    if (
+                        event.action ==
+                        KeyEvent.ACTION_UP
+                    ) {
+
+                        fecharMenuZoom()
+                    }
 
                     return true
                 }
-            }
 
-            return true
+                else -> {
+
+                    // Enquanto o menu estiver aberto,
+                    // não deixa o sistema navegar sozinho.
+                    return true
+                }
+            }
         }
 
         // =====================================================
-        // PLAYER
+        // PLAYER NORMAL
         // =====================================================
+
+        if (
+            event.action !=
+            KeyEvent.ACTION_UP
+        ) {
+
+            return super.dispatchKeyEvent(event)
+        }
 
         when (event.keyCode) {
 
@@ -808,62 +865,68 @@ class PlayerActivity : AppCompatActivity() {
             }
         }
 
-        return super.dispatchKeyEvent(
-            event
-        )
+        return super.dispatchKeyEvent(event)
     }
 
     // =========================================================
-    // NAVEGAÇÃO DO MENU ZOOM
-    // 1 TOQUE = 1 OPÇÃO
+    // MOVIMENTAR ZOOM
     // =========================================================
 
     private fun moverFocoZoom(
         direcao: Int
     ) {
 
-        if (bloqueioDpadZoom) {
-
-            return
-        }
-
-        bloqueioDpadZoom = true
-
         val foco =
             currentFocus
 
-        val indiceAtual =
-            if (
-                foco != null &&
-                menuZoom.indexOfChild(foco) >= 1
-            ) {
+        var indiceAtual =
+            menuZoom.indexOfChild(foco)
 
-                menuZoom.indexOfChild(foco)
+        // O título ocupa a posição 0.
+        // Os zooms começam na posição 1.
 
-            } else {
+        if (indiceAtual < 1) {
 
+            indiceAtual =
                 zoomAtual + 1
-            }
+        }
 
-        var indice =
+        var novoIndice =
             indiceAtual + direcao
 
-        if (indice < 1) {
+        // Primeiro zoom
+        if (novoIndice < 1) {
 
-            indice =
+            novoIndice =
                 menuZoom.childCount - 1
         }
 
+        // Último zoom
         if (
-            indice >=
+            novoIndice >=
             menuZoom.childCount
         ) {
 
-            indice = 1
+            novoIndice = 1
         }
 
         val proximo =
-            menuZoom.getChildAt(indice)
+            menuZoom.getChildAt(
+                novoIndice
+            )
+
+        // Desativa temporariamente o foco
+        // dos outros botões para impedir que
+        // o Android pule automaticamente.
+
+        for (
+            i in 1 until menuZoom.childCount
+        ) {
+
+            menuZoom
+                .getChildAt(i)
+                .isFocusable = false
+        }
 
         proximo.isFocusable = true
 
@@ -871,11 +934,24 @@ class PlayerActivity : AppCompatActivity() {
 
         atualizarBotoes()
 
-        menuZoom.postDelayed({
+        // Reativa os outros botões depois
+        // que o foco terminou de mudar.
 
-            bloqueioDpadZoom = false
+        menuZoom.post {
 
-        }, 180)
+            for (
+                i in 1 until menuZoom.childCount
+            ) {
+
+                menuZoom
+                    .getChildAt(i)
+                    .isFocusable = true
+            }
+
+            proximo.requestFocus()
+
+            atualizarBotoes()
+        }
     }
 
     // =========================================================
@@ -893,8 +969,7 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onDestroy() {
 
-        playerView.player =
-            null
+        playerView.player = null
 
         player?.release()
 
