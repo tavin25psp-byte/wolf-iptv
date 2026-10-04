@@ -5,8 +5,8 @@
     <application
         android:allowBackup="true"
         android:label="WOLF IPTV"
-        android:icon="@drawable/wolf_logo"
-        android:roundIcon="@drawable/wolf_logo"
+        android:icon="@mipmap/wolf_logo"
+        android:roundIcon="@mipmap/wolf_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.WolfIPTV">
 
