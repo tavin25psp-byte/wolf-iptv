@@ -73,10 +73,13 @@ class PlayerActivity : AppCompatActivity() {
 
         container = FrameLayout(this)
 
+        // =====================================================
+        // PLAYER
+        // =====================================================
+
         playerView = PlayerView(this)
 
         playerView.useController = true
-
         playerView.controllerShowTimeoutMs = 5000
 
         playerView.resizeMode =
@@ -91,7 +94,7 @@ class PlayerActivity : AppCompatActivity() {
         )
 
         // =====================================================
-        // ERRO
+        // TEXTO DE ERRO
         // =====================================================
 
         erroTexto = TextView(this)
@@ -119,7 +122,7 @@ class PlayerActivity : AppCompatActivity() {
         )
 
         // =====================================================
-        // MENU ZOOM
+        // MENU DE ZOOM
         // =====================================================
 
         menuZoom = LinearLayout(this)
@@ -145,10 +148,6 @@ class PlayerActivity : AppCompatActivity() {
         menuZoom.visibility =
             View.GONE
 
-        /*
-         * O menu inteiro não recebe foco.
-         * Somente os botões recebem foco.
-         */
         menuZoom.isFocusable = false
 
         val menuParams =
@@ -176,11 +175,13 @@ class PlayerActivity : AppCompatActivity() {
 
         setContentView(container)
 
-        playerView.postDelayed({
-
-            conectarEngrenagemNativa()
-
-        }, 400)
+        // Espera os controles do Media3 aparecerem.
+        playerView.postDelayed(
+            {
+                conectarEngrenagemNativa()
+            },
+            400
+        )
     }
 
     // =========================================================
@@ -195,12 +196,16 @@ class PlayerActivity : AppCompatActivity() {
             packageName
         )
 
-        if (id == 0) return
+        if (id == 0) {
+            return
+        }
 
         val botao =
             playerView.findViewById<View>(id)
 
-        if (botao == null) return
+        if (botao == null) {
+            return
+        }
 
         engrenagemNativa = botao
 
@@ -210,22 +215,25 @@ class PlayerActivity : AppCompatActivity() {
         botao.setOnClickListener {
 
             if (menuAberto) {
-
                 fecharMenuZoom()
-
             } else {
-
                 abrirMenuZoom()
             }
         }
 
-        botao.setOnFocusChangeListener { view, temFoco ->
+        botao.setOnFocusChangeListener {
+                view,
+                temFoco ->
 
             if (temFoco && !menuAberto) {
 
                 view.background =
                     fundoArredondado(
-                        Color.rgb(190, 0, 0),
+                        Color.rgb(
+                            190,
+                            0,
+                            0
+                        ),
                         14f
                     )
 
@@ -237,7 +245,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // FUNDO
+    // FUNDO ARREDONDADO
     // =========================================================
 
     private fun fundoArredondado(
@@ -264,12 +272,16 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // CRIAR ZOOMS
+    // CRIAR BOTÕES DE ZOOM
     // =========================================================
 
     private fun criarBotoesZoom() {
 
         menuZoom.removeAllViews()
+
+        // =====================================================
+        // TÍTULO
+        // =====================================================
 
         val titulo = TextView(this)
 
@@ -302,7 +314,13 @@ class PlayerActivity : AppCompatActivity() {
             )
         )
 
+        // =====================================================
+        // ZOOMS
+        // =====================================================
+
         for (i in nomesZoom.indices) {
+
+            val indice = i
 
             val botao =
                 Button(this)
@@ -310,13 +328,21 @@ class PlayerActivity : AppCompatActivity() {
             botao.isFocusable = true
             botao.isClickable = true
 
-            botao.setOnFocusChangeListener { view, temFoco ->
+            atualizarBotao(
+                botao,
+                indice
+            )
+
+            // =================================================
+            // FOCO
+            // =================================================
+
+            botao.setOnFocusChangeListener {
+                    view,
+                    temFoco ->
 
                 if (temFoco) {
 
-                    /*
-                     * FOCO VERMELHO
-                     */
                     view.background =
                         fundoArredondado(
                             Color.rgb(
@@ -336,46 +362,30 @@ class PlayerActivity : AppCompatActivity() {
 
                 } else {
 
-                    /*
-                     * Quando perde o foco,
-                     * volta para o visual normal.
-                     */
-                    val indice =
-                        menuZoom.indexOfChild(
-                            view
-                        ) - 1
-
-                    if (indice >= 0) {
-
-                        atualizarBotao(
-                            view as Button,
-                            indice
-                        )
-                    }
+                    atualizarBotao(
+                        view as Button,
+                        indice
+                    )
                 }
             }
 
+            // =================================================
+            // CLIQUE
+            // =================================================
+
             botao.setOnClickListener {
 
-                zoomAtual = i
+                zoomAtual = indice
 
                 aplicarZoom()
 
                 atualizarBotoes()
 
-                /*
-                 * Mantém o foco no zoom escolhido.
-                 */
+                // Mantém o foco no botão escolhido.
                 botao.post {
-
                     botao.requestFocus()
                 }
             }
-
-            atualizarBotao(
-                botao,
-                i
-            )
 
             menuZoom.addView(
                 botao,
@@ -398,7 +408,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ATUALIZAR VISUAL DOS ZOOMS
+    // ATUALIZAR TODOS OS BOTÕES
     // =========================================================
 
     private fun atualizarBotoes() {
@@ -412,10 +422,6 @@ class PlayerActivity : AppCompatActivity() {
 
             if (view is Button) {
 
-                /*
-                 * Se esse botão está focado,
-                 * o vermelho permanece.
-                 */
                 if (view.hasFocus()) {
 
                     view.background =
@@ -442,6 +448,10 @@ class PlayerActivity : AppCompatActivity() {
             }
         }
     }
+
+    // =========================================================
+    // ATUALIZAR UM BOTÃO
+    // =========================================================
 
     private fun atualizarBotao(
         botao: Button,
@@ -493,16 +503,14 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ABRIR ZOOM
+    // ABRIR MENU
     // =========================================================
 
     private fun abrirMenuZoom() {
 
         menuAberto = true
 
-        /*
-         * Retira o foco visual da engrenagem.
-         */
+        // Remove destaque da engrenagem enquanto o menu está aberto.
         engrenagemNativa?.background = null
 
         menuZoom.visibility =
@@ -510,9 +518,7 @@ class PlayerActivity : AppCompatActivity() {
 
         atualizarBotoes()
 
-        /*
-         * FOCO VAI DIRETO PARA O ZOOM ATUAL.
-         */
+        // Foco direto no zoom atualmente selecionado.
         val botaoZoom =
             menuZoom.getChildAt(
                 zoomAtual + 1
@@ -523,13 +529,12 @@ class PlayerActivity : AppCompatActivity() {
         botaoZoom.requestFocus()
 
         botaoZoom.post {
-
             botaoZoom.requestFocus()
         }
     }
 
     // =========================================================
-    // FECHAR ZOOM
+    // FECHAR MENU
     // =========================================================
 
     private fun fecharMenuZoom() {
@@ -539,9 +544,7 @@ class PlayerActivity : AppCompatActivity() {
         menuZoom.visibility =
             View.GONE
 
-        /*
-         * O foco volta para a engrenagem.
-         */
+        // Devolve o foco para a engrenagem.
         engrenagemNativa?.let {
 
             it.isFocusable = true
@@ -549,7 +552,6 @@ class PlayerActivity : AppCompatActivity() {
             it.requestFocus()
 
             it.post {
-
                 it.requestFocus()
             }
         }
@@ -576,6 +578,9 @@ class PlayerActivity : AppCompatActivity() {
                 it.height / 2f
 
             /*
+             * O zoom é aplicado somente
+             * na superfície do vídeo.
+             *
              * Os controles do PlayerView
              * não são ampliados.
              */
@@ -588,7 +593,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // PLAYER
+    // INICIAR PLAYER
     // =========================================================
 
     private fun iniciarPlayer() {
@@ -645,9 +650,11 @@ class PlayerActivity : AppCompatActivity() {
                             }
 
                             Player.STATE_ENDED -> {
+                                // Vídeo terminou.
                             }
 
                             Player.STATE_IDLE -> {
+                                // Player parado.
                             }
                         }
                     }
@@ -670,6 +677,10 @@ class PlayerActivity : AppCompatActivity() {
             val builder =
                 MediaItem.Builder()
                     .setUri(uri)
+
+            // =================================================
+            // M3U8
+            // =================================================
 
             if (
                 url.contains(
@@ -702,7 +713,7 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ERRO
+    // MOSTRAR ERRO
     // =========================================================
 
     private fun mostrarErro(
@@ -724,6 +735,9 @@ class PlayerActivity : AppCompatActivity() {
         event: KeyEvent
     ): Boolean {
 
+        /*
+         * Só processa quando a tecla foi solta.
+         */
         if (
             event.action !=
             KeyEvent.ACTION_UP
@@ -735,12 +749,16 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         // =====================================================
-        // MENU ZOOM
+        // MENU DE ZOOM ABERTO
         // =====================================================
 
         if (menuAberto) {
 
             when (event.keyCode) {
+
+                // -------------------------------------------------
+                // BACK FECHA
+                // -------------------------------------------------
 
                 KeyEvent.KEYCODE_BACK -> {
 
@@ -749,6 +767,10 @@ class PlayerActivity : AppCompatActivity() {
                     return true
                 }
 
+                // -------------------------------------------------
+                // SETA PARA CIMA
+                // -------------------------------------------------
+
                 KeyEvent.KEYCODE_DPAD_UP -> {
 
                     moverFocoZoom(-1)
@@ -756,12 +778,20 @@ class PlayerActivity : AppCompatActivity() {
                     return true
                 }
 
+                // -------------------------------------------------
+                // SETA PARA BAIXO
+                // -------------------------------------------------
+
                 KeyEvent.KEYCODE_DPAD_DOWN -> {
 
                     moverFocoZoom(1)
 
                     return true
                 }
+
+                // -------------------------------------------------
+                // OK
+                // -------------------------------------------------
 
                 KeyEvent.KEYCODE_DPAD_CENTER,
                 KeyEvent.KEYCODE_ENTER -> {
@@ -773,12 +803,7 @@ class PlayerActivity : AppCompatActivity() {
 
                         foco.performClick()
 
-                        /*
-                         * Garante que o foco
-                         * continue no botão.
-                         */
                         foco.post {
-
                             foco.requestFocus()
                         }
                     }
@@ -786,10 +811,10 @@ class PlayerActivity : AppCompatActivity() {
                     return true
                 }
 
-                /*
-                 * ESQUERDA também fecha o menu.
-                 * Útil no controle remoto.
-                 */
+                // -------------------------------------------------
+                // ESQUERDA FECHA
+                // -------------------------------------------------
+
                 KeyEvent.KEYCODE_DPAD_LEFT -> {
 
                     fecharMenuZoom()
@@ -799,86 +824,8 @@ class PlayerActivity : AppCompatActivity() {
             }
 
             /*
-             * Impede que qualquer outra tecla
-             * entregue o foco aos controles
-             * do player.
+             * Enquanto o menu está aberto,
+             * nenhuma outra tecla pode entregar
+             * o foco aos controles do player.
              */
-            return true
-        }
-
-        // =====================================================
-        // PLAYER NORMAL
-        // =====================================================
-
-        when (event.keyCode) {
-
-            KeyEvent.KEYCODE_DPAD_CENTER,
-            KeyEvent.KEYCODE_ENTER -> {
-
-                if (
-                    currentFocus ==
-                    engrenagemNativa
-                ) {
-
-                    abrirMenuZoom()
-
-                    return true
-                }
-
-                player?.let {
-
-                    if (it.isPlaying) {
-
-                        it.pause()
-
-                    } else {
-
-                        it.play()
-                    }
-                }
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-
-                player?.let {
-
-                    it.seekTo(
-                        it.currentPosition +
-                                10_000
-                    )
-                }
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
-
-                player?.let {
-
-                    it.seekTo(
-                        (
-                            it.currentPosition -
-                                    10_000
-                        ).coerceAtLeast(0)
-                    )
-                }
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_BACK -> {
-
-                finish()
-
-                return true
-            }
-        }
-
-        return super.dispatchKeyEvent(
-            event
-        )
-    }
-
-    // =
+            return t
