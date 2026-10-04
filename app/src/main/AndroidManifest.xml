@@ -9,6 +9,7 @@
         android:label="WOLF IPTV"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/ic_launcher"
+        android:banner="@drawable/tv_banner"
         android:supportsRtl="true"
         android:theme="@style/Theme.WolfIPTV">
 
