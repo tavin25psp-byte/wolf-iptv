@@ -318,14 +318,14 @@
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"
     },
     {
       "titulo": "Uncharted: Fora do Mapa",
       "ano": 2022,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/wvNYhZbd/Uncharted-Official-Poster-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Uncharted%20Fora%20do%20Mapa.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Uncharted%20Fora%20do%20Mapa.mp4"
     },
     {
       "titulo": "Jogos Mortais X",
@@ -459,8 +459,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/QCctbsqF/aranha.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
-    }    }
-  ],
+    }  ],
   "series": [
     {
       "titulo": "Spider-Noir",
