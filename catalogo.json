@@ -152,7 +152,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/C%C3%A9u%20em%20f%C3%úria%20.mp4"
     },
     {
       "titulo": "Coringa",
@@ -428,7 +428,61 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
     }
   ],
-  "series": [],
+  "series": [
+    {
+      "titulo": "Spider-Noir",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/substituir-capa-spider-noir.jpg",
+      "temporadas": [
+        {
+          "temporada": 1,
+          "episodios": [
+            {
+              "episodio": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E01.mp4"
+            },
+            {
+              "episodio": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E02.mp4"
+            },
+            {
+              "episodio": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E03.mp4"
+            },
+            {
+              "episodio": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E04.mp4"
+            },
+            {
+              "episodio": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E05.mp4"
+            },
+            {
+              "episodio": 6,
+              "titulo": "Episodio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E06.mp4"
+            },
+            {
+              "episodio": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E07.mp4"
+            },
+            {
+              "episodio": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries%20/Spider-Noir%20S01E08.mp4"
+            }
+          ]
+        }
+      ]
+    }
+  ],
   "animes": [],
   "doramas": [
     {
