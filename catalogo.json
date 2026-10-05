@@ -12,14 +12,14 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Fim%20da%20Rua.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/O%20Fim%20da%20Rua.mp4"
     },
     {
       "titulo": "Pinóquio",
       "ano": 2026,
       "categoria": "Fantasia",
       "capa": "https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Pin%C3%B3quio.mp4"
     },
     {
       "titulo": "A Morte de Robin Hood",
@@ -33,7 +33,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/C%C3%A9u%20em%20f%C3%BAria.mp4"
     },
     {
       "titulo": "Deadpool & Wolverine",
@@ -223,13 +223,6 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/mgw3xmpz/917q7O0TJL.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
-    },
-    {
-      "titulo": "O Fim da Rua (confirmação)",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/O%20Fim%20da%20Rua.mp4"
     },
     {
       "titulo": "Besouro Azul",
@@ -525,7 +518,6 @@
               "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E06.mp4"
             },
             {
-              
               "numero": 7,
               "titulo": "Episódio 7",
               "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E07.mp4"
