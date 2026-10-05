@@ -173,14 +173,14 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/ZRxyK7Fh/images-(13).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Mortal%20Kombat%202.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Mortal%20Kombat%202.mp4"
     },
     {
       "titulo": "Operação Sombra",
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/k5SB4JPc/images-(22).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"
     },
     {
       "titulo": "Duna: Parte Dois",
@@ -243,7 +243,7 @@
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Acerto%20de%20Sangue.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Acerto%20de%20Sangue.mp4"
     },
     {
       "titulo": "O Justiceiro: Uma Última Morte",
@@ -285,7 +285,7 @@
       "ano": 2024,
       "categoria": "Drama",
       "capa": "https://i.postimg.cc/5N2Wnp0d/images-(48).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Na%20Zona%20Cinzenta.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Na%20Zona%20Cinzenta.mp4"
     },
     {
       "titulo": "Bad Boys: Até o Fim",
@@ -305,8 +305,8 @@
       "titulo": "Blades of The Guardians",
       "ano": 2023,
       "categoria": "Ação",
-      "capa": "https://i.postimg.cc/VkGB9Xgh/Guardi-es-da-Gal-xia-Vol-3-(1).webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Blades%20of%20The%20Guardians.mp4"
+      "capa": "https://i.postimg.cc/jjLgXD2q/images-(58).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Blades%20of%20The%20Guardians.mp4"
     },
     {
       "titulo": "Como Treinar o Seu Dragão",
@@ -382,7 +382,7 @@
       "titulo": "Pânico 7",
       "ano": 2026,
       "categoria": "Terror",
-      "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
+      "capa": "https://i.postimg.cc/q7Dcvrs3/images-(60).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
     },
     {
@@ -484,11 +484,18 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Mestres%20do%20Universo.mp4"
     },
     {
-      "titulo": "Conexão Perigosa",
-      "ano": 2026,
+      "titulo": "TRON: Ares",
+      "ano": 2025,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/hvLctyqf/f5500766daec594aa9f43d7bcce82abadde09318e7a0c3526414bbd0e7e3cdc4-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/TRON%20Ares.mp4"
+    },
+    {
+      "titulo": "Missão Resgate: Vingança",
+      "ano": 2024,
       "categoria": "Ação",
-      "capa": "https://i.postimg.cc/xCpv85nN/images-(57).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Conex%C3%A3o%20Perigosa%202026%20WEB-DL%201080p%20x264%20DUAL%205.1.mkv"
+      "capa": "https://i.postimg.cc/fLHPs1LC/dbe30e443f3fd796bbf650f720aacf44-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Miss%C3%A3o%20Resgate%20Vingan%C3%A7a.mp4"
     }
   ]
 }
