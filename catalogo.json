@@ -1,133 +1,598 @@
 {
   "filmes": [
-    {"titulo":"Homem-Aranha: Um Novo Dia","ano":2026,"categoria":"Ação","capa":"https://i.postimg.cc/QCctbsqF/aranha.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"},
-    {"titulo":"O Fim da Rua","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/O%20Fim%20da%20Rua.mp4"},
-    {"titulo":"Pinóquio","ano":2026,"categoria":"Fantasia","capa":"https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"},
-    {"titulo":"A Morte de Robin Hood","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/J7fYDKXH/images-(17).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Morte%20de%20Robin%20Hood.mp4"},
-    {"titulo":"Céu em Fúria","ano":2026,"categoria":"Ação","capa":"https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"},
-    {"titulo":"Deadpool & Wolverine","ano":2024,"categoria":"Ação","capa":"https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4"},
-    {"titulo":"Jurassic World: Recomeço","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/4xqDnRp0/Jurassic-World-Recomec-o-1.webp","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Jurassic%20World%20Recome%C3%A7o.mp4"},
-    {"titulo":"Planeta dos Macacos: O Reinado","ano":2024,"categoria":"Ação","capa":"https://i.postimg.cc/fL1HwP8X/MV5BYTkwMmIyNWQtNWEyZS00M2M3LTgxZGEtMDlmMGIzZGM4NWNhXkEyXkFqcGcV1-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Planeta%20dos%20Macacos%20O%20Reinado.mp4"},
-    {"titulo":"A Fera","ano":2026,"categoria":"Fantasia","capa":"https://i.postimg.cc/9QZ7xQZk/fera.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/A%20Fera.mp4"},
-    {"titulo":"Avatar: O Caminho da Água","ano":2022,"categoria":"Ficção","capa":"https://i.postimg.cc/PrL263pT/images-(35).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Avatar%20O%20Caminho%20da%20%C3%81gua.mp4"},
-    {"titulo":"Supergirl","ano":2026,"categoria":"Ação","capa":"https://i.postimg.cc/Z5L1fCgF/images-(38).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Supergirl.mp4"},
-    {"titulo":"Quarteto Fantástico: Primeiros Passos","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"}
+    {
+      "titulo": "Homem-Aranha: Um Novo Dia",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/QCctbsqF/aranha.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem%20/Homem-Aranha%20Um%20Novo%20Dia.mp4"
+    },
+    {
+      "titulo": "O Fim da Rua",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/O%20Fim%20da%20Rua.mp4"
+    },
+    {
+      "titulo": "Pinóquio",
+      "ano": 2026,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"
+    },
+    {
+      "titulo": "A Morte de Robin Hood",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/J7fYDKXH/images-(17).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Morte%20de%20Robin%20Hood.mp4"
+    },
+    {
+      "titulo": "Céu em Fúria",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
+    },
+    {
+      "titulo": "Deadpool & Wolverine",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4"
+    },
+    {
+      "titulo": "Jurassic World: Recomeço",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/4xqDnRp0/Jurassic-World-Recomec-o-1.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Jurassic%20World%20Recome%C3%A7o.mp4"
+    },
+    {
+      "titulo": "Planeta dos Macacos: O Reinado",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fL1HwP8X/MV5BYTkwMmIyNWQtNWEyZS00M2M3LTgxZGEtMDlmMGIzZGM4NWNhXkEyXkFqcGcV1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Planeta%20dos%20Macacos%20O%20Reinado.mp4"
+    },
+    {
+      "titulo": "A Fera",
+      "ano": 2026,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/9QZ7xQZk/fera.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/A%20Fera.mp4"
+    },
+    {
+      "titulo": "Avatar: O Caminho da Água",
+      "ano": 2022,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/PrL263pT/images-(35).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Avatar%20O%20Caminho%20da%20%C3%81gua.mp4"
+    },
+    {
+      "titulo": "Supergirl",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/Z5L1fCgF/images-(38).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Supergirl.mp4"
+    },
+    {
+      "titulo": "Quarteto Fantástico: Primeiros Passos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"
+    }
+  ]
+    }
+    {
+  "filmes": [
+    {
+      "titulo": "Super Mario Galaxy: O Filme",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
+    },
+    {
+      "titulo": "Sonic 2: O Filme",
+      "ano": 2022,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/VkMCSkzP/images-(16).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Sonic%202%20O%20Filme.mp4"
+    },
+    {
+      "titulo": "A Pequena Sereia",
+      "ano": 2023,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/vmDPnnSb/images-(10).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Pequena%20Sereia.mp4"
+    },
+    {
+      "titulo": "Coringa",
+      "ano": 2019,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/yWC72Btj/Joker-(2019)-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Coringa.mp4"
+    },
+    {
+      "titulo": "Gato de Botas 2: O Último Pedido",
+      "ano": 2022,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/TYqpXGWR/images-(34).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Gato%20de%20Botas%202%20O%20%C3%9Altimo%20Pedido.mp4"
+    },
+    {
+      "titulo": "Caça-Fantasmas: Apocalipse de Gelo",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/1zh5qR4V/2523057-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Ghostbusters%20Apocalipse%20de%20Gelo.mp4"
+    },
+    {
+      "titulo": "Megatubarão 2",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
+    },
+    {
+      "titulo": "Golpe Explosivo",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/HnD0xZNY/images-(19).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4"
+    },
+    {
+      "titulo": "Hotel Transilvânia: Transformonstrão",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/9QZ7xQZk/hotel.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Hotel%20Transilv%C3%A2nia%20Transformonstr%C3%A3o.mp4"
+    },
+    {
+      "titulo": "Teen Wolf: O Filme",
+      "ano": 2023,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/9QZ7xQZk/teenwolf.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Teen%20Wolf%20O%20Filme.mp4"
+    },
+    {
+      "titulo": "Venom: A Última Rodada",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/76GM6jnH/sony-banner-venom-1400x2100.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Venom%20A%20%C3%9Altima%20Rodada.mp4"
+    },
+    {
+      "titulo": "Fogo Contra Fogo",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/P5PCgb6Q/images-(20).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Fogo%20Contra%20Fogo.mp4"
+    }
+  ]
+    }
+{
+  "filmes": [
+    {
+      "titulo": "Godzilla e Kong: O Novo Império",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/T1RZTWkd/71I740ERKa-L-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Godzilla%20e%20Kong%20O%20Novo%20Imp%C3%A9rio.mp4"
+    },
+    {
+      "titulo": "Mortal Kombat 2",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/ZRxyK7Fh/images-(13).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Mortal%20Kombat%202.mp4"
+    },
+    {
+      "titulo": "Operação Sombra",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/k5SB4JPc/images-(22).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"
+    },
+    {
+      "titulo": "Duna: Parte Dois",
+      "ano": 2024,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/02DvmQy5/images-(28).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Duna%20Parte%20Dois.mp4"
+    },
+    {
+      "titulo": "O Projeto Adam",
+      "ano": 2022,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/rp8T2fm3/images-(15).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/O%20Projeto%20Adam.mp4"
+    },
+    {
+      "titulo": "Aquaman 2: O Reino Perdido",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"
+    },
+    {
+      "titulo": "Jogos Mortais X",
+      "ano": 2023,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/fRQwgdrH/images-(29).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Jogos%20Mortais%20X.mp4"
+    },
+    {
+      "titulo": "Morbius",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/9QZ7xQZk/morbius.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Morbius.mp4"
+    },
+    {
+      "titulo": "As Tartarugas Ninja: Caos Mutante",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/yxrT8B2M/20230719-as-tartarugas-ninja-caos-mutante-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/As%20Tartarugas%20Ninjas%20Caos%20Mutante.mp4"
+    },
+    {
+      "titulo": "Top Gun: Maverick",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Top%20Gun%20Maverick.mp4"
+    },
+    {
+      "titulo": "O Mundo Depois de Nós",
+      "ano": 2023,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/KYrTcZy8/images-(43).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4"
+    },
+    {
+      "titulo": "Acerto de Sangue",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Acerto%20de%20Sangue.mp4"
+    }
   ]
 }
 {
   "filmes": [
-    {"titulo":"Super Mario Galaxy: O Filme","ano":2026,"categoria":"Animação","capa":"https://i.postimg.cc/W3Y1mvHd/images-(2).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"},
-    {"titulo":"Sonic 2: O Filme","ano":2022,"categoria":"Aventura","capa":"https://i.postimg.cc/VkMCSkzP/images-(16).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Sonic%202%20O%20Filme.mp4"},
-    {"titulo":"A Pequena Sereia","ano":2023,"categoria":"Fantasia","capa":"https://i.postimg.cc/vmDPnnSb/images-(10).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Pequena%20Sereia.mp4"},
-    {"titulo":"Coringa","ano":2019,"categoria":"Drama","capa":"https://i.postimg.cc/yWC72Btj/Joker-(2019)-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Coringa.mp4"},
-    {"titulo":"Gato de Botas 2: O Último Pedido","ano":2022,"categoria":"Animação","capa":"https://i.postimg.cc/TYqpXGWR/images-(34).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Gato%20de%20Botas%202%20O%20%C3%9Altimo%20Pedido.mp4"},
-    {"titulo":"Caça-Fantasmas: Apocalipse de Gelo","ano":2024,"categoria":"Ação","capa":"https://i.postimg.cc/1zh5qR4V/2523057-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Ghostbusters%20Apocalipse%20de%20Gelo.mp4"},
-    {"titulo":"Megatubarão 2","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/6QwCwyyf/images-(30).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"},
-    {"titulo":"Golpe Explosivo","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/HnD0xZNY/images-(19).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4"},
-    {"titulo":"Hotel Transilvânia: Transformonstrão","ano":2024,"categoria":"Animação","capa":"https://i.postimg.cc/9QZ7xQZk/hotel.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Hotel%20Transilv%C3%A2nia%20Transformonstr%C3%A3o.mp4"},
-    {"titulo":"Teen Wolf: O Filme","ano":2023,"categoria":"Aventura","capa":"https://i.postimg.cc/9QZ7xQZk/teenwolf.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Teen%20Wolf%20O%20Filme.mp4"},
-    {"titulo":"Venom: A Última Rodada","ano":2024,"categoria":"Ação","capa":"https://i.postimg.cc/76GM6jnH/sony-banner-venom-1400x2100.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Venom%20A%20%C3%9Altima%20Rodada.mp4"},
-    {"titulo":"Fogo Contra Fogo","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/P5PCgb6Q/images-(20).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Fogo%20Contra%20Fogo.mp4"}
+    {
+      "titulo": "O Justiceiro: Uma Última Morte",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/X74Y3wYK/images-(45).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Justiceiro%20Uma%20%C3%9Altima%20Morte.mp4"
+    },
+    {
+      "titulo": "Jack Ryan: Guerra Fantasma",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VNjhYb6W/images-(49).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Jack%20Ryan%20Guerra%20Fantasma.mp4"
+    },
+    {
+      "titulo": "Resident Evil",
+      "ano": 2002,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
+    },
+    {
+      "titulo": "A Sociedade dos Assassinos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
+    },
+    {
+      "titulo": "Armadilha Mortal",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/9QZ7xQZk/armadilha.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Armadilha%20Mortal.mp4"
+    },
+    {
+      "titulo": "Na Zona Cinzenta",
+      "ano": 2024,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/9QZ7xQZk/zona.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Na%20Zona%20Cinzenta.mp4"
+    },
+    {
+      "titulo": "Bad Boys: Até o Fim",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/sDv6PQmF/images-(4).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Bad%20Boys%20At%C3%A9%20o%20Fim.mp4"
+    },
+    {
+      "titulo": "Besouro Azul",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fTjYRbCr/images-(9).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Besouro%20Azul.mp4"
+    },
+    {
+      "titulo": "Blades of The Guardians",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VkGB9Xgh/Guardi-es-da-Gal-xia-Vol-3-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Blades%20of%20The%20Guardians.mp4"
+    },
+    {
+      "titulo": "Como Treinar o Seu Dragão",
+      "ano": 2025,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/664hkrZ6/treinar.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
+    },
+    {
+      "titulo": "Coringa: Delírio a Dois",
+      "ano": 2024,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3YzMtZTUwMC00MGJjLWFkNDItMDUzNTUxOWY5N2Y4XkEyXkFqcGcV1.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"
+    },
+    {
+      "titulo": "Destruição Iminente",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Destrui%C3%A7%C3%A3o%20Iminente.mp4"
+    }
   ]
 }
 {
   "filmes": [
-    {"titulo":"Godzilla e Kong: O Novo Império","ano":2024,"categoria":"Ação","capa":"https://i.postimg.cc/T1RZTWkd/71I740ERKa-L-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Godzilla%20e%20Kong%20O%20Novo%20Imp%C3%A9rio.mp4"},
-    {"titulo":"Mortal Kombat 2","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/ZRxyK7Fh/images-(13).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Mortal%20Kombat%202.mp4"},
-    {"titulo":"Operação Sombra","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/k5SB4JPc/images-(22).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"},
-    {"titulo":"Duna: Parte Dois","ano":2024,"categoria":"Ficção","capa":"https://i.postimg.cc/02DvmQy5/images-(28).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Duna%20Parte%20Dois.mp4"},
-    {"titulo":"O Projeto Adam","ano":2022,"categoria":"Ficção","capa":"https://i.postimg.cc/rp8T2fm3/images-(15).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/O%20Projeto%20Adam.mp4"},
-    {"titulo":"Aquaman 2: O Reino Perdido","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"},
-    {"titulo":"Jogos Mortais X","ano":2023,"categoria":"Terror","capa":"https://i.postimg.cc/fRQwgdrH/images-(29).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Jogos%20Mortais%20X.mp4"},
-    {"titulo":"Morbius","ano":2022,"categoria":"Ação","capa":"https://i.postimg.cc/9QZ7xQZk/morbius.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Morbius.mp4"},
-    {"titulo":"As Tartarugas Ninja: Caos Mutante","ano":2023,"categoria":"Animação","capa":"https://i.postimg.cc/yxrT8B2M/20230719-as-tartarugas-ninja-caos-mutante-papo-de-cinema-cartaz-(1).webp","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/As%20Tartarugas%20Ninjas%20Caos%20Mutante.mp4"},
-    {"titulo":"Top Gun: Maverick","ano":2022,"categoria":"Ação","capa":"https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Top%20Gun%20Maverick.mp4"},
-    {"titulo":"O Mundo Depois de Nós","ano":2023,"categoria":"Suspense","capa":"https://i.postimg.cc/KYrTcZy8/images-(43).jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4"},
-    {"titulo":"Acerto de Sangue","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/2yq3WYg2/images-(40).jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/Acerto%20de%20Sangue.mp4"}
+    {
+      "titulo": "Divertida Mente 2",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/0jgfgwN6/aa61ae8fb015160d802c4d5cb4fe6858058ea76485c3498ed9ff431eee4fc83f-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Divertida%20Mente%202.mp4"
+    },
+    {
+      "titulo": "Furiosa: Uma Saga Mad Max",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzZY7Hfn/71K2MccCQ2L-AC-UF894-1000-QL80.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Furiosa%20Uma%20Saga%20Mad%20Max.mp4"
+    },
+    {
+      "titulo": "Gran Turismo – De Jogador a Corredor",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/YSVWsL2p/images-(7).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Gran%20Turismo%20%E2%80%93%20De%20Jogador%20a%20Corredor.mp4"
+    },
+    {
+      "titulo": "Kung Fu Panda 4",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/XYyYqBNV/kung-fu-panda-4-cartaz-1zso1c-717x1200-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Kung%20Fu%20Panda%204.mp4"
+    },
+    {
+      "titulo": "Meu Malvado Favorito 4",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/5t0bhHHr/images-(6).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4"
+    },
+    {
+      "titulo": "Moana",
+      "ano": 2016,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/pdj7VwhR/moana.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Moana.mp4"
+    },
+    {
+      "titulo": "Mufasa: O Rei Leão",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/mgw3xmpz/917q7O0TJL.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
+    },
+    {
+      "titulo": "O Poço 2",
+      "ano": 2024,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/9QZ7xQZk/poco2.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Po%C3%A7o%202.mp4"
+    },
+    {
+      "titulo": "Pânico 7",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
+    },
+    {
+      "titulo": "Todo Mundo em Pânico 4",
+      "ano": 2006,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico%204.mp4"
+    },
+    {
+      "titulo": "The Flash",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/SxvNfKMf/4500101g-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/The%20Flash.mp4"
+    },
+    {
+      "titulo": "Barbie",
+      "ano": 2023,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/C1MPMwvY/images-(31).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Barbie.mp4"
+    }
   ]
 }
 {
   "filmes": [
-    {"titulo":"O Justiceiro: Uma Última Morte","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/X74Y3wYK/images-(45).jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/O%20Justiceiro%20Uma%20%C3%9Altima%20Morte.mp4"},
-    {"titulo":"Jack Ryan: Guerra Fantasma","ano":2026,"categoria":"Ação","capa":"https://i.postimg.cc/VNjhYb6W/images-(49).jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/Jack%20Ryan%20Guerra%20Fantasma.mp4"},
-    {"titulo":"Resident Evil","ano":2002,"categoria":"Terror","capa":"https://i.postimg.cc/6QLjv2vk/images-(42).jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/Resident%20Evil.mp4"},
-    {"titulo":"A Sociedade dos Assassinos","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/A%20Sociedade%20dos%20Assassinos.mp4"},
-    {"titulo":"Armadilha Mortal","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/9QZ7xQZk/armadilha.jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/Armadilha%20Mortal.mp4"},
-    {"titulo":"Na Zona Cinzenta","ano":2024,"categoria":"Drama","capa":"https://i.postimg.cc/9QZ7xQZk/zona.jpg","video":"https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/Na%20Zona%20Cinzenta.mp4"},
-    {"titulo":"Bad Boys: Até o Fim","ano":2024,"categoria":"Ação","capa":"https://i.postimg.cc/sDv6PQmF/images-(4).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Bad%20Boys%20At%C3%A9%20o%20Fim.mp4"},
-    {"titulo":"Besouro Azul","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/fTjYRbCr/images-(9).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Besouro%20Azul.mp4"},
-    {"titulo":"Blades of The Guardians","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/VkGB9Xgh/Guardi-es-da-Gal-xia-Vol-3-(1).webp","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Blades%20of%20The%20Guardians.mp4"},
-    {"titulo":"Como Treinar o Seu Dragão","ano":2025,"categoria":"Aventura","capa":"https://i.postimg.cc/664hkrZ6/treinar.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"},
-    {"titulo":"Coringa: Delírio a Dois","ano":2024,"categoria":"Drama","capa":"https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3YzMtZTUwMC00MGJjLWFkNDItMDUzNTUxOWY5N2Y4XkEyXkFqcGcV1.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"},
-    {"titulo":"Destruição Iminente","ano":2026,"categoria":"Ação","capa":"https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Destrui%C3%A7%C3%A3o%20Iminente.mp4"}
-  ]
-}
-{
-  "filmes": [
-    {"titulo":"Divertida Mente 2","ano":2024,"categoria":"Animação","capa":"https://i.postimg.cc/0jgfgwN6/aa61ae8fb015160d802c4d5cb4fe6858058ea76485c3498ed9ff431eee4fc83f-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Divertida%20Mente%202.mp4"},
-    {"titulo":"Furiosa: Uma Saga Mad Max","ano":2024,"categoria":"Ação","capa":"https://i.postimg.cc/FzZY7Hfn/71K2MccCQ2L-AC-UF894-1000-QL80.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Furiosa%20Uma%20Saga%20Mad%20Max.mp4"},
-    {"titulo":"Gran Turismo – De Jogador a Corredor","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/YSVWsL2p/images-(7).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Gran%20Turismo%20%E2%80%93%20De%20Jogador%20a%20Corredor.mp4"},
-    {"titulo":"Kung Fu Panda 4","ano":2024,"categoria":"Animação","capa":"https://i.postimg.cc/XYyYqBNV/kung-fu-panda-4-cartaz-1zso1c-717x1200-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Kung%20Fu%20Panda%204.mp4"},
-    {"titulo":"Meu Malvado Favorito 4","ano":2024,"categoria":"Animação","capa":"https://i.postimg.cc/5t0bhHHr/images-(6).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4"},
-    {"titulo":"Moana","ano":2016,"categoria":"Animação","capa":"https://i.postimg.cc/pdj7VwhR/moana.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Moana.mp4"},
-    {"titulo":"Mufasa: O Rei Leão","ano":2024,"categoria":"Animação","capa":"https://i.postimg.cc/mgw3xmpz/917q7O0TJL.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"},
-    {"titulo":"Pânico 7","ano":2026,"categoria":"Terror","capa":"https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"},
-    {"titulo":"Todo Mundo em Pânico 4","ano":2006,"categoria":"Comédia","capa":"https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico%204.mp4"},
-    {"titulo":"The Flash","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/SxvNfKMf/4500101g-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/The%20Flash.mp4"},
-    {"titulo":"Barbie","ano":2023,"categoria":"Comédia","capa":"https://i.postimg.cc/C1MPMwvY/images-(31).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Barbie.mp4"},
-    {"titulo":"Super Mario Bros. O Filme","ano":2023,"categoria":"Animação","capa":"https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Bros.%20O%20Filme.mp4"}
-  ]
-}
-{
-  "filmes": [
-    {"titulo":"Guardiões da Galáxia Vol. 3","ano":2023,"categoria":"Ação","capa":"https://i.postimg.cc/VkGB9Xgh/Guardi-es-da-Gal-xia-Vol-3-(1).webp","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Guardi%C3%B5es%20da%20Gal%C3%A1xia%20Vol.%203.mp4"},
-    {"titulo":"Dungeons & Dragons: Honra Entre Rebeldes","ano":2023,"categoria":"Aventura","capa":"https://i.postimg.cc/1zdBSDN8/images-(33).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Dungeons%20%26amp%3B%20Dragons%20Honra%20Entre%20Rebeldes.mp4"},
-    {"titulo":"Jumanji: Bem-Vindo à Selva","ano":2017,"categoria":"Aventura","capa":"https://i.postimg.cc/k4ptjpsN/jumanji.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Jumanji%20Bem-Vindo%20%C3%80%20Selva.mp4"},
-    {"titulo":"17 Outra Vez","ano":2009,"categoria":"Comédia","capa":"https://i.postimg.cc/FFwTzW46/17.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/17%20Outra%20Vez.mp4"},
-    {"titulo":"A Noiva Cadáver","ano":2005,"categoria":"Animação","capa":"https://i.postimg.cc/Z54FvXD1/noiva.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/A%20Noiva%20Cad%C3%A1ver.mp4"},
-    {"titulo":"Avatar (2009)","ano":2009,"categoria":"Ficção","capa":"https://i.postimg.cc/7LQgchYy/avatar.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Avatar%202009.mp4"},
-    {"titulo":"Como Mágica","ano":2026,"categoria":"Fantasia","capa":"https://i.postimg.cc/9z5YzWLn/D-NQ-NP-674318-MLB111141123921-052026-O.webp","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20M%C3%A1gica.mp4"},
-    {"titulo":"Deu a Louca nos Bichos","ano":2010,"categoria":"Comédia","capa":"https://i.postimg.cc/0N7W1734/deu-a-louca-nos-bichos.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Deu%20a%20Louca%20nos%20Bichos.mp4"},
-    {"titulo":"A Odisseia","ano":2026,"categoria":"Ação","capa":"https://i.postimg.cc/K8WjhML7/odisseia.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/A%20Odisseia.mp4"},
-    {"titulo":"Thunderbolts","ano":2025,"categoria":"Ação","capa":"https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp","video":"https://wolf-channel-cdn.b-cdn.net/Filmes%20/Thunderbolts.mp4"},
-    {"titulo":"Star Wars: O Mandaloriano e Grogu","ano":2026,"categoria":"Ficção/Aventura","capa":"https://i.postimg.cc/02qdmdtM/images-(51).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20tavin/Star%20Wars%20O%20Mandaloriano%20e%20Grogu.mp4"},
-    {"titulo":"Dark Hollow","ano":2025,"categoria":"Suspense/Terror","capa":"https://i.postimg.cc/RZtB8m1x/225b82e3f7f4b312e1bbdf4ca12063cf9445bea0cd34fbcbf7a3388408e2ead6.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20tavin/Dark%20Hollow.mp4"},
-    {"titulo":"Avatar: A Lenda de Aang","ano":2026,"categoria":"Fantasia/Aventura","capa":"https://i.postimg.cc/kgskL5VR/Avatar-A-Lenda-de-Aang.jpg","video":"https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20tavin/Avatar%20A%20Lenda%20de%20Aang.mp4"},
-    {"titulo":"O Delator","ano":2026,"categoria":"Suspense/Drama","capa":"https://i.postimg.cc/V6n4Q77Z/20260716-o-delator-papo-de-cinema-cartaz-(1).webp","video":"https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20tavin/O%20Delator.mp4"},
-    {"titulo":"Mayday","ano":2025,"categoria":"Ação/Suspense","capa":"https://i.postimg.cc/sgbpjYZW/MV5BM2Vm-YWEz-M2Ut-ODNj-Zi00YTk1LWEz-Zj-Et-Nz-Y4OGU0YTdk-Nm-Jm-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000-(1).jpg","video":"https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20tavin/Mayday.mp4"}
+    {
+      "titulo": "Super Mario Bros. O Filme",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Bros%20O%20Filme.mp4"
+    },
+    {
+      "titulo": "Guardiões da Galáxia Vol. 3",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VkGB9Xgh/Guardi-es-da-Gal-xia-Vol-3-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Guardi%C3%B5es%20da%20Gal%C3%A1xia%20Vol%203.mp4"
+    },
+    {
+      "titulo": "Dungeons & Dragons: Honra Entre Rebeldes",
+      "ano": 2023,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/1zdBSDN8/images-(33).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Dungeons%20Dragons%20Honra%20Entre%20Rebeldes.mp4"
+    },
+    {
+      "titulo": "Jumanji: Bem-Vindo à Selva",
+      "ano": 2017,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/k4ptjpsN/jumanji.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Jumanji%20Bem-Vindo%20%C3%80%20Selva.mp4"
+    },
+    {
+      "titulo": "17 Outra Vez",
+      "ano": 2009,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/FFwTzW46/17.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/17%20Outra%20Vez.mp4"
+    },
+    {
+      "titulo": "A Noiva Cadáver",
+      "ano": 2005,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/Z54FvXD1/noiva.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/A%20Noiva%20Cad%C3%A1ver.mp4"
+    },
+    {
+      "titulo": "Avatar (2009)",
+      "ano": 2009,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/7LQgchYy/avatar.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Avatar%202009.mp4"
+    },
+    {
+      "titulo": "Como Mágica",
+      "ano": 2026,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/9z5YzWLn/D-NQ-NP-674318-MLB111141123921-052026-O.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20M%C3%A1gica.mp4"
+    },
+    {
+      "titulo": "Deu a Louca nos Bichos",
+      "ano": 2010,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/0N7W1734/deu-a-louca-nos-bichos.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Deu%20a%20Louca%20nos%20Bichos.mp4"
+    },
+    {
+      "titulo": "A Odisseia",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/A%20Odisseia.mp4"
+    },
+    {
+      "titulo": "Thunderbolts",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Thunderbolts.mp4"
+    },
+    {
+      "titulo": "Star Wars: O Mandaloriano e Grogu",
+      "ano": 2026,
+      "categoria": "Ficção/Aventura",
+      "capa": "https://i.postimg.cc/02qdmdtM/images-(51).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20tavin/Star%20Wars%20O%20Mandaloriano%20e%20Grogu.mp4"
+    }
   ],
   "series": [
     {
-      "titulo":"Spider-Noir",
-      "ano":2026,
-      "categoria":"Ação",
-      "capa":"https://i.postimg.cc/substituir-capa-spider-noir.jpg",
-      "temporadas":[
+      "titulo": "Spider-Noir",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/substituir-capa-spider-noir.jpg",
+      "temporadas": [
         {
-          "numero":1,
-          "episodios":[
-            {"numero":1,"titulo":"Episódio 1","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E01.mp4"},
-            {"numero":2,"titulo":"Episódio 2","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E02.mp4"},
-            {"numero":3,"titulo":"Episódio 3","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E03.mp4"},
-            {"numero":4,"titulo":"Episódio 4","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E04.mp4"},
-            {"numero":5,"titulo":"Episódio 5","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E05.mp4"},
-            {"numero":6,"titulo":"Episódio 6","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E06.mp4"},
-            {"numero":7,"titulo":"Episódio 7","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E07.mp4"},
-            {"numero":8,"titulo":"Episódio 8","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E08.mp4"}
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E08.mp4"
+            }
           ]
         }
       ]
     }
   ],
-  "animes":[],
-  "doramas":[
+  "animes": [],
+  "doramas": [
     {
-      "titulo":"Cães de Caça",
-      "ano":2023,
-      "categoria":"Ação/Drama",
-      "capa":"https://i.postimg.cc/vm7VVvx5/1217360.jpg",
-      "episodios":[
-        {"numero":1,"titulo":"Episódio 1","video":"https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/C%C3%A3es%20de%20Ca%C3%A7a%20S01E01.mp4"}
+      "titulo": "Cães de Caça",
+      "ano": 2023,
+      "categoria": "Ação/Drama",
+      "capa": "https://i.postimg.cc/vm7VVvx5/1217360.jpg",
+      "episodios": [
+        {
+          "numero": 1,
+          "titulo": "Episódio 1",
+          "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/C%C3%A3es%20de%20Ca%C3%A7a%20S01E01.mp4"
+        }
       ]
     }
   ]
