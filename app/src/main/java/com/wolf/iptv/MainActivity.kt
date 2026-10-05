@@ -1,6 +1,5 @@
 package com.wolf.iptv
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -13,20 +12,18 @@ import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import org.json.JSONArray
 import org.json.JSONObject
-import java.io.File
-import java.io.FileOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
-import java.security.MessageDigest
-import java.util.concurrent.ConcurrentHashMap
 import kotlin.concurrent.thread
 
 data class Filme(
@@ -45,157 +42,98 @@ data class Episodio(
 
 data class Temporada(
     val numero: Int,
-    val episodios: ArrayList<Episodio>
+    val episodios: List<Episodio>
 )
 
 data class Serie(
     val titulo: String,
-    val ano: Int,
     val categoria: String,
     val capa: String,
-    val temporadas: ArrayList<Temporada>
+    val temporadas: List<Temporada>
 )
 
-data class Dorama(
-    val titulo: String,
-    val ano: Int,
-    val categoria: String,
-    val capa: String,
-    val temporadas: ArrayList<Temporada>
-)
+class MainActivity : AppCompatActivity() {
 
-data class Anime(
-    val titulo: String,
-    val ano: Int,
-    val categoria: String,
-    val capa: String,
-    val temporadas: ArrayList<Temporada>
-)
+    private val CATALOGO_URL =
+        "https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/main/catalogo.json"
 
-class MainActivity : Activity() {
+    private lateinit var raiz: FrameLayout
+    private lateinit var conteudo: LinearLayout
+    private lateinit var botaoMenu: TextView
 
-    companion object {
+    private lateinit var menuLateral: LinearLayout
+    private lateinit var menuScroll: ScrollView
+    private lateinit var menuConteudo: LinearLayout
+    private lateinit var botaoFecharMenu: TextView
 
-        private const val CATALOGO_URL =
-            "https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/refs/heads/main/catalogo.json"
-
-        private const val PREFS =
-            "WOLF_IPTV"
-
-        private const val FAVORITOS =
-            "FAVORITOS"
-    }
-
-    private lateinit var raiz:
-        FrameLayout
-
-    private lateinit var conteudo:
-        LinearLayout
-
-    private lateinit var scroll:
-        ScrollView
-
-    private lateinit var botaoMenu:
-        TextView
-
-    private lateinit var menuLateral:
-        LinearLayout
-
-    private lateinit var menuConteudo:
-        LinearLayout
-
-    private lateinit var botaoFecharMenu:
-        TextView
-
-    private val cacheCapas =
-        ConcurrentHashMap<String, Bitmap>()
-
-    private val capasEmCarregamento =
-        ConcurrentHashMap.newKeySet<String>()
-
-    private val cacheDiscoCapas by lazy {
-        File(
-            cacheDir,
-            "capas"
-        ).apply {
-            if (!exists()) {
-                mkdirs()
-            }
-        }
-    }
-
-    private val filmes =
-        ArrayList<Filme>()
-
-    private val series =
-        ArrayList<Serie>()
-
-    private val doramas =
-        ArrayList<Dorama>()
-
-    private val animes =
-        ArrayList<Anime>()
-
-    private val favoritos =
-        HashSet<String>()
-
-    private val historicoConteudo =
-        ArrayList<() -> Unit>()
-
-    private val cardsAtuais =
-        ArrayList<View>()
+    private var menuAberto = false
 
     private val itensMenuFoco =
-        ArrayList<View>()
+        mutableListOf<View>()
 
-    private var indiceCardAtual =
-        0
+    private val cacheCapas =
+        HashMap<String, Bitmap>()
 
-    private var menuAberto =
-        false
+    private val historicoConteudo =
+        mutableListOf<() -> Unit>()
 
-    private var categoriaAtual =
-        "Todos"
+    private val filmes =
+        mutableListOf<Filme>()
+
+    private val series =
+        mutableListOf<Serie>()
+
+    private val doramas =
+        mutableListOf<Serie>()
+
+    private val animes =
+        mutableListOf<Serie>()
+
+    private val cardsAtuais =
+        mutableListOf<View>()
+
+    private var indiceCardAtual = 0
+
+    private val favoritos =
+        mutableSetOf<String>()
 
     override fun onCreate(
         savedInstanceState: Bundle?
     ) {
-        super.onCreate(
-            savedInstanceState
-        )
+        super.onCreate(savedInstanceState)
 
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_FULLSCREEN or
-                View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-                View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-
-        carregarFavoritos()
+            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
+            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
+            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
 
         criarInterface()
 
-        carregarCatalogo()
+        carregarFilmes()
+        carregarSeries()
     }
 
     private fun criarInterface() {
 
-        raiz =
-            FrameLayout(this)
+        raiz = FrameLayout(this)
 
         raiz.setBackgroundColor(
             Color.BLACK
         )
 
-        val fundo =
-            ImageView(this)
+        val fundo = ImageView(this)
 
         fundo.scaleType =
-            ImageView.ScaleType.FIT_CENTER
+            ImageView.ScaleType.CENTER_CROP
 
-        fundo.alpha =
-            0.55f
+        fundo.alpha = 0.55f
 
-        fundo.setImageResource(
-            R.drawable.wolf_background
+        carregarImagem(
+            "https://i.postimg.cc/Ghk8PP7w/wolf.png",
+            fundo
         )
 
         raiz.addView(
@@ -214,9 +152,9 @@ class MainActivity : Activity() {
 
         camada.setPadding(
             dp(20),
-            dp(15),
+            dp(12),
             dp(20),
-            dp(10)
+            dp(12)
         )
 
         raiz.addView(
@@ -227,35 +165,62 @@ class MainActivity : Activity() {
             )
         )
 
-        criarCabecalho(
-            camada
+        botaoMenu =
+            TextView(this)
+
+        botaoMenu.text =
+            "☰  WOLF MENU"
+
+        botaoMenu.setTextColor(
+            Color.WHITE
         )
 
-        criarAbas(
-            camada
+        botaoMenu.textSize = 20f
+
+        botaoMenu.setTypeface(
+            null,
+            Typeface.BOLD
         )
 
-        scroll =
+        botaoMenu.gravity =
+            Gravity.CENTER
+
+        botaoMenu.isFocusable = true
+        botaoMenu.isClickable = true
+
+        botaoMenu.background =
+            criarFundoCard(false)
+
+        botaoMenu.setOnFocusChangeListener { _, foco ->
+            botaoMenu.background =
+                criarFundoCard(foco)
+        }
+
+        botaoMenu.setOnClickListener {
+            abrirMenu()
+        }
+
+        camada.addView(
+            botaoMenu,
+            LinearLayout.LayoutParams(
+                dp(235),
+                dp(58)
+            )
+        )
+
+        val scroll =
             ScrollView(this)
 
-        scroll.isFillViewport =
-            false
+        scroll.isFocusable = false
 
-        scroll.overScrollMode =
-            View.OVER_SCROLL_NEVER
+        scroll.isFocusableInTouchMode =
+            false
 
         conteudo =
             LinearLayout(this)
 
         conteudo.orientation =
             LinearLayout.VERTICAL
-
-        conteudo.setPadding(
-            0,
-            dp(8),
-            0,
-            dp(40)
-        )
 
         scroll.addView(
             conteudo,
@@ -274,6854 +239,1076 @@ class MainActivity : Activity() {
             )
         )
 
-        criarMenuLateral()
-
-        setContentView(
-            raiz
-        )
+        setContentView(raiz)
     }
 
-    private fun criarCabecalho(
-        camada: LinearLayout
-    ) {
-
-        val cabecalho =
-            LinearLayout(this)
-
-        cabecalho.orientation =
-            LinearLayout.HORIZONTAL
-
-        cabecalho.gravity =
-            Gravity.CENTER_VERTICAL
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            "WOLF IPTV"
-
-        titulo.textSize =
-            26f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.gravity =
-            Gravity.CENTER_VERTICAL
-
-        cabecalho.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                0,
-                dp(60),
-                1f
-            )
-        )
-
-        botaoMenu =
-            TextView(this)
-
-        botaoMenu.text =
-            "☰"
-
-        botaoMenu.textSize =
-            30f
-
-        botaoMenu.setTextColor(
-            Color.WHITE
-        )
-
-        botaoMenu.gravity =
-            Gravity.CENTER
-
-        botaoMenu.isFocusable =
-            true
-
-        botaoMenu.isFocusableInTouchMode =
-            true
-
-        botaoMenu.background =
-            criarFundoBotao()
-
-        botaoMenu.setOnClickListener {
-            abrirMenu()
-        }
-
-        cabecalho.addView(
-            botaoMenu,
-            LinearLayout.LayoutParams(
-                dp(75),
-                dp(55)
-            )
-        )
-
-        camada.addView(
-            cabecalho,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(65)
-            )
-        )
+    private fun dp(valor: Int): Int {
+        return (valor * resources.displayMetrics.density).toInt()
     }
 
-    private fun criarAbas(
-        camada: LinearLayout
-    ) {
-
-        val abas =
-            LinearLayout(this)
-
-        abas.orientation =
-            LinearLayout.HORIZONTAL
-
-        abas.gravity =
-            Gravity.CENTER
-
-        val abaFilmes =
-            criarBotaoAba(
-                "FILMES"
-            )
-
-        val abaSeries =
-            criarBotaoAba(
-                "SÉRIES"
-            )
-
-        val abaDoramas =
-            criarBotaoAba(
-                "DORAMAS"
-            )
-
-        abas.addView(
-            abaFilmes,
-            LinearLayout.LayoutParams(
-                0,
-                dp(52),
-                1f
-            ).apply {
-                setMargins(
-                    dp(4),
-                    0,
-                    dp(4),
-                    0
-                )
-            }
-        )
-
-        abas.addView(
-            abaSeries,
-            LinearLayout.LayoutParams(
-                0,
-                dp(52),
-                1f
-            ).apply {
-                setMargins(
-                    dp(4),
-                    0,
-                    dp(4),
-                    0
-                )
-            }
-        )
-
-        abas.addView(
-            abaDoramas,
-            LinearLayout.LayoutParams(
-                0,
-                dp(52),
-                1f
-            ).apply {
-                setMargins(
-                    dp(4),
-                    0,
-                    dp(4),
-                    0
-                )
-            }
-        )
-
-        abaFilmes.setOnClickListener {
-
-            historicoConteudo.clear()
-
-            mostrarListaFilmes(
-                "Todos"
-            )
-        }
-
-        abaSeries.setOnClickListener {
-
-            historicoConteudo.clear()
-
-            mostrarListaSeries(
-                series
-            )
-        }
-
-        abaDoramas.setOnClickListener {
-
-            historicoConteudo.clear()
-
-            mostrarListaDoramas(
-                doramas
-            )
-        }
-
-        camada.addView(
-            abas,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(62)
-            )
-        )
-    }
-
-    private fun criarBotaoAba(
-        texto: String
-    ): TextView {
-
-        val botao =
-            TextView(this)
-
-        botao.text =
-            texto
-
-        botao.textSize =
-            16f
-
-        botao.setTextColor(
-            Color.WHITE
-        )
-
-        botao.gravity =
-            Gravity.CENTER
-
-        botao.isFocusable =
-            true
-
-        botao.isFocusableInTouchMode =
-            true
-
-        botao.background =
-            criarFundoBotao()
-
-        botao.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            if (focado) {
-
-                view.animate()
-                    .scaleX(1.04f)
-                    .scaleY(1.04f)
-                    .setDuration(100)
-                    .start()
-
+    private fun criarFundoCard(foco: Boolean): GradientDrawable {
+        val fundo = GradientDrawable()
+        fundo.setColor(
+            if (foco) {
+                Color.argb(235, 10, 10, 10)
             } else {
-
-                view.animate()
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(100)
-                    .start()
+                Color.argb(190, 10, 10, 10)
             }
+        )
+        fundo.cornerRadius = dp(8).toFloat()
+
+        if (foco) {
+            fundo.setStroke(dp(4), Color.RED)
         }
 
-        return botao
+        return fundo
     }
 
-    private fun criarFundoBotao():
-        GradientDrawable {
+    private fun criarBordaVermelha(): GradientDrawable {
+        val borda = GradientDrawable()
+        borda.setColor(Color.TRANSPARENT)
+        borda.cornerRadius = dp(8).toFloat()
+        borda.setStroke(dp(4), Color.RED)
+        return borda
+    }
 
-        return GradientDrawable().apply {
+    private fun carregarImagem(url: String, imagem: ImageView) {
+        if (url.isBlank()) return
 
-            cornerRadius =
-                dp(9).toFloat()
-
-            setColor(
-                Color.argb(
-                    175,
-                    25,
-                    25,
-                    25
-                )
-            )
-
-            setStroke(
-                dp(1),
-                Color.argb(
-                    100,
-                    255,
-                    255,
-                    255
-                )
-            )
+        val salva = cacheCapas[url]
+        if (salva != null) {
+            imagem.setImageBitmap(salva)
+            return
         }
-    }
-
-    private fun dp(
-        valor: Int
-    ): Int {
-
-        return (
-            valor *
-                resources.displayMetrics.density
-            ).toInt()
-    }    private fun carregarCatalogo() {
 
         thread {
-
             try {
-
-                val conexao =
-                    URL(CATALOGO_URL)
-                        .openConnection() as HttpURLConnection
-
-                conexao.connectTimeout =
-                    15000
-
-                conexao.readTimeout =
-                    20000
-
-                conexao.requestMethod =
-                    "GET"
-
-                conexao.setRequestProperty(
-                    "User-Agent",
-                    "WOLF-IPTV"
-                )
-
+                val conexao = URL(url).openConnection() as HttpURLConnection
+                conexao.connectTimeout = 15000
+                conexao.readTimeout = 15000
+                conexao.doInput = true
                 conexao.connect()
 
-                if (
-                    conexao.responseCode !in
-                    200..299
-                ) {
-
-                    throw Exception(
-                        "HTTP ${conexao.responseCode}"
-                    )
-                }
-
-                val texto =
-                    conexao.inputStream
-                        .bufferedReader(
-                            Charsets.UTF_8
-                        )
-                        .use {
-                            it.readText()
-                        }
-
+                val bitmap = BitmapFactory.decodeStream(conexao.inputStream)
                 conexao.disconnect()
 
-                val json =
-                    JSONObject(texto)
+                if (bitmap != null) {
+                    cacheCapas[url] = bitmap
+                    runOnUiThread {
+                        imagem.setImageBitmap(bitmap)
+                    }
+                }
+            } catch (_: Exception) {}
+        }
+    }
 
-                processarCatalogo(
-                    json
-                )
+    private fun carregarFilmes() {
+        thread {
+            var conexao: HttpURLConnection? = null
 
-                runOnUiThread {
+            try {
+                conexao = URL(CATALOGO_URL).openConnection() as HttpURLConnection
+                conexao.connectTimeout = 20000
+                conexao.readTimeout = 20000
+                conexao.requestMethod = "GET"
+                conexao.doInput = true
+                conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
+                conexao.connect()
 
-                    mostrarListaFilmes(
-                        "Todos"
-                    )
+                val codigo = conexao.responseCode
+                if (codigo !in 200..299) {
+                    throw Exception("HTTP $codigo")
                 }
 
-            } catch (
-                erro: Exception
-            ) {
+                val resposta = conexao.inputStream.bufferedReader(Charsets.UTF_8).use {
+                    it.readText()
+                }
+
+                if (resposta.isBlank()) {
+                    throw Exception("Catálogo vazio")
+                }
+
+                val texto = resposta.trim()
+                val raizJson = JSONObject(texto)
+                val novosFilmes = ArrayList<Filme>()
+                val listaFilmes = raizJson.optJSONArray("filmes")
+
+                if (listaFilmes != null) {
+                    for (i in 0 until listaFilmes.length()) {
+                        try {
+                            val item = listaFilmes.getJSONObject(i)
+                            val titulo = item.optString("titulo", "")
+                            val ano = item.optInt("ano", 0)
+                            val categoria = item.optString("categoria", "")
+                            val capa = item.optString("capa", "")
+                            val video = item.optString("video", "")
+
+                            if (titulo.isNotBlank()) {
+                                novosFilmes.add(
+                                    Filme(
+                                        titulo = titulo,
+                                        ano = ano,
+                                        categoria = categoria,
+                                        capa = capa,
+                                        video = video
+                                    )
+                                )
+                            }
+                        } catch (_: Exception) {}
+                    }
+                }
+
+                novosFilmes.sortWith(
+                    compareByDescending<Filme> { it.ano }.thenBy { it.titulo.lowercase() }
+                )
+
+                fun lerSeries(array: JSONArray?): ArrayList<Serie> {
+                    val resultado = ArrayList<Serie>()
+                    if (array == null) return resultado
+
+                    for (i in 0 until array.length()) {
+                        try {
+                            val objeto = array.getJSONObject(i)
+                            val titulo = objeto.optString("titulo", "")
+                            val categoria = objeto.optString("categoria", "")
+                            val capa = objeto.optString("capa", "")
+                            val temporadas = ArrayList<Temporada>()
+                            val arrayTemporadas = objeto.optJSONArray("temporadas")
+
+                            if (arrayTemporadas != null) {
+                                for (t in 0 until arrayTemporadas.length()) {
+                                    try {
+                                        val objetoTemporada = arrayTemporadas.getJSONObject(t)
+                                        val numeroTemporada = objetoTemporada.optInt("numero", t + 1)
+                                        val episodios = ArrayList<Episodio>()
+                                        val arrayEpisodios = objetoTemporada.optJSONArray("episodios")
+
+                                        if (arrayEpisodios != null) {
+                                            for (e in 0 until arrayEpisodios.length()) {
+                                                try {
+                                                    val objetoEpisodio = arrayEpisodios.getJSONObject(e)
+                                                    val numeroEpisodio = objetoEpisodio.optInt("numero", e + 1)
+                                                    val tituloEpisodio = objetoEpisodio.optString("titulo", "")
+                                                    val videoEpisodio = objetoEpisodio.optString("video", "")
+
+                                                    episodios.add(
+                                                        Episodio(
+                                                            numero = numeroEpisodio,
+                                                            titulo = tituloEpisodio,
+                                                            video = videoEpisodio
+                                                        )
+                                                    )
+                                                } catch (_: Exception) {}
+                                            }
+                                        }
+
+                                        temporadas.add(
+                                            Temporada(
+                                                numero = numeroTemporada,
+                                                episodios = episodios
+                                            )
+                                        )
+                                    } catch (_: Exception) {}
+                                }
+                            }
+
+                            if (titulo.isNotBlank()) {
+                                resultado.add(
+                                    Serie(
+                                        titulo = titulo,
+                                        categoria = categoria,
+                                        capa = capa,
+                                        temporadas = temporadas
+                                    )
+                                )
+                            }
+                        } catch (_: Exception) {}
+                    }
+                    return resultado
+                }
+
+                val novasSeries = lerSeries(raizJson.optJSONArray("series"))
+                val novosDoramas = lerSeries(raizJson.optJSONArray("doramas"))
+                val novosAnimes = lerSeries(raizJson.optJSONArray("animes"))
 
                 runOnUiThread {
+                    filmes.clear()
+                    filmes.addAll(novosFilmes)
+
+                    series.clear()
+                    series.addAll(novasSeries)
+
+                    doramas.clear()
+                    doramas.addAll(novosDoramas)
+
+                    animes.clear()
+                    animes.addAll(novosAnimes)
+
+                    mostrarListaCards(filmes)
 
                     Toast.makeText(
-                        this,
-                        "Erro ao carregar catálogo: ${erro.message}",
+                        this@MainActivity,
+                        "Catálogo carregado: ${filmes.size} filmes, ${series.size} séries, ${doramas.size} doramas e ${animes.size} animes",
                         Toast.LENGTH_LONG
                     ).show()
                 }
-            }
-        }
-    }
-
-    private fun processarCatalogo(
-        json: JSONObject
-    ) {
-
-        filmes.clear()
-
-        series.clear()
-
-        doramas.clear()
-
-        animes.clear()
-
-        lerFilmes(
-            json.optJSONArray(
-                "filmes"
-            )
-        )
-
-        lerSeries(
-            json.optJSONArray(
-                "series"
-            )
-        )
-
-        lerDoramas(
-            json.optJSONArray(
-                "doramas"
-            )
-        )
-
-        lerAnimes(
-            json.optJSONArray(
-                "animes"
-            )
-        )
-    }
-
-    private fun lerFilmes(
-        lista: JSONArray?
-    ) {
-
-        if (lista == null) {
-            return
-        }
-
-        for (
-            i in 0 until lista.length()
-        ) {
-
-            try {
-
-                val item =
-                    lista.optJSONObject(i)
-                        ?: continue
-
-                val titulo =
-                    item.optString(
-                        "titulo",
-                        "Sem título"
-                    )
-
-                val ano =
-                    item.optInt(
-                        "ano",
-                        0
-                    )
-
-                val categoria =
-                    item.optString(
-                        "categoria",
-                        "Outros"
-                    )
-
-                val capa =
-                    item.optString(
-                        "capa",
-                        ""
-                    )
-
-                val video =
-                    item.optString(
-                        "video",
-                        ""
-                    )
-
-                filmes.add(
-                    Filme(
-                        titulo = titulo,
-                        ano = ano,
-                        categoria = categoria,
-                        capa = capa,
-                        video = video
-                    )
-                )
-
-            } catch (
-                _: Exception
-            ) {
-                // Ignora somente o item inválido.
-            }
-        }
-    }
-
-    private fun lerSeries(
-        lista: JSONArray?
-    ) {
-
-        if (lista == null) {
-            return
-        }
-
-        for (
-            i in 0 until lista.length()
-        ) {
-
-            try {
-
-                val item =
-                    lista.optJSONObject(i)
-                        ?: continue
-
-                val temporadas =
-                    lerTemporadas(
-                        item.optJSONArray(
-                            "temporadas"
-                        )
-                    )
-
-                series.add(
-                    Serie(
-                        titulo =
-                            item.optString(
-                                "titulo",
-                                "Sem título"
-                            ),
-
-                        ano =
-                            item.optInt(
-                                "ano",
-                                0
-                            ),
-
-                        categoria =
-                            item.optString(
-                                "categoria",
-                                "Outros"
-                            ),
-
-                        capa =
-                            item.optString(
-                                "capa",
-                                ""
-                            ),
-
-                        temporadas =
-                            temporadas
-                    )
-                )
-
-            } catch (
-                _: Exception
-            ) {
-                // Mantém o restante do catálogo funcionando.
-            }
-        }
-    }
-
-    private fun lerDoramas(
-        lista: JSONArray?
-    ) {
-
-        if (lista == null) {
-            return
-        }
-
-        for (
-            i in 0 until lista.length()
-        ) {
-
-            try {
-
-                val item =
-                    lista.optJSONObject(i)
-                        ?: continue
-
-                val temporadas =
-                    lerTemporadas(
-                        item.optJSONArray(
-                            "temporadas"
-                        )
-                    )
-
-                doramas.add(
-                    Dorama(
-                        titulo =
-                            item.optString(
-                                "titulo",
-                                "Sem título"
-                            ),
-
-                        ano =
-                            item.optInt(
-                                "ano",
-                                0
-                            ),
-
-                        categoria =
-                            item.optString(
-                                "categoria",
-                                "Dorama"
-                            ),
-
-                        capa =
-                            item.optString(
-                                "capa",
-                                ""
-                            ),
-
-                        temporadas =
-                            temporadas
-                    )
-                )
-
-            } catch (
-                _: Exception
-            ) {
-                // Ignora apenas o item problemático.
-            }
-        }
-    }
-
-    private fun lerAnimes(
-        lista: JSONArray?
-    ) {
-
-        if (lista == null) {
-            return
-        }
-
-        for (
-            i in 0 until lista.length()
-        ) {
-
-            try {
-
-                val item =
-                    lista.optJSONObject(i)
-                        ?: continue
-
-                val temporadas =
-                    lerTemporadas(
-                        item.optJSONArray(
-                            "temporadas"
-                        )
-                    )
-
-                animes.add(
-                    Anime(
-                        titulo =
-                            item.optString(
-                                "titulo",
-                                "Sem título"
-                            ),
-
-                        ano =
-                            item.optInt(
-                                "ano",
-                                0
-                            ),
-
-                        categoria =
-                            item.optString(
-                                "categoria",
-                                "Anime"
-                            ),
-
-                        capa =
-                            item.optString(
-                                "capa",
-                                ""
-                            ),
-
-                        temporadas =
-                            temporadas
-                    )
-                )
-
-            } catch (
-                _: Exception
-            ) {
-                // Continua lendo os próximos animes.
-            }
-        }
-    }
-
-    private fun lerTemporadas(
-        lista: JSONArray?
-    ): ArrayList<Temporada> {
-
-        val resultado =
-            ArrayList<Temporada>()
-
-        if (lista == null) {
-            return resultado
-        }
-
-        for (
-            i in 0 until lista.length()
-        ) {
-
-            try {
-
-                val item =
-                    lista.optJSONObject(i)
-                        ?: continue
-
-                val episodios =
-                    lerEpisodios(
-                        item.optJSONArray(
-                            "episodios"
-                        )
-                    )
-
-                resultado.add(
-                    Temporada(
-                        numero =
-                            item.optInt(
-                                "numero",
-                                i + 1
-                            ),
-
-                        episodios =
-                            episodios
-                    )
-                )
-
-            } catch (
-                _: Exception
-            ) {
-                // Não interrompe o catálogo inteiro.
-            }
-        }
-
-        resultado.sortBy {
-            it.numero
-        }
-
-        return resultado
-    }
-
-    private fun lerEpisodios(
-        lista: JSONArray?
-    ): ArrayList<Episodio> {
-
-        val resultado =
-            ArrayList<Episodio>()
-
-        if (lista == null) {
-            return resultado
-        }
-
-        for (
-            i in 0 until lista.length()
-        ) {
-
-            try {
-
-                val item =
-                    lista.optJSONObject(i)
-                        ?: continue
-
-                resultado.add(
-                    Episodio(
-                        numero =
-                            item.optInt(
-                                "numero",
-                                i + 1
-                            ),
-
-                        titulo =
-                            item.optString(
-                                "titulo",
-                                "Episódio ${i + 1}"
-                            ),
-
-                        video =
-                            item.optString(
-                                "video",
-                                ""
-                            )
-                    )
-                )
-
-            } catch (
-                _: Exception
-            ) {
-                // Continua nos próximos episódios.
-            }
-        }
-
-        resultado.sortBy {
-            it.numero
-        }
-
-        return resultado
-    }
-
-    private fun carregarFavoritos() {
-
-        val preferencias =
-            getSharedPreferences(
-                PREFS,
-                MODE_PRIVATE
-            )
-
-        favoritos.clear()
-
-        favoritos.addAll(
-            preferencias
-                .getStringSet(
-                    FAVORITOS,
-                    emptySet()
-                )
-                ?.toSet()
-                ?: emptySet()
-        )
-    }
-
-    private fun salvarFavoritos() {
-
-        val preferencias =
-            getSharedPreferences(
-                PREFS,
-                MODE_PRIVATE
-            )
-
-        preferencias
-            .edit()
-            .putStringSet(
-                FAVORITOS,
-                favoritos.toSet()
-            )
-            .apply()
-    }
-
-    private fun chaveFavorito(
-        tipo: String,
-        titulo: String
-    ): String {
-
-        return "$tipo::$titulo"
-    }
-
-    private fun ehFavorito(
-        tipo: String,
-        titulo: String
-    ): Boolean {
-
-        return favoritos.contains(
-            chaveFavorito(
-                tipo,
-                titulo
-            )
-        )
-    }
-
-    private fun alternarFavorito(
-        tipo: String,
-        titulo: String
-    ) {
-
-        val chave =
-            chaveFavorito(
-                tipo,
-                titulo
-            )
-
-        if (
-            favoritos.contains(
-                chave
-            )
-        ) {
-
-            favoritos.remove(
-                chave
-            )
-
-        } else {
-
-            favoritos.add(
-                chave
-            )
-        }
-
-        salvarFavoritos()
-    }    private fun carregarCapa(
-        imageView: ImageView,
-        url: String
-    ) {
-
-        if (url.isBlank()) {
-
-            imageView.setImageResource(
-                R.drawable.wolf_background
-            )
-
-            return
-        }
-
-        imageView.tag =
-            url
-
-        val memoria =
-            cacheCapas[url]
-
-        if (memoria != null) {
-
-            imageView.setImageBitmap(
-                memoria
-            )
-
-            return
-        }
-
-        val arquivo =
-            arquivoCacheCapa(
-                url
-            )
-
-        if (arquivo.exists()) {
-
-            thread {
-
-                try {
-
-                    val bitmap =
-                        decodificarCapa(
-                            arquivo
-                        )
-
-                    if (bitmap != null) {
-
-                        cacheCapas[url] =
-                            bitmap
-
-                        runOnUiThread {
-
-                            if (
-                                imageView.tag ==
-                                url
-                            ) {
-
-                                imageView.setImageBitmap(
-                                    bitmap
-                                )
-                            }
-                        }
-
-                        return@thread
-                    }
-
-                } catch (
-                    _: Exception
-                ) {
-                    // Se o cache estiver corrompido,
-                    // tenta baixar novamente.
+            } catch (erro: Exception) {
+                runOnUiThread {
+                    filmes.clear()
+                    series.clear()
+                    doramas.clear()
+                    animes.clear()
+
+                    conteudo.removeAllViews()
+
+                    val erroTexto = TextView(this@MainActivity)
+                    erroTexto.text = "ERRO NO CATÁLOGO\n\n${erro.message ?: "Erro desconhecido"}"
+                    erroTexto.textSize = 20f
+                    erroTexto.setTextColor(Color.WHITE)
+                    erroTexto.gravity = Gravity.CENTER
+                    erroTexto.setPadding(dp(30), dp(30), dp(30), dp(30))
+
+                    conteudo.addView(erroTexto)
+
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Erro ao carregar catálogo",
+                        Toast.LENGTH_LONG
+                    ).show()
                 }
-
-                baixarCapa(
-                    imageView,
-                    url
-                )
-            }
-
-            return
-        }
-
-        baixarCapa(
-            imageView,
-            url
-        )
-    }
-
-    private fun baixarCapa(
-        imageView: ImageView,
-        url: String
-    ) {
-
-        if (
-            !capasEmCarregamento.add(
-                url
-            )
-        ) {
-            return
-        }
-
-        thread {
-
-            var bitmap:
-                Bitmap? = null
-
-            try {
-
-                val conexao =
-                    URL(url)
-                        .openConnection() as HttpURLConnection
-
-                conexao.connectTimeout =
-                    10000
-
-                conexao.readTimeout =
-                    15000
-
-                conexao.requestMethod =
-                    "GET"
-
-                conexao.setRequestProperty(
-                    "User-Agent",
-                    "WOLF-IPTV"
-                )
-
-                conexao.connect()
-
-                if (
-                    conexao.responseCode !in
-                    200..299
-                ) {
-
-                    throw Exception(
-                        "HTTP ${conexao.responseCode}"
-                    )
-                }
-
-                val bytes =
-                    conexao.inputStream
-                        .use {
-                            it.readBytes()
-                        }
-
-                conexao.disconnect()
-
-                bitmap =
-                    decodificarBytes(
-                        bytes
-                    )
-
-                if (bitmap != null) {
-
-                    cacheCapas[url] =
-                        bitmap
-
-                    salvarCapaNoDisco(
-                        url,
-                        bytes
-                    )
-                }
-
-            } catch (
-                _: Exception
-            ) {
-
-                bitmap =
-                    null
-
             } finally {
-
-                capasEmCarregamento.remove(
-                    url
-                )
-            }
-
-            runOnUiThread {
-
-                if (
-                    imageView.tag != url
-                ) {
-                    return@runOnUiThread
-                }
-
-                if (bitmap != null) {
-
-                    imageView.setImageBitmap(
-                        bitmap
-                    )
-
-                } else {
-
-                    imageView.setImageResource(
-                        R.drawable.wolf_background
-                    )
-                }
+                conexao?.disconnect()
             }
         }
     }
 
-    private fun decodificarBytes(
-        bytes: ByteArray
-    ): Bitmap? {
-
-        if (bytes.isEmpty()) {
-            return null
-        }
-
-        val opcoes =
-            BitmapFactory.Options()
-
-        opcoes.inJustDecodeBounds =
-            true
-
-        BitmapFactory.decodeByteArray(
-            bytes,
-            0,
-            bytes.size,
-            opcoes
-        )
-
-        if (
-            opcoes.outWidth <= 0 ||
-            opcoes.outHeight <= 0
-        ) {
-            return null
-        }
-
-        opcoes.inSampleSize =
-            calcularSampleSize(
-                opcoes.outWidth,
-                opcoes.outHeight
-            )
-
-        opcoes.inJustDecodeBounds =
-            false
-
-        opcoes.inPreferredConfig =
-            Bitmap.Config.RGB_565
-
-        return BitmapFactory.decodeByteArray(
-            bytes,
-            0,
-            bytes.size,
-            opcoes
-        )
-    }
-
-    private fun decodificarCapa(
-        arquivo: File
-    ): Bitmap? {
-
-        val opcoes =
-            BitmapFactory.Options()
-
-        opcoes.inJustDecodeBounds =
-            true
-
-        BitmapFactory.decodeFile(
-            arquivo.absolutePath,
-            opcoes
-        )
-
-        if (
-            opcoes.outWidth <= 0 ||
-            opcoes.outHeight <= 0
-        ) {
-            return null
-        }
-
-        opcoes.inSampleSize =
-            calcularSampleSize(
-                opcoes.outWidth,
-                opcoes.outHeight
-            )
-
-        opcoes.inJustDecodeBounds =
-            false
-
-        opcoes.inPreferredConfig =
-            Bitmap.Config.RGB_565
-
-        return BitmapFactory.decodeFile(
-            arquivo.absolutePath,
-            opcoes
-        )
-    }
-
-    private fun calcularSampleSize(
-        largura: Int,
-        altura: Int
-    ): Int {
-
-        val larguraAlvo =
-            420
-
-        val alturaAlvo =
-            560
-
-        var sample =
-            1
-
-        var larguraAtual =
-            largura
-
-        var alturaAtual =
-            altura
-
-        while (
-            larguraAtual / 2 >= larguraAlvo &&
-            alturaAtual / 2 >= alturaAlvo
-        ) {
-
-            larguraAtual /= 2
-
-            alturaAtual /= 2
-
-            sample *= 2
-        }
-
-        return sample
-    }
-
-    private fun arquivoCacheCapa(
-        url: String
-    ): File {
-
-        val digest =
-            MessageDigest
-                .getInstance("MD5")
-                .digest(
-                    url.toByteArray(
-                        Charsets.UTF_8
-                    )
-                )
-
-        val nome =
-            digest.joinToString("") {
-                "%02x".format(it)
-            }
-
-        return File(
-            cacheDiscoCapas,
-            "$nome.jpg"
-        )
-    }
-
-    private fun salvarCapaNoDisco(
-        url: String,
-        bytes: ByteArray
-    ) {
-
-        try {
-
-            val destino =
-                arquivoCacheCapa(
-                    url
-                )
-
-            val temporario =
-                File(
-                    destino.parentFile,
-                    "${destino.name}.tmp"
-                )
-
-            FileOutputStream(
-                temporario
-            ).use {
-                it.write(bytes)
-                it.flush()
-            }
-
-            if (
-                destino.exists()
-            ) {
-                destino.delete()
-            }
-
-            temporario.renameTo(
-                destino
-            )
-
-        } catch (
-            _: Exception
-        ) {
-            // Cache em disco é opcional.
-            // Se falhar, a imagem continua funcionando
-            // pelo cache de memória.
-        }
-    }
-
-    private fun limparCacheMemoriaCapas() {
-
-        cacheCapas.clear()
-    }
-
-    private fun limparCacheDiscoCapas() {
-
-        try {
-
-            cacheDiscoCapas
-                .listFiles()
-                ?.forEach {
-                    it.delete()
-                }
-
-        } catch (
-            _: Exception
-        ) {
-            // Não interrompe o aplicativo.
-        }
-    }
-
-    private fun prepararImageView(
-        imageView: ImageView
-    ) {
-
-        imageView.scaleType =
-            ImageView.ScaleType.CENTER_CROP
-
-        imageView.setImageResource(
-            R.drawable.wolf_background
-        )
-
-        imageView.setBackgroundColor(
-            Color.rgb(
-                18,
-                18,
-                18
-            )
-        )
-    }
-
-    private fun estilizarFoco(
-        view: View,
-        focado: Boolean
-    ) {
-
-        if (focado) {
-
-            view.animate()
-                .scaleX(1.06f)
-                .scaleY(1.06f)
-                .setDuration(110)
-                .start()
-
-            view.alpha =
-                1f
-
-        } else {
-
-            view.animate()
-                .scaleX(1f)
-                .scaleY(1f)
-                .setDuration(110)
-                .start()
-
-            view.alpha =
-                0.92f
-        }
-    }
-
-    private fun textoSeguro(
-        texto: String
-    ): String {
-
-        return texto
-            .trim()
-            .replace(
-                Regex("\\s+"),
-                " "
-            )
-    }
-
-    private fun adicionarEspaco(
-        pai: LinearLayout,
-        altura: Int
-    ) {
-
-        val espaco =
-            View(this)
-
-        pai.addView(
-            espaco,
-            LinearLayout.LayoutParams(
-                1,
-                dp(altura)
-            )
-        )
-    }    private fun mostrarListaFilmes(
-        categoria: String
-    ) {
-
-        categoriaAtual =
-            categoria
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
+    private fun carregarSeries() {}private fun mostrarListaCards(lista: List<Filme>) {
         conteudo.removeAllViews()
-
-        val filmesFiltrados =
-            if (
-                categoria == "Todos"
-            ) {
-
-                filmes.sortedWith(
-                    compareByDescending<Filme> {
-                        it.ano
-                    }.thenBy {
-                        it.titulo.lowercase()
-                    }
-                )
-
-            } else {
-
-                filmes.filter {
-                    it.categoria.equals(
-                        categoria,
-                        ignoreCase = true
-                    )
-                }.sortedWith(
-                    compareByDescending<Filme> {
-                        it.ano
-                    }.thenBy {
-                        it.titulo.lowercase()
-                    }
-                )
-            }
-
-        criarTituloSecao(
-            conteudo,
-            "FILMES"
-        )
-
-        criarCategoriasFilmes(
-            conteudo,
-            categoria
-        )
-
-        if (
-            filmesFiltrados.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhum filme encontrado."
-            )
-
-            return
-        }
-
-        criarGradeFilmes(
-            conteudo,
-            filmesFiltrados
-        )
-    }
-
-    private fun criarTituloSecao(
-        pai: LinearLayout,
-        titulo: String
-    ) {
-
-        val texto =
-            TextView(this)
-
-        texto.text =
-            titulo
-
-        texto.textSize =
-            22f
-
-        texto.setTextColor(
-            Color.WHITE
-        )
-
-        texto.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        texto.gravity =
-            Gravity.CENTER_VERTICAL
-
-        texto.ellipsize =
-            TextUtils.TruncateAt.END
-
-        pai.addView(
-            texto,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(52)
-            ).apply {
-                setMargins(
-                    dp(4),
-                    dp(5),
-                    dp(4),
-                    dp(2)
-                )
-            }
-        )
-    }
-
-    private fun criarCategoriasFilmes(
-        pai: LinearLayout,
-        categoriaSelecionada: String
-    ) {
-
-        val categorias =
-            ArrayList<String>()
-
-        categorias.add(
-            "Todos"
-        )
-
-        filmes.forEach {
-
-            val categoria =
-                textoSeguro(
-                    it.categoria
-                )
-
-            if (
-                categoria.isNotEmpty() &&
-                !categorias.contains(
-                    categoria
-                )
-            ) {
-
-                categorias.add(
-                    categoria
-                )
-            }
-        }
-
-        val linha =
-            LinearLayout(this)
-
-        linha.orientation =
-            LinearLayout.HORIZONTAL
-
-        linha.gravity =
-            Gravity.CENTER_VERTICAL
-
-        val scrollCategorias =
-            ScrollView(this)
-
-        scrollCategorias.isHorizontalScrollBarEnabled =
-            false
-
-        scrollCategorias.overScrollMode =
-            View.OVER_SCROLL_NEVER
-
-        val horizontal =
-            LinearLayout(this)
-
-        horizontal.orientation =
-            LinearLayout.HORIZONTAL
-
-        categorias.forEach { categoria ->
-
-            val botao =
-                criarBotaoCategoria(
-                    categoria,
-                    categoria ==
-                        categoriaSelecionada
-                )
-
-            botao.setOnClickListener {
-
-                mostrarListaFilmes(
-                    categoria
-                )
-            }
-
-            horizontal.addView(
-                botao,
-                LinearLayout.LayoutParams(
-                    dp(125),
-                    dp(45)
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(2),
-                        dp(4),
-                        dp(8)
-                    )
-                }
-            )
-        }
-
-        scrollCategorias.addView(
-            horizontal,
-            ScrollView.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
-
-        linha.addView(
-            scrollCategorias,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(53)
-            )
-        )
-
-        pai.addView(
-            linha,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(53)
-            )
-        )
-    }
-
-    private fun criarBotaoCategoria(
-        texto: String,
-        selecionado: Boolean
-    ): TextView {
-
-        val botao =
-            TextView(this)
-
-        botao.text =
-            texto
-
-        botao.textSize =
-            14f
-
-        botao.setTextColor(
-            Color.WHITE
-        )
-
-        botao.gravity =
-            Gravity.CENTER
-
-        botao.maxLines =
-            1
-
-        botao.ellipsize =
-            TextUtils.TruncateAt.END
-
-        botao.isFocusable =
-            true
-
-        botao.isFocusableInTouchMode =
-            true
-
-        botao.background =
-            criarFundoCategoria(
-                selecionado
-            )
-
-        botao.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-        }
-
-        return botao
-    }
-
-    private fun criarFundoCategoria(
-        selecionado: Boolean
-    ): GradientDrawable {
-
-        return GradientDrawable().apply {
-
-            cornerRadius =
-                dp(8).toFloat()
-
-            if (selecionado) {
-
-                setColor(
-                    Color.argb(
-                        220,
-                        90,
-                        20,
-                        20
-                    )
-                )
-
-                setStroke(
-                    dp(2),
-                    Color.WHITE
-                )
-
-            } else {
-
-                setColor(
-                    Color.argb(
-                        165,
-                        25,
-                        25,
-                        25
-                    )
-                )
-
-                setStroke(
-                    dp(1),
-                    Color.argb(
-                        90,
-                        255,
-                        255,
-                        255
-                    )
-                )
-            }
-        }
-    }
-
-    private fun criarGradeFilmes(
-        pai: LinearLayout,
-        lista: List<Filme>
-    ) {
-
-        var linha:
-            LinearLayout? = null
-
-        lista.forEachIndexed {
-                indice,
-                filme ->
-
-            if (
-                indice % 5 == 0
-            ) {
-
-                linha =
-                    LinearLayout(this)
-
-                linha.orientation =
-                    LinearLayout.HORIZONTAL
-
-                linha.gravity =
-                    Gravity.TOP
-
-                pai.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(330)
-                    ).apply {
-                        setMargins(
-                            0,
-                            dp(5),
-                            0,
-                            dp(5)
-                        )
-                    }
-                )
-            }
-
-            val card =
-                criarCardFilme(
-                    filme
-                )
-
-            cardsAtuais.add(
-                card
-            )
-
-            linha?.addView(
-                card,
-                LinearLayout.LayoutParams(
-                    0,
-                    dp(320),
-                    1f
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(4),
-                        dp(4),
-                        dp(4)
-                    )
-                }
-            )
-        }
-
-        if (
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            cardsAtuais[0].post {
-
-                cardsAtuais[0].requestFocus()
-            }
-        }
-    }
-
-    private fun criarCardFilme(
-        filme: Filme
-    ): View {
-
-        val card =
-            LinearLayout(this)
-
-        card.orientation =
-            LinearLayout.VERTICAL
-
-        card.gravity =
-            Gravity.TOP or
-                Gravity.CENTER_HORIZONTAL
-
-        card.isFocusable =
-            true
-
-        card.isFocusableInTouchMode =
-            true
-
-        card.setPadding(
-            dp(4),
-            dp(4),
-            dp(4),
-            dp(4)
-        )
-
-        card.background =
-            criarFundoCard()
-
-        val capa =
-            ImageView(this)
-
-        prepararImageView(
-            capa
-        )
-
-        capa.layoutParams =
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(245)
-            )
-
-        card.addView(
-            capa
-        )
-
-        carregarCapa(
-            capa,
-            filme.capa
-        )
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            textoSeguro(
-                filme.titulo
-            )
-
-        titulo.textSize =
-            14f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.gravity =
-            Gravity.CENTER
-
-        titulo.maxLines =
-            2
-
-        titulo.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(45)
-            ).apply {
-                topMargin =
-                    dp(5)
-            }
-        )
-
-        val informacao =
-            TextView(this)
-
-        informacao.text =
-            if (
-                filme.ano > 0
-            ) {
-                "${filme.ano} • ${filme.categoria}"
-            } else {
-                filme.categoria
-            }
-
-        informacao.textSize =
-            11f
-
-        informacao.setTextColor(
-            Color.LTGRAY
-        )
-
-        informacao.gravity =
-            Gravity.CENTER
-
-        informacao.maxLines =
-            1
-
-        informacao.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            informacao,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(22)
-            )
-        )
-
-        card.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-
-            if (focado) {
-
-                indiceCardAtual =
-                    cardsAtuais.indexOf(
-                        view
-                    )
-
-                rolarParaView(
-                    view
-                )
-            }
-        }
-
-        card.setOnClickListener {
-
-            abrirFilme(
-                filme
-            )
-        }
-
-        return card
-    }
-
-    private fun criarFundoCard():
-        GradientDrawable {
-
-        return GradientDrawable().apply {
-
-            cornerRadius =
-                dp(10).toFloat()
-
-            setColor(
-                Color.argb(
-                    190,
-                    12,
-                    12,
-                    12
-                )
-            )
-
-            setStroke(
-                dp(1),
-                Color.argb(
-                    70,
-                    255,
-                    255,
-                    255
-                )
-            )
-        }
-    }
-
-    private fun criarMensagemVazia(
-        pai: LinearLayout,
-        mensagem: String
-    ) {
-
-        val texto =
-            TextView(this)
-
-        texto.text =
-            mensagem
-
-        texto.textSize =
-            18f
-
-        texto.setTextColor(
-            Color.WHITE
-        )
-
-        texto.gravity =
-            Gravity.CENTER
-
-        pai.addView(
-            texto,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(180)
-            )
-        )
-    }
-
-    private fun rolarParaView(
-        view: View
-    ) {
-
-        view.post {
-
-            val margem =
-                dp(40)
-
-            val top =
-                view.top
-
-            val bottom =
-                view.bottom
-
-            val alturaTela =
-                scroll.height
-
-            val atual =
-                scroll.scrollY
-
-            if (
-                top < atual + margem
-            ) {
-
-                scroll.smoothScrollTo(
-                    0,
-                    maxOf(
-                        0,
-                        top - margem
-                    )
-                )
-
-            } else if (
-                bottom >
-                atual +
-                alturaTela -
-                margem
-            ) {
-
-                scroll.smoothScrollTo(
-                    0,
-                    bottom -
-                        alturaTela +
-                        margem
-                )
-            }
-        }
-    }    private fun mostrarListaSeries(
-        lista: List<Serie>
-    ) {
-
-        indiceCardAtual =
-            0
-
         cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            "SÉRIES"
-        )
-
-        criarCategoriasSeries(
-            conteudo
-        )
-
-        val ordenadas =
-            lista.sortedWith(
-                compareByDescending<Serie> {
-                    it.ano
-                }.thenBy {
-                    it.titulo.lowercase()
-                }
-            )
-
-        if (
-            ordenadas.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhuma série encontrada."
-            )
-
-            return
-        }
-
-        criarGradeSeries(
-            conteudo,
-            ordenadas
-        )
-    }
-
-    private fun criarCategoriasSeries(
-        pai: LinearLayout
-    ) {
-
-        val categorias =
-            ArrayList<String>()
-
-        categorias.add(
-            "Todos"
-        )
-
-        series.forEach {
-
-            val categoria =
-                textoSeguro(
-                    it.categoria
-                )
-
-            if (
-                categoria.isNotEmpty() &&
-                !categorias.contains(
-                    categoria
-                )
-            ) {
-
-                categorias.add(
-                    categoria
-                )
-            }
-        }
-
-        val scrollCategorias =
-            ScrollView(this)
-
-        scrollCategorias.isHorizontalScrollBarEnabled =
-            false
-
-        scrollCategorias.overScrollMode =
-            View.OVER_SCROLL_NEVER
-
-        val horizontal =
-            LinearLayout(this)
-
-        horizontal.orientation =
-            LinearLayout.HORIZONTAL
-
-        categorias.forEach {
-                categoria ->
-
-            val botao =
-                criarBotaoCategoria(
-                    categoria,
-                    false
-                )
-
-            botao.setOnClickListener {
-
-                val filtradas =
-                    if (
-                        categoria == "Todos"
-                    ) {
-
-                        series
-
-                    } else {
-
-                        series.filter {
-                            it.categoria.equals(
-                                categoria,
-                                ignoreCase = true
-                            )
-                        }
-                    }
-
-                mostrarListaSeries(
-                    filtradas
-                )
-            }
-
-            horizontal.addView(
-                botao,
-                LinearLayout.LayoutParams(
-                    dp(125),
-                    dp(45)
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(2),
-                        dp(4),
-                        dp(8)
-                    )
-                }
-            )
-        }
-
-        scrollCategorias.addView(
-            horizontal,
-            ScrollView.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
-
-        pai.addView(
-            scrollCategorias,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(53)
-            )
-        )
-    }
-
-    private fun criarGradeSeries(
-        pai: LinearLayout,
-        lista: List<Serie>
-    ) {
-
-        var linha:
-            LinearLayout? = null
-
-        lista.forEachIndexed {
-                indice,
-                serie ->
-
-            if (
-                indice % 5 == 0
-            ) {
-
-                linha =
-                    LinearLayout(this)
-
-                linha.orientation =
-                    LinearLayout.HORIZONTAL
-
-                linha.gravity =
-                    Gravity.TOP
-
-                pai.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(330)
-                    ).apply {
-                        setMargins(
-                            0,
-                            dp(5),
-                            0,
-                            dp(5)
-                        )
-                    }
-                )
-            }
-
-            val card =
-                criarCardSerie(
-                    serie
-                )
-
-            cardsAtuais.add(
-                card
-            )
-
-            linha?.addView(
-                card,
-                LinearLayout.LayoutParams(
-                    0,
-                    dp(320),
-                    1f
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(4),
-                        dp(4),
-                        dp(4)
-                    )
-                }
-            )
-        }
-
-        if (
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            cardsAtuais[0].post {
-                cardsAtuais[0].requestFocus()
-            }
-        }
-    }
-
-    private fun criarCardSerie(
-        serie: Serie
-    ): View {
-
-        val card =
-            LinearLayout(this)
-
-        card.orientation =
-            LinearLayout.VERTICAL
-
-        card.gravity =
-            Gravity.TOP or
-                Gravity.CENTER_HORIZONTAL
-
-        card.isFocusable =
-            true
-
-        card.isFocusableInTouchMode =
-            true
-
-        card.setPadding(
-            dp(4),
-            dp(4),
-            dp(4),
-            dp(4)
-        )
-
-        card.background =
-            criarFundoCard()
-
-        val capa =
-            ImageView(this)
-
-        prepararImageView(
-            capa
-        )
-
-        card.addView(
-            capa,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(245)
-            )
-        )
-
-        carregarCapa(
-            capa,
-            serie.capa
-        )
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            textoSeguro(
-                serie.titulo
-            )
-
-        titulo.textSize =
-            14f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.gravity =
-            Gravity.CENTER
-
-        titulo.maxLines =
-            2
-
-        titulo.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(45)
-            ).apply {
-                topMargin =
-                    dp(5)
-            }
-        )
-
-        val informacao =
-            TextView(this)
-
-        val temporadas =
-            serie.temporadas.size
-
-        informacao.text =
-            if (
-                serie.ano > 0
-            ) {
-
-                "${serie.ano} • " +
-                    "$temporadas " +
-                    if (
-                        temporadas == 1
-                    ) {
-                        "temporada"
-                    } else {
-                        "temporadas"
-                    }
-
-            } else {
-
-                "$temporadas " +
-                    if (
-                        temporadas == 1
-                    ) {
-                        "temporada"
-                    } else {
-                        "temporadas"
-                    }
-            }
-
-        informacao.textSize =
-            11f
-
-        informacao.setTextColor(
-            Color.LTGRAY
-        )
-
-        informacao.gravity =
-            Gravity.CENTER
-
-        informacao.maxLines =
-            1
-
-        informacao.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            informacao,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(22)
-            )
-        )
-
-        card.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-
-            if (focado) {
-
-                indiceCardAtual =
-                    cardsAtuais.indexOf(
-                        view
-                    )
-
-                rolarParaView(
-                    view
-                )
-            }
-        }
-
-        card.setOnClickListener {
-
-            abrirSerie(
-                serie
-            )
-        }
-
-        return card
-    }
-
-    private fun mostrarTemporadasSerie(
-        serie: Serie
-    ) {
-
-        historicoConteudo.add {
-            mostrarListaSeries(
-                series
-            )
-        }
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            serie.titulo
-        )
-
-        val voltar =
-            criarBotaoVoltar()
-
-        voltar.setOnClickListener {
-
-            voltarConteudo()
-        }
-
-        conteudo.addView(
-            voltar,
-            LinearLayout.LayoutParams(
-                dp(180),
-                dp(48)
-            ).apply {
-                setMargins(
-                    dp(4),
-                    dp(4),
-                    dp(4),
-                    dp(8)
-                )
-            }
-        )
-
-        if (
-            serie.temporadas.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhuma temporada encontrada."
-            )
-
-            return
-        }
-
-        serie.temporadas
-            .sortedBy {
-                it.numero
-            }
-            .forEach { temporada ->
-
-                val botao =
-                    criarBotaoTemporada(
-                        temporada
-                    )
-
-                botao.setOnClickListener {
-
-                    mostrarEpisodios(
-                        serie.titulo,
-                        temporada
-                    )
-                }
-
-                conteudo.addView(
-                    botao,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(58)
-                    ).apply {
-                        setMargins(
-                            dp(4),
-                            dp(5),
-                            dp(4),
-                            dp(5)
-                        )
-                    }
-                )
-            }
-    }
-
-    private fun criarBotaoTemporada(
-        temporada: Temporada
-    ): TextView {
-
-        val botao =
-            TextView(this)
-
-        botao.text =
-            "Temporada ${temporada.numero}"
-
-        botao.textSize =
-            16f
-
-        botao.setTextColor(
-            Color.WHITE
-        )
-
-        botao.gravity =
-            Gravity.CENTER_VERTICAL
-
-        botao.setPadding(
-            dp(18),
-            0,
-            dp(18),
-            0
-        )
-
-        botao.isFocusable =
-            true
-
-        botao.isFocusableInTouchMode =
-            true
-
-        botao.background =
-            criarFundoBotao()
-
-        botao.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-        }
-
-        return botao
-    }
-
-    private fun criarBotaoVoltar():
-        TextView {
-
-        val botao =
-            TextView(this)
-
-        botao.text =
-            "‹  VOLTAR"
-
-        botao.textSize =
-            15f
-
-        botao.setTextColor(
-            Color.WHITE
-        )
-
-        botao.gravity =
-            Gravity.CENTER
-
-        botao.isFocusable =
-            true
-
-        botao.isFocusableInTouchMode =
-            true
-
-        botao.background =
-            criarFundoBotao()
-
-        botao.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-        }
-
-        return botao
-        }    private fun mostrarEpisodios(
-        tituloSerie: String,
-        temporada: Temporada
-    ) {
-
-        historicoConteudo.add {
-
-            val serie =
-                series.firstOrNull {
-                    it.titulo.equals(
-                        tituloSerie,
-                        ignoreCase = true
-                    )
-                }
-
-            if (serie != null) {
-
-                mostrarTemporadasSerie(
-                    serie
-                )
-            }
-        }
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            "$tituloSerie — Temporada ${temporada.numero}"
-        )
-
-        val voltar =
-            criarBotaoVoltar()
-
-        voltar.setOnClickListener {
-
-            voltarConteudo()
-        }
-
-        conteudo.addView(
-            voltar,
-            LinearLayout.LayoutParams(
-                dp(180),
-                dp(48)
-            ).apply {
-                setMargins(
-                    dp(4),
-                    dp(4),
-                    dp(4),
-                    dp(8)
-                )
-            }
-        )
-
-        if (
-            temporada.episodios.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhum episódio encontrado."
-            )
-
-            return
-        }
-
-        temporada.episodios
-            .sortedBy {
-                it.numero
-            }
-            .forEach { episodio ->
-
-                val botao =
-                    criarBotaoEpisodio(
-                        episodio
-                    )
-
-                botao.setOnClickListener {
-
-                    abrirEpisodio(
-                        tituloSerie,
-                        temporada.numero,
-                        episodio
-                    )
-                }
-
-                conteudo.addView(
-                    botao,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(64)
-                    ).apply {
-                        setMargins(
-                            dp(4),
-                            dp(5),
-                            dp(4),
-                            dp(5)
-                        )
-                    }
-                )
-            }
-    }
-
-    private fun criarBotaoEpisodio(
-        episodio: Episodio
-    ): TextView {
-
-        val botao =
-            TextView(this)
-
-        botao.text =
-            "Episódio ${episodio.numero}  •  " +
-                textoSeguro(
-                    episodio.titulo
-                )
-
-        botao.textSize =
-            15f
-
-        botao.setTextColor(
-            Color.WHITE
-        )
-
-        botao.gravity =
-            Gravity.CENTER_VERTICAL
-
-        botao.setPadding(
-            dp(18),
-            0,
-            dp(18),
-            0
-        )
-
-        botao.maxLines =
-            1
-
-        botao.ellipsize =
-            TextUtils.TruncateAt.END
-
-        botao.isFocusable =
-            true
-
-        botao.isFocusableInTouchMode =
-            true
-
-        botao.background =
-            criarFundoBotao()
-
-        botao.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-
-            if (focado) {
-                rolarParaView(
-                    view
-                )
-            }
-        }
-
-        return botao
-    }
-
-    private fun abrirSerie(
-        serie: Serie
-    ) {
-
-        mostrarTemporadasSerie(
-            serie
-        )
-    }
-
-    private fun abrirFilme(
-        filme: Filme
-    ) {
-
-        if (
-            filme.video.isBlank()
-        ) {
-
-            Toast.makeText(
-                this,
-                "Vídeo não disponível.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-        registrarHistorico(
-            "Filme",
-            filme.titulo
-        )
-
-        abrirVideo(
-            filme.titulo,
-            filme.video
-        )
-    }
-
-    private fun abrirEpisodio(
-        tituloSerie: String,
-        numeroTemporada: Int,
-        episodio: Episodio
-    ) {
-
-        if (
-            episodio.video.isBlank()
-        ) {
-
-            Toast.makeText(
-                this,
-                "Vídeo não disponível.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-        registrarHistorico(
-            "Série",
-            "$tituloSerie • T$numeroTemporada E${episodio.numero}"
-        )
-
-        abrirVideo(
-            "$tituloSerie — " +
-                "T${numeroTemporada}E${episodio.numero}",
-            episodio.video
-        )
-    }
-
-    private fun abrirVideo(
-        titulo: String,
-        url: String
-    ) {
-
-        try {
-
-            val intent =
-                Intent(
-                    this,
-                    PlayerActivity::class.java
-                )
-
-            intent.putExtra(
-                "titulo",
-                titulo
-            )
-
-            intent.putExtra(
-                "video",
-                url
-            )
-
-            intent.putExtra(
-                "url",
-                url
-            )
-
-            startActivity(
-                intent
-            )
-
-        } catch (
-            erro: Exception
-        ) {
-
-            Toast.makeText(
-                this,
-                "Não foi possível abrir o vídeo.",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    private fun registrarHistorico(
-        tipo: String,
-        titulo: String
-    ) {
-
-        val preferencias =
-            getSharedPreferences(
-                PREFS,
-                MODE_PRIVATE
-            )
-
-        val atual =
-            preferencias.getStringSet(
-                "HISTORICO",
-                emptySet()
-            )?.toMutableSet()
-                ?: mutableSetOf()
-
-        val chave =
-            "$tipo::$titulo"
-
-        atual.remove(
-            chave
-        )
-
-        val novo =
-            LinkedHashSet<String>()
-
-        novo.add(
-            chave
-        )
-
-        novo.addAll(
-            atual
-        )
-
-        while (
-            novo.size > 30
-        ) {
-
-            val ultimo =
-                novo.lastOrNull()
-                    ?: break
-
-            novo.remove(
-                ultimo
-            )
-        }
-
-        preferencias
-            .edit()
-            .putStringSet(
-                "HISTORICO",
-                novo
-            )
-            .apply()
-    }
-
-    private fun lerHistorico():
-        List<String> {
-
-        val preferencias =
-            getSharedPreferences(
-                PREFS,
-                MODE_PRIVATE
-            )
-
-        return preferencias
-            .getStringSet(
-                "HISTORICO",
-                emptySet()
-            )
-            ?.toList()
-            ?: emptyList()
-    }
-
-    private fun limparHistorico() {
-
-        getSharedPreferences(
-            PREFS,
-            MODE_PRIVATE
-        )
-            .edit()
-            .remove(
-                "HISTORICO"
-            )
-            .apply()
-    }
-
-    private fun voltarConteudo() {
-
-        if (
-            historicoConteudo.isEmpty()
-        ) {
-
-            mostrarListaFilmes(
-                "Todos"
-            )
-
-            return
-        }
-
-        val anterior =
-            historicoConteudo.removeAt(
-                historicoConteudo.lastIndex
-            )
-
-        anterior.invoke()
-    }
-
-    private fun contarEpisodios(
-        serie: Serie
-    ): Int {
-
-        var total =
-            0
-
-        serie.temporadas.forEach {
-            total +=
-                it.episodios.size
-        }
-
-        return total
-    }
-
-    private fun primeiraTemporada(
-        serie: Serie
-    ): Temporada? {
-
-        return serie.temporadas
-            .sortedBy {
-                it.numero
-            }
-            .firstOrNull()
-    }
-
-    private fun primeiroEpisodio(
-        serie: Serie
-    ): Episodio? {
-
-        return primeiraTemporada(
-            serie
-        )?.episodios
-            ?.sortedBy {
-                it.numero
-            }
-            ?.firstOrNull()
-    }    private fun mostrarListaDoramas(
-        lista: List<Dorama>
-    ) {
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            "DORAMAS"
-        )
-
-        criarCategoriasDoramas(
-            conteudo
-        )
-
-        val ordenados =
-            lista.sortedWith(
-                compareByDescending<Dorama> {
-                    it.ano
-                }.thenBy {
-                    it.titulo.lowercase()
-                }
-            )
-
-        if (
-            ordenados.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhum dorama encontrado."
-            )
-
-            return
-        }
-
-        criarGradeDoramas(
-            conteudo,
-            ordenados
-        )
-    }
-
-    private fun criarCategoriasDoramas(
-        pai: LinearLayout
-    ) {
-
-        val categorias =
-            ArrayList<String>()
-
-        categorias.add(
-            "Todos"
-        )
-
-        doramas.forEach {
-
-            val categoria =
-                textoSeguro(
-                    it.categoria
-                )
-
-            if (
-                categoria.isNotEmpty() &&
-                !categorias.contains(
-                    categoria
-                )
-            ) {
-
-                categorias.add(
-                    categoria
-                )
-            }
-        }
-
-        val scrollCategorias =
-            ScrollView(this)
-
-        scrollCategorias.isHorizontalScrollBarEnabled =
-            false
-
-        scrollCategorias.overScrollMode =
-            View.OVER_SCROLL_NEVER
-
-        val horizontal =
-            LinearLayout(this)
-
-        horizontal.orientation =
-            LinearLayout.HORIZONTAL
-
-        categorias.forEach {
-                categoria ->
-
-            val botao =
-                criarBotaoCategoria(
-                    categoria,
-                    false
-                )
-
-            botao.setOnClickListener {
-
-                val filtradas =
-                    if (
-                        categoria == "Todos"
-                    ) {
-
-                        doramas
-
-                    } else {
-
-                        doramas.filter {
-                            it.categoria.equals(
-                                categoria,
-                                ignoreCase = true
-                            )
-                        }
-                    }
-
-                mostrarListaDoramas(
-                    filtradas
-                )
-            }
-
-            horizontal.addView(
-                botao,
-                LinearLayout.LayoutParams(
-                    dp(125),
-                    dp(45)
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(2),
-                        dp(4),
-                        dp(8)
-                    )
-                }
-            )
-        }
-
-        scrollCategorias.addView(
-            horizontal,
-            ScrollView.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
-
-        pai.addView(
-            scrollCategorias,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(53)
-            )
-        )
-    }
-
-    private fun criarGradeDoramas(
-        pai: LinearLayout,
-        lista: List<Dorama>
-    ) {
-
-        var linha:
-            LinearLayout? = null
-
-        lista.forEachIndexed {
-                indice,
-                dorama ->
-
-            if (
-                indice % 5 == 0
-            ) {
-
-                linha =
-                    LinearLayout(this)
-
-                linha.orientation =
-                    LinearLayout.HORIZONTAL
-
-                linha.gravity =
-                    Gravity.TOP
-
-                pai.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(330)
-                    ).apply {
-                        setMargins(
-                            0,
-                            dp(5),
-                            0,
-                            dp(5)
-                        )
-                    }
-                )
-            }
-
-            val card =
-                criarCardDorama(
-                    dorama
-                )
-
-            cardsAtuais.add(
-                card
-            )
-
-            linha?.addView(
-                card,
-                LinearLayout.LayoutParams(
-                    0,
-                    dp(320),
-                    1f
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(4),
-                        dp(4),
-                        dp(4)
-                    )
-                }
-            )
-        }
-
-        if (
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            cardsAtuais[0].post {
-                cardsAtuais[0].requestFocus()
-            }
-        }
-    }
-
-    private fun criarCardDorama(
-        dorama: Dorama
-    ): View {
-
-        val card =
-            LinearLayout(this)
-
-        card.orientation =
-            LinearLayout.VERTICAL
-
-        card.gravity =
-            Gravity.TOP or
-                Gravity.CENTER_HORIZONTAL
-
-        card.isFocusable =
-            true
-
-        card.isFocusableInTouchMode =
-            true
-
-        card.setPadding(
-            dp(4),
-            dp(4),
-            dp(4),
-            dp(4)
-        )
-
-        card.background =
-            criarFundoCard()
-
-        val capa =
-            ImageView(this)
-
-        prepararImageView(
-            capa
-        )
-
-        card.addView(
-            capa,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(245)
-            )
-        )
-
-        carregarCapa(
-            capa,
-            dorama.capa
-        )
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            textoSeguro(
-                dorama.titulo
-            )
-
-        titulo.textSize =
-            14f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.gravity =
-            Gravity.CENTER
-
-        titulo.maxLines =
-            2
-
-        titulo.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(45)
-            ).apply {
-                topMargin =
-                    dp(5)
-            }
-        )
-
-        val informacao =
-            TextView(this)
-
-        val temporadas =
-            dorama.temporadas.size
-
-        informacao.text =
-            if (
-                dorama.ano > 0
-            ) {
-
-                "${dorama.ano} • " +
-                    "$temporadas " +
-                    if (
-                        temporadas == 1
-                    ) {
-                        "temporada"
-                    } else {
-                        "temporadas"
-                    }
-
-            } else {
-
-                "$temporadas " +
-                    if (
-                        temporadas == 1
-                    ) {
-                        "temporada"
-                    } else {
-                        "temporadas"
-                    }
-            }
-
-        informacao.textSize =
-            11f
-
-        informacao.setTextColor(
-            Color.LTGRAY
-        )
-
-        informacao.gravity =
-            Gravity.CENTER
-
-        informacao.maxLines =
-            1
-
-        informacao.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            informacao,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(22)
-            )
-        )
-
-        card.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-
-            if (focado) {
-
-                indiceCardAtual =
-                    cardsAtuais.indexOf(
-                        view
-                    )
-
-                rolarParaView(
-                    view
-                )
-            }
-        }
-
-        card.setOnClickListener {
-
-            abrirDorama(
-                dorama
-            )
-        }
-
-        return card
-    }
-
-    private fun abrirDorama(
-        dorama: Dorama
-    ) {
-
-        mostrarTemporadasDorama(
-            dorama
-        )
-    }
-
-    private fun mostrarTemporadasDorama(
-        dorama: Dorama
-    ) {
-
-        historicoConteudo.add {
-            mostrarListaDoramas(
-                doramas
-            )
-        }
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            dorama.titulo
-        )
-
-        val voltar =
-            criarBotaoVoltar()
-
-        voltar.setOnClickListener {
-            voltarConteudo()
-        }
-
-        conteudo.addView(
-            voltar,
-            LinearLayout.LayoutParams(
-                dp(180),
-                dp(48)
-            ).apply {
-                setMargins(
-                    dp(4),
-                    dp(4),
-                    dp(4),
-                    dp(8)
-                )
-            }
-        )
-
-        if (
-            dorama.temporadas.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhuma temporada encontrada."
-            )
-
-            return
-        }
-
-        dorama.temporadas
-            .sortedBy {
-                it.numero
-            }
-            .forEach { temporada ->
-
-                val botao =
-                    criarBotaoTemporada(
-                        temporada
-                    )
-
-                botao.setOnClickListener {
-
-                    mostrarEpisodiosDorama(
-                        dorama.titulo,
-                        temporada
-                    )
-                }
-
-                conteudo.addView(
-                    botao,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(58)
-                    ).apply {
-                        setMargins(
-                            dp(4),
-                            dp(5),
-                            dp(4),
-                            dp(5)
-                        )
-                    }
-                )
-            }
-    }
-
-    private fun mostrarEpisodiosDorama(
-        tituloDorama: String,
-        temporada: Temporada
-    ) {
-
-        historicoConteudo.add {
-
-            val dorama =
-                doramas.firstOrNull {
-                    it.titulo.equals(
-                        tituloDorama,
-                        ignoreCase = true
-                    )
-                }
-
-            if (dorama != null) {
-
-                mostrarTemporadasDorama(
-                    dorama
-                )
-            }
-        }
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            "$tituloDorama — " +
-                "Temporada ${temporada.numero}"
-        )
-
-        val voltar =
-            criarBotaoVoltar()
-
-        voltar.setOnClickListener {
-            voltarConteudo()
-        }
-
-        conteudo.addView(
-            voltar,
-            LinearLayout.LayoutParams(
-                dp(180),
-                dp(48)
-            ).apply {
-                setMargins(
-                    dp(4),
-                    dp(4),
-                    dp(4),
-                    dp(8)
-                )
-            }
-        )
-
-        if (
-            temporada.episodios.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhum episódio encontrado."
-            )
-
-            return
-        }
-
-        temporada.episodios
-            .sortedBy {
-                it.numero
-            }
-            .forEach { episodio ->
-
-                val botao =
-                    criarBotaoEpisodio(
-                        episodio
-                    )
-
-                botao.setOnClickListener {
-
-                    abrirEpisodioDorama(
-                        tituloDorama,
-                        temporada.numero,
-                        episodio
-                    )
-                }
-
-                conteudo.addView(
-                    botao,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(64)
-                    ).apply {
-                        setMargins(
-                            dp(4),
-                            dp(5),
-                            dp(4),
-                            dp(5)
-                        )
-                    }
-                )
-            }
-    }
-
-    private fun abrirEpisodioDorama(
-        tituloDorama: String,
-        numeroTemporada: Int,
-        episodio: Episodio
-    ) {
-
-        if (
-            episodio.video.isBlank()
-        ) {
-
-            Toast.makeText(
-                this,
-                "Vídeo não disponível.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-        registrarHistorico(
-            "Dorama",
-            "$tituloDorama • " +
-                "T$numeroTemporada E${episodio.numero}"
-        )
-
-        abrirVideo(
-            "$tituloDorama — " +
-                "T${numeroTemporada}E${episodio.numero}",
-            episodio.video
-        )
-    }
-
-    private fun mostrarListaAnimes(
-        lista: List<Anime>
-    ) {
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            "ANIME"
-        )
-
-        criarCategoriasAnimes(
-            conteudo
-        )
-
-        val ordenados =
-            lista.sortedWith(
-                compareByDescending<Anime> {
-                    it.ano
-                }.thenBy {
-                    it.titulo.lowercase()
-                }
-            )
-
-        if (
-            ordenados.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhum anime encontrado."
-            )
-
-            return
-        }
-
-        criarGradeAnimes(
-            conteudo,
-            ordenados
-        )
-    }
-
-    private fun criarCategoriasAnimes(
-        pai: LinearLayout
-    ) {
-
-        val categorias =
-            ArrayList<String>()
-
-        categorias.add(
-            "Todos"
-        )
-
-        animes.forEach {
-
-            val categoria =
-                textoSeguro(
-                    it.categoria
-                )
-
-            if (
-                categoria.isNotEmpty() &&
-                !categorias.contains(
-                    categoria
-                )
-            ) {
-
-                categorias.add(
-                    categoria
-                )
-            }
-        }
-
-        val scrollCategorias =
-            ScrollView(this)
-
-        scrollCategorias.isHorizontalScrollBarEnabled =
-            false
-
-        scrollCategorias.overScrollMode =
-            View.OVER_SCROLL_NEVER
-
-        val horizontal =
-            LinearLayout(this)
-
-        horizontal.orientation =
-            LinearLayout.HORIZONTAL
-
-        categorias.forEach {
-                categoria ->
-
-            val botao =
-                criarBotaoCategoria(
-                    categoria,
-                    false
-                )
-
-            botao.setOnClickListener {
-
-                val filtrados =
-                    if (
-                        categoria == "Todos"
-                    ) {
-
-                        animes
-
-                    } else {
-
-                        animes.filter {
-                            it.categoria.equals(
-                                categoria,
-                                ignoreCase = true
-                            )
-                        }
-                    }
-
-                mostrarListaAnimes(
-                    filtrados
-                )
-            }
-
-            horizontal.addView(
-                botao,
-                LinearLayout.LayoutParams(
-                    dp(125),
-                    dp(45)
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(2),
-                        dp(4),
-                        dp(8)
-                    )
-                }
-            )
-        }
-
-        scrollCategorias.addView(
-            horizontal,
-            ScrollView.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
-
-        pai.addView(
-            scrollCategorias,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(53)
-            )
-        )
-    }    private fun criarGradeAnimes(
-        pai: LinearLayout,
-        lista: List<Anime>
-    ) {
-
-        var linha:
-            LinearLayout? = null
-
-        lista.forEachIndexed {
-                indice,
-                anime ->
-
-            if (
-                indice % 5 == 0
-            ) {
-
-                linha =
-                    LinearLayout(this)
-
-                linha.orientation =
-                    LinearLayout.HORIZONTAL
-
-                linha.gravity =
-                    Gravity.TOP
-
-                pai.addView(
-                    linha,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(330)
-                    ).apply {
-                        setMargins(
-                            0,
-                            dp(5),
-                            0,
-                            dp(5)
-                        )
-                    }
-                )
-            }
-
-            val card =
-                criarCardAnime(
-                    anime
-                )
-
-            cardsAtuais.add(
-                card
-            )
-
-            linha?.addView(
-                card,
-                LinearLayout.LayoutParams(
-                    0,
-                    dp(320),
-                    1f
-                ).apply {
-                    setMargins(
-                        dp(4),
-                        dp(4),
-                        dp(4),
-                        dp(4)
-                    )
-                }
-            )
-        }
-
-        if (
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            cardsAtuais[0].post {
-                cardsAtuais[0].requestFocus()
-            }
-        }
-    }
-
-    private fun criarCardAnime(
-        anime: Anime
-    ): View {
-
-        val card =
-            LinearLayout(this)
-
-        card.orientation =
-            LinearLayout.VERTICAL
-
-        card.gravity =
-            Gravity.TOP or
-                Gravity.CENTER_HORIZONTAL
-
-        card.isFocusable =
-            true
-
-        card.isFocusableInTouchMode =
-            true
-
-        card.setPadding(
-            dp(4),
-            dp(4),
-            dp(4),
-            dp(4)
-        )
-
-        card.background =
-            criarFundoCard()
-
-        val capa =
-            ImageView(this)
-
-        prepararImageView(
-            capa
-        )
-
-        card.addView(
-            capa,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(245)
-            )
-        )
-
-        carregarCapa(
-            capa,
-            anime.capa
-        )
-
-        val titulo =
-            TextView(this)
-
-        titulo.text =
-            textoSeguro(
-                anime.titulo
-            )
-
-        titulo.textSize =
-            14f
-
-        titulo.setTextColor(
-            Color.WHITE
-        )
-
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        titulo.gravity =
-            Gravity.CENTER
-
-        titulo.maxLines =
-            2
-
-        titulo.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            titulo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(45)
-            ).apply {
-                topMargin =
-                    dp(5)
-            }
-        )
-
-        val informacao =
-            TextView(this)
-
-        val temporadas =
-            anime.temporadas.size
-
-        informacao.text =
-            if (
-                anime.ano > 0
-            ) {
-
-                "${anime.ano} • " +
-                    "$temporadas " +
-                    if (
-                        temporadas == 1
-                    ) {
-                        "temporada"
-                    } else {
-                        "temporadas"
-                    }
-
-            } else {
-
-                "$temporadas " +
-                    if (
-                        temporadas == 1
-                    ) {
-                        "temporada"
-                    } else {
-                        "temporadas"
-                    }
-            }
-
-        informacao.textSize =
-            11f
-
-        informacao.setTextColor(
-            Color.LTGRAY
-        )
-
-        informacao.gravity =
-            Gravity.CENTER
-
-        informacao.maxLines =
-            1
-
-        informacao.ellipsize =
-            TextUtils.TruncateAt.END
-
-        card.addView(
-            informacao,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(22)
-            )
-        )
-
-        card.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            estilizarFoco(
-                view,
-                focado
-            )
-
-            if (focado) {
-
-                indiceCardAtual =
-                    cardsAtuais.indexOf(
-                        view
-                    )
-
-                rolarParaView(
-                    view
-                )
-            }
-        }
-
-        card.setOnClickListener {
-
-            abrirAnime(
-                anime
-            )
-        }
-
-        return card
-    }
-
-    private fun abrirAnime(
-        anime: Anime
-    ) {
-
-        mostrarTemporadasAnime(
-            anime
-        )
-    }
-
-    private fun mostrarTemporadasAnime(
-        anime: Anime
-    ) {
-
-        historicoConteudo.add {
-
-            mostrarListaAnimes(
-                animes
-            )
-        }
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            anime.titulo
-        )
-
-        val voltar =
-            criarBotaoVoltar()
-
-        voltar.setOnClickListener {
-            voltarConteudo()
-        }
-
-        conteudo.addView(
-            voltar,
-            LinearLayout.LayoutParams(
-                dp(180),
-                dp(48)
-            ).apply {
-                setMargins(
-                    dp(4),
-                    dp(4),
-                    dp(4),
-                    dp(8)
-                )
-            }
-        )
-
-        if (
-            anime.temporadas.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhuma temporada encontrada."
-            )
-
-            return
-        }
-
-        anime.temporadas
-            .sortedBy {
-                it.numero
-            }
-            .forEach { temporada ->
-
-                val botao =
-                    criarBotaoTemporada(
-                        temporada
-                    )
-
-                botao.setOnClickListener {
-
-                    mostrarEpisodiosAnime(
-                        anime.titulo,
-                        temporada
-                    )
-                }
-
-                conteudo.addView(
-                    botao,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(58)
-                    ).apply {
-                        setMargins(
-                            dp(4),
-                            dp(5),
-                            dp(4),
-                            dp(5)
-                        )
-                    }
-                )
-            }
-    }
-
-    private fun mostrarEpisodiosAnime(
-        tituloAnime: String,
-        temporada: Temporada
-    ) {
-
-        historicoConteudo.add {
-
-            val anime =
-                animes.firstOrNull {
-                    it.titulo.equals(
-                        tituloAnime,
-                        ignoreCase = true
-                    )
-                }
-
-            if (anime != null) {
-
-                mostrarTemporadasAnime(
-                    anime
-                )
-            }
-        }
-
-        indiceCardAtual =
-            0
-
-        cardsAtuais.clear()
-
-        conteudo.removeAllViews()
-
-        criarTituloSecao(
-            conteudo,
-            "$tituloAnime — " +
-                "Temporada ${temporada.numero}"
-        )
-
-        val voltar =
-            criarBotaoVoltar()
-
-        voltar.setOnClickListener {
-            voltarConteudo()
-        }
-
-        conteudo.addView(
-            voltar,
-            LinearLayout.LayoutParams(
-                dp(180),
-                dp(48)
-            ).apply {
-                setMargins(
-                    dp(4),
-                    dp(4),
-                    dp(4),
-                    dp(8)
-                )
-            }
-        )
-
-        if (
-            temporada.episodios.isEmpty()
-        ) {
-
-            criarMensagemVazia(
-                conteudo,
-                "Nenhum episódio encontrado."
-            )
-
-            return
-        }
-
-        temporada.episodios
-            .sortedBy {
-                it.numero
-            }
-            .forEach { episodio ->
-
-                val botao =
-                    criarBotaoEpisodio(
-                        episodio
-                    )
-
-                botao.setOnClickListener {
-
-                    abrirEpisodioAnime(
-                        tituloAnime,
-                        temporada.numero,
-                        episodio
-                    )
-                }
-
-                conteudo.addView(
-                    botao,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(64)
-                    ).apply {
-                        setMargins(
-                            dp(4),
-                            dp(5),
-                            dp(4),
-                            dp(5)
-                        )
-                    }
-                )
-            }
-    }
-
-    private fun abrirEpisodioAnime(
-        tituloAnime: String,
-        numeroTemporada: Int,
-        episodio: Episodio
-    ) {
-
-        if (
-            episodio.video.isBlank()
-        ) {
-
-            Toast.makeText(
-                this,
-                "Vídeo não disponível.",
-                Toast.LENGTH_SHORT
-            ).show()
-
-            return
-        }
-
-        registrarHistorico(
-            "Anime",
-            "$tituloAnime • " +
-                "T$numeroTemporada E${episodio.numero}"
-        )
-
-        abrirVideo(
-            "$tituloAnime — " +
-                "T${numeroTemporada}E${episodio.numero}",
-            episodio.video
-        )
-    }    private fun mostrarFavoritos() {
-
-        historicoConteudo.clear()
-
-        conteudo.removeAllViews()
-
-        cardsAtuais.clear()
-
         indiceCardAtual = 0
 
-        categoriaAtual = "Favoritos"
-
-        if (favoritos.isEmpty()) {
-
-            conteudo.addView(
-                criarSubtitulo(
-                    "FAVORITOS"
-                )
-            )
-
-            val vazio =
-                TextView(this)
-
-            vazio.text =
-                "Nenhum conteúdo foi adicionado aos favoritos."
-
-            vazio.textSize =
-                18f
-
-            vazio.setTextColor(
-                Color.WHITE
-            )
-
-            vazio.gravity =
-                Gravity.CENTER
-
-            vazio.setPadding(
-                dp(20),
-                dp(60),
-                dp(20),
-                dp(60)
-            )
+        if (lista.isEmpty()) {
+            val vazio = TextView(this)
+            vazio.text = "Nenhum filme encontrado"
+            vazio.setTextColor(Color.WHITE)
+            vazio.textSize = 20f
+            vazio.gravity = Gravity.CENTER
+            vazio.setPadding(dp(20), dp(40), dp(20), dp(40))
 
             conteudo.addView(
                 vazio,
                 LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
+                    dp(100)
                 )
             )
-
             return
         }
 
-        conteudo.addView(
-            criarSubtitulo(
-                "FAVORITOS"
+        lista.chunked(5).forEach { grupo ->
+            val linha = LinearLayout(this)
+            linha.orientation = LinearLayout.HORIZONTAL
+            linha.layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(350)
             )
-        )
 
-        val filmesFavoritos =
-            filmes.filter {
-                favoritos.contains(
-                    chaveFilme(it)
+            grupo.forEach { filme ->
+                val card = criarCard(filme)
+                linha.addView(
+                    card,
+                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
+                        leftMargin = dp(4)
+                        rightMargin = dp(4)
+                        bottomMargin = dp(12)
+                    }
                 )
+                cardsAtuais.add(card)
             }
-
-        val seriesFavoritas =
-            series.filter {
-                favoritos.contains(
-                    chaveSerie(it)
-                )
-            }
-
-        val doramasFavoritos =
-            doramas.filter {
-                favoritos.contains(
-                    chaveDorama(it)
-                )
-            }
-
-        val animesFavoritos =
-            animes.filter {
-                favoritos.contains(
-                    chaveAnime(it)
-                )
-            }
-
-        if (filmesFavoritos.isNotEmpty()) {
-
-            conteudo.addView(
-                criarSubtitulo(
-                    "FILMES"
-                )
-            )
-
-            criarGradeFilmes(
-                filmesFavoritos
-            )
-        }
-
-        if (seriesFavoritas.isNotEmpty()) {
-
-            conteudo.addView(
-                criarSubtitulo(
-                    "SÉRIES"
-                )
-            )
-
-            criarGradeSeries(
-                seriesFavoritas
-            )
-        }
-
-        if (doramasFavoritos.isNotEmpty()) {
-
-            conteudo.addView(
-                criarSubtitulo(
-                    "DORAMAS"
-                )
-            )
-
-            criarGradeDoramas(
-                doramasFavoritos
-            )
-        }
-
-        if (animesFavoritos.isNotEmpty()) {
-
-            conteudo.addView(
-                criarSubtitulo(
-                    "ANIMES"
-                )
-            )
-
-            criarGradeAnimes(
-                animesFavoritos
-            )
+            conteudo.addView(linha)
         }
 
         if (cardsAtuais.isNotEmpty()) {
-
-            indiceCardAtual = 0
-
             cardsAtuais[0].requestFocus()
         }
     }
 
-
-    private fun criarSubtitulo(
-        texto: String
-    ): TextView {
-
-        val subtitulo =
-            TextView(this)
-
-        subtitulo.text =
-            texto
-
-        subtitulo.textSize =
-            21f
-
-        subtitulo.setTextColor(
-            Color.WHITE
-        )
-
-        subtitulo.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        subtitulo.gravity =
-            Gravity.CENTER_VERTICAL
-
-        subtitulo.setPadding(
-            dp(8),
-            dp(14),
-            dp(8),
-            dp(8)
-        )
-
-        return subtitulo
-    }
-
-
-    private fun chaveFilme(
-        filme: Filme
-    ): String {
-
-        return "FILME|" +
-            filme.titulo
-    }
-
-
-    private fun chaveSerie(
-        serie: Serie
-    ): String {
-
-        return "SERIE|" +
-            serie.titulo
-    }
-
-
-    private fun chaveDorama(
-        dorama: Dorama
-    ): String {
-
-        return "DORAMA|" +
-            dorama.titulo
-    }
-
-
-    private fun chaveAnime(
-        anime: Anime
-    ): String {
-
-        return "ANIME|" +
-            anime.titulo
-    }    private fun alternarFavorito(
-        chave: String
-    ) {
-
-        if (favoritos.contains(chave)) {
-
-            favoritos.remove(
-                chave
-            )
-
-            Toast.makeText(
-                this,
-                "Removido dos favoritos",
-                Toast.LENGTH_SHORT
-            ).show()
-
-        } else {
-
-            favoritos.add(
-                chave
-            )
-
-            Toast.makeText(
-                this,
-                "Adicionado aos favoritos",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-
-        salvarFavoritos()
-    }
-
-
-    private fun alternarFavoritoDoFoco() {
-
-        if (cardsAtuais.isEmpty()) {
-            return
-        }
-
-        if (
-            indiceCardAtual < 0 ||
-            indiceCardAtual >= cardsAtuais.size
-        ) {
-            return
-        }
-
-        val card =
-            cardsAtuais[indiceCardAtual]
-
-        val titulo =
-            obterTituloDoCard(card)
-                ?: return
-
-        var encontrado =
-            false
-
-        val filme =
-            filmes.firstOrNull {
-                it.titulo == titulo
-            }
-
-        if (filme != null) {
-
-            alternarFavorito(
-                chaveFilme(filme)
-            )
-
-            encontrado = true
-        }
-
-        if (!encontrado) {
-
-            val serie =
-                series.firstOrNull {
-                    it.titulo == titulo
-                }
-
-            if (serie != null) {
-
-                alternarFavorito(
-                    chaveSerie(serie)
-                )
-
-                encontrado = true
-            }
-        }
-
-        if (!encontrado) {
-
-            val dorama =
-                doramas.firstOrNull {
-                    it.titulo == titulo
-                }
-
-            if (dorama != null) {
-
-                alternarFavorito(
-                    chaveDorama(dorama)
-                )
-
-                encontrado = true
-            }
-        }
-
-        if (!encontrado) {
-
-            val anime =
-                animes.firstOrNull {
-                    it.titulo == titulo
-                }
-
-            if (anime != null) {
-
-                alternarFavorito(
-                    chaveAnime(anime)
-                )
-
-                encontrado = true
-            }
-        }
-    }
-
-
-    private fun obterTituloDoCard(
-        card: View
-    ): String? {
-
-        if (card !is LinearLayout) {
-            return null
-        }
-
-        for (
-            indice in 0 until card.childCount
-        ) {
-
-            val filho =
-                card.getChildAt(indice)
-
-            if (filho is TextView) {
-
-                val texto =
-                    filho.text
-                        ?.toString()
-                        ?.trim()
-
-                if (
-                    !texto.isNullOrEmpty() &&
-                    texto != "▶" &&
-                    texto != "★" &&
-                    texto != "☆"
-                ) {
-
-                    return texto
-                }
-            }
-        }
-
-        return null
-    }
-
-
-    private fun limparFavoritos() {
-
-        favoritos.clear()
-
-        salvarFavoritos()
-
-        Toast.makeText(
-            this,
-            "Favoritos limpos",
-            Toast.LENGTH_SHORT
-        ).show()
-
-        mostrarFavoritos()
-    }
-
-
-    private fun atualizarTelaFavoritosSeNecessario() {
-
-        if (
-            categoriaAtual == "Favoritos"
-        ) {
-
-            mostrarFavoritos()
-        }
-    }    private fun criarMenuLateral() {
-
-        menuLateral =
-            LinearLayout(this)
-
-        menuLateral.orientation =
-            LinearLayout.VERTICAL
-
-        menuLateral.setPadding(
-            dp(18),
-            dp(20),
-            dp(18),
-            dp(20)
-        )
-
-        menuLateral.setBackgroundColor(
-            Color.argb(
-                245,
-                12,
-                12,
-                12
-            )
-        )
-
-        menuLateral.elevation =
-            dp(20).toFloat()
-
-        menuLateral.visibility =
-            View.VISIBLE
-
-        menuLateral.translationX =
-            -dp(360).toFloat()
-
-        val parametros =
+    private fun criarCard(filme: Filme): View {
+        val card = FrameLayout(this)
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+        card.isClickable = true
+        card.background = criarFundoCard(false)
+
+        val imagem = ImageView(this)
+        imagem.scaleType = ImageView.ScaleType.FIT_CENTER
+        carregarImagem(filme.capa, imagem)
+
+        card.addView(
+            imagem,
             FrameLayout.LayoutParams(
-                dp(360),
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(275)
+            ).apply { gravity = Gravity.TOP }
+        )
+
+        val informacoes = LinearLayout(this)
+        informacoes.orientation = LinearLayout.VERTICAL
+        informacoes.gravity = Gravity.CENTER_VERTICAL
+        informacoes.setPadding(dp(8), dp(3), dp(8), dp(3))
+        informacoes.setBackgroundColor(Color.argb(235, 10, 10, 10))
+
+        val titulo = TextView(this)
+        titulo.text = filme.titulo
+        titulo.setTextColor(Color.WHITE)
+        titulo.textSize = 14f
+        titulo.setTypeface(null, Typeface.BOLD)
+        titulo.maxLines = 1
+        titulo.ellipsize = TextUtils.TruncateAt.END
+
+        informacoes.addView(
+            titulo,
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(28))
+        )
+
+        val detalhes = TextView(this)
+        detalhes.text = "${filme.ano} • ${filme.categoria}"
+        detalhes.setTextColor(Color.LTGRAY)
+        detalhes.textSize = 12f
+
+        informacoes.addView(
+            detalhes,
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(22))
+        )
+
+        card.addView(
+            informacoes,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(60)
+            ).apply { gravity = Gravity.BOTTOM }
+        )
+
+        val borda = View(this)
+        borda.background = criarBordaVermelha()
+        borda.visibility = View.GONE
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT
             )
-
-        parametros.gravity =
-            Gravity.START
-
-        raiz.addView(
-            menuLateral,
-            parametros
         )
 
-        botaoFecharMenu =
-            TextView(this)
-
-        botaoFecharMenu.text =
-            "✕   MENU"
-
-        botaoFecharMenu.textSize =
-            21f
-
-        botaoFecharMenu.setTextColor(
-            Color.WHITE
-        )
-
-        botaoFecharMenu.setTypeface(
-            null,
-            Typeface.BOLD
-        )
-
-        botaoFecharMenu.gravity =
-            Gravity.CENTER_VERTICAL
-
-        botaoFecharMenu.isFocusable =
-            true
-
-        botaoFecharMenu.isFocusableInTouchMode =
-            true
-
-        botaoFecharMenu.background =
-            criarFundoBotao()
-
-        botaoFecharMenu.setPadding(
-            dp(15),
-            0,
-            dp(15),
-            0
-        )
-
-        botaoFecharMenu.setOnClickListener {
-            fecharMenu()
+        card.setOnFocusChangeListener { _, foco ->
+            borda.visibility = if (foco) View.VISIBLE else View.GONE
+            card.background = criarFundoCard(foco)
+            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
         }
 
-        menuLateral.addView(
-            botaoFecharMenu,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(58)
+        card.setOnClickListener {
+            abrirVideo(filme.titulo, filme.video, filme.capa)
+        }
+
+        return card
+    }
+
+    private fun mostrarListaSeries(lista: List<Serie>) {
+        conteudo.removeAllViews()
+        cardsAtuais.clear()
+        indiceCardAtual = 0
+
+        if (lista.isEmpty()) {
+            val vazio = TextView(this)
+            vazio.text = "Nenhuma série encontrada"
+            vazio.setTextColor(Color.WHITE)
+            vazio.textSize = 20f
+            vazio.gravity = Gravity.CENTER
+
+            conteudo.addView(
+                vazio,
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    dp(100)
+                )
             )
-        )
+            return
+        }
 
-        val separador =
-            View(this)
-
-        separador.setBackgroundColor(
-            Color.argb(
-                90,
-                255,
-                255,
-                255
-            )
-        )
-
-        menuLateral.addView(
-            separador,
-            LinearLayout.LayoutParams(
+        lista.chunked(5).forEach { grupo ->
+            val linha = LinearLayout(this)
+            linha.orientation = LinearLayout.HORIZONTAL
+            linha.layoutParams = LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(1)
-            ).apply {
-                topMargin = dp(15)
-                bottomMargin = dp(15)
+                dp(350)
+            )
+
+            grupo.forEach { serie ->
+                val card = criarCardSerie(serie)
+                linha.addView(
+                    card,
+                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
+                        leftMargin = dp(4)
+                        rightMargin = dp(4)
+                        bottomMargin = dp(12)
+                    }
+                )
+                cardsAtuais.add(card)
             }
-        )
-
-        menuConteudo =
-            LinearLayout(this)
-
-        menuConteudo.orientation =
-            LinearLayout.VERTICAL
-
-        menuLateral.addView(
-            menuConteudo,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                0,
-                1f
-            )
-        )
-
-        itensMenuFoco.clear()
-
-        adicionarItemMenu(
-            "⌂   INÍCIO"
-        ) {
-            fecharMenu()
-
-            historicoConteudo.clear()
-
-            mostrarListaFilmes(
-                "Todos"
-            )
+            conteudo.addView(linha)
         }
 
-        adicionarItemMenu(
-            "★   FAVORITOS"
-        ) {
-            fecharMenu()
-
-            mostrarFavoritos()
-        }
-
-        adicionarItemMenu(
-            "▶   CONTINUE ASSISTINDO"
-        ) {
-            fecharMenu()
-
-            mostrarHistorico()
-        }
-
-        adicionarItemMenu(
-            "🎬   FILMES"
-        ) {
-            fecharMenu()
-
-            historicoConteudo.clear()
-
-            mostrarListaFilmes(
-                "Todos"
-            )
-        }
-
-        adicionarItemMenu(
-            "▣   SÉRIES"
-        ) {
-            fecharMenu()
-
-            historicoConteudo.clear()
-
-            mostrarListaSeries(
-                series
-            )
-        }
-
-        adicionarItemMenu(
-            "♥   DORAMAS"
-        ) {
-            fecharMenu()
-
-            historicoConteudo.clear()
-
-            mostrarListaDoramas(
-                doramas
-            )
-        }
-
-        adicionarItemMenu(
-            "◆   ANIME"
-        ) {
-            fecharMenu()
-
-            historicoConteudo.clear()
-
-            mostrarListaAnimes(
-                animes
-            )
-        }
-
-        adicionarItemMenu(
-            "★   FAVORITAR ITEM FOCADO"
-        ) {
-            alternarFavoritoDoFoco()
-        }
-
-        adicionarItemMenu(
-            "🗑   LIMPAR FAVORITOS"
-        ) {
-            limparFavoritos()
+        if (cardsAtuais.isNotEmpty()) {
+            cardsAtuais[0].requestFocus()
         }
     }
 
+    private fun criarCardSerie(serie: Serie): View {
+        val card = FrameLayout(this)
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+        card.isClickable = true
+        card.background = criarFundoCard(false)
 
-    private fun adicionarItemMenu(
-        texto: String,
-        acao: () -> Unit
-    ) {
+        val imagem = ImageView(this)
+        imagem.scaleType = ImageView.ScaleType.FIT_CENTER
+        carregarImagem(serie.capa, imagem)
 
-        val item =
-            TextView(this)
-
-        item.text =
-            texto
-
-        item.textSize =
-            16f
-
-        item.setTextColor(
-            Color.WHITE
+        card.addView(
+            imagem,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(275)
+            )
         )
 
-        item.gravity =
-            Gravity.CENTER_VERTICAL
+        val informacoes = LinearLayout(this)
+        informacoes.orientation = LinearLayout.VERTICAL
+        informacoes.gravity = Gravity.CENTER_VERTICAL
+        informacoes.setPadding(dp(8), dp(3), dp(8), dp(3))
+        informacoes.setBackgroundColor(Color.argb(235, 10, 10, 10))
 
-        item.setPadding(
-            dp(16),
-            0,
-            dp(10),
-            0
+        val titulo = TextView(this)
+        titulo.text = serie.titulo
+        titulo.setTextColor(Color.WHITE)
+        titulo.textSize = 14f
+        titulo.setTypeface(null, Typeface.BOLD)
+        titulo.maxLines = 1
+        titulo.ellipsize = TextUtils.TruncateAt.END
+
+        informacoes.addView(
+            titulo,
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(28))
         )
 
-        item.isFocusable =
-            true
+        val detalhes = TextView(this)
+        detalhes.text = "${serie.categoria} • ${serie.temporadas.size} temporada(s)"
+        detalhes.setTextColor(Color.LTGRAY)
+        detalhes.textSize = 12f
 
-        item.isFocusableInTouchMode =
-            true
+        informacoes.addView(
+            detalhes,
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(22))
+        )
 
-        item.background =
-            criarFundoBotao()
+        card.addView(
+            informacoes,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(60)
+            ).apply { gravity = Gravity.BOTTOM }
+        )
 
-        item.setOnFocusChangeListener {
-                view,
-                focado ->
+        val borda = View(this)
+        borda.background = criarBordaVermelha()
+        borda.visibility = View.GONE
 
-            if (focado) {
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
 
-                view.animate()
-                    .scaleX(1.03f)
-                    .scaleY(1.03f)
-                    .setDuration(100)
-                    .start()
+        card.setOnFocusChangeListener { _, foco ->
+            borda.visibility = if (foco) View.VISIBLE else View.GONE
+            card.background = criarFundoCard(foco)
+            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
+        }
 
-            } else {
+        card.setOnClickListener {
+            historicoConteudo.add { mostrarListaSeries(series) }
+            mostrarTemporadas(serie)
+        }
 
-                view.animate()
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(100)
-                    .start()
+        return card
+    }
+
+    private fun mostrarTemporadas(serie: Serie) {
+        conteudo.removeAllViews()
+        cardsAtuais.clear()
+        indiceCardAtual = 0
+
+        serie.temporadas.chunked(5).forEach { grupo ->
+            val linha = LinearLayout(this)
+            linha.orientation = LinearLayout.HORIZONTAL
+            linha.layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(350)
+            )
+
+            grupo.forEach { temporada ->
+                val card = criarCardTemporada(serie, temporada)
+                linha.addView(
+                    card,
+                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
+                        leftMargin = dp(4)
+                        rightMargin = dp(4)
+                        bottomMargin = dp(12)
+                    }
+                )
+                cardsAtuais.add(card)
             }
+            conteudo.addView(linha)
         }
 
-        item.setOnClickListener {
-            acao()
+        if (cardsAtuais.isNotEmpty()) {
+            cardsAtuais[0].requestFocus()
         }
+    }
+
+    private fun criarCardTemporada(serie: Serie, temporada: Temporada): View {
+        val card = FrameLayout(this)
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+        card.isClickable = true
+        card.background = criarFundoCard(false)
+
+        val imagem = ImageView(this)
+        imagem.scaleType = ImageView.ScaleType.FIT_CENTER
+        carregarImagem(serie.capa, imagem)
+
+        card.addView(
+            imagem,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(275)
+            )
+        )
+
+        val titulo = TextView(this)
+        titulo.text = "Temporada ${temporada.numero}"
+        titulo.setTextColor(Color.WHITE)
+        titulo.textSize = 16f
+        titulo.setTypeface(null, Typeface.BOLD)
+        titulo.gravity = Gravity.CENTER
+        titulo.setBackgroundColor(Color.argb(235, 10, 10, 10))
+
+        card.addView(
+            titulo,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(60)
+            ).apply { gravity = Gravity.BOTTOM }
+        )
+
+        val borda = View(this)
+        borda.background = criarBordaVermelha()
+        borda.visibility = View.GONE
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        card.setOnFocusChangeListener { _, foco ->
+            borda.visibility = if (foco) View.VISIBLE else View.GONE
+            card.background = criarFundoCard(foco)
+            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
+        }
+
+        card.setOnClickListener {
+            historicoConteudo.add { mostrarTemporadas(serie) }
+            mostrarEpisodios(serie, temporada)
+        }
+
+        return card
+    }
+
+    private fun mostrarEpisodios(serie: Serie, temporada: Temporada) {
+        conteudo.removeAllViews()
+        cardsAtuais.clear()
+        indiceCardAtual = 0
+
+        temporada.episodios.chunked(5).forEach { grupo ->
+            val linha = LinearLayout(this)
+            linha.orientation = LinearLayout.HORIZONTAL
+            linha.layoutParams = LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(350)
+            )
+
+            grupo.forEach { episodio ->
+                val card = criarCardEpisodio(serie, episodio)
+                linha.addView(
+                    card,
+                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
+                        leftMargin = dp(4)
+                        rightMargin = dp(4)
+                        bottomMargin = dp(12)
+                    }
+                )
+                cardsAtuais.add(card)
+            }
+            conteudo.addView(linha)
+        }
+
+        if (cardsAtuais.isNotEmpty()) {
+            cardsAtuais[0].requestFocus()
+        }
+    }
+
+    private fun criarCardEpisodio(serie: Serie, episodio: Episodio): View {
+        val card = FrameLayout(this)
+        card.isFocusable = true
+        card.isFocusableInTouchMode = true
+        card.isClickable = true
+        card.background = criarFundoCard(false)
+
+        val imagem = ImageView(this)
+        imagem.scaleType = ImageView.ScaleType.FIT_CENTER
+        carregarImagem(serie.capa, imagem)
+
+        card.addView(
+            imagem,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(275)
+            )
+        )
+
+        val informacoes = TextView(this)
+        informacoes.text = "EP ${episodio.numero} • ${episodio.titulo}"
+        informacoes.setTextColor(Color.WHITE)
+        informacoes.textSize = 14f
+        informacoes.setTypeface(null, Typeface.BOLD)
+        informacoes.gravity = Gravity.CENTER_VERTICAL
+        informacoes.setPadding(dp(8), dp(3), dp(8), dp(3))
+        informacoes.maxLines = 2
+        informacoes.ellipsize = TextUtils.TruncateAt.END
+        informacoes.setBackgroundColor(Color.argb(235, 10, 10, 10))
+
+        card.addView(
+            informacoes,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(60)
+            ).apply { gravity = Gravity.BOTTOM }
+        )
+
+        val borda = View(this)
+        borda.background = criarBordaVermelha()
+        borda.visibility = View.GONE
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        card.setOnFocusChangeListener { _, foco ->
+            borda.visibility = if (foco) View.VISIBLE else View.GONE
+            card.background = criarFundoCard(foco)
+            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
+        }
+
+        card.setOnClickListener {
+            abrirVideo("${serie.titulo} - EP ${episodio.numero}", episodio.video, serie.capa)
+        }
+
+        return card
+    }
+
+    private fun abrirVideo(titulo: String, video: String, capa: String) {
+        if (video.isBlank()) {
+            Toast.makeText(this, "Vídeo ainda não disponível", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val intent = Intent(this, PlayerActivity::class.java)
+        intent.putExtra("VIDEO_URL", video)
+        intent.putExtra("VIDEO_TITLE", titulo)
+        intent.putExtra("VIDEO_COVER", capa)
+        startActivity(intent)
+    }private fun adicionarItemMenu(texto: String, acao: () -> Unit) {
+        val item = TextView(this)
+        item.text = texto
+        item.setTextColor(Color.WHITE)
+        item.textSize = 16f
+        item.gravity = Gravity.CENTER_VERTICAL
+        item.setPadding(dp(18), 0, dp(12), 0)
+
+        item.isFocusable = true
+        item.isFocusableInTouchMode = true
+        item.isClickable = true
+        item.background = criarFundoCard(false)
+
+        item.setOnFocusChangeListener { _, foco ->
+            item.background = criarFundoCard(foco)
+        }
+
+        item.setOnClickListener { acao() }
 
         menuConteudo.addView(
             item,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(52)
-            ).apply {
-                bottomMargin = dp(8)
-            }
+                dp(48)
+            ).apply { bottomMargin = dp(4) }
         )
 
-        itensMenuFoco.add(
-            item
-        )
-    }    private fun abrirMenu() {
+        itensMenuFoco.add(item)
+    }
 
-        if (menuAberto) {
-            return
-        }
-
+    private fun abrirMenu() {
+        if (menuAberto) return
         menuAberto = true
+        itensMenuFoco.clear()
 
-        menuLateral.visibility =
-            View.VISIBLE
+        menuLateral = LinearLayout(this)
+        menuLateral.orientation = LinearLayout.VERTICAL
+        menuLateral.setBackgroundColor(Color.argb(245, 5, 5, 5))
 
-        menuLateral.animate()
-            .translationX(0f)
-            .setDuration(220)
-            .start()
+        val params = FrameLayout.LayoutParams(
+            dp(360),
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        params.gravity = Gravity.START or Gravity.TOP
 
-        botaoFecharMenu.requestFocus()
-    }
+        raiz.addView(menuLateral, params)
 
+        val cabecalho = LinearLayout(this)
+        cabecalho.orientation = LinearLayout.HORIZONTAL
+        cabecalho.gravity = Gravity.CENTER_VERTICAL
+        cabecalho.setPadding(dp(15), dp(8), dp(10), dp(8))
 
-    private fun fecharMenu() {
-
-        if (!menuAberto) {
-            return
-        }
-
-        menuAberto = false
-
-        menuLateral.animate()
-            .translationX(
-                -dp(360).toFloat()
-            )
-            .setDuration(220)
-            .start()
-
-        botaoMenu.requestFocus()
-    }
-
-
-    private fun mostrarHistorico() {
-
-        historicoConteudo.clear()
-
-        conteudo.removeAllViews()
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        categoriaAtual =
-            "Continue Assistindo"
-
-        conteudo.addView(
-            criarSubtitulo(
-                "CONTINUE ASSISTINDO"
-            )
+        menuLateral.addView(
+            cabecalho,
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(65))
         )
 
-        val preferencias =
-            getSharedPreferences(
-                PREFS,
-                MODE_PRIVATE
-            )
-
-        val lista =
-            preferencias
-                .getStringSet(
-                    "HISTORICO",
-                    emptySet()
-                )
-                ?.toList()
-                ?: emptyList()
-
-        if (lista.isEmpty()) {
-
-            val vazio =
-                TextView(this)
-
-            vazio.text =
-                "Você ainda não começou nenhum conteúdo."
-
-            vazio.textSize =
-                18f
-
-            vazio.setTextColor(
-                Color.WHITE
-            )
-
-            vazio.gravity =
-                Gravity.CENTER
-
-            vazio.setPadding(
-                dp(20),
-                dp(60),
-                dp(20),
-                dp(60)
-            )
-
-            conteudo.addView(
-                vazio,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            )
-
-            return
-        }
-
-        val encontrados =
-            ArrayList<Filme>()
-
-        for (titulo in lista) {
-
-            val filme =
-                filmes.firstOrNull {
-                    it.titulo == titulo
-                }
-
-            if (filme != null) {
-
-                encontrados.add(
-                    filme
-                )
-            }
-        }
-
-        if (encontrados.isNotEmpty()) {
-
-            criarGradeFilmes(
-                encontrados
-            )
-        }
-
-        val nomesRestantes =
-            lista.filter { titulo ->
-
-                encontrados.none {
-                    it.titulo == titulo
-                }
-            }
-
-        if (nomesRestantes.isNotEmpty()) {
-
-            val listaTexto =
-                LinearLayout(this)
-
-            listaTexto.orientation =
-                LinearLayout.VERTICAL
-
-            for (
-                titulo in nomesRestantes
-            ) {
-
-                val item =
-                    TextView(this)
-
-                item.text =
-                    "▶  $titulo"
-
-                item.textSize =
-                    17f
-
-                item.setTextColor(
-                    Color.WHITE
-                )
-
-                item.gravity =
-                    Gravity.CENTER_VERTICAL
-
-                item.setPadding(
-                    dp(18),
-                    0,
-                    dp(10),
-                    0
-                )
-
-                item.isFocusable =
-                    true
-
-                item.isFocusableInTouchMode =
-                    true
-
-                item.background =
-                    criarFundoBotao()
-
-                listaTexto.addView(
-                    item,
-                    LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(52)
-                    ).apply {
-                        bottomMargin = dp(8)
-                    }
-                )
-            }
-
-            conteudo.addView(
-                listaTexto,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            )
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-
-            indiceCardAtual = 0
-
-            cardsAtuais[0].requestFocus()
-        }
-    }
-
-
-    private fun limparHistorico() {
-
-        getSharedPreferences(
-            PREFS,
-            MODE_PRIVATE
-        )
-            .edit()
-            .remove(
-                "HISTORICO"
-            )
-            .apply()
-
-        historicoConteudo.clear()
-
-        Toast.makeText(
-            this,
-            "Histórico limpo",
-            Toast.LENGTH_SHORT
-        ).show()
-
-        mostrarHistorico()
-    }
-
-
-    private fun limparCacheCapas() {
-
-        thread {
-
-            try {
-
-                cacheCapas.clear()
-
-                capasEmCarregamento.clear()
-
-                if (
-                    cacheDiscoCapas.exists()
-                ) {
-
-                    cacheDiscoCapas
-                        .listFiles()
-                        ?.forEach {
-                            it.delete()
-                        }
-                }
-
-                runOnUiThread {
-
-                    Toast.makeText(
-                        this,
-                        "Cache das capas limpo",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-
-            } catch (
-                erro: Exception
-            ) {
-
-                runOnUiThread {
-
-                    Toast.makeText(
-                        this,
-                        "Não foi possível limpar o cache",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-    }    private fun adicionarItemLimparCache() {
-
-        adicionarItemMenu(
-            "⌫   LIMPAR CACHE DAS CAPAS"
-        ) {
-
-            limparCacheCapas()
-        }
-    }
-
-
-    private fun focarPrimeiroItemMenu() {
-
-        if (
-            itensMenuFoco.isNotEmpty()
-        ) {
-
-            itensMenuFoco[0]
-                .requestFocus()
-        }
-    }
-
-
-    private fun focarUltimoItemMenu() {
-
-        if (
-            itensMenuFoco.isNotEmpty()
-        ) {
-
-            itensMenuFoco[
-                itensMenuFoco.size - 1
-            ].requestFocus()
-        }
-    }
-
-
-    private fun atualizarFocoMenu(
-        direcao: Int
-    ) {
-
-        if (
-            itensMenuFoco.isEmpty()
-        ) {
-            return
-        }
-
-        var atual =
-            -1
-
-        val foco =
-            currentFocus
-
-        if (foco != null) {
-
-            atual =
-                itensMenuFoco.indexOf(
-                    foco
-                )
-        }
-
-        if (atual < 0) {
-
-            focarPrimeiroItemMenu()
-
-            return
-        }
-
-        var novo =
-            atual + direcao
-
-        if (
-            novo < 0
-        ) {
-
-            novo =
-                itensMenuFoco.size - 1
-        }
-
-        if (
-            novo >= itensMenuFoco.size
-        ) {
-
-            novo = 0
-        }
-
-        itensMenuFoco[
-            novo
-        ].requestFocus()
-    }
-
-
-    private fun voltarParaConteudoPrincipal() {
-
-        if (menuAberto) {
-
-            fecharMenu()
-
-            return
-        }
-
-        if (
-            historicoConteudo.isNotEmpty()
-        ) {
-
-            voltarConteudo()
-
-            return
-        }
-
-        if (
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            indiceCardAtual = 0
-
-            cardsAtuais[0]
-                .requestFocus()
-        }
-    }    override fun dispatchKeyEvent(
-        event: KeyEvent
-    ): Boolean {
-
-        if (
-            event.action != KeyEvent.ACTION_DOWN
-        ) {
-            return super.dispatchKeyEvent(
-                event
-            )
-        }
-
-        if (menuAberto) {
-
-            return tratarTeclasMenu(
-                event.keyCode
-            )
-        }
-
-        return tratarTeclasConteudo(
-            event.keyCode
-        )
-    }
-
-
-    private fun tratarTeclasMenu(
-        codigo: Int
-    ): Boolean {
-
-        when (codigo) {
-
-            KeyEvent.KEYCODE_DPAD_UP -> {
-
-                atualizarFocoMenu(
-                    -1
-                )
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_DOWN -> {
-
-                atualizarFocoMenu(
-                    1
-                )
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
-
-                fecharMenu()
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-
-                val foco =
-                    currentFocus
-
-                if (
-                    foco != null
-                ) {
-
-                    foco.performClick()
-                }
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_CENTER,
-            KeyEvent.KEYCODE_ENTER -> {
-
-                val foco =
-                    currentFocus
-
-                if (
-                    foco != null
-                ) {
-
-                    foco.performClick()
-                }
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_BACK -> {
-
-                fecharMenu()
-
-                return true
-            }
-        }
-
-        return false
-    }
-
-
-    private fun tratarTeclasConteudo(
-        codigo: Int
-    ): Boolean {
-
-        when (codigo) {
-
-            KeyEvent.KEYCODE_DPAD_LEFT -> {
-
-                moverCard(
-                    -1
-                )
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_RIGHT -> {
-
-                moverCard(
-                    1
-                )
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_UP -> {
-
-                moverCard(
-                    -5
-                )
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_DOWN -> {
-
-                moverCard(
-                    5
-                )
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_DPAD_CENTER,
-            KeyEvent.KEYCODE_ENTER -> {
-
-                val foco =
-                    currentFocus
-
-                if (
-                    foco != null &&
-                    cardsAtuais.contains(
-                        foco
-                    )
-                ) {
-
-                    foco.performClick()
-                }
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_MENU -> {
-
-                abrirMenu()
-
-                return true
-            }
-
-            KeyEvent.KEYCODE_BACK -> {
-
-                voltarParaConteudoPrincipal()
-
-                return true
-            }
-        }
-
-        return false
-    }
-
-
-    private fun moverCard(
-        deslocamento: Int
-    ) {
-
-        if (
-            cardsAtuais.isEmpty()
-        ) {
-            return
-        }
-
-        val foco =
-            currentFocus
-
-        if (foco != null) {
-
-            val posicao =
-                cardsAtuais.indexOf(
-                    foco
-                )
-
-            if (posicao >= 0) {
-
-                indiceCardAtual =
-                    posicao
-            }
-        }
-
-        var novoIndice =
-            indiceCardAtual +
-                deslocamento
-
-        if (
-            novoIndice < 0
-        ) {
-
-            novoIndice = 0
-        }
-
-        if (
-            novoIndice >=
-            cardsAtuais.size
-        ) {
-
-            novoIndice =
-                cardsAtuais.size - 1
-        }
-
-        indiceCardAtual =
-            novoIndice
-
-        val novoFoco =
-            cardsAtuais[
-                indiceCardAtual
-            ]
-
-        novoFoco.requestFocus()
-
-        rolarParaFoco(
-            novoFoco
-        )
-    }
-
-
-    private fun rolarParaFoco(
-        view: View
-    ) {
-
-        view.post {
-
-            scroll.smoothScrollTo(
-                0,
-                calcularPosicaoScroll(
-                    view
-                )
-            )
-        }
-    }
-
-
-    private fun calcularPosicaoScroll(
-        view: View
-    ): Int {
-
-        var atual =
-            view
-
-        var distancia =
-            0
-
-        while (
-            atual.parent is View &&
-            atual !== scroll
-        ) {
-
-            distancia +=
-                atual.top
-
-            atual =
-                atual.parent as View
-        }
-
-        val alturaTela =
-            scroll.height
-
-        val metadeTela =
-            alturaTela / 2
-
-        return (
-            distancia -
-                metadeTela +
-                view.height
-        ).coerceAtLeast(
-            0
-        )
-    }    private fun sincronizarIndiceComFoco() {
-
-        val foco =
-            currentFocus
-                ?: return
-
-        val indice =
-            cardsAtuais.indexOf(
-                foco
-            )
-
-        if (indice >= 0) {
-
-            indiceCardAtual =
-                indice
-        }
-    }
-
-
-    private fun garantirFocoValido() {
-
-        if (
-            cardsAtuais.isEmpty()
-        ) {
-            return
-        }
-
-        sincronizarIndiceComFoco()
-
-        if (
-            indiceCardAtual < 0
-        ) {
-
-            indiceCardAtual = 0
-        }
-
-        if (
-            indiceCardAtual >=
-            cardsAtuais.size
-        ) {
-
-            indiceCardAtual =
-                cardsAtuais.size - 1
-        }
-
-        val foco =
-            cardsAtuais[
-                indiceCardAtual
-            ]
-
-        foco.isFocusable = true
-
-        foco.isFocusableInTouchMode =
-            true
-
-        foco.requestFocus()
-    }
-
-
-    private fun configurarFocoCard(
-        card: View
-    ) {
-
-        card.isFocusable =
-            true
-
-        card.isFocusableInTouchMode =
-            true
-
-        card.setOnFocusChangeListener {
-                view,
-                focado ->
-
-            if (focado) {
-
-                indiceCardAtual =
-                    cardsAtuais.indexOf(
-                        view
-                    ).coerceAtLeast(0)
-
-                view.animate()
-                    .scaleX(1.06f)
-                    .scaleY(1.06f)
-                    .setDuration(120)
-                    .start()
-
-                rolarParaFoco(
-                    view
-                )
-
-            } else {
-
-                view.animate()
-                    .scaleX(1f)
-                    .scaleY(1f)
-                    .setDuration(120)
-                    .start()
-            }
-        }
-    }
-
-
-    private fun solicitarFocoInicial() {
-
-        if (
-            cardsAtuais.isEmpty()
-        ) {
-            return
-        }
-
-        indiceCardAtual = 0
-
-        cardsAtuais[0].post {
-
-            cardsAtuais[0]
-                .requestFocus()
-        }
-    }
-
-
-    private fun voltarAoTopo() {
-
-        scroll.post {
-
-            scroll.smoothScrollTo(
-                0,
-                0
-            )
-        }
-
-        if (
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            indiceCardAtual = 0
-
-            cardsAtuais[0]
-                .post {
-
-                    cardsAtuais[0]
-                        .requestFocus()
-                }
-        }
-    }
-
-
-    private fun selecionarCardAtual() {
-
-        if (
-            cardsAtuais.isEmpty()
-        ) {
-            return
-        }
-
-        garantirFocoValido()
-
-        val foco =
-            cardsAtuais[
-                indiceCardAtual
-            ]
-
-        foco.performClick()
-    }
-
-
-    private fun abrirMenuComDpad() {
-
-        if (
-            menuAberto
-        ) {
-            return
-        }
-
-        abrirMenu()
-
-        focarPrimeiroItemMenu()
-    }
-
-
-    private fun fecharMenuComDpad() {
-
-        if (
-            !menuAberto
-        ) {
-            return
-        }
-
-        fecharMenu()
-
-        garantirFocoValido()
-    }    private fun tratarTeclaVoltar(): Boolean {
-
-        if (menuAberto) {
-
-            fecharMenu()
-
-            return true
-        }
-
-        if (
-            historicoConteudo.isNotEmpty()
-        ) {
-
-            voltarConteudo()
-
-            return true
-        }
-
-        return false
-    }
-
-
-    private fun voltarUmaTela() {
-
-        if (menuAberto) {
-
-            fecharMenu()
-
-            return
-        }
-
-        if (
-            historicoConteudo.isNotEmpty()
-        ) {
-
-            voltarConteudo()
-
-            return
-        }
-
-        mostrarListaFilmes(
-            "Todos"
-        )
-    }
-
-
-    private fun atualizarFocoDepoisDaTela() {
-
-        conteudo.post {
-
-            if (
-                cardsAtuais.isNotEmpty()
-            ) {
-
-                indiceCardAtual =
-                    indiceCardAtual.coerceIn(
-                        0,
-                        cardsAtuais.size - 1
-                    )
-
-                cardsAtuais[
-                    indiceCardAtual
-                ].requestFocus()
-
-            } else {
-
-                botaoMenu.requestFocus()
-            }
-        }
-    }
-
-
-    private fun limparFocoAtual() {
-
-        currentFocus?.clearFocus()
-    }
-
-
-    private fun focarMenuOuConteudo() {
-
-        if (menuAberto) {
-
-            focarPrimeiroItemMenu()
-
-        } else {
-
-            garantirFocoValido()
-        }
-    }
-
-
-    private fun atualizarFocoAposCarregamento() {
-
-        conteudo.post {
-
-            if (
-                cardsAtuais.isNotEmpty()
-            ) {
-
-                indiceCardAtual = 0
-
-                cardsAtuais[0]
-                    .requestFocus()
-
-            } else {
-
-                botaoMenu.requestFocus()
-            }
-        }
-    }
-
-
-    private fun fecharMenuEManterFoco() {
-
-        if (!menuAberto) {
-            return
-        }
-
-        fecharMenu()
-
-        conteudo.post {
-
-            garantirFocoValido()
-        }
-    }    override fun onResume() {
-
-        super.onResume()
-
-        if (
-            !menuAberto &&
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            conteudo.post {
-
-                if (
-                    indiceCardAtual >= 0 &&
-                    indiceCardAtual < cardsAtuais.size
-                ) {
-
-                    cardsAtuais[
-                        indiceCardAtual
-                    ].requestFocus()
-                }
-            }
-        }
-    }
-
-
-    override fun onPause() {
-
-        super.onPause()
-
-        currentFocus?.clearFocus()
-    }
-
-
-    override fun onWindowFocusChanged(
-        hasFocus: Boolean
-    ) {
-
-        super.onWindowFocusChanged(
-            hasFocus
+        val tituloMenu = TextView(this)
+        tituloMenu.text = "WOLF MENU"
+        tituloMenu.setTextColor(Color.WHITE)
+        tituloMenu.textSize = 21f
+        tituloMenu.setTypeface(null, Typeface.BOLD)
+        tituloMenu.gravity = Gravity.CENTER_VERTICAL
+
+        cabecalho.addView(
+            tituloMenu,
+            LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f)
         )
 
-        if (
-            hasFocus &&
-            !menuAberto
-        ) {
+        botaoFecharMenu = TextView(this)
+        botaoFecharMenu.text = "✕"
+        botaoFecharMenu.setTextColor(Color.WHITE)
+        botaoFecharMenu.textSize = 24f
+        botaoFecharMenu.gravity = Gravity.CENTER
+        botaoFecharMenu.isFocusable = true
+        botaoFecharMenu.isFocusableInTouchMode = true
+        botaoFecharMenu.isClickable = true
+        botaoFecharMenu.background = criarFundoCard(false)
 
-            conteudo.post {
-
-                if (
-                    cardsAtuais.isNotEmpty()
-                ) {
-
-                    indiceCardAtual =
-                        indiceCardAtual.coerceIn(
-                            0,
-                            cardsAtuais.size - 1
-                        )
-
-                    cardsAtuais[
-                        indiceCardAtual
-                    ].requestFocus()
-                }
-            }
-        }
-    }
-
-
-    private fun atualizarConteudoAtual() {
-
-        when {
-
-            categoriaAtual == "Favoritos" -> {
-
-                mostrarFavoritos()
-            }
-
-            categoriaAtual ==
-                "Continue Assistindo" -> {
-
-                mostrarHistorico()
-            }
-
-            else -> {
-
-                mostrarListaFilmes(
-                    categoriaAtual
-                )
-            }
-        }
-    }
-
-
-    private fun restaurarFocoConteudo() {
-
-        if (
-            menuAberto
-        ) {
-            return
+        botaoFecharMenu.setOnFocusChangeListener { _, foco ->
+            botaoFecharMenu.background = criarFundoCard(foco)
         }
 
-        if (
-            cardsAtuais.isEmpty()
-        ) {
-            return
-        }
+        botaoFecharMenu.setOnClickListener { fecharMenu() }
 
-        indiceCardAtual =
-            indiceCardAtual.coerceIn(
-                0,
-                cardsAtuais.size - 1
-            )
-
-        cardsAtuais[
-            indiceCardAtual
-        ].post {
-
-            cardsAtuais[
-                indiceCardAtual
-            ].requestFocus()
-        }
-    }
-
-
-    private fun atualizarDepoisDeVoltar() {
-
-        conteudo.post {
-
-            if (
-                cardsAtuais.isNotEmpty()
-            ) {
-
-                indiceCardAtual =
-                    indiceCardAtual.coerceIn(
-                        0,
-                        cardsAtuais.size - 1
-                    )
-
-                cardsAtuais[
-                    indiceCardAtual
-                ].requestFocus()
-
-                rolarParaFoco(
-                    cardsAtuais[
-                        indiceCardAtual
-                    ]
-                )
-
-            } else {
-
-                botaoMenu.requestFocus()
-            }
-        }
-    }    private fun mostrarTelaInicial() {
-
-        historicoConteudo.clear()
-
-        conteudo.removeAllViews()
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        categoriaAtual =
-            "Todos"
-
-        if (
-            filmes.isEmpty()
-        ) {
-
-            val mensagem =
-                TextView(this)
-
-            mensagem.text =
-                "Carregando catálogo..."
-
-            mensagem.textSize =
-                18f
-
-            mensagem.setTextColor(
-                Color.WHITE
-            )
-
-            mensagem.gravity =
-                Gravity.CENTER
-
-            conteudo.addView(
-                mensagem,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    dp(120)
-                )
-            )
-
-            return
-        }
-
-        mostrarListaFilmes(
-            "Todos"
-        )
-    }
-
-
-    private fun atualizarTelaPrincipal() {
-
-        runOnUiThread {
-
-            if (
-                filmes.isEmpty() &&
-                series.isEmpty() &&
-                doramas.isEmpty() &&
-                animes.isEmpty()
-            ) {
-
-                return@runOnUiThread
-            }
-
-            if (
-                categoriaAtual == "Favoritos"
-            ) {
-
-                mostrarFavoritos()
-
-                return@runOnUiThread
-            }
-
-            if (
-                categoriaAtual ==
-                "Continue Assistindo"
-            ) {
-
-                mostrarHistorico()
-
-                return@runOnUiThread
-            }
-
-            mostrarListaFilmes(
-                categoriaAtual
-            )
-        }
-    }
-
-
-    private fun mostrarMensagem(
-        texto: String
-    ) {
-
-        conteudo.removeAllViews()
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        val mensagem =
-            TextView(this)
-
-        mensagem.text =
-            texto
-
-        mensagem.textSize =
-            18f
-
-        mensagem.setTextColor(
-            Color.WHITE
+        cabecalho.addView(
+            botaoFecharMenu,
+            LinearLayout.LayoutParams(dp(55), dp(48))
         )
 
-        mensagem.gravity =
-            Gravity.CENTER
+        menuScroll = ScrollView(this)
+        menuScroll.isFocusable = false
 
-        mensagem.setPadding(
-            dp(20),
-            dp(40),
-            dp(20),
-            dp(40)
-        )
+        menuConteudo = LinearLayout(this)
+        menuConteudo.orientation = LinearLayout.VERTICAL
+        menuConteudo.setPadding(dp(10), dp(5), dp(10), dp(20))
 
-        conteudo.addView(
-            mensagem,
-            LinearLayout.LayoutParams(
+        menuScroll.addView(
+            menuConteudo,
+            ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
         )
 
+        menuLateral.addView(
+            menuScroll,
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f)
+        )
+
+        adicionarItemMenu("🔄  Atualizar catálogo") {
+            fecharMenu()
+            Toast.makeText(this, "Atualizando catálogo...", Toast.LENGTH_SHORT).show()
+            carregarFilmes()
+        }
+
+        adicionarItemMenu("▶  Continuar assistindo") {
+            fecharMenu()
+            Toast.makeText(this, "Continue assistindo", Toast.LENGTH_SHORT).show()
+        }
+
+        adicionarItemMenu("★  Favoritos (${favoritos.size})") {
+            fecharMenu()
+            val lista = filmes.filter { favoritos.contains(it.titulo) }
+            mostrarListaCards(lista)
+        }
+
+        adicionarItemMenu("⌕  Pesquisa") {
+            abrirPesquisa()
+        }
+
+        adicionarTituloMenu("FILMES")
+
+        adicionarItemMenu("🎬  Todos os filmes (${filmes.size})") {
+            fecharMenu()
+            mostrarListaCards(filmes)
+        }
+
+        adicionarItemMenu("🔥  Ação (${filmes.count { it.categoria.equals("Ação", true) }})") {
+            fecharMenu()
+            mostrarListaCards(filmes.filter { it.categoria.equals("Ação", true) })
+        }
+
+        adicionarItemMenu("🏹  Aventura (${filmes.count { it.categoria.equals("Aventura", true) }})") {
+            fecharMenu()
+            mostrarListaCards(filmes.filter { it.categoria.equals("Aventura", true) })
+        }
+
+        adicionarItemMenu("🧸  Animação (${filmes.count { it.categoria.equals("Animação", true) }})") {
+            fecharMenu()
+            mostrarListaCards(filmes.filter { it.categoria.equals("Animação", true) })
+        }
+
+        adicionarItemMenu("😂  Comédia (${filmes.count { it.categoria.equals("Comédia", true) }})") {
+            fecharMenu()
+            mostrarListaCards(filmes.filter { it.categoria.equals("Comédia", true) })
+        }
+
+        adicionarItemMenu("🎭  Drama (${filmes.count { it.categoria.equals("Drama", true) }})") {
+            fecharMenu()
+            mostrarListaCards(filmes.filter { it.categoria.equals("Drama", true) })
+        }
+
+        adicionarItemMenu("👻  Terror (${filmes.count { it.categoria.equals("Terror", true) }})") {
+            fecharMenu()
+            mostrarListaCards(filmes.filter { it.categoria.equals("Terror", true) })
+        }
+
+        adicionarItemMenu("🚀  Ficção (${filmes.count { it.categoria.equals("Ficção", true) }})") {
+            fecharMenu()
+            mostrarListaCards(filmes.filter { it.categoria.equals("Ficção", true) })
+        }
+
+        adicionarTituloMenu("SÉRIES")
+
+        adicionarItemMenu("📺  Todas as séries (${series.size})") {
+            fecharMenu()
+            mostrarListaSeries(series)
+        }
+
+        adicionarItemMenu("🔥  Ação (${series.count { it.categoria.equals("Ação", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(series.filter { it.categoria.equals("Ação", true) })
+        }
+
+        adicionarItemMenu("🏹  Aventura (${series.count { it.categoria.equals("Aventura", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(series.filter { it.categoria.equals("Aventura", true) })
+        }
+
+        adicionarItemMenu("😂  Comédia (${series.count { it.categoria.equals("Comédia", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(series.filter { it.categoria.equals("Comédia", true) })
+        }
+
+        adicionarItemMenu("🎭  Drama (${series.count { it.categoria.equals("Drama", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(series.filter { it.categoria.equals("Drama", true) })
+        }
+
+        adicionarItemMenu("👻  Terror (${series.count { it.categoria.equals("Terror", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(series.filter { it.categoria.equals("Terror", true) })
+        }
+
+        adicionarTituloMenu("DORAMAS")
+
+        adicionarItemMenu("📺  Todos os Doramas (${doramas.size})") {
+            fecharMenu()
+            mostrarListaSeries(doramas)
+        }
+
+        adicionarItemMenu("💖  Romance (${doramas.count { it.categoria.equals("romance", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(doramas.filter { it.categoria.equals("romance", true) })
+        }
+
+        adicionarItemMenu("🔥  Ação (${doramas.count { it.categoria.equals("acao", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(doramas.filter { it.categoria.equals("acao", true) })
+        }
+
+        adicionarItemMenu("😂  Comédia (${doramas.count { it.categoria.equals("comedia", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(doramas.filter { it.categoria.equals("comedia", true) })
+        }
+
+        adicionarItemMenu("👻  Terror (${doramas.count { it.categoria.equals("terror", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(doramas.filter { it.categoria.equals("terror", true) })
+        }
+
+        adicionarTituloMenu("ANIME")
+
+        adicionarItemMenu("🍥  Todos os Animes (${animes.size})") {
+            fecharMenu()
+            mostrarListaSeries(animes)
+        }
+
+        adicionarItemMenu("🔥  Ação (${animes.count { it.categoria.equals("acao", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(animes.filter { it.categoria.equals("acao", true) })
+        }
+
+        adicionarItemMenu("😂  Comédia (${animes.count { it.categoria.equals("comedia", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(animes.filter { it.categoria.equals("comedia", true) })
+        }
+
+        adicionarItemMenu("👻  Terror (${animes.count { it.categoria.equals("terror", true) }})") {
+            fecharMenu()
+            mostrarListaSeries(animes.filter { it.categoria.equals("terror", true) })
+        }
+
+        botaoFecharMenu.requestFocus()
+    }
+
+    private fun adicionarTituloMenu(texto: String) {
+        val titulo = TextView(this)
+        titulo.text = texto
+        titulo.textSize = 16f
+        titulo.setTextColor(Color.LTGRAY)
+        titulo.setPadding(dp(18), dp(18), dp(12), dp(8))
+        titulo.isFocusable = false
+
+        menuConteudo.addView(titulo)
+    }
+
+    private fun fecharMenu() {
+        menuAberto = false
+        menuLateral.visibility = View.GONE
         botaoMenu.requestFocus()
     }
 
+    private fun moverMenu(direcao: Int) {
+        if (itensMenuFoco.isEmpty()) return
 
-    private fun mostrarErroCatalogo(
-        mensagemErro: String
-    ) {
+        var indice = itensMenuFoco.indexOfFirst { it.hasFocus() }
+        if (indice < 0) indice = 0
 
-        runOnUiThread {
+        indice += direcao
 
-            conteudo.removeAllViews()
+        if (indice < 0) indice = itensMenuFoco.size - 1
+        if (indice >= itensMenuFoco.size) indice = 0
 
-            cardsAtuais.clear()
+        val proximo = itensMenuFoco[indice]
+        proximo.requestFocus()
+        ajustarScrollMenu(proximo)
+    }
 
-            indiceCardAtual = 0
-
-            val mensagem =
-                TextView(this)
-
-            mensagem.text =
-                "Não foi possível carregar o catálogo.\n\n" +
-                    mensagemErro
-
-            mensagem.textSize =
-                17f
-
-            mensagem.setTextColor(
-                Color.WHITE
-            )
-
-            mensagem.gravity =
-                Gravity.CENTER
-
-            mensagem.setPadding(
-                dp(25),
-                dp(50),
-                dp(25),
-                dp(50)
-            )
-
-            conteudo.addView(
-                mensagem,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            )
-
-            botaoMenu.requestFocus()
+    private fun ajustarScrollMenu(view: View) {
+        view.post {
+            menuScroll.smoothScrollTo(0, view.top)
         }
     }
 
+    private fun moverCard(direcao: Int) {
+        if (cardsAtuais.isEmpty()) return
 
-    private fun executarNoUi(
-        acao: () -> Unit
-    ) {
+        var indice = cardsAtuais.indexOfFirst { it.hasFocus() }
+        if (indice < 0) indice = indiceCardAtual
 
-        if (
-            isFinishing ||
-            isDestroyed
-        ) {
-            return
-        }
+        indice += direcao
 
-        runOnUiThread {
+        if (indice < 0) indice = 0
+        if (indice >= cardsAtuais.size) indice = cardsAtuais.size - 1
 
-            if (
-                !isFinishing &&
-                !isDestroyed
-            ) {
+        indiceCardAtual = indice
+        cardsAtuais[indice].requestFocus()
+    }
 
-                acao()
+    private fun abrirPesquisa() {
+        val campo = EditText(this)
+        campo.hint = "Digite o nome..."
+        campo.textSize = 20f
+        campo.setSingleLine(true)
+        campo.isFocusable = true
+        campo.isFocusableInTouchMode = true
+        campo.requestFocus()
+
+        Toast.makeText(this, "Use a busca pelo menu", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_DOWN) {
+            when (event.keyCode) {
+                KeyEvent.KEYCODE_MENU -> {
+                    if (menuAberto) fecharMenu() else abrirMenu()
+                    return true
+                }
+                KeyEvent.KEYCODE_DPAD_LEFT -> {
+                    if (!menuAberto) {
+                        moverCard(-1)
+                        return true
+                    }
+                }
+                KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                    if (!menuAberto) {
+                        moverCard(1)
+                        return true
+                    }
+                }
+                KeyEvent.KEYCODE_DPAD_UP -> {
+                    if (menuAberto) {
+                        moverMenu(-1)
+                        return true
+                    }
+                }
+                KeyEvent.KEYCODE_DPAD_DOWN -> {
+                    if (menuAberto) {
+                        moverMenu(1)
+                        return true
+                    }
+                }
+                KeyEvent.KEYCODE_BACK -> {
+                    if (menuAberto) {
+                        fecharMenu()
+                        return true
+                    }
+                }
             }
         }
-    }    private fun fecharTecladoSeExistir() {
-
-        val foco =
-            currentFocus
-
-        foco?.clearFocus()
-    }
-
-
-    private fun limparTelaAntesDeCarregar() {
-
-        conteudo.removeAllViews()
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-    }
-
-
-    private fun adicionarEspacoVertical(
-        tamanho: Int
-    ) {
-
-        val espaco =
-            View(this)
-
-        conteudo.addView(
-            espaco,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(tamanho)
-            )
-        )
-    }
-
-
-    private fun criarLinhaSeparadora(): View {
-
-        val linha =
-            View(this)
-
-        linha.setBackgroundColor(
-            Color.argb(
-                70,
-                255,
-                255,
-                255
-            )
-        )
-
-        return linha
-    }
-
-
-    private fun adicionarLinhaSeparadora() {
-
-        conteudo.addView(
-            criarLinhaSeparadora(),
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(1)
-            ).apply {
-
-                topMargin =
-                    dp(8)
-
-                bottomMargin =
-                    dp(8)
-            }
-        )
-    }
-
-
-    private fun mostrarToast(
-        mensagem: String
-    ) {
-
-        Toast.makeText(
-            this,
-            mensagem,
-            Toast.LENGTH_SHORT
-        ).show()
-    }
-
-
-    private fun textoSeguro(
-        texto: String?
-    ): String {
-
-        return texto
-            ?.trim()
-            ?.takeIf {
-                it.isNotEmpty()
-            }
-            ?: "Sem informação"
-    }
-
-
-    private fun fecharMenuAoClicarFora() {
-
-        if (
-            menuAberto
-        ) {
-
-            fecharMenu()
-        }
-    }
-
-
-    private fun voltarParaInicio() {
-
-        historicoConteudo.clear()
-
-        categoriaAtual =
-            "Todos"
-
-        mostrarListaFilmes(
-            "Todos"
-        )
-    }
-
-
-    private fun limparTudoVisual() {
-
-        conteudo.removeAllViews()
-
-        cardsAtuais.clear()
-
-        indiceCardAtual = 0
-
-        currentFocus?.clearFocus()
-    }    private fun fecharAplicativo() {
-
-        try {
-
-            finish()
-
-        } catch (
-            erro: Exception
-        ) {
-
-            finishAffinity()
-        }
-    }
-
-
-    private fun confirmarSaida() {
-
-        fecharAplicativo()
-    }
-
-
-    private fun verificarCatalogoDisponivel(): Boolean {
-
-        return filmes.isNotEmpty() ||
-            series.isNotEmpty() ||
-            doramas.isNotEmpty() ||
-            animes.isNotEmpty()
-    }
-
-
-    private fun selecionarPrimeiroCard() {
-
-        if (
-            cardsAtuais.isEmpty()
-        ) {
-
-            return
-        }
-
-        indiceCardAtual = 0
-
-        cardsAtuais[0].post {
-
-            cardsAtuais[0]
-                .requestFocus()
-
-            rolarParaFoco(
-                cardsAtuais[0]
-            )
-        }
-    }
-
-
-    private fun selecionarUltimoCard() {
-
-        if (
-            cardsAtuais.isEmpty()
-        ) {
-
-            return
-        }
-
-        indiceCardAtual =
-            cardsAtuais.size - 1
-
-        cardsAtuais[
-            indiceCardAtual
-        ].post {
-
-            cardsAtuais[
-                indiceCardAtual
-            ].requestFocus()
-
-            rolarParaFoco(
-                cardsAtuais[
-                    indiceCardAtual
-                ]
-            )
-        }
-    }
-
-
-    private fun reconstruirFoco() {
-
-        if (menuAberto) {
-
-            focarPrimeiroItemMenu()
-
-            return
-        }
-
-        selecionarPrimeiroCard()
-    }    private fun manterFocoNoCardAtual() {
-
-        if (
-            menuAberto ||
-            cardsAtuais.isEmpty()
-        ) {
-            return
-        }
-
-        indiceCardAtual =
-            indiceCardAtual.coerceIn(
-                0,
-                cardsAtuais.size - 1
-            )
-
-        val card =
-            cardsAtuais[
-                indiceCardAtual
-            ]
-
-        card.post {
-
-            if (
-                !menuAberto
-            ) {
-
-                card.requestFocus()
-
-                rolarParaFoco(
-                    card
-                )
-            }
-        }
-    }
-
-
-    private fun atualizarIndiceCard() {
-
-        val foco =
-            currentFocus
-                ?: return
-
-        val indice =
-            cardsAtuais.indexOf(
-                foco
-            )
-
-        if (
-            indice >= 0
-        ) {
-
-            indiceCardAtual =
-                indice
-        }
-    }
-
-
-    private fun existeConteudo(): Boolean {
-
-        return filmes.isNotEmpty() ||
-            series.isNotEmpty() ||
-            doramas.isNotEmpty() ||
-            animes.isNotEmpty()
-    }
-
-
-    private fun quantidadeCards(): Int {
-
-        return cardsAtuais.size
-    }
-
-
-    private fun indiceValido(
-        indice: Int
-    ): Boolean {
-
-        return indice >= 0 &&
-            indice < cardsAtuais.size
-    }
-
-
-    private fun obterCardAtual(): View? {
-
-        if (
-            !indiceValido(
-                indiceCardAtual
-            )
-        ) {
-            return null
-        }
-
-        return cardsAtuais[
-            indiceCardAtual
-        ]
-    }
-
-
-    private fun focarCard(
-        indice: Int
-    ) {
-
-        if (
-            !indiceValido(indice)
-        ) {
-            return
-        }
-
-        indiceCardAtual =
-            indice
-
-        val card =
-            cardsAtuais[indice]
-
-        card.post {
-
-            card.requestFocus()
-
-            rolarParaFoco(
-                card
-            )
-        }
-    }    private fun voltarAoInicioDoCatalogo() {
-
-        historicoConteudo.clear()
-
-        categoriaAtual =
-            "Todos"
-
-        mostrarListaFilmes(
-            "Todos"
-        )
-    }
-
-
-    private fun garantirTelaValida() {
-
-        if (
-            conteudo.childCount == 0 &&
-            existeConteudo()
-        ) {
-
-            mostrarListaFilmes(
-                "Todos"
-            )
-        }
-    }
-
-
-    private fun atualizarTelaDepoisDoMenu() {
-
-        if (menuAberto) {
-            return
-        }
-
-        if (
-            cardsAtuais.isNotEmpty()
-        ) {
-
-            manterFocoNoCardAtual()
-
-        } else {
-
-            botaoMenu.requestFocus()
-        }
-    }
-
-
-    private fun prepararTelaFinal() {
-
-        raiz.post {
-
-            if (
-                !menuAberto &&
-                cardsAtuais.isNotEmpty()
-            ) {
-
-                manterFocoNoCardAtual()
-            }
-        }
-    }
-
-
-    override fun onDestroy() {
-
-        cacheCapas.clear()
-
-        capasEmCarregamento.clear()
-
-        super.onDestroy()
+        return super.dispatchKeyEvent(event)
     }
 }
