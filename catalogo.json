@@ -168,7 +168,7 @@
       "capa": "https://i.postimg.cc/HnD0xZNY/images-(19).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4"
     },
-        {
+    {
       "titulo": "Hotel Transilvânia: Transformonstrão",
       "ano": 2024,
       "categoria": "Animação",
@@ -266,7 +266,7 @@
       "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Top%20Gun%20Maverick.mp4"
     },
-    {
+        {
       "titulo": "O Mundo Depois de Nós",
       "ano": 2023,
       "categoria": "Suspense",
@@ -336,7 +336,7 @@
       "capa": "https://i.postimg.cc/fTjYRbCr/images-(9).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Besouro%20Azul.mp4"
     },
-        {
+    {
       "titulo": "Blades of The Guardians",
       "ano": 2023,
       "categoria": "Ação",
@@ -525,5 +525,5 @@
       "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Thunderbolts.mp4"
     }
-  ],
-  
+  ]
+}
