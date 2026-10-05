@@ -1,6 +1,41 @@
 {
   "filmes": [
     {
+      "titulo": "Star Wars: O Mandaloriano e Grogu",
+      "ano": 2026,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/02qdmdtM/images-(51).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Star%20Wars%20O%20Mandaloriano%20e%20Grogu.mp4"
+    },
+    {
+      "titulo": "Dark Hollow",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/RZtB8m1x/225b82e3f7f4b312e1bbdf4ca12063cf9445bea0cd34fbcbf7a3388408e2ead6-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Dark%20Hollow.mp4"
+    },
+    {
+      "titulo": "Avatar: Aang - O Último Mestre do Ar",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/kgskL5VR/Avatar-Aang-The-Last-Airbender-poster-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Avatar%20Aang%20O%20%C3%9Altimo%20Mestre%20do%20Ar.mp4"
+    },
+    {
+      "titulo": "O Delator",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/V6n4Q77Z/20260716-o-delator-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Delator.mp4"
+    },
+    {
+      "titulo": "Mayday",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/sgbpjYZW/MV5BM2Vm-YWEz-M2Ut-ODNj-Zi00YTk1LWEz-Zj-Et-Nz-Y4OGU0YTdk-Nm-Jm-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Mayday.mp4"
+    },
+    {
       "titulo": "Homem-Aranha: Um Novo Dia",
       "ano": 2026,
       "categoria": "Ação",
@@ -55,13 +90,6 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/fL1HwP8X/MV5BYTkwMmIyNWQtNWEyZS00M2M3LTgxZGEtMDlmMGIzZGM4NWNhXkEyXkFqcGcV1-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Planeta%20dos%20Macacos%20O%20Reinado.mp4"
-    },
-    {
-      "titulo": "A Fera",
-      "ano": 2026,
-      "categoria": "Fantasia",
-      "capa": "https://i.postimg.cc/.../fera.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/A%20Fera.mp4"
     },
     {
       "titulo": "Avatar: O Caminho da Água",
@@ -134,20 +162,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4"
     },
     {
-      "titulo": "Hotel Transilvânia: Transformonstrão",
-      "ano": 2024,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/.../hotel.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Hotel%20Transilv%C3%A2nia%20Transformonstr%C3%A3o.mp4"
-    },
-    {
-      "titulo": "Teen Wolf: O Filme",
-      "ano": 2023,
-      "categoria": "Aventura",
-      "capa": "https://i.postimg.cc/.../teenwolf.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Teen%20Wolf%20O%20Filme.mp4"
-    },
-    {
       "titulo": "Venom: A Última Rodada",
       "ano": 2024,
       "categoria": "Ação",
@@ -211,13 +225,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Jogos%20Mortais%20X.mp4"
     },
     {
-      "titulo": "Morbius",
-      "ano": 2022,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/.../morbius.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Morbius.mp4"
-    },
-    {
       "titulo": "As Tartarugas Ninja: Caos Mutante",
       "ano": 2023,
       "categoria": "Animação",
@@ -258,8 +265,8 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/VNjhYb6W/images-(49).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Jack%20Ryan%20Guerra%20Fantasma.mp4"
-    },
-    {
+    }
+        {
       "titulo": "Resident Evil",
       "ano": 2002,
       "categoria": "Terror",
@@ -274,17 +281,10 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
     },
     {
-      "titulo": "Armadilha Mortal",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/.../armadilha.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Armadilha%20Mortal.mp4"
-    }
-        {
       "titulo": "Na Zona Cinzenta",
       "ano": 2024,
       "categoria": "Drama",
-      "capa": "https://i.postimg.cc/.../zona.jpg",
+      "capa": "https://i.postimg.cc/zona.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Na%20Zona%20Cinzenta.mp4"
     },
     {
@@ -382,7 +382,7 @@
       "titulo": "O Poço 2",
       "ano": 2024,
       "categoria": "Suspense",
-      "capa": "https://i.postimg.cc/.../poco2.jpg",
+      "capa": "https://i.postimg.cc/poco2.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Po%C3%A7o%202.mp4"
     },
     {
@@ -419,41 +419,6 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Bros%20O%20Filme.mp4"
-    },
-    {
-      "titulo": "Star Wars: O Mandaloriano e Grogu",
-      "ano": 2026,
-      "categoria": "Ficção",
-      "capa": "https://i.postimg.cc/02qdmdtM/images-(51).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Star%20Wars%20O%20Mandaloriano%20e%20Grogu.mp4"
-    },
-    {
-      "titulo": "Dark Hollow",
-      "ano": 2026,
-      "categoria": "Terror",
-      "capa": "https://i.postimg.cc/RZtB8m1x/225b82e3f7f4b312e1bbdf4ca12063cf9445bea0cd34fbcbf7a3388408e2ead6-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Dark%20Hollow.mp4"
-    },
-    {
-      "titulo": "Avatar: Aang - O Último Mestre do Ar",
-      "ano": 2026,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/kgskL5VR/Avatar-Aang-The-Last-Airbender-poster-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Avatar%20Aang%20O%20%C3%9Altimo%20Mestre%20do%20Ar.mp4"
-    },
-    {
-      "titulo": "O Delator",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/V6n4Q77Z/20260716-o-delator-papo-de-cinema-cartaz-(1).webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Delator.mp4"
-    },
-    {
-      "titulo": "Mayday",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/sgbpjYZW/MV5BM2Vm-YWEz-M2Ut-ODNj-Zi00YTk1LWEz-Zj-Et-Nz-Y4OGU0YTdk-Nm-Jm-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Mayday.mp4"
     },
     {
       "titulo": "Guardiões da Galáxia Vol. 3",
@@ -524,31 +489,6 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Thunderbolts.mp4"
-    }
-  ],
-  "series": [
-    {
-      "titulo": "Spider-Noir",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/substituir-capa-spider-noir.jpg",
-      "temporadas": [
-        {
-          "numero": 1,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E01.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E02.mp4"
-            }
-          ]
-        }
-      ]
     }
   ]
 }
