@@ -1,4 +1,4 @@
-package com.wolf.iptv
+pacote com.wolf.iptv
 
 import android.content.Intent
 import android.graphics.Bitmap
@@ -26,35 +26,35 @@ import java.net.HttpURLConnection
 import java.net.URL
 import kotlin.concurrent.thread
 
-data class Filme(
+classe de dados Filme(
     val titulo: String,
     val ano: Int,
-    val categoria: String,
+    categoria val: String,
     val capa: String,
-    val video: String
+    vídeo val: String
 )
 
-data class Episodio(
+classe de dados Episódio(
     val numero: Int,
     val titulo: String,
-    val video: String
+    vídeo val: String
 )
 
-data class Temporada(
+classe de dados Temporada(
     val numero: Int,
-    val episodios: List<Episodio>
+    val episodios: Lista<Episódio>
 )
 
-data class Serie(
+classe de dados Série(
     val titulo: String,
-    val categoria: String,
+    categoria val: String,
     val capa: String,
     val temporadas: List<Temporada>
 )
 
-class MainActivity : AppCompatActivity() {
+classe MainActivity : AppCompatActivity() {
 
-    private val CATALOGO_URL =
+    valor privado CATÁLOGO_URL =
         "https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/main/catalogo.json"
 
     private lateinit var raiz: FrameLayout
@@ -68,47 +68,47 @@ class MainActivity : AppCompatActivity() {
 
     private var menuAberto = false
 
-    private val itensMenuFoco =
-        mutableListOf<View>()
+    valor privado itensMenuFoco =
+        listaMutávelDe<View>()
 
-    private val cacheCapas =
+    valor privado cacheCapas =
         HashMap<String, Bitmap>()
 
-    private val historicoConteudo =
-        mutableListOf<() -> Unit>()
+    private val históricoConteudo =
+        listaMutávelDe<() -> Unidade>()
 
-    private val filmes =
-        mutableListOf<Filme>()
+    filmes de val privados =
+        listaMutávelDe<Filme>()
 
-    private val series =
-        mutableListOf<Serie>()
+    séries val privadas =
+        listaMutávelDe<Série>()
 
-    private val doramas =
-        mutableListOf<Serie>()
+    val doramas privados =
+        listaMutávelDe<Série>()
 
-    private val animes =
-        mutableListOf<Serie>()
+    animes val privados =
+        listaMutávelDe<Série>()
 
-    private val cardsAtuais =
-        mutableListOf<View>()
+    cartões val privados Atuais =
+        listaMutávelDe<View>()
 
-    private var indiceCardAtual = 0
+    var privado índiceCardAtual = 0
 
-    private val favoritos =
+    valor privado favoritos =
         mutableSetOf<String>()
 
-    override fun onCreate(
-        savedInstanceState: Bundle?
+    sobrescrever fun onCreate(
+        estadoDaInstanciaSavada: Pacote?
     ) {
         super.onCreate(savedInstanceState)
 
         window.decorView.systemUiVisibility =
-            View.SYSTEM_UI_FLAG_FULLSCREEN or
-            View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
-            View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY or
-            View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
-            View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
-            View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            Exibir.SYSTEM_UI_FLAG_FULLSCREEN ou
+            Exibir.SYSTEM_UI_FLAG_HIDE_NAVIGATION ou
+            Exibir.SYSTEM_UI_FLAG_IMMERSIVE_STICKY ou
+            Exibir.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN ou
+            Exibir.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION ou
+            Visualizar.SYSTEM_UI_FLAG_LAYOUT_ESTÁVEL
 
         criarInterface()
 
@@ -120,7 +120,7 @@ class MainActivity : AppCompatActivity() {
         raiz = FrameLayout(this)
 
         raiz.setBackgroundColor(
-            Color.BLACK
+            Cor: PRETO
         )
 
         val fundo = ImageView(this)
@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity() {
         fundo.scaleType =
             ImageView.ScaleType.CENTER_CROP
 
-        fundo.alpha = 0.55f
+        fundo.alpha = 0,55f
 
         carregarImagem(
             "https://i.postimg.cc/Ghk8PP7w/wolf.png",
@@ -144,9 +144,9 @@ class MainActivity : AppCompatActivity() {
         )
 
         val camada =
-            LinearLayout(this)
+            LinearLayout(isto)
 
-        camada.orientation =
+        camada.orientação =
             LinearLayout.VERTICAL
 
         camada.setPadding(
@@ -168,27 +168,27 @@ class MainActivity : AppCompatActivity() {
             TextView(this)
 
         botaoMenu.text =
-            "☰  WOLF MENU"
+            "â˜° CARDÁPIO DO LOBO"
 
         botaoMenu.setTextColor(
-            Color.WHITE
+            Cor: BRANCA
         )
 
         botaoMenu.textSize = 20f
 
         botaoMenu.setTypeface(
-            null,
-            Typeface.BOLD
+            nulo,
+            Tipo de letra.NEGRO
         )
 
-        botaoMenu.gravity =
+        botaoMenu.gravidade =
             Gravity.CENTER
 
         botaoMenu.isFocusable = true
         botaoMenu.isClickable = true
 
         botaoMenu.background =
-            criarFundoCard(false)
+            criarFundoCard(falso)
 
         botaoMenu.setOnFocusChangeListener {
             _, foco ->
@@ -210,21 +210,21 @@ class MainActivity : AppCompatActivity() {
         )
 
         val scroll =
-            ScrollView(this)
+            ScrollView(isto)
 
         scroll.isFocusable = false
 
         scroll.isFocusableInTouchMode =
-            false
+            falso
 
         conteudo =
-            LinearLayout(this)
+            LinearLayout(isto)
 
-        conteudo.orientation =
+        conteudo.orientação =
             LinearLayout.VERTICAL
 
         scroll.addView(
-            conteudo,
+            contado,
             ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -232,7 +232,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         camada.addView(
-            scroll,
+            rolar,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 0,
@@ -240,36 +240,36 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        setContentView(raiz)
+        definirVisualizaçãoDeConteúdo(raiz)
     }
 
-    private fun dp(
+    diversão privada dp(
         valor: Int
     ): Int {
 
-        return (
+        retornar (
             valor *
-            resources.displayMetrics.density
+            recursos.exibirMétricas.densidade
         ).toInt()
     }
 
-    private fun criarFundoCard(
-        foco: Boolean
+    diversão privada criarFundoCard(
+        foco: Booleano
     ): GradientDrawable {
 
         val fundo =
             GradientDrawable()
 
         fundo.setColor(
-            if (foco) {
-                Color.argb(
+            se (foco) {
+                Cor.argb(
                     235,
                     10,
                     10,
                     10
                 )
-            } else {
-                Color.argb(
+            } outro {
+                Cor.argb(
                     190,
                     10,
                     10,
@@ -281,25 +281,25 @@ class MainActivity : AppCompatActivity() {
         fundo.cornerRadius =
             dp(8).toFloat()
 
-        if (foco) {
+        se (foco) {
 
             fundo.setStroke(
                 dp(4),
-                Color.RED
+                Cor vermelha.
             )
         }
 
-        return fundo
+        retornar fundo
     }
 
-    private fun criarBordaVermelha():
+    diversão privada criarBordaVermelha():
         GradientDrawable {
 
         val borda =
             GradientDrawable()
 
         borda.setColor(
-            Color.TRANSPARENT
+            Cor. TRANSPARENTE
         )
 
         borda.cornerRadius =
@@ -307,39 +307,39 @@ class MainActivity : AppCompatActivity() {
 
         borda.setStroke(
             dp(4),
-            Color.RED
+            Cor vermelha.
         )
 
-        return borda
+        retornar borda
     }
 
-    private fun carregarImagem(
-        url: String,
-        imagem: ImageView
+    diversão privada carregarImagem(
+        URL: String,
+        imagem: Visualização de Imagem
     ) {
 
-        if (url.isBlank()) return
+        se (url.isBlank()) retornar
 
         val salva =
             cacheCapas[url]
 
-        if (salva != null) {
+        se (salva != nulo) {
 
             imagem.setImageBitmap(
                 salva
             )
 
-            return
+            retornar
         }
 
-        thread {
+        fio {
 
-            try {
+            tentar {
 
                 val conexao =
                     URL(url)
                         .openConnection()
-                            as HttpURLConnection
+                            como HttpURLConnection
 
                 conexao.connectTimeout =
                     15000
@@ -356,14 +356,14 @@ class MainActivity : AppCompatActivity() {
                         conexao.inputStream
                     )
 
-                conexao.disconnect()
+                conexao.desconectar()
 
-                if (bitmap != null) {
+                se (bitmap != nulo) {
 
                     cacheCapas[url] =
                         bitmap
 
-                    runOnUiThread {
+                    executarNaUiThread {
 
                         imagem.setImageBitmap(
                             bitmap
@@ -376,15 +376,15 @@ class MainActivity : AppCompatActivity() {
         }
     }private fun carregarFilmes() {
 
-        thread {
+        fio {
 
-            var conexao: HttpURLConnection? = null
+            var conexão: HttpURLConnection? = nulo
 
-            try {
+            tentar {
 
                 conexao =
                     URL(CATALOGO_URL)
-                        .openConnection() as HttpURLConnection
+                        .openConnection() como HttpURLConnection
 
                 conexao.connectTimeout = 20000
                 conexao.readTimeout = 20000
@@ -392,18 +392,18 @@ class MainActivity : AppCompatActivity() {
                 conexao.doInput = true
 
                 conexao.setRequestProperty(
-                    "User-Agent",
+                    "Agente do usuário",
                     "Mozilla/5.0"
                 )
 
                 conexao.connect()
 
-                val codigo =
-                    conexao.responseCode
+                val código =
+                    código de resposta do conexao
 
-                if (codigo !in 200..299) {
-                    throw Exception(
-                        "HTTP $codigo"
+                se (código !em 200..299) {
+                    lançar exceção(
+                        "HTTP $código"
                     )
                 }
 
@@ -412,13 +412,13 @@ class MainActivity : AppCompatActivity() {
                         .bufferedReader(
                             Charsets.UTF_8
                         )
-                        .use {
-                            it.readText()
+                        .usar {
+                            ele.lerTexto()
                         }
 
-                if (resposta.isBlank()) {
-                    throw Exception(
-                        "Catálogo vazio"
+                se (resposta.isBlank()) {
+                    lançar exceção(
+                        "Catálogo de ouro"
                     )
                 }
 
@@ -436,18 +436,18 @@ class MainActivity : AppCompatActivity() {
                         "filmes"
                     )
 
-                if (listaFilmes != null) {
+                se (listaFilmes != nulo) {
 
-                    for (i in 0 until listaFilmes.length()) {
+                    para (i em 0 até listaFilmes.length()) {
 
-                        try {
+                        tentar {
 
-                            val item =
+                            item val =
                                 listaFilmes.getJSONObject(i)
 
                             val titulo =
                                 item.optString(
-                                    "titulo",
+                                    "título",
                                     ""
                                 )
 
@@ -457,7 +457,7 @@ class MainActivity : AppCompatActivity() {
                                     0
                                 )
 
-                            val categoria =
+                            val nome =
                                 item.optString(
                                     "categoria",
                                     ""
@@ -469,23 +469,23 @@ class MainActivity : AppCompatActivity() {
                                     ""
                                 )
 
-                            val video =
+                            vídeo val =
                                 item.optString(
-                                    "video",
+                                    "vídeo",
                                     ""
                                 )
 
-                            if (
-                                titulo.isNotBlank()
+                            se (
+                                título.isNotBlank()
                             ) {
 
-                                novosFilmes.add(
+                                novosFilmes.adicionar(
                                     Filme(
-                                        titulo = titulo,
+                                        título = título,
                                         ano = ano,
                                         categoria = categoria,
                                         capa = capa,
-                                        video = video
+                                        vídeo = vídeo
                                     )
                                 )
                             }
@@ -496,39 +496,39 @@ class MainActivity : AppCompatActivity() {
 
                 novosFilmes.sortWith(
                     compareByDescending<Filme> {
-                        it.ano
+                        ele.ano
                     }.thenBy {
                         it.titulo.lowercase()
                     }
                 )
 
-                fun lerSeries(
+                série divertida (
                     array: JSONArray?
                 ): ArrayList<Serie> {
 
                     val resultado =
                         ArrayList<Serie>()
 
-                    if (array == null) {
-                        return resultado
+                    se (array == nulo) {
+                        retornar resultado
                     }
 
-                    for (
-                        i in 0 until array.length()
+                    para (
+                        i em 0 até array.length()
                     ) {
 
-                        try {
+                        tentar {
 
                             val objeto =
                                 array.getJSONObject(i)
 
                             val titulo =
                                 objeto.optString(
-                                    "titulo",
+                                    "título",
                                     ""
                                 )
 
-                            val categoria =
+                            val nome =
                                 objeto.optString(
                                     "categoria",
                                     ""
@@ -548,16 +548,16 @@ class MainActivity : AppCompatActivity() {
                                     "temporadas"
                                 )
 
-                            if (
+                            se (
                                 arrayTemporadas != null
                             ) {
 
-                                for (
-                                    t in 0 until
+                                para (
+                                    t em 0 até
                                         arrayTemporadas.length()
                                 ) {
 
-                                    try {
+                                    tentar {
 
                                         val objetoTemporada =
                                             arrayTemporadas
@@ -566,63 +566,63 @@ class MainActivity : AppCompatActivity() {
                                         val numeroTemporada =
                                             objetoTemporada
                                                 .optInt(
-                                                    "numero",
+                                                    "número",
                                                     t + 1
                                                 )
 
                                         val episodios =
-                                            ArrayList<Episodio>()
+                                            ArrayList<Episódio>()
 
-                                        val arrayEpisodios =
+                                        val arrayEpisódios =
                                             objetoTemporada
                                                 .optJSONArray(
-                                                    "episodios"
+                                                    "episódios"
                                                 )
 
-                                        if (
-                                            arrayEpisodios != null
+                                        se (
+                                            arrayEpisódios != null
                                         ) {
 
-                                            for (
-                                                e in 0 until
+                                            para (
+                                                e em 0 até
                                                     arrayEpisodios.length()
                                             ) {
 
-                                                try {
+                                                tentar {
 
                                                     val objetoEpisodio =
-                                                        arrayEpisodios
+                                                        arrayEpisódios
                                                             .getJSONObject(e)
 
                                                     val numeroEpisodio =
-                                                        objetoEpisodio
+                                                        objetoEpisódio
                                                             .optInt(
-                                                                "numero",
+                                                                "número",
                                                                 e + 1
                                                             )
 
                                                     val tituloEpisodio =
-                                                        objetoEpisodio
+                                                        objetoEpisódio
                                                             .optString(
-                                                                "titulo",
+                                                                "título",
                                                                 ""
                                                             )
 
                                                     val videoEpisodio =
-                                                        objetoEpisodio
+                                                        objetoEpisódio
                                                             .optString(
-                                                                "video",
+                                                                "vídeo",
                                                                 ""
                                                             )
 
-                                                    episodios.add(
-                                                        Episodio(
+                                                    episódios.adicionar(
+                                                        Episódio(
                                                             numero =
-                                                                numeroEpisodio,
-                                                            titulo =
-                                                                tituloEpisodio,
-                                                            video =
-                                                                videoEpisodio
+                                                                numeroEpisódio,
+                                                            título =
+                                                                títuloEpisódio,
+                                                            vídeo =
+                                                                vídeoEpisódio
                                                         )
                                                     )
 
@@ -630,12 +630,12 @@ class MainActivity : AppCompatActivity() {
                                             }
                                         }
 
-                                        temporadas.add(
+                                        temporadas.adicionar(
                                             Temporada(
                                                 numero =
                                                     numeroTemporada,
-                                                episodios =
-                                                    episodios
+                                                episódios =
+                                                    episódios
                                             )
                                         )
 
@@ -643,15 +643,15 @@ class MainActivity : AppCompatActivity() {
                                 }
                             }
 
-                            if (
-                                titulo.isNotBlank()
+                            se (
+                                título.isNotBlank()
                             ) {
 
-                                resultado.add(
-                                    Serie(
-                                        titulo =
-                                            titulo,
-                                        categoria =
+                                resultado.adicionar(
+                                    Série(
+                                        título =
+                                            título,
+                                        Apelido =
                                             categoria,
                                         capa =
                                             capa,
@@ -664,13 +664,13 @@ class MainActivity : AppCompatActivity() {
                         } catch (_: Exception) {}
                     }
 
-                    return resultado
+                    retornar resultado
                 }
 
                 val novasSeries =
                     lerSeries(
                         raizJson.optJSONArray(
-                            "series"
+                            "série"
                         )
                     )
 
@@ -688,24 +688,24 @@ class MainActivity : AppCompatActivity() {
                         )
                     )
 
-                runOnUiThread {
+                executarNaUiThread {
 
-                    filmes.clear()
-                    filmes.addAll(
+                    filmes.limpar()
+                    filmes.adicionarTodos(
                         novosFilmes
                     )
 
-                    series.clear()
-                    series.addAll(
+                    série.limpar()
+                    série.adicionarTudo(
                         novasSeries
                     )
 
-                    doramas.clear()
-                    doramas.addAll(
+                    doramas.limpar()
+                    doramas.adicionarTodos(
                         novosDoramas
                     )
 
-                    animes.clear()
+                    animes.limpar()
                     animes.addAll(
                         novosAnimes
                     )
@@ -715,44 +715,44 @@ class MainActivity : AppCompatActivity() {
                     )
 
                     Toast.makeText(
-                        this@MainActivity,
-                        "Catálogo carregado: " +
+                        esta@MainActivity,
+                        "Catálogo protegido: " +
                             "${filmes.size} filmes, " +
                             "${series.size} séries, " +
                             "${doramas.size} doramas e " +
                             "${animes.size} animes",
-                        Toast.LENGTH_LONG
-                    ).show()
+                        Torrada.COMPRIMENTO_LONGO
+                    ).mostrar()
                 }
 
-            } catch (
-                erro: Exception
+            } pegar (
+                erro: Exceção
             ) {
 
-                runOnUiThread {
+                executarNaUiThread {
 
-                    filmes.clear()
-                    series.clear()
-                    doramas.clear()
-                    animes.clear()
+                    filmes.limpar()
+                    série.limpar()
+                    doramas.limpar()
+                    animes.limpar()
 
                     conteudo.removeAllViews()
 
                     val erroTexto =
                         TextView(this@MainActivity)
 
-                    erroTexto.text =
-                        "ERRO NO CATÁLOGO\n\n" +
+                    erroTexto.texto =
+                        "ERRO NO CATÍ LOGO\n\n" +
                         "${erro.message ?: "Erro desconhecido"}"
 
                     erroTexto.textSize =
                         20f
 
                     erroTexto.setTextColor(
-                        Color.WHITE
+                        Cor: BRANCA
                     )
 
-                    erroTexto.gravity =
+                    erroTexto.gravidade =
                         Gravity.CENTER
 
                     erroTexto.setPadding(
@@ -767,21 +767,21 @@ class MainActivity : AppCompatActivity() {
                     )
 
                     Toast.makeText(
-                        this@MainActivity,
+                        esta@MainActivity,
                         "Erro ao carregar catálogo",
-                        Toast.LENGTH_LONG
-                    ).show()
+                        Torrada.COMPRIMENTO_LONGO
+                    ).mostrar()
                 }
 
-            } finally {
+            } finalmente {
 
-                conexao?.disconnect()
+                conexao?.desconectar()
             }
         }
     }
 
-    private fun carregarSeries() {}private fun mostrarListaCards(
-        lista: List<Filme>
+    fun privado carregarSeries() {}função privada mostrarListaCards(
+        lista: Lista<Filme>
     ) {
 
         conteudo.removeAllViews()
@@ -790,24 +790,24 @@ class MainActivity : AppCompatActivity() {
 
         indiceCardAtual = 0
 
-        if (lista.isEmpty()) {
+        se (lista.isEmpty()) {
 
-            val vazio =
+            val REM =
                 TextView(this)
 
-            vazio.text =
+            texto =
                 "Nenhum filme encontrado"
 
             vazio.setTextColor(
-                Color.WHITE
+                Cor: BRANCA
             )
 
             vazio.textSize = 20f
 
-            vazio.gravity =
+            gravidade =
                 Gravity.CENTER
 
-            vazio.setPadding(
+            .setPadding(
                 dp(20),
                 dp(40),
                 dp(20),
@@ -822,15 +822,15 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            return
+            retornar
         }
 
         lista.chunked(5).forEach { grupo ->
 
             val linha =
-                LinearLayout(this)
+                LinearLayout(isto)
 
-            linha.orientation =
+            linha.orientação =
                 LinearLayout.HORIZONTAL
 
             linha.layoutParams =
@@ -841,24 +841,24 @@ class MainActivity : AppCompatActivity() {
 
             grupo.forEach { filme ->
 
-                val card =
+                cartão val =
                     criarCard(filme)
 
                 linha.addView(
-                    card,
+                    cartão,
                     LinearLayout.LayoutParams(
                         0,
                         dp(335),
                         1f
-                    ).apply {
+                    ).aplicar {
 
-                        leftMargin =
+                        margemesquerda =
                             dp(4)
 
-                        rightMargin =
+                        margemDireita =
                             dp(4)
 
-                        bottomMargin =
+                        margemInferior =
                             dp(12)
                     }
                 )
@@ -869,31 +869,31 @@ class MainActivity : AppCompatActivity() {
             conteudo.addView(linha)
         }
 
-        if (cardsAtuais.isNotEmpty()) {
+        se (cardsAtuais.isNotEmpty()) {
 
-            cardsAtuais[0]
+            cartasAtuais[0]
                 .requestFocus()
         }
     }
 
-    private fun criarCard(
+    diversão privada criarCard(
         filme: Filme
-    ): View {
+    ): Visualizar {
 
-        val card =
-            FrameLayout(this)
+        cartão val =
+            FrameLayout(isto)
 
         card.isFocusable = true
         card.isFocusableInTouchMode = true
         card.isClickable = true
 
         card.background =
-            criarFundoCard(false)
+            criarFundoCard(falso)
 
         val imagem =
             ImageView(this)
 
-        imagem.scaleType =
+        tipo de escala da imagem =
             ImageView.ScaleType.FIT_CENTER
 
         carregarImagem(
@@ -906,29 +906,29 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(275)
-            ).apply {
-                gravity = Gravity.TOP
+            ).aplicar {
+                gravidade = Gravidade.TOPO
             }
         )
 
         val informacoes =
-            LinearLayout(this)
+            LinearLayout(isto)
 
         informacoes.orientation =
             LinearLayout.VERTICAL
 
         informacoes.gravity =
-            Gravity.CENTER_VERTICAL
+            Gravidade.CENTRO_VERTICAL
 
-        informacoes.setPadding(
+        informações.setPadding(
             dp(8),
             dp(3),
             dp(8),
             dp(3)
         )
 
-        informacoes.setBackgroundColor(
-            Color.argb(
+        informações.setBackgroundColor(
+            Cor.argb(
                 235,
                 10,
                 10,
@@ -939,47 +939,47 @@ class MainActivity : AppCompatActivity() {
         val titulo =
             TextView(this)
 
-        titulo.text =
-            filme.titulo
+        título.texto =
+            filme.título
 
-        titulo.setTextColor(
-            Color.WHITE
+        título.setTextColor(
+            Cor: BRANCA
         )
 
-        titulo.textSize = 14f
+        tamanho.texto do título = 14f
 
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
+        título.definirTipo(
+            nulo,
+            Tipo de letra.NEGRO
         )
 
         titulo.maxLines = 1
 
-        titulo.ellipsize =
+        tamanho da elipse do título =
             TextUtils.TruncateAt.END
 
-        informacoes.addView(
-            titulo,
+        informações.adicionarVisualização(
+            título,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(28)
             )
         )
 
-        val detalhes =
+        val =
             TextView(this)
 
-        detalhes.text =
-            "${filme.ano} • ${filme.categoria}"
+        detalhes.texto =
+            "${filme.ano} â€¢ ${filme.categoria}"
 
         detalhes.setTextColor(
-            Color.LTGRAY
+            Cor: Cinza Claro
         )
 
         detalhes.textSize = 12f
 
-        informacoes.addView(
-            detalhes,
+        informações.adicionarVisualização(
+            ,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(22)
@@ -991,19 +991,19 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(60)
-            ).apply {
-                gravity = Gravity.BOTTOM
+            ).aplicar {
+                gravidade = Gravidade.FUNDO
             }
         )
 
         val borda =
-            View(this)
+            Ver(isto)
 
-        borda.background =
+        borda.fundo =
             criarBordaVermelha()
 
-        borda.visibility =
-            View.GONE
+        borda.visibilidade =
+            Ver.GONE
 
         card.addView(
             borda,
@@ -1016,17 +1016,17 @@ class MainActivity : AppCompatActivity() {
         card.setOnFocusChangeListener {
             _, foco ->
 
-            borda.visibility =
-                if (foco) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
+            borda.visibilidade =
+                se (foco) {
+                    Visualizar.VISÍVEL
+                } outro {
+                    Ver.GONE
                 }
 
             card.background =
                 criarFundoCard(foco)
 
-            if (foco) {
+            se (foco) {
 
                 indiceCardAtual =
                     cardsAtuais.indexOf(card)
@@ -1035,18 +1035,18 @@ class MainActivity : AppCompatActivity() {
 
         card.setOnClickListener {
 
-            abrirVideo(
-                filme.titulo,
-                filme.video,
+            abrirVídeo(
+                filme.título,
+                filme.vídeo,
                 filme.capa
             )
         }
 
-        return card
+        cartão de devolução
     }
 
-    private fun mostrarListaSeries(
-        lista: List<Serie>
+    diversão privada mostrarListaSeries(
+        lista: Lista<Série>
     ) {
 
         conteudo.removeAllViews()
@@ -1055,21 +1055,21 @@ class MainActivity : AppCompatActivity() {
 
         indiceCardAtual = 0
 
-        if (lista.isEmpty()) {
+        se (lista.isEmpty()) {
 
-            val vazio =
+            val REM =
                 TextView(this)
 
-            vazio.text =
+            texto =
                 "Nenhuma série encontrada"
 
             vazio.setTextColor(
-                Color.WHITE
+                Cor: BRANCA
             )
 
             vazio.textSize = 20f
 
-            vazio.gravity =
+            gravidade =
                 Gravity.CENTER
 
             conteudo.addView(
@@ -1080,15 +1080,15 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            return
+            retornar
         }
 
         lista.chunked(5).forEach { grupo ->
 
             val linha =
-                LinearLayout(this)
+                LinearLayout(isto)
 
-            linha.orientation =
+            linha.orientação =
                 LinearLayout.HORIZONTAL
 
             linha.layoutParams =
@@ -1097,26 +1097,26 @@ class MainActivity : AppCompatActivity() {
                     dp(350)
                 )
 
-            grupo.forEach { serie ->
+            grupo.forEach { série ->
 
-                val card =
+                cartão val =
                     criarCardSerie(serie)
 
                 linha.addView(
-                    card,
+                    cartão,
                     LinearLayout.LayoutParams(
                         0,
                         dp(335),
                         1f
-                    ).apply {
+                    ).aplicar {
 
-                        leftMargin =
+                        margemesquerda =
                             dp(4)
 
-                        rightMargin =
+                        margemDireita =
                             dp(4)
 
-                        bottomMargin =
+                        margemInferior =
                             dp(12)
                     }
                 )
@@ -1127,33 +1127,33 @@ class MainActivity : AppCompatActivity() {
             conteudo.addView(linha)
         }
 
-        if (cardsAtuais.isNotEmpty()) {
+        se (cardsAtuais.isNotEmpty()) {
 
-            cardsAtuais[0]
+            cartasAtuais[0]
                 .requestFocus()
         }
-    }private fun criarCardSerie(
-        serie: Serie
-    ): View {
+    }privado divertido criarCardSerie(
+        série: Série
+    ): Visualizar {
 
-        val card =
-            FrameLayout(this)
+        cartão val =
+            FrameLayout(isto)
 
         card.isFocusable = true
         card.isFocusableInTouchMode = true
         card.isClickable = true
 
         card.background =
-            criarFundoCard(false)
+            criarFundoCard(falso)
 
         val imagem =
             ImageView(this)
 
-        imagem.scaleType =
+        tipo de escala da imagem =
             ImageView.ScaleType.FIT_CENTER
 
         carregarImagem(
-            serie.capa,
+            série.capa,
             imagem
         )
 
@@ -1166,23 +1166,23 @@ class MainActivity : AppCompatActivity() {
         )
 
         val informacoes =
-            LinearLayout(this)
+            LinearLayout(isto)
 
         informacoes.orientation =
             LinearLayout.VERTICAL
 
         informacoes.gravity =
-            Gravity.CENTER_VERTICAL
+            Gravidade.CENTRO_VERTICAL
 
-        informacoes.setPadding(
+        informações.setPadding(
             dp(8),
             dp(3),
             dp(8),
             dp(3)
         )
 
-        informacoes.setBackgroundColor(
-            Color.argb(
+        informações.setBackgroundColor(
+            Cor.argb(
                 235,
                 10,
                 10,
@@ -1193,48 +1193,48 @@ class MainActivity : AppCompatActivity() {
         val titulo =
             TextView(this)
 
-        titulo.text =
+        título.texto =
             serie.titulo
 
-        titulo.setTextColor(
-            Color.WHITE
+        título.setTextColor(
+            Cor: BRANCA
         )
 
-        titulo.textSize = 14f
+        tamanho.texto do título = 14f
 
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
+        título.definirTipo(
+            nulo,
+            Tipo de letra.NEGRO
         )
 
         titulo.maxLines = 1
 
-        titulo.ellipsize =
+        tamanho da elipse do título =
             TextUtils.TruncateAt.END
 
-        informacoes.addView(
-            titulo,
+        informações.adicionarVisualização(
+            título,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(28)
             )
         )
 
-        val detalhes =
+        val =
             TextView(this)
 
-        detalhes.text =
-            "${serie.categoria} • " +
+        detalhes.texto =
+            "${serie.categoria} â€¢ " +
             "${serie.temporadas.size} temporada(s)"
 
         detalhes.setTextColor(
-            Color.LTGRAY
+            Cor: Cinza Claro
         )
 
         detalhes.textSize = 12f
 
-        informacoes.addView(
-            detalhes,
+        informações.adicionarVisualização(
+            ,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(22)
@@ -1246,19 +1246,19 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(60)
-            ).apply {
-                gravity = Gravity.BOTTOM
+            ).aplicar {
+                gravidade = Gravidade.FUNDO
             }
         )
 
         val borda =
-            View(this)
+            Ver(isto)
 
-        borda.background =
+        borda.fundo =
             criarBordaVermelha()
 
-        borda.visibility =
-            View.GONE
+        borda.visibilidade =
+            Ver.GONE
 
         card.addView(
             borda,
@@ -1271,17 +1271,17 @@ class MainActivity : AppCompatActivity() {
         card.setOnFocusChangeListener {
             _, foco ->
 
-            borda.visibility =
-                if (foco) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
+            borda.visibilidade =
+                se (foco) {
+                    Visualizar.VISÍVEL
+                } outro {
+                    Ver.GONE
                 }
 
             card.background =
                 criarFundoCard(foco)
 
-            if (foco) {
+            se (foco) {
 
                 indiceCardAtual =
                     cardsAtuais.indexOf(card)
@@ -1290,18 +1290,18 @@ class MainActivity : AppCompatActivity() {
 
         card.setOnClickListener {
 
-            historicoConteudo.add {
-                mostrarListaSeries(series)
+            históricoConteudo.adicionar {
+                mostrarListaSeries(séries)
             }
 
             mostrarTemporadas(serie)
         }
 
-        return card
+        cartão de devolução
     }
 
-    private fun mostrarTemporadas(
-        serie: Serie
+    diversão privada mostrarTemporadas(
+        série: Série
     ) {
 
         conteudo.removeAllViews()
@@ -1310,14 +1310,14 @@ class MainActivity : AppCompatActivity() {
 
         indiceCardAtual = 0
 
-        serie.temporadas
+        série.temporadas
             .chunked(5)
             .forEach { grupo ->
 
                 val linha =
-                    LinearLayout(this)
+                    LinearLayout(isto)
 
-                linha.orientation =
+                linha.orientação =
                     LinearLayout.HORIZONTAL
 
                 linha.layoutParams =
@@ -1328,27 +1328,27 @@ class MainActivity : AppCompatActivity() {
 
                 grupo.forEach { temporada ->
 
-                    val card =
+                    cartão val =
                         criarCardTemporada(
-                            serie,
+                            série,
                             temporada
                         )
 
                     linha.addView(
-                        card,
+                        cartão,
                         LinearLayout.LayoutParams(
                             0,
                             dp(335),
                             1f
-                        ).apply {
+                        ).aplicar {
 
-                            leftMargin =
+                            margemesquerda =
                                 dp(4)
 
-                            rightMargin =
+                            margemDireita =
                                 dp(4)
 
-                            bottomMargin =
+                            margemInferior =
                                 dp(12)
                         }
                     )
@@ -1359,36 +1359,36 @@ class MainActivity : AppCompatActivity() {
                 conteudo.addView(linha)
             }
 
-        if (cardsAtuais.isNotEmpty()) {
+        se (cardsAtuais.isNotEmpty()) {
 
-            cardsAtuais[0]
+            cartasAtuais[0]
                 .requestFocus()
         }
     }
 
-    private fun criarCardTemporada(
-        serie: Serie,
+    diversão privada criarCardTemporada(
+        série: Série,
         temporada: Temporada
-    ): View {
+    ): Visualizar {
 
-        val card =
-            FrameLayout(this)
+        cartão val =
+            FrameLayout(isto)
 
         card.isFocusable = true
         card.isFocusableInTouchMode = true
         card.isClickable = true
 
         card.background =
-            criarFundoCard(false)
+            criarFundoCard(falso)
 
         val imagem =
             ImageView(this)
 
-        imagem.scaleType =
+        tipo de escala da imagem =
             ImageView.ScaleType.FIT_CENTER
 
         carregarImagem(
-            serie.capa,
+            série.capa,
             imagem
         )
 
@@ -1403,25 +1403,25 @@ class MainActivity : AppCompatActivity() {
         val titulo =
             TextView(this)
 
-        titulo.text =
+        título.texto =
             "Temporada ${temporada.numero}"
 
-        titulo.setTextColor(
-            Color.WHITE
+        título.setTextColor(
+            Cor: BRANCA
         )
 
-        titulo.textSize = 16f
+        tamanho.texto do título = 16f
 
-        titulo.setTypeface(
-            null,
-            Typeface.BOLD
+        título.definirTipo(
+            nulo,
+            Tipo de letra.NEGRO
         )
 
-        titulo.gravity =
+        título.gravidade =
             Gravity.CENTER
 
-        titulo.setBackgroundColor(
-            Color.argb(
+        título.definirCorDeFundo(
+            Cor.argb(
                 235,
                 10,
                 10,
@@ -1430,23 +1430,23 @@ class MainActivity : AppCompatActivity() {
         )
 
         card.addView(
-            titulo,
+            título,
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(60)
-            ).apply {
-                gravity = Gravity.BOTTOM
+            ).aplicar {
+                gravidade = Gravidade.FUNDO
             }
         )
 
         val borda =
-            View(this)
+            Ver(isto)
 
-        borda.background =
+        borda.fundo =
             criarBordaVermelha()
 
-        borda.visibility =
-            View.GONE
+        borda.visibilidade =
+            Ver.GONE
 
         card.addView(
             borda,
@@ -1459,17 +1459,17 @@ class MainActivity : AppCompatActivity() {
         card.setOnFocusChangeListener {
             _, foco ->
 
-            borda.visibility =
-                if (foco) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
+            borda.visibilidade =
+                se (foco) {
+                    Visualizar.VISÍVEL
+                } outro {
+                    Ver.GONE
                 }
 
             card.background =
                 criarFundoCard(foco)
 
-            if (foco) {
+            se (foco) {
 
                 indiceCardAtual =
                     cardsAtuais.indexOf(card)
@@ -1478,19 +1478,19 @@ class MainActivity : AppCompatActivity() {
 
         card.setOnClickListener {
 
-            historicoConteudo.add {
+            históricoConteudo.adicionar {
                 mostrarTemporadas(serie)
             }
 
-            mostrarEpisodios(
-                serie,
+            mostrarEpisódios(
+                série,
                 temporada
             )
         }
 
-        return card
-    }private fun mostrarEpisodios(
-        serie: Serie,
+        cartão de devolução
+    }diversão privada mostrarEpisódios(
+        série: Série,
         temporada: Temporada
     ) {
 
@@ -1500,14 +1500,14 @@ class MainActivity : AppCompatActivity() {
 
         indiceCardAtual = 0
 
-        temporada.episodios
+        temporada.episódios
             .chunked(5)
             .forEach { grupo ->
 
                 val linha =
-                    LinearLayout(this)
+                    LinearLayout(isto)
 
-                linha.orientation =
+                linha.orientação =
                     LinearLayout.HORIZONTAL
 
                 linha.layoutParams =
@@ -1516,29 +1516,29 @@ class MainActivity : AppCompatActivity() {
                         dp(350)
                     )
 
-                grupo.forEach { episodio ->
+                grupo.forEach { episódio ->
 
-                    val card =
-                        criarCardEpisodio(
-                            serie,
-                            episodio
+                    cartão val =
+                        criarCardEpisódio(
+                            série,
+                            episódio
                         )
 
                     linha.addView(
-                        card,
+                        cartão,
                         LinearLayout.LayoutParams(
                             0,
                             dp(335),
                             1f
-                        ).apply {
+                        ).aplicar {
 
-                            leftMargin =
+                            margemesquerda =
                                 dp(4)
 
-                            rightMargin =
+                            margemDireita =
                                 dp(4)
 
-                            bottomMargin =
+                            margemInferior =
                                 dp(12)
                         }
                     )
@@ -1549,36 +1549,36 @@ class MainActivity : AppCompatActivity() {
                 conteudo.addView(linha)
             }
 
-        if (cardsAtuais.isNotEmpty()) {
+        se (cardsAtuais.isNotEmpty()) {
 
-            cardsAtuais[0]
+            cartasAtuais[0]
                 .requestFocus()
         }
     }
 
-    private fun criarCardEpisodio(
-        serie: Serie,
-        episodio: Episodio
-    ): View {
+    diversão privada criarCardEpisódio(
+        série: Série,
+        episódio: Episódio
+    ): Visualizar {
 
-        val card =
-            FrameLayout(this)
+        cartão val =
+            FrameLayout(isto)
 
         card.isFocusable = true
         card.isFocusableInTouchMode = true
         card.isClickable = true
 
         card.background =
-            criarFundoCard(false)
+            criarFundoCard(falso)
 
         val imagem =
             ImageView(this)
 
-        imagem.scaleType =
+        tipo de escala da imagem =
             ImageView.ScaleType.FIT_CENTER
 
         carregarImagem(
-            serie.capa,
+            série.capa,
             imagem
         )
 
@@ -1594,24 +1594,24 @@ class MainActivity : AppCompatActivity() {
             TextView(this)
 
         informacoes.text =
-            "EP ${episodio.numero} • " +
-            episodio.titulo
+            "EP ${episodio.numero} â€¢ " +
+            episódio.título
 
         informacoes.setTextColor(
-            Color.WHITE
+            Cor: BRANCA
         )
 
         informacoes.textSize = 14f
 
         informacoes.setTypeface(
-            null,
-            Typeface.BOLD
+            nulo,
+            Tipo de letra.NEGRO
         )
 
         informacoes.gravity =
-            Gravity.CENTER_VERTICAL
+            Gravidade.CENTRO_VERTICAL
 
-        informacoes.setPadding(
+        informações.setPadding(
             dp(8),
             dp(3),
             dp(8),
@@ -1623,8 +1623,8 @@ class MainActivity : AppCompatActivity() {
         informacoes.ellipsize =
             TextUtils.TruncateAt.END
 
-        informacoes.setBackgroundColor(
-            Color.argb(
+        informações.setBackgroundColor(
+            Cor.argb(
                 235,
                 10,
                 10,
@@ -1637,19 +1637,19 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(60)
-            ).apply {
-                gravity = Gravity.BOTTOM
+            ).aplicar {
+                gravidade = Gravidade.FUNDO
             }
         )
 
         val borda =
-            View(this)
+            Ver(isto)
 
-        borda.background =
+        borda.fundo =
             criarBordaVermelha()
 
-        borda.visibility =
-            View.GONE
+        borda.visibilidade =
+            Ver.GONE
 
         card.addView(
             borda,
@@ -1662,17 +1662,17 @@ class MainActivity : AppCompatActivity() {
         card.setOnFocusChangeListener {
             _, foco ->
 
-            borda.visibility =
-                if (foco) {
-                    View.VISIBLE
-                } else {
-                    View.GONE
+            borda.visibilidade =
+                se (foco) {
+                    Visualizar.VISÍVEL
+                } outro {
+                    Ver.GONE
                 }
 
             card.background =
                 criarFundoCard(foco)
 
-            if (foco) {
+            se (foco) {
 
                 indiceCardAtual =
                     cardsAtuais.indexOf(card)
@@ -1681,76 +1681,76 @@ class MainActivity : AppCompatActivity() {
 
         card.setOnClickListener {
 
-            abrirVideo(
+            abrirVídeo(
                 "${serie.titulo} - " +
                     "EP ${episodio.numero}",
-                episodio.video,
-                serie.capa
+                episódio.vídeo,
+                série.capa
             )
         }
 
-        return card
+        cartão de devolução
     }
 
-    private fun abrirVideo(
-        titulo: String,
-        video: String,
-        capa: String
+    diversão privada abrirVídeo(
+        título: Corda,
+        Vídeo: Corda,
+        capa: Corda
     ) {
 
-        if (video.isBlank()) {
+        se (video.isBlank()) {
 
             Toast.makeText(
-                this,
+                esse,
                 "Vídeo ainda não disponível",
-                Toast.LENGTH_SHORT
-            ).show()
+                Torrada.COMPRIMENTO_CURTO
+            ).mostrar()
 
-            return
+            retornar
         }
 
         val intent =
-            Intent(
-                this,
+            Intenção(
+                esse,
                 PlayerActivity::class.java
             )
 
         intent.putExtra(
-            "VIDEO_URL",
-            video
+            "URL_DO_VÍDEO",
+            vídeo
         )
 
         intent.putExtra(
-            "VIDEO_TITLE",
-            titulo
+            "TÍTULO_DO_VÍDEO",
+            título
         )
 
         intent.putExtra(
-            "VIDEO_COVER",
+            "CAPA_DE_VÍDEO",
             capa
         )
 
-        startActivity(intent)
+        iniciarAtividade(intenção)
     }
-        private fun adicionarItemMenu(
+        diversão privada adicionarItemMenu(
         texto: String,
-        acao: () -> Unit
+        acao: () -> Unidade
     ) {
 
-        val item =
+        item val =
             TextView(this)
 
-        item.text =
+        item.texto =
             texto
 
         item.setTextColor(
-            Color.WHITE
+            Cor: BRANCA
         )
 
         item.textSize = 16f
 
-        item.gravity =
-            Gravity.CENTER_VERTICAL
+        item.gravidade =
+            Gravidade.CENTRO_VERTICAL
 
         item.setPadding(
             dp(18),
@@ -1764,7 +1764,7 @@ class MainActivity : AppCompatActivity() {
         item.isClickable = true
 
         item.background =
-            criarFundoCard(false)
+            criarFundoCard(falso)
 
         item.setOnFocusChangeListener {
             _, foco ->
@@ -1777,35 +1777,35 @@ class MainActivity : AppCompatActivity() {
             acao()
         }
 
-        menuConteudo.addView(
+        menuConteúdo.adicionarVisualização(
             item,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(48)
-            ).apply {
-                bottomMargin = dp(4)
+            ).aplicar {
+                margemInferior = dp(4)
             }
         )
 
-        itensMenuFoco.add(item)
+        itensMenuFoco.adicionar(item)
     }
 
-    private fun abrirMenu() {
+    função privada abrirMenu() {
 
-        if (menuAberto) return
+        se (menuAberto) retornar
 
-        menuAberto = true
+        menuAberto = verdadeiro
 
-        itensMenuFoco.clear()
+        itensMenuFoco.limpar()
 
         menuLateral =
-            LinearLayout(this)
+            LinearLayout(isto)
 
-        menuLateral.orientation =
+        menuLateral.orientação =
             LinearLayout.VERTICAL
 
         menuLateral.setBackgroundColor(
-            Color.argb(
+            Cor.argb(
                 245,
                 5,
                 5,
@@ -1820,21 +1820,21 @@ class MainActivity : AppCompatActivity() {
             )
 
         params.gravity =
-            Gravity.START or Gravity.TOP
+            Gravity.START ou Gravity.TOP
 
         raiz.addView(
             menuLateral,
-            params
+            parâmetros
         )
 
         val cabecalho =
-            LinearLayout(this)
+            LinearLayout(isto)
 
-        cabecalho.orientation =
+        cabecalho.orientação =
             LinearLayout.HORIZONTAL
 
-        cabecalho.gravity =
-            Gravity.CENTER_VERTICAL
+        cabecalho.gravidade =
+            Gravidade.CENTRO_VERTICAL
 
         cabecalho.setPadding(
             dp(15),
@@ -1855,24 +1855,24 @@ class MainActivity : AppCompatActivity() {
             TextView(this)
 
         tituloMenu.text =
-            "WOLF MENU"
+            "CARDÁPIO DO LOBO"
 
         tituloMenu.setTextColor(
-            Color.WHITE
+            Cor: BRANCA
         )
 
         tituloMenu.textSize = 21f
 
         tituloMenu.setTypeface(
-            null,
-            Typeface.BOLD
+            nulo,
+            Tipo de letra.NEGRO
         )
 
         tituloMenu.gravity =
-            Gravity.CENTER_VERTICAL
+            Gravidade.CENTRO_VERTICAL
 
         cabecalho.addView(
-            tituloMenu,
+            títuloMenu,
             LinearLayout.LayoutParams(
                 0,
                 ViewGroup.LayoutParams.MATCH_PARENT,
@@ -1884,10 +1884,10 @@ class MainActivity : AppCompatActivity() {
             TextView(this)
 
         botaoFecharMenu.text =
-            "✕"
+            "âœ•"
 
         botaoFecharMenu.setTextColor(
-            Color.WHITE
+            Cor: BRANCA
         )
 
         botaoFecharMenu.textSize = 24f
@@ -1896,16 +1896,16 @@ class MainActivity : AppCompatActivity() {
             Gravity.CENTER
 
         botaoFecharMenu.isFocusable =
-            true
+            verdadeiro
 
         botaoFecharMenu.isFocusableInTouchMode =
-            true
+            verdadeiro
 
         botaoFecharMenu.isClickable =
-            true
+            verdadeiro
 
         botaoFecharMenu.background =
-            criarFundoCard(false)
+            criarFundoCard(falso)
 
         botaoFecharMenu.setOnFocusChangeListener {
             _, foco ->
@@ -1926,18 +1926,18 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        menuScroll =
-            ScrollView(this)
+        menuRolar =
+            ScrollView(isto)
 
         menuScroll.isFocusable = false
 
-        menuConteudo =
-            LinearLayout(this)
+        menuConteúdo =
+            LinearLayout(isto)
 
-        menuConteudo.orientation =
+        menuConteudo.orientação =
             LinearLayout.VERTICAL
 
-        menuConteudo.setPadding(
+        menuConteúdo.setPadding(
             dp(10),
             dp(5),
             dp(10),
@@ -1945,7 +1945,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         menuScroll.addView(
-            menuConteudo,
+            menuConteúdo,
             ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -1953,7 +1953,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         menuLateral.addView(
-            menuScroll,
+            menuRolar,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 0,
@@ -1962,40 +1962,40 @@ class MainActivity : AppCompatActivity() {
         )
 
         adicionarItemMenu(
-            "🔄  Atualizar catálogo"
+            "ðŸ”„ Atualizar catálogo"
         ) {
             fecharMenu()
             Toast.makeText(
-                this,
+                esse,
                 "Atualizando catálogo...",
-                Toast.LENGTH_SHORT
-            ).show()
+                Torrada.COMPRIMENTO_CURTO
+            ).mostrar()
             carregarFilmes()
         }
 
         adicionarItemMenu(
-            "▶  Continuar assistindo"
+            "â–¶ Continuar assistindo"
         ) {
 
             fecharMenu()
 
             Toast.makeText(
-                this,
-                "Continue assistindo",
-                Toast.LENGTH_SHORT
-            ).show()
+                esse,
+                "Continue a",
+                Torrada.COMPRIMENTO_CURTO
+            ).mostrar()
         }
 
         adicionarItemMenu(
-            "★  Favoritos (${favoritos.size})"
+            "â˜… Favoritos (${favoritos.size})"
         ) {
 
             fecharMenu()
 
             val lista =
                 filmes.filter {
-                    favoritos.contains(
-                        it.titulo
+                    favoritos.contém(
+                        it.título
                     )
                 }
 
@@ -2003,7 +2003,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "⌕  Pesquisa"
+            "âŒ• Pesquisa"
         ) {
             abrirPesquisa()
         }
@@ -2013,7 +2013,7 @@ class MainActivity : AppCompatActivity() {
         )
 
         adicionarItemMenu(
-            "🎬  Todos os filmes (${filmes.size})"
+            "ðŸŽ¬ Todos os filmes (${filmes.size})"
         ) {
 
             fecharMenu()
@@ -2021,8 +2021,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "🔥  Ação (${filmes.count {
-                it.categoria.equals("Ação", true)
+            "ðŸ”¥ Ação (${filmes.count {
+                it.categoria.equals("Açã", true)
             }})"
         ) {
 
@@ -2030,13 +2030,13 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria.equals("Ação", true)
+                    it.categoria.equals("Açã", true)
                 }
             )
         }
 
         adicionarItemMenu(
-            "🏹  Aventura (${filmes.count {
+            "ðŸ ¹ Aventura (${filmes.count {
                 it.categoria.equals("Aventura", true)
             }})"
         ) {
@@ -2051,7 +2051,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "🧸  Animação (${filmes.count {
+            "ðŸ§¸ Animação (${filmes.count {
                 it.categoria.equals("Animação", true)
             }})"
         ) {
@@ -2066,7 +2066,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "😂  Comédia (${filmes.count {
+            "ðŸ˜‚ Comédia (${filmes.count {
                 it.categoria.equals("Comédia", true)
             }})"
         ) {
@@ -2081,7 +2081,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "🎭  Drama (${filmes.count {
+            "ðŸŽ Drama (${filmes.count {
                 it.categoria.equals("Drama", true)
             }})"
         ) {
@@ -2096,7 +2096,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "👻  Terror (${filmes.count {
+            "ðŸ'» Terror (${filmes.count {
                 it.categoria.equals("Terror", true)
             }})"
         ) {
@@ -2111,8 +2111,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "🚀  Ficção (${filmes.count {
-                it.categoria.equals("Ficção", true)
+            "ðŸš€ Ficção (${filmes.count {
+                it.categoria.equals("FicÃ§Ã£o", true)
             }})"
         ) {
 
@@ -2120,7 +2120,7 @@ class MainActivity : AppCompatActivity() {
 
             mostrarListaCards(
                 filmes.filter {
-                    it.categoria.equals("Ficção", true)
+                    it.categoria.equals("FicÃ§Ã£o", true)
                 }
             )
         }
@@ -2130,30 +2130,30 @@ class MainActivity : AppCompatActivity() {
         )
 
         adicionarItemMenu(
-            "📺  Todas as séries (${series.size})"
+            "ðŸ“º Todas as séries (${series.size})"
         ) {
 
             fecharMenu()
-            mostrarListaSeries(series)
+            mostrarListaSeries(séries)
         }
 
         adicionarItemMenu(
-            "🔥  Ação (${series.count {
-                it.categoria.equals("Ação", true)
+            "ðŸ”¥ Açã§çã (${series.count {
+                it.categoria.equals("Açã", true)
             }})"
         ) {
 
             fecharMenu()
 
             mostrarListaSeries(
-                series.filter {
-                    it.categoria.equals("Ação", true)
+                série.filtrar {
+                    it.categoria.equals("Açã", true)
                 }
             )
         }
 
         adicionarItemMenu(
-            "🏹  Aventura (${series.count {
+            "ðŸ ¹ Aventura (${series.count {
                 it.categoria.equals("Aventura", true)
             }})"
         ) {
@@ -2161,14 +2161,14 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
 
             mostrarListaSeries(
-                series.filter {
+                série.filtrar {
                     it.categoria.equals("Aventura", true)
                 }
             )
         }
 
         adicionarItemMenu(
-            "😂  Comédia (${series.count {
+            "ðŸ˜‚ Comédia (${series.count {
                 it.categoria.equals("Comédia", true)
             }})"
         ) {
@@ -2176,14 +2176,14 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
 
             mostrarListaSeries(
-                series.filter {
+                série.filtrar {
                     it.categoria.equals("Comédia", true)
                 }
             )
         }
 
         adicionarItemMenu(
-            "🎭  Drama (${series.count {
+            "ðŸŽ Drama (${series.count {
                 it.categoria.equals("Drama", true)
             }})"
         ) {
@@ -2191,14 +2191,14 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
 
             mostrarListaSeries(
-                series.filter {
+                série.filtrar {
                     it.categoria.equals("Drama", true)
                 }
             )
         }
 
         adicionarItemMenu(
-            "👻  Terror (${series.count {
+            "ðŸ'» Terror (${series.count {
                 it.categoria.equals("Terror", true)
             }})"
         ) {
@@ -2206,7 +2206,7 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
 
             mostrarListaSeries(
-                series.filter {
+                série.filtrar {
                     it.categoria.equals("Terror", true)
                 }
             )
@@ -2217,14 +2217,14 @@ class MainActivity : AppCompatActivity() {
         adicionarTituloMenu("DORAMAS")
 
         adicionarItemMenu(
-            "📺  Todos os Doramas (${doramas.size})"
+            "ðŸ“º Todos os Doramas (${doramas.size})"
         ) {
             fecharMenu()
             mostrarListaSeries(doramas)
         }
 
         adicionarItemMenu(
-            "💖  Romance (${doramas.count {
+            "ðŸ'– Romance (${doramas.count {
                 it.categoria.equals("romance", true)
             }})"
         ) {
@@ -2237,7 +2237,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "🔥  Ação (${doramas.count {
+            "ðŸ”¥ Ação (${doramas.count {
                 it.categoria.equals("acao", true)
             }})"
         ) {
@@ -2250,7 +2250,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "😂  Comédia (${doramas.count {
+            "ðŸ˜‚ Comédia (${doramas.count {
                 it.categoria.equals("comedia", true)
             }})"
         ) {
@@ -2263,7 +2263,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "👻  Terror (${doramas.count {
+            "ðŸ'» Terror (${doramas.count {
                 it.categoria.equals("terror", true)
             }})"
         ) {
@@ -2283,14 +2283,14 @@ class MainActivity : AppCompatActivity() {
         adicionarTituloMenu("ANIME")
 
         adicionarItemMenu(
-            "🍥  Todos os Animes (${animes.size})"
+            "ðŸ ¥ Todos os Animes (${animes.size})"
         ) {
             fecharMenu()
             mostrarListaSeries(animes)
         }
 
         adicionarItemMenu(
-            "🔥  Ação (${animes.count {
+            "ðŸ”¥ Açã§çã (${animes.count {
                 it.categoria.equals("acao", true)
             }})"
         ) {
@@ -2303,7 +2303,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "😂  Comédia (${animes.count {
+            "ðŸ˜‚ Comédia (${animes.count {
                 it.categoria.equals("comedia", true)
             }})"
         ) {
@@ -2316,7 +2316,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         adicionarItemMenu(
-            "👻  Terror (${animes.count {
+            "ðŸ'» Terror (${animes.count {
                 it.categoria.equals("terror", true)
             }})"
         ) {
@@ -2348,39 +2348,39 @@ class MainActivity : AppCompatActivity() {
 
         val titulo = TextView(this)
 
-        titulo.text = texto
+        título.texto = texto
 
-        titulo.textSize = 16f
+        tamanho.texto do título = 16f
 
-        titulo.setTextColor(
-            Color.LTGRAY
+        título.setTextColor(
+            Cor: Cinza Claro
         )
 
-        titulo.setPadding(
+        título.setPadding(
             dp(18),
             dp(18),
             dp(12),
             dp(8)
         )
 
-        titulo.isFocusable = false
+        título.éFocável = falso
 
-        menuConteudo.addView(
-            titulo
+        menuConteúdo.adicionarVisualização(
+            título
         )
     }
 
 
     // ===============================
-    // FECHAR MENU
+    // MENU FECHAR
     // ===============================
 
-    private fun fecharMenu() {
+    função privada fecharMenu() {
 
-        menuAberto = false
+        menuAberto = falso
 
         menuLateral.visibility =
-            View.GONE
+            Ver.GONE
 
         botaoMenu.requestFocus()
     }
@@ -2390,58 +2390,58 @@ class MainActivity : AppCompatActivity() {
     // MOVIMENTAÇÃO DO MENU
     // ===============================
 
-    private fun moverMenu(
-        direcao: Int
+    Menu de movimentação de diversão privada (
+        Direção: Int
     ) {
 
-        if (itensMenuFoco.isEmpty()) {
-            return
+        se (itensMenuFoco.isEmpty()) {
+            retornar
         }
 
-        var indice =
+        var índice =
             itensMenuFoco.indexOfFirst {
-                it.hasFocus()
+                ele.temFoco()
             }
 
-        if (indice < 0) {
-            indice = 0
+        se (índice < 0) {
+            índice = 0
         }
 
-        indice += direcao
+        índice += direção
 
-        if (indice < 0) {
-            indice =
+        se (índice < 0) {
+            índice =
                 itensMenuFoco.size - 1
         }
 
-        if (indice >= itensMenuFoco.size) {
-            indice = 0
+        se (índice >= itensMenuFoco.size) {
+            índice = 0
         }
 
-        val proximo =
-            itensMenuFoco[indice]
+        val próximo =
+            itensMenuFoco[índice]
 
-        proximo.requestFocus()
+        próximo.requestFocus()
 
         ajustarScrollMenu(
-            proximo
+            próximo
         )
     }
 
 
     // ===============================
-    // AJUSTAR SCROLL DO MENU
+    // AJUSTAR ROLAR PARA MENU
     // ===============================
 
-    private fun ajustarScrollMenu(
-        view: View
+    diversão privada ajustarScrollMenu(
+        Visualizar: Visualizar
     ) {
 
-        view.post {
+        ver.post {
 
             menuScroll.smoothScrollTo(
                 0,
-                view.top
+                ver.topo
             )
         }
     }
@@ -2451,35 +2451,35 @@ class MainActivity : AppCompatActivity() {
     // MOVIMENTAÇÃO DOS CARDS
     // ===============================
 
-    private fun moverCard(
-        direcao: Int
+    Cartão de mudança de diversão privada (
+        Direção: Int
     ) {
 
-        if (cardsAtuais.isEmpty()) {
-            return
+        se (cardsAtuais.isEmpty()) {
+            retornar
         }
 
-        var indice =
+        var índice =
             cardsAtuais.indexOfFirst {
-                it.hasFocus()
+                ele.temFoco()
             }
 
-        if (indice < 0) {
-            indice = indiceCardAtual
+        se (índice < 0) {
+            índice = indiceCardAtual
         }
 
-        indice += direcao
+        índice += direção
 
-        if (indice < 0) {
-            indice = 0
+        se (índice < 0) {
+            índice = 0
         }
 
-        if (indice >= cardsAtuais.size) {
-            indice =
+        se (índice >= cardsAtuais.size) {
+            índice =
                 cardsAtuais.size - 1
         }
 
-        indiceCardAtual = indice
+        indiceCardAtual = índice
 
         cardsAtuais[indice].requestFocus()
     }
@@ -2489,12 +2489,12 @@ class MainActivity : AppCompatActivity() {
     // PESQUISA
     // ===============================
 
-    private fun abrirPesquisa() {
+    função privada abrirPesquisa() {
 
         val campo =
-            EditText(this)
+            EditText(isto)
 
-        campo.hint =
+        campo.dica =
             "Digite o nome..."
 
         campo.textSize =
@@ -2508,10 +2508,10 @@ class MainActivity : AppCompatActivity() {
         campo.requestFocus()
 
         Toast.makeText(
-            this,
+            esse,
             "Use a busca pelo menu",
-            Toast.LENGTH_SHORT
-        ).show()
+            Torrada.COMPRIMENTO_CURTO
+        ).mostrar()
     }
 
 
@@ -2519,87 +2519,87 @@ class MainActivity : AppCompatActivity() {
     // CONTROLE DO D-PAD
     // ===============================
 
-    override fun dispatchKeyEvent(
-        event: KeyEvent
-    ): Boolean {
+    substituir fun dispatchKeyEvent(
+        evento: KeyEvent
+    ): Booleano {
 
-        if (
-            event.action ==
-            KeyEvent.ACTION_DOWN
+        se (
+            evento.ação ==
+            KeyEvent.AÇÃO_DOWN
         ) {
 
-            when (event.keyCode) {
+            quando (evento.keyCode) {
 
                 KeyEvent.KEYCODE_MENU -> {
 
-                    if (menuAberto) {
+                    se (menuAberto) {
                         fecharMenu()
-                    } else {
+                    } outro {
                         abrirMenu()
                     }
 
-                    return true
+                    retornar verdadeiro
                 }
 
 
                 KeyEvent.KEYCODE_DPAD_LEFT -> {
 
-                    if (!menuAberto) {
+                    se (!menuAberto) {
 
                         moverCard(-1)
 
-                        return true
+                        retornar verdadeiro
                     }
                 }
 
 
                 KeyEvent.KEYCODE_DPAD_RIGHT -> {
 
-                    if (!menuAberto) {
+                    se (!menuAberto) {
 
                         moverCard(1)
 
-                        return true
+                        retornar verdadeiro
                     }
                 }
 
 
                 KeyEvent.KEYCODE_DPAD_UP -> {
 
-                    if (menuAberto) {
+                    se (menuAberto) {
 
                         moverMenu(-1)
 
-                        return true
+                        retornar verdadeiro
                     }
                 }
 
 
                 KeyEvent.KEYCODE_DPAD_DOWN -> {
 
-                    if (menuAberto) {
+                    se (menuAberto) {
 
                         moverMenu(1)
 
-                        return true
+                        retornar verdadeiro
                     }
                 }
 
 
                 KeyEvent.KEYCODE_BACK -> {
 
-                    if (menuAberto) {
+                    se (menuAberto) {
 
                         fecharMenu()
 
-                        return true
+                        retornar verdadeiro
                     }
                 }
             }
         }
 
-        return super.dispatchKeyEvent(
-            event
+        retornar super.dispatchKeyEvent(
+            evento
         )
     }
 
