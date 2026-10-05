@@ -12,14 +12,14 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/O%20Fim%20da%20Rua.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Fim%20da%20Rua.mp4"
     },
     {
       "titulo": "Pinóquio",
       "ano": 2026,
       "categoria": "Fantasia",
       "capa": "https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Pin%C3%B3quio.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"
     },
     {
       "titulo": "A Morte de Robin Hood",
@@ -62,6 +62,111 @@
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/.../teenwolf.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Teen%20Wolf%20O%20Filme.mp4"
+    },
+    {
+      "titulo": "Bad Boys: Até o Fim",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/sDv6PQmF/images-(4).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Bad%20Boys%20At%C3%A9%20o%20Fim.mp4"
+    },
+    {
+      "titulo": "Besouro Azul",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fTjYRbCr/images-(9).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Besouro%20Azul.mp4"
+    },
+    {
+      "titulo": "Blades of The Guardians",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VkGB9Xgh/Guardi-es-da-Gal-xia-Vol-3-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Blades%20of%20The%20Guardians.mp4"
+    },
+    {
+      "titulo": "Como Treinar o Seu Dragão",
+      "ano": 2025,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/664hkrZ6/treinar.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
+    },
+    {
+      "titulo": "Coringa: Delírio a Dois",
+      "ano": 2024,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3YzMtZTUwMC00MGJjLWFkNDItMDUzNTUxOWY5N2Y4XkEyXkFqcGcV1.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"
+    },
+    {
+      "titulo": "Destruição Iminente",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Destrui%C3%A7%C3%A3o%20Iminente.mp4"
+    },
+    {
+      "titulo": "Divertida Mente 2",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/0jgfgwN6/aa61ae8fb015160d802c4d5cb4fe6858058ea76485c3498ed9ff431eee4fc83f-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Divertida%20Mente%202.mp4"
+    },
+    {
+      "titulo": "Furiosa: Uma Saga Mad Max",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzZY7Hfn/71K2MccCQ2L-AC-UF894-1000-QL80.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Furiosa%20Uma%20Saga%20Mad%20Max.mp4"
+    },
+    {
+      "titulo": "Gran Turismo – De Jogador a Corredor",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/YSVWsL2p/images-(7).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Gran%20Turismo%20%E2%80%93%20De%20Jogador%20a%20Corredor.mp4"
+    },
+    {
+      "titulo": "Kung Fu Panda 4",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/XYyYqBNV/kung-fu-panda-4-cartaz-1zso1c-717x1200-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Kung%20Fu%20Panda%204.mp4"
+    },
+    {
+      "titulo": "Meu Malvado Favorito 4",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/5t0bhHHr/images-(6).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4"
+    },
+    {
+      "titulo": "Moana",
+      "ano": 2016,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/pdj7VwhR/moana.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Moana.mp4"
+    },
+    {
+      "titulo": "Mufasa: O Rei Leão",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/mgw3xmpz/917q7O0TJL.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
+    },
+    {
+      "titulo": "O Poço 2",
+      "ano": 2024,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/.../poco2.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Po%C3%A7o%202.mp4"
+    },
+    {
+      "titulo": "Pânico 7",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
     },
     {
       "titulo": "O Mundo Depois de Nós",
@@ -120,13 +225,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Na%20Zona%20Cinzenta.mp4"
     },
     {
-      "titulo": "O Poço 2",
-      "ano": 2024,
-      "categoria": "Suspense",
-      "capa": "https://i.postimg.cc/.../poco2.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Po%C3%A7o%202.mp4"
-    },
-    {
       "titulo": "Supergirl",
       "ano": 2026,
       "categoria": "Ação",
@@ -153,90 +251,6 @@
       "categoria": "Comédia",
       "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico%204.mp4"
-    },
-    {
-      "titulo": "Como Treinar o Seu Dragão",
-      "ano": 2025,
-      "categoria": "Aventura",
-      "capa": "https://i.postimg.cc/664hkrZ6/treinar.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
-    },
-    {
-      "titulo": "Coringa: Delírio a Dois",
-      "ano": 2024,
-      "categoria": "Drama",
-      "capa": "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3YzMtZTUwMC00MGJjLWFkNDItMDUzNTUxOWY5N2Y4XkEyXkFqcGcV1.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4"
-    },
-    {
-      "titulo": "Destruição Iminente",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Destrui%C3%A7%C3%A3o%20Iminente.mp4"
-    },
-    {
-      "titulo": "Divertida Mente 2",
-      "ano": 2024,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/0jgfgwN6/aa61ae8fb015160d802c4d5cb4fe6858058ea76485c3498ed9ff431eee4fc83f-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Divertida%20Mente%202.mp4"
-    },
-    {
-      "titulo": "Furiosa: Uma Saga Mad Max",
-      "ano": 2024,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/FzZY7Hfn/71K2MccCQ2L-AC-UF894-1000-QL80.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Furiosa%20Uma%20Saga%20Mad%20Max.mp4"
-    },
-    {
-      "titulo": "Gran Turismo – De Jogador a Corredor",
-      "ano": 2023,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/YSVWsL2p/images-(7).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Gran%20Turismo%20De%20Jogador%20a%20Corredor.mp4"
-    },
-    {
-      "titulo": "Kung Fu Panda 4",
-      "ano": 2024,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/XYyYqBNV/kung-fu-panda-4-cartaz-1zso1c-717x1200-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Kung%20Fu%20Panda%204.mp4"
-    },
-    {
-      "titulo": "Meu Malvado Favorito 4",
-      "ano": 2024,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/5t0bhHHr/images-(6).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4"
-    },
-    {
-      "titulo": "Moana",
-      "ano": 2016,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/pdj7VwhR/moana.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Moana.mp4"
-    },
-    {
-      "titulo": "Mufasa: O Rei Leão",
-      "ano": 2024,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/mgw3xmpz/917q7O0TJL.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
-    },
-    {
-      "titulo": "Besouro Azul",
-      "ano": 2023,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/fTjYRbCr/images-(9).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Besouro%20Azul.mp4"
-    },
-    {
-      "titulo": "Bad Boys: Até o Fim",
-      "ano": 2024,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/sDv6PQmF/images-(4).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Bad%20Boys%20At%C3%A9%20o%20Fim.mp4"
     },
     {
       "titulo": "A Pequena Sereia",
