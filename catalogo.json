@@ -69,8 +69,9 @@
       "categoria": "Ficção",
       "capa": "https://i.postimg.cc/PrL263pT/images-(35).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Avatar%20O%20Caminho%20da%20%C3%81gua.mp4"
-    },
-    {
+    }
+  ],
+      {
       "titulo": "Supergirl",
       "ano": 2026,
       "categoria": "Ação",
@@ -125,14 +126,13 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/1zh5qR4V/2523057-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Ghostbusters%20Apocalipse%20de%20Gelo.mp4"
-    }
-  ],
-      {
+    },
+    {
       "titulo": "Megatubarão 2",
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
     },
     {
       "titulo": "Golpe Explosivo",
@@ -140,7 +140,8 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/HnD0xZNY/images-(19).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4"
-    },
+    }
+  ],
     {
       "titulo": "Hotel Transilvânia: Transformonstrão",
       "ano": 2024,
@@ -210,7 +211,8 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"
-    },
+    }
+  ],
     {
       "titulo": "Jogos Mortais X",
       "ano": 2023,
@@ -252,8 +254,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/tavin%20filmes%20/Acerto%20de%20Sangue.mp4"
-    }
-  ],
+    },
     {
       "titulo": "O Justiceiro: Uma Última Morte",
       "ano": 2025,
@@ -281,7 +282,8 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/A%20Sociedade%20dos%20Assassinos.mp4"
-    },
+    }
+  ],
     {
       "titulo": "Armadilha Mortal",
       "ano": 2025,
@@ -351,7 +353,8 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/FzZY7Hfn/71K2MccCQ2L-AC-UF894-1000-QL80.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Furiosa%20Uma%20Saga%20Mad%20Max.mp4"
-    },
+    }
+  ],
     {
       "titulo": "Gran Turismo – De Jogador a Corredor",
       "ano": 2023,
@@ -379,8 +382,7 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/pdj7VwhR/moana.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Moana.mp4"
-    }
-  ],
+    },
     {
       "titulo": "Mufasa: O Rei Leão",
       "ano": 2024,
@@ -422,7 +424,8 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Super%20Mario%20Bros.%20O%20Filme.mp4"
-    },
+    }
+  ],
     {
       "titulo": "Guardiões da Galáxia Vol. 3",
       "ano": 2023,
