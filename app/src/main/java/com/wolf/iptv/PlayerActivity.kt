@@ -18,14 +18,20 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 
 class PlayerActivity : AppCompatActivity() {
 
     private var player: ExoPlayer? = null
+
+    // Tentativas automáticas quando a conexão cai ou dá timeout.
+    private var tentativasRede = 0
+    private val maxTentativasRede = 5
 
     private lateinit var container: FrameLayout
     private lateinit var playerView: PlayerView
@@ -577,6 +583,15 @@ class PlayerActivity : AppCompatActivity() {
 
             player =
                 ExoPlayer.Builder(this)
+                    .setMediaSourceFactory(
+                        DefaultMediaSourceFactory(this)
+                            .setDataSourceFactory(
+                                DefaultHttpDataSource.Factory()
+                                    .setConnectTimeoutMs(30_000)
+                                    .setReadTimeoutMs(30_000)
+                                    .setAllowCrossProtocolRedirects(true)
+                            )
+                    )
                     .setLoadControl(
                         DefaultLoadControl.Builder()
                             .setBufferDurationsMs(
@@ -609,6 +624,8 @@ class PlayerActivity : AppCompatActivity() {
 
                             Player.STATE_READY -> {
 
+                                tentativasRede = 0
+
                                 erroTexto.visibility =
                                     View.GONE
 
@@ -631,6 +648,37 @@ class PlayerActivity : AppCompatActivity() {
                     override fun onPlayerError(
                         error: PlaybackException
                     ) {
+
+                        val erroDeRede =
+                            error.errorCode ==
+                                PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT ||
+                            error.errorCode ==
+                                PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED ||
+                            error.errorCode ==
+                                PlaybackException.ERROR_CODE_TIMEOUT
+
+                        // Se foi problema de rede, tenta reconectar sozinho
+                        // e continua de onde parou.
+                        if (erroDeRede &&
+                            tentativasRede < maxTentativasRede
+                        ) {
+
+                            tentativasRede++
+
+                            mostrarErro(
+                                "Conexão instável.\n\n" +
+                                "Reconectando... ($tentativasRede/$maxTentativasRede)"
+                            )
+
+                            playerView.postDelayed({
+
+                                player?.prepare()
+                                player?.playWhenReady = true
+
+                            }, 2000)
+
+                            return
+                        }
 
                         mostrarErro(
                             "Erro ao reproduzir o vídeo:\n\n" +
