@@ -85,13 +85,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Planeta%20dos%20Macacos%20O%20Reinado.mp4"
     },
     {
-      "titulo": "A Fera",
-      "ano": 2026,
-      "categoria": "Fantasia",
-      "capa": "https://i.postimg.cc/.../fera.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/A%20Fera.mp4"
-    },
-    {
       "titulo": "Avatar: O Caminho da Água",
       "ano": 2022,
       "categoria": "Ficção",
@@ -124,7 +117,7 @@
       "ano": 2022,
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/VkMCSkzP/images-(16).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Sonic%202%20O%20Filme.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Sonic%202%20O%20Filme.mp4"
     },
     {
       "titulo": "A Pequena Sereia",
@@ -250,7 +243,7 @@
       "ano": 2022,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Top%20Gun%20Maverick.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Top%20Gun%20Maverick.mp4"
     },
     {
       "titulo": "O Mundo Depois de Nós",
@@ -505,4 +498,4 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Thunderbolts.mp4"
     }
   ]
-}
+    }
