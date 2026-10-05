@@ -159,7 +159,7 @@
       "ano": 2024,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/76GM6jnH/sony-banner-venom-1400x2100.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Venom%20A%20%C3%9Altimo%20Rodada.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Venom%20A%20%C3%9Altima%20Rodada.mp4"
     },
     {
       "titulo": "Fogo Contra Fogo",
@@ -512,11 +512,11 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/No%20Rastro%20do%20Perigo.mp4"
     },
     {
-      "titulo": "Kill: O Massacre no Trem",
-      "ano": 2024,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/Y2gwwCkc/images-(67).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/KILL%20O%20Massacre%20no%20Trem.mp4"
+      "titulo": "Charlie: O Super Cão",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/0QvFJfvZ/9a8b5217477062b71270db52c3cf42d5-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Charlie%20O%20Super%20C%C3%A3o.mp4"
     },
     {
       "titulo": "Shazam! Fúria dos Deuses",
@@ -545,6 +545,20 @@
       "categoria": "Fantasia",
       "capa": "https://i.postimg.cc/Hns6Pz9t/20220406-animais-fantasticos-os-segredos-de-dumbledore-papo-de-cinema-crtaz-(1).webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Animais%20Fant%C3%A1sticos%20Os%20Segredos%20de%20Dumbledore.mp4"
+    },
+    {
+      "titulo": "Icefall: Saque no Gelo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VkRtgm0b/bov-Ctz-WD9plfpquw-FIa-Zrifu-OKC-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Icefall%20Saque%20no%20Gelo.mp4"
+    },
+    {
+      "titulo": "O Troll da Montanha 2",
+      "ano": 2025,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/HxJ7TMvG/c8c1cc998a762ec4bb71d3f7ed85fc79.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Troll%20da%20Montanha%202.mp4"
     }
   ]
 }
