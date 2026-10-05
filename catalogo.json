@@ -125,7 +125,7 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/5t0bhHHr/images-(6).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4"
-    }    ,
+    },
     {
       "titulo": "Moana",
       "ano": 2016,
@@ -218,6 +218,19 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Ghostbusters%20Apocalipse%20de%20Gelo.mp4"
     },
     {
+      "titulo": "Resident Evil",
+      "ano": 2002,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/Resident%20Evil.mp4"
+    },
+    {
+      "titulo": "A Sociedade dos Assassinos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/A%20Sociedade%20dos%20Assassinos.mp4"
+    },    {
       "titulo": "Jurassic World: Recomeço",
       "ano": 2025,
       "categoria": "Ação",
@@ -237,7 +250,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/GhQzSKW1/images-(11).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/A%20Fera.mp4"
-    }    ,
+    },
     {
       "titulo": "Avatar: O Caminho da Água",
       "ano": 2022,
@@ -356,7 +369,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Top%20Gun%20Maverick.mp4"
-    }    ,
+    },
     {
       "titulo": "Megatubarão 2",
       "ano": 2023,
@@ -384,8 +397,7 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Super%20Mario%20Bros.%20O%20Filme.mp4"
-    },
-    {
+    },    {
       "titulo": "Guardiões da Galáxia Vol. 3",
       "ano": 2023,
       "categoria": "Ação",
@@ -539,4 +551,17 @@
       ]
     }
   ]
-}
+}    {
+      "titulo": "Resident Evil",
+      "ano": 2002,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/Resident%20Evil.mp4"
+    },
+    {
+      "titulo": "A Sociedade dos Assassinos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes%20/A%20Sociedade%20dos%20Assassinos.mp4"
+    }
