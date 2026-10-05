@@ -446,7 +446,7 @@
       "ano": 2009,
       "categoria": "Comédia",
       "capa": "https://i.postimg.cc/FFwTzW46/17.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/17%20Outra%20Vez.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/17%20Outra%20Vez.mp4"
     },
     {
       "titulo": "A Noiva Cadáver",
@@ -489,6 +489,13 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Thunderbolts.mp4"
+    },
+    {
+      "titulo": "Mestres do Universo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/PfSPYJgc/images-(55).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Mestres%20do%20Universo.mp4"
     }
   ]
-    }
+}
