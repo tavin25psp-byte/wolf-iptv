@@ -411,7 +411,7 @@
       "ano": 2017,
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/k4ptjpsN/jumanji.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Jumanji%20Bem-Vindo%20%C3%A0%20Selva.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Jumanji%20Bem-Vindo%20%C3%80%20Selva.mp4"
     },
     {
       "titulo": "17 Outra Vez",
@@ -467,10 +467,10 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/QCctbsqF/aranha.jpg",
-      "video": "https://vz-c091a331-1f1.b-cdn.net/145cd2d1-82bc-4e35-986c-9137d44cf91a/playlist.m3u8"
+      "video": "https://vz-c091a331-1f1.b-cdn.net/145cd2d1-82bc-4e35-986c-9137d44cf91a/original"
     }
   ],
-        "series": [
+    "series": [
     {
       "titulo": "Spider-Noir",
       "ano": 2026,
