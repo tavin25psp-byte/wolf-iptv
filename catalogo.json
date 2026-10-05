@@ -29,6 +29,20 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Jack%20Ryan%20Guerra%20Fantasma.mp4"
     },
     {
+      "titulo": "Resident Evil",
+      "ano": 2002,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
+    },
+    {
+      "titulo": "A Sociedade dos Assassinos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
+    },
+    {
       "titulo": "Armadilha Mortal",
       "ano": 2025,
       "categoria": "Ação",
@@ -48,20 +62,6 @@
       "categoria": "Suspense",
       "capa": "https://i.postimg.cc/.../poco2.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Po%C3%A7o%202.mp4"
-    },
-    {
-      "titulo": "Resident Evil",
-      "ano": 2002,
-      "categoria": "Terror",
-      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
-    },
-    {
-      "titulo": "A Sociedade dos Assassinos",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
     },
     {
       "titulo": "Supergirl",
@@ -229,7 +229,7 @@
       "ano": 2024,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Deadpool%20%26%20Wolverine.mp4"
     },
     {
       "titulo": "Gato de Botas 2: O Último Pedido",
@@ -491,7 +491,7 @@
       "video": "https://vz-c091a331-1f1.b-cdn.net/145cd2d1-82bc-4e35-986c-9137d44cf91a/original"
     }
   ],
-    "series": [
+        "series": [
     {
       "titulo": "Spider-Noir",
       "ano": 2026,
