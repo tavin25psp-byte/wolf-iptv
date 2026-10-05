@@ -78,6 +78,13 @@ class PlayerActivity : AppCompatActivity() {
         playerView.useController = true
         playerView.controllerShowTimeoutMs = 5000
 
+        // Evita a tela de fundo aparecer quando o player
+        // estiver carregando ou recriando a superfície.
+        playerView.setShutterBackgroundColor(Color.TRANSPARENT)
+
+        // Mantém o conteúdo do vídeo quando o player é resetado.
+        playerView.setKeepContentOnPlayerReset(true)
+
         playerView.resizeMode =
             AspectRatioFrameLayout.RESIZE_MODE_ZOOM
 
@@ -386,7 +393,7 @@ class PlayerActivity : AppCompatActivity() {
                         fundoArredondado(
                             Color.rgb(
                                 190,
-                                                               0,
+                                0,
                                 0
                             ),
                             16f
@@ -643,9 +650,7 @@ class PlayerActivity : AppCompatActivity() {
                 e.message
             )
         }
-    }
-
-    // =========================================================
+    }    // =========================================================
     // ERRO
     // =========================================================
 
@@ -658,7 +663,9 @@ class PlayerActivity : AppCompatActivity() {
 
         erroTexto.visibility =
             View.VISIBLE
-    }    // =========================================================
+    }
+
+    // =========================================================
     // D-PAD
     // =========================================================
 
