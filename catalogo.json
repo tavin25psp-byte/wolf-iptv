@@ -215,7 +215,7 @@
       "ano": 2022,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/7LtWSgNP/Morbius-cartaz-(2).jpg",
-      "video": "Https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Morbius.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Morbius.mp4"
     },
     {
       "titulo": "As Tartarugas Ninja: Caos Mutante",
@@ -236,7 +236,7 @@
       "ano": 2023,
       "categoria": "Suspense",
       "capa": "https://i.postimg.cc/KYrTcZy8/images-(43).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4"
     },
     {
       "titulo": "Acerto de Sangue",
@@ -467,7 +467,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/A%20Odisseia.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Odisseia.mp4"
     },
     {
       "titulo": "Thunderbolts",
@@ -503,6 +503,34 @@
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/Kvn8G5Ps/images-(63).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/358847.mp4"
+    },
+    {
+      "titulo": "No Rastro do Perigo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/bwygL3LM/images-(65).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/No%20Rastro%20do%20Perigo.mp4"
+    },
+    {
+      "titulo": "Kill: O Massacre no Trem",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/Y2gwwCkc/images-(67).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/KILL%20O%20Massacre%20no%20Trem.mp4"
+    },
+    {
+      "titulo": "Shazam! Fúria dos Deuses",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/kXg3RFK3/images-(69).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Shazam!%20F%C3%BAria%20dos%20Deuses.mp4"
+    },
+    {
+      "titulo": "Projeto Gemini",
+      "ano": 2019,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/g09TsvXs/images-(71).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Projeto%20Gemini.mp4"
     }
   ]
 }
