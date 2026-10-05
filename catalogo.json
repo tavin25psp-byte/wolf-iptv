@@ -91,7 +91,7 @@
       "capa": "https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Destrui%C3%A7%C3%A3o%20Iminente.mp4"
     },
-        {
+    {
       "titulo": "Divertida Mente 2",
       "ano": 2024,
       "categoria": "Animação",
@@ -314,8 +314,9 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/k5SB4JPc/images-(22).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Opera%C3%A7%C3%A3o%20Sombra.mp4"
-    },
-    {
+    }
+  ],
+      {
       "titulo": "Duna: Parte Dois",
       "ano": 2024,
       "categoria": "Ficção",
@@ -475,7 +476,9 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/QCctbsqF/aranha.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filme%20hospedagem/Homem-Aranha%20Um%20Novo%20Dia.mp4"
-    }  "series": [
+    }
+  ],
+  "series": [
     {
       "titulo": "Spider-Noir",
       "ano": 2026,
@@ -530,8 +533,8 @@
       ]
     }
   ],
-      "animes": [],
-    "doramas": [
+  "animes": [],
+  "doramas": [
     {
       "titulo": "Cães de Caça",
       "ano": 2023,
@@ -551,4 +554,4 @@
       ]
     }
   ]
-}
+    }
