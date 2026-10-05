@@ -83,11 +83,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"
-    }
-  ]
-    }
-    {
-  "filmes": [
+    },
     {
       "titulo": "Super Mario Galaxy: O Filme",
       "ano": 2026,
@@ -131,13 +127,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Ghostbusters%20Apocalipse%20de%20Gelo.mp4"
     },
     {
-      "titulo": "Megatubarão 2",
-      "ano": 2023,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Megatubar%C3%A3o%202.mp4"
-    },
-    {
       "titulo": "Golpe Explosivo",
       "ano": 2025,
       "categoria": "Ação",
@@ -171,11 +160,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/P5PCgb6Q/images-(20).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Fogo%20Contra%20Fogo.mp4"
-    }
-  ]
-    }
-{
-  "filmes": [
+    },
     {
       "titulo": "Godzilla e Kong: O Novo Império",
       "ano": 2024,
@@ -237,7 +222,7 @@
       "ano": 2023,
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/yxrT8B2M/20230719-as-tartarugas-ninja-caos-mutante-papo-de-cinema-cartaz-(1).webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/As%20Tartarugas%20Ninjas%20Caos%20Mutante.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/As%20Tartarugas%20Ninjas%20Caos%20Mutante.mp4"
     },
     {
       "titulo": "Top Gun: Maverick",
@@ -259,11 +244,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Acerto%20de%20Sangue.mp4"
-    }
-  ]
-}
-{
-  "filmes": [
+    },
     {
       "titulo": "O Justiceiro: Uma Última Morte",
       "ano": 2025,
@@ -347,11 +328,7 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Destrui%C3%A7%C3%A3o%20Iminente.mp4"
-    }
-  ]
-}
-{
-  "filmes": [
+    },
     {
       "titulo": "Divertida Mente 2",
       "ano": 2024,
@@ -435,11 +412,7 @@
       "categoria": "Comédia",
       "capa": "https://i.postimg.cc/C1MPMwvY/images-(31).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Barbie.mp4"
-    }
-  ]
-}
-{
-  "filmes": [
+    },
     {
       "titulo": "Super Mario Bros. O Filme",
       "ano": 2023,
@@ -516,13 +489,6 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Thunderbolts.mp4"
-    },
-    {
-      "titulo": "Star Wars: O Mandaloriano e Grogu",
-      "ano": 2026,
-      "categoria": "Ficção/Aventura",
-      "capa": "https://i.postimg.cc/02qdmdtM/images-(51).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20tavin/Star%20Wars%20O%20Mandaloriano%20e%20Grogu.mp4"
     }
   ],
   "series": [
@@ -539,59 +505,8 @@
               "numero": 1,
               "titulo": "Episódio 1",
               "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E01.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E02.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E03.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E04.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E05.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E06.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E07.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/Spider-Noir%20S01E08.mp4"
             }
           ]
-        }
-      ]
-    }
-  ],
-  "animes": [],
-  "doramas": [
-    {
-      "titulo": "Cães de Caça",
-      "ano": 2023,
-      "categoria": "Ação/Drama",
-      "capa": "https://i.postimg.cc/vm7VVvx5/1217360.jpg",
-      "episodios": [
-        {
-          "numero": 1,
-          "titulo": "Episódio 1",
-          "video": "https://wolf-channel-cdn.b-cdn.net/S%C3%A9ries/C%C3%A3es%20de%20Ca%C3%A7a%20S01E01.mp4"
         }
       ]
     }
