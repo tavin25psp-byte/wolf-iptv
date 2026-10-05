@@ -57,13 +57,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4"
     },
     {
-      "titulo": "A Morte de Robin Hood",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/J7fYDKXH/images-(17).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/A%20Morte%20de%20Robin%20Hood.mp4"
-    },
-    {
       "titulo": "Céu em Fúria",
       "ano": 2026,
       "categoria": "Ação",
@@ -197,13 +190,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Fogo%20Contra%20Fogo.mp4"
     },
     {
-      "titulo": "Godzilla e Kong: O Novo Império",
-      "ano": 2024,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/T1RZTWkd/71I740ERKa-L-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Godzilla%20e%20Kong%20O%20Novo%20Imp%C3%A9rio.mp4"
-    },
-    {
       "titulo": "Mortal Kombat 2",
       "ano": 2025,
       "categoria": "Ação",
@@ -236,7 +222,7 @@
       "ano": 2023,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Aquaman%202%20O%20Reino%20Perdido.mp4"
     },
     {
       "titulo": "Jogos Mortais X",
@@ -412,13 +398,6 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/mgw3xmpz/917q7O0TJL.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4"
-    },
-    {
-      "titulo": "O Poço 2",
-      "ano": 2024,
-      "categoria": "Suspense",
-      "capa": "https://i.postimg.cc/.../poco2.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Po%C3%A7o%202.mp4"
     },
     {
       "titulo": "Pânico 7",
