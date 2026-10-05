@@ -22,11 +22,46 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Justiceiro%20Uma%20%C3%9Altima%20Morte.mp4"
     },
     {
-      "titulo": "Jack Ryan de Tom Clancy: Guerra Fantasma",
+      "titulo": "Jack Ryan: Guerra Fantasma",
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/VNjhYb6W/images-(49).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Jack%20Ryan%20Guerra%20Fantasma.mp4"
+    },
+    {
+      "titulo": "Armadilha Mortal",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/.../armadilha.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Armadilha%20Mortal.mp4"
+    },
+    {
+      "titulo": "Na Zona Cinzenta",
+      "ano": 2024,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/.../zona.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Na%20Zona%20Cinzenta.mp4"
+    },
+    {
+      "titulo": "O Poço 2",
+      "ano": 2024,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/.../poco2.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Po%C3%A7o%202.mp4"
+    },
+    {
+      "titulo": "Resident Evil",
+      "ano": 2002,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
+    },
+    {
+      "titulo": "A Sociedade dos Assassinos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
     },
     {
       "titulo": "Supergirl",
@@ -187,7 +222,7 @@
       "ano": 2019,
       "categoria": "Drama",
       "capa": "https://i.postimg.cc/yWC72Btj/Joker-(2019)-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Coringa%202019.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Coringa.mp4"
     },
     {
       "titulo": "Deadpool & Wolverine",
@@ -209,20 +244,6 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/1zh5qR4V/2523057-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Ca%C3%A7a-Fantasmas%20Apocalipse%20de%20Gelo.mp4"
-    },
-    {
-      "titulo": "Resident Evil",
-      "ano": 2002,
-      "categoria": "Terror",
-      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
-    },
-    {
-      "titulo": "A Sociedade dos Assassinos",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
     },
     {
       "titulo": "Jurassic World: Recomeço",
@@ -260,11 +281,11 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Golpe%20Explosivo.mp4"
     },
     {
-      "titulo": "Teen Wolf: O Filme",
-      "ano": 2023,
+      "titulo": "Blades of The Guardians",
+      "ano": 2025,
       "categoria": "Ação",
-      "capa": "https://i.postimg.cc/501RTBcx/1193847-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Teen%20Wolf%20O%20Filme.mp4"
+      "capa": "https://i.postimg.cc/kgp9wwT0/MV5BZTM5MTY3NjQtOWUxYS00YzJiLWJiZGEtMDZmZWI3ZGZkN2MwXkEyXkFqcGcV1-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes/Blades%20of%20The%20Guardians.mp4"
     },
     {
       "titulo": "Venom: A Última Rodada",
