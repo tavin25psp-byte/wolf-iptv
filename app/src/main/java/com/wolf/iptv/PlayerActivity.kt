@@ -1,12 +1,14 @@
 package com.wolf.iptv
 
 import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -16,6 +18,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.MimeTypes
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
+import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
@@ -53,6 +56,13 @@ class PlayerActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Mantém a tela ligada (evita protetor de tela / tela apagando).
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+
+        // Fundo da janela preto: se a superfície do vídeo recriar,
+        // não aparece a imagem de fundo do tema do app.
+        window.setBackgroundDrawable(ColorDrawable(Color.BLACK))
+
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_FULLSCREEN or
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
@@ -72,6 +82,7 @@ class PlayerActivity : AppCompatActivity() {
     private fun criarInterface() {
 
         container = FrameLayout(this)
+        container.setBackgroundColor(Color.BLACK)
 
         playerView = PlayerView(this)
 
@@ -80,7 +91,11 @@ class PlayerActivity : AppCompatActivity() {
 
         // Evita a tela de fundo aparecer quando o player
         // estiver carregando ou recriando a superfície.
-        playerView.setShutterBackgroundColor(Color.TRANSPARENT)
+        playerView.setShutterBackgroundColor(Color.BLACK)
+
+        // Mostra o círculo de carregando quando está buffering,
+        // pra diferenciar de pausa.
+        playerView.setShowBuffering(PlayerView.SHOW_BUFFERING_ALWAYS)
 
         // Mantém o conteúdo do vídeo quando o player é resetado.
         playerView.setKeepContentOnPlayerReset(true)
@@ -562,6 +577,16 @@ class PlayerActivity : AppCompatActivity() {
 
             player =
                 ExoPlayer.Builder(this)
+                    .setLoadControl(
+                        DefaultLoadControl.Builder()
+                            .setBufferDurationsMs(
+                                30_000,
+                                120_000,
+                                2_500,
+                                5_000
+                            )
+                            .build()
+                    )
                     .build()
 
             playerView.player =
