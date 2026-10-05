@@ -12,7 +12,7 @@
       "ano": 2025,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Fim%20da%20Rua.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/O%20Fim%20da%20Rua.mp4"
     },
     {
       "titulo": "Pinóquio",
@@ -71,6 +71,34 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Avatar%20O%20Caminho%20da%20%C3%81gua.mp4"
     },
     {
+      "titulo": "Supergirl",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/Z5L1fCgF/images-(38).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Supergirl.mp4"
+    },
+    {
+      "titulo": "Quarteto Fantástico: Primeiros Passos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"
+    },
+    {
+      "titulo": "Super Mario Galaxy: O Filme",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
+    },
+    {
+      "titulo": "Sonic 2: O Filme",
+      "ano": 2022,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/VkMCSkzP/images-(16).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Sonic%202%20O%20Filme.mp4"
+    },
+    {
       "titulo": "A Pequena Sereia",
       "ano": 2023,
       "categoria": "Fantasia",
@@ -99,39 +127,165 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Ghostbusters%20Apocalipse%20de%20Gelo.mp4"
     },
     {
-      "titulo": "Supergirl",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/Z5L1fCgF/images-(38).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Supergirl.mp4"
-    },
-    {
-      "titulo": "Quarteto Fantástico: Primeiros Passos",
+      "titulo": "Golpe Explosivo",
       "ano": 2025,
       "categoria": "Ação",
-      "capa": "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4"
+      "capa": "https://i.postimg.cc/HnD0xZNY/images-(19).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4"
     },
     {
-      "titulo": "Super Mario Galaxy: O Filme",
-      "ano": 2026,
+      "titulo": "Hotel Transilvânia: Transformonstrão",
+      "ano": 2024,
       "categoria": "Animação",
-      "capa": "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4"
+      "capa": "https://i.postimg.cc/.../hotel.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Hotel%20Transilv%C3%A2nia%20Transformonstr%C3%A3o.mp4"
     },
     {
-      "titulo": "Sonic 2: O Filme",
-      "ano": 2022,
+      "titulo": "Teen Wolf: O Filme",
+      "ano": 2023,
       "categoria": "Aventura",
-      "capa": "https://i.postimg.cc/VkMCSkzP/images-(16).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Sonic%202%20O%20Filme.mp4"
+      "capa": "https://i.postimg.cc/.../teenwolf.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Teen%20Wolf%20O%20Filme.mp4"
     },
     {
-      "titulo": "Todo Mundo em Pânico 4",
-      "ano": 2006,
-      "categoria": "Comédia",
-      "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico%204.mp4"
+      "titulo": "Venom: A Última Rodada",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/76GM6jnH/sony-banner-venom-1400x2100.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Venom%20A%20%C3%9Altima%20Rodada.mp4"
+    },
+    {
+      "titulo": "Fogo Contra Fogo",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/P5PCgb6Q/images-(20).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Fogo%20Contra%20Fogo.mp4"
+    },
+    {
+      "titulo": "Godzilla e Kong: O Novo Império",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/T1RZTWkd/71I740ERKa-L-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Godzilla%20e%20Kong%20O%20Novo%20Imp%C3%A9rio.mp4"
+    },
+    {
+      "titulo": "Mortal Kombat 2",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/ZRxyK7Fh/images-(13).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Mortal%20Kombat%202.mp4"
+    },
+    {
+      "titulo": "Operação Sombra",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/k5SB4JPc/images-(22).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"
+    },
+    {
+      "titulo": "Duna: Parte Dois",
+      "ano": 2024,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/02DvmQy5/images-(28).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Duna%20Parte%20Dois.mp4"
+    },
+    {
+      "titulo": "O Projeto Adam",
+      "ano": 2022,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/rp8T2fm3/images-(15).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/O%20Projeto%20Adam.mp4"
+    },
+    {
+      "titulo": "Aquaman 2: O Reino Perdido",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"
+    },
+    {
+      "titulo": "Jogos Mortais X",
+      "ano": 2023,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/fRQwgdrH/images-(29).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Jogos%20Mortais%20X.mp4"
+    },
+    {
+      "titulo": "Morbius",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/.../morbius.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Morbius.mp4"
+    },
+    {
+      "titulo": "As Tartarugas Ninja: Caos Mutante",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/yxrT8B2M/20230719-as-tartarugas-ninja-caos-mutante-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/As%20Tartarugas%20Ninjas%20Caos%20Mutante.mp4"
+    },
+    {
+      "titulo": "Top Gun: Maverick",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Top%20Gun%20Maverick.mp4"
+    },
+    {
+      "titulo": "O Mundo Depois de Nós",
+      "ano": 2023,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/KYrTcZy8/images-(43).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4"
+    },
+    {
+      "titulo": "Acerto de Sangue",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Acerto%20de%20Sangue.mp4"
+    },
+    {
+      "titulo": "O Justiceiro: Uma Última Morte",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/X74Y3wYK/images-(45).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Justiceiro%20Uma%20%C3%9Altima%20Morte.mp4"
+    },
+    {
+      "titulo": "Jack Ryan: Guerra Fantasma",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VNjhYb6W/images-(49).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Jack%20Ryan%20Guerra%20Fantasma.mp4"
+    },
+    {
+      "titulo": "Resident Evil",
+      "ano": 2002,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
+    },
+    {
+      "titulo": "A Sociedade dos Assassinos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
+    },
+    {
+      "titulo": "Armadilha Mortal",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/.../armadilha.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Armadilha%20Mortal.mp4"
+    },
+    {
+      "titulo": "Na Zona Cinzenta",
+      "ano": 2024,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/.../zona.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Na%20Zona%20Cinzenta.mp4"
     },
     {
       "titulo": "Bad Boys: Até o Fim",
@@ -239,172 +393,11 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
     },
     {
-      "titulo": "O Mundo Depois de Nós",
-      "ano": 2023,
-      "categoria": "Suspense",
-      "capa": "https://i.postimg.cc/KYrTcZy8/images-(43).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4"
-    },
-    {
-      "titulo": "Acerto de Sangue",
-      "ano": 2023,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Acerto%20de%20Sangue.mp4"
-    },
-    {
-      "titulo": "O Justiceiro: Uma Última Morte",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/X74Y3wYK/images-(45).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/O%20Justiceiro%20Uma%20%C3%9Altima%20Morte.mp4"
-    },
-    {
-      "titulo": "Jack Ryan: Guerra Fantasma",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/VNjhYb6W/images-(49).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Jack%20Ryan%20Guerra%20Fantasma.mp4"
-    },
-    {
-      "titulo": "Resident Evil",
-      "ano": 2002,
-      "categoria": "Terror",
-      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
-    },
-    {
-      "titulo": "A Sociedade dos Assassinos",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/A%20Sociedade%20dos%20Assassinos.mp4"
-    },
-    {
-      "titulo": "Armadilha Mortal",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/.../armadilha.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Armadilha%20Mortal.mp4"
-    },
-    {
-      "titulo": "Na Zona Cinzenta",
-      "ano": 2024,
-      "categoria": "Drama",
-      "capa": "https://i.postimg.cc/.../zona.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Na%20Zona%20Cinzenta.mp4"
-    },
-    {
       "titulo": "Todo Mundo em Pânico 4",
       "ano": 2006,
       "categoria": "Comédia",
       "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico%204.mp4"
-    },
-    {
-      "titulo": "Golpe Explosivo",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/HnD0xZNY/images-(19).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Golpe%20Explosivo.mp4"
-    },
-    {
-      "titulo": "Venom: A Última Rodada",
-      "ano": 2024,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/76GM6jnH/sony-banner-venom-1400x2100.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Venom%20A%20%C3%9Altima%20Rodada.mp4"
-    },
-    {
-      "titulo": "Fogo Contra Fogo",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/P5PCgb6Q/images-(20).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Fogo%20Contra%20Fogo.mp4"
-    },
-    {
-      "titulo": "Godzilla e Kong: O Novo Império",
-      "ano": 2024,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/T1RZTWkd/71I740ERKa-L-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Godzilla%20e%20Kong%20O%20Novo%20Imp%C3%A9rio.mp4"
-    },
-    {
-      "titulo": "Missão: Impossível – O Acerto Final",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/bvbwwTSQ/images-(26).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Miss%C3%A3o%20Imposs%C3%ADvel%20O%20Acerto%20Final.mp4"
-    },
-    {
-      "titulo": "Mortal Kombat 2",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/ZRxyK7Fh/images-(13).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mortal%20Kombat%202.mp4"
-    },
-    {
-      "titulo": "Operação Sombra",
-      "ano": 2025,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/k5SB4JPc/images-(22).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4"
-    },
-    {
-      "titulo": "Duna: Parte Dois",
-      "ano": 2024,
-      "categoria": "Ficção",
-      "capa": "https://i.postimg.cc/02DvmQy5/images-(28).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Duna%20Parte%20Dois.mp4"
-    },
-    {
-      "titulo": "O Projeto Adam",
-      "ano": 2022,
-      "categoria": "Ficção",
-      "capa": "https://i.postimg.cc/rp8T2fm3/images-(15).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/O%20Projeto%20Adam.mp4"
-    },
-    {
-      "titulo": "Aquaman 2: O Reino Perdido",
-      "ano": 2023,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Aquaman%202%20O%20Reino%20Perdido.mp4"
-    },
-    {
-      "titulo": "Uncharted: Fora do Mapa",
-      "ano": 2022,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/wvNYhZbd/Uncharted-Official-Poster-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Uncharted%20Fora%20do%20Mapa.mp4"
-    },
-    {
-      "titulo": "Jogos Mortais X",
-      "ano": 2023,
-      "categoria": "Terror",
-      "capa": "https://i.postimg.cc/fRQwgdrH/images-(29).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Jogos%20Mortais%20X.mp4"
-    },
-    {
-      "titulo": "As Tartarugas Ninja: Caos Mutante",
-      "ano": 2023,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/yxrT8B2M/20230719-as-tartarugas-ninja-caos-mutante-papo-de-cinema-cartaz-(1).webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/As%20Tartarugas%20Ninja%20Caos%20Mutante.mp4"
-    },
-    {
-      "titulo": "Top Gun: Maverick",
-      "ano": 2022,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Top%20Gun%20Maverick.mp4"
-    },
-    {
-      "titulo": "Megatubarão 2",
-      "ano": 2023,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/6QwCwyyf/images-(30).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Megatubar%C3%A3o%202.mp4"
     },
     {
       "titulo": "The Flash",
