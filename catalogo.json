@@ -531,6 +531,20 @@
       "categoria": "Ficção",
       "capa": "https://i.postimg.cc/g09TsvXs/images-(71).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Projeto%20Gemini.mp4"
+    },
+    {
+      "titulo": "O Vingador Tóxico",
+      "ano": 2023,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/XqCbXnt1/images-(73).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/O%20Vingador%20T%C3%B3xico.mp4"
+    },
+    {
+      "titulo": "Animais Fantásticos: Os Segredos de Dumbledore",
+      "ano": 2022,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/Hns6Pz9t/20220406-animais-fantasticos-os-segredos-de-dumbledore-papo-de-cinema-crtaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Animais%20Fant%C3%A1sticos%20Os%20Segredos%20de%20Dumbledore.mp4"
     }
   ]
 }
