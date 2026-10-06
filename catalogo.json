@@ -615,6 +615,76 @@
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/nh8K8G4J/Toy-Story-1995-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Toy%20Story%20.mpeg"
+    },
+    {
+      "titulo": "Alvin e os Esquilos",
+      "ano": 2007,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/mZmThT84/20394609.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%20.mpeg"
+    },
+    {
+      "titulo": "Alvin e os Esquilos 2",
+      "ano": 2009,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/HLgqBNB6/images-(59).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%202.mpeg"
+    },
+    {
+      "titulo": "Alvin e os Esquilos 3",
+      "ano": 2011,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/BbL7q5MV/images-(61).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%203.mpeg"
+    },
+    {
+      "titulo": "Alvin e os Esquilos na Estrada",
+      "ano": 2015,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/0jSgtqRF/090865-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%20na%20estrada%20.mpeg"
+    },
+    {
+      "titulo": "Carros",
+      "ano": 2006,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/hP4bb1Lt/e57d8af5744277576067a5b04a952db1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Carros.mpeg"
+    },
+    {
+      "titulo": "Carros 2",
+      "ano": 2011,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/sDB1rBy7/Carros-2-poster.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Carros%202%20.mpeg"
+    },
+    {
+      "titulo": "Carros 3",
+      "ano": 2017,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/nLdCxqsk/Carros-3-(2017)-P-ster.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Carros%203%20.mpeg"
+    },
+    {
+      "titulo": "Deadpool",
+      "ano": 2016,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/k5kPW5zL/images-(62).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Deadpool.mpeg"
+    },
+    {
+      "titulo": "Deadpool 2",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzCZJYnj/images-(68).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Deadpool%202.mpeg"
+    },
+    {
+      "titulo": "Sonic: O Filme",
+      "ano": 2020,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/d1bdMGXp/Sonic-the-Hedgehog-2019-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Sonic.mpeg"
     }
   ]
 }
