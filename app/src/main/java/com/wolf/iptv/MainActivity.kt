@@ -73,6 +73,7 @@ class MainActivity : AppCompatActivity() {
     private val ARQUIVOS_SERIES = listOf("series.json", "serie.json", "s%C3%A9rie.json")
     private val ARQUIVOS_DORAMAS = listOf("doramas.json", "Doramas.json")
     private val ARQUIVOS_ANIMES = listOf("animes.json", "anime.json", "Animes.json", "Anime.json")
+    private val ARQUIVOS_DESENHOS = listOf("desenho.json", "desenhos.json", "Desenho.json", "Desenhos.json")
 
     private val activityScope = CoroutineScope(Dispatchers.Main + Job())
 
@@ -107,6 +108,7 @@ class MainActivity : AppCompatActivity() {
     private val series = mutableListOf<Serie>()
     private val doramas = mutableListOf<Serie>()
     private val animes = mutableListOf<Serie>()
+    private val desenhos = mutableListOf<Filme>()
 
     // Guarda de qual lista (séries, doramas ou animes) o usuário veio,
     // pra o botão voltar retornar pra lista certa.
@@ -397,50 +399,43 @@ class MainActivity : AppCompatActivity() {
     }
         private fun carregarCatalogo() {
         activityScope.launch(Dispatchers.IO) {
+            var conexao: HttpURLConnection? = null
             try {
-                // O raw.githubusercontent.com pode entregar uma resposta em cache/truncada
-                // em algumas redes. Primeiro tentamos a API de conteúdo do GitHub, que
-                // devolve o arquivo inteiro para repositórios públicos.
-                val resposta = baixarCatalogoCompleto()
+                conexao = URL(CATALOGO_URL).openConnection() as HttpURLConnection
+                conexao.connectTimeout = 20000
+                conexao.readTimeout = 20000
+                conexao.requestMethod = "GET"
+                conexao.doInput = true
+                conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
+                conexao.connect()
 
-                if (resposta.isBlank()) {
-                    throw Exception("Catálogo vazio")
-                }
+                if (conexao.responseCode !in 200..299) throw Exception("HTTP ${conexao.responseCode}")
 
-                val textoCatalogo = resposta.trim()
-                if (!textoCatalogo.startsWith("{") || !textoCatalogo.endsWith("}")) {
-                    throw Exception("Catálogo recebido incompleto (${textoCatalogo.length} caracteres)")
-                }
+                val resposta = conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+                if (resposta.isBlank()) throw Exception("Catálogo vazio")
 
-                val raizJson = JSONObject(textoCatalogo)
-                val listaFilmes = raizJson.optJSONArray("filmes")
-                    ?: throw Exception("O catálogo não possui a lista 'filmes'")
+                val raizJson = JSONObject(resposta.trim())
 
                 val novosFilmes = ArrayList<Filme>()
-                for (i in 0 until listaFilmes.length()) {
-                    try {
-                        val item = listaFilmes.getJSONObject(i)
-                        val titulo = item.optString("titulo", "")
-                        val ano = item.optInt("ano", 0)
-                        val categoria = item.optString("categoria", "")
-                        val capa = item.optString("capa", "")
-                        val video = item.optString("video", "")
+                val listaFilmes = raizJson.optJSONArray("filmes")
+                if (listaFilmes != null) {
+                    for (i in 0 until listaFilmes.length()) {
+                        try {
+                            val item = listaFilmes.getJSONObject(i)
+                            val titulo = item.optString("titulo", "")
+                            val ano = item.optInt("ano", 0)
+                            val categoria = item.optString("categoria", "")
+                            val capa = item.optString("capa", "")
+                            val video = item.optString("video", "")
 
-                        if (titulo.isNotBlank()) {
-                            novosFilmes.add(Filme(titulo, ano, categoria, capa, video))
-                        }
-                    } catch (_: Exception) {
+                            if (titulo.isNotBlank()) {
+                                novosFilmes.add(Filme(titulo, ano, categoria, capa, video))
+                            }
+                        } catch (_: Exception) {}
                     }
                 }
 
-                if (novosFilmes.isEmpty()) {
-                    throw Exception("Nenhum filme válido foi encontrado no catálogo")
-                }
-
-                novosFilmes.sortWith(
-                    compareByDescending<Filme> { it.ano }
-                        .thenBy { it.titulo.lowercase() }
-                )
+                novosFilmes.sortWith(compareByDescending<Filme> { it.ano }.thenBy { it.titulo.lowercase() })
 
                 fun lerSeries(array: JSONArray?): ArrayList<Serie> {
                     val resultado = ArrayList<Serie>()
@@ -474,23 +469,50 @@ class MainActivity : AppCompatActivity() {
                                                             video = objetoEpisodio.optString("video", "")
                                                         )
                                                     )
-                                                } catch (_: Exception) {
-                                                }
+                                                } catch (_: Exception) {}
                                             }
                                         }
 
                                         temporadas.add(Temporada(numeroTemporada, episodios))
-                                    } catch (_: Exception) {
-                                    }
+                                    } catch (_: Exception) {}
                                 }
                             }
 
                             if (titulo.isNotBlank()) {
                                 resultado.add(Serie(titulo, categoria, capa, temporadas))
                             }
-                        } catch (_: Exception) {
-                        }
+                        } catch (_: Exception) {}
                     }
+                    return resultado
+                }
+
+                fun lerDesenhos(texto: String?): ArrayList<Filme> {
+                    val resultado = ArrayList<Filme>()
+                    if (texto.isNullOrBlank()) return resultado
+
+                    val array = extrairArray(texto, "desenhos")
+                        ?: extrairArray(texto, "desenho")
+                        ?: return resultado
+
+                    for (i in 0 until array.length()) {
+                        try {
+                            val item = array.getJSONObject(i)
+                            val titulo = item.optString("titulo", "")
+                            val ano = item.optInt("ano", 0)
+                            val categoria = item.optString("categoria", "")
+                            val capa = item.optString("capa", "")
+                            val video = item.optString("video", "")
+
+                            if (titulo.isNotBlank()) {
+                                resultado.add(Filme(titulo, ano, categoria, capa, video))
+                            }
+                        } catch (_: Exception) {}
+                    }
+
+                    resultado.sortWith(
+                        compareByDescending<Filme> { it.ano }
+                            .thenBy { it.titulo.lowercase() }
+                    )
                     return resultado
                 }
 
@@ -501,6 +523,7 @@ class MainActivity : AppCompatActivity() {
                 val textoSeries = baixarPrimeiro(ARQUIVOS_SERIES)
                 val textoDoramas = baixarPrimeiro(ARQUIVOS_DORAMAS)
                 val textoAnimes = baixarPrimeiro(ARQUIVOS_ANIMES)
+                val textoDesenhos = baixarPrimeiro(ARQUIVOS_DESENHOS)
 
                 val novasSeries = lerSeries(
                     extrairArray(textoSeries, "series") ?: raizJson.optJSONArray("series")
@@ -511,6 +534,7 @@ class MainActivity : AppCompatActivity() {
                 val novosAnimes = lerSeries(
                     extrairArray(textoAnimes, "animes") ?: raizJson.optJSONArray("animes")
                 )
+                val novosDesenhos = lerDesenhos(textoDesenhos)
 
                 withContext(Dispatchers.Main) {
                     filmes.clear()
@@ -521,21 +545,25 @@ class MainActivity : AppCompatActivity() {
                     doramas.addAll(novosDoramas)
                     animes.clear()
                     animes.addAll(novosAnimes)
+                    desenhos.clear()
+                    desenhos.addAll(novosDesenhos)
 
                     mostrarListaCards(filmes)
 
                     Toast.makeText(
                         this@MainActivity,
-                        "Catálogo carregado: ${filmes.size} filmes, ${series.size} séries, ${doramas.size} doramas e ${animes.size} animes",
+                        "Catálogo carregado: ${filmes.size} filmes, ${series.size} séries, ${doramas.size} doramas, ${animes.size} animes e ${desenhos.size} desenhos",
                         Toast.LENGTH_LONG
                     ).show()
                 }
+
             } catch (erro: Exception) {
                 withContext(Dispatchers.Main) {
                     filmes.clear()
                     series.clear()
                     doramas.clear()
                     animes.clear()
+                    desenhos.clear()
                     conteudo.removeAllViews()
 
                     val erroTexto = TextView(this@MainActivity).apply {
@@ -547,126 +575,31 @@ class MainActivity : AppCompatActivity() {
                     }
                     conteudo.addView(erroTexto)
                 }
+            } finally {
+                conexao?.disconnect()
             }
         }
-    }
-
-    private fun baixarCatalogoCompleto(): String {
-        var ultimaExcecao: Exception? = null
-
-        repeat(3) { tentativa ->
-            try {
-                // Caminho principal: GitHub Contents API.
-                val apiUrl =
-                    "https://api.github.com/repos/tavin25psp-byte/wolf-iptv/contents/catalogo.json?ref=main"
-
-                val respostaApi = baixarHttpTexto(
-                    apiUrl,
-                    mapOf(
-                        "Accept" to "application/vnd.github.raw+json",
-                        "Cache-Control" to "no-cache",
-                        "Pragma" to "no-cache"
-                    )
-                )
-
-                validarCatalogo(respostaApi)
-                return respostaApi
-            } catch (e: Exception) {
-                ultimaExcecao = e
-            }
-
-            try {
-                // Fallback: raw do GitHub com cache-buster e sem compressão.
-                val rawUrl = "$CATALOGO_URL?v=${System.currentTimeMillis()}_$tentativa"
-                val respostaRaw = baixarHttpTexto(
-                    rawUrl,
-                    mapOf(
-                        "Accept" to "application/json",
-                        "Cache-Control" to "no-cache, no-store",
-                        "Pragma" to "no-cache",
-                        "Accept-Encoding" to "identity"
-                    )
-                )
-
-                validarCatalogo(respostaRaw)
-                return respostaRaw
-            } catch (e: Exception) {
-                ultimaExcecao = e
-            }
-
-            Thread.sleep(500L)
         }
-
-        throw ultimaExcecao ?: Exception("Não foi possível baixar o catálogo")
-    }
-
-    private fun baixarHttpTexto(url: String, cabecalhos: Map<String, String> = emptyMap()): String {
+            private fun baixarTexto(url: String): String? {
         var conexao: HttpURLConnection? = null
         return try {
             conexao = URL(url).openConnection() as HttpURLConnection
             conexao.connectTimeout = 20000
-            conexao.readTimeout = 30000
+            conexao.readTimeout = 20000
             conexao.requestMethod = "GET"
             conexao.doInput = true
-            conexao.useCaches = false
-            conexao.instanceFollowRedirects = true
-            conexao.setRequestProperty("User-Agent", "WOLF IPTV Android")
-
-            cabecalhos.forEach { (chave, valor) ->
-                conexao.setRequestProperty(chave, valor)
-            }
-
+            conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
             conexao.connect()
 
             if (conexao.responseCode !in 200..299) {
-                throw Exception("HTTP ${conexao.responseCode}")
-            }
-
-            conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
-        } finally {
-            conexao?.disconnect()
-        }
-    }
-
-    private fun validarCatalogo(texto: String) {
-        val limpo = texto.trim()
-
-        if (limpo.isBlank()) {
-            throw Exception("Catálogo vazio")
-        }
-
-        if (!limpo.startsWith("{") || !limpo.endsWith("}")) {
-            throw Exception("Catálogo recebido incompleto (${limpo.length} caracteres)")
-        }
-
-        val json = JSONObject(limpo)
-        val filmes = json.optJSONArray("filmes")
-            ?: throw Exception("Resposta recebida não contém 'filmes'")
-
-        if (filmes.length() == 0) {
-            throw Exception("A lista 'filmes' está vazia")
-        }
-    }
-
-    private fun baixarTexto(url: String): String? {
-        return try {
-            val urlSemCache = if (url.contains("?")) {
-                "$url&v=${System.currentTimeMillis()}"
+                null
             } else {
-                "$url?v=${System.currentTimeMillis()}"
+                conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
             }
-
-            baixarHttpTexto(
-                urlSemCache,
-                mapOf(
-                    "Accept" to "application/json",
-                    "Cache-Control" to "no-cache, no-store",
-                    "Pragma" to "no-cache",
-                    "Accept-Encoding" to "identity"
-                )
-            )
         } catch (_: Exception) {
             null
+        } finally {
+            conexao?.disconnect()
         }
     }
 
@@ -1317,6 +1250,23 @@ class MainActivity : AppCompatActivity() {
             adicionarItemMenu("${iconesDoramas[i]}  $cat ($conta)") {
                 fecharMenu()
                 mostrarListaSeries(doramas.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) })
+            }
+        }
+
+        adicionarTituloMenu("DESENHOS")
+        adicionarItemMenu("🧸  Todos os desenhos (${desenhos.size})") {
+            fecharMenu()
+            mostrarListaCards(desenhos)
+        }
+
+        val categoriasDesenhos = listOf("Ação", "Aventura", "Animação", "Comédia", "Drama", "Terror", "Fantasia")
+        val iconesDesenhos = listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "✨")
+
+        categoriasDesenhos.forEachIndexed { i, cat ->
+            val conta = desenhos.count { normalizarTexto(it.categoria) == normalizarTexto(cat) }
+            adicionarItemMenu("${iconesDesenhos[i]}  $cat ($conta)") {
+                fecharMenu()
+                mostrarListaCards(desenhos.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) })
             }
         }
 
