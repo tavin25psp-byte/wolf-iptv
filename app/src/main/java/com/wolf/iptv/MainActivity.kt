@@ -63,8 +63,16 @@ data class Serie(
 
 class MainActivity : AppCompatActivity() {
 
-    private val CATALOGO_URL =
-        "https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/main/catalogo.json"
+    private val BASE_URL =
+        "https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/main/"
+
+    private val CATALOGO_URL = BASE_URL + "catalogo.json"
+
+    // Nomes possíveis dos arquivos no GitHub (ele tenta um por um).
+    // Se você renomear o arquivo, é só colocar o nome certo aqui.
+    private val ARQUIVOS_SERIES = listOf("series.json", "serie.json", "s%C3%A9rie.json")
+    private val ARQUIVOS_DORAMAS = listOf("doramas.json", "Doramas.json")
+    private val ARQUIVOS_ANIMES = listOf("animes.json", "Animes.json")
 
     private val activityScope = CoroutineScope(Dispatchers.Main + Job())
 
@@ -99,6 +107,10 @@ class MainActivity : AppCompatActivity() {
     private val series = mutableListOf<Serie>()
     private val doramas = mutableListOf<Serie>()
     private val animes = mutableListOf<Serie>()
+
+    // Guarda de qual lista (séries, doramas ou animes) o usuário veio,
+    // pra o botão voltar retornar pra lista certa.
+    private var listaSeriesAtual: List<Serie> = emptyList()
 
     private val cardsAtuais = mutableListOf<View>()
     private var indiceCardAtual = 0
@@ -472,9 +484,23 @@ class MainActivity : AppCompatActivity() {
                     return resultado
                 }
 
-                val novasSeries = lerSeries(raizJson.optJSONArray("series"))
-                val novosDoramas = lerSeries(raizJson.optJSONArray("doramas"))
-                val novosAnimes = lerSeries(raizJson.optJSONArray("animes"))
+                // Séries, doramas e animes vêm de arquivos separados.
+                // Se algum arquivo falhar, o resto do catálogo continua funcionando.
+                // Se ainda existir "series"/"doramas"/"animes" dentro do catalogo.json,
+                // também é lido (compatível com o formato antigo).
+                val textoSeries = baixarPrimeiro(ARQUIVOS_SERIES)
+                val textoDoramas = baixarPrimeiro(ARQUIVOS_DORAMAS)
+                val textoAnimes = baixarPrimeiro(ARQUIVOS_ANIMES)
+
+                val novasSeries = lerSeries(
+                    extrairArray(textoSeries, "series") ?: raizJson.optJSONArray("series")
+                )
+                val novosDoramas = lerSeries(
+                    extrairArray(textoDoramas, "doramas") ?: raizJson.optJSONArray("doramas")
+                )
+                val novosAnimes = lerSeries(
+                    extrairArray(textoAnimes, "animes") ?: raizJson.optJSONArray("animes")
+                )
 
                 withContext(Dispatchers.Main) {
                     filmes.clear()
@@ -517,7 +543,50 @@ class MainActivity : AppCompatActivity() {
             }
         }
         }
-            private fun mostrarListaCards(lista: List<Filme>) {
+            private fun baixarTexto(url: String): String? {
+        var conexao: HttpURLConnection? = null
+        return try {
+            conexao = URL(url).openConnection() as HttpURLConnection
+            conexao.connectTimeout = 20000
+            conexao.readTimeout = 20000
+            conexao.requestMethod = "GET"
+            conexao.doInput = true
+            conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
+            conexao.connect()
+
+            if (conexao.responseCode !in 200..299) {
+                null
+            } else {
+                conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+            }
+        } catch (_: Exception) {
+            null
+        } finally {
+            conexao?.disconnect()
+        }
+    }
+
+    private fun baixarPrimeiro(nomes: List<String>): String? {
+        for (nome in nomes) {
+            val texto = baixarTexto(BASE_URL + nome)
+            if (!texto.isNullOrBlank()) return texto
+        }
+        return null
+    }
+
+    // Aceita o arquivo tanto como { "series": [ ... ] } quanto como [ ... ].
+    private fun extrairArray(texto: String?, chave: String): JSONArray? {
+        if (texto.isNullOrBlank()) return null
+        val limpo = texto.trim()
+        return try {
+            if (limpo.startsWith("[")) JSONArray(limpo)
+            else JSONObject(limpo).optJSONArray(chave)
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    private fun mostrarListaCards(lista: List<Filme>) {
         conteudo.removeAllViews()
         cardsAtuais.clear()
         indiceCardAtual = 0
@@ -634,6 +703,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun mostrarListaSeries(lista: List<Serie>) {
+        listaSeriesAtual = lista
         conteudo.removeAllViews()
         cardsAtuais.clear()
         indiceCardAtual = 0
@@ -734,7 +804,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         card.setOnClickListener {
-            historicoConteudo.add { mostrarListaSeries(series) }
+            val origem = listaSeriesAtual
+            historicoConteudo.add { mostrarListaSeries(origem) }
             mostrarTemporadas(serie)
         }
 
