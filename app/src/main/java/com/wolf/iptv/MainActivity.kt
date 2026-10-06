@@ -397,43 +397,50 @@ class MainActivity : AppCompatActivity() {
     }
         private fun carregarCatalogo() {
         activityScope.launch(Dispatchers.IO) {
-            var conexao: HttpURLConnection? = null
             try {
-                conexao = URL(CATALOGO_URL).openConnection() as HttpURLConnection
-                conexao.connectTimeout = 20000
-                conexao.readTimeout = 20000
-                conexao.requestMethod = "GET"
-                conexao.doInput = true
-                conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
-                conexao.connect()
+                // O raw.githubusercontent.com pode entregar uma resposta em cache/truncada
+                // em algumas redes. Primeiro tentamos a API de conteúdo do GitHub, que
+                // devolve o arquivo inteiro para repositórios públicos.
+                val resposta = baixarCatalogoCompleto()
 
-                if (conexao.responseCode !in 200..299) throw Exception("HTTP ${conexao.responseCode}")
+                if (resposta.isBlank()) {
+                    throw Exception("Catálogo vazio")
+                }
 
-                val resposta = conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
-                if (resposta.isBlank()) throw Exception("Catálogo vazio")
+                val textoCatalogo = resposta.trim()
+                if (!textoCatalogo.startsWith("{") || !textoCatalogo.endsWith("}")) {
+                    throw Exception("Catálogo recebido incompleto (${textoCatalogo.length} caracteres)")
+                }
 
-                val raizJson = JSONObject(resposta.trim())
+                val raizJson = JSONObject(textoCatalogo)
+                val listaFilmes = raizJson.optJSONArray("filmes")
+                    ?: throw Exception("O catálogo não possui a lista 'filmes'")
 
                 val novosFilmes = ArrayList<Filme>()
-                val listaFilmes = raizJson.optJSONArray("filmes")
-                if (listaFilmes != null) {
-                    for (i in 0 until listaFilmes.length()) {
-                        try {
-                            val item = listaFilmes.getJSONObject(i)
-                            val titulo = item.optString("titulo", "")
-                            val ano = item.optInt("ano", 0)
-                            val categoria = item.optString("categoria", "")
-                            val capa = item.optString("capa", "")
-                            val video = item.optString("video", "")
+                for (i in 0 until listaFilmes.length()) {
+                    try {
+                        val item = listaFilmes.getJSONObject(i)
+                        val titulo = item.optString("titulo", "")
+                        val ano = item.optInt("ano", 0)
+                        val categoria = item.optString("categoria", "")
+                        val capa = item.optString("capa", "")
+                        val video = item.optString("video", "")
 
-                            if (titulo.isNotBlank()) {
-                                novosFilmes.add(Filme(titulo, ano, categoria, capa, video))
-                            }
-                        } catch (_: Exception) {}
+                        if (titulo.isNotBlank()) {
+                            novosFilmes.add(Filme(titulo, ano, categoria, capa, video))
+                        }
+                    } catch (_: Exception) {
                     }
                 }
 
-                novosFilmes.sortWith(compareByDescending<Filme> { it.ano }.thenBy { it.titulo.lowercase() })
+                if (novosFilmes.isEmpty()) {
+                    throw Exception("Nenhum filme válido foi encontrado no catálogo")
+                }
+
+                novosFilmes.sortWith(
+                    compareByDescending<Filme> { it.ano }
+                        .thenBy { it.titulo.lowercase() }
+                )
 
                 fun lerSeries(array: JSONArray?): ArrayList<Serie> {
                     val resultado = ArrayList<Serie>()
@@ -467,19 +474,22 @@ class MainActivity : AppCompatActivity() {
                                                             video = objetoEpisodio.optString("video", "")
                                                         )
                                                     )
-                                                } catch (_: Exception) {}
+                                                } catch (_: Exception) {
+                                                }
                                             }
                                         }
 
                                         temporadas.add(Temporada(numeroTemporada, episodios))
-                                    } catch (_: Exception) {}
+                                    } catch (_: Exception) {
+                                    }
                                 }
                             }
 
                             if (titulo.isNotBlank()) {
                                 resultado.add(Serie(titulo, categoria, capa, temporadas))
                             }
-                        } catch (_: Exception) {}
+                        } catch (_: Exception) {
+                        }
                     }
                     return resultado
                 }
@@ -520,7 +530,6 @@ class MainActivity : AppCompatActivity() {
                         Toast.LENGTH_LONG
                     ).show()
                 }
-
             } catch (erro: Exception) {
                 withContext(Dispatchers.Main) {
                     filmes.clear()
@@ -538,31 +547,126 @@ class MainActivity : AppCompatActivity() {
                     }
                     conteudo.addView(erroTexto)
                 }
-            } finally {
-                conexao?.disconnect()
             }
         }
+    }
+
+    private fun baixarCatalogoCompleto(): String {
+        var ultimaExcecao: Exception? = null
+
+        repeat(3) { tentativa ->
+            try {
+                // Caminho principal: GitHub Contents API.
+                val apiUrl =
+                    "https://api.github.com/repos/tavin25psp-byte/wolf-iptv/contents/catalogo.json?ref=main"
+
+                val respostaApi = baixarHttpTexto(
+                    apiUrl,
+                    mapOf(
+                        "Accept" to "application/vnd.github.raw+json",
+                        "Cache-Control" to "no-cache",
+                        "Pragma" to "no-cache"
+                    )
+                )
+
+                validarCatalogo(respostaApi)
+                return respostaApi
+            } catch (e: Exception) {
+                ultimaExcecao = e
+            }
+
+            try {
+                // Fallback: raw do GitHub com cache-buster e sem compressão.
+                val rawUrl = "$CATALOGO_URL?v=${System.currentTimeMillis()}_$tentativa"
+                val respostaRaw = baixarHttpTexto(
+                    rawUrl,
+                    mapOf(
+                        "Accept" to "application/json",
+                        "Cache-Control" to "no-cache, no-store",
+                        "Pragma" to "no-cache",
+                        "Accept-Encoding" to "identity"
+                    )
+                )
+
+                validarCatalogo(respostaRaw)
+                return respostaRaw
+            } catch (e: Exception) {
+                ultimaExcecao = e
+            }
+
+            Thread.sleep(500L)
         }
-            private fun baixarTexto(url: String): String? {
+
+        throw ultimaExcecao ?: Exception("Não foi possível baixar o catálogo")
+    }
+
+    private fun baixarHttpTexto(url: String, cabecalhos: Map<String, String> = emptyMap()): String {
         var conexao: HttpURLConnection? = null
         return try {
             conexao = URL(url).openConnection() as HttpURLConnection
             conexao.connectTimeout = 20000
-            conexao.readTimeout = 20000
+            conexao.readTimeout = 30000
             conexao.requestMethod = "GET"
             conexao.doInput = true
-            conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
+            conexao.useCaches = false
+            conexao.instanceFollowRedirects = true
+            conexao.setRequestProperty("User-Agent", "WOLF IPTV Android")
+
+            cabecalhos.forEach { (chave, valor) ->
+                conexao.setRequestProperty(chave, valor)
+            }
+
             conexao.connect()
 
             if (conexao.responseCode !in 200..299) {
-                null
-            } else {
-                conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+                throw Exception("HTTP ${conexao.responseCode}")
             }
-        } catch (_: Exception) {
-            null
+
+            conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
         } finally {
             conexao?.disconnect()
+        }
+    }
+
+    private fun validarCatalogo(texto: String) {
+        val limpo = texto.trim()
+
+        if (limpo.isBlank()) {
+            throw Exception("Catálogo vazio")
+        }
+
+        if (!limpo.startsWith("{") || !limpo.endsWith("}")) {
+            throw Exception("Catálogo recebido incompleto (${limpo.length} caracteres)")
+        }
+
+        val json = JSONObject(limpo)
+        val filmes = json.optJSONArray("filmes")
+            ?: throw Exception("Resposta recebida não contém 'filmes'")
+
+        if (filmes.length() == 0) {
+            throw Exception("A lista 'filmes' está vazia")
+        }
+    }
+
+    private fun baixarTexto(url: String): String? {
+        return try {
+            val urlSemCache = if (url.contains("?")) {
+                "$url&v=${System.currentTimeMillis()}"
+            } else {
+                "$url?v=${System.currentTimeMillis()}"
+            }
+
+            baixarHttpTexto(
+                urlSemCache,
+                mapOf(
+                    "Accept" to "application/json",
+                    "Cache-Control" to "no-cache, no-store",
+                    "Pragma" to "no-cache",
+                    "Accept-Encoding" to "identity"
+                )
+            )
+        } catch (_: Exception) {
+            null
         }
     }
 
