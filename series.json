@@ -946,6 +946,233 @@
           ]
         }
       ]
+    },
+    {
+      "titulo": "Vis a Vis",
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/1t8VVx9X/images-(59).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%201.mpeg"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%202.mpeg"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%203.mpeg"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%204.mpeg"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%205.mpeg"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%206.mpeg"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%207.mpeg"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%208.mpeg"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%209.mpeg"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%2010.mpeg"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Primeira%20temporada%20s%C3%A9rie%20vis%20a%20vis/EP%2011.mpeg"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%201.mpeg"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%202.mpeg"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%203.mpeg"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%204.mpeg"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%205.mpeg"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%206.mpeg"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%207.mpeg"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%208.mpeg"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%209.mpeg"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%2010.mpeg"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%2011.mpeg"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%2012.mpeg"
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20segunda%20temporada/EP%2013.mpeg"
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%201.mpeg"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%202.mpeg"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%203.mpeg"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%204.mpeg"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%205.mpeg"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%206.mpeg"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%207.mpeg"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20terceira%20temporada/EP%208.mpeg"
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%201.mpeg"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%202.mpeg"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%203.mpeg"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%204.mpeg"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%205.mpeg"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%206.mpeg"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%207.mpeg"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Vis%20a%20vis%20quarta%20temporada/EP%208.mpeg"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
