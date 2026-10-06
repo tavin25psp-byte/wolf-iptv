@@ -146,8 +146,139 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/HnD0xZNY/images-(19).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4"
+    }    {
+      "titulo": "Avatar (2009)",
+      "ano": 2009,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/7LQgchYy/avatar.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Avatar%202009.mp4"
     },
     {
+      "titulo": "Como Mágica",
+      "ano": 2026,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/9z5YzWLn/D-NQ-NP-674318-MLB111141123921-052026-O.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20M%C3%A1gica.mp4"
+    },
+    {
+      "titulo": "Deu a Louca nos Bichos",
+      "ano": 2010,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/0N7W1734/deu-a-louca-nos-bichos.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Deu%20a%20Louca%20nos%20Bichos.mp4"
+    },
+    {
+      "titulo": "A Odisseia",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Odisseia.mp4"
+    },
+    {
+      "titulo": "Thunderbolts",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Thunderbolts.mp4"
+    },
+    {
+      "titulo": "Mestres do Universo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/PfSPYJgc/images-(55).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Mestres%20do%20Universo.mp4"
+    },
+    {
+      "titulo": "TRON: Ares",
+      "ano": 2025,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/hvLctyqf/f5500766daec594aa9f43d7bcce82abadde09318e7a0c3526414bbd0e7e3cdc4-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/TRON%20Ares.mp4"
+    },
+    {
+      "titulo": "Missão Resgate: Vingança",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fLHPs1LC/dbe30e443f3fd796bbf650f720aacf44-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Miss%C3%A3o%20Resgate%20Vingan%C3%A7a.mp4"
+    },
+    {
+      "titulo": "Simbad e o Olho do Tigre",
+      "ano": 1977,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/Kvn8G5Ps/images-(63).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/358847.mp4"
+    },
+    {
+      "titulo": "No Rastro do Perigo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/bwygL3LM/images-(65).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/No%20Rastro%20do%20Perigo.mp4"
+    },
+    {
+      "titulo": "Charlie: O Super Cão",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/0QvFJfvZ/9a8b5217477062b71270db52c3cf42d5-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Charlie%20O%20Super%20C%C3%A3o.mp4"
+    },
+    {
+      "titulo": "Shazam! Fúria dos Deuses",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/kXg3RFK3/images-(69).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Shazam!%20F%C3%BAria%20dos%20Deuses.mp4"
+    },
+    {
+      "titulo": "Projeto Gemini",
+      "ano": 2019,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/g09TsvXs/images-(71).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Projeto%20Gemini.mp4"
+    },
+    {
+      "titulo": "O Vingador Tóxico",
+      "ano": 2023,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/XqCbXnt1/images-(73).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/O%20Vingador%20T%C3%B3xico.mp4"
+    },
+    {
+      "titulo": "Animais Fantásticos: Os Segredos de Dumbledore",
+      "ano": 2022,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/Hns6Pz9t/20220406-animais-fantasticos-os-segredos-de-dumbledore-papo-de-cinema-crtaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Animais%20Fant%C3%A1sticos%20Os%20Segredos%20de%20Dumbledore.mp4"
+    },
+    {
+      "titulo": "Icefall: Saque no Gelo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VkRtgm0b/bov-Ctz-WD9plfpquw-FIa-Zrifu-OKC-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Icefall%20Saque%20no%20Gelo.mp4"
+    },
+    {
+      "titulo": "O Troll da Montanha 2",
+      "ano": 2025,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/HxJ7TMvG/c8c1cc998a762ec4bb71d3f7ed85fc79.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Troll%20da%20Montanha%202.mp4"
+    },
+    {
+      "titulo": "A Morte de Robin Hood",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fT4CVWh3/images-(17).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/The.Death.of.Robin.Hood.2026.1080p.Dublado.mp4"
+    },
+    {
+      "titulo": "It: A Coisa",
+      "ano": 2017,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/2y6xc9Fx/345288-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/It%20A%20Coisa.mpeg"
+    }    {
       "titulo": "Teen Wolf: O Filme",
       "ano": 2023,
       "categoria": "Aventura",
@@ -314,8 +445,7 @@
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/664hkrZ6/treinar.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4"
-    },
-    {
+    }    {
       "titulo": "Coringa: Delírio a Dois",
       "ano": 2024,
       "categoria": "Drama",
@@ -489,90 +619,4 @@
       "categoria": "Ficção",
       "capa": "https://i.postimg.cc/hvLctyqf/f5500766daec594aa9f43d7bcce82abadde09318e7a0c3526414bbd0e7e3cdc4-(1).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/TRON%20Ares.mp4"
-    },
-    {
-      "titulo": "Missão Resgate: Vingança",
-      "ano": 2024,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/fLHPs1LC/dbe30e443f3fd796bbf650f720aacf44-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Miss%C3%A3o%20Resgate%20Vingan%C3%A7a.mp4"
-    },
-    {
-      "titulo": "Simbad e o Olho do Tigre",
-      "ano": 1977,
-      "categoria": "Aventura",
-      "capa": "https://i.postimg.cc/Kvn8G5Ps/images-(63).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/358847.mp4"
-    },
-    {
-      "titulo": "No Rastro do Perigo",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/bwygL3LM/images-(65).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/No%20Rastro%20do%20Perigo.mp4"
-    },
-    {
-      "titulo": "Charlie: O Super Cão",
-      "ano": 2023,
-      "categoria": "Animação",
-      "capa": "https://i.postimg.cc/0QvFJfvZ/9a8b5217477062b71270db52c3cf42d5-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Charlie%20O%20Super%20C%C3%A3o.mp4"
-    },
-    {
-      "titulo": "Shazam! Fúria dos Deuses",
-      "ano": 2023,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/kXg3RFK3/images-(69).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Shazam!%20F%C3%BAria%20dos%20Deuses.mp4"
-    },
-    {
-      "titulo": "Projeto Gemini",
-      "ano": 2019,
-      "categoria": "Ficção",
-      "capa": "https://i.postimg.cc/g09TsvXs/images-(71).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Projeto%20Gemini.mp4"
-    },
-    {
-      "titulo": "O Vingador Tóxico",
-      "ano": 2023,
-      "categoria": "Comédia",
-      "capa": "https://i.postimg.cc/XqCbXnt1/images-(73).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/O%20Vingador%20T%C3%B3xico.mp4"
-    },
-    {
-      "titulo": "Animais Fantásticos: Os Segredos de Dumbledore",
-      "ano": 2022,
-      "categoria": "Fantasia",
-      "capa": "https://i.postimg.cc/Hns6Pz9t/20220406-animais-fantasticos-os-segredos-de-dumbledore-papo-de-cinema-crtaz-(1).webp",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Animais%20Fant%C3%A1sticos%20Os%20Segredos%20de%20Dumbledore.mp4"
-    },
-    {
-      "titulo": "Icefall: Saque no Gelo",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/VkRtgm0b/bov-Ctz-WD9plfpquw-FIa-Zrifu-OKC-(2).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Icefall%20Saque%20no%20Gelo.mp4"
-    },
-    {
-      "titulo": "O Troll da Montanha 2",
-      "ano": 2025,
-      "categoria": "Aventura",
-      "capa": "https://i.postimg.cc/HxJ7TMvG/c8c1cc998a762ec4bb71d3f7ed85fc79.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Troll%20da%20Montanha%202.mp4"
-    },
-    {
-      "titulo": "A Morte de Robin Hood",
-      "ano": 2026,
-      "categoria": "Ação",
-      "capa": "https://i.postimg.cc/fT4CVWh3/images-(17).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/The.Death.of.Robin.Hood.2026.1080p.Dublado.mp4"
-    },
-    {
-      "titulo": "It: A Coisa",
-      "ano": 2017,
-      "categoria": "Terror",
-      "capa": "https://i.postimg.cc/2y6xc9Fx/345288-(1).jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/It%20A%20Coisa.mpeg"
     }
-  ]
-}
