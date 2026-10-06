@@ -1,1 +1,951 @@
-
+{
+  "series": [
+    {
+      "titulo": "The Walking Dead",
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/6qV1LKy4/20303823.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 5,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 6,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 7,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 8,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 9,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 10,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            },
+            {
+              "numero": 17,
+              "titulo": "Episódio 17",
+              "video": ""
+            },
+            {
+              "numero": 18,
+              "titulo": "Episódio 18",
+              "video": ""
+            },
+            {
+              "numero": 19,
+              "titulo": "Episódio 19",
+              "video": ""
+            },
+            {
+              "numero": 20,
+              "titulo": "Episódio 20",
+              "video": ""
+            },
+            {
+              "numero": 21,
+              "titulo": "Episódio 21",
+              "video": ""
+            },
+            {
+              "numero": 22,
+              "titulo": "Episódio 22",
+              "video": ""
+            }
+          ]
+        },
+        {
+          "numero": 11,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": ""
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": ""
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": ""
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": ""
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": ""
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": ""
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": ""
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": ""
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": ""
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": ""
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": ""
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": ""
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": ""
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": ""
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": ""
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": ""
+            },
+            {
+              "numero": 17,
+              "titulo": "Episódio 17",
+              "video": ""
+            },
+            {
+              "numero": 18,
+              "titulo": "Episódio 18",
+              "video": ""
+            },
+            {
+              "numero": 19,
+              "titulo": "Episódio 19",
+              "video": ""
+            },
+            {
+              "numero": 20,
+              "titulo": "Episódio 20",
+              "video": ""
+            },
+            {
+              "numero": 21,
+              "titulo": "Episódio 21",
+              "video": ""
+            },
+            {
+              "numero": 22,
+              "titulo": "Episódio 22",
+              "video": ""
+            },
+            {
+              "numero": 23,
+              "titulo": "Episódio 23",
+              "video": ""
+            },
+            {
+              "numero": 24,
+              "titulo": "Episódio 24",
+              "video": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
