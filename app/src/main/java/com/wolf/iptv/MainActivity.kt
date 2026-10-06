@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity() {
     // Se você renomear o arquivo, é só colocar o nome certo aqui.
     private val ARQUIVOS_SERIES = listOf("series.json", "serie.json", "s%C3%A9rie.json")
     private val ARQUIVOS_DORAMAS = listOf("doramas.json", "Doramas.json")
-    private val ARQUIVOS_ANIMES = listOf("animes.json", "Animes.json")
+    private val ARQUIVOS_ANIMES = listOf("animes.json", "anime.json", "Animes.json", "Anime.json")
 
     private val activityScope = CoroutineScope(Dispatchers.Main + Job())
 
@@ -906,7 +906,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             grupo.forEach { episodio ->
-                val card = criarCardEpisodio(serie, episodio)
+                val card = criarCardEpisodio(serie, temporada.numero, episodio)
                 linha.addView(
                     card,
                     LinearLayout.LayoutParams(0, dp(335), 1f).apply {
@@ -925,7 +925,28 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun criarCardEpisodio(serie: Serie, episodio: Episodio): View {
+    // ===== EPISÓDIOS ASSISTIDOS (salvos no aparelho) =====
+
+    private val prefsWolf by lazy {
+        getSharedPreferences("wolf_prefs", MODE_PRIVATE)
+    }
+
+    private fun chaveEpisodio(serie: Serie, numeroTemporada: Int, numeroEpisodio: Int): String {
+        return "${serie.titulo}|T$numeroTemporada|E$numeroEpisodio"
+    }
+
+    private fun episodioAssistido(chave: String): Boolean {
+        return prefsWolf.getStringSet("assistidos", emptySet())?.contains(chave) == true
+    }
+
+    private fun marcarEpisodio(chave: String, assistido: Boolean) {
+        val novo = HashSet(prefsWolf.getStringSet("assistidos", emptySet()) ?: emptySet())
+        if (assistido) novo.add(chave) else novo.remove(chave)
+        prefsWolf.edit().putStringSet("assistidos", novo).apply()
+    }
+
+    private fun criarCardEpisodio(serie: Serie, numeroTemporada: Int, episodio: Episodio): View {
+        val chave = chaveEpisodio(serie, numeroTemporada, episodio.numero)
         val card = FrameLayout(this).apply {
             isFocusable = true
             isFocusableInTouchMode = true
@@ -971,8 +992,57 @@ class MainActivity : AppCompatActivity() {
             if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
         }
 
+        val textoBase = informacoes.text.toString()
+
+        val selo = TextView(this).apply {
+            text = "✓ ASSISTIDO"
+            setTextColor(Color.WHITE)
+            textSize = 12f
+            setTypeface(null, Typeface.BOLD)
+            setPadding(dp(8), dp(3), dp(8), dp(3))
+            setBackgroundColor(Color.argb(230, 0, 140, 60))
+            visibility = View.GONE
+        }
+        card.addView(
+            selo,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.TOP or Gravity.END
+                topMargin = dp(8)
+                rightMargin = dp(8)
+            }
+        )
+
+        fun atualizarVisual() {
+            val visto = episodioAssistido(chave)
+            selo.visibility = if (visto) View.VISIBLE else View.GONE
+            imagem.alpha = if (visto) 0.45f else 1f
+            informacoes.text = if (visto) "✓ $textoBase" else textoBase
+        }
+        atualizarVisual()
+
         card.setOnClickListener {
+            // Marca como assistido quando o episódio é aberto.
+            if (episodio.video.isNotBlank()) {
+                marcarEpisodio(chave, true)
+                atualizarVisual()
+            }
             abrirVideo("${serie.titulo} - EP ${episodio.numero}", episodio.video, serie.capa)
+        }
+
+        // Segurar o OK do controle (ou o dedo) marca/desmarca na mão.
+        card.setOnLongClickListener {
+            val agora = !episodioAssistido(chave)
+            marcarEpisodio(chave, agora)
+            atualizarVisual()
+            Toast.makeText(
+                this,
+                if (agora) "Marcado como assistido" else "Marcado como não assistido",
+                Toast.LENGTH_SHORT
+            ).show()
+            true
         }
 
         return card
