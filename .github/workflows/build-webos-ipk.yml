@@ -21,15 +21,45 @@ jobs:
           node-version: "20"
 
       - name: Instalar webOS CLI
-        run: npm install -g @webos-tools/cli
+        run: |
+          npm install -g @webos-tools/cli
+
+      - name: Preparar ícone
+        shell: bash
+        run: |
+          set -e
+
+          if [ -f "WOLF-webOS/icon.png" ]; then
+            echo "Icone icon.png encontrado."
+          elif [ -f "WOLF-webOS/ícone.png" ]; then
+            echo "Encontrado ícone.png. Criando icon.png..."
+            cp "WOLF-webOS/ícone.png" "WOLF-webOS/icon.png"
+          else
+            ICON=$(find "WOLF-webOS" -maxdepth 1 -type f -iname "*cone*.png" | head -n 1)
+
+            if [ -z "$ICON" ]; then
+              echo "ERRO: nenhum arquivo PNG de icone foi encontrado."
+              exit 1
+            fi
+
+            echo "Usando: $ICON"
+            cp "$ICON" "WOLF-webOS/icon.png"
+          fi
+
+          ls -lah "WOLF-webOS"
 
       - name: Verificar aplicativo
-        run: ares-package --check WOLF-webOS
+        run: |
+          ares-package --check WOLF-webOS
 
       - name: Gerar IPK
         run: |
           mkdir -p dist
           ares-package -o dist WOLF-webOS
+
+      - name: Mostrar IPK gerado
+        run: |
+          ls -lah dist
 
       - name: Disponibilizar IPK
         uses: actions/upload-artifact@v4
