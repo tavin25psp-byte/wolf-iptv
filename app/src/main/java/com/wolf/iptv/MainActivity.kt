@@ -4,16 +4,15 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.Outline
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
+import android.speech.RecognizerIntent
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewOutlineProvider
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -21,6 +20,7 @@ import android.widget.LinearLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -71,11 +71,12 @@ class MainActivity : AppCompatActivity() {
     private val CATALOGO_URL = BASE_URL + "catalogo.json"
 
     // Nomes possíveis dos arquivos no GitHub (ele tenta um por um).
-    // Se você renomear o arquivo, é só colocar o nome certo aqui.
     private val ARQUIVOS_SERIES = listOf("series.json", "serie.json", "s%C3%A9rie.json")
     private val ARQUIVOS_DORAMAS = listOf("doramas.json", "Doramas.json")
     private val ARQUIVOS_ANIMES = listOf("animes.json", "anime.json", "Animes.json", "Anime.json")
     private val ARQUIVOS_DESENHOS = listOf("desenho.json", "desenhos.json", "Desenho.json", "Desenhos.json")
+
+    private val REQ_VOZ = 100
 
     private val activityScope = CoroutineScope(Dispatchers.Main + Job())
 
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var conteudo: LinearLayout
     private lateinit var botaoMenu: TextView
 
-    private lateinit var menuLateral: LinearLayout
+    private var menuLateral: LinearLayout? = null
     private lateinit var menuScroll: ScrollView
     private lateinit var menuConteudo: LinearLayout
     private lateinit var botaoFecharMenu: TextView
@@ -98,9 +99,7 @@ class MainActivity : AppCompatActivity() {
 
     private val pastaCacheImagens: File by lazy {
         File(cacheDir, "wolf_imagens").apply {
-            if (!exists()) {
-                mkdirs()
-            }
+            if (!exists()) mkdirs()
         }
     }
 
@@ -112,12 +111,13 @@ class MainActivity : AppCompatActivity() {
     private val animes = mutableListOf<Serie>()
     private val desenhos = mutableListOf<Filme>()
 
-    // Guarda de qual lista (séries, doramas ou animes) o usuário veio,
-    // pra o botão voltar retornar pra lista certa.
     private var listaSeriesAtual: List<Serie> = emptyList()
 
     private val cardsAtuais = mutableListOf<View>()
     private var indiceCardAtual = 0
+
+    // Número de colunas da grade: 2 no celular, 3 em tela média, 5 na TV.
+    private var colunas = 5
 
     private val favoritos = mutableSetOf<String>()
 
@@ -131,6 +131,13 @@ class MainActivity : AppCompatActivity() {
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+        val larguraDp = resources.displayMetrics.widthPixels / resources.displayMetrics.density
+        colunas = when {
+            larguraDp < 600 -> 2
+            larguraDp < 900 -> 3
+            else -> 5
+        }
 
         criarInterface()
         carregarCatalogo()
@@ -149,10 +156,7 @@ class MainActivity : AppCompatActivity() {
         fundo.scaleType = ImageView.ScaleType.CENTER_CROP
         fundo.alpha = 0.55f
 
-        carregarImagemFundoPrioritaria(
-            "https://i.postimg.cc/Ghk8PP7w/wolf.png",
-            fundo
-        )
+        carregarImagemFundoPrioritaria("https://i.postimg.cc/Ghk8PP7w/wolf.png", fundo)
 
         raiz.addView(
             fundo,
@@ -164,7 +168,6 @@ class MainActivity : AppCompatActivity() {
 
         val camada = LinearLayout(this)
         camada.orientation = LinearLayout.VERTICAL
-        camada.clipChildren = false
         camada.setPadding(dp(20), dp(12), dp(20), dp(12))
 
         raiz.addView(
@@ -184,31 +187,17 @@ class MainActivity : AppCompatActivity() {
         botaoMenu.isFocusable = true
         botaoMenu.isClickable = true
         botaoMenu.background = criarFundoCard(false)
+        botaoMenu.setOnFocusChangeListener { _, foco -> botaoMenu.background = criarFundoCard(foco) }
+        botaoMenu.setOnClickListener { abrirMenu() }
 
-        botaoMenu.setOnFocusChangeListener { _, foco ->
-            botaoMenu.background = criarFundoCard(foco)
-        }
-
-        botaoMenu.setOnClickListener {
-            abrirMenu()
-        }
-
-        camada.addView(
-            botaoMenu,
-            LinearLayout.LayoutParams(dp(235), dp(58))
-        )
+        camada.addView(botaoMenu, LinearLayout.LayoutParams(dp(235), dp(58)))
 
         val scroll = ScrollView(this)
         scroll.isFocusable = false
         scroll.isFocusableInTouchMode = false
-        scroll.clipChildren = false
-        scroll.clipToPadding = false
 
         conteudo = LinearLayout(this)
         conteudo.orientation = LinearLayout.VERTICAL
-        conteudo.clipChildren = false
-        // Espaço pra o card aumentar no foco sem ser cortado
-        conteudo.setPadding(dp(10), dp(14), dp(10), dp(14))
 
         scroll.addView(
             conteudo,
@@ -220,11 +209,7 @@ class MainActivity : AppCompatActivity() {
 
         camada.addView(
             scroll,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                0,
-                1f
-            )
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f)
         )
 
         setContentView(raiz)
@@ -234,67 +219,23 @@ class MainActivity : AppCompatActivity() {
         return (valor * resources.displayMetrics.density).toInt()
     }
 
-    // ===== VISUAL DOS CARDS =====
-
     private fun criarFundoCard(foco: Boolean): GradientDrawable {
-        val fundo = GradientDrawable(
-            GradientDrawable.Orientation.TOP_BOTTOM,
-            if (foco)
-                intArrayOf(Color.argb(250, 34, 34, 34), Color.argb(250, 10, 10, 10))
-            else
-                intArrayOf(Color.argb(240, 26, 26, 26), Color.argb(240, 10, 10, 10))
-        )
-        fundo.cornerRadius = dp(16).toFloat()
-        if (foco) {
-            fundo.setStroke(dp(3), Color.parseColor("#E50914"))
-        } else {
-            fundo.setStroke(dp(1), Color.argb(70, 255, 255, 255))
-        }
+        val fundo = GradientDrawable()
+        fundo.setColor(if (foco) Color.argb(235, 10, 10, 10) else Color.argb(190, 10, 10, 10))
+        fundo.cornerRadius = dp(8).toFloat()
+        if (foco) fundo.setStroke(dp(4), Color.RED)
         return fundo
     }
 
     private fun criarBordaVermelha(): GradientDrawable {
         val borda = GradientDrawable()
         borda.setColor(Color.TRANSPARENT)
-        borda.cornerRadius = dp(16).toFloat()
-        borda.setStroke(dp(3), Color.parseColor("#E50914"))
+        borda.cornerRadius = dp(8).toFloat()
+        borda.setStroke(dp(4), Color.RED)
         return borda
     }
 
-    // Corta a view (e tudo que tem dentro, tipo a capa) com as pontas redondas.
-    private fun arredondar(view: View, raioDp: Int = 16) {
-        view.clipToOutline = true
-        view.outlineProvider = object : ViewOutlineProvider() {
-            override fun getOutline(v: View, outline: Outline) {
-                outline.setRoundRect(0, 0, v.width, v.height, dp(raioDp).toFloat())
-            }
-        }
-    }
-
-    private fun estilizarCard(card: View) {
-        card.elevation = dp(4).toFloat()
-        arredondar(card, 16)
-    }
-
-    // Foco do card: borda vermelha, fundo, zoom suave e passa por cima dos vizinhos.
-    private fun configurarFocoCard(card: View, borda: View) {
-        card.setOnFocusChangeListener { v, foco ->
-            borda.visibility = if (foco) View.VISIBLE else View.GONE
-            v.background = criarFundoCard(foco)
-            val escala = if (foco) 1.05f else 1f
-            v.animate().scaleX(escala).scaleY(escala).setDuration(150).start()
-            v.translationZ = dp(if (foco) 12 else 0).toFloat()
-            if (foco) indiceCardAtual = cardsAtuais.indexOf(v)
-        }
-    }
-
-    private fun criarLinhaCards(): LinearLayout {
-        return LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL
-            clipChildren = false
-            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(350))
-        }
-    }
+    // ===== IMAGENS =====
 
     private fun carregarImagemFundoPrioritaria(url: String, imagem: ImageView) {
         if (url.isBlank()) return
@@ -347,10 +288,9 @@ class MainActivity : AppCompatActivity() {
 
         executorImagens.execute {
             var bitmap: Bitmap? = null
-            var arquivoCache: File? = null
 
             try {
-                arquivoCache = arquivoCacheImagem(url)
+                val arquivoCache = arquivoCacheImagem(url)
 
                 if (arquivoCache.exists() && arquivoCache.length() > 0L) {
                     bitmap = decodificarImagemOtimizada(arquivoCache, larguraAlvo, alturaAlvo)
@@ -401,9 +341,7 @@ class MainActivity : AppCompatActivity() {
                 bitmap?.let { carregada ->
                     cacheCapas[url] = carregada
                     runOnUiThread {
-                        if (imagem.tag == url) {
-                            imagem.setImageBitmap(carregada)
-                        }
+                        if (imagem.tag == url) imagem.setImageBitmap(carregada)
                     }
                 }
             } catch (_: Exception) {
@@ -413,11 +351,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun decodificarImagemOtimizada(
-        arquivo: File,
-        larguraAlvo: Int,
-        alturaAlvo: Int
-    ): Bitmap? {
+    private fun decodificarImagemOtimizada(arquivo: File, larguraAlvo: Int, alturaAlvo: Int): Bitmap? {
         val opcoes = BitmapFactory.Options()
         opcoes.inJustDecodeBounds = true
         BitmapFactory.decodeFile(arquivo.absolutePath, opcoes)
@@ -451,6 +385,8 @@ class MainActivity : AppCompatActivity() {
         return File(pastaCacheImagens, "$hash.img")
     }
 
+    // ===== CATÁLOGO =====
+
     private fun carregarCatalogo() {
         activityScope.launch(Dispatchers.IO) {
             var conexao: HttpURLConnection? = null
@@ -477,13 +413,16 @@ class MainActivity : AppCompatActivity() {
                         try {
                             val item = listaFilmes.getJSONObject(i)
                             val titulo = item.optString("titulo", "")
-                            val ano = item.optInt("ano", 0)
-                            val categoria = item.optString("categoria", "")
-                            val capa = item.optString("capa", "")
-                            val video = item.optString("video", "")
-
                             if (titulo.isNotBlank()) {
-                                novosFilmes.add(Filme(titulo, ano, categoria, capa, video))
+                                novosFilmes.add(
+                                    Filme(
+                                        titulo,
+                                        item.optInt("ano", 0),
+                                        item.optString("categoria", ""),
+                                        item.optString("capa", ""),
+                                        item.optString("video", "")
+                                    )
+                                )
                             }
                         } catch (_: Exception) {}
                     }
@@ -552,28 +491,24 @@ class MainActivity : AppCompatActivity() {
                         try {
                             val item = array.getJSONObject(i)
                             val titulo = item.optString("titulo", "")
-                            val ano = item.optInt("ano", 0)
-                            val categoria = item.optString("categoria", "")
-                            val capa = item.optString("capa", "")
-                            val video = item.optString("video", "")
-
                             if (titulo.isNotBlank()) {
-                                resultado.add(Filme(titulo, ano, categoria, capa, video))
+                                resultado.add(
+                                    Filme(
+                                        titulo,
+                                        item.optInt("ano", 0),
+                                        item.optString("categoria", ""),
+                                        item.optString("capa", ""),
+                                        item.optString("video", "")
+                                    )
+                                )
                             }
                         } catch (_: Exception) {}
                     }
 
-                    resultado.sortWith(
-                        compareByDescending<Filme> { it.ano }
-                            .thenBy { it.titulo.lowercase() }
-                    )
+                    resultado.sortWith(compareByDescending<Filme> { it.ano }.thenBy { it.titulo.lowercase() })
                     return resultado
                 }
 
-                // Séries, doramas e animes vêm de arquivos separados.
-                // Se algum arquivo falhar, o resto do catálogo continua funcionando.
-                // Se ainda existir "series"/"doramas"/"animes" dentro do catalogo.json,
-                // também é lido (compatível com o formato antigo).
                 val textoSeries = baixarPrimeiro(ARQUIVOS_SERIES)
                 val textoDoramas = baixarPrimeiro(ARQUIVOS_DORAMAS)
                 val textoAnimes = baixarPrimeiro(ARQUIVOS_ANIMES)
@@ -666,7 +601,7 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
-    // Aceita o arquivo tanto como { "series": [ ... ] } quanto como [ ... ].
+    // Aceita { "series": [ ... ] } ou [ ... ].
     private fun extrairArray(texto: String?, chave: String): JSONArray? {
         if (texto.isNullOrBlank()) return null
         val limpo = texto.trim()
@@ -678,76 +613,64 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun mostrarListaCards(lista: List<Filme>) {
+    // ===== GRADE / CARDS =====
+
+    private fun limparConteudo() {
         conteudo.removeAllViews()
         cardsAtuais.clear()
         indiceCardAtual = 0
-
-        if (lista.isEmpty()) {
-            val vazio = TextView(this).apply {
-                text = "Nenhum filme encontrado"
-                setTextColor(Color.WHITE)
-                textSize = 20f
-                gravity = Gravity.CENTER
-                setPadding(dp(20), dp(40), dp(20), dp(40))
-            }
-            conteudo.addView(vazio, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(100)))
-            return
-        }
-
-        lista.chunked(5).forEach { grupo ->
-            val linha = criarLinhaCards()
-
-            grupo.forEach { filme ->
-                val card = criarCard(filme)
-                linha.addView(
-                    card,
-                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(6)
-                        rightMargin = dp(6)
-                        bottomMargin = dp(12)
-                    }
-                )
-                cardsAtuais.add(card)
-            }
-            conteudo.addView(linha)
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-            cardsAtuais[0].requestFocus()
-        }
     }
 
-    private fun criarCard(filme: Filme): View {
-        val card = FrameLayout(this).apply {
-            isFocusable = true
-            isFocusableInTouchMode = true
-            isClickable = true
-            background = criarFundoCard(false)
+    private fun mostrarMensagemVazia(texto: String) {
+        val vazio = TextView(this).apply {
+            this.text = texto
+            setTextColor(Color.WHITE)
+            textSize = 20f
+            gravity = Gravity.CENTER
+            setPadding(dp(20), dp(40), dp(20), dp(40))
         }
-        estilizarCard(card)
+        conteudo.addView(vazio, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(100)))
+    }
 
-        val imagem = ImageView(this).apply {
-            scaleType = ImageView.ScaleType.CENTER_CROP
-        }
-        carregarImagem(filme.capa, imagem)
+    // Monta as linhas da grade com o número de colunas certo pra tela.
+    private fun montarGrade(cards: List<View>) {
+        cards.chunked(colunas).forEach { grupo ->
+            val linha = LinearLayout(this).apply { orientation = LinearLayout.HORIZONTAL }
 
-        card.addView(
-            imagem,
-            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)).apply {
-                gravity = Gravity.TOP
+            fun parametros() = LinearLayout.LayoutParams(0, dp(335), 1f).apply {
+                leftMargin = dp(4)
+                rightMargin = dp(4)
+                bottomMargin = dp(12)
             }
-        )
 
+            grupo.forEach { card ->
+                linha.addView(card, parametros())
+                cardsAtuais.add(card)
+            }
+            // Espaços vazios pra última linha não esticar os cards.
+            repeat(colunas - grupo.size) {
+                linha.addView(View(this), parametros())
+            }
+
+            conteudo.addView(
+                linha,
+                LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(350))
+            )
+        }
+
+        cardsAtuais.firstOrNull()?.requestFocus()
+    }
+
+    private fun rodapeDuasLinhas(linha1: String, linha2: String): View {
         val informacoes = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(10), dp(3), dp(10), dp(3))
-            setBackgroundColor(Color.argb(240, 10, 10, 10))
+            setPadding(dp(8), dp(3), dp(8), dp(3))
+            setBackgroundColor(Color.argb(235, 10, 10, 10))
         }
 
         val titulo = TextView(this).apply {
-            text = filme.titulo
+            text = linha1
             setTextColor(Color.WHITE)
             textSize = 14f
             setTypeface(null, Typeface.BOLD)
@@ -757,14 +680,32 @@ class MainActivity : AppCompatActivity() {
         informacoes.addView(titulo, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(28)))
 
         val detalhes = TextView(this).apply {
-            text = "${filme.ano} • ${filme.categoria}"
+            text = linha2
             setTextColor(Color.LTGRAY)
             textSize = 12f
+            maxLines = 1
+            ellipsize = TextUtils.TruncateAt.END
         }
         informacoes.addView(detalhes, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(22)))
 
+        return informacoes
+    }
+
+    // Card base: capa + rodapé + borda vermelha de foco.
+    private fun criarCardBase(capa: String, rodape: View): Pair<FrameLayout, ImageView> {
+        val card = FrameLayout(this).apply {
+            isFocusable = true
+            isFocusableInTouchMode = true
+            isClickable = true
+            background = criarFundoCard(false)
+        }
+
+        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.FIT_CENTER }
+        carregarImagem(capa, imagem)
+        card.addView(imagem, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)))
+
         card.addView(
-            informacoes,
+            rodape,
             FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(60)).apply {
                 gravity = Gravity.BOTTOM
             }
@@ -779,221 +720,86 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         )
 
-        configurarFocoCard(card, borda)
-
-        card.setOnClickListener {
-            abrirVideo(filme.titulo, filme.video, filme.capa)
+        card.setOnFocusChangeListener { _, foco ->
+            borda.visibility = if (foco) View.VISIBLE else View.GONE
+            card.background = criarFundoCard(foco)
+            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
         }
 
+        return Pair(card, imagem)
+    }
+
+    private fun mostrarListaCards(lista: List<Filme>) {
+        limparConteudo()
+
+        if (lista.isEmpty()) {
+            mostrarMensagemVazia("Nenhum filme encontrado")
+            return
+        }
+
+        montarGrade(lista.map { criarCard(it) })
+    }
+
+    private fun criarCard(filme: Filme): View {
+        val (card, _) = criarCardBase(
+            filme.capa,
+            rodapeDuasLinhas(filme.titulo, "${filme.ano} • ${filme.categoria}")
+        )
+        card.setOnClickListener { abrirVideo(filme.titulo, filme.video, filme.capa) }
         return card
     }
 
     private fun mostrarListaSeries(lista: List<Serie>) {
         listaSeriesAtual = lista
-        conteudo.removeAllViews()
-        cardsAtuais.clear()
-        indiceCardAtual = 0
+        limparConteudo()
 
         if (lista.isEmpty()) {
-            val vazio = TextView(this).apply {
-                text = "Nenhuma série encontrada"
-                setTextColor(Color.WHITE)
-                textSize = 20f
-                gravity = Gravity.CENTER
-            }
-            conteudo.addView(vazio, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(100)))
+            mostrarMensagemVazia("Nenhuma série encontrada")
             return
         }
 
-        lista.chunked(5).forEach { grupo ->
-            val linha = criarLinhaCards()
-
-            grupo.forEach { serie ->
-                val card = criarCardSerie(serie)
-                linha.addView(
-                    card,
-                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(6)
-                        rightMargin = dp(6)
-                        bottomMargin = dp(12)
-                    }
-                )
-                cardsAtuais.add(card)
-            }
-            conteudo.addView(linha)
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-            cardsAtuais[0].requestFocus()
-        }
+        montarGrade(lista.map { criarCardSerie(it) })
     }
 
     private fun criarCardSerie(serie: Serie): View {
-        val card = FrameLayout(this).apply {
-            isFocusable = true
-            isFocusableInTouchMode = true
-            isClickable = true
-            background = criarFundoCard(false)
-        }
-        estilizarCard(card)
-
-        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
-        carregarImagem(serie.capa, imagem)
-        card.addView(imagem, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)))
-
-        val informacoes = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(10), dp(3), dp(10), dp(3))
-            setBackgroundColor(Color.argb(240, 10, 10, 10))
-        }
-
-        val titulo = TextView(this).apply {
-            text = serie.titulo
-            setTextColor(Color.WHITE)
-            textSize = 14f
-            setTypeface(null, Typeface.BOLD)
-            maxLines = 1
-            ellipsize = TextUtils.TruncateAt.END
-        }
-        informacoes.addView(titulo, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(28)))
-
-        val detalhes = TextView(this).apply {
-            text = "${serie.categoria} • ${serie.temporadas.size} temporada(s)"
-            setTextColor(Color.LTGRAY)
-            textSize = 12f
-        }
-        informacoes.addView(detalhes, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(22)))
-
-        card.addView(
-            informacoes,
-            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(60)).apply {
-                gravity = Gravity.BOTTOM
-            }
+        val (card, _) = criarCardBase(
+            serie.capa,
+            rodapeDuasLinhas(serie.titulo, "${serie.categoria} • ${serie.temporadas.size} temporada(s)")
         )
-
-        val borda = View(this).apply {
-            background = criarBordaVermelha()
-            visibility = View.GONE
-        }
-        card.addView(
-            borda,
-            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        )
-
-        configurarFocoCard(card, borda)
-
         card.setOnClickListener {
             val origem = listaSeriesAtual
             historicoConteudo.add { mostrarListaSeries(origem) }
             mostrarTemporadas(serie)
         }
-
         return card
     }
 
     private fun mostrarTemporadas(serie: Serie) {
-        conteudo.removeAllViews()
-        cardsAtuais.clear()
-        indiceCardAtual = 0
-
-        serie.temporadas.chunked(5).forEach { grupo ->
-            val linha = criarLinhaCards()
-
-            grupo.forEach { temporada ->
-                val card = criarCardTemporada(serie, temporada)
-                linha.addView(
-                    card,
-                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(6)
-                        rightMargin = dp(6)
-                        bottomMargin = dp(12)
-                    }
-                )
-                cardsAtuais.add(card)
-            }
-            conteudo.addView(linha)
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-            cardsAtuais[0].requestFocus()
-        }
+        limparConteudo()
+        montarGrade(serie.temporadas.map { criarCardTemporada(serie, it) })
     }
 
     private fun criarCardTemporada(serie: Serie, temporada: Temporada): View {
-        val card = FrameLayout(this).apply {
-            isFocusable = true
-            isFocusableInTouchMode = true
-            isClickable = true
-            background = criarFundoCard(false)
-        }
-        estilizarCard(card)
-
-        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
-        carregarImagem(serie.capa, imagem)
-        card.addView(imagem, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)))
-
-        val titulo = TextView(this).apply {
+        val rodape = TextView(this).apply {
             text = "Temporada ${temporada.numero}"
             setTextColor(Color.WHITE)
             textSize = 16f
             setTypeface(null, Typeface.BOLD)
             gravity = Gravity.CENTER
-            setBackgroundColor(Color.argb(240, 10, 10, 10))
+            setBackgroundColor(Color.argb(235, 10, 10, 10))
         }
 
-        card.addView(
-            titulo,
-            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(60)).apply {
-                gravity = Gravity.BOTTOM
-            }
-        )
-
-        val borda = View(this).apply {
-            background = criarBordaVermelha()
-            visibility = View.GONE
-        }
-        card.addView(
-            borda,
-            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        )
-
-        configurarFocoCard(card, borda)
-
+        val (card, _) = criarCardBase(serie.capa, rodape)
         card.setOnClickListener {
             historicoConteudo.add { mostrarTemporadas(serie) }
             mostrarEpisodios(serie, temporada)
         }
-
         return card
     }
 
     private fun mostrarEpisodios(serie: Serie, temporada: Temporada) {
-        conteudo.removeAllViews()
-        cardsAtuais.clear()
-        indiceCardAtual = 0
-
-        temporada.episodios.chunked(5).forEach { grupo ->
-            val linha = criarLinhaCards()
-
-            grupo.forEach { episodio ->
-                val card = criarCardEpisodio(serie, temporada.numero, episodio)
-                linha.addView(
-                    card,
-                    LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(6)
-                        rightMargin = dp(6)
-                        bottomMargin = dp(12)
-                    }
-                )
-                cardsAtuais.add(card)
-            }
-            conteudo.addView(linha)
-        }
-
-        if (cardsAtuais.isNotEmpty()) {
-            cardsAtuais[0].requestFocus()
-        }
+        limparConteudo()
+        montarGrade(temporada.episodios.map { criarCardEpisodio(serie, temporada.numero, it) })
     }
 
     // ===== EPISÓDIOS ASSISTIDOS (salvos no aparelho) =====
@@ -1018,60 +824,29 @@ class MainActivity : AppCompatActivity() {
 
     private fun criarCardEpisodio(serie: Serie, numeroTemporada: Int, episodio: Episodio): View {
         val chave = chaveEpisodio(serie, numeroTemporada, episodio.numero)
-        val card = FrameLayout(this).apply {
-            isFocusable = true
-            isFocusableInTouchMode = true
-            isClickable = true
-            background = criarFundoCard(false)
-        }
-        estilizarCard(card)
-
-        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
-        carregarImagem(serie.capa, imagem)
-        card.addView(imagem, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)))
+        val textoBase = "EP ${episodio.numero} • ${episodio.titulo}"
 
         val informacoes = TextView(this).apply {
-            text = "EP ${episodio.numero} • ${episodio.titulo}"
+            text = textoBase
             setTextColor(Color.WHITE)
             textSize = 14f
             setTypeface(null, Typeface.BOLD)
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(10), dp(3), dp(10), dp(3))
+            setPadding(dp(8), dp(3), dp(8), dp(3))
             maxLines = 2
             ellipsize = TextUtils.TruncateAt.END
-            setBackgroundColor(Color.argb(240, 10, 10, 10))
+            setBackgroundColor(Color.argb(235, 10, 10, 10))
         }
 
-        card.addView(
-            informacoes,
-            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(60)).apply {
-                gravity = Gravity.BOTTOM
-            }
-        )
-
-        val borda = View(this).apply {
-            background = criarBordaVermelha()
-            visibility = View.GONE
-        }
-        card.addView(
-            borda,
-            FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
-        )
-
-        configurarFocoCard(card, borda)
-
-        val textoBase = informacoes.text.toString()
+        val (card, imagem) = criarCardBase(serie.capa, informacoes)
 
         val selo = TextView(this).apply {
             text = "✓ ASSISTIDO"
             setTextColor(Color.WHITE)
             textSize = 12f
             setTypeface(null, Typeface.BOLD)
-            setPadding(dp(10), dp(4), dp(10), dp(4))
-            background = GradientDrawable().apply {
-                setColor(Color.argb(235, 0, 140, 60))
-                cornerRadius = dp(10).toFloat()
-            }
+            setPadding(dp(8), dp(3), dp(8), dp(3))
+            setBackgroundColor(Color.argb(230, 0, 140, 60))
             visibility = View.GONE
         }
         card.addView(
@@ -1095,7 +870,6 @@ class MainActivity : AppCompatActivity() {
         atualizarVisual()
 
         card.setOnClickListener {
-            // Marca como assistido quando o episódio é aberto.
             if (episodio.video.isNotBlank()) {
                 marcarEpisodio(chave, true)
                 atualizarVisual()
@@ -1133,6 +907,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    // ===== MENU LATERAL =====
+
     private fun adicionarItemMenu(texto: String, acao: () -> Unit) {
         val item = TextView(this).apply {
             this.text = texto
@@ -1152,10 +928,49 @@ class MainActivity : AppCompatActivity() {
         menuConteudo.addView(
             item,
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48)).apply {
-                bottomMargin = dp(6)
+                bottomMargin = dp(4)
             }
         )
         itensMenuFoco.add(item)
+    }
+
+    private fun adicionarTituloMenu(texto: String) {
+        val titulo = TextView(this).apply {
+            this.text = texto
+            textSize = 16f
+            setTextColor(Color.LTGRAY)
+            setPadding(dp(18), dp(18), dp(12), dp(8))
+            isFocusable = false
+        }
+        menuConteudo.addView(titulo)
+    }
+
+    private fun adicionarCategoriasFilmes(
+        categorias: List<String>,
+        icones: List<String>,
+        base: List<Filme>
+    ) {
+        categorias.forEachIndexed { i, cat ->
+            val filtrados = base.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) }
+            adicionarItemMenu("${icones[i]}  $cat (${filtrados.size})") {
+                fecharMenu()
+                mostrarListaCards(filtrados)
+            }
+        }
+    }
+
+    private fun adicionarCategoriasSeries(
+        categorias: List<String>,
+        icones: List<String>,
+        base: List<Serie>
+    ) {
+        categorias.forEachIndexed { i, cat ->
+            val filtradas = base.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) }
+            adicionarItemMenu("${icones[i]}  $cat (${filtradas.size})") {
+                fecharMenu()
+                mostrarListaSeries(filtradas)
+            }
+        }
     }
 
     private fun abrirMenu() {
@@ -1163,31 +978,33 @@ class MainActivity : AppCompatActivity() {
         menuAberto = true
         itensMenuFoco.clear()
 
-        menuLateral = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            // Menu com as pontas da direita arredondadas
-            background = GradientDrawable().apply {
-                setColor(Color.argb(247, 8, 8, 8))
-                cornerRadii = floatArrayOf(
-                    0f, 0f,
-                    dp(24).toFloat(), dp(24).toFloat(),
-                    dp(24).toFloat(), dp(24).toFloat(),
-                    0f, 0f
-                )
-            }
-        }
+        // Garante que nunca sobra um menu antigo na tela.
+        menuLateral?.let { raiz.removeView(it) }
 
-        val params = FrameLayout.LayoutParams(dp(360), ViewGroup.LayoutParams.MATCH_PARENT).apply {
-            gravity = Gravity.START or Gravity.TOP
+        val larguraMenu = minOf(dp(360), (resources.displayMetrics.widthPixels * 0.85f).toInt())
+
+        val menu = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setBackgroundColor(Color.argb(250, 5, 5, 5))
+            // Consome o toque pra não vazar pros cards de trás e fica acima de tudo.
+            isClickable = true
+            elevation = dp(16).toFloat()
         }
-        raiz.addView(menuLateral, params)
+        menuLateral = menu
+
+        raiz.addView(
+            menu,
+            FrameLayout.LayoutParams(larguraMenu, ViewGroup.LayoutParams.MATCH_PARENT).apply {
+                gravity = Gravity.START or Gravity.TOP
+            }
+        )
 
         val cabecalho = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
             setPadding(dp(15), dp(8), dp(10), dp(8))
         }
-        menuLateral.addView(cabecalho, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(65)))
+        menu.addView(cabecalho, LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(65)))
 
         val tituloMenu = TextView(this).apply {
             text = "WOLF MENU"
@@ -1212,6 +1029,9 @@ class MainActivity : AppCompatActivity() {
         }
         cabecalho.addView(botaoFecharMenu, LinearLayout.LayoutParams(dp(55), dp(48)))
 
+        // O ✕ entra na navegação do controle (primeiro da lista).
+        itensMenuFoco.add(botaoFecharMenu)
+
         menuScroll = ScrollView(this).apply { isFocusable = false }
         menuConteudo = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -1222,7 +1042,7 @@ class MainActivity : AppCompatActivity() {
             menuConteudo,
             ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         )
-        menuLateral.addView(
+        menu.addView(
             menuScroll,
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f)
         )
@@ -1240,8 +1060,7 @@ class MainActivity : AppCompatActivity() {
 
         adicionarItemMenu("★  Favoritos (${favoritos.size})") {
             fecharMenu()
-            val lista = filmes.filter { favoritos.contains(it.titulo) }
-            mostrarListaCards(lista)
+            mostrarListaCards(filmes.filter { favoritos.contains(it.titulo) })
         }
 
         adicionarItemMenu("⌕  Pesquisa") { abrirPesquisa() }
@@ -1251,113 +1070,73 @@ class MainActivity : AppCompatActivity() {
             fecharMenu()
             mostrarListaCards(filmes)
         }
-
-        val categoriasFilmes = listOf("Ação", "Aventura", "Animação", "Comédia", "Drama", "Terror", "Ficção")
-        val iconesFilmes = listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "🚀")
-
-        categoriasFilmes.forEachIndexed { i, cat ->
-            val conta = filmes.count { normalizarTexto(it.categoria) == normalizarTexto(cat) }
-            adicionarItemMenu("${iconesFilmes[i]}  $cat ($conta)") {
-                fecharMenu()
-                mostrarListaCards(filmes.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) })
-            }
-        }
+        adicionarCategoriasFilmes(
+            listOf("Ação", "Aventura", "Animação", "Comédia", "Drama", "Terror", "Ficção"),
+            listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "🚀"),
+            filmes
+        )
 
         adicionarTituloMenu("SÉRIES")
         adicionarItemMenu("📺  Todas as séries (${series.size})") {
             fecharMenu()
             mostrarListaSeries(series)
         }
-
-        val categoriasSeries = listOf("Ação", "Aventura", "Comédia", "Drama", "Terror")
-        val iconesSeries = listOf("🔥", "🏹", "😂", "🎭", "👻")
-
-        categoriasSeries.forEachIndexed { i, cat ->
-            val conta = series.count { normalizarTexto(it.categoria) == normalizarTexto(cat) }
-            adicionarItemMenu("${iconesSeries[i]}  $cat ($conta)") {
-                fecharMenu()
-                mostrarListaSeries(series.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) })
-            }
-        }
+        adicionarCategoriasSeries(
+            listOf("Ação", "Aventura", "Comédia", "Drama", "Terror"),
+            listOf("🔥", "🏹", "😂", "🎭", "👻"),
+            series
+        )
 
         adicionarTituloMenu("DORAMAS")
         adicionarItemMenu("📺  Todos os Doramas (${doramas.size})") {
             fecharMenu()
             mostrarListaSeries(doramas)
         }
-
-        val categoriasDoramas = listOf("Romance", "Ação", "Comédia", "Terror")
-        val iconesDoramas = listOf("💖", "🔥", "😂", "👻")
-
-        categoriasDoramas.forEachIndexed { i, cat ->
-            val conta = doramas.count { normalizarTexto(it.categoria) == normalizarTexto(cat) }
-            adicionarItemMenu("${iconesDoramas[i]}  $cat ($conta)") {
-                fecharMenu()
-                mostrarListaSeries(doramas.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) })
-            }
-        }
+        adicionarCategoriasSeries(
+            listOf("Romance", "Ação", "Comédia", "Terror"),
+            listOf("💖", "🔥", "😂", "👻"),
+            doramas
+        )
 
         adicionarTituloMenu("DESENHOS")
         adicionarItemMenu("🧸  Todos os desenhos (${desenhos.size})") {
             fecharMenu()
             mostrarListaCards(desenhos)
         }
-
-        val categoriasDesenhos = listOf("Ação", "Aventura", "Animação", "Comédia", "Drama", "Terror", "Fantasia")
-        val iconesDesenhos = listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "✨")
-
-        categoriasDesenhos.forEachIndexed { i, cat ->
-            val conta = desenhos.count { normalizarTexto(it.categoria) == normalizarTexto(cat) }
-            adicionarItemMenu("${iconesDesenhos[i]}  $cat ($conta)") {
-                fecharMenu()
-                mostrarListaCards(desenhos.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) })
-            }
-        }
+        adicionarCategoriasFilmes(
+            listOf("Ação", "Aventura", "Animação", "Comédia", "Drama", "Terror", "Fantasia"),
+            listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "✨"),
+            desenhos
+        )
 
         adicionarTituloMenu("ANIME")
         adicionarItemMenu("🍥  Todos os Animes (${animes.size})") {
             fecharMenu()
             mostrarListaSeries(animes)
         }
-
-        val categoriasAnimes = listOf("Ação", "Comédia", "Terror")
-        val iconesAnimes = listOf("🔥", "😂", "👻")
-
-        categoriasAnimes.forEachIndexed { i, cat ->
-            val conta = animes.count { normalizarTexto(it.categoria) == normalizarTexto(cat) }
-            adicionarItemMenu("${iconesAnimes[i]}  $cat ($conta)") {
-                fecharMenu()
-                mostrarListaSeries(animes.filter { normalizarTexto(it.categoria) == normalizarTexto(cat) })
-            }
-        }
+        adicionarCategoriasSeries(
+            listOf("Ação", "Comédia", "Terror"),
+            listOf("🔥", "😂", "👻"),
+            animes
+        )
 
         botaoFecharMenu.requestFocus()
     }
 
-    private fun adicionarTituloMenu(texto: String) {
-        val titulo = TextView(this).apply {
-            this.text = texto
-            textSize = 16f
-            setTextColor(Color.LTGRAY)
-            setPadding(dp(18), dp(18), dp(12), dp(8))
-            isFocusable = false
-        }
-        menuConteudo.addView(titulo)
-    }
-
     private fun fecharMenu() {
+        if (!menuAberto) return
         menuAberto = false
-        menuLateral.visibility = View.GONE
+        menuLateral?.let { raiz.removeView(it) }
+        menuLateral = null
+        itensMenuFoco.clear()
         botaoMenu.requestFocus()
     }
 
     private fun moverMenu(direcao: Int) {
         if (itensMenuFoco.isEmpty()) return
 
-        var indice = itensMenuFoco.indexOfFirst { it.hasFocus() }
-        if (indice < 0) indice = 0
-
-        indice += direcao
+        val atual = itensMenuFoco.indexOfFirst { it.hasFocus() }
+        var indice = if (atual < 0) 0 else atual + direcao
 
         if (indice < 0) indice = itensMenuFoco.size - 1
         if (indice >= itensMenuFoco.size) indice = 0
@@ -1368,7 +1147,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun ajustarScrollMenu(view: View) {
-        view.post { menuScroll.smoothScrollTo(0, view.top) }
+        if (view === botaoFecharMenu) {
+            menuScroll.post { menuScroll.smoothScrollTo(0, 0) }
+        } else {
+            view.post { menuScroll.smoothScrollTo(0, view.top) }
+        }
     }
 
     private fun moverCard(direcao: Int) {
@@ -1386,17 +1169,73 @@ class MainActivity : AppCompatActivity() {
         cardsAtuais[indice].requestFocus()
     }
 
+    // ===== PESQUISA (TEXTO E VOZ) =====
+
     private fun abrirPesquisa() {
+        fecharMenu()
+
         val campo = EditText(this).apply {
             hint = "Digite o nome..."
             textSize = 20f
             setSingleLine(true)
-            isFocusable = true
-            isFocusableInTouchMode = true
-            requestFocus()
         }
-        Toast.makeText(this, "Use a busca pelo menu", Toast.LENGTH_SHORT).show()
+
+        AlertDialog.Builder(this)
+            .setTitle("Pesquisar")
+            .setView(campo)
+            .setPositiveButton("Buscar") { _, _ -> pesquisar(campo.text.toString()) }
+            .setNeutralButton("🎤 Voz") { _, _ -> iniciarVoz() }
+            .setNegativeButton("Cancelar", null)
+            .show()
     }
+
+    private fun pesquisar(consulta: String) {
+        val termo = normalizarTexto(consulta)
+        if (termo.isBlank()) return
+
+        val achadosFilmes = (filmes + desenhos).filter { normalizarTexto(it.titulo).contains(termo) }
+        val achadasSeries = (series + doramas + animes).filter { normalizarTexto(it.titulo).contains(termo) }
+
+        Toast.makeText(
+            this,
+            "Busca: \"$consulta\" — ${achadosFilmes.size} filme(s), ${achadasSeries.size} série(s)",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        // Mostra filmes se achou; senão, séries/doramas/animes.
+        if (achadosFilmes.isNotEmpty()) {
+            mostrarListaCards(achadosFilmes)
+        } else {
+            mostrarListaSeries(achadasSeries)
+        }
+    }
+
+    private fun iniciarVoz() {
+        val intent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM)
+            putExtra(RecognizerIntent.EXTRA_LANGUAGE, "pt-BR")
+            putExtra(RecognizerIntent.EXTRA_PROMPT, "Diga o nome do filme ou série")
+        }
+
+        try {
+            startActivityForResult(intent, REQ_VOZ)
+        } catch (_: Exception) {
+            Toast.makeText(this, "Voz indisponível neste aparelho, digite o nome", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQ_VOZ && resultCode == RESULT_OK) {
+            val texto = data
+                ?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                ?.firstOrNull()
+            if (!texto.isNullOrBlank()) pesquisar(texto)
+        }
+    }
+
+    // ===== CONTROLE REMOTO =====
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
         if (event.action == KeyEvent.ACTION_DOWN) {
@@ -1426,8 +1265,8 @@ class MainActivity : AppCompatActivity() {
                         return true
                     } else if (cardsAtuais.any { it.hasFocus() }) {
                         val indiceAtual = cardsAtuais.indexOfFirst { it.hasFocus() }
-                        if (indiceAtual >= 5) {
-                            moverCard(-5)
+                        if (indiceAtual >= colunas) {
+                            moverCard(-colunas)
                         } else {
                             botaoMenu.requestFocus()
                         }
@@ -1443,7 +1282,7 @@ class MainActivity : AppCompatActivity() {
                         cardsAtuais[0].requestFocus()
                         return true
                     } else if (cardsAtuais.any { it.hasFocus() }) {
-                        moverCard(5)
+                        moverCard(colunas)
                         return true
                     }
                 }
