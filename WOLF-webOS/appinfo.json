@@ -5,6 +5,7 @@
   "type": "web",
   "main": "Index.html",
   "title": "WOLF IPTV",
+  "icon": "icon.png",
   "appDescription": "WOLF IPTV para LG webOS TV",
   "resolution": "1920x1080",
   "requiredACG": []
