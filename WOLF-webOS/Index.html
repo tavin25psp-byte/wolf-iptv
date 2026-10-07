@@ -1,1 +1,154 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WOLF IPTV</title><link rel="stylesheet" href="css/style.css"></head><body><div id="app"><header><button id="menuBtn" class="focusable" tabindex="0">☰ WOLF MENU</button><div id="status">Carregando catálogo...</div></header><main id="content"></main></div><aside id="drawer" aria-hidden="true"><div class="drawer-head">WOLF IPTV</div><div id="drawerItems"></div></aside><div id="toast"></div><div id="player" hidden><video id="video" controls playsinline></video><div id="playerBar"><button id="closePlayer" class="focusable" tabindex="0">← Voltar</button><span id="playerTitle"></span></div></div><script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    >
+
+    <title>WOLF IPTV</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- FUNDO -->
+    <div id="background"></div>
+    <div id="backgroundOverlay"></div>
+
+    <!-- APLICAÇÃO -->
+    <div id="app">
+
+        <!-- TOPO -->
+        <header id="topbar">
+
+            <button
+                id="menuButton"
+                class="focusable top-menu-button"
+                type="button"
+            >
+                ☰ &nbsp; WOLF MENU
+            </button>
+
+            <div id="pageTitle">
+                WOLF IPTV
+            </div>
+
+        </header>
+
+        <!-- CONTEÚDO -->
+        <main id="contentScroll">
+
+            <div id="content">
+
+                <div id="loading" class="loading">
+                    <div class="loadingWolf">WOLF</div>
+                    <div>Carregando catálogo...</div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- MENU LATERAL -->
+    <aside id="sideMenu" aria-hidden="true">
+
+        <div id="menuHeader">
+
+            <div id="menuTitle">
+                WOLF MENU
+            </div>
+
+            <button
+                id="closeMenu"
+                class="focusable"
+                type="button"
+            >
+                ✕
+            </button>
+
+        </div>
+
+        <div id="menuScroll">
+
+            <div id="menuContent"></div>
+
+        </div>
+
+    </aside><!-- PESQUISA -->
+    <div id="searchOverlay" class="overlay hidden">
+
+        <div class="searchBox">
+
+            <div class="searchTitle">
+                PESQUISAR
+            </div>
+
+            <input
+                id="searchInput"
+                class="focusable"
+                type="text"
+                autocomplete="off"
+                placeholder="Digite o nome..."
+            >
+
+            <div class="searchHint">
+                Digite o nome do filme ou série
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PLAYER -->
+    <div id="playerOverlay" class="overlay hidden">
+
+        <div id="playerContainer">
+
+            <video
+                id="videoPlayer"
+                controls
+                playsinline
+                preload="metadata"
+            ></video>
+
+            <div id="playerTop">
+
+                <div id="playerTitle">
+                    WOLF IPTV
+                </div>
+
+                <button
+                    id="closePlayer"
+                    class="focusable"
+                    type="button"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+            <div id="playerLoading">
+                Carregando vídeo...
+            </div>
+
+            <div id="playerError">
+                Não foi possível reproduzir este vídeo.
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast"></div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
