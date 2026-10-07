@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.graphics.Outline
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.widget.EditText
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -117,28 +119,10 @@ class MainActivity : AppCompatActivity() {
     private val cardsAtuais = mutableListOf<View>()
     private var indiceCardAtual = 0
 
-    // Favoritos salvos no aparelho. Chave: "F|titulo" (filme/desenho) ou "S|titulo" (série/dorama/anime).
     private val favoritos = mutableSetOf<String>()
-
-    // Pesquisa por voz.
-    private val lancadorVoz = registerForActivityResult(
-        androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
-    ) { resultado ->
-        if (resultado.resultCode == RESULT_OK) {
-            val falado = resultado.data
-                ?.getStringArrayListExtra(android.speech.RecognizerIntent.EXTRA_RESULTS)
-                ?.firstOrNull()
-
-            if (!falado.isNullOrBlank()) {
-                executarPesquisa(falado)
-            }
-        }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        favoritos.addAll(prefsWolf.getStringSet("favoritos", emptySet()) ?: emptySet())
 
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_FULLSCREEN or
@@ -180,6 +164,7 @@ class MainActivity : AppCompatActivity() {
 
         val camada = LinearLayout(this)
         camada.orientation = LinearLayout.VERTICAL
+        camada.clipChildren = false
         camada.setPadding(dp(20), dp(12), dp(20), dp(12))
 
         raiz.addView(
@@ -216,9 +201,14 @@ class MainActivity : AppCompatActivity() {
         val scroll = ScrollView(this)
         scroll.isFocusable = false
         scroll.isFocusableInTouchMode = false
+        scroll.clipChildren = false
+        scroll.clipToPadding = false
 
         conteudo = LinearLayout(this)
         conteudo.orientation = LinearLayout.VERTICAL
+        conteudo.clipChildren = false
+        // Espaço pra o card aumentar no foco sem ser cortado
+        conteudo.setPadding(dp(10), dp(14), dp(10), dp(14))
 
         scroll.addView(
             conteudo,
@@ -244,12 +234,21 @@ class MainActivity : AppCompatActivity() {
         return (valor * resources.displayMetrics.density).toInt()
     }
 
+    // ===== VISUAL DOS CARDS =====
+
     private fun criarFundoCard(foco: Boolean): GradientDrawable {
-        val fundo = GradientDrawable()
-        fundo.setColor(if (foco) Color.argb(235, 10, 10, 10) else Color.argb(190, 10, 10, 10))
-        fundo.cornerRadius = dp(8).toFloat()
+        val fundo = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            if (foco)
+                intArrayOf(Color.argb(250, 34, 34, 34), Color.argb(250, 10, 10, 10))
+            else
+                intArrayOf(Color.argb(240, 26, 26, 26), Color.argb(240, 10, 10, 10))
+        )
+        fundo.cornerRadius = dp(16).toFloat()
         if (foco) {
-            fundo.setStroke(dp(4), Color.RED)
+            fundo.setStroke(dp(3), Color.parseColor("#E50914"))
+        } else {
+            fundo.setStroke(dp(1), Color.argb(70, 255, 255, 255))
         }
         return fundo
     }
@@ -257,9 +256,44 @@ class MainActivity : AppCompatActivity() {
     private fun criarBordaVermelha(): GradientDrawable {
         val borda = GradientDrawable()
         borda.setColor(Color.TRANSPARENT)
-        borda.cornerRadius = dp(8).toFloat()
-        borda.setStroke(dp(4), Color.RED)
+        borda.cornerRadius = dp(16).toFloat()
+        borda.setStroke(dp(3), Color.parseColor("#E50914"))
         return borda
+    }
+
+    // Corta a view (e tudo que tem dentro, tipo a capa) com as pontas redondas.
+    private fun arredondar(view: View, raioDp: Int = 16) {
+        view.clipToOutline = true
+        view.outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(v: View, outline: Outline) {
+                outline.setRoundRect(0, 0, v.width, v.height, dp(raioDp).toFloat())
+            }
+        }
+    }
+
+    private fun estilizarCard(card: View) {
+        card.elevation = dp(4).toFloat()
+        arredondar(card, 16)
+    }
+
+    // Foco do card: borda vermelha, fundo, zoom suave e passa por cima dos vizinhos.
+    private fun configurarFocoCard(card: View, borda: View) {
+        card.setOnFocusChangeListener { v, foco ->
+            borda.visibility = if (foco) View.VISIBLE else View.GONE
+            v.background = criarFundoCard(foco)
+            val escala = if (foco) 1.05f else 1f
+            v.animate().scaleX(escala).scaleY(escala).setDuration(150).start()
+            v.translationZ = dp(if (foco) 12 else 0).toFloat()
+            if (foco) indiceCardAtual = cardsAtuais.indexOf(v)
+        }
+    }
+
+    private fun criarLinhaCards(): LinearLayout {
+        return LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            clipChildren = false
+            layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(350))
+        }
     }
 
     private fun carregarImagemFundoPrioritaria(url: String, imagem: ImageView) {
@@ -416,7 +450,8 @@ class MainActivity : AppCompatActivity() {
 
         return File(pastaCacheImagens, "$hash.img")
     }
-        private fun carregarCatalogo() {
+
+    private fun carregarCatalogo() {
         activityScope.launch(Dispatchers.IO) {
             var conexao: HttpURLConnection? = null
             try {
@@ -598,8 +633,9 @@ class MainActivity : AppCompatActivity() {
                 conexao?.disconnect()
             }
         }
-        }
-            private fun baixarTexto(url: String): String? {
+    }
+
+    private fun baixarTexto(url: String): String? {
         var conexao: HttpURLConnection? = null
         return try {
             conexao = URL(url).openConnection() as HttpURLConnection
@@ -660,18 +696,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         lista.chunked(5).forEach { grupo ->
-            val linha = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(350))
-            }
+            val linha = criarLinhaCards()
 
             grupo.forEach { filme ->
                 val card = criarCard(filme)
                 linha.addView(
                     card,
                     LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(4)
-                        rightMargin = dp(4)
+                        leftMargin = dp(6)
+                        rightMargin = dp(6)
                         bottomMargin = dp(12)
                     }
                 )
@@ -692,9 +725,10 @@ class MainActivity : AppCompatActivity() {
             isClickable = true
             background = criarFundoCard(false)
         }
+        estilizarCard(card)
 
         val imagem = ImageView(this).apply {
-            scaleType = ImageView.ScaleType.FIT_CENTER
+            scaleType = ImageView.ScaleType.CENTER_CROP
         }
         carregarImagem(filme.capa, imagem)
 
@@ -708,8 +742,8 @@ class MainActivity : AppCompatActivity() {
         val informacoes = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(8), dp(3), dp(8), dp(3))
-            setBackgroundColor(Color.argb(235, 10, 10, 10))
+            setPadding(dp(10), dp(3), dp(10), dp(3))
+            setBackgroundColor(Color.argb(240, 10, 10, 10))
         }
 
         val titulo = TextView(this).apply {
@@ -745,17 +779,11 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         )
 
-        card.setOnFocusChangeListener { _, foco ->
-            borda.visibility = if (foco) View.VISIBLE else View.GONE
-            card.background = criarFundoCard(foco)
-            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
-        }
+        configurarFocoCard(card, borda)
 
         card.setOnClickListener {
             abrirVideo(filme.titulo, filme.video, filme.capa)
         }
-
-        adicionarFavoritoAoCard(card, chaveFavorito("F", filme.titulo))
 
         return card
     }
@@ -778,18 +806,15 @@ class MainActivity : AppCompatActivity() {
         }
 
         lista.chunked(5).forEach { grupo ->
-            val linha = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(350))
-            }
+            val linha = criarLinhaCards()
 
             grupo.forEach { serie ->
                 val card = criarCardSerie(serie)
                 linha.addView(
                     card,
                     LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(4)
-                        rightMargin = dp(4)
+                        leftMargin = dp(6)
+                        rightMargin = dp(6)
                         bottomMargin = dp(12)
                     }
                 )
@@ -810,16 +835,17 @@ class MainActivity : AppCompatActivity() {
             isClickable = true
             background = criarFundoCard(false)
         }
+        estilizarCard(card)
 
-        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.FIT_CENTER }
+        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
         carregarImagem(serie.capa, imagem)
         card.addView(imagem, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)))
 
         val informacoes = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(8), dp(3), dp(8), dp(3))
-            setBackgroundColor(Color.argb(235, 10, 10, 10))
+            setPadding(dp(10), dp(3), dp(10), dp(3))
+            setBackgroundColor(Color.argb(240, 10, 10, 10))
         }
 
         val titulo = TextView(this).apply {
@@ -855,19 +881,13 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         )
 
-        card.setOnFocusChangeListener { _, foco ->
-            borda.visibility = if (foco) View.VISIBLE else View.GONE
-            card.background = criarFundoCard(foco)
-            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
-        }
+        configurarFocoCard(card, borda)
 
         card.setOnClickListener {
             val origem = listaSeriesAtual
             historicoConteudo.add { mostrarListaSeries(origem) }
             mostrarTemporadas(serie)
         }
-
-        adicionarFavoritoAoCard(card, chaveFavorito("S", serie.titulo))
 
         return card
     }
@@ -878,18 +898,15 @@ class MainActivity : AppCompatActivity() {
         indiceCardAtual = 0
 
         serie.temporadas.chunked(5).forEach { grupo ->
-            val linha = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(350))
-            }
+            val linha = criarLinhaCards()
 
             grupo.forEach { temporada ->
                 val card = criarCardTemporada(serie, temporada)
                 linha.addView(
                     card,
                     LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(4)
-                        rightMargin = dp(4)
+                        leftMargin = dp(6)
+                        rightMargin = dp(6)
                         bottomMargin = dp(12)
                     }
                 )
@@ -910,8 +927,9 @@ class MainActivity : AppCompatActivity() {
             isClickable = true
             background = criarFundoCard(false)
         }
+        estilizarCard(card)
 
-        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.FIT_CENTER }
+        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
         carregarImagem(serie.capa, imagem)
         card.addView(imagem, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)))
 
@@ -921,7 +939,7 @@ class MainActivity : AppCompatActivity() {
             textSize = 16f
             setTypeface(null, Typeface.BOLD)
             gravity = Gravity.CENTER
-            setBackgroundColor(Color.argb(235, 10, 10, 10))
+            setBackgroundColor(Color.argb(240, 10, 10, 10))
         }
 
         card.addView(
@@ -940,11 +958,7 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         )
 
-        card.setOnFocusChangeListener { _, foco ->
-            borda.visibility = if (foco) View.VISIBLE else View.GONE
-            card.background = criarFundoCard(foco)
-            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
-        }
+        configurarFocoCard(card, borda)
 
         card.setOnClickListener {
             historicoConteudo.add { mostrarTemporadas(serie) }
@@ -960,18 +974,15 @@ class MainActivity : AppCompatActivity() {
         indiceCardAtual = 0
 
         temporada.episodios.chunked(5).forEach { grupo ->
-            val linha = LinearLayout(this).apply {
-                orientation = LinearLayout.HORIZONTAL
-                layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(350))
-            }
+            val linha = criarLinhaCards()
 
             grupo.forEach { episodio ->
                 val card = criarCardEpisodio(serie, temporada.numero, episodio)
                 linha.addView(
                     card,
                     LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                        leftMargin = dp(4)
-                        rightMargin = dp(4)
+                        leftMargin = dp(6)
+                        rightMargin = dp(6)
                         bottomMargin = dp(12)
                     }
                 )
@@ -1013,8 +1024,9 @@ class MainActivity : AppCompatActivity() {
             isClickable = true
             background = criarFundoCard(false)
         }
+        estilizarCard(card)
 
-        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.FIT_CENTER }
+        val imagem = ImageView(this).apply { scaleType = ImageView.ScaleType.CENTER_CROP }
         carregarImagem(serie.capa, imagem)
         card.addView(imagem, FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275)))
 
@@ -1024,10 +1036,10 @@ class MainActivity : AppCompatActivity() {
             textSize = 14f
             setTypeface(null, Typeface.BOLD)
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(8), dp(3), dp(8), dp(3))
+            setPadding(dp(10), dp(3), dp(10), dp(3))
             maxLines = 2
             ellipsize = TextUtils.TruncateAt.END
-            setBackgroundColor(Color.argb(235, 10, 10, 10))
+            setBackgroundColor(Color.argb(240, 10, 10, 10))
         }
 
         card.addView(
@@ -1046,11 +1058,7 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         )
 
-        card.setOnFocusChangeListener { _, foco ->
-            borda.visibility = if (foco) View.VISIBLE else View.GONE
-            card.background = criarFundoCard(foco)
-            if (foco) indiceCardAtual = cardsAtuais.indexOf(card)
-        }
+        configurarFocoCard(card, borda)
 
         val textoBase = informacoes.text.toString()
 
@@ -1059,8 +1067,11 @@ class MainActivity : AppCompatActivity() {
             setTextColor(Color.WHITE)
             textSize = 12f
             setTypeface(null, Typeface.BOLD)
-            setPadding(dp(8), dp(3), dp(8), dp(3))
-            setBackgroundColor(Color.argb(230, 0, 140, 60))
+            setPadding(dp(10), dp(4), dp(10), dp(4))
+            background = GradientDrawable().apply {
+                setColor(Color.argb(235, 0, 140, 60))
+                cornerRadius = dp(10).toFloat()
+            }
             visibility = View.GONE
         }
         card.addView(
@@ -1121,7 +1132,8 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(intent)
     }
-        private fun adicionarItemMenu(texto: String, acao: () -> Unit) {
+
+    private fun adicionarItemMenu(texto: String, acao: () -> Unit) {
         val item = TextView(this).apply {
             this.text = texto
             setTextColor(Color.WHITE)
@@ -1140,7 +1152,7 @@ class MainActivity : AppCompatActivity() {
         menuConteudo.addView(
             item,
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(48)).apply {
-                bottomMargin = dp(4)
+                bottomMargin = dp(6)
             }
         )
         itensMenuFoco.add(item)
@@ -1153,7 +1165,16 @@ class MainActivity : AppCompatActivity() {
 
         menuLateral = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setBackgroundColor(Color.argb(245, 5, 5, 5))
+            // Menu com as pontas da direita arredondadas
+            background = GradientDrawable().apply {
+                setColor(Color.argb(247, 8, 8, 8))
+                cornerRadii = floatArrayOf(
+                    0f, 0f,
+                    dp(24).toFloat(), dp(24).toFloat(),
+                    dp(24).toFloat(), dp(24).toFloat(),
+                    0f, 0f
+                )
+            }
         }
 
         val params = FrameLayout.LayoutParams(dp(360), ViewGroup.LayoutParams.MATCH_PARENT).apply {
@@ -1191,10 +1212,6 @@ class MainActivity : AppCompatActivity() {
         }
         cabecalho.addView(botaoFecharMenu, LinearLayout.LayoutParams(dp(55), dp(48)))
 
-        // O botão ✕ entra na lista de itens que o controle percorre (primeiro da fila),
-        // assim dá pra voltar nele subindo pelo menu.
-        itensMenuFoco.add(botaoFecharMenu)
-
         menuScroll = ScrollView(this).apply { isFocusable = false }
         menuConteudo = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -1223,11 +1240,11 @@ class MainActivity : AppCompatActivity() {
 
         adicionarItemMenu("★  Favoritos (${favoritos.size})") {
             fecharMenu()
-            mostrarFavoritos()
+            val lista = filmes.filter { favoritos.contains(it.titulo) }
+            mostrarListaCards(lista)
         }
 
         adicionarItemMenu("⌕  Pesquisa") { abrirPesquisa() }
-        adicionarItemMenu("🎤  Pesquisar por voz") { pesquisarPorVoz() }
 
         adicionarTituloMenu("FILMES")
         adicionarItemMenu("🎬  Todos os filmes (${filmes.size})") {
@@ -1347,12 +1364,7 @@ class MainActivity : AppCompatActivity() {
 
         val proximo = itensMenuFoco[indice]
         proximo.requestFocus()
-
-        if (proximo === botaoFecharMenu) {
-            menuScroll.smoothScrollTo(0, 0)
-        } else {
-            ajustarScrollMenu(proximo)
-        }
+        ajustarScrollMenu(proximo)
     }
 
     private fun ajustarScrollMenu(view: View) {
@@ -1374,242 +1386,16 @@ class MainActivity : AppCompatActivity() {
         cardsAtuais[indice].requestFocus()
     }
 
-    // ===== FAVORITOS =====
-
-    private fun chaveFavorito(tipo: String, titulo: String): String {
-        return "$tipo|$titulo"
-    }
-
-    private fun alternarFavorito(chave: String): Boolean {
-        val agora = if (favoritos.contains(chave)) {
-            favoritos.remove(chave)
-            false
-        } else {
-            favoritos.add(chave)
-            true
-        }
-        prefsWolf.edit().putStringSet("favoritos", HashSet(favoritos)).apply()
-        return agora
-    }
-
-    // Segurar o OK do controle (ou o dedo) em cima de um filme/série marca ou desmarca o favorito.
-    private fun adicionarFavoritoAoCard(card: FrameLayout, chave: String) {
-        val estrela = TextView(this).apply {
-            text = "★"
-            setTextColor(Color.YELLOW)
-            textSize = 24f
-            setTypeface(null, Typeface.BOLD)
-            setPadding(dp(8), dp(2), dp(8), dp(2))
-            setBackgroundColor(Color.argb(200, 0, 0, 0))
-            visibility = if (favoritos.contains(chave)) View.VISIBLE else View.GONE
-        }
-
-        card.addView(
-            estrela,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ).apply {
-                gravity = Gravity.TOP or Gravity.START
-                topMargin = dp(8)
-                leftMargin = dp(8)
-            }
-        )
-
-        card.setOnLongClickListener {
-            val agora = alternarFavorito(chave)
-            estrela.visibility = if (agora) View.VISIBLE else View.GONE
-            Toast.makeText(
-                this,
-                if (agora) "★ Adicionado aos favoritos" else "Removido dos favoritos",
-                Toast.LENGTH_SHORT
-            ).show()
-            true
-        }
-    }
-
-    private fun mostrarFavoritos() {
-        val filmesFav = (filmes + desenhos)
-            .filter { favoritos.contains(chaveFavorito("F", it.titulo)) }
-            .distinctBy { it.titulo }
-
-        val seriesFav = (series + doramas + animes)
-            .filter { favoritos.contains(chaveFavorito("S", it.titulo)) }
-
-        mostrarResultados(
-            filmesFav,
-            seriesFav,
-            "Nenhum favorito ainda.\n\nSegure o OK (ou o dedo) em um filme ou série para favoritar."
-        )
-    }
-
-    // ===== PESQUISA =====
-
     private fun abrirPesquisa() {
-        if (menuAberto) fecharMenu()
-
         val campo = EditText(this).apply {
             hint = "Digite o nome..."
             textSize = 20f
             setSingleLine(true)
-            imeOptions = android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
-            setPadding(dp(20), dp(16), dp(20), dp(16))
+            isFocusable = true
+            isFocusableInTouchMode = true
+            requestFocus()
         }
-
-        val dialogo = androidx.appcompat.app.AlertDialog.Builder(this)
-            .setTitle("Pesquisar")
-            .setView(campo)
-            .setPositiveButton("Buscar") { _, _ ->
-                executarPesquisa(campo.text.toString())
-            }
-            .setNegativeButton("Cancelar", null)
-            .create()
-
-        campo.setOnEditorActionListener { _, acao, _ ->
-            if (acao == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH) {
-                dialogo.dismiss()
-                executarPesquisa(campo.text.toString())
-                true
-            } else {
-                false
-            }
-        }
-
-        dialogo.window?.setSoftInputMode(
-            android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
-        )
-        dialogo.show()
-        campo.requestFocus()
-    }
-
-    private fun pesquisarPorVoz() {
-        if (menuAberto) fecharMenu()
-
-        val intentVoz = Intent(android.speech.RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
-            putExtra(
-                android.speech.RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                android.speech.RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
-            )
-            putExtra(android.speech.RecognizerIntent.EXTRA_LANGUAGE, "pt-BR")
-            putExtra(android.speech.RecognizerIntent.EXTRA_PROMPT, "Fale o nome do filme ou série")
-        }
-
-        try {
-            lancadorVoz.launch(intentVoz)
-        } catch (_: Exception) {
-            Toast.makeText(
-                this,
-                "Pesquisa por voz não disponível neste aparelho",
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
-
-    private fun executarPesquisa(texto: String) {
-        val termo = normalizarTexto(texto)
-
-        if (termo.isEmpty()) {
-            Toast.makeText(this, "Digite algo para pesquisar", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        // Filmes e desenhos (sem repetir o mesmo título).
-        val filmesEncontrados = (filmes + desenhos)
-            .filter { normalizarTexto(it.titulo).contains(termo) }
-            .distinctBy { it.titulo }
-
-        // Séries, doramas e animes.
-        val seriesEncontradas = (series + doramas + animes)
-            .filter { normalizarTexto(it.titulo).contains(termo) }
-
-        mostrarResultados(
-            filmesEncontrados,
-            seriesEncontradas,
-            "Nada encontrado para \"$texto\""
-        )
-    }
-
-    private fun mostrarResultados(
-        filmesLista: List<Filme>,
-        seriesLista: List<Serie>,
-        mensagemVazio: String
-    ) {
-        conteudo.removeAllViews()
-        cardsAtuais.clear()
-        indiceCardAtual = 0
-        listaSeriesAtual = seriesLista
-
-        if (filmesLista.isEmpty() && seriesLista.isEmpty()) {
-            val vazio = TextView(this).apply {
-                text = mensagemVazio
-                setTextColor(Color.WHITE)
-                textSize = 20f
-                gravity = Gravity.CENTER
-                setPadding(dp(20), dp(40), dp(20), dp(40))
-            }
-            conteudo.addView(
-                vazio,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            )
-            return
-        }
-
-        fun adicionarRotulo(rotulo: String) {
-            val titulo = TextView(this).apply {
-                text = rotulo
-                setTextColor(Color.WHITE)
-                textSize = 22f
-                setTypeface(null, Typeface.BOLD)
-                setPadding(dp(8), dp(16), dp(8), dp(8))
-            }
-            conteudo.addView(
-                titulo,
-                LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
-                )
-            )
-        }
-
-        fun adicionarCards(cards: List<View>) {
-            cards.chunked(5).forEach { grupo ->
-                val linha = LinearLayout(this).apply {
-                    orientation = LinearLayout.HORIZONTAL
-                    layoutParams = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.MATCH_PARENT,
-                        dp(350)
-                    )
-                }
-
-                grupo.forEach { card ->
-                    linha.addView(
-                        card,
-                        LinearLayout.LayoutParams(0, dp(335), 1f).apply {
-                            leftMargin = dp(4)
-                            rightMargin = dp(4)
-                            bottomMargin = dp(12)
-                        }
-                    )
-                    cardsAtuais.add(card)
-                }
-                conteudo.addView(linha)
-            }
-        }
-
-        if (filmesLista.isNotEmpty()) {
-            adicionarRotulo("Filmes e desenhos (${filmesLista.size})")
-            adicionarCards(filmesLista.map { criarCard(it) })
-        }
-
-        if (seriesLista.isNotEmpty()) {
-            adicionarRotulo("Séries, doramas e animes (${seriesLista.size})")
-            adicionarCards(seriesLista.map { criarCardSerie(it) })
-        }
-
-        cardsAtuais.firstOrNull()?.requestFocus()
+        Toast.makeText(this, "Use a busca pelo menu", Toast.LENGTH_SHORT).show()
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
