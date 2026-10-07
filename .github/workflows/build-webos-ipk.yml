@@ -24,31 +24,88 @@ jobs:
         run: |
           npm install -g @webos-tools/cli
 
-      - name: Preparar ícone
-        shell: bash
+      - name: Criar ícone do aplicativo
         run: |
-          set -e
+          python3 -m pip install Pillow
 
-          if [ -f "WOLF-webOS/icon.png" ]; then
-            echo "Icone icon.png encontrado."
-          elif [ -f "WOLF-webOS/ícone.png" ]; then
-            echo "Encontrado ícone.png. Criando icon.png..."
-            cp "WOLF-webOS/ícone.png" "WOLF-webOS/icon.png"
-          else
-            ICON=$(find "WOLF-webOS" -maxdepth 1 -type f -iname "*cone*.png" | head -n 1)
+          python3 <<'PY'
+          from PIL import Image, ImageDraw
 
-            if [ -z "$ICON" ]; then
-              echo "ERRO: nenhum arquivo PNG de icone foi encontrado."
-              exit 1
-            fi
+          size = 192
 
-            echo "Usando: $ICON"
-            cp "$ICON" "WOLF-webOS/icon.png"
-          fi
+          img = Image.new("RGBA", (size, size), (12, 12, 16, 255))
+          draw = ImageDraw.Draw(img)
 
-          ls -lah "WOLF-webOS"
+          margin = 12
 
-      - name: Verificar aplicativo
+          draw.rounded_rectangle(
+              (margin, margin, size - margin, size - margin),
+              radius=30,
+              fill=(190, 20, 40, 255)
+          )
+
+          points = [
+              (42, 62),
+              (67, 82),
+              (82, 52),
+              (96, 80),
+              (110, 52),
+              (125, 82),
+              (150, 62),
+              (134, 134),
+              (96, 112),
+              (58, 134)
+          ]
+
+          draw.polygon(points, fill=(255, 255, 255, 255))
+
+          img.save("WOLF-webOS/icon.png", "PNG")
+
+          print("icon.png criado com sucesso.")
+          PY
+
+          echo "=== ICON ==="
+          ls -lh WOLF-webOS/icon.png
+
+      - name: Corrigir appinfo.json
+        run: |
+          python3 <<'PY'
+          import json
+
+          path = "WOLF-webOS/appinfo.json"
+
+          with open(path, "r", encoding="utf-8") as f:
+              data = json.load(f)
+
+          data["icon"] = "icon.png"
+          data["main"] = "Index.html"
+          data["requiredACG"] = []
+
+          with open(path, "w", encoding="utf-8") as f:
+              json.dump(data, f, ensure_ascii=False, indent=2)
+              f.write("\n")
+
+          print("appinfo.json corrigido.")
+          PY
+
+          echo "=== APPINFO ==="
+          cat WOLF-webOS/appinfo.json
+
+      - name: Verificar arquivos do aplicativo
+        run: |
+          echo "=== WOLF-webOS ==="
+          find WOLF-webOS -maxdepth 2 -type f -print
+
+          echo "=== INDEX ==="
+          test -f "WOLF-webOS/Index.html"
+
+          echo "=== ICON ==="
+          test -f "WOLF-webOS/icon.png"
+
+          echo "=== APPINFO ==="
+          test -f "WOLF-webOS/appinfo.json"
+
+      - name: Verificar aplicativo webOS
         run: |
           ares-package --check WOLF-webOS
 
@@ -57,8 +114,9 @@ jobs:
           mkdir -p dist
           ares-package -o dist WOLF-webOS
 
-      - name: Mostrar IPK gerado
+      - name: Conferir IPK
         run: |
+          echo "=== ARQUIVOS GERADOS ==="
           ls -lah dist
 
       - name: Disponibilizar IPK
