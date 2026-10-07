@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "vendor": "WOLF IPTV",
   "type": "web",
-  "main": "index.html",
+  "main": "Index.html",
   "title": "WOLF IPTV",
-  "icon": "assets/icon.png",
-  "largeIcon": "assets/largeicon.png",
+  "icon": "ativos/icon.png",
+  "largeIcon": "ativos/largeicon.png",
   "appDescription": "WOLF IPTV para LG webOS TV",
   "resolution": "1920x1080",
   "requiredACG": []
