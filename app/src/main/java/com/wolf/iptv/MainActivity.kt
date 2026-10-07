@@ -117,9 +117,28 @@ class MainActivity : AppCompatActivity() {
     private val cardsAtuais = mutableListOf<View>()
     private var indiceCardAtual = 0
 
+    // Favoritos salvos no aparelho. Chave: "F|titulo" (filme/desenho) ou "S|titulo" (série/dorama/anime).
     private val favoritos = mutableSetOf<String>()
-        override fun onCreate(savedInstanceState: Bundle?) {
+
+    // Pesquisa por voz.
+    private val lancadorVoz = registerForActivityResult(
+        androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult()
+    ) { resultado ->
+        if (resultado.resultCode == RESULT_OK) {
+            val falado = resultado.data
+                ?.getStringArrayListExtra(android.speech.RecognizerIntent.EXTRA_RESULTS)
+                ?.firstOrNull()
+
+            if (!falado.isNullOrBlank()) {
+                executarPesquisa(falado)
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        favoritos.addAll(prefsWolf.getStringSet("favoritos", emptySet()) ?: emptySet())
 
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_FULLSCREEN or
@@ -736,6 +755,8 @@ class MainActivity : AppCompatActivity() {
             abrirVideo(filme.titulo, filme.video, filme.capa)
         }
 
+        adicionarFavoritoAoCard(card, chaveFavorito("F", filme.titulo))
+
         return card
     }
 
@@ -845,6 +866,8 @@ class MainActivity : AppCompatActivity() {
             historicoConteudo.add { mostrarListaSeries(origem) }
             mostrarTemporadas(serie)
         }
+
+        adicionarFavoritoAoCard(card, chaveFavorito("S", serie.titulo))
 
         return card
     }
@@ -1168,6 +1191,10 @@ class MainActivity : AppCompatActivity() {
         }
         cabecalho.addView(botaoFecharMenu, LinearLayout.LayoutParams(dp(55), dp(48)))
 
+        // O botão ✕ entra na lista de itens que o controle percorre (primeiro da fila),
+        // assim dá pra voltar nele subindo pelo menu.
+        itensMenuFoco.add(botaoFecharMenu)
+
         menuScroll = ScrollView(this).apply { isFocusable = false }
         menuConteudo = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
@@ -1196,11 +1223,11 @@ class MainActivity : AppCompatActivity() {
 
         adicionarItemMenu("★  Favoritos (${favoritos.size})") {
             fecharMenu()
-            val lista = filmes.filter { favoritos.contains(it.titulo) }
-            mostrarListaCards(lista)
+            mostrarFavoritos()
         }
 
         adicionarItemMenu("⌕  Pesquisa") { abrirPesquisa() }
+        adicionarItemMenu("🎤  Pesquisar por voz") { pesquisarPorVoz() }
 
         adicionarTituloMenu("FILMES")
         adicionarItemMenu("🎬  Todos os filmes (${filmes.size})") {
@@ -1320,7 +1347,12 @@ class MainActivity : AppCompatActivity() {
 
         val proximo = itensMenuFoco[indice]
         proximo.requestFocus()
-        ajustarScrollMenu(proximo)
+
+        if (proximo === botaoFecharMenu) {
+            menuScroll.smoothScrollTo(0, 0)
+        } else {
+            ajustarScrollMenu(proximo)
+        }
     }
 
     private fun ajustarScrollMenu(view: View) {
@@ -1342,16 +1374,242 @@ class MainActivity : AppCompatActivity() {
         cardsAtuais[indice].requestFocus()
     }
 
+    // ===== FAVORITOS =====
+
+    private fun chaveFavorito(tipo: String, titulo: String): String {
+        return "$tipo|$titulo"
+    }
+
+    private fun alternarFavorito(chave: String): Boolean {
+        val agora = if (favoritos.contains(chave)) {
+            favoritos.remove(chave)
+            false
+        } else {
+            favoritos.add(chave)
+            true
+        }
+        prefsWolf.edit().putStringSet("favoritos", HashSet(favoritos)).apply()
+        return agora
+    }
+
+    // Segurar o OK do controle (ou o dedo) em cima de um filme/série marca ou desmarca o favorito.
+    private fun adicionarFavoritoAoCard(card: FrameLayout, chave: String) {
+        val estrela = TextView(this).apply {
+            text = "★"
+            setTextColor(Color.YELLOW)
+            textSize = 24f
+            setTypeface(null, Typeface.BOLD)
+            setPadding(dp(8), dp(2), dp(8), dp(2))
+            setBackgroundColor(Color.argb(200, 0, 0, 0))
+            visibility = if (favoritos.contains(chave)) View.VISIBLE else View.GONE
+        }
+
+        card.addView(
+            estrela,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.TOP or Gravity.START
+                topMargin = dp(8)
+                leftMargin = dp(8)
+            }
+        )
+
+        card.setOnLongClickListener {
+            val agora = alternarFavorito(chave)
+            estrela.visibility = if (agora) View.VISIBLE else View.GONE
+            Toast.makeText(
+                this,
+                if (agora) "★ Adicionado aos favoritos" else "Removido dos favoritos",
+                Toast.LENGTH_SHORT
+            ).show()
+            true
+        }
+    }
+
+    private fun mostrarFavoritos() {
+        val filmesFav = (filmes + desenhos)
+            .filter { favoritos.contains(chaveFavorito("F", it.titulo)) }
+            .distinctBy { it.titulo }
+
+        val seriesFav = (series + doramas + animes)
+            .filter { favoritos.contains(chaveFavorito("S", it.titulo)) }
+
+        mostrarResultados(
+            filmesFav,
+            seriesFav,
+            "Nenhum favorito ainda.\n\nSegure o OK (ou o dedo) em um filme ou série para favoritar."
+        )
+    }
+
+    // ===== PESQUISA =====
+
     private fun abrirPesquisa() {
+        if (menuAberto) fecharMenu()
+
         val campo = EditText(this).apply {
             hint = "Digite o nome..."
             textSize = 20f
             setSingleLine(true)
-            isFocusable = true
-            isFocusableInTouchMode = true
-            requestFocus()
+            imeOptions = android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH
+            setPadding(dp(20), dp(16), dp(20), dp(16))
         }
-        Toast.makeText(this, "Use a busca pelo menu", Toast.LENGTH_SHORT).show()
+
+        val dialogo = androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle("Pesquisar")
+            .setView(campo)
+            .setPositiveButton("Buscar") { _, _ ->
+                executarPesquisa(campo.text.toString())
+            }
+            .setNegativeButton("Cancelar", null)
+            .create()
+
+        campo.setOnEditorActionListener { _, acao, _ ->
+            if (acao == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH) {
+                dialogo.dismiss()
+                executarPesquisa(campo.text.toString())
+                true
+            } else {
+                false
+            }
+        }
+
+        dialogo.window?.setSoftInputMode(
+            android.view.WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE
+        )
+        dialogo.show()
+        campo.requestFocus()
+    }
+
+    private fun pesquisarPorVoz() {
+        if (menuAberto) fecharMenu()
+
+        val intentVoz = Intent(android.speech.RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
+            putExtra(
+                android.speech.RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                android.speech.RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            putExtra(android.speech.RecognizerIntent.EXTRA_LANGUAGE, "pt-BR")
+            putExtra(android.speech.RecognizerIntent.EXTRA_PROMPT, "Fale o nome do filme ou série")
+        }
+
+        try {
+            lancadorVoz.launch(intentVoz)
+        } catch (_: Exception) {
+            Toast.makeText(
+                this,
+                "Pesquisa por voz não disponível neste aparelho",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    private fun executarPesquisa(texto: String) {
+        val termo = normalizarTexto(texto)
+
+        if (termo.isEmpty()) {
+            Toast.makeText(this, "Digite algo para pesquisar", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        // Filmes e desenhos (sem repetir o mesmo título).
+        val filmesEncontrados = (filmes + desenhos)
+            .filter { normalizarTexto(it.titulo).contains(termo) }
+            .distinctBy { it.titulo }
+
+        // Séries, doramas e animes.
+        val seriesEncontradas = (series + doramas + animes)
+            .filter { normalizarTexto(it.titulo).contains(termo) }
+
+        mostrarResultados(
+            filmesEncontrados,
+            seriesEncontradas,
+            "Nada encontrado para \"$texto\""
+        )
+    }
+
+    private fun mostrarResultados(
+        filmesLista: List<Filme>,
+        seriesLista: List<Serie>,
+        mensagemVazio: String
+    ) {
+        conteudo.removeAllViews()
+        cardsAtuais.clear()
+        indiceCardAtual = 0
+        listaSeriesAtual = seriesLista
+
+        if (filmesLista.isEmpty() && seriesLista.isEmpty()) {
+            val vazio = TextView(this).apply {
+                text = mensagemVazio
+                setTextColor(Color.WHITE)
+                textSize = 20f
+                gravity = Gravity.CENTER
+                setPadding(dp(20), dp(40), dp(20), dp(40))
+            }
+            conteudo.addView(
+                vazio,
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            )
+            return
+        }
+
+        fun adicionarRotulo(rotulo: String) {
+            val titulo = TextView(this).apply {
+                text = rotulo
+                setTextColor(Color.WHITE)
+                textSize = 22f
+                setTypeface(null, Typeface.BOLD)
+                setPadding(dp(8), dp(16), dp(8), dp(8))
+            }
+            conteudo.addView(
+                titulo,
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            )
+        }
+
+        fun adicionarCards(cards: List<View>) {
+            cards.chunked(5).forEach { grupo ->
+                val linha = LinearLayout(this).apply {
+                    orientation = LinearLayout.HORIZONTAL
+                    layoutParams = LinearLayout.LayoutParams(
+                        ViewGroup.LayoutParams.MATCH_PARENT,
+                        dp(350)
+                    )
+                }
+
+                grupo.forEach { card ->
+                    linha.addView(
+                        card,
+                        LinearLayout.LayoutParams(0, dp(335), 1f).apply {
+                            leftMargin = dp(4)
+                            rightMargin = dp(4)
+                            bottomMargin = dp(12)
+                        }
+                    )
+                    cardsAtuais.add(card)
+                }
+                conteudo.addView(linha)
+            }
+        }
+
+        if (filmesLista.isNotEmpty()) {
+            adicionarRotulo("Filmes e desenhos (${filmesLista.size})")
+            adicionarCards(filmesLista.map { criarCard(it) })
+        }
+
+        if (seriesLista.isNotEmpty()) {
+            adicionarRotulo("Séries, doramas e animes (${seriesLista.size})")
+            adicionarCards(seriesLista.map { criarCardSerie(it) })
+        }
+
+        cardsAtuais.firstOrNull()?.requestFocus()
     }
 
     override fun dispatchKeyEvent(event: KeyEvent): Boolean {
