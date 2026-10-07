@@ -1,2 +1,837 @@
-*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#050505;color:#fff;font-family:Arial,sans-serif;overflow:hidden}body{background:radial-gradient(circle at 70% 10%,#291010 0,#090909 42%,#030303 100%)}#app{height:100%;display:flex;flex-direction:column}header{height:92px;display:flex;align-items:center;padding:18px 34px;gap:28px;background:linear-gradient(180deg,rgba(0,0,0,.9),rgba(0,0,0,.35))}#menuBtn{width:245px;height:54px;background:#161616;border:2px solid #333;border-radius:8px;color:#fff;font-size:19px;font-weight:700}#status{font-size:16px;color:#aaa}main{padding:5px 34px 30px;overflow:auto;height:calc(100% - 92px);scroll-behavior:smooth}.section{margin-bottom:25px}.section h2{font-size:25px;margin:12px 0 13px}.row{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}.card{height:300px;background:#121212;border:3px solid transparent;border-radius:10px;overflow:hidden;position:relative;outline:none}.card img{width:100%;height:235px;display:block;object-fit:cover;background:#222}.card .meta{padding:7px 11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:17px}.card .year{color:#aaa;font-size:14px}.card.focus{border-color:#e00000;transform:scale(1.025);box-shadow:0 0 22px rgba(220,0,0,.38)}.placeholder{height:235px;display:flex;align-items:center;justify-content:center;color:#666}.empty{padding:40px;color:#999}.subrow{display:flex;gap:12px;overflow:hidden;margin-bottom:13px}.pill{padding:10px 17px;background:#171717;border:2px solid #333;border-radius:20px;color:#ddd}.pill.focus{border-color:#e00000;color:#fff}.detail{display:flex;gap:28px;padding:20px 0}.detail img{width:260px;height:370px;object-fit:cover;border-radius:10px}.detail h1{font-size:32px;margin:0 0 10px}.episode{height:64px;padding:0 18px;margin:8px 0;background:#151515;border:2px solid #292929;border-radius:8px;display:flex;align-items:center;font-size:18px}.episode.focus{border-color:#e00000;background:#211010}.seasonTitle{font-size:22px;margin:18px 0 8px}.drawer{position:fixed}.drawer-head{font-size:28px;font-weight:700;padding:22px 25px;border-bottom:1px solid #333}#drawer{position:fixed;left:0;top:0;width:390px;height:100%;z-index:20;background:#0b0b0b;box-shadow:15px 0 40px #000;transform:translateX(-100%);transition:transform .18s ease;padding:0 0 20px;overflow:auto}#drawer.open{transform:translateX(0)}.drawerItem{margin:8px 16px;padding:15px 18px;border:2px solid #282828;border-radius:8px;background:#151515;font-size:19px}.drawerItem.focus{border-color:#e00000;background:#211010}.drawerCat{font-size:15px;color:#999;padding:8px 25px 2px}.back{margin-bottom:15px}.loading{padding:50px;font-size:22px;color:#aaa}#toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:#181818;border:1px solid #444;padding:12px 20px;border-radius:8px;display:none;z-index:50}#player{position:fixed;inset:0;background:#000;z-index:100}#player video{width:100%;height:100%;object-fit:contain;background:#000}#playerBar{position:absolute;left:0;right:0;top:0;height:75px;display:flex;align-items:center;gap:20px;padding:12px 25px;background:linear-gradient(#000,transparent)}#playerBar button{padding:11px 20px;background:#171717;color:#fff;border:2px solid #444;border-radius:8px;font-size:17px}#playerBar button.focus{border-color:#e00000}#playerTitle{font-size:20px}@media(max-width:1400px){.row{gap:12px}.card{height:270px}.card img{height:205px}}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    user-select: none;
+}
+
+/* =========================================================
+   FUNDO
+   ========================================================= */
+
+#background {
+    position: fixed;
+    inset: 0;
+
+    background-image:
+        url("https://i.postimg.cc/Ghk8PP7w/wolf.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    z-index: 0;
+
+    transform: scale(1.01);
+}
+
+#backgroundOverlay {
+    position: fixed;
+    inset: 0;
+
+    background:
+        rgba(0, 0, 0, 0.45);
+
+    z-index: 1;
+}
+
+/* =========================================================
+   APP
+   ========================================================= */
+
+#app {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 12px 20px;
+}
+
+/* =========================================================
+   TOPO
+   ========================================================= */
+
+#topbar {
+    width: 100%;
+    min-height: 58px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 18px;
+
+    flex-shrink: 0;
+}
+
+.top-menu-button {
+    width: 235px;
+    height: 58px;
+
+    flex-shrink: 0;
+}
+
+#pageTitle {
+    font-size: 22px;
+    font-weight: bold;
+
+    color: rgba(255,255,255,0.95);
+
+    text-shadow:
+        0 2px 8px rgba(0,0,0,0.8);
+}
+
+/* =========================================================
+   BOTÕES / FOCO
+   ========================================================= */
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    border: 0;
+    outline: none;
+}
+
+.focusable {
+    outline: none;
+
+    border-radius: 8px;
+
+    background:
+        rgba(10,10,10,0.74);
+
+    color: #fff;
+
+    transition:
+        border 0.12s ease,
+        transform 0.12s ease,
+        background 0.12s ease;
+}
+
+.focusable:focus {
+    border: 4px solid #ff0000;
+
+    background:
+        rgba(10,10,10,0.95);
+
+    transform: scale(1.02);
+
+    box-shadow:
+        0 0 18px rgba(255,0,0,0.35);
+}
+
+/* =========================================================
+   SCROLL
+   ========================================================= */
+
+#contentScroll {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scroll-behavior: smooth;
+
+    padding-top: 10px;
+    padding-bottom: 30px;
+
+    scrollbar-width: none;
+}
+
+#contentScroll::-webkit-scrollbar {
+    display: none;
+}
+
+#content {
+    width: 100%;
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.cardsGrid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 14px 8px;
+
+    padding: 4px;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.card {
+    position: relative;
+
+    width: 100%;
+
+    height: 335px;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    border-radius: 8px;
+
+    background:
+        rgba(10,10,10,0.74);
+
+    border: 4px solid transparent;
+
+    outline: none;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.12s ease,
+        transform 0.12s ease,
+        background 0.12s ease;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.card:focus {
+    border-color: #ff0000;
+
+    background:
+        rgba(10,10,10,0.95);
+
+    transform: scale(1.025);
+
+    z-index: 10;
+
+    box-shadow:
+        0 0 18px rgba(255,0,0,0.45);
+}
+
+.card-image {
+    width: 100%;
+    height: 275px;
+
+    flex-shrink: 0;
+
+    object-fit: contain;
+
+    display: block;
+
+    background:
+        rgba(0,0,0,0.20);
+}
+
+.card-info {
+    height: 60px;
+
+    flex-shrink: 0;
+
+    padding:
+        4px 8px;
+
+    background:
+        rgba(10,10,10,0.92);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+.card-title {
+    width: 100%;
+
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: bold;
+
+    line-height: 24px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-details {
+    color: #ccc;
+
+    font-size: 12px;
+
+    line-height: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* =========================================================
+   CARD TEMPORADA
+   ========================================================= */
+
+.season-card {
+    justify-content: flex-end;
+}
+
+.season-card .card-info {
+    justify-content: center;
+}
+
+.season-title {
+    text-align: center;
+
+    font-size: 16px;
+}
+
+/* =========================================================
+   CARD EPISÓDIO
+   ========================================================= */
+
+.episode-title {
+    white-space: normal;
+
+    line-height: 19px;
+
+    max-height: 40px;
+}
+
+.episode-card.watched .card-image {
+    opacity: 0.45;
+}
+
+.episode-card.watched .card-info {
+    background:
+        rgba(10,10,10,0.96);
+}
+
+.watched-badge {
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    z-index: 4;
+
+    padding: 5px 8px;
+
+    border-radius: 4px;
+
+    background:
+        rgba(0,140,60,0.90);
+
+    color: #fff;
+
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.loading {
+    min-height: 250px;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 12px;
+
+    color: #fff;
+
+    font-size: 20px;
+
+    text-align: center;
+}
+
+.loadingWolf {
+    font-size: 34px;
+
+    font-weight: 900;
+
+    letter-spacing: 5px;
+
+    color: #fff;
+
+    text-shadow:
+        0 0 15px rgba(255,0,0,0.55);
+}
+
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+
+#sideMenu {
+    position: fixed;
+
+    left: 10px;
+    top: 10px;
+    bottom: 10px;
+
+    width: 360px;
+
+    z-index: 100;
+
+    display: flex;
+    flex-direction: column;
+
+    background:
+        rgba(5,5,5,0.96);
+
+    border-radius: 16px;
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.8);
+
+    overflow: hidden;
+
+    transform: translateX(-120%);
+
+    transition:
+        transform 0.18s ease;
+}
+
+#sideMenu.open {
+    transform: translateX(0);
+}
+
+#menuHeader {
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+
+    padding:
+        8px 10px 8px 15px;
+}
+
+#menuTitle {
+    flex: 1;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    color: #fff;
+}
+
+#closeMenu {
+    width: 55px;
+    height: 48px;
+
+    font-size: 24px;
+}
+
+#menuScroll {
+    flex: 1;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    padding:
+        5px 10px 20px;
+
+    scrollbar-width: none;
+}
+
+#menuScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-item {
+    width: 100%;
+    height: 48px;
+
+    margin-bottom: 4px;
+
+    padding:
+        0 12px 0 18px;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+
+    background:
+        rgba(10,10,10,0.75);
+
+    color: #fff;
+
+    font-size: 16px;
+
+    border: 4px solid transparent;
+
+    outline: none;
+
+    cursor: pointer;
+
+    text-align: left;
+}
+
+.menu-item:focus {
+    border-color: #ff0000;
+
+    background:
+        rgba(10,10,10,0.98);
+
+    transform: scale(1.01);
+}
+
+.menu-section {
+    width: 100%;
+
+    margin-top: 14px;
+    margin-bottom: 6px;
+
+    padding:
+        8px 12px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(40,40,40,0.48);
+
+    color: #ccc;
+
+    font-size: 16px;
+}
+
+/* =========================================================
+   PESQUISA
+   ========================================================= */
+
+.overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 200;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(0,0,0,0.82);
+}
+
+.hidden {
+    display: none !important;
+}
+
+.searchBox {
+    width: 620px;
+
+    padding: 28px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(8,8,8,0.98);
+
+    border: 2px solid rgba(255,255,255,0.12);
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,0.8);
+}
+
+.searchTitle {
+    margin-bottom: 18px;
+
+    font-size: 25px;
+    font-weight: bold;
+}
+
+#searchInput {
+    width: 100%;
+    height: 58px;
+
+    padding:
+        0 18px;
+
+    border: 4px solid transparent;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background:
+        rgba(35,35,35,1);
+
+    color: #fff;
+
+    font-size: 21px;
+}
+
+#searchInput:focus {
+    border-color: #ff0000;
+}
+
+.searchHint {
+    margin-top: 12px;
+
+    color: #aaa;
+
+    font-size: 14px;
+}
+
+/* =========================================================
+   PLAYER
+   ========================================================= */
+
+#playerOverlay {
+    background:
+        rgba(0,0,0,0.97);
+}
+
+#playerContainer {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    background: #000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#videoPlayer {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    background: #000;
+}
+
+#playerTop {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    right: 0;
+
+    z-index: 5;
+
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+
+    padding:
+        10px 18px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.90),
+            rgba(0,0,0,0)
+        );
+}
+
+#playerTitle {
+    flex: 1;
+
+    font-size: 21px;
+
+    font-weight: bold;
+
+    text-shadow:
+        0 2px 5px #000;
+}
+
+#closePlayer {
+    width: 55px;
+    height: 48px;
+
+    font-size: 23px;
+}
+
+#playerLoading,
+#playerError {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    z-index: 4;
+
+    padding: 15px 22px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(0,0,0,0.80);
+
+    font-size: 19px;
+
+    display: none;
+}
+
+#playerError {
+    color: #fff;
+}
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+#toast {
+    position: fixed;
+
+    left: 50%;
+    bottom: 35px;
+
+    transform:
+        translateX(-50%)
+        translateY(30px);
+
+    z-index: 500;
+
+    padding:
+        12px 22px;
+
+    border-radius: 8px;
+
+    background:
+        rgba(10,10,10,0.94);
+
+    border: 2px solid rgba(255,0,0,0.65);
+
+    color: #fff;
+
+    font-size: 16px;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+}
+
+#toast.show {
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+}
+
+/* =========================================================
+   MENSAGEM VAZIA / ERRO
+   ========================================================= */
+
+.empty {
+    width: 100%;
+
+    min-height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+
+    font-size: 20px;
+
+    text-align: center;
+}
+
+.catalog-error {
+    padding: 40px;
+
+    text-align: center;
+
+    color: #fff;
+
+    font-size: 20px;
+
+    white-space: pre-wrap;
+}
+
+/* =========================================================
+   RESPONSIVO PARA TV
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    .cardsGrid {
+        gap: 10px 6px;
+    }
+
+    .card {
+        height: 300px;
+    }
+
+    .card-image {
+        height: 240px;
+    }
+
+    .card-info {
+        height: 56px;
+    }
+}
+
+@media (min-width: 1600px) {
+
+    #app {
+        padding:
+            14px 24px;
+    }
+
+    .cardsGrid {
+        gap: 16px 9px;
+    }
+
+    .card {
+        height: 345px;
+    }
+
+    .card-image {
+        height: 285px;
+    }
+}
