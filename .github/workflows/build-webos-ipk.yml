@@ -1,0 +1,40 @@
+name: Build WOLF webOS IPK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "WOLF-webOS/**"
+      - ".github/workflows/build-webos-ipk.yml"
+
+jobs:
+  build-ipk:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar projeto
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "16"
+
+      - name: Instalar webOS CLI
+        run: npm install -g @webos-tools/cli
+
+      - name: Verificar aplicativo
+        run: ares-package --check WOLF-webOS
+
+      - name: Gerar IPK
+        run: |
+          mkdir -p dist
+          ares-package -o dist WOLF-webOS
+
+      - name: Disponibilizar IPK
+        uses: actions/upload-artifact@v4
+        with:
+          name: WOLF-webOS-IPK
+          path: "dist/*.ipk"
+          if-no-files-found: error
+          retention-days: 30
