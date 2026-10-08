@@ -1,14 +1,13 @@
 * {
     box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    padding: 0;
 }
 
 html,
 body {
     width: 100%;
     height: 100%;
-    margin: 0;
-    padding: 0;
     overflow: hidden;
     background: #000;
     color: #fff;
@@ -16,27 +15,23 @@ body {
 }
 
 body {
-    user-select: none;
+    position: relative;
 }
 
-/* =========================================================
+/* =========================
    FUNDO
-   ========================================================= */
+========================= */
 
 #background {
     position: fixed;
     inset: 0;
 
-    background-image:
-        url("https://i.postimg.cc/Ghk8PP7w/wolf.png");
-
+    background-image: url("https://i.postimg.cc/Ghk8PP7w/wolf.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    z-index: 0;
-
-    transform: scale(1.01);
+    z-index: -3;
 }
 
 #backgroundOverlay {
@@ -44,135 +39,166 @@ body {
     inset: 0;
 
     background:
-        rgba(0, 0, 0, 0.45);
+        linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.72),
+            rgba(0, 0, 0, 0.88)
+        );
 
-    z-index: 1;
+    z-index: -2;
 }
 
-/* =========================================================
-   APP
-   ========================================================= */
+/* =========================
+   APLICAÇÃO
+========================= */
 
 #app {
-    position: relative;
-
     width: 100%;
     height: 100%;
-
-    z-index: 2;
-
-    display: flex;
-    flex-direction: column;
-
-    padding: 12px 20px;
+    position: relative;
 }
 
-/* =========================================================
+/* =========================
    TOPO
-   ========================================================= */
+========================= */
 
 #topbar {
     width: 100%;
-    min-height: 58px;
+    height: 86px;
 
     display: flex;
     align-items: center;
 
-    gap: 18px;
+    padding: 0 45px;
 
-    flex-shrink: 0;
-}
+    background: rgba(0, 0, 0, 0.62);
 
-.top-menu-button {
-    width: 235px;
-    height: 58px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 
-    flex-shrink: 0;
+    position: relative;
+    z-index: 10;
 }
 
 #pageTitle {
-    font-size: 22px;
-    font-weight: bold;
+    position: absolute;
 
-    color: rgba(255,255,255,0.95);
+    left: 50%;
+    transform: translateX(-50%);
 
-    text-shadow:
-        0 2px 8px rgba(0,0,0,0.8);
+    font-size: 30px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    white-space: nowrap;
 }
 
-/* =========================================================
-   BOTÕES / FOCO
-   ========================================================= */
+.top-menu-button {
+    min-width: 190px;
+    height: 50px;
 
-button,
-input {
-    font-family: inherit;
-}
+    padding: 0 22px;
 
-button {
-    border: 0;
-    outline: none;
-}
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
 
-.focusable {
-    outline: none;
-
-    border-radius: 8px;
-
-    background:
-        rgba(10,10,10,0.74);
+    background: rgba(20, 20, 20, 0.88);
 
     color: #fff;
 
+    font-size: 17px;
+    font-weight: 800;
+
+    cursor: pointer;
+
     transition:
-        border 0.12s ease,
-        transform 0.12s ease,
-        background 0.12s ease;
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
 }
 
-.focusable:focus {
-    border: 4px solid #ff0000;
+.top-menu-button:hover,
+.top-menu-button:focus {
+    outline: none;
 
-    background:
-        rgba(10,10,10,0.95);
+    border-color: #ff2020;
 
-    transform: scale(1.02);
+    background: rgba(35, 35, 35, 0.98);
 
-    box-shadow:
-        0 0 18px rgba(255,0,0,0.35);
+    transform: scale(1.04);
 }
 
-/* =========================================================
-   SCROLL
-   ========================================================= */
+/* =========================
+   CONTEÚDO
+========================= */
 
 #contentScroll {
-    flex: 1;
-
-    min-height: 0;
+    width: 100%;
+    height: calc(100% - 86px);
 
     overflow-y: auto;
     overflow-x: hidden;
 
     scroll-behavior: smooth;
 
-    padding-top: 10px;
-    padding-bottom: 30px;
-
-    scrollbar-width: none;
+    padding: 25px 45px 70px;
 }
 
 #contentScroll::-webkit-scrollbar {
-    display: none;
+    width: 7px;
+}
+
+#contentScroll::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.35);
+}
+
+#contentScroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.22);
+    border-radius: 20px;
 }
 
 #content {
     width: 100%;
 }
 
-/* =========================================================
+/* =========================
+   TÍTULOS
+========================= */
+
+.section {
+    width: 100%;
+    margin-bottom: 42px;
+}
+
+.sectionTitle {
+    margin-bottom: 18px;
+
+    font-size: 27px;
+    font-weight: 900;
+
+    letter-spacing: 0.5px;
+}
+
+.sectionTitle::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 5px;
+    height: 27px;
+
+    margin-right: 10px;
+
+    vertical-align: -4px;
+
+    background: #e50914;
+
+    border-radius: 4px;
+}
+
+/* =========================
    GRID
-   ========================================================= */
+========================= */
 
 .cardsGrid {
     width: 100%;
@@ -182,185 +208,149 @@ button {
     grid-template-columns:
         repeat(5, minmax(0, 1fr));
 
-    gap: 14px 8px;
-
-    padding: 4px;
+    gap: 22px;
 }
 
-/* =========================================================
+/* =========================
    CARD
-   ========================================================= */
+========================= */
 
 .card {
     position: relative;
 
-    width: 100%;
-
     height: 335px;
-
-    min-width: 0;
 
     overflow: hidden;
 
+    background: rgba(15, 15, 15, 0.94);
+
+    border: 3px solid transparent;
+
     border-radius: 8px;
-
-    background:
-        rgba(10,10,10,0.74);
-
-    border: 4px solid transparent;
-
-    outline: none;
 
     cursor: pointer;
 
     transition:
-        border-color 0.12s ease,
-        transform 0.12s ease,
-        background 0.12s ease;
-
-    display: flex;
-    flex-direction: column;
+        transform 0.15s ease,
+        border-color 0.15s ease,
+        box-shadow 0.15s ease;
 }
 
-.card:focus {
-    border-color: #ff0000;
+.card:hover,
+.card.focused {
+    border-color: #e50914;
 
-    background:
-        rgba(10,10,10,0.95);
-
-    transform: scale(1.025);
-
-    z-index: 10;
+    transform: scale(1.035);
 
     box-shadow:
-        0 0 18px rgba(255,0,0,0.45);
+        0 0 0 2px rgba(229, 9, 20, 0.25),
+        0 10px 35px rgba(0, 0, 0, 0.55);
+
+    z-index: 5;
 }
 
 .card-image {
     width: 100%;
     height: 275px;
 
-    flex-shrink: 0;
-
-    object-fit: contain;
-
     display: block;
 
+    object-fit: cover;
+
     background:
-        rgba(0,0,0,0.20);
+        linear-gradient(
+            135deg,
+            #151515,
+            #050505
+        );
 }
 
 .card-info {
+    width: 100%;
     height: 60px;
 
-    flex-shrink: 0;
-
-    padding:
-        4px 8px;
-
-    background:
-        rgba(10,10,10,0.92);
+    padding: 8px 11px;
 
     display: flex;
     flex-direction: column;
     justify-content: center;
 
-    overflow: hidden;
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(20, 20, 20, 0.96),
+            rgba(5, 5, 5, 0.98)
+        );
 }
 
 .card-title {
     width: 100%;
 
-    color: #fff;
-
-    font-size: 14px;
-    font-weight: bold;
-
-    line-height: 24px;
+    font-size: 16px;
+    font-weight: 800;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-.card-details {
-    color: #ccc;
+.card-subtitle {
+    margin-top: 4px;
+
+    color: rgba(255, 255, 255, 0.62);
 
     font-size: 12px;
 
-    line-height: 20px;
-
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* =========================================================
-   CARD TEMPORADA
-   ========================================================= */
-
-.season-card {
-    justify-content: flex-end;
-}
-
-.season-card .card-info {
-    justify-content: center;
-}
-
-.season-title {
-    text-align: center;
-
-    font-size: 16px;
-}
-
-/* =========================================================
-   CARD EPISÓDIO
-   ========================================================= */
-
-.episode-title {
-    white-space: normal;
-
-    line-height: 19px;
-
-    max-height: 40px;
-}
-
-.episode-card.watched .card-image {
-    opacity: 0.45;
-}
-
-.episode-card.watched .card-info {
-    background:
-        rgba(10,10,10,0.96);
-}
-
-.watched-badge {
+.card-badge {
     position: absolute;
 
-    top: 8px;
-    right: 8px;
-
-    z-index: 4;
+    top: 9px;
+    left: 9px;
 
     padding: 5px 8px;
 
-    border-radius: 4px;
+    background: rgba(0, 0, 0, 0.78);
 
-    background:
-        rgba(0,140,60,0.90);
-
-    color: #fff;
+    border-radius: 5px;
 
     font-size: 12px;
-    font-weight: bold;
+    font-weight: 900;
 }
 
-/* =========================================================
+.card-favorite {
+    position: absolute;
+
+    top: 9px;
+    right: 9px;
+
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.75);
+
+    font-size: 20px;
+
+    pointer-events: none;
+}
+
+/* =========================
    LOADING
-   ========================================================= */
+========================= */
 
 .loading {
-    min-height: 250px;
+    width: 100%;
+    min-height: 500px;
 
     display: flex;
     flex-direction: column;
@@ -368,60 +358,106 @@ button {
     align-items: center;
     justify-content: center;
 
-    gap: 12px;
+    gap: 14px;
 
-    color: #fff;
+    color: rgba(255, 255, 255, 0.75);
 
-    font-size: 20px;
-
-    text-align: center;
+    font-size: 18px;
 }
 
 .loadingWolf {
-    font-size: 34px;
-
-    font-weight: 900;
+    font-size: 46px;
+    font-weight: 1000;
 
     letter-spacing: 5px;
 
     color: #fff;
 
     text-shadow:
-        0 0 15px rgba(255,0,0,0.55);
+        0 0 18px rgba(255, 0, 0, 0.45);
 }
 
-/* =========================================================
+/* =========================
+   CATEGORIAS
+========================= */
+
+.categoryRow {
+    display: flex;
+
+    gap: 12px;
+
+    margin-bottom: 28px;
+
+    overflow-x: auto;
+
+    padding-bottom: 8px;
+}
+
+.categoryRow::-webkit-scrollbar {
+    height: 5px;
+}
+
+.categoryButton {
+    flex: 0 0 auto;
+
+    min-width: 150px;
+    height: 45px;
+
+    padding: 0 18px;
+
+    border: 2px solid rgba(255, 255, 255, 0.12);
+    border-radius: 7px;
+
+    background: rgba(15, 15, 15, 0.9);
+
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 800;
+
+    cursor: pointer;
+}
+
+.categoryButton:hover,
+.categoryButton:focus,
+.categoryButton.active {
+    outline: none;
+
+    border-color: #e50914;
+
+    background: #e50914;
+}
+
+/* =========================
    MENU LATERAL
-   ========================================================= */
+========================= */
 
 #sideMenu {
     position: fixed;
 
-    left: 10px;
-    top: 10px;
-    bottom: 10px;
+    top: 0;
+    left: 0;
 
-    width: 360px;
+    width: 390px;
+    height: 100%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(10, 10, 10, 0.99),
+            rgba(0, 0, 0, 0.98)
+        );
+
+    border-right: 2px solid rgba(255, 255, 255, 0.08);
+
+    transform: translateX(-105%);
+
+    transition: transform 0.22s ease;
 
     z-index: 100;
 
-    display: flex;
-    flex-direction: column;
-
-    background:
-        rgba(5,5,5,0.96);
-
-    border-radius: 16px;
-
     box-shadow:
-        0 10px 40px rgba(0,0,0,0.8);
-
-    overflow: hidden;
-
-    transform: translateX(-120%);
-
-    transition:
-        transform 0.18s ease;
+        12px 0 45px rgba(0, 0, 0, 0.55);
 }
 
 #sideMenu.open {
@@ -429,209 +465,228 @@ button {
 }
 
 #menuHeader {
-    height: 65px;
-
-    flex-shrink: 0;
+    height: 86px;
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    padding:
-        8px 10px 8px 15px;
+    padding: 0 25px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 #menuTitle {
-    flex: 1;
+    font-size: 24px;
+    font-weight: 1000;
 
-    font-size: 21px;
-
-    font-weight: bold;
-
-    color: #fff;
+    letter-spacing: 1px;
 }
 
 #closeMenu {
-    width: 55px;
+    width: 48px;
     height: 48px;
 
-    font-size: 24px;
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+
+    background: rgba(25, 25, 25, 0.9);
+
+    color: #fff;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+#closeMenu:hover,
+#closeMenu:focus {
+    outline: none;
+
+    border-color: #e50914;
+
+    background: #e50914;
 }
 
 #menuScroll {
-    flex: 1;
-
-    min-height: 0;
+    height: calc(100% - 86px);
 
     overflow-y: auto;
 
-    padding:
-        5px 10px 20px;
-
-    scrollbar-width: none;
+    padding: 20px;
 }
 
 #menuScroll::-webkit-scrollbar {
-    display: none;
+    width: 5px;
 }
 
-.menu-item {
+#menuScroll::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+
+.menuGroup {
+    margin-bottom: 24px;
+}
+
+.menuGroupTitle {
+    margin-bottom: 10px;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 13px;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+}
+
+.menuItem {
     width: 100%;
-    height: 48px;
-
-    margin-bottom: 4px;
-
-    padding:
-        0 12px 0 18px;
-
-    border-radius: 8px;
+    min-height: 50px;
 
     display: flex;
     align-items: center;
 
-    background:
-        rgba(10,10,10,0.75);
+    padding: 0 15px;
+
+    margin-bottom: 7px;
+
+    border: 2px solid transparent;
+    border-radius: 7px;
+
+    background: rgba(255, 255, 255, 0.055);
 
     color: #fff;
 
     font-size: 16px;
-
-    border: 4px solid transparent;
-
-    outline: none;
+    font-weight: 800;
 
     cursor: pointer;
 
     text-align: left;
 }
 
-.menu-item:focus {
-    border-color: #ff0000;
+.menuItem:hover,
+.menuItem:focus,
+.menuItem.focused {
+    outline: none;
 
-    background:
-        rgba(10,10,10,0.98);
+    background: rgba(229, 9, 20, 0.18);
 
-    transform: scale(1.01);
+    border-color: #e50914;
 }
 
-.menu-section {
-    width: 100%;
+.menuSubItem {
+    padding-left: 32px;
 
-    margin-top: 14px;
-    margin-bottom: 6px;
+    min-height: 44px;
 
-    padding:
-        8px 12px;
-
-    border-radius: 8px;
-
-    background:
-        rgba(40,40,40,0.48);
-
-    color: #ccc;
-
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* =========================================================
-   PESQUISA
-   ========================================================= */
+   OVERLAYS
+========================================================= */
 
 .overlay {
     position: fixed;
 
     inset: 0;
 
+    background: rgba(0, 0, 0, 0.9);
+
     z-index: 200;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    background:
-        rgba(0,0,0,0.82);
 }
 
 .hidden {
     display: none !important;
 }
 
+/* =========================================================
+   PESQUISA
+========================================================= */
+
+#searchOverlay {
+    display: flex;
+
+    align-items: flex-start;
+    justify-content: center;
+
+    padding-top: 145px;
+}
+
 .searchBox {
-    width: 620px;
+    width: 720px;
 
-    padding: 28px;
+    padding: 30px;
 
-    border-radius: 14px;
+    background: rgba(18, 18, 18, 0.98);
 
-    background:
-        rgba(8,8,8,0.98);
+    border: 2px solid rgba(255, 255, 255, 0.12);
 
-    border: 2px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
 
     box-shadow:
-        0 15px 50px rgba(0,0,0,0.8);
+        0 20px 70px rgba(0, 0, 0, 0.7);
 }
 
 .searchTitle {
     margin-bottom: 18px;
 
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 900;
 }
 
 #searchInput {
     width: 100%;
     height: 58px;
 
-    padding:
-        0 18px;
+    padding: 0 18px;
 
-    border: 4px solid transparent;
-
+    border: 3px solid rgba(255, 255, 255, 0.15);
     border-radius: 8px;
 
     outline: none;
 
-    background:
-        rgba(35,35,35,1);
+    background: #080808;
 
     color: #fff;
 
-    font-size: 21px;
+    font-size: 19px;
 }
 
 #searchInput:focus {
-    border-color: #ff0000;
+    border-color: #e50914;
 }
 
 .searchHint {
     margin-top: 12px;
 
-    color: #aaa;
+    color: rgba(255, 255, 255, 0.5);
 
-    font-size: 14px;
-}
-
-/* =========================================================
+    font-size: 13px;
+}/* =========================================================
    PLAYER
-   ========================================================= */
+========================================================= */
 
 #playerOverlay {
-    background:
-        rgba(0,0,0,0.97);
+    background: #000;
 }
 
 #playerContainer {
-    position: relative;
-
     width: 100%;
     height: 100%;
 
-    background: #000;
+    position: relative;
 
     display: flex;
+
     align-items: center;
     justify-content: center;
+
+    background: #000;
 }
 
 #videoPlayer {
@@ -650,40 +705,58 @@ button {
     left: 0;
     right: 0;
 
-    z-index: 5;
-
-    min-height: 70px;
+    height: 78px;
 
     display: flex;
     align-items: center;
+    justify-content: space-between;
 
-    padding:
-        10px 18px;
+    padding: 0 28px;
 
     background:
         linear-gradient(
             to bottom,
-            rgba(0,0,0,0.90),
-            rgba(0,0,0,0)
+            rgba(0, 0, 0, 0.9),
+            transparent
         );
+
+    z-index: 5;
 }
 
 #playerTitle {
-    flex: 1;
+    max-width: 75%;
 
-    font-size: 21px;
+    font-size: 22px;
+    font-weight: 900;
 
-    font-weight: bold;
-
-    text-shadow:
-        0 2px 5px #000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #closePlayer {
-    width: 55px;
+    width: 48px;
     height: 48px;
 
-    font-size: 23px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+
+    background: rgba(0, 0, 0, 0.7);
+
+    color: #fff;
+
+    font-size: 22px;
+
+    cursor: pointer;
+}
+
+#closePlayer:focus,
+#closePlayer:hover {
+    outline: none;
+
+    border-color: #e50914;
+
+    background: #e50914;
 }
 
 #playerLoading,
@@ -693,30 +766,28 @@ button {
     left: 50%;
     top: 50%;
 
-    transform:
-        translate(-50%,-50%);
-
-    z-index: 4;
+    transform: translate(-50%, -50%);
 
     padding: 15px 22px;
 
     border-radius: 8px;
 
-    background:
-        rgba(0,0,0,0.80);
+    background: rgba(0, 0, 0, 0.8);
 
-    font-size: 19px;
+    font-size: 16px;
 
-    display: none;
+    z-index: 10;
 }
 
 #playerError {
-    color: #fff;
+    display: none;
+
+    color: #ff5555;
 }
 
 /* =========================================================
    TOAST
-   ========================================================= */
+========================================================= */
 
 #toast {
     position: fixed;
@@ -724,25 +795,20 @@ button {
     left: 50%;
     bottom: 35px;
 
-    transform:
-        translateX(-50%)
-        translateY(30px);
+    transform: translate(-50%, 25px);
 
-    z-index: 500;
+    padding: 13px 22px;
 
-    padding:
-        12px 22px;
+    background: rgba(15, 15, 15, 0.96);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
 
     border-radius: 8px;
 
-    background:
-        rgba(10,10,10,0.94);
-
-    border: 2px solid rgba(255,0,0,0.65);
-
     color: #fff;
 
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 700;
 
     opacity: 0;
 
@@ -751,87 +817,369 @@ button {
     transition:
         opacity 0.2s ease,
         transform 0.2s ease;
+
+    z-index: 500;
 }
 
 #toast.show {
     opacity: 1;
 
-    transform:
-        translateX(-50%)
-        translateY(0);
+    transform: translate(-50%, 0);
 }
 
 /* =========================================================
-   MENSAGEM VAZIA / ERRO
-   ========================================================= */
+   ESTADOS
+========================================================= */
 
-.empty {
+.focusable:focus {
+    outline: none;
+}
+
+.emptyMessage {
     width: 100%;
 
-    min-height: 180px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    color: #fff;
-
-    font-size: 20px;
+    padding: 45px 20px;
 
     text-align: center;
+
+    color: rgba(255, 255, 255, 0.55);
+
+    font-size: 17px;
 }
 
-.catalog-error {
-    padding: 40px;
+.errorMessage {
+    width: 100%;
+
+    padding: 45px 20px;
 
     text-align: center;
 
-    color: #fff;
+    color: #ff5555;
 
-    font-size: 20px;
-
-    white-space: pre-wrap;
+    font-size: 17px;
 }
 
 /* =========================================================
-   RESPONSIVO PARA TV
-   ========================================================= */
+   BARRA DE PROGRESSO
+========================================================= */
+
+.progressBar {
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 5px;
+
+    overflow: hidden;
+
+    background: rgba(255, 255, 255, 0.15);
+
+    z-index: 8;
+}
+
+.progressBar > div {
+    height: 100%;
+
+    background: #e50914;
+
+    transition:
+        width 0.2s ease;
+}
+
+/* =========================================================
+   CARD COM ERRO DE IMAGEM
+========================================================= */
+
+.card.image-error {
+    background:
+        linear-gradient(
+            135deg,
+            #161616,
+            #050505
+        );
+}
+
+.card.image-error::after {
+    content: "WOLF IPTV";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    color: rgba(255, 255, 255, 0.3);
+
+    font-size: 22px;
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+/* =========================================================
+   CATEGORIAS DO MENU
+========================================================= */
+
+.menuGroup + .menuGroup {
+    border-top:
+        1px solid
+        rgba(255, 255, 255, 0.06);
+
+    padding-top: 18px;
+}
+
+/* =========================================================
+   BOTÕES
+========================================================= */
+
+button,
+input {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+}
+
+button {
+    -webkit-tap-highlight-color:
+        transparent;
+}
+
+/* =========================================================
+   FOCO PARA TV
+========================================================= */
+
+button:focus,
+.card:focus,
+input:focus {
+    outline: none;
+}
+
+.card.focused {
+    transform:
+        scale(1.035);
+
+    border-color:
+        #e50914;
+
+    box-shadow:
+        0 0 0 2px
+        rgba(229, 9, 20, 0.3),
+        0 12px 38px
+        rgba(0, 0, 0, 0.65);
+}
+
+.menuItem.focused {
+    background:
+        rgba(229, 9, 20, 0.18);
+
+    border-color:
+        #e50914;
+}
+
+/* =========================================================
+   SCROLL HORIZONTAL
+========================================================= */
+
+.categoryRow {
+    scrollbar-width:
+        thin;
+}
+
+.categoryRow::-webkit-scrollbar {
+    height: 5px;
+}
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 1400px) {
+
+    #contentScroll {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+
+    .cardsGrid {
+        gap: 17px;
+    }
+
+    .card {
+        height: 310px;
+    }
+
+    .card-image {
+        height: 250px;
+    }
+
+    .card-info {
+        height: 60px;
+    }
+
+}
 
 @media (max-width: 1100px) {
 
     .cardsGrid {
-        gap: 10px 6px;
+        grid-template-columns:
+            repeat(
+                4,
+                minmax(0, 1fr)
+            );
     }
 
-    .card {
-        height: 300px;
-    }
-
-    .card-image {
-        height: 240px;
-    }
-
-    .card-info {
-        height: 56px;
-    }
 }
 
-@media (min-width: 1600px) {
+@media (max-width: 850px) {
 
-    #app {
-        padding:
-            14px 24px;
+    #topbar {
+        padding: 0 20px;
+    }
+
+    #contentScroll {
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .cardsGrid {
-        gap: 16px 9px;
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+    }
+
+    #sideMenu {
+        width: 340px;
+    }
+
+    .searchBox {
+        width:
+            calc(
+                100% - 40px
+            );
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    #pageTitle {
+        display: none;
+    }
+
+    .cardsGrid {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
     }
 
     .card {
-        height: 345px;
+        height: 285px;
     }
 
     .card-image {
-        height: 285px;
+        height: 225px;
     }
+
+    .sectionTitle {
+        font-size: 22px;
+    }
+
 }
+
+/* =========================================================
+   WEBOS / TV
+========================================================= */
+
+@media (min-width: 1600px) {
+
+    #topbar {
+        height: 90px;
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+
+    #contentScroll {
+        height:
+            calc(
+                100% - 90px
+            );
+
+        padding:
+            30px 50px 80px;
+    }
+
+    .cardsGrid {
+        grid-template-columns:
+            repeat(
+                5,
+                minmax(0, 1fr)
+            );
+
+        gap: 24px;
+    }
+
+    .card {
+        height: 350px;
+    }
+
+    .card-image {
+        height: 288px;
+    }
+
+    .card-info {
+        height: 62px;
+    }
+
+    .card-title {
+        font-size: 17px;
+    }
+
+    .sectionTitle {
+        font-size: 29px;
+    }
+
+}
+
+/* =========================================================
+   ANIMAÇÕES
+========================================================= */
+
+@keyframes wolfFadeIn {
+
+    from {
+        opacity: 0;
+        transform:
+            translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            translateY(0);
+    }
+
+}
+
+.section {
+    animation:
+        wolfFadeIn
+        0.25s
+        ease
+        both;
+}
+
+/* =========================================================
+   FINAL
+========================================================= */
