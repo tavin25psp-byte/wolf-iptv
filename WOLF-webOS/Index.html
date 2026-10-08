@@ -723,4 +723,576 @@ body {
 })();
 </script>
 </body>
+</html></head>
+<body>
+<div id="top">
+  <div id="bMenu" class="btn fx">☰ WOLF MENU</div>
+  <div id="trilha"></div>
+  <div id="sbar">
+    <input id="q" class="fx" type="text" placeholder="Pesquisar filmes e séries..." autocomplete="off">
+    <div id="mic" class="btn fx" style="margin-right:0">🎤</div>
+  </div>
+</div>
+<div id="main"><div id="grid"></div></div>
+
+<div id="shade"></div>
+<div id="drawer">
+  <div id="dhead"><span>WOLF MENU</span><span id="dx" class="btn fx">✕</span></div>
+  <div id="dlist"></div>
+</div>
+
+<div id="carregando">Carregando catálogo...</div>
+<div id="aviso"></div>
+
+<div id="player">
+  <video id="video" autoplay></video>
+  <div id="ptitulo"></div>
+  <div id="pespera">Carregando...</div>
+  <div id="pbar">
+    <div id="ptrilho"><div id="pprog"></div></div>
+    <div id="ptempo">0:00 / 0:00</div>
+    <div id="pctl"><span id="pb">⏪ 10s</span><span id="pp">⏯</span><span id="pf">10s ⏩</span><span id="px">✕ Fechar</span></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var BASE = 'https://raw.githubusercontent.com/tavin25psp-byte/wolf-iptv/main/';
+  var FONTES = {
+    filmes:   { titulo: 'Filmes',   tipo: 'filme', arquivos: ['catalogo.json'], chaves: ['filmes'] },
+    series:   { titulo: 'Séries',   tipo: 'serie', arquivos: ['series.json', 'serie.json', 's%C3%A9rie.json'], chaves: ['series'] },
+    doramas:  { titulo: 'Doramas',  tipo: 'serie', arquivos: ['doramas.json', 'Doramas.json'], chaves: ['doramas'] },
+    animes:   { titulo: 'Animes',   tipo: 'serie', arquivos: ['animes.json', 'anime.json', 'Animes.json', 'Anime.json'], chaves: ['animes'] },
+    desenhos: { titulo: 'Desenhos', tipo: 'filme', arquivos: ['desenho.json', 'desenhos.json', 'Desenho.json', 'Desenhos.json'], chaves: ['desenhos', 'desenho'] }
+  };
+  var ORDEM = ['filmes', 'series', 'doramas', 'animes', 'desenhos'];
+  var EMOJI = { acao: '🔥', aventura: '🧭', animacao: '🧸', comedia: '😂', terror: '👻', drama: '🎭', romance: '❤️', ficcao: '🚀', fantasia: '✨', suspense: '🔪', familia: '👪', documentario: '🎥' };
+  var LOTE = 48;
+
+  var dados = {}, raiz = {};
+  var S = { sec: 'filmes', cat: 'Todos', modo: 'cat', cards: [], els: [], shown: 0, back: [], re: null, drawer: false, exp: 'filmes', player: false, cur: null, pos: 0 };
+  var erroCarga = false, timerBarra = null, timerAviso = null, ultSave = 0;
+
+  function $(id) { return document.getElementById(id); }
+  function norm(s) {
+    s = String(s || '').toLowerCase();
+    try { s = s.normalize('NFD').replace(/[\u0300-\u036f]/g, ''); } catch (e) {}
+    return s.replace(/^\s+|\s+$/g, '');
+  }
+  function ajustar() {
+    var px = Math.max(11, Math.min(22, window.innerWidth / 96));
+    document.documentElement.style.fontSize = px + 'px';
+  }
+
+  // ---------- rede ----------
+  function pegar(url, ok, erro) {
+    var x = new XMLHttpRequest();
+    x.open('GET', url, true);
+    x.timeout = 20000;
+    x.onload = function () { if (x.status >= 200 && x.status < 300) ok(x.responseText); else erro(); };
+    x.onerror = erro; x.ontimeout = erro;
+    x.send();
+  }
+  function pegarPrimeiro(nomes, ok, falha) {
+    var i = 0;
+    (function tenta() {
+      if (i >= nomes.length) { falha(); return; }
+      pegar(BASE + nomes[i++], ok, tenta);
+    })();
+  }
+  function extrair(obj, chaves) {
+    if (!obj) return null;
+    if (obj instanceof Array) return obj;
+    for (var i = 0; i < chaves.length; i++) if (obj[chaves[i]] instanceof Array) return obj[chaves[i]];
+    return null;
+  }
+  function lerJson(txt) { try { return JSON.parse(String(txt).replace(/^\uFEFF/, '')); } catch (e) { return null; } }
+  function limparLista(lista, tipo, chave) {
+    var r = [];
+    for (var i = 0; i < lista.length; i++) if (lista[i] && lista[i].titulo) { lista[i]._sec = chave; r.push(lista[i]); }
+    if (tipo === 'filme') r.sort(function (a, b) {
+      var d = (b.ano || 0) - (a.ano || 0);
+      if (d !== 0) return d;
+      return norm(a.titulo) < norm(b.titulo) ? -1 : 1;
+    });
+    return r;
+  }
+  function carregar() {
+    $('carregando').style.display = 'block';
+    $('carregando').textContent = 'Carregando catálogo...';
+    erroCarga = false;
+    pegarPrimeiro(['catalogo.json'], function (txt) { raiz = lerJson(txt) || {}; proxima(0); }, function () {
+      erroCarga = true;
+      $('carregando').textContent = 'Erro ao carregar o catálogo. Verifique a internet e aperte OK (ou toque) para tentar de novo.';
+    });
+  }
+  function proxima(i) {
+    if (i >= ORDEM.length) { pronto(); return; }
+    var chave = ORDEM[i], f = FONTES[chave];
+    function daRaiz() { dados[chave] = limparLista(extrair(raiz, f.chaves) || [], f.tipo, chave); proxima(i + 1); }
+    if (chave === 'filmes') { daRaiz(); return; }
+    pegarPrimeiro(f.arquivos, function (txt) {
+      var arr = extrair(lerJson(txt), f.chaves);
+      if (arr) { dados[chave] = limparLista(arr, f.tipo, chave); proxima(i + 1); } else daRaiz();
+    }, daRaiz);
+  }
+  function pronto() {
+    $('carregando').style.display = 'none';
+    abrirCat('filmes', 'Todos');
+  }
+  function recarregar() { dados = {}; raiz = {}; S.back = []; carregar(); }
+
+  // ---------- armazenamento ----------
+  function ler(k) { try { return JSON.parse(localStorage.getItem(k) || '{}'); } catch (e) { return {}; } }
+  function gravar(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  function fkey(it) { return it._sec + '|' + it.titulo; }
+  function isFav(it) { return !!ler('fav')[fkey(it)]; }
+  function nFav() { return Object.keys(ler('fav')).length; }
+  function toggleFav(it) {
+    var f = ler('fav'), k = fkey(it);
+    if (f[k]) delete f[k]; else f[k] = 1;
+    gravar('fav', f);
+    return !!f[k];
+  }
+  function chaveEp(serie, t, e) { return serie.titulo + '|T' + t + '|E' + e; }
+  function vistoSim(c) { return !!ler('vistos')[c]; }
+  function marcarVisto(c) { var v = ler('vistos'); v[c] = 1; gravar('vistos', v); }// ---------- cabeçalho ----------
+  function cabecalho(t) {
+    $('trilha').style.display = 'block';
+    $('trilha').textContent = t;
+    $('sbar').style.display = 'none';
+  }
+
+  // ---------- listas ----------
+  function itemCard(it) {
+    if (FONTES[it._sec].tipo === 'filme') {
+      return { titulo: it.titulo, sub: (it.ano ? it.ano + ' • ' : '') + (it.categoria || ''), capa: it.capa, item: it,
+        acao: function () { tocar(it.titulo, it.video, { key: fkey(it), capa: it.capa }); } };
+    }
+    return { titulo: it.titulo, sub: (it.categoria || '') + ' • ' + (it.temporadas || []).length + ' temporada(s)', capa: it.capa, item: it,
+      acao: function () { abrirSerie(it); } };
+  }
+  function abrirCat(chave, cat) {
+    S.sec = chave; S.cat = cat; S.back = [];
+    S.re = function () {
+      S.modo = 'cat';
+      var lista = (dados[chave] || []).filter(function (it) { return cat === 'Todos' || norm(it.categoria) === norm(cat); });
+      cabecalho(FONTES[chave].titulo + (cat !== 'Todos' ? '  ›  ' + cat : '') + '  (' + lista.length + ')');
+      mostrarCards(lista.map(itemCard), 'Nada encontrado aqui');
+    };
+    S.re();
+    focusCard(0);
+  }
+  function abrirFav() {
+    var s = S.sec, c = S.cat;
+    S.back = [function () { abrirCat(s, c); }];
+    S.re = function () {
+      S.modo = 'fav';
+      var f = ler('fav'), r = [];
+      ORDEM.forEach(function (ch) { (dados[ch] || []).forEach(function (it) { if (f[fkey(it)]) r.push(itemCard(it)); }); });
+      cabecalho('★ Favoritos (' + r.length + ')');
+      mostrarCards(r, 'Nenhum favorito ainda. Aperte o botão amarelo (ou toque na ☆) num card.');
+    };
+    S.re(); focusCard(0);
+  }
+  function abrirCont() {
+    var s = S.sec, c = S.cat;
+    S.back = [function () { abrirCat(s, c); }];
+    S.re = function () {
+      S.modo = 'cont';
+      var o = ler('cont'), arr = [];
+      Object.keys(o).forEach(function (k) { o[k]._k = k; arr.push(o[k]); });
+      arr.sort(function (a, b) { return b.ts - a.ts; });
+      cabecalho('▶ Continuar assistindo');
+      mostrarCards(arr.map(function (x) {
+        return { titulo: x.titulo, sub: 'Continuar de ' + fmt(x.pos), capa: x.capa,
+          acao: function () { tocar(x.titulo, x.url, { key: x._k, capa: x.capa, pos: x.pos }); } };
+      }), 'Nada para continuar ainda');
+    };
+    S.re(); focusCard(0);
+  }
+  function abrirBusca() {
+    var s = S.sec, c = S.cat;
+    S.back = [function () { abrirCat(s, c); }];
+    S.re = function () {
+      S.modo = 'busca';
+      $('trilha').style.display = 'none';
+      $('sbar').style.display = 'flex';
+      buscar();
+    };
+    $('q').value = '';
+    S.re();
+    setFoco($('q'));
+  }
+  function buscar() {
+    var q = norm($('q').value), r = [];
+    if (q) ORDEM.forEach(function (ch) {
+      (dados[ch] || []).forEach(function (it) { if (norm(it.titulo).indexOf(q) > -1) r.push(itemCard(it)); });
+    });
+    mostrarCards(r, q ? 'Nada encontrado para "' + $('q').value + '"' : 'Digite ou fale o nome do filme ou série');
+  }
+  function idxAtual() {
+    var i = S.els.indexOf(document.querySelector('.foco'));
+    return i < 0 ? 0 : i;
+  }
+  function abrirSerie(serie) {
+    var re = S.re, i = idxAtual();
+    S.back.push(function () { re(); focusCard(i); });
+    mostrarTemporadas(serie);
+    focusCard(0);
+  }
+  function mostrarTemporadas(serie) {
+    S.modo = 'temps';
+    cabecalho(serie.titulo);
+    mostrarCards((serie.temporadas || []).map(function (t) {
+      return { titulo: 'Temporada ' + t.numero, sub: (t.episodios || []).length + ' episódios', capa: serie.capa,
+        acao: function () {
+          var i = idxAtual();
+          S.back.push(function () { mostrarTemporadas(serie); focusCard(i); });
+          mostrarEpisodios(serie, t);
+          focusCard(0);
+        } };
+    }), 'Sem temporadas');
+  }
+  function mostrarEpisodios(serie, temp) {
+    S.modo = 'eps';
+    cabecalho(serie.titulo + '  ›  Temporada ' + temp.numero);
+    mostrarCards((temp.episodios || []).map(function (ep) {
+      var chave = chaveEp(serie, temp.numero, ep.numero), sub = ep.titulo;
+      if (!sub || /^epis[oó]dio\s*\d+$/i.test(sub)) sub = serie.titulo + ' • T' + temp.numero;
+      return { titulo: 'EP ' + ep.numero, sub: sub, capa: serie.capa, visto: vistoSim(chave),
+        acao: function (el) {
+          if (ep.video) { marcarVisto(chave); if (el && el.className.indexOf(' visto') < 0) el.className += ' visto'; }
+          tocar(serie.titulo + ' - EP ' + ep.numero, ep.video, { key: chave, capa: serie.capa });
+        } };
+    }), 'Sem episódios');
+  }
+
+  // ---------- cards ----------
+  function mostrarCards(cards, vazio) {
+    S.cards = cards; S.els = []; S.shown = 0;
+    var g = $('grid');
+    g.innerHTML = '';
+    $('main').scrollTop = 0;
+    if (!cards.length) {
+      var v = document.createElement('div');
+      v.className = 'vazio'; v.textContent = vazio;
+      g.appendChild(v);
+      return;
+    }
+    adicionarLote();
+  }
+  function adicionarLote() {
+    var g = $('grid'), fim = Math.min(S.shown + LOTE, S.cards.length);
+    for (var i = S.shown; i < fim; i++) g.appendChild(criarCard(S.cards[i], i));
+    S.shown = fim;
+  }
+  function criarCard(c, i) {
+    var d = document.createElement('div');
+    d.className = 'card fx' + (c.visto ? ' visto' : '');
+    var img = document.createElement('img');
+    img.alt = '';
+    img.onerror = function () { img.style.visibility = 'hidden'; };
+    if (c.capa) img.src = c.capa;
+    d.appendChild(img);
+    var selo = document.createElement('div');
+    selo.className = 'selo'; selo.textContent = '✓ ASSISTIDO';
+    d.appendChild(selo);
+    if (c.item) {
+      var st = document.createElement('div');
+      st.className = 'star';
+      st.textContent = isFav(c.item) ? '★' : '☆';
+      st.onclick = function (e) { e.stopPropagation(); favoritar(d); };
+      d.appendChild(st);
+    }
+    var info = document.createElement('div');
+    info.className = 'info';
+    var t = document.createElement('div'); t.className = 't'; t.textContent = c.titulo;
+    var s = document.createElement('div'); s.className = 's'; s.textContent = c.sub || '';
+    info.appendChild(t); info.appendChild(s); d.appendChild(info);
+    d.onclick = function () { setFoco(d); c.acao(d); };
+    d.onmouseenter = function () { setFoco(d); };
+    S.els.push(d);
+    return d;
+  }
+  function favoritar(el) {
+    var i = S.els.indexOf(el);
+    if (i < 0 || !S.cards[i] || !S.cards[i].item) return;
+    var on = toggleFav(S.cards[i].item);
+    aviso(on ? '★ Adicionado aos favoritos' : 'Removido dos favoritos');
+    if (S.modo === 'fav') { S.re(); focusCard(i); return; }
+    var st = el.querySelector('.star');
+    if (st) st.textContent = on ? '★' : '☆';
+  }
+  $('main').addEventListener('scroll', function () {
+    var m = $('main');
+    if (S.shown < S.cards.length && m.scrollTop + m.clientHeight > m.scrollHeight - 400) adicionarLote();
+  }, false);
+
+  // ---------- foco / navegação ----------
+  function setFoco(el) {
+    if (!el) return;
+    var o = document.querySelector('.foco');
+    if (o && o !== el) o.className = o.className.replace(/\s*foco/g, '');
+    if (el.className.indexOf('foco') < 0) el.className += ' foco';
+    var p = el.parentNode;
+    while (p && p.id !== 'main' && p.id !== 'dlist') p = p.parentNode;
+    if (!p) return;
+    var r = el.getBoundingClientRect(), b = p.getBoundingClientRect();
+    if (r.top < b.top + 8) p.scrollTop -= (b.top + 8 - r.top);
+    else if (r.bottom > b.bottom - 8) p.scrollTop += (r.bottom - b.bottom + 8);
+  }
+  function focusCard(i) {
+    while (i >= S.els.length && S.shown < S.cards.length) adicionarLote();
+    if (S.els.length) setFoco(S.els[Math.min(i, S.els.length - 1)]);
+    else setFoco($('bMenu'));
+  }
+  function alvos() {
+    var l = document.querySelectorAll(S.drawer ? '#drawer .fx' : '#top .fx, #main .fx'), r = [];
+    for (var i = 0; i < l.length; i++) if (l[i].offsetWidth > 0) r.push(l[i]);
+    return r;
+  }
+  function mover(dir) {
+    var cur = document.querySelector('.foco'), l = alvos();
+    if (!cur || l.indexOf(cur) < 0) { setFoco(l[0]); return; }
+    var a = cur.getBoundingClientRect(), ax = a.left + a.width / 2, ay = a.top + a.height / 2, best = null, bs = 1e9;
+    for (var i = 0; i < l.length; i++) {
+      if (l[i] === cur) continue;
+      var b = l[i].getBoundingClientRect(), dx = b.left + b.width / 2 - ax, dy = b.top + b.height / 2 - ay, ok, s;
+      if (dir === 'r') { ok = dx > a.width * 0.3; s = dx + Math.abs(dy) * 3; }
+      else if (dir === 'l') { ok = -dx > a.width * 0.3; s = -dx + Math.abs(dy) * 3; }
+      else if (dir === 'd') { ok = dy > a.height * 0.3; s = dy + Math.abs(dx) * 3; }
+      else { ok = -dy > a.height * 0.3; s = -dy + Math.abs(dx) * 3; }
+      if (ok && s < bs) { bs = s; best = l[i]; }
+    }
+    if (best) { setFoco(best); return; }
+    if (dir === 'd' && !S.drawer && S.shown < S.cards.length) { adicionarLote(); mover(dir); return; }
+    if (dir === 'l' && !S.drawer && cur.className.indexOf('card') > -1) abrirDrawer();
+  }
+  function ativar() {
+    var cur = document.querySelector('.foco');
+    if (!cur) return;
+    if (cur.tagName === 'INPUT') { cur.focus(); return; }
+    if (cur.onclick) cur.onclick();
+  }
+  function voltar() {
+    if (S.player) { fecharPlayer(); return true; }
+    if (S.drawer) { fecharDrawer(); setFoco($('bMenu')); return true; }
+    if (S.back.length) { (S.back.pop())(); return true; }
+    return false;
+  }// ---------- menu lateral ----------
+  function emoji(n) { return EMOJI[norm(n).split(' ')[0]] || '🎬'; }
+  function montarDrawer() {
+    var L = $('dlist');
+    L.innerHTML = '';
+    function item(txt, fn, cls) {
+      var d = document.createElement('div');
+      d.className = 'di fx ' + (cls || '');
+      d.textContent = txt;
+      d.onclick = fn;
+      d.onmouseenter = function () { setFoco(d); };
+      L.appendChild(d);
+      return d;
+    }
+    item('🔄  Atualizar catálogo', function () { fecharDrawer(); recarregar(); });
+    item('▶  Continuar assistindo', function () { fecharDrawer(); abrirCont(); });
+    item('★  Favoritos (' + nFav() + ')', function () { fecharDrawer(); abrirFav(); });
+    item('🔍  Pesquisa  🎤', function () { fecharDrawer(); abrirBusca(); });
+    ORDEM.forEach(function (ch) {
+      var lista = dados[ch] || [];
+      var h = item(FONTES[ch].titulo.toUpperCase() + ' (' + lista.length + ')', function () {
+        S.exp = (S.exp === ch ? '' : ch);
+        montarDrawer();
+        var e = document.querySelector('#dlist [data-sec="' + ch + '"]');
+        setFoco(e);
+      }, 'sec');
+      h.setAttribute('data-sec', ch);
+      if (S.exp !== ch) return;
+      var cont = {}, nomes = [];
+      lista.forEach(function (it) {
+        var c = it.categoria;
+        if (!c) return;
+        var k = norm(c);
+        if (!cont[k]) { cont[k] = { nome: c, n: 0 }; nomes.push(k); }
+        cont[k].n++;
+      });
+      nomes.sort();
+      item('🎬  Todos (' + lista.length + ')', function () { fecharDrawer(); abrirCat(ch, 'Todos'); });
+      nomes.forEach(function (k) {
+        item(emoji(cont[k].nome) + '  ' + cont[k].nome + ' (' + cont[k].n + ')', function () { fecharDrawer(); abrirCat(ch, cont[k].nome); });
+      });
+    });
+  }
+  function abrirDrawer() {
+    S.exp = S.sec;
+    montarDrawer();
+    S.drawer = true;
+    $('drawer').className = 'on';
+    $('shade').style.display = 'block';
+    setFoco(document.querySelector('#dlist [data-sec="' + S.sec + '"]') || document.querySelector('#dlist .fx'));
+  }
+  function fecharDrawer() {
+    S.drawer = false;
+    $('drawer').className = '';
+    $('shade').style.display = 'none';
+  }
+
+  // ---------- aviso ----------
+  function aviso(t) {
+    var a = $('aviso');
+    a.textContent = t; a.style.display = 'block';
+    clearTimeout(timerAviso);
+    timerAviso = setTimeout(function () { a.style.display = 'none'; }, 2800);
+  }
+
+  // ---------- player ----------
+  function fmt(s) {
+    if (!isFinite(s) || s < 0) s = 0;
+    s = Math.floor(s);
+    var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60;
+    return (h > 0 ? h + ':' + (m < 10 ? '0' : '') : '') + m + ':' + (x < 10 ? '0' : '') + x;
+  }
+  function mostrarBarra() {
+    $('pbar').style.display = 'block'; $('ptitulo').style.display = 'block';
+    clearTimeout(timerBarra);
+    timerBarra = setTimeout(function () { $('pbar').style.display = 'none'; $('ptitulo').style.display = 'none'; }, 4000);
+  }
+  function tocar(titulo, url, o) {
+    if (!url) { aviso('Vídeo ainda não disponível'); return; }
+    o = o || {};
+    var v = $('video');
+    S.cur = { key: o.key, titulo: titulo, url: url, capa: o.capa };
+    S.pos = o.pos || 0;
+    $('ptitulo').textContent = titulo;
+    $('player').style.display = 'block';
+    $('pespera').style.display = 'block';
+    S.player = true;
+    v.src = url;
+    try { v.play(); } catch (e) {}
+    mostrarBarra();
+  }
+  function salvarProgresso(forcar) {
+    var v = $('video'), now = new Date().getTime();
+    if (!S.cur || !S.cur.key || v.currentTime < 15) return;
+    if (!forcar && now - ultSave < 5000) return;
+    ultSave = now;
+    var c = ler('cont'), d = v.duration || 0;
+    if (d && d - v.currentTime < 90) delete c[S.cur.key];
+    else c[S.cur.key] = { titulo: S.cur.titulo, url: S.cur.url, capa: S.cur.capa, pos: Math.floor(v.currentTime), ts: now };
+    gravar('cont', c);
+  }
+  function fecharPlayer() {
+    var v = $('video');
+    salvarProgresso(true);
+    try { v.pause(); } catch (e) {}
+    v.removeAttribute('src');
+    try { v.load(); } catch (e) {}
+    $('player').style.display = 'none';
+    S.player = false;
+  }
+  function pular(s) {
+    var v = $('video');
+    try { v.currentTime = Math.max(0, Math.min(v.duration || 1e9, v.currentTime + s)); } catch (e) {}
+    mostrarBarra();
+  }
+  function pausar() {
+    var v = $('video');
+    if (v.paused) v.play(); else v.pause();
+    mostrarBarra();
+  }
+  function iniciarPlayer() {
+    var v = $('video');
+    v.addEventListener('timeupdate', function () {
+      var d = v.duration || 0;
+      $('pprog').style.width = (d ? v.currentTime / d * 100 : 0) + '%';
+      $('ptempo').textContent = fmt(v.currentTime) + ' / ' + fmt(d);
+      salvarProgresso(false);
+    });
+    v.addEventListener('loadedmetadata', function () {
+      if (S.pos) { try { v.currentTime = S.pos; } catch (e) {} S.pos = 0; }
+    });
+    v.addEventListener('playing', function () { $('pespera').style.display = 'none'; });
+    v.addEventListener('canplay', function () { $('pespera').style.display = 'none'; });
+    v.addEventListener('waiting', function () { $('pespera').style.display = 'block'; });
+    v.addEventListener('ended', function () { fecharPlayer(); });
+    v.addEventListener('error', function () { if (S.player) aviso('Não foi possível reproduzir este vídeo'); });
+    $('player').onclick = mostrarBarra;
+    $('pb').onclick = function (e) { e.stopPropagation(); pular(-10); };
+    $('pf').onclick = function (e) { e.stopPropagation(); pular(10); };
+    $('pp').onclick = function (e) { e.stopPropagation(); pausar(); };
+    $('px').onclick = function (e) { e.stopPropagation(); fecharPlayer(); };
+    $('ptrilho').onclick = function (e) {
+      e.stopPropagation();
+      var r = $('ptrilho').getBoundingClientRect();
+      try { v.currentTime = (v.duration || 0) * ((e.clientX - r.left) / r.width); } catch (x) {}
+      mostrarBarra();
+    };
+  }
+
+  // ---------- teclado / controle ----------
+  document.addEventListener('keydown', function (e) {
+    var k = e.keyCode;
+    if (erroCarga) { if (k === 13) carregar(); return; }
+    if (S.player) {
+      if (k === 13 || k === 415 || k === 19 || k === 179) pausar();
+      else if (k === 37) pular(-10);
+      else if (k === 39) pular(10);
+      else if (k === 412) pular(-30);
+      else if (k === 417) pular(30);
+      else if (k === 38 || k === 40) mostrarBarra();
+      else if (k === 461 || k === 27 || k === 8 || k === 413) fecharPlayer();
+      else return;
+      e.preventDefault();
+      return;
+    }
+    if (e.target && e.target.tagName === 'INPUT') {
+      if (k === 13 || k === 38 || k === 40) {
+        e.preventDefault(); e.target.blur();
+        if (k === 38) mover('u'); else focusCard(0);
+      } else if (k === 461 || k === 27) { e.preventDefault(); e.target.blur(); }
+      return;
+    }
+    if (k === 37) mover('l');
+    else if (k === 38) mover('u');
+    else if (k === 39) mover('r');
+    else if (k === 40) mover('d');
+    else if (k === 13) ativar();
+    else if (k === 405 || k === 70) { var c = document.querySelector('.foco'); if (c && c.className.indexOf('card') > -1) favoritar(c); }
+    else if (k === 461 || k === 27 || k === 8) { if (!voltar()) return; }
+    else return;
+    e.preventDefault();
+  }, false);
+
+  // ---------- início ----------
+  function iniciar() {
+    ajustar();
+    window.addEventListener('resize', ajustar, false);
+    $('bMenu').onclick = abrirDrawer;
+    $('bMenu').onmouseenter = function () { setFoco($('bMenu')); };
+    $('dx').onclick = function () { fecharDrawer(); setFoco($('bMenu')); };
+    $('dx').onmouseenter = function () { setFoco($('dx')); };
+    $('shade').onclick = function () { fecharDrawer(); };
+    $('carregando').onclick = function () { if (erroCarga) carregar(); };
+    $('q').oninput = buscar;
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    $('mic').onclick = function () {
+      if (!SR) { aviso('Sem voz neste aparelho: use o microfone do teclado/controle no campo'); $('q').focus(); return; }
+      try {
+        var r = new SR();
+        r.lang = 'pt-BR';
+        r.onresult = function (ev) { $('q').value = ev.results[0][0].transcript; buscar(); };
+        r.onerror = function () { aviso('Não consegui ouvir. Tente de novo ou digite.'); };
+        r.start();
+        aviso('🎤 Fale agora...');
+      } catch (x) { aviso('Voz indisponível. Digite o nome.'); }
+    };
+    $('mic').onmouseenter = function () { setFoco($('mic')); };
+    iniciarPlayer();
+    carregar();
+  }
+  iniciar();
+})();
+</script>
+</body>
 </html>
