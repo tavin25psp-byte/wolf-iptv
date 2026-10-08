@@ -19,31 +19,37 @@ body {
 }
 
 /* =========================
-   FUNDO (AJUSTADO PARA MOSTRAR MAIS A LOGO)
+   FUNDO (AJUSTADO PARA TELA CHEIA EM 50")
 ========================= */
 
 #background {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 
-    background-image: url("wolf_logo.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-image: url("fundo.jpg");
+    background-size: cover;          /* Cobre 100% da tela sem distorcer */
+    background-position: center;     /* Centraliza a imagem */
+    background-repeat: no-repeat;  /* Não repete */
 
     z-index: -3;
 }
 
 #backgroundOverlay {
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 
-    /* Gradiente mais leve para a imagem de fundo aparecer bem */
+    /* Gradiente suave para dar destaque à imagem sem prejudicar a leitura */
     background:
         linear-gradient(
             to bottom,
-            rgba(0, 0, 0, 0.45),
-            rgba(0, 0, 0, 0.65)
+            rgba(0, 0, 0, 0.40),
+            rgba(0, 0, 0, 0.60)
         );
 
     z-index: -2;
@@ -198,7 +204,7 @@ body {
 }
 
 /* =========================
-   GRID (ALTERADO PARA 6 CARDS)
+   GRID (6 CARDS POR FILEIRA)
 ========================= */
 
 .cardsGrid {
@@ -1182,4 +1188,4 @@ input:focus {
         0.25s
         ease
         both;
-}
+                }
