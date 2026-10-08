@@ -7,8 +7,8 @@
 <style>
 html,body{margin:0;padding:0;height:100%;overflow:hidden;background:#05070d;font-family:Arial,Helvetica,sans-serif;color:#fff;font-size:20px}
 body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-select:none;user-select:none}
-#top{position:absolute;left:2rem;right:2rem;top:1.1rem;height:3.4rem;display:flex;align-items:center}
-.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:1.7rem;background:rgba(20,24,40,.92);border:.18rem solid rgba(255,255,255,.12);font-weight:bold;font-size:1.2rem;margin-right:1rem;cursor:pointer;white-space:nowrap}
+#top{position:absolute;left:2rem;right:2rem;top:1.1rem;height:3.6rem;display:flex;align-items:center}
+.btn{display:inline-block;padding:.6rem 1.4rem;border-radius:1.7rem;background:rgba(20,24,40,.92);border:.18rem solid rgba(255,255,255,.12);font-weight:bold;font-size:1.35rem;margin-right:1rem;cursor:pointer;white-space:nowrap}
 #trilha{flex:1;font-size:1.3rem;font-weight:bold;text-shadow:0 2px 8px #000,0 0 14px #000;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #sbar{display:none;flex:1;align-items:center}
 #q{flex:1;min-width:0;box-sizing:border-box;height:3.2rem;padding:0 1.2rem;font-size:1.3rem;color:#fff;background:rgba(20,24,40,.92);border:.18rem solid rgba(255,255,255,.15);border-radius:1.7rem;outline:none;margin-right:1rem}
@@ -26,12 +26,12 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
 .card.visto .selo{display:block}.card.visto img{opacity:.45}
 .foco{border-color:#ff3b3b !important;transform:scale(1.06);box-shadow:0 0 1.5rem rgba(224,0,0,.75);z-index:5}
 #shade{display:none;position:absolute;left:0;top:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:25}
-#drawer{position:absolute;left:1rem;top:1rem;bottom:1rem;width:25rem;max-width:88%;box-sizing:border-box;padding:1rem;background:rgba(18,22,38,.97);border-radius:1.6rem;z-index:30;display:flex;flex-direction:column;-webkit-transform:translateX(-120%);transform:translateX(-120%);transition:transform .2s ease}
+#drawer{position:absolute;left:1rem;top:1rem;bottom:1rem;width:34rem;max-width:90%;box-sizing:border-box;padding:1.3rem;background:rgba(18,22,38,.97);border-radius:1.6rem;z-index:30;display:flex;flex-direction:column;-webkit-transform:translateX(-120%);transform:translateX(-120%);transition:transform .2s ease}
 #drawer.on{-webkit-transform:none;transform:none}
-#dhead{display:flex;align-items:center;justify-content:space-between;font-size:1.3rem;font-weight:bold;margin-bottom:.6rem}
-#dx{margin:0;padding:.4rem 1rem;border-color:#e00000}
+#dhead{display:flex;align-items:center;justify-content:space-between;font-size:1.7rem;font-weight:bold;margin-bottom:.9rem}
+#dx{margin:0;padding:.5rem 1.2rem;font-size:1.4rem;border-color:#e00000}
 #dlist{flex:1;overflow-y:auto}
-.di{padding:.8rem 1rem;margin:.35rem 0;border-radius:1rem;background:rgba(255,255,255,.07);font-size:1.1rem;border:.15rem solid transparent;cursor:pointer}
+.di{padding:1.05rem 1.3rem;margin:.45rem 0;border-radius:1.2rem;background:rgba(255,255,255,.07);font-size:1.45rem;border:.15rem solid transparent;cursor:pointer}
 .di.sec{background:rgba(110,130,190,.35);font-weight:bold}
 #carregando{position:absolute;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,.85);font-size:1.8rem;text-align:center;padding:40vh 2rem 0;box-sizing:border-box;z-index:90}
 #aviso{display:none;position:absolute;left:50%;bottom:3rem;width:30rem;max-width:90%;margin-left:-15rem;padding:1rem;text-align:center;font-size:1.2rem;box-sizing:border-box;background:rgba(20,20,20,.96);border:.15rem solid #b00000;border-radius:1.2rem;z-index:99}
@@ -50,6 +50,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
 <body>
 <div id="top">
   <div id="bMenu" class="btn fx">☰ WOLF MENU</div>
+  <div id="bCont" class="btn fx">▶ CONTINUAR</div>
   <div id="trilha"></div>
   <div id="sbar">
     <input id="q" class="fx" type="text" placeholder="Pesquisar filmes e séries..." autocomplete="off">
@@ -106,9 +107,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
   function ajustar() {
     var px = Math.max(11, Math.min(22, window.innerWidth / 96));
     document.documentElement.style.fontSize = px + 'px';
-  }
-
-  // ---------- rede ----------
+  }  // ---------- rede ----------
   function pegar(url, ok, erro) {
     var x = new XMLHttpRequest();
     x.open('GET', url, true);
@@ -183,6 +182,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
   function marcarVisto(c) { var v = ler('vistos'); v[c] = 1; gravar('vistos', v); }// ---------- cabeçalho ----------
   function cabecalho(t) {
     $('trilha').style.display = 'block';
+    $('bCont').style.display = 'inline-block';
     $('trilha').textContent = t;
     $('sbar').style.display = 'none';
   }
@@ -241,6 +241,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     S.re = function () {
       S.modo = 'busca';
       $('trilha').style.display = 'none';
+      $('bCont').style.display = 'none';
       $('sbar').style.display = 'flex';
       buscar();
     };
@@ -290,9 +291,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
           tocar(serie.titulo + ' - EP ' + ep.numero, ep.video, { key: chave, capa: serie.capa });
         } };
     }), 'Sem episódios');
-  }
-
-  // ---------- cards ----------
+  }  // ---------- cards ----------
   function mostrarCards(cards, vazio) {
     S.cards = cards; S.els = []; S.shown = 0;
     var g = $('grid');
@@ -421,7 +420,8 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     item('🔄  Atualizar catálogo', function () { fecharDrawer(); recarregar(); });
     item('▶  Continuar assistindo', function () { fecharDrawer(); abrirCont(); });
     item('★  Favoritos (' + nFav() + ')', function () { fecharDrawer(); abrirFav(); });
-    item('🔍  Pesquisa  🎤', function () { fecharDrawer(); abrirBusca(); });
+    item('🔍  Pesquisa', function () { fecharDrawer(); abrirBusca(); });
+    item('🎤  Pesquisa por voz', function () { fecharDrawer(); abrirBusca(); voz(); });
     ORDEM.forEach(function (ch) {
       var lista = dados[ch] || [];
       var h = item(FONTES[ch].titulo.toUpperCase() + ' (' + lista.length + ')', function () {
@@ -467,15 +467,43 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     $('shade').style.display = 'none';
   }
 
+  // ---------- voz ----------
+  var recog = null, ouvindo = false;
+  function voz() {
+    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SR) { aviso('Este aparelho não tem voz no navegador. Use o microfone do teclado ou do controle.'); $('q').focus(); return; }
+    if (ouvindo && recog) { try { recog.stop(); } catch (e) {} return; }
+    try {
+      recog = new SR();
+      recog.lang = 'pt-BR';
+      recog.interimResults = true;
+      recog.maxAlternatives = 1;
+      recog.onstart = function () { ouvindo = true; $('mic').style.background = '#e00000'; aviso('🎤 Fale agora...'); };
+      recog.onresult = function (ev) {
+        var t = '';
+        for (var i = 0; i < ev.results.length; i++) t += ev.results[i][0].transcript;
+        $('q').value = t;
+        buscar();
+        if (ev.results[ev.results.length - 1].isFinal) aviso('🔍 ' + t);
+      };
+      recog.onerror = function (ev) {
+        var e = ev && ev.error;
+        if (e === 'not-allowed' || e === 'service-not-allowed') aviso('Permita o microfone nas configurações do navegador.');
+        else if (e === 'no-speech') aviso('Não ouvi nada. Toque no 🎤 e fale de novo.');
+        else aviso('Não consegui ouvir. Tente de novo ou digite.');
+      };
+      recog.onend = function () { ouvindo = false; $('mic').style.background = ''; };
+      recog.start();
+    } catch (x) { ouvindo = false; aviso('Voz indisponível. Digite o nome.'); }
+  }
+
   // ---------- aviso ----------
   function aviso(t) {
     var a = $('aviso');
     a.textContent = t; a.style.display = 'block';
     clearTimeout(timerAviso);
     timerAviso = setTimeout(function () { a.style.display = 'none'; }, 2800);
-  }
-
-  // ---------- player ----------
+      }  // ---------- player ----------
   function fmt(s) {
     if (!isFinite(s) || s < 0) s = 0;
     s = Math.floor(s);
@@ -490,6 +518,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
   function tocar(titulo, url, o) {
     if (!url) { aviso('Vídeo ainda não disponível'); return; }
     o = o || {};
+    if (o.pos == null && o.key) { var sv = ler('cont')[o.key]; if (sv && sv.pos) o.pos = sv.pos; }
     var v = $('video');
     S.cur = { key: o.key, titulo: titulo, url: url, capa: o.capa };
     S.pos = o.pos || 0;
@@ -500,6 +529,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     v.src = url;
     try { v.play(); } catch (e) {}
     mostrarBarra();
+    if (S.pos) aviso('▶ Retomando de ' + fmt(S.pos));
   }
   function salvarProgresso(forcar) {
     var v = $('video'), now = new Date().getTime();
@@ -598,24 +628,15 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     ajustar();
     window.addEventListener('resize', ajustar, false);
     $('bMenu').onclick = abrirDrawer;
+    $('bCont').onclick = abrirCont;
+    $('bCont').onmouseenter = function () { setFoco($('bCont')); };
     $('bMenu').onmouseenter = function () { setFoco($('bMenu')); };
     $('dx').onclick = function () { fecharDrawer(); setFoco($('bMenu')); };
     $('dx').onmouseenter = function () { setFoco($('dx')); };
     $('shade').onclick = function () { fecharDrawer(); };
     $('carregando').onclick = function () { if (erroCarga) carregar(); };
     $('q').oninput = buscar;
-    var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-    $('mic').onclick = function () {
-      if (!SR) { aviso('Sem voz neste aparelho: use o microfone do teclado/controle no campo'); $('q').focus(); return; }
-      try {
-        var r = new SR();
-        r.lang = 'pt-BR';
-        r.onresult = function (ev) { $('q').value = ev.results[0][0].transcript; buscar(); };
-        r.onerror = function () { aviso('Não consegui ouvir. Tente de novo ou digite.'); };
-        r.start();
-        aviso('🎤 Fale agora...');
-      } catch (x) { aviso('Voz indisponível. Digite o nome.'); }
-    };
+    $('mic').onclick = voz;
     $('mic').onmouseenter = function () { setFoco($('mic')); };
     iniciarPlayer();
     carregar();
