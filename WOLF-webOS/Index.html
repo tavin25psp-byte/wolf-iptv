@@ -88,4 +88,75 @@
 
         </div>
 
-    </aside>
+    </aside>    <!-- PESQUISA -->
+    <div id="searchOverlay" class="overlay hidden">
+
+        <div class="searchBox">
+
+            <div class="searchTitle">
+                PESQUISAR
+            </div>
+
+            <input
+                id="searchInput"
+                class="focusable"
+                type="text"
+                autocomplete="off"
+                placeholder="Digite o nome..."
+            >
+
+            <div class="searchHint">
+                Digite o nome do filme ou série
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- PLAYER -->
+    <div id="playerOverlay" class="overlay hidden">
+
+        <div id="playerContainer">
+
+            <video
+                id="videoPlayer"
+                controls
+                playsinline
+                preload="metadata"
+            ></video>
+
+            <div id="playerTop">
+
+                <div id="playerTitle">
+                    WOLF IPTV
+                </div>
+
+                <button
+                    id="closePlayer"
+                    class="focusable"
+                    type="button"
+                >
+                    ✕
+                </button>
+
+            </div>
+
+            <div id="playerLoading">
+                Carregando vídeo...
+            </div>
+
+            <div id="playerError">
+                Não foi possível reproduzir este vídeo.
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- TOAST -->
+    <div id="toast"></div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>
