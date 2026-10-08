@@ -5,5 +5,8 @@
   "main": "Index.html",
   "title": "WOLF IPTV",
   "icon": "wolf_iptv.png",
-  "resolution": "1920x1080"
+  "resolution": "1920x1080",
+  "requiredPermissions": [
+    "internet"
+  ]
 }
