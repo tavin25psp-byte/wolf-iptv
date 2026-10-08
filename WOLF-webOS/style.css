@@ -1,508 +1,148 @@
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html,
-body {
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    background: #000;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    position: relative;
+  background-color: #0d0f17;
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  user-select: none;
 }
 
-/* =========================
-   FUNDO
-========================= */
-
-#background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-image: url("fundo.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index: -3;
+/* Ecrã de Carregamento */
+#loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #0d0f17;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
-#backgroundOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.45),
-        rgba(0, 0, 0, 0.65)
-    );
-    z-index: -2;
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 6px solid #1f2438;
+  border-top: 6px solid #e00000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 20px;
 }
 
-#app {
-    width: 100%;
-    height: 100%;
-    position: relative;
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-/* =========================
-   TOPO (PADRÃO TV DE 50")
-========================= */
-
-#topbar {
-    width: 100%;
-    height: 110px;
-    display: flex;
-    align-items: center;
-    padding: 0 50px;
-    background: rgba(0, 0, 0, 0.85);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.12);
-    position: relative;
-    z-index: 10;
+/* Cabeçalho Limpo */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 40px;
+  background: #141724;
+  border-bottom: 3px solid #e00000;
 }
 
-#pageTitle {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 42px;
-    font-weight: 900;
-    letter-spacing: 2px;
-    white-space: nowrap;
+.logo {
+  font-size: 30px;
+  font-weight: 900;
+  color: #e00000;
+  letter-spacing: 3px;
 }
 
-.top-menu-button {
-    min-width: 240px;
-    height: 68px;
-    padding: 0 30px;
-    border: 3px solid rgba(255, 255, 255, 0.25);
-    border-radius: 34px;
-    background: rgba(20, 20, 20, 0.95);
-    color: #fff;
-    font-size: 26px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+nav {
+  display: flex;
+  gap: 15px;
 }
 
-.top-menu-button:hover,
-.top-menu-button:focus {
-    outline: none;
-    border-color: #ffffff;
-    background: #e50914;
-    transform: scale(1.08);
+.nav-btn {
+  background: #1f2438;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-/* =========================
-   CONTEÚDO E GRID
-========================= */
-
-#contentScroll {
-    width: 100%;
-    height: calc(100% - 110px);
-    overflow-y: auto;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    padding: 30px 50px 80px;
+.nav-btn:focus, .nav-btn.active-tab {
+  background: #e00000;
+  outline: 3px solid #ffffff;
 }
 
-#contentScroll::-webkit-scrollbar {
-    width: 8px;
+/* Secção do Catálogo */
+.catalog-container {
+  padding: 30px 40px;
 }
 
-#contentScroll::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.35);
+.section-title {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #e00000;
+  border-left: 4px solid #e00000;
+  padding-left: 10px;
 }
 
-#contentScroll::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 20px;
+/* Grelha Organizadora dos Cards (Grid Responsivo) */
+.catalog-grid, #catalog, .movies-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)) !important;
+  gap: 22px !important;
+  margin-bottom: 40px !important;
 }
 
-#content {
-    width: 100%;
+/* Cards de Filmes e Séries */
+.movie-card, .card {
+  background: #181c2b !important;
+  border-radius: 10px !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+  position: relative !important;
+  transition: transform 0.2s ease, outline 0.2s ease !important;
+  cursor: pointer !important;
 }
 
-.section {
-    width: 100%;
-    margin-bottom: 42px;
+/* Foco do Controlo Remoto (D-Pad) */
+.movie-card:focus, .card:focus {
+  outline: 4px solid #e00000 !important;
+  transform: scale(1.08) !important;
+  z-index: 10 !important;
 }
 
-.sectionTitle {
-    margin-bottom: 22px;
-    font-size: 36px;
-    font-weight: 900;
-    letter-spacing: 0.5px;
-}
-
-.sectionTitle::before {
-    content: "";
-    display: inline-block;
-    width: 8px;
-    height: 36px;
-    margin-right: 12px;
-    vertical-align: -5px;
-    background: #e50914;
-    border-radius: 4px;
-}
-
-/* Grid de 6 colunas para TV */
-.cardsGrid {
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 22px;
-}
-
-/* =========================
-   CARDS
-========================= */
-
-.card {
-    position: relative;
-    height: 340px;
-    overflow: hidden;
-    background: rgba(18, 18, 18, 0.95);
-    border: 3px solid transparent;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover,
-.card.focused {
-    border-color: #e50914;
-    transform: scale(1.08);
-    box-shadow: 0 0 0 4px rgba(229, 9, 20, 0.5), 0 15px 45px rgba(0, 0, 0, 0.85);
-    z-index: 5;
-}
-
-.card-image {
-    width: 100%;
-    height: 270px;
-    display: block;
-    object-fit: cover;
-    border-top-left-radius: 17px;
-    border-top-right-radius: 17px;
-    background: linear-gradient(135deg, #151515, #050505);
+.movie-card img, .card img {
+  width: 100% !important;
+  height: 250px !important;
+  object-fit: cover !important;
+  background: #141724 !important;
 }
 
 .card-info {
-    width: 100%;
-    height: 70px;
-    padding: 10px 14px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-bottom-left-radius: 17px;
-    border-bottom-right-radius: 17px;
-    background: linear-gradient(to bottom, rgba(20, 20, 20, 0.96), rgba(5, 5, 5, 0.98));
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .card-title {
-    width: 100%;
-    font-size: 18px;
-    font-weight: 800;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.card-subtitle {
-    margin-top: 4px;
-    color: rgba(255, 255, 255, 0.7);
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.card-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    padding: 6px 12px;
-    background: rgba(0, 0, 0, 0.85);
-    border-radius: 12px;
-    font-size: 14px;
-    font-weight: 900;
-}
-
-/* =========================
-   CATEGORIAS E MENU LATERAL
-========================= */
-
-.categoryRow {
-    display: flex;
-    gap: 18px;
-    margin-bottom: 35px;
-    overflow-x: auto;
-    padding-bottom: 12px;
-}
-
-.categoryButton {
-    flex: 0 0 auto;
-    min-width: 220px;
-    height: 65px;
-    padding: 0 28px;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    border-radius: 32px;
-    background: rgba(15, 15, 15, 0.95);
-    color: #fff;
-    font-size: 24px;
-    font-weight: 900;
-    cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-}
-
-.categoryButton:hover,
-.categoryButton:focus,
-.categoryButton.active {
-    outline: none;
-    border-color: #ffffff;
-    background: #e50914;
-    transform: scale(1.06);
-}
-
-#sideMenu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 520px;
-    height: 100%;
-    background: rgba(12, 12, 12, 0.98);
-    border-top-right-radius: 28px;
-    border-bottom-right-radius: 28px;
-    border-right: 3px solid rgba(255, 255, 255, 0.15);
-    transform: translateX(-105%);
-    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 100;
-    box-shadow: 20px 0 60px rgba(0, 0, 0, 0.85);
-}
-
-#sideMenu.open {
-    transform: translateX(0);
-}
-
-#menuHeader {
-    height: 110px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.15);
-}
-
-#menuTitle {
-    font-size: 34px;
-    font-weight: 1000;
-    letter-spacing: 1px;
-}
-
-#closeMenu {
-    width: 60px;
-    height: 60px;
-    border: 3px solid rgba(255, 255, 255, 0.2);
-    border-radius: 30px;
-    background: rgba(25, 25, 25, 0.9);
-    color: #fff;
-    font-size: 30px;
-    cursor: pointer;
-}
-
-#closeMenu:hover,
-#closeMenu:focus {
-    outline: none;
-    border-color: #ffffff;
-    background: #e50914;
-}
-
-#menuScroll {
-    height: calc(100% - 110px);
-    overflow-y: auto;
-    padding: 25px;
-}
-
-.menuGroup {
-    margin-bottom: 28px;
-}
-
-.menuGroupTitle {
-    margin-bottom: 14px;
-    color: #ff3333;
-    font-size: 20px;
-    font-weight: 900;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.menuItem {
-    width: 100%;
-    min-height: 68px;
-    display: flex;
-    align-items: center;
-    padding: 0 25px;
-    margin-bottom: 12px;
-    border: 3px solid transparent;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.08);
-    color: #fff;
-    font-size: 26px;
-    font-weight: 800;
-    cursor: pointer;
-    text-align: left;
-    transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
-}
-
-.menuItem:hover,
-.menuItem:focus,
-.menuItem.focused {
-    outline: none;
-    background: #e50914;
-    border-color: #ffffff;
-    transform: scale(1.02);
-}
-
-/* OVERLAYS E PLAYER */
-.overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.92);
-    z-index: 200;
-}
-
-.hidden {
-    display: none !important;
-}
-
-#playerOverlay {
-    background: #000;
-}
-
-#playerContainer {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    background: #000;
-}
-
-#videoPlayer {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    background: #000;
-}
-
-/* =========================================================
-   REGRAS RESPONSIVAS (PARA AJUSTAR NO CELULAR AUTOMATICAMENTE)
-========================================================= */
-
-@media (max-width: 900px) {
-    /* Reduz a barra superior */
-    #topbar {
-        height: 70px;
-        padding: 0 15px;
-    }
-
-    #pageTitle {
-        font-size: 22px;
-    }
-
-    .top-menu-button {
-        min-width: 120px;
-        height: 44px;
-        padding: 0 15px;
-        font-size: 16px;
-        border-radius: 22px;
-    }
-
-    #contentScroll {
-        height: calc(100% - 70px);
-        padding: 15px 15px 40px;
-    }
-
-    .sectionTitle {
-        font-size: 22px;
-        margin-bottom: 12px;
-    }
-
-    .sectionTitle::before {
-        height: 22px;
-        width: 5px;
-    }
-
-    /* Reduz para 3 ou 2 colunas no celular */
-    .cardsGrid {
-        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
-        gap: 12px;
-    }
-
-    .card {
-        height: 210px;
-        border-radius: 12px;
-    }
-
-    .card-image {
-        height: 150px;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-    }
-
-    .card-info {
-        height: 60px;
-        padding: 6px 8px;
-    }
-
-    .card-title {
-        font-size: 13px;
-    }
-
-    .card-subtitle {
-        font-size: 11px;
-    }
-
-    /* Ajusta botões de categorias no celular */
-    .categoryButton {
-        min-width: 140px;
-        height: 45px;
-        padding: 0 16px;
-        font-size: 16px;
-        border-radius: 22px;
-    }
-
-    /* Menu Lateral no celular pega quase a tela toda */
-    #sideMenu {
-        width: 82vw;
-    }
-
-    #menuHeader {
-        height: 70px;
-        padding: 0 20px;
-    }
-
-    #menuTitle {
-        font-size: 22px;
-    }
-
-    #closeMenu {
-        width: 42px;
-        height: 42px;
-        font-size: 20px;
-    }
-
-    .menuItem {
-        min-height: 48px;
-        font-size: 18px;
-        padding: 0 15px;
-    }
+.card-meta {
+  font-size: 12px;
+  color: #8a8f9d;
 }
