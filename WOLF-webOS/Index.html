@@ -404,7 +404,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     if (S.drawer) { fecharDrawer(); setFoco($('bMenu')); return true; }
     if (S.back.length) { (S.back.pop())(); return true; }
     return false;
-                }// ---------- menu lateral ----------
+ }// ---------- menu lateral ----------
   function emoji(n) { return EMOJI[norm(n).split(' ')[0]] || '🎬'; }
   function montarDrawer() {
     var L = $('dlist');
@@ -433,6 +433,12 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
       h.setAttribute('data-sec', ch);
       if (S.exp !== ch) return;
       var cont = {}, nomes = [];
+      (dados.filmes || []).forEach(function (it) {
+        var c = it.categoria;
+        if (!c) return;
+        var k = norm(c);
+        if (!cont[k]) { cont[k] = { nome: c, n: 0 }; nomes.push(k); }
+      });
       lista.forEach(function (it) {
         var c = it.categoria;
         if (!c) return;
