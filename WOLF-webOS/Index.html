@@ -1,162 +1,291 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WOLF IPTV</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    >
+    body {
+      background-color: #0d0f17;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+      user-select: none;
+    }
 
-    <title>WOLF IPTV</title>
+    /* Tela de Loading */
+    #loading {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0d0f17;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
 
-    <link rel="stylesheet" href="style.css">
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid #1f2438;
+      border-top: 6px solid #e00000;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 20px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Cabeçalho */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background: #141724;
+      border-bottom: 3px solid #e00000;
+    }
+
+    .logo {
+      font-size: 30px;
+      font-weight: 900;
+      color: #e00000;
+      letter-spacing: 3px;
+    }
+
+    nav {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-btn {
+      background: #1f2438;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .nav-btn:focus, .nav-btn.active-tab {
+      background: #e00000;
+      outline: 3px solid #ffffff;
+    }
+
+    /* Secção de Conteúdo */
+    .catalog-container {
+      padding: 30px 40px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      margin-bottom: 15px;
+      color: #e00000;
+      border-left: 4px solid #e00000;
+      padding-left: 10px;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 22px;
+      margin-bottom: 40px;
+    }
+
+    /* Cards de Filmes e Séries */
+    .card {
+      background: #181c2b;
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s ease, outline 0.2s ease;
+      cursor: pointer;
+    }
+
+    .card:focus {
+      outline: 4px solid #e00000;
+      transform: scale(1.08);
+      z-index: 10;
+    }
+
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      background: #141724;
+    }
+
+    .card-info {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: bold;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .card-meta {
+      font-size: 12px;
+      color: #8a8f9d;
+    }
+  </style>
 </head>
-
 <body>
 
-    <!-- FUNDO -->
-    <div id="background"></div>
-    <div id="backgroundOverlay"></div>
+  <!-- Tela de Carregamento -->
+  <div id="loading">
+    <div class="spinner"></div>
+    <h1 style="color: #ffffff; letter-spacing: 2px;">WOLF IPTV</h1>
+    <p id="loading-status" style="color: #8a8f9d; margin-top: 10px; font-size: 16px;">Carregando catálogo...</p>
+  </div>
 
-    <!-- APLICAÇÃO -->
-    <div id="app">
+  <!-- Cabeçalho -->
+  <header>
+    <div class="logo">WOLF IPTV</div>
+    <nav>
+      <button class="nav-btn active-tab" tabindex="0" onclick="filterCatalog('todos')">Todos</button>
+      <button class="nav-btn" tabindex="0" onclick="filterCatalog('filmes')">Filmes</button>
+      <button class="nav-btn" tabindex="0" onclick="filterCatalog('series')">Séries</button>
+    </nav>
+  </header>
 
-        <!-- TOPO -->
-        <header id="topbar">
+  <!-- Container do Catálogo -->
+  <main class="catalog-container">
+    <h2 class="section-title" id="catalog-title">Catálogo Completo</h2>
+    <div id="catalog" class="catalog-grid"></div>
+  </main>
 
-            <button
-                id="menuButton"
-                class="focusable top-menu-button"
-                type="button"
-            >
-                ☰ &nbsp; WOLF MENU
-            </button>
+  <script>
+    const FILMES_URL = "https://raw.githubusercontent.com/25psp-byte/wolf-webOS/main/catalogo.json";
+    const SERIES_URL = "https://raw.githubusercontent.com/25psp-byte/wolf-webOS/main/series.json";
 
-            <div id="pageTitle">
-                WOLF IPTV
-            </div>
+    let allItems = [];
 
-        </header>
+    document.addEventListener("DOMContentLoaded", () => {
+      loadData();
+    });
 
-        <!-- CONTEÚDO -->
-        <main id="contentScroll">
+    async function loadData() {
+      const statusText = document.getElementById("loading-status");
+      
+      try {
+        statusText.innerText = "Buscando filmes e séries...";
 
-            <div id="content">
+        const [resFilmes, resSeries] = await Promise.allSettled([
+          fetch(FILMES_URL).then(r => r.ok ? r.json() : []),
+          fetch(SERIES_URL).then(r => r.ok ? r.json() : [])
+        ]);
 
-                <div id="loading" class="loading">
+        const filmes = resFilmes.status === "fulfilled" ? resFilmes.value : [];
+        const series = resSeries.status === "fulfilled" ? resSeries.value : [];
 
-                    <div class="loadingWolf">
-                        WOLF
-                    </div>
+        // Identifica e une filmes e séries
+        const filmesFormatados = (Array.isArray(filmes) ? filmes : []).map(item => ({ ...item, tipo: 'filme' }));
+        const seriesFormatadas = (Array.isArray(series) ? series : []).map(item => ({ ...item, tipo: 'serie' }));
 
-                    <div>
-                        Carregando catálogo...
-                    </div>
+        allItems = [...filmesFormatados, ...seriesFormatadas];
 
-                </div>
+        if (allItems.length === 0) {
+          throw new Error("Nenhum item encontrado no repositório.");
+        }
 
-            </div>
+        renderCatalog(allItems);
+        
+        // Esconde a tela de carregamento
+        document.getElementById("loading").style.display = "none";
 
-        </main>
+        // Foca no primeiro botão do menu para controlo remoto
+        const firstBtn = document.querySelector(".nav-btn");
+        if (firstBtn) firstBtn.focus();
 
-    </div>
+      } catch (error) {
+        console.error("Erro ao carregar dados:", error);
+        statusText.innerText = "Erro ao carregar o catálogo. Verifique os arquivos JSON no GitHub.";
+      }
+    }
 
-    <!-- MENU LATERAL -->
-    <aside id="sideMenu" aria-hidden="true">
+    function renderCatalog(items) {
+      const container = document.getElementById("catalog");
+      container.innerHTML = "";
 
-        <div id="menuHeader">
+      items.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "card";
+        card.setAttribute("tabindex", "0");
 
-            <div id="menuTitle">
-                WOLF MENU
-            </div>
+        const titulo = item.titulo || item.nome || item.title || "Sem título";
+        const imagem = item.poster || item.capa || item.image || item.img || "";
+        const categoria = item.categoria || item.genero || (item.tipo === 'serie' ? 'Série' : 'Filme');
+        const ano = item.ano || item.year || "";
 
-            <button
-                id="closeMenu"
-                class="focusable"
-                type="button"
-            >
-                ✕
-            </button>
+        card.innerHTML = `
+          <img src="${imagem}" alt="${titulo}" onerror="this.onerror=null;this.src='https://via.placeholder.com/170x250/141724/FFFFFF?text=WOLF+IPTV';">
+          <div class="card-info">
+            <div class="card-title">${titulo}</div>
+            <div class="card-meta">${ano ? ano + ' • ' : ''}${categoria}</div>
+          </div>
+        `;
 
-        </div>
+        // Evento de clique / Botão OK do controlo remoto
+        card.addEventListener("click", () => {
+          if (item.url || item.stream || item.link) {
+            window.location.href = item.url || item.stream || item.link;
+          } else {
+            alert("Link de reprodução indisponível para: " + titulo);
+          }
+        });
 
-        <div id="menuScroll">
+        card.addEventListener("keydown", (e) => {
+          if (e.key === "Enter" || e.keyCode === 13) {
+            card.click();
+          }
+        });
 
-            <div id="menuContent"></div>
+        container.appendChild(card);
+      });
+    }
 
-        </div>
+    function filterCatalog(type) {
+      const title = document.getElementById("catalog-title");
+      const buttons = document.querySelectorAll(".nav-btn");
 
-    </aside>    <!-- PESQUISA -->
-    <div id="searchOverlay" class="overlay hidden">
+      buttons.forEach(btn => btn.classList.remove("active-tab"));
+      event.target.classList.add("active-tab");
 
-        <div class="searchBox">
-
-            <div class="searchTitle">
-                PESQUISAR
-            </div>
-
-            <input
-                id="searchInput"
-                class="focusable"
-                type="text"
-                autocomplete="off"
-                placeholder="Digite o nome..."
-            >
-
-            <div class="searchHint">
-                Digite o nome do filme ou série
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- PLAYER -->
-    <div id="playerOverlay" class="overlay hidden">
-
-        <div id="playerContainer">
-
-            <video
-                id="videoPlayer"
-                controls
-                playsinline
-                preload="metadata"
-            ></video>
-
-            <div id="playerTop">
-
-                <div id="playerTitle">
-                    WOLF IPTV
-                </div>
-
-                <button
-                    id="closePlayer"
-                    class="focusable"
-                    type="button"
-                >
-                    ✕
-                </button>
-
-            </div>
-
-            <div id="playerLoading">
-                Carregando vídeo...
-            </div>
-
-            <div id="playerError">
-                Não foi possível reproduzir este vídeo.
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- TOAST -->
-    <div id="toast"></div>
-
-    <script src="app.js"></script>
-
+      if (type === "filmes") {
+        title.innerText = "Filmes";
+        renderCatalog(allItems.filter(i => i.tipo === "filme"));
+      } else if (type === "series") {
+        title.innerText = "Séries";
+        renderCatalog(allItems.filter(i => i.tipo === "serie"));
+      } else {
+        title.innerText = "Catálogo Completo";
+        renderCatalog(allItems);
+      }
+    }
+  </script>
 </body>
 </html>
