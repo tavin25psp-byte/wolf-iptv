@@ -2,7 +2,8 @@
   "id": "com.wolf.iptv",
   "version": "1.0.0",
   "type": "web",
-  "main": "index.html",
+  "main": "Index.html",
   "title": "WOLF IPTV",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "resolution": "1920x1080"
 }
