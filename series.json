@@ -583,7 +583,7 @@
     {
       "titulo": "O Justiceiro",
       "categoria": "Ação",
-      "capa": "https://i.postimg.cc/2jFYSzt5/IMG-71b3d0c7-c4e9-45cf-8527-aa7e6f3ccefe.jpg",
+      "capa": "https://i.postimg.cc/HLbHKKrL/images-(61).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -606,19 +606,41 @@
         {
           "numero": 2,
           "episodios": [
-            { "numero": 1, "titulo": "Episódio 1", "video": "" },
-            { "numero": 2, "titulo": "Episódio 2", "video": "" },
-            { "numero": 3, "titulo": "Episódio 3", "video": "" },
-            { "numero": 4, "titulo": "Episódio 4", "video": "" },
-            { "numero": 5, "titulo": "Episódio 5", "video": "" },
-            { "numero": 6, "titulo": "Episódio 6", "video": "" },
-            { "numero": 7, "titulo": "Episódio 7", "video": "" },
-            { "numero": 8, "titulo": "Episódio 8", "video": "" },
-            { "numero": 9, "titulo": "Episódio 9", "video": "" },
-            { "numero": 10, "titulo": "Episódio 10", "video": "" },
-            { "numero": 11, "titulo": "Episódio 11", "video": "" },
-            { "numero": 12, "titulo": "Episódio 12", "video": "" },
-            { "numero": 13, "titulo": "Episódio 13", "video": "" }
+            { "numero": 1, "titulo": "Briga de Bar", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%201%20-%20Briga%20de%20Bar.mp4" },
+            { "numero": 2, "titulo": "Lutar ou Fugir", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%202%20-%20Lutar%20ou%20Fugir.mp4" },
+            { "numero": 3, "titulo": "Agitar a Água", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%203%20-%20Agitar%20a%20%C3%81gua.mp4" },
+            { "numero": 4, "titulo": "Cicatrizes do Passado", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%204%20-%20Cicatrizes%20do%20Passado.mp4" },
+            { "numero": 5, "titulo": "Valete com Um Olho Só", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%205%20-%20Valete%20com%20Um%20Olho%20S%C3%B3.mp4" },
+            { "numero": 6, "titulo": "Nakazat", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%206%20-%20Nakazat.mp4" },
+            { "numero": 7, "titulo": "Um Dia Ruim", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%207%20-%20Um%20Dia%20Ruim.mp4" },
+            { "numero": 8, "titulo": "O Protetor do Meu Irmão", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%208%20-%20O%20Protetor%20do%20Meu%20Irm%C3%A3o.mp4" },
+            { "numero": 9, "titulo": "A Recompensa", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%209%20-%20A%20Recompensa.mp4" },
+            { "numero": 10, "titulo": "Coração Sombrio", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%2010%20-%20Cora%C3%A7%C3%A3o%20Sombrio.mp4" },
+            { "numero": 11, "titulo": "O Abismo", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%2011%20-%20O%20Abismo.mp4" },
+            { "numero": 12, "titulo": "Rota de Colisão", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%2012%20-%20Rota%20de%20Colis%C3%A3o.mp4" },
+            { "numero": 13, "titulo": "A Tormenta", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%2013%20-%20A%20Tormenta.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Outer Banks",
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/HLbHKKrL/images-(61).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "Piloto", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%201%20-%20Piloto.mp4" },
+            { "numero": 2, "titulo": "Bússola da sorte", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%202%20-%20B%C3%BAssola%20da%20sorte.mp4" },
+            { "numero": 3, "titulo": "Zona proibida", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%203%20-%20Zona%20proibida.mp4" },
+            { "numero": 4, "titulo": "Espiões", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%204%20-%20Espi%C3%B5es.mp4" },
+            { "numero": 5, "titulo": "Festa de verão", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%205%20-%20Festa%20de%20ver%C3%A3o.mp4" },
+            { "numero": 6, "titulo": "Parcela 9", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%206%20-%20Parcela%209.mp4" },
+            { "numero": 7, "titulo": "Calmaria", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%207%20-%20Calmaria.mp4" },
+            { "numero": 8, "titulo": "A pista de pouso", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%208%20-%20A%20pista%20de%20pouso.mp4" },
+            { "numero": 9, "titulo": "O campanário", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%209%20-%20O%20campan%C3%A1rio.mp4" },
+            { "numero": 10, "titulo": "Phantom", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%2010%20-%20Phantom.mp4" }
           ]
         }
       ]
