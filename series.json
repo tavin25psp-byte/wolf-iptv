@@ -642,6 +642,71 @@
             { "numero": 9, "titulo": "O campanário", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%209%20-%20O%20campan%C3%A1rio.mp4" },
             { "numero": 10, "titulo": "Phantom", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%201/Temporada%201%20Epis%C3%B3dio%2010%20-%20Phantom.mp4" }
           ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            { "numero": 1, "titulo": "O ouro", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks%20season%202/Temporada%202%20Epis%C3%B3dio%201%20-%20O%20ouro.mp4" },
+            { "numero": 2, "titulo": "O roubo", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%202%20-%20O%20roubo.mp4" },
+            { "numero": 3, "titulo": "As orações", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%203%20-%20As%20ora%C3%A7%C3%B5es.mp4" },
+            { "numero": 4, "titulo": "A volta", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%204%20-%20A%20volta.mp4" },
+            { "numero": 5, "titulo": "A pior hora", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%205%20-%20A%20pior%20hora.mp4" },
+            { "numero": 6, "titulo": "A escolha", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%206%20-%20A%20escolha.mp4" },
+            { "numero": 7, "titulo": "A fogueira", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%207%20-%20A%20fogueira.mp4" },
+            { "numero": 8, "titulo": "A cruz", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%208%20-%20A%20cruz.mp4" },
+            { "numero": 9, "titulo": "O cais", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%209%20-%20O%20cais.mp4" },
+            { "numero": 10, "titulo": "O navio", "video": "https://wolf-channel-cdn.b-cdn.net/Outer%20banks/Temporada%202%20Epis%C3%B3dio%2010%20-%20O%20navio.mp4" }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            { "numero": 1, "titulo": "Poguelândia", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%201%20-%20Poguel%C3%A2ndia.mp4" },
+            { "numero": 2, "titulo": "Os sinos", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%202%20-%20Os%20sinos.mp4" },
+            { "numero": 3, "titulo": "Pais e filhos", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%203%20-%20Pais%20e%20filhos.mp4" },
+            { "numero": 4, "titulo": "O diário", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%204%20-%20O%20di%C3%A1rio.mp4" },
+            { "numero": 5, "titulo": "Roubos", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%205%20-%20Roubos.mp4" },
+            { "numero": 6, "titulo": "Segredos sombrios", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%206%20-%20Segredos%20sombrios.mp4" },
+            { "numero": 7, "titulo": "Aniversário de casamento", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%207%20-%20Anivers%C3%A1rio%20de%20casamento.mp4" },
+            { "numero": 8, "titulo": "Virando o leme", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%208%20-%20Virando%20o%20leme.mp4" },
+            { "numero": 9, "titulo": "Boas-vindas a Kitty Hawk", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%209%20-%20Boas-vindas%20a%20Kitty%20Hawk.mp4" },
+            { "numero": 10, "titulo": "Segredo do gnômon", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%203/Temporada%203%20Epis%C3%B3dio%2010%20-%20Segredo%20do%20gn%C3%B4mon.mp4" }
+          ]
+        },
+        {
+          "numero": 4,
+          "episodios": [
+            { "numero": 1, "titulo": "O Enduro", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%201%20-%20O%20Enduro.mp4" },
+            { "numero": 2, "titulo": "Barba Negra", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%202%20-%20Barba%20Negra.mp4" },
+            { "numero": 3, "titulo": "Corsários", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%203%20-%20Cors%C3%A1rios.mp4" },
+            { "numero": 4, "titulo": "O swell", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%204%20-%20O%20swell.mp4" },
+            { "numero": 5, "titulo": "Albatross", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%205%20-%20Albatross.mp4" },
+            { "numero": 6, "titulo": "Prefeitura", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%206%20-%20Prefeitura.mp4" },
+            { "numero": 7, "titulo": "Mães e pais", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%207%20-%20M%C3%A3es%20e%20pais.mp4" },
+            { "numero": 8, "titulo": "Trama familiar", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%208%20-%20Trama%20familiar.mp4" },
+            { "numero": 9, "titulo": "Tempestade", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%209%20-%20Tempestade.mp4" },
+            { "numero": 10, "titulo": "A Coroa Azul", "video": "https://wolf-channel-cdn.b-cdn.net/outer%20banks%20season%204/Temporada%204%20Epis%C3%B3dio%2010%20-%20A%20Coroa%20Azul.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "A Lista Terminal",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/RZZtxQRm/D-NQ-NP-974877-MLB51015785366-082022-O-(2).webp",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "O Engrama", "video": "" },
+            { "numero": 2, "titulo": "Codificação", "video": "" },
+            { "numero": 3, "titulo": "Consolidação", "video": "" },
+            { "numero": 4, "titulo": "Destacamento", "video": "" },
+            { "numero": 5, "titulo": "Interferência", "video": "" },
+            { "numero": 6, "titulo": "Efemeridade", "video": "" },
+            { "numero": 7, "titulo": "Extinção", "video": "" },
+            { "numero": 8, "titulo": "Recuperação", "video": "" }
+          ]
         }
       ]
     }
