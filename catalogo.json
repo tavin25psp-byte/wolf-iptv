@@ -261,7 +261,7 @@
     },
     {
       "titulo": "Resident Evil",
-      "ano": 2002,
+      "ano": 2026,
       "categoria": "Terror",
       "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4"
@@ -811,6 +811,27 @@
       "categoria": "Drama",
       "capa": "https://i.postimg.cc/pVBfVcFt/images-(69).jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/uunabomber.mp4"
+    },
+    {
+      "titulo": "Avatar: Fogo e Cinza",
+      "ano": 2025,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/hjmTQKZr/images-(61).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/AVTRFGOECNZS.mp4"
+    },
+    {
+      "titulo": "Homem-Aranha: Sem Volta Para Casa",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/qRHXLt3X/1541299.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/proxy.mp4"
+    },
+    {
+      "titulo": "Eu e Você Contra o Mundo",
+      "ano": 2026,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/tg4YH9Gm/20260914-voce-eu-contra-o-mundo-papo-de-cinema-cartaz-(3).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/eu%20e%20voce%20contra%20o%20mundo.mp4"
     }
   ]
 }
