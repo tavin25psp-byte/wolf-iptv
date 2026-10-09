@@ -417,7 +417,7 @@
             { "numero": 64, "titulo": "Episódio 64", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP064.mp4" },
             { "numero": 65, "titulo": "Episódio 65", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP065.mp4" },
             { "numero": 66, "titulo": "Episódio 66", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP066.mp4" },
-            { "numero": 67, "titulo": "Episódio 67", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP067.mp4" },
+            { "numero": 77, "titulo": "Episódio 67", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP067.mp4" },
             { "numero": 68, "titulo": "Episódio 68", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP068.mp4" },
             { "numero": 69, "titulo": "Episódio 69", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP069.mp4" },
             { "numero": 70, "titulo": "Episódio 70", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP070.mp4" },
@@ -576,6 +576,49 @@
             { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/a%20roda%20do%20tempo%20season%203/ARDADTMPT03EP06.mp4" },
             { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/a%20roda%20do%20tempo%20season%203/ARDADTMPT03EP07.mp4" },
             { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/a%20roda%20do%20tempo%20season%203/ARDADTMPT03EP08.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "O Justiceiro",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/2jFYSzt5/IMG-71b3d0c7-c4e9-45cf-8527-aa7e6f3ccefe.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "Três da Madrugada", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%201%20-%20Tr%C3%AAs%20da%20Madrugada.mp4" },
+            { "numero": 2, "titulo": "Dois Homens Mortos", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%202%20-%20Dois%20Homens%20Mortos.mp4" },
+            { "numero": 3, "titulo": "Kandahar", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%203%20-%20Kandahar.mp4" },
+            { "numero": 4, "titulo": "Reabastecimento", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%204%20-%20Reabastecimento.mp4" },
+            { "numero": 5, "titulo": "Gunner", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%205%20-%20Gunner.mp4" },
+            { "numero": 6, "titulo": "O Infiltrado", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%206%20-%20O%20Infiltrado.mp4" },
+            { "numero": 7, "titulo": "Na Mira", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%207%20-%20Na%20Mira.mp4" },
+            { "numero": 8, "titulo": "Aço Resfriado", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%208%20-%20A%C3%A7o%20Resfriado.mp4" },
+            { "numero": 9, "titulo": "Este Lado Para o Inimigo", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%209%20-%20Este%20Lado%20Para%20o%20Inimigo.mp4" },
+            { "numero": 10, "titulo": "Virtude dos Maus", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%2010%20-%20Virtude%20dos%20Maus.mp4" },
+            { "numero": 11, "titulo": "Perigo Próximo", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%2011%20-%20Perigo%20Pr%C3%B3ximo.mp4" },
+            { "numero": 12, "titulo": "Lar", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%2012%20-%20Lar.mp4" },
+            { "numero": 13, "titulo": "Memento Mori", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%2013%20-%20Memento%20Mori.mp4" }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "" }
           ]
         }
       ]
