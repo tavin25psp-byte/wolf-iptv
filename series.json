@@ -602,9 +602,16 @@
             { "numero": 12, "titulo": "Lar", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%2012%20-%20Lar.mp4" },
             { "numero": 13, "titulo": "Memento Mori", "video": "https://wolf-channel-cdn.b-cdn.net/O%20justiceiro%20season%201/Temporada%201%20Epis%C3%B3dio%2013%20-%20Memento%20Mori.mp4" }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "titulo": "O Justiceiro 2ª Temporada",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/8PqLmJWn/images-(61).jpg",
+      "temporadas": [
         {
-          "numero": 2,
+          "numero": 1,
           "episodios": [
             { "numero": 1, "titulo": "Briga de Bar", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%201%20-%20Briga%20de%20Bar.mp4" },
             { "numero": 2, "titulo": "Lutar ou Fugir", "video": "https://wolf-channel-cdn.b-cdn.net/o%20justiceiro%20season%202/Temporada%202%20Epis%C3%B3dio%202%20-%20Lutar%20ou%20Fugir.mp4" },
