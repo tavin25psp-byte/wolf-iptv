@@ -92,7 +92,10 @@ class MainActivity : AppCompatActivity() {
         "canaisaovivo.json",
         "Canais%20ao%20vivo.json",
         "Canais%20Ao%20Vivo.json",
-        "canais.json"
+        "canais.json",
+        "lista.m3u",
+        "canais.m3u",
+        "playlist.m3u"
     )
 
     private val REQ_VOZ = 100
@@ -267,7 +270,7 @@ class MainActivity : AppCompatActivity() {
             if (foco) Color.argb(235, 10, 10, 10)
             else Color.argb(190, 10, 10, 10)
         )
-        fundo.cornerRadius = dp(16).toFloat()
+        fundo.cornerRadius = dp(8).toFloat()
         if (foco) fundo.setStroke(dp(4), Color.RED)
         return fundo
     }
@@ -275,7 +278,7 @@ class MainActivity : AppCompatActivity() {
     private fun criarBordaVermelha(): GradientDrawable {
         val borda = GradientDrawable()
         borda.setColor(Color.TRANSPARENT)
-        borda.cornerRadius = dp(16).toFloat()
+        borda.cornerRadius = dp(8).toFloat()
         borda.setStroke(dp(4), Color.RED)
         return borda
     }
@@ -577,3 +580,1373 @@ class MainActivity : AppCompatActivity() {
                                         }
 
                                         temporadas.add(
+                                            Temporada(
+                                                numeroTemporada,
+                                                episodios
+                                            )
+                                        )
+                                    } catch (_: Exception) {
+                                    }
+                                }
+                            }
+
+                            if (titulo.isNotBlank()) {
+                                resultado.add(
+                                    Serie(titulo, categoria, capa, temporadas)
+                                )
+                            }
+                        } catch (_: Exception) {
+                        }
+                    }
+
+                    return resultado
+                }
+
+                fun lerDesenhos(texto: String?): ArrayList<Filme> {
+                    val resultado = ArrayList<Filme>()
+                    if (texto.isNullOrBlank()) return resultado
+
+                    val array = extrairArray(texto, "desenhos")
+                        ?: extrairArray(texto, "desenho")
+                        ?: return resultado
+
+                    for (i in 0 until array.length()) {
+                        try {
+                            val item = array.getJSONObject(i)
+                            val titulo = item.optString("titulo", "")
+
+                            if (titulo.isNotBlank()) {
+                                resultado.add(
+                                    Filme(
+                                        titulo,
+                                        item.optInt("ano", 0),
+                                        item.optString("categoria", ""),
+                                        item.optString("capa", ""),
+                                        item.optString("video", "")
+                                    )
+                                )
+                            }
+                        } catch (_: Exception) {
+                        }
+                    }
+
+                    resultado.sortWith(
+                        compareByDescending<Filme> { it.ano }
+                            .thenBy { it.titulo.lowercase() }
+                    )
+
+                    return resultado
+                }
+
+                val textoSeries = baixarPrimeiro(ARQUIVOS_SERIES)
+                val textoDoramas = baixarPrimeiro(ARQUIVOS_DORAMAS)
+                val textoAnimes = baixarPrimeiro(ARQUIVOS_ANIMES)
+                val textoDesenhos = baixarPrimeiro(ARQUIVOS_DESENHOS)
+
+                val novasSeries = lerSeries(
+                    extrairArray(textoSeries, "series")
+                        ?: raizJson.optJSONArray("series")
+                )
+
+                val novosDoramas = lerSeries(
+                    extrairArray(textoDoramas, "doramas")
+                        ?: raizJson.optJSONArray("doramas")
+                )
+
+                val novosAnimes = lerSeries(
+                    extrairArray(textoAnimes, "animes")
+                        ?: raizJson.optJSONArray("animes")
+                )
+
+                val novosDesenhos = lerDesenhos(textoDesenhos)
+
+                val novosCanais = lerCanais(baixarPrimeiro(ARQUIVOS_CANAIS))
+
+                withContext(Dispatchers.Main) {
+                    canais.clear()
+                    canais.addAll(novosCanais)
+
+                    filmes.clear()
+                    filmes.addAll(novosFilmes)
+
+                    series.clear()
+                    series.addAll(novasSeries)
+
+                    doramas.clear()
+                    doramas.addAll(novosDoramas)
+
+                    animes.clear()
+                    animes.addAll(novosAnimes)
+
+                    desenhos.clear()
+                    desenhos.addAll(novosDesenhos)
+
+                    mostrarListaCards(filmes)
+
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Catálogo carregado: ${filmes.size} filmes, " +
+                            "${series.size} séries, ${doramas.size} doramas, " +
+                            "${animes.size} animes, ${desenhos.size} desenhos " +
+                            "e ${canais.size} canais ao vivo",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            } catch (erro: Exception) {
+                withContext(Dispatchers.Main) {
+                    filmes.clear()
+                    series.clear()
+                    doramas.clear()
+                    animes.clear()
+                    desenhos.clear()
+                    canais.clear()
+                    conteudo.removeAllViews()
+
+                    val erroTexto = TextView(this@MainActivity).apply {
+                        text = "ERRO NO CATÁLOGO\n\n" +
+                            (erro.message ?: "Erro desconhecido")
+                        textSize = 20f
+                        setTextColor(Color.WHITE)
+                        gravity = Gravity.CENTER
+                        setPadding(dp(30), dp(30), dp(30), dp(30))
+                    }
+
+                    conteudo.addView(erroTexto)
+                }
+            } finally {
+                conexao?.disconnect()
+            }
+        }
+    }
+
+    private fun baixarTexto(url: String): String? {
+        var conexao: HttpURLConnection? = null
+
+        return try {
+            conexao = URL(url).openConnection() as HttpURLConnection
+            conexao.connectTimeout = 20000
+            conexao.readTimeout = 20000
+            conexao.requestMethod = "GET"
+            conexao.doInput = true
+            conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
+            conexao.connect()
+
+            if (conexao.responseCode !in 200..299) {
+                null
+            } else {
+                conexao.inputStream.bufferedReader(Charsets.UTF_8)
+                    .use { it.readText() }
+            }
+        } catch (_: Exception) {
+            null
+        } finally {
+            conexao?.disconnect()
+        }
+    }
+
+    private fun baixarPrimeiro(nomes: List<String>): String? {
+        for (nome in nomes) {
+            val texto = baixarTexto(BASE_URL + nome)
+            if (!texto.isNullOrBlank()) return texto
+        }
+        return null
+    }
+
+    // Lê lista M3U: #EXTINF:-1 tvg-logo="..." group-title="...",Nome  +  linha da URL
+    private fun lerM3u(texto: String): ArrayList<Filme> {
+        val resultado = ArrayList<Filme>()
+        var nome = ""
+        var logo = ""
+        var grupo = ""
+
+        fun atributo(linha: String, chave: String): String {
+            val m = Regex(chave + "=\"([^\"]*)\"").find(linha)
+            return m?.groupValues?.get(1)?.trim() ?: ""
+        }
+
+        for (bruta in texto.lines()) {
+            val linha = bruta.trim()
+            if (linha.isEmpty()) continue
+
+            if (linha.startsWith("#EXTINF", ignoreCase = true)) {
+                logo = atributo(linha, "tvg-logo")
+                grupo = atributo(linha, "group-title")
+                nome = linha.substringAfterLast(",", "").trim()
+                if (nome.isBlank()) nome = atributo(linha, "tvg-name")
+            } else if (!linha.startsWith("#")) {
+                if (nome.isNotBlank()) {
+                    resultado.add(Filme(nome, 0, grupo, logo, linha))
+                }
+                nome = ""
+                logo = ""
+                grupo = ""
+            }
+        }
+
+        return resultado
+    }
+
+    // Lê canais ao vivo. Aceita [ ... ] ou { "canais": [ ... ] } (também "channels").
+    // Cada item: nome/titulo, categoria/grupo, logo/capa/imagem, url/video/link/stream.
+    private fun lerCanais(texto: String?): ArrayList<Filme> {
+        val resultado = ArrayList<Filme>()
+        if (texto.isNullOrBlank()) return resultado
+
+        if (texto.trimStart().startsWith("#EXTM3U")) {
+            return lerM3u(texto)
+        }
+
+        val array = extrairArray(texto, "canais")
+            ?: extrairArray(texto, "canais_ao_vivo")
+            ?: extrairArray(texto, "channels")
+            ?: extrairArray(texto, "lista")
+            ?: return resultado
+
+        fun campo(o: JSONObject, vararg chaves: String): String {
+            for (c in chaves) {
+                val v = o.optString(c, "")
+                if (v.isNotBlank()) return v
+            }
+            return ""
+        }
+
+        for (i in 0 until array.length()) {
+            try {
+                val item = array.getJSONObject(i)
+                val nome = campo(item, "nome", "titulo", "name", "title")
+                val url = campo(item, "url", "video", "link", "stream", "src")
+
+                if (nome.isNotBlank() && url.isNotBlank()) {
+                    resultado.add(
+                        Filme(
+                            nome,
+                            0,
+                            campo(item, "categoria", "grupo", "group", "category"),
+                            campo(item, "logo", "capa", "imagem", "icone", "image"),
+                            url
+                        )
+                    )
+                }
+            } catch (_: Exception) {
+            }
+        }
+
+        resultado.sortBy { it.titulo.lowercase() }
+        return resultado
+    }
+
+    // Aceita { "series": [ ... ] } ou [ ... ].
+    private fun extrairArray(texto: String?, chave: String): JSONArray? {
+        if (texto.isNullOrBlank()) return null
+        val limpo = texto.trim()
+
+        return try {
+            if (limpo.startsWith("[")) {
+                JSONArray(limpo)
+            } else {
+                JSONObject(limpo).optJSONArray(chave)
+            }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    // ===== GRADE / CARDS =====
+
+    private fun limparConteudo() {
+        conteudo.removeAllViews()
+        cardsAtuais.clear()
+        indiceCardAtual = 0
+    }
+
+    private fun mostrarMensagemVazia(texto: String) {
+        val vazio = TextView(this).apply {
+            this.text = texto
+            setTextColor(Color.WHITE)
+            textSize = 20f
+            gravity = Gravity.CENTER
+            setPadding(dp(20), dp(40), dp(20), dp(40))
+        }
+
+        conteudo.addView(
+            vazio,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(100)
+            )
+        )
+    }
+
+    private fun montarGrade(cards: List<View>) {
+        cards.chunked(colunas).forEach { grupo ->
+            val linha = LinearLayout(this).apply {
+                orientation = LinearLayout.HORIZONTAL
+            }
+
+            fun parametros() = LinearLayout.LayoutParams(
+                0,
+                dp(335),
+                1f
+            ).apply {
+                leftMargin = dp(4)
+                rightMargin = dp(4)
+                bottomMargin = dp(12)
+            }
+
+            grupo.forEach { card ->
+                linha.addView(card, parametros())
+                cardsAtuais.add(card)
+            }
+
+            repeat(colunas - grupo.size) {
+                linha.addView(View(this), parametros())
+            }
+
+            conteudo.addView(
+                linha,
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    dp(350)
+                )
+            )
+        }
+
+        cardsAtuais.firstOrNull()?.requestFocus()
+    }
+
+    private fun rodapeDuasLinhas(
+        linha1: String,
+        linha2: String
+    ): View {
+        val informacoes = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(8), dp(3), dp(8), dp(3))
+            setBackgroundColor(Color.argb(235, 10, 10, 10))
+        }
+
+        val titulo = TextView(this).apply {
+            text = linha1
+            setTextColor(Color.WHITE)
+            textSize = 14f
+            setTypeface(null, Typeface.BOLD)
+            maxLines = 1
+            ellipsize = TextUtils.TruncateAt.END
+        }
+
+        informacoes.addView(
+            titulo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(28)
+            )
+        )
+
+        val detalhes = TextView(this).apply {
+            text = linha2
+            setTextColor(Color.LTGRAY)
+            textSize = 12f
+            maxLines = 1
+            ellipsize = TextUtils.TruncateAt.END
+        }
+
+        informacoes.addView(
+            detalhes,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(22)
+            )
+        )
+
+        return informacoes
+    }
+
+    private fun criarCardBase(
+        capa: String,
+        rodape: View
+    ): Pair<FrameLayout, ImageView> {
+        val card = FrameLayout(this).apply {
+            isFocusable = true
+            isFocusableInTouchMode = true
+            isClickable = true
+            background = criarFundoCard(false)
+        }
+
+        val imagem = ImageView(this).apply {
+            scaleType = ImageView.ScaleType.FIT_CENTER
+        }
+
+        carregarImagem(capa, imagem)
+
+        card.addView(
+            imagem,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(275)
+            )
+        )
+
+        card.addView(
+            rodape,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(60)
+            ).apply {
+                gravity = Gravity.BOTTOM
+            }
+        )
+
+        val borda = View(this).apply {
+            background = criarBordaVermelha()
+            visibility = View.GONE
+        }
+
+        card.addView(
+            borda,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        card.setOnFocusChangeListener { _, foco ->
+            borda.visibility = if (foco) View.VISIBLE else View.GONE
+            card.background = criarFundoCard(foco)
+
+            if (foco) {
+                val indice = cardsAtuais.indexOf(card)
+                if (indice >= 0) indiceCardAtual = indice
+            }
+        }
+
+        return Pair(card, imagem)
+    }
+
+    private fun mostrarListaCards(lista: List<Filme>) {
+        limparConteudo()
+
+        if (lista.isEmpty()) {
+            mostrarMensagemVazia("Nenhum filme encontrado")
+            return
+        }
+
+        montarGrade(lista.map { criarCard(it) })
+    }
+
+    private fun criarCard(filme: Filme): View {
+        val (card, _) = criarCardBase(
+            filme.capa,
+            rodapeDuasLinhas(
+                filme.titulo,
+                if (filme.ano > 0) {
+                    "${filme.ano} • ${filme.categoria}"
+                } else {
+                    filme.categoria
+                }
+            )
+        )
+
+        card.setOnClickListener {
+            abrirVideo(filme.titulo, filme.video, filme.capa)
+        }
+
+        return card
+    }
+
+    // Canais ao vivo: abre direto no player, sem "continuar de onde parou".
+    private fun mostrarListaCanais(lista: List<Filme>) {
+        limparConteudo()
+
+        if (lista.isEmpty()) {
+            mostrarMensagemVazia("Nenhum canal ao vivo encontrado")
+            return
+        }
+
+        montarGrade(lista.map { criarCardCanal(it) })
+    }
+
+    private fun criarCardCanal(canal: Filme): View {
+        val (card, _) = criarCardBase(
+            canal.capa,
+            rodapeDuasLinhas(
+                canal.titulo,
+                if (canal.categoria.isNotBlank()) "🔴 AO VIVO • ${canal.categoria}"
+                else "🔴 AO VIVO"
+            )
+        )
+
+        card.setOnClickListener {
+            iniciarPlayer(canal.titulo, canal.video, canal.capa, 0L)
+        }
+
+        return card
+    }
+
+    private fun mostrarListaSeries(lista: List<Serie>) {
+        listaSeriesAtual = lista
+        limparConteudo()
+
+        if (lista.isEmpty()) {
+            mostrarMensagemVazia("Nenhuma série encontrada")
+            return
+        }
+
+        montarGrade(lista.map { criarCardSerie(it) })
+    }
+
+    private fun criarCardSerie(serie: Serie): View {
+        val (card, _) = criarCardBase(
+            serie.capa,
+            rodapeDuasLinhas(
+                serie.titulo,
+                "${serie.categoria} • ${serie.temporadas.size} temporada(s)"
+            )
+        )
+
+        card.setOnClickListener {
+            val origem = listaSeriesAtual
+            historicoConteudo.add { mostrarListaSeries(origem) }
+            mostrarTemporadas(serie)
+        }
+
+        return card
+    }
+
+    private fun mostrarTemporadas(serie: Serie) {
+        limparConteudo()
+        montarGrade(serie.temporadas.map { criarCardTemporada(serie, it) })
+    }
+
+    private fun criarCardTemporada(
+        serie: Serie,
+        temporada: Temporada
+    ): View {
+        val rodape = TextView(this).apply {
+            text = "Temporada ${temporada.numero}"
+            setTextColor(Color.WHITE)
+            textSize = 16f
+            setTypeface(null, Typeface.BOLD)
+            gravity = Gravity.CENTER
+            setBackgroundColor(Color.argb(235, 10, 10, 10))
+        }
+
+        val (card, _) = criarCardBase(serie.capa, rodape)
+
+        card.setOnClickListener {
+            historicoConteudo.add { mostrarTemporadas(serie) }
+            mostrarEpisodios(serie, temporada)
+        }
+
+        return card
+    }
+
+    private fun mostrarEpisodios(
+        serie: Serie,
+        temporada: Temporada
+    ) {
+        limparConteudo()
+
+        montarGrade(
+            temporada.episodios.map {
+                criarCardEpisodio(serie, temporada.numero, it)
+            }
+        )
+    }
+
+    // ===== EPISÓDIOS ASSISTIDOS =====
+
+    private val prefsWolf by lazy {
+        getSharedPreferences("wolf_prefs", MODE_PRIVATE)
+    }
+
+    private fun chaveEpisodio(
+        serie: Serie,
+        numeroTemporada: Int,
+        numeroEpisodio: Int
+    ): String {
+        return "${serie.titulo}|T$numeroTemporada|E$numeroEpisodio"
+    }
+
+    private fun episodioAssistido(chave: String): Boolean {
+        return prefsWolf.getStringSet("assistidos", emptySet())
+            ?.contains(chave) == true
+    }
+
+    private fun marcarEpisodio(
+        chave: String,
+        assistido: Boolean
+    ) {
+        val novo = HashSet(
+            prefsWolf.getStringSet("assistidos", emptySet()) ?: emptySet()
+        )
+
+        if (assistido) novo.add(chave) else novo.remove(chave)
+
+        prefsWolf.edit().putStringSet("assistidos", novo).apply()
+    }
+
+    private fun criarCardEpisodio(
+        serie: Serie,
+        numeroTemporada: Int,
+        episodio: Episodio
+    ): View {
+        val chave = chaveEpisodio(
+            serie,
+            numeroTemporada,
+            episodio.numero
+        )
+
+        val textoBase = "EP ${episodio.numero} • ${episodio.titulo}"
+
+        val informacoes = TextView(this).apply {
+            text = textoBase
+            setTextColor(Color.WHITE)
+            textSize = 14f
+            setTypeface(null, Typeface.BOLD)
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(8), dp(3), dp(8), dp(3))
+            maxLines = 2
+            ellipsize = TextUtils.TruncateAt.END
+            setBackgroundColor(Color.argb(235, 10, 10, 10))
+        }
+
+        val (card, imagem) = criarCardBase(serie.capa, informacoes)
+
+        val selo = TextView(this).apply {
+            text = "✓ ASSISTIDO"
+            setTextColor(Color.WHITE)
+            textSize = 12f
+            setTypeface(null, Typeface.BOLD)
+            setPadding(dp(8), dp(3), dp(8), dp(3))
+            setBackgroundColor(Color.argb(230, 0, 140, 60))
+            visibility = View.GONE
+        }
+
+        card.addView(
+            selo,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.TOP or Gravity.END
+                topMargin = dp(8)
+                rightMargin = dp(8)
+            }
+        )
+
+        fun atualizarVisual() {
+            val visto = episodioAssistido(chave)
+            selo.visibility = if (visto) View.VISIBLE else View.GONE
+            imagem.alpha = if (visto) 0.45f else 1f
+            informacoes.text = if (visto) "✓ $textoBase" else textoBase
+        }
+
+        atualizarVisual()
+
+        card.setOnClickListener {
+            if (episodio.video.isNotBlank()) {
+                marcarEpisodio(chave, true)
+                atualizarVisual()
+            }
+
+            abrirVideo(
+                "${serie.titulo} - EP ${episodio.numero}",
+                episodio.video,
+                serie.capa
+            )
+        }
+
+        card.setOnLongClickListener {
+            val agora = !episodioAssistido(chave)
+            marcarEpisodio(chave, agora)
+            atualizarVisual()
+
+            Toast.makeText(
+                this,
+                if (agora) "Marcado como assistido"
+                else "Marcado como não assistido",
+                Toast.LENGTH_SHORT
+            ).show()
+
+            true
+        }
+
+        return card
+    }
+
+    private fun abrirVideo(
+        titulo: String,
+        video: String,
+        capa: String
+    ) {
+        if (video.isBlank()) {
+            Toast.makeText(
+                this,
+                "Vídeo ainda não disponível",
+                Toast.LENGTH_SHORT
+            ).show()
+            return
+        }
+
+        WolfProgress.registrar(this, video, titulo, capa)
+        val pos = WolfProgress.posicao(this, video)
+
+        if (pos <= 0L) {
+            iniciarPlayer(titulo, video, capa, 0L)
+            return
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle(titulo)
+            .setMessage("Você parou em ${WolfProgress.formatar(pos)}.")
+            .setPositiveButton("Continuar") { _, _ ->
+                iniciarPlayer(titulo, video, capa, pos)
+            }
+            .setNegativeButton("Voltar do início") { _, _ ->
+                WolfProgress.apagar(this, video)
+                WolfProgress.registrar(this, video, titulo, capa)
+                iniciarPlayer(titulo, video, capa, 0L)
+            }
+            .show()
+    }
+
+    private fun iniciarPlayer(
+        titulo: String,
+        video: String,
+        capa: String,
+        posicaoMs: Long
+    ) {
+        val intent = Intent(this, PlayerActivity::class.java).apply {
+            putExtra("VIDEO_URL", video)
+            putExtra("VIDEO_TITLE", titulo)
+            putExtra("VIDEO_COVER", capa)
+            putExtra("START_POSITION", posicaoMs)
+        }
+
+        startActivity(intent)
+    }
+
+    private fun mostrarContinuarAssistindo() {
+        val itens = WolfProgress.emAndamento(this)
+        limparConteudo()
+
+        if (itens.isEmpty()) {
+            mostrarMensagemVazia("Nada em andamento ainda")
+            return
+        }
+
+        val filmesEmAndamento = itens.map {
+            Filme(it.titulo, 0, it.resumo(), it.capa, it.url)
+        }
+
+        montarGrade(filmesEmAndamento.map { criarCard(it) })
+    }
+
+    // ===== MENU LATERAL =====
+
+    private fun adicionarItemMenu(
+        texto: String,
+        acao: () -> Unit
+    ) {
+        val item = TextView(this).apply {
+            this.text = texto
+            setTextColor(Color.WHITE)
+            textSize = 16f
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(18), 0, dp(12), 0)
+            isFocusable = true
+            isFocusableInTouchMode = true
+            isClickable = true
+            background = criarFundoCard(false)
+
+            setOnFocusChangeListener { _, foco ->
+                background = criarFundoCard(foco)
+            }
+
+            setOnClickListener { acao() }
+        }
+
+        menuConteudo.addView(
+            item,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(48)
+            ).apply {
+                bottomMargin = dp(4)
+            }
+        )
+
+        itensMenuFoco.add(item)
+    }
+
+    private fun adicionarTituloMenu(texto: String) {
+        val titulo = TextView(this).apply {
+            this.text = texto
+            textSize = 16f
+            setTextColor(Color.LTGRAY)
+            setPadding(dp(18), dp(18), dp(12), dp(8))
+            isFocusable = false
+        }
+
+        menuConteudo.addView(titulo)
+    }
+
+    private fun adicionarCategoriasFilmes(
+        categorias: List<String>,
+        icones: List<String>,
+        base: List<Filme>
+    ) {
+        categorias.forEachIndexed { i, cat ->
+            val filtrados = base.filter {
+                normalizarTexto(it.categoria) == normalizarTexto(cat)
+            }
+
+            adicionarItemMenu("${icones[i]}  $cat (${filtrados.size})") {
+                fecharMenu()
+                mostrarListaCards(filtrados)
+            }
+        }
+    }
+
+    private fun adicionarCategoriasSeries(
+        categorias: List<String>,
+        icones: List<String>,
+        base: List<Serie>
+    ) {
+        categorias.forEachIndexed { i, cat ->
+            val filtradas = base.filter {
+                normalizarTexto(it.categoria) == normalizarTexto(cat)
+            }
+
+            adicionarItemMenu("${icones[i]}  $cat (${filtradas.size})") {
+                fecharMenu()
+                mostrarListaSeries(filtradas)
+            }
+        }
+    }
+
+    private fun abrirMenu() {
+        if (menuAberto) return
+
+        menuAberto = true
+        itensMenuFoco.clear()
+
+        menuLateral?.let { raiz.removeView(it) }
+
+        val larguraMenu = minOf(
+            dp(360),
+            (resources.displayMetrics.widthPixels * 0.85f).toInt()
+        )
+
+        val menu = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setBackgroundColor(Color.argb(250, 5, 5, 5))
+            isClickable = true
+            elevation = dp(16).toFloat()
+        }
+
+        menuLateral = menu
+
+        raiz.addView(
+            menu,
+            FrameLayout.LayoutParams(
+                larguraMenu,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            ).apply {
+                gravity = Gravity.START or Gravity.TOP
+            }
+        )
+
+        val cabecalho = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(15), dp(8), dp(10), dp(8))
+        }
+
+        menu.addView(
+            cabecalho,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(65)
+            )
+        )
+
+        val tituloMenu = TextView(this).apply {
+            text = "WOLF MENU"
+            setTextColor(Color.WHITE)
+            textSize = 21f
+            setTypeface(null, Typeface.BOLD)
+            gravity = Gravity.CENTER_VERTICAL
+        }
+
+        cabecalho.addView(
+            tituloMenu,
+            LinearLayout.LayoutParams(
+                0,
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                1f
+            )
+        )
+
+        botaoFecharMenu = TextView(this).apply {
+            text = "✕"
+            setTextColor(Color.WHITE)
+            textSize = 24f
+            gravity = Gravity.CENTER
+            isFocusable = true
+            isFocusableInTouchMode = true
+            isClickable = true
+            background = criarFundoCard(false)
+
+            setOnFocusChangeListener { _, foco ->
+                background = criarFundoCard(foco)
+            }
+
+            setOnClickListener { fecharMenu() }
+        }
+
+        cabecalho.addView(
+            botaoFecharMenu,
+            LinearLayout.LayoutParams(dp(55), dp(48))
+        )
+
+        itensMenuFoco.add(botaoFecharMenu)
+
+        menuScroll = ScrollView(this).apply {
+            isFocusable = false
+        }
+
+        menuConteudo = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(10), dp(5), dp(10), dp(20))
+        }
+
+        menuScroll.addView(
+            menuConteudo,
+            ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        menu.addView(
+            menuScroll,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                0,
+                1f
+            )
+        )
+
+        adicionarItemMenu("🔄  Atualizar catálogo") {
+            fecharMenu()
+            Toast.makeText(
+                this,
+                "Atualizando catálogo...",
+                Toast.LENGTH_SHORT
+            ).show()
+            carregarCatalogo()
+        }
+
+        adicionarItemMenu(
+            "▶  Continuar assistindo (${WolfProgress.emAndamento(this).size})"
+        ) {
+            fecharMenu()
+            mostrarContinuarAssistindo()
+        }
+
+        adicionarItemMenu("★  Favoritos (${favoritos.size})") {
+            fecharMenu()
+            mostrarListaCards(
+                filmes.filter { favoritos.contains(it.titulo) }
+            )
+        }
+
+        adicionarItemMenu("⌕  Pesquisa") {
+            abrirPesquisa()
+        }
+
+        adicionarTituloMenu("AO VIVO")
+
+        adicionarItemMenu("🔴  Canais ao vivo (${canais.size})") {
+            fecharMenu()
+            mostrarListaCanais(canais)
+        }
+
+        val categoriasCanais = canais.map { it.categoria }
+            .filter { it.isNotBlank() }
+            .distinctBy { normalizarTexto(it) }
+
+        categoriasCanais.forEach { cat ->
+            val filtrados = canais.filter {
+                normalizarTexto(it.categoria) == normalizarTexto(cat)
+            }
+
+            adicionarItemMenu("📡  $cat (${filtrados.size})") {
+                fecharMenu()
+                mostrarListaCanais(filtrados)
+            }
+        }
+
+        adicionarTituloMenu("FILMES")
+
+        adicionarItemMenu("🎬  Todos os filmes (${filmes.size})") {
+            fecharMenu()
+            mostrarListaCards(filmes)
+        }
+
+        adicionarCategoriasFilmes(
+            listOf(
+                "Ação",
+                "Aventura",
+                "Animação",
+                "Comédia",
+                "Drama",
+                "Terror",
+                "Ficção"
+            ),
+            listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "🚀"),
+            filmes
+        )
+
+        adicionarTituloMenu("SÉRIES")
+
+        adicionarItemMenu("📺  Todas as séries (${series.size})") {
+            fecharMenu()
+            mostrarListaSeries(series)
+        }
+
+        adicionarCategoriasSeries(
+            listOf("Ação", "Aventura", "Comédia", "Drama", "Terror"),
+            listOf("🔥", "🏹", "😂", "🎭", "👻"),
+            series
+        )
+
+        adicionarTituloMenu("DORAMAS")
+
+        adicionarItemMenu("📺  Todos os Doramas (${doramas.size})") {
+            fecharMenu()
+            mostrarListaSeries(doramas)
+        }
+
+        adicionarCategoriasSeries(
+            listOf("Romance", "Ação", "Comédia", "Terror"),
+            listOf("💖", "🔥", "😂", "👻"),
+            doramas
+        )
+
+        adicionarTituloMenu("DESENHOS")
+
+        adicionarItemMenu("🧸  Todos os desenhos (${desenhos.size})") {
+            fecharMenu()
+            mostrarListaCards(desenhos)
+        }
+
+        adicionarCategoriasFilmes(
+            listOf(
+                "Ação",
+                "Aventura",
+                "Animação",
+                "Comédia",
+                "Drama",
+                "Terror",
+                "Fantasia"
+            ),
+            listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "✨"),
+            desenhos
+        )
+
+        adicionarTituloMenu("ANIME")
+
+        adicionarItemMenu("🍥  Todos os Animes (${animes.size})") {
+            fecharMenu()
+            mostrarListaSeries(animes)
+        }
+
+        adicionarCategoriasSeries(
+            listOf("Ação", "Comédia", "Terror"),
+            listOf("🔥", "😂", "👻"),
+            animes
+        )
+
+        botaoFecharMenu.requestFocus()
+    }
+
+    private fun fecharMenu() {
+        if (!menuAberto) return
+
+        menuAberto = false
+        menuLateral?.let { raiz.removeView(it) }
+        menuLateral = null
+        itensMenuFoco.clear()
+        botaoMenu.requestFocus()
+    }
+
+    private fun moverMenu(direcao: Int) {
+        if (itensMenuFoco.isEmpty()) return
+
+        val atual = itensMenuFoco.indexOfFirst { it.hasFocus() }
+        var indice = if (atual < 0) 0 else atual + direcao
+
+        if (indice < 0) indice = itensMenuFoco.size - 1
+        if (indice >= itensMenuFoco.size) indice = 0
+
+        val proximo = itensMenuFoco[indice]
+        proximo.requestFocus()
+        ajustarScrollMenu(proximo)
+    }
+
+    private fun ajustarScrollMenu(view: View) {
+        if (view === botaoFecharMenu) {
+            menuScroll.post {
+                menuScroll.smoothScrollTo(0, 0)
+            }
+        } else {
+            view.post {
+                menuScroll.smoothScrollTo(0, view.top)
+            }
+        }
+    }
+
+    // CORREÇÃO: navegação respeita linhas e colunas da grade.
+    private fun moverCard(direcao: Int) {
+        if (cardsAtuais.isEmpty()) return
+
+        var atual = cardsAtuais.indexOfFirst { it.hasFocus() }
+
+        if (atual < 0) {
+            atual = indiceCardAtual.coerceIn(0, cardsAtuais.lastIndex)
+        }
+
+        val total = cardsAtuais.size
+        val colunaAtual = atual % colunas
+
+        val proximo = when (direcao) {
+            -1 -> {
+                if (colunaAtual > 0) atual - 1 else atual
+            }
+
+            1 -> {
+                if (colunaAtual < colunas - 1 && atual + 1 < total) {
+                    atual + 1
+                } else {
+                    atual
+                }
+            }
+
+            -colunas -> {
+                if (atual >= colunas) atual - colunas else atual
+            }
+
+            colunas -> {
+                if (atual + colunas < total) atual + colunas else atual
+            }
+
+            else -> atual
+        }
+
+        indiceCardAtual = proximo
+
+        val card = cardsAtuais[proximo]
+        card.requestFocus()
+
+        // Mantém o card focado visível dentro da área de rolagem.
+        card.post {
+            if (card.isAttachedToWindow) {
+                card.requestRectangleOnScreen(
+                    android.graphics.Rect(
+                        0,
+                        0,
+                        card.width,
+                        card.height
+                    ),
+                    true
+                )
+            }
+        }
+    }
+
+    // ===== PESQUISA (TEXTO E VOZ) =====
+
+    private fun abrirPesquisa() {
+        fecharMenu()
+
+        val campo = EditText(this).apply {
+            hint = "Digite o nome..."
+            textSize = 20f
+            setSingleLine(true)
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle("Pesquisar")
+            .setView(campo)
+            .setPositiveButton("Buscar") { _, _ ->
+                pesquisar(campo.text.toString())
+            }
+            .setNeutralButton("🎤 Voz") { _, _ ->
+                iniciarVoz()
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
+    }
+
+    private fun pesquisar(consulta: String) {
+        val termo = normalizarTexto(consulta)
+        if (termo.isBlank()) return
+
+        val achadosFilmes = (filmes + desenhos).filter {
+            normalizarTexto(it.titulo).contains(termo)
+        }
+
+        val achadasSeries = (series + doramas + animes).filter {
+            normalizarTexto(it.titulo).contains(termo)
+        }
+
+        Toast.makeText(
+            this,
+            "Busca: \"$consulta\" — ${achadosFilmes.size} filme(s), " +
+                "${achadasSeries.size} série(s)",
+            Toast.LENGTH_SHORT
+        ).show()
+
+        if (achadosFilmes.isNotEmpty()) {
+            mostrarListaCards(achadosFilmes)
+        } else {
+            mostrarListaSeries(achadasSeries)
+        }
+    }
+
+    private fun iniciarVoz() {
+        val intent = Intent(
+            RecognizerIntent.ACTION_RECOGNIZE_SPEECH
+        ).apply {
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM
+            )
+            putExtra(
+                RecognizerIntent.EXTRA_LANGUAGE,
+                "pt-BR"
+            )
+            putExtra(
+                RecognizerIntent.EXTRA_PROMPT,
+                "Diga o nome do filme ou série"
+            )
+        }
+
+        try {
+            startActivityForResult(intent, REQ_VOZ)
+        } catch (_: Exception) {
+            Toast.makeText(
+                this,
+                "Voz indisponível neste aparelho, digite o nome",
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
+    @Deprecated("Deprecated in Java")
+    override fun onActivityResult(
+        requestCode: Int,
+        resultCode: Int,
+        data: Intent?
+    ) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQ_VOZ && resultCode == RESULT_OK) {
+            val texto = data
+                ?.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS)
+                ?.firstOrNull()
+
+            if (!texto.isNullOrBlank()) pesquisar(texto)
+        }
+    }
+
+    // ===== CONTROLE REMOTO =====
+
+    override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+        if (event.action == KeyEvent.ACTION_DOWN) {
+            when (event.keyCode) {
+                KeyEvent.KEYCODE_MENU -> {
+                    if (menuAberto) {
+                        fecharMenu()
+                    } else {
+                        abrirMenu()
+                    }
+                    return true
+                }
+
+                KeyEvent.KEYCODE_DPAD_LEFT -> {
+                    if (!menuAberto && cardsAtuais.any { it.hasFocus() }) {
+                        moverCard(-1)
+                        return true
+                    }
+                }
+
+                KeyEvent.KEYCODE_DPAD_RIGHT -> {
+                    if (!menuAberto && cardsAtuais.any { it.hasFocus() }) {
+                        moverCard(1)
+                        return true
+                    }
+                }
+
+                KeyEvent.KEYCODE_DPAD_UP -> {
+                    if (menuAberto) {
+                        moverMenu(-1)
+                        return true
+                    } else if (cardsAtuais.any { it.hasFocus() }) {
+                        val indiceAtual =
+                            cardsAtuais.indexOfFirst { it.hasFocus() }
+
+                        if (indiceAtual >= colunas) {
+                            moverCard(-colunas)
+                        } else {
+                            botaoMenu.requestFocus()
+                        }
+
+                        return true
+                    }
+                }
+
+                KeyEvent.KEYCODE_DPAD_DOWN -> {
+                    if (menuAberto) {
+                        moverMenu(1)
+                        return true
+                    } else if (
+                        botaoMenu.hasFocus() &&
+                        cardsAtuais.isNotEmpty()
+                    ) {
+                        cardsAtuais[0].requestFocus()
+                        return true
+                    } else if (cardsAtuais.any { it.hasFocus() }) {
+                        moverCard(colunas)
+                        return true
+                    }
+                }
+
+                KeyEvent.KEYCODE_BACK -> {
+                    if (menuAberto) {
+                        fecharMenu()
+                        return true
+                    } else if (historicoConteudo.isNotEmpty()) {
+                        val acaoVoltar =
+                            historicoConteudo.removeAt(
+                                historicoConteudo.size - 1
+                            )
+
+                        acaoVoltar.invoke()
+                        return true
+                    }
+                }
+            }
+        }
+
+        return super.dispatchKeyEvent(event)
+    }
+
+    override fun onDestroy() {
+        activityScope.coroutineContext[Job]?.cancel()
+        executorImagens.shutdownNow()
+        super.onDestroy()
+    }
+}
