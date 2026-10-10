@@ -83,6 +83,18 @@ class MainActivity : AppCompatActivity() {
     private val ARQUIVOS_DESENHOS =
         listOf("desenho.json", "desenhos.json", "Desenho.json", "Desenhos.json")
 
+    // Canais ao vivo: "canais ao vivo.json" (tenta vários nomes possíveis).
+    private val ARQUIVOS_CANAIS = listOf(
+        "canais%20ao%20vivo.json",
+        "canais ao vivo.json",
+        "canais_ao_vivo.json",
+        "canais-ao-vivo.json",
+        "canaisaovivo.json",
+        "Canais%20ao%20vivo.json",
+        "Canais%20Ao%20Vivo.json",
+        "canais.json"
+    )
+
     private val REQ_VOZ = 100
 
     private val activityScope = CoroutineScope(Dispatchers.Main + Job())
@@ -117,6 +129,7 @@ class MainActivity : AppCompatActivity() {
     private val doramas = mutableListOf<Serie>()
     private val animes = mutableListOf<Serie>()
     private val desenhos = mutableListOf<Filme>()
+    private val canais = mutableListOf<Filme>()
 
     private var listaSeriesAtual: List<Serie> = emptyList()
 
@@ -644,7 +657,12 @@ class MainActivity : AppCompatActivity() {
 
                 val novosDesenhos = lerDesenhos(textoDesenhos)
 
+                val novosCanais = lerCanais(baixarPrimeiro(ARQUIVOS_CANAIS))
+
                 withContext(Dispatchers.Main) {
+                    canais.clear()
+                    canais.addAll(novosCanais)
+
                     filmes.clear()
                     filmes.addAll(novosFilmes)
 
@@ -666,7 +684,8 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity,
                         "Catálogo carregado: ${filmes.size} filmes, " +
                             "${series.size} séries, ${doramas.size} doramas, " +
-                            "${animes.size} animes e ${desenhos.size} desenhos",
+                            "${animes.size} animes, ${desenhos.size} desenhos " +
+                            "e ${canais.size} canais ao vivo",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -677,6 +696,7 @@ class MainActivity : AppCompatActivity() {
                     doramas.clear()
                     animes.clear()
                     desenhos.clear()
+                    canais.clear()
                     conteudo.removeAllViews()
 
                     val erroTexto = TextView(this@MainActivity).apply {
@@ -727,6 +747,51 @@ class MainActivity : AppCompatActivity() {
             if (!texto.isNullOrBlank()) return texto
         }
         return null
+    }
+
+    // Lê canais ao vivo. Aceita [ ... ] ou { "canais": [ ... ] } (também "channels").
+    // Cada item: nome/titulo, categoria/grupo, logo/capa/imagem, url/video/link/stream.
+    private fun lerCanais(texto: String?): ArrayList<Filme> {
+        val resultado = ArrayList<Filme>()
+        if (texto.isNullOrBlank()) return resultado
+
+        val array = extrairArray(texto, "canais")
+            ?: extrairArray(texto, "canais_ao_vivo")
+            ?: extrairArray(texto, "channels")
+            ?: extrairArray(texto, "lista")
+            ?: return resultado
+
+        fun campo(o: JSONObject, vararg chaves: String): String {
+            for (c in chaves) {
+                val v = o.optString(c, "")
+                if (v.isNotBlank()) return v
+            }
+            return ""
+        }
+
+        for (i in 0 until array.length()) {
+            try {
+                val item = array.getJSONObject(i)
+                val nome = campo(item, "nome", "titulo", "name", "title")
+                val url = campo(item, "url", "video", "link", "stream", "src")
+
+                if (nome.isNotBlank() && url.isNotBlank()) {
+                    resultado.add(
+                        Filme(
+                            nome,
+                            0,
+                            campo(item, "categoria", "grupo", "group", "category"),
+                            campo(item, "logo", "capa", "imagem", "icone", "image"),
+                            url
+                        )
+                    )
+                }
+            } catch (_: Exception) {
+            }
+        }
+
+        resultado.sortBy { it.titulo.lowercase() }
+        return resultado
     }
 
     // Aceita { "series": [ ... ] } ou [ ... ].
@@ -942,6 +1007,35 @@ class MainActivity : AppCompatActivity() {
 
         card.setOnClickListener {
             abrirVideo(filme.titulo, filme.video, filme.capa)
+        }
+
+        return card
+    }
+
+    // Canais ao vivo: abre direto no player, sem "continuar de onde parou".
+    private fun mostrarListaCanais(lista: List<Filme>) {
+        limparConteudo()
+
+        if (lista.isEmpty()) {
+            mostrarMensagemVazia("Nenhum canal ao vivo encontrado")
+            return
+        }
+
+        montarGrade(lista.map { criarCardCanal(it) })
+    }
+
+    private fun criarCardCanal(canal: Filme): View {
+        val (card, _) = criarCardBase(
+            canal.capa,
+            rodapeDuasLinhas(
+                canal.titulo,
+                if (canal.categoria.isNotBlank()) "🔴 AO VIVO • ${canal.categoria}"
+                else "🔴 AO VIVO"
+            )
+        )
+
+        card.setOnClickListener {
+            iniciarPlayer(canal.titulo, canal.video, canal.capa, 0L)
         }
 
         return card
@@ -1429,6 +1523,28 @@ class MainActivity : AppCompatActivity() {
 
         adicionarItemMenu("⌕  Pesquisa") {
             abrirPesquisa()
+        }
+
+        adicionarTituloMenu("AO VIVO")
+
+        adicionarItemMenu("🔴  Canais ao vivo (${canais.size})") {
+            fecharMenu()
+            mostrarListaCanais(canais)
+        }
+
+        val categoriasCanais = canais.map { it.categoria }
+            .filter { it.isNotBlank() }
+            .distinctBy { normalizarTexto(it) }
+
+        categoriasCanais.forEach { cat ->
+            val filtrados = canais.filter {
+                normalizarTexto(it.categoria) == normalizarTexto(cat)
+            }
+
+            adicionarItemMenu("📡  $cat (${filtrados.size})") {
+                fecharMenu()
+                mostrarListaCanais(filtrados)
+            }
         }
 
         adicionarTituloMenu("FILMES")
