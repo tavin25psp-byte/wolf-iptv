@@ -1,4 +1,3 @@
-
 {
   "series": [
     {
@@ -418,7 +417,7 @@
             { "numero": 64, "titulo": "Episódio 64", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP064.mp4" },
             { "numero": 65, "titulo": "Episódio 65", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP065.mp4" },
             { "numero": 66, "titulo": "Episódio 66", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP066.mp4" },
-            { "numero": 67, "titulo": "Episódio 67", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP067.mp4" },
+            { "numero": 77, "titulo": "Episódio 67", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP067.mp4" },
             { "numero": 68, "titulo": "Episódio 68", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP068.mp4" },
             { "numero": 69, "titulo": "Episódio 69", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP069.mp4" },
             { "numero": 70, "titulo": "Episódio 70", "video": "https://wolf-channel-cdn.b-cdn.net/Marcados%20pelo%20passado%20season%201/MRCDSPLPSDOCP070.mp4" },
@@ -726,6 +725,26 @@
             { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/a%20lista%20terminal%20lobo%20negro%20season%201/a%20lista%20terminal%20lobo%20negroep5.mp4" },
             { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/a%20lista%20terminal%20lobo%20negro%20season%201/a%20lista%20terminal%20lobo%20negroep6.mp4" },
             { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/a%20lista%20terminal%20lobo%20negro%20season%201/a%20lista%20terminal%20lobo%20negroep7.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Billy the Kid",
+      "categoria": "Faroeste",
+      "capa": "https://i.postimg.cc/sXpDq9Vx/IMG-6c1e49f3-07cd-4026-b3ea-8b0bfd3e6c47.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "The Immigrants", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/Billy%20the%20kid%20EP%201.mp4" },
+            { "numero": 2, "titulo": "The Rattler", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/Billy%20the%20kid%20EP%202.mp4" },
+            { "numero": 3, "titulo": "Antrim", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/billy%20the%20kid%20EP%203.mp4" },
+            { "numero": 4, "titulo": "Interlude", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/Billy%20the%20kid%20ep4.mp4" },
+            { "numero": 5, "titulo": "The Little Bit of Paradise", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/billy%20the%20kid%20EP%205.mp4" },
+            { "numero": 6, "titulo": "Fate", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/Billy%20the%20kid%20EP%206.mp4" },
+            { "numero": 7, "titulo": "At the House", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/Billy%20the%20kid%20EP%207.mp4" },
+            { "numero": 8, "titulo": "The Rampage", "video": "https://wolf-channel-cdn.b-cdn.net/Billy%20the%20kid%20season%201/Billy%20the%20kid%20ep8.mp4" }
           ]
         }
       ]
