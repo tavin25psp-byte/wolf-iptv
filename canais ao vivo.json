@@ -1,1 +1,12 @@
 
+
+{
+  "canais": [
+    {
+      "nome": "Cartoon Network",
+      "categoria": "Desenhos",
+      "url": "https://rdcanais.org/cartoonnetwork",
+      "tipo": "web"
+    }
+  ]
+}
