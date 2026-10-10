@@ -83,21 +83,6 @@ class MainActivity : AppCompatActivity() {
     private val ARQUIVOS_DESENHOS =
         listOf("desenho.json", "desenhos.json", "Desenho.json", "Desenhos.json")
 
-    // Canais ao vivo: "canais ao vivo.json" (tenta vários nomes possíveis).
-    private val ARQUIVOS_CANAIS = listOf(
-        "canais%20ao%20vivo.json",
-        "canais ao vivo.json",
-        "canais_ao_vivo.json",
-        "canais-ao-vivo.json",
-        "canaisaovivo.json",
-        "Canais%20ao%20vivo.json",
-        "Canais%20Ao%20Vivo.json",
-        "canais.json",
-        "lista.m3u",
-        "canais.m3u",
-        "playlist.m3u"
-    )
-
     private val REQ_VOZ = 100
 
     private val activityScope = CoroutineScope(Dispatchers.Main + Job())
@@ -132,7 +117,6 @@ class MainActivity : AppCompatActivity() {
     private val doramas = mutableListOf<Serie>()
     private val animes = mutableListOf<Serie>()
     private val desenhos = mutableListOf<Filme>()
-    private val canais = mutableListOf<Filme>()
 
     private var listaSeriesAtual: List<Serie> = emptyList()
 
@@ -270,7 +254,7 @@ class MainActivity : AppCompatActivity() {
             if (foco) Color.argb(235, 10, 10, 10)
             else Color.argb(190, 10, 10, 10)
         )
-        fundo.cornerRadius = dp(8).toFloat()
+        fundo.cornerRadius = dp(14).toFloat()
         if (foco) fundo.setStroke(dp(4), Color.RED)
         return fundo
     }
@@ -278,7 +262,7 @@ class MainActivity : AppCompatActivity() {
     private fun criarBordaVermelha(): GradientDrawable {
         val borda = GradientDrawable()
         borda.setColor(Color.TRANSPARENT)
-        borda.cornerRadius = dp(8).toFloat()
+        borda.cornerRadius = dp(14).toFloat()
         borda.setStroke(dp(4), Color.RED)
         return borda
     }
@@ -660,12 +644,7 @@ class MainActivity : AppCompatActivity() {
 
                 val novosDesenhos = lerDesenhos(textoDesenhos)
 
-                val novosCanais = lerCanais(baixarPrimeiro(ARQUIVOS_CANAIS))
-
                 withContext(Dispatchers.Main) {
-                    canais.clear()
-                    canais.addAll(novosCanais)
-
                     filmes.clear()
                     filmes.addAll(novosFilmes)
 
@@ -687,8 +666,7 @@ class MainActivity : AppCompatActivity() {
                         this@MainActivity,
                         "Catálogo carregado: ${filmes.size} filmes, " +
                             "${series.size} séries, ${doramas.size} doramas, " +
-                            "${animes.size} animes, ${desenhos.size} desenhos " +
-                            "e ${canais.size} canais ao vivo",
+                            "${animes.size} animes e ${desenhos.size} desenhos",
                         Toast.LENGTH_LONG
                     ).show()
                 }
@@ -699,7 +677,6 @@ class MainActivity : AppCompatActivity() {
                     doramas.clear()
                     animes.clear()
                     desenhos.clear()
-                    canais.clear()
                     conteudo.removeAllViews()
 
                     val erroTexto = TextView(this@MainActivity).apply {
@@ -750,89 +727,6 @@ class MainActivity : AppCompatActivity() {
             if (!texto.isNullOrBlank()) return texto
         }
         return null
-    }
-
-    // Lê lista M3U: #EXTINF:-1 tvg-logo="..." group-title="...",Nome  +  linha da URL
-    private fun lerM3u(texto: String): ArrayList<Filme> {
-        val resultado = ArrayList<Filme>()
-        var nome = ""
-        var logo = ""
-        var grupo = ""
-
-        fun atributo(linha: String, chave: String): String {
-            val m = Regex(chave + "=\"([^\"]*)\"").find(linha)
-            return m?.groupValues?.get(1)?.trim() ?: ""
-        }
-
-        for (bruta in texto.lines()) {
-            val linha = bruta.trim()
-            if (linha.isEmpty()) continue
-
-            if (linha.startsWith("#EXTINF", ignoreCase = true)) {
-                logo = atributo(linha, "tvg-logo")
-                grupo = atributo(linha, "group-title")
-                nome = linha.substringAfterLast(",", "").trim()
-                if (nome.isBlank()) nome = atributo(linha, "tvg-name")
-            } else if (!linha.startsWith("#")) {
-                if (nome.isNotBlank()) {
-                    resultado.add(Filme(nome, 0, grupo, logo, linha))
-                }
-                nome = ""
-                logo = ""
-                grupo = ""
-            }
-        }
-
-        return resultado
-    }
-
-    // Lê canais ao vivo. Aceita [ ... ] ou { "canais": [ ... ] } (também "channels").
-    // Cada item: nome/titulo, categoria/grupo, logo/capa/imagem, url/video/link/stream.
-    private fun lerCanais(texto: String?): ArrayList<Filme> {
-        val resultado = ArrayList<Filme>()
-        if (texto.isNullOrBlank()) return resultado
-
-        if (texto.trimStart().startsWith("#EXTM3U")) {
-            return lerM3u(texto)
-        }
-
-        val array = extrairArray(texto, "canais")
-            ?: extrairArray(texto, "canais_ao_vivo")
-            ?: extrairArray(texto, "channels")
-            ?: extrairArray(texto, "lista")
-            ?: return resultado
-
-        fun campo(o: JSONObject, vararg chaves: String): String {
-            for (c in chaves) {
-                val v = o.optString(c, "")
-                if (v.isNotBlank()) return v
-            }
-            return ""
-        }
-
-        for (i in 0 until array.length()) {
-            try {
-                val item = array.getJSONObject(i)
-                val nome = campo(item, "nome", "titulo", "name", "title")
-                val url = campo(item, "url", "video", "link", "stream", "src")
-
-                if (nome.isNotBlank() && url.isNotBlank()) {
-                    resultado.add(
-                        Filme(
-                            nome,
-                            0,
-                            campo(item, "categoria", "grupo", "group", "category"),
-                            campo(item, "logo", "capa", "imagem", "icone", "image"),
-                            url
-                        )
-                    )
-                }
-            } catch (_: Exception) {
-            }
-        }
-
-        resultado.sortBy { it.titulo.lowercase() }
-        return resultado
     }
 
     // Aceita { "series": [ ... ] } ou [ ... ].
@@ -970,6 +864,7 @@ class MainActivity : AppCompatActivity() {
             isFocusableInTouchMode = true
             isClickable = true
             background = criarFundoCard(false)
+            clipToOutline = true
         }
 
         val imagem = ImageView(this).apply {
@@ -1048,35 +943,6 @@ class MainActivity : AppCompatActivity() {
 
         card.setOnClickListener {
             abrirVideo(filme.titulo, filme.video, filme.capa)
-        }
-
-        return card
-    }
-
-    // Canais ao vivo: abre direto no player, sem "continuar de onde parou".
-    private fun mostrarListaCanais(lista: List<Filme>) {
-        limparConteudo()
-
-        if (lista.isEmpty()) {
-            mostrarMensagemVazia("Nenhum canal ao vivo encontrado")
-            return
-        }
-
-        montarGrade(lista.map { criarCardCanal(it) })
-    }
-
-    private fun criarCardCanal(canal: Filme): View {
-        val (card, _) = criarCardBase(
-            canal.capa,
-            rodapeDuasLinhas(
-                canal.titulo,
-                if (canal.categoria.isNotBlank()) "🔴 AO VIVO • ${canal.categoria}"
-                else "🔴 AO VIVO"
-            )
-        )
-
-        card.setOnClickListener {
-            iniciarPlayer(canal.titulo, canal.video, canal.capa, 0L)
         }
 
         return card
@@ -1344,10 +1210,53 @@ class MainActivity : AppCompatActivity() {
 
     // ===== MENU LATERAL =====
 
+    private val CATEGORIAS_MENU = listOf(
+        "Ação" to "🔥",
+        "Animação" to "🧸",
+        "Aventura" to "🧭",
+        "Comédia" to "😂",
+        "Drama" to "🎭",
+        "Fantasia" to "✨",
+        "Ficção" to "🚀",
+        "Suspense" to "🔪",
+        "Terror" to "👻"
+    )
+
+    private class SecaoMenu(
+        val titulo: String,
+        val total: Int,
+        val cabecalho: TextView,
+        val corpo: LinearLayout
+    )
+
+    private val secoesMenu = mutableListOf<SecaoMenu>()
+
+    private val COR_PAINEL = Color.argb(250, 12, 16, 38)
+    private val COR_ITEM = Color.argb(255, 27, 32, 56)
+    private val COR_SECAO = Color.argb(255, 44, 56, 108)
+
+    private fun criarFundoMenu(
+        cor: Int,
+        foco: Boolean,
+        raio: Int = 14
+    ): GradientDrawable {
+        val fundo = GradientDrawable()
+        fundo.setColor(cor)
+        fundo.cornerRadius = dp(raio).toFloat()
+        if (foco) fundo.setStroke(dp(3), Color.RED)
+        return fundo
+    }
+
+    private fun mesmaCategoria(a: String, b: String): Boolean {
+        return normalizarTexto(a) == normalizarTexto(b)
+    }
+
     private fun adicionarItemMenu(
         texto: String,
+        pai: LinearLayout = menuConteudo,
+        cor: Int = COR_ITEM,
         acao: () -> Unit
-    ) {
+    ): TextView {
         val item = TextView(this).apply {
             this.text = texto
             setTextColor(Color.WHITE)
@@ -1357,72 +1266,113 @@ class MainActivity : AppCompatActivity() {
             isFocusable = true
             isFocusableInTouchMode = true
             isClickable = true
-            background = criarFundoCard(false)
+            background = criarFundoMenu(cor, false)
 
             setOnFocusChangeListener { _, foco ->
-                background = criarFundoCard(foco)
+                background = criarFundoMenu(cor, foco)
             }
 
             setOnClickListener { acao() }
         }
 
-        menuConteudo.addView(
+        pai.addView(
             item,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 dp(48)
             ).apply {
-                bottomMargin = dp(4)
+                bottomMargin = dp(6)
             }
         )
 
         itensMenuFoco.add(item)
+        return item
     }
 
-    private fun adicionarTituloMenu(texto: String) {
-        val titulo = TextView(this).apply {
-            this.text = texto
-            textSize = 16f
-            setTextColor(Color.LTGRAY)
-            setPadding(dp(18), dp(18), dp(12), dp(8))
-            isFocusable = false
-        }
-
-        menuConteudo.addView(titulo)
+    private fun textoSecao(titulo: String, total: Int, aberta: Boolean): String {
+        return "$titulo ($total)   " + if (aberta) "▾" else "▸"
     }
 
-    private fun adicionarCategoriasFilmes(
-        categorias: List<String>,
-        icones: List<String>,
-        base: List<Filme>
+    // Seção que abre e fecha ao clicar, com as mesmas categorias em todas.
+    private fun adicionarSecaoCategorias(
+        titulo: String,
+        total: Int,
+        aberta: Boolean,
+        contar: (String) -> Int,
+        mostrarTodos: () -> Unit,
+        mostrarCategoria: (String) -> Unit
     ) {
-        categorias.forEachIndexed { i, cat ->
-            val filtrados = base.filter {
-                normalizarTexto(it.categoria) == normalizarTexto(cat)
-            }
+        val corpo = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            visibility = if (aberta) View.VISIBLE else View.GONE
+        }
 
-            adicionarItemMenu("${icones[i]}  $cat (${filtrados.size})") {
+        val cabecalho = adicionarItemMenu(
+            textoSecao(titulo, total, aberta),
+            cor = COR_SECAO
+        ) {
+            alternarSecao(titulo)
+        }
+
+        cabecalho.setTypeface(null, Typeface.BOLD)
+
+        menuConteudo.addView(
+            corpo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        adicionarItemMenu("🎬  Todos ($total)", pai = corpo) {
+            fecharMenu()
+            mostrarTodos()
+        }
+
+        CATEGORIAS_MENU.forEach { (cat, icone) ->
+            adicionarItemMenu("$icone  $cat (${contar(cat)})", pai = corpo) {
                 fecharMenu()
-                mostrarListaCards(filtrados)
+                mostrarCategoria(cat)
             }
         }
+
+        secoesMenu.add(SecaoMenu(titulo, total, cabecalho, corpo))
     }
 
-    private fun adicionarCategoriasSeries(
-        categorias: List<String>,
-        icones: List<String>,
-        base: List<Serie>
-    ) {
-        categorias.forEachIndexed { i, cat ->
-            val filtradas = base.filter {
-                normalizarTexto(it.categoria) == normalizarTexto(cat)
-            }
+    private fun secaoFilmes(titulo: String, base: List<Filme>, aberta: Boolean) {
+        adicionarSecaoCategorias(
+            titulo,
+            base.size,
+            aberta,
+            { c -> base.count { mesmaCategoria(it.categoria, c) } },
+            { mostrarListaCards(base) },
+            { c -> mostrarListaCards(base.filter { mesmaCategoria(it.categoria, c) }) }
+        )
+    }
 
-            adicionarItemMenu("${icones[i]}  $cat (${filtradas.size})") {
-                fecharMenu()
-                mostrarListaSeries(filtradas)
-            }
+    private fun secaoSeries(titulo: String, base: List<Serie>, aberta: Boolean) {
+        adicionarSecaoCategorias(
+            titulo,
+            base.size,
+            aberta,
+            { c -> base.count { mesmaCategoria(it.categoria, c) } },
+            { mostrarListaSeries(base) },
+            { c -> mostrarListaSeries(base.filter { mesmaCategoria(it.categoria, c) }) }
+        )
+    }
+
+    // Abre a seção clicada e fecha as outras.
+    private fun alternarSecao(titulo: String) {
+        val alvo = secoesMenu.firstOrNull { it.titulo == titulo } ?: return
+        val abrir = alvo.corpo.visibility != View.VISIBLE
+
+        secoesMenu.forEach {
+            val aberta = it === alvo && abrir
+            it.corpo.visibility = if (aberta) View.VISIBLE else View.GONE
+            it.cabecalho.text = textoSecao(it.titulo, it.total, aberta)
         }
+
+        alvo.cabecalho.post { ajustarScrollMenu(alvo.cabecalho) }
     }
 
     private fun abrirMenu() {
@@ -1430,6 +1380,7 @@ class MainActivity : AppCompatActivity() {
 
         menuAberto = true
         itensMenuFoco.clear()
+        secoesMenu.clear()
 
         menuLateral?.let { raiz.removeView(it) }
 
@@ -1440,7 +1391,8 @@ class MainActivity : AppCompatActivity() {
 
         val menu = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setBackgroundColor(Color.argb(250, 5, 5, 5))
+            background = criarFundoMenu(COR_PAINEL, false, 22)
+            clipToOutline = true
             isClickable = true
             elevation = dp(16).toFloat()
         }
@@ -1454,20 +1406,21 @@ class MainActivity : AppCompatActivity() {
                 ViewGroup.LayoutParams.MATCH_PARENT
             ).apply {
                 gravity = Gravity.START or Gravity.TOP
+                setMargins(dp(10), dp(10), dp(10), dp(10))
             }
         )
 
         val cabecalho = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(15), dp(8), dp(10), dp(8))
+            setPadding(dp(20), dp(8), dp(14), dp(8))
         }
 
         menu.addView(
             cabecalho,
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                dp(65)
+                dp(68)
             )
         )
 
@@ -1491,15 +1444,15 @@ class MainActivity : AppCompatActivity() {
         botaoFecharMenu = TextView(this).apply {
             text = "✕"
             setTextColor(Color.WHITE)
-            textSize = 24f
+            textSize = 22f
             gravity = Gravity.CENTER
             isFocusable = true
             isFocusableInTouchMode = true
             isClickable = true
-            background = criarFundoCard(false)
+            background = criarFundoMenu(COR_ITEM, false, 24)
 
             setOnFocusChangeListener { _, foco ->
-                background = criarFundoCard(foco)
+                background = criarFundoMenu(COR_ITEM, foco, 24)
             }
 
             setOnClickListener { fecharMenu() }
@@ -1507,18 +1460,19 @@ class MainActivity : AppCompatActivity() {
 
         cabecalho.addView(
             botaoFecharMenu,
-            LinearLayout.LayoutParams(dp(55), dp(48))
+            LinearLayout.LayoutParams(dp(48), dp(48))
         )
 
         itensMenuFoco.add(botaoFecharMenu)
 
         menuScroll = ScrollView(this).apply {
             isFocusable = false
+            isVerticalScrollBarEnabled = false
         }
 
         menuConteudo = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            setPadding(dp(10), dp(5), dp(10), dp(20))
+            setPadding(dp(12), dp(6), dp(12), dp(20))
         }
 
         menuScroll.addView(
@@ -1548,9 +1502,7 @@ class MainActivity : AppCompatActivity() {
             carregarCatalogo()
         }
 
-        adicionarItemMenu(
-            "▶  Continuar assistindo (${WolfProgress.emAndamento(this).size})"
-        ) {
+        adicionarItemMenu("▶  Continuar assistindo") {
             fecharMenu()
             mostrarContinuarAssistindo()
         }
@@ -1562,112 +1514,15 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        adicionarItemMenu("⌕  Pesquisa") {
+        adicionarItemMenu("🔍  Pesquisa 🎤") {
             abrirPesquisa()
         }
 
-        adicionarTituloMenu("AO VIVO")
-
-        adicionarItemMenu("🔴  Canais ao vivo (${canais.size})") {
-            fecharMenu()
-            mostrarListaCanais(canais)
-        }
-
-        val categoriasCanais = canais.map { it.categoria }
-            .filter { it.isNotBlank() }
-            .distinctBy { normalizarTexto(it) }
-
-        categoriasCanais.forEach { cat ->
-            val filtrados = canais.filter {
-                normalizarTexto(it.categoria) == normalizarTexto(cat)
-            }
-
-            adicionarItemMenu("📡  $cat (${filtrados.size})") {
-                fecharMenu()
-                mostrarListaCanais(filtrados)
-            }
-        }
-
-        adicionarTituloMenu("FILMES")
-
-        adicionarItemMenu("🎬  Todos os filmes (${filmes.size})") {
-            fecharMenu()
-            mostrarListaCards(filmes)
-        }
-
-        adicionarCategoriasFilmes(
-            listOf(
-                "Ação",
-                "Aventura",
-                "Animação",
-                "Comédia",
-                "Drama",
-                "Terror",
-                "Ficção"
-            ),
-            listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "🚀"),
-            filmes
-        )
-
-        adicionarTituloMenu("SÉRIES")
-
-        adicionarItemMenu("📺  Todas as séries (${series.size})") {
-            fecharMenu()
-            mostrarListaSeries(series)
-        }
-
-        adicionarCategoriasSeries(
-            listOf("Ação", "Aventura", "Comédia", "Drama", "Terror"),
-            listOf("🔥", "🏹", "😂", "🎭", "👻"),
-            series
-        )
-
-        adicionarTituloMenu("DORAMAS")
-
-        adicionarItemMenu("📺  Todos os Doramas (${doramas.size})") {
-            fecharMenu()
-            mostrarListaSeries(doramas)
-        }
-
-        adicionarCategoriasSeries(
-            listOf("Romance", "Ação", "Comédia", "Terror"),
-            listOf("💖", "🔥", "😂", "👻"),
-            doramas
-        )
-
-        adicionarTituloMenu("DESENHOS")
-
-        adicionarItemMenu("🧸  Todos os desenhos (${desenhos.size})") {
-            fecharMenu()
-            mostrarListaCards(desenhos)
-        }
-
-        adicionarCategoriasFilmes(
-            listOf(
-                "Ação",
-                "Aventura",
-                "Animação",
-                "Comédia",
-                "Drama",
-                "Terror",
-                "Fantasia"
-            ),
-            listOf("🔥", "🏹", "🧸", "😂", "🎭", "👻", "✨"),
-            desenhos
-        )
-
-        adicionarTituloMenu("ANIME")
-
-        adicionarItemMenu("🍥  Todos os Animes (${animes.size})") {
-            fecharMenu()
-            mostrarListaSeries(animes)
-        }
-
-        adicionarCategoriasSeries(
-            listOf("Ação", "Comédia", "Terror"),
-            listOf("🔥", "😂", "👻"),
-            animes
-        )
+        secaoFilmes("FILMES", filmes, true)
+        secaoSeries("SÉRIES", series, false)
+        secaoSeries("DORAMAS", doramas, false)
+        secaoFilmes("DESENHOS", desenhos, false)
+        secaoSeries("ANIMES", animes, false)
 
         botaoFecharMenu.requestFocus()
     }
@@ -1679,19 +1534,22 @@ class MainActivity : AppCompatActivity() {
         menuLateral?.let { raiz.removeView(it) }
         menuLateral = null
         itensMenuFoco.clear()
+        secoesMenu.clear()
         botaoMenu.requestFocus()
     }
 
     private fun moverMenu(direcao: Int) {
-        if (itensMenuFoco.isEmpty()) return
+        // Só navega pelos itens visíveis (seções fechadas ficam de fora).
+        val visiveis = itensMenuFoco.filter { it.isShown }
+        if (visiveis.isEmpty()) return
 
-        val atual = itensMenuFoco.indexOfFirst { it.hasFocus() }
+        val atual = visiveis.indexOfFirst { it.hasFocus() }
         var indice = if (atual < 0) 0 else atual + direcao
 
-        if (indice < 0) indice = itensMenuFoco.size - 1
-        if (indice >= itensMenuFoco.size) indice = 0
+        if (indice < 0) indice = visiveis.size - 1
+        if (indice >= visiveis.size) indice = 0
 
-        val proximo = itensMenuFoco[indice]
+        val proximo = visiveis[indice]
         proximo.requestFocus()
         ajustarScrollMenu(proximo)
     }
@@ -1703,7 +1561,10 @@ class MainActivity : AppCompatActivity() {
             }
         } else {
             view.post {
-                menuScroll.smoothScrollTo(0, view.top)
+                view.requestRectangleOnScreen(
+                    android.graphics.Rect(0, 0, view.width, view.height),
+                    false
+                )
             }
         }
     }
