@@ -1,6 +1,4 @@
-
 <?xml version="1.0" encoding="utf-8"?>
-
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -32,13 +30,11 @@
             android:screenOrientation="landscape"
             android:exported="true">
 
-            <!-- Inicialização em celulares e dispositivos Android comuns -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
-            <!-- Inicialização na tela inicial da Android TV / Google TV -->
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LEANBACK_LAUNCHER" />
