@@ -1344,27 +1344,94 @@ class MainActivity : AppCompatActivity() {
     private class Colecao(
         val nome: String,
         val icone: String,
-        val chaves: List<String>
+        val chaves: List<String>,
+        val exclui: List<String> = emptyList()
     )
 
     // As chaves são comparadas com o título sem acento e em minúsculas.
     // Para incluir mais filmes numa coletânea, é só somar uma chave.
     private val COLECOES = listOf(
-        Colecao("Velozes e Furiosos", "🏎️", listOf("velozes e furiosos")),
-        Colecao("Toy Story", "🤠", listOf("toy story")),
+        Colecao("A Era do Gelo", "🧊", listOf("era do gelo")),
+        Colecao("A Hora do Pesadelo", "😴", listOf("hora do pesadelo")),
         Colecao("Alvin e os Esquilos", "🐿️", listOf("alvin e os esquilos")),
-        Colecao("Carros", "🚗", listOf("carros")),
-        Colecao("Deadpool", "🗡️", listOf("deadpool")),
-        Colecao("Duro de Matar", "💥", listOf("duro de matar")),
-        Colecao("O Escorpião Rei", "🦂", listOf("escorpiao rei")),
-        Colecao("It: A Coisa", "🎈", listOf("it: a coisa")),
-        Colecao("Mortal Kombat", "🐉", listOf("mortal kombat")),
+        Colecao("Animais Fantásticos", "🐉", listOf("animais fantasticos")),
+        Colecao("Anjos da Noite", "🐺", listOf("underworld", "anjos da noite")),
+        Colecao("Aquaman", "🔱", listOf("aquaman")),
+        Colecao("As Crônicas de Nárnia", "🦁", listOf("narnia")),
         Colecao("Avatar", "🌍", listOf("avatar (2009)", "avatar:")),
-        Colecao("Homem-Aranha", "🕷️", listOf("homem-aranha")),
+        Colecao("Bad Boys", "🚔", listOf("bad boys")),
+        Colecao("Batman", "🦇", listOf("batman")),
+        Colecao("Capitão América", "🛡️", listOf("capitao america")),
+        Colecao("Carros", "🚗", listOf("carros")),
+        Colecao("Cinquenta Tons", "🖤", listOf("cinquenta tons")),
+        Colecao("Como Treinar o Seu Dragão", "🐲", listOf("como treinar o seu dragao")),
         Colecao("Coringa", "🃏", listOf("coringa")),
-        Colecao("Super Mario", "🍄", listOf("super mario")),
+        Colecao("Crepúsculo", "🧛", listOf("crepusculo", "lua nova", "amanhecer")),
+        Colecao("Deadpool", "🗡️", listOf("deadpool")),
+        Colecao("Divergente", "🔷", listOf("divergente", "insurgente", "convergente")),
+        Colecao("Doutor Estranho", "🔮", listOf("doutor estranho")),
+        Colecao("Duna", "🏜️", listOf("duna")),
+        Colecao("Duro de Matar", "💥", listOf("duro de matar")),
+        Colecao("Esquadrão Suicida", "💣", listOf("esquadrao suicida")),
+        Colecao("Exterminador do Futuro", "🦿", listOf("exterminador do futuro")),
+        Colecao("Frozen", "❄️", listOf("frozen")),
+        Colecao("Gato de Botas", "🐱", listOf("gato de botas")),
+        Colecao("Guardiões da Galáxia", "🚀", listOf("guardioes da galaxia")),
+        Colecao("Halloween", "🎃", listOf("halloween")),
+        Colecao("Harry Potter", "⚡", listOf("harry potter")),
+        Colecao("Homem de Ferro", "🦾", listOf("homem de ferro")),
+        Colecao("Homem-Aranha", "🕷️", listOf("homem-aranha")),
+        Colecao("Homem-Formiga", "🐜", listOf("homem-formiga")),
+        Colecao("Homens de Preto", "🕴️", listOf("homens de preto")),
+        Colecao("Hotel Transilvânia", "🧛", listOf("hotel transilvania")),
+        Colecao("Invocação do Mal", "👻", listOf("invocacao do mal", "annabelle", "a freira")),
+        Colecao("It: A Coisa", "🎈", listOf("it: a coisa")),
+        Colecao("Jack Ryan", "🕵️", listOf("jack ryan", "operacao sombra")),
+        Colecao("Jogos Mortais", "🪚", listOf("jogos mortais")),
+        Colecao("Jogos Vorazes", "🏹", listOf("jogos vorazes")),
+        Colecao("John Wick", "🔫", listOf("john wick")),
+        Colecao("Jumanji", "🎲", listOf("jumanji")),
+        Colecao("Jurassic Park e World", "🦖", listOf("jurassic")),
+        Colecao("Karate Kid", "🥋", listOf("karate kid")),
+        Colecao("Kung Fu Panda", "🐼", listOf("kung fu panda")),
+        Colecao("Mad Max", "🔥", listOf("mad max")),
+        Colecao("Madagascar", "🦁", listOf("madagascar")),
+        Colecao("Matrix", "🕶️", listOf("matrix")),
+        Colecao("Maze Runner", "🌀", listOf("maze runner", "correr ou morrer", "prova de fogo", "a cura mortal")),
+        Colecao("Meu Malvado Favorito e Minions", "🍌", listOf("meu malvado favorito", "minions")),
+        Colecao("Missão Impossível", "🎯", listOf("missao impossivel")),
+        Colecao("Monstros S.A.", "👹", listOf("monstros s.a.", "universidade monstros")),
+        Colecao("Mortal Kombat", "🐉", listOf("mortal kombat")),
+        Colecao("Mulher-Maravilha", "⭐", listOf("mulher-maravilha")),
+        Colecao("O Escorpião Rei", "🦂", listOf("escorpiao rei")),
+        Colecao("Os Incríveis", "🦸‍♂️", listOf("os incriveis")),
+        Colecao("Pânico", "🔪", listOf("panico"), listOf("todo mundo")),
+        Colecao("Pantera Negra", "🐆", listOf("pantera negra")),
+        Colecao("Para Todos os Garotos", "💌", listOf("para todos os garotos")),
+        Colecao("Percy Jackson", "🔱", listOf("percy jackson")),
+        Colecao("Piratas do Caribe", "🏴‍☠️", listOf("piratas do caribe")),
+        Colecao("Planeta dos Macacos", "🦍", listOf("planeta dos macacos")),
+        Colecao("Premonição", "💀", listOf("premonicao")),
+        Colecao("Procurando Nemo e Dory", "🐠", listOf("procurando")),
+        Colecao("Rambo", "🪖", listOf("rambo")),
+        Colecao("Resident Evil", "🧟", listOf("resident evil")),
+        Colecao("Rocky e Creed", "🥊", listOf("rocky", "creed")),
+        Colecao("Senhor dos Anéis e O Hobbit", "💍", listOf("senhor dos aneis", "o hobbit")),
+        Colecao("Sexta-Feira 13", "🏒", listOf("sexta-feira 13")),
+        Colecao("Shrek", "🧅", listOf("shrek")),
         Colecao("Sonic", "💨", listOf("sonic")),
-        Colecao("Jack Ryan", "🕵️", listOf("jack ryan", "operacao sombra"))
+        Colecao("Star Trek", "🖖", listOf("star trek")),
+        Colecao("Star Wars", "✨", listOf("star wars")),
+        Colecao("Super Mario", "🍄", listOf("super mario")),
+        Colecao("Superman", "🦸", listOf("superman")),
+        Colecao("Tartarugas Ninja", "🐢", listOf("tartarugas ninja")),
+        Colecao("Todo Mundo em Pânico", "😱", listOf("todo mundo em panico")),
+        Colecao("Toy Story", "🤠", listOf("toy story")),
+        Colecao("Transformers", "🤖", listOf("transformers")),
+        Colecao("Velozes e Furiosos", "🏎️", listOf("velozes e furiosos")),
+        Colecao("Venom", "🕸️", listOf("venom")),
+        Colecao("Vingadores", "🛡️", listOf("vingadores")),
+        Colecao("X-Men", "🧬", listOf("x-men"))
     )
 
     // Filmes da coletânea em ordem de lançamento.
@@ -1372,7 +1439,8 @@ class MainActivity : AppCompatActivity() {
         return filmes
             .filter { f ->
                 val t = normalizarTexto(f.titulo)
-                colecao.chaves.any { t.contains(it) }
+                colecao.chaves.any { t.contains(it) } &&
+                    colecao.exclui.none { t.contains(it) }
             }
             .sortedWith(compareBy<Filme> { it.ano }.thenBy { it.titulo.lowercase() })
     }
