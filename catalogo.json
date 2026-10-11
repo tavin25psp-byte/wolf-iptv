@@ -1,6 +1,62 @@
 {
   "filmes": [
     {
+      "titulo": "A Captura",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/pdfDm9bP/IMG-f3595796-b8dd-4eb3-9070-4015bdd9d435.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/a%20captura.mp4"
+    },
+    {
+      "titulo": "Até o Último Homem",
+      "ano": 2016,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/L6LLjXny/IMG-76305156-f170-461e-83ee-d9c6d2f6843e.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/at%C3%A9%20o%20%C3%BAltimo%20homem.mp4"
+    },
+    {
+      "titulo": "Como Perder Sua Popularidade",
+      "ano": 0,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/3Nd7cv37/IMG-0cd0e4fe-053f-4e30-aa5c-20e2775a73e3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/como%20perder%20sua%20popularidade.mp4"
+    },
+    {
+      "titulo": "Homem-Aranha",
+      "ano": 2002,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/x1mh8P6s/IMG-9b2ffdff-1b10-47c5-af4f-7d53d44bdb86.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/homem%20aranha%202002.mp4"
+    },
+    {
+      "titulo": "Homem-Aranha 2",
+      "ano": 2004,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/pr7cX9zX/IMG-00780c53-c733-4c88-ac7c-73c6c05c9d4a.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/homem%20aranha%202004.mp4"
+    },
+    {
+      "titulo": "Homem-Aranha 3",
+      "ano": 2007,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/RCnDXdB4/IMG-aa0e1045-d21d-4aca-9b90-6135e91a16a9.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/homem%20aranha2007.mp4"
+    },
+    {
+      "titulo": "Na Boca do Diabo",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/1tM5TS6M/IMG-7318079d-74ae-4cee-ac38-d6421b03fb91.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/na%20boca%20do%20diabo.mp4"
+    },
+    {
+      "titulo": "Patrulha Canina: Uma Aventura Dino",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/CxYMFdND/IMG-2661eac6-f91c-4f1b-be0b-4e7314e173f6.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/patrulha%20canina%20uma%20aventura%20dino.mp4"
+    },
+    {
       "titulo": "Divergente: Convergente",
       "ano": 2016,
       "categoria": "Ficção",
@@ -67,7 +123,7 @@
       "titulo": "Tekken: A Vingança de Kazuya",
       "ano": 2014,
       "categoria": "Ação",
-      "capa": "https://i.postimg.cc/CKyGWqXP/IMG-c7792b66-4d99-45c7-80b2-3707aed109c9.jpg",
+      "capa": "https://i.postimg.cc/NGN1QVZJ/IMG-c9ad5468-2e3b-4872-8022-0cd6ab594bc3.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Tekken%20a%20vingan%C3%A7a%20de%20kazuya.mp4"
     },
     {
