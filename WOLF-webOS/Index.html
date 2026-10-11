@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -153,7 +154,16 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
   function lerJson(txt) { try { return JSON.parse(String(txt).replace(/^\uFEFF/, '')); } catch (e) { return null; } }
   function limparLista(lista, tipo, chave) {
     var r = [];
-    for (var i = 0; i < lista.length; i++) if (lista[i] && lista[i].titulo) { lista[i]._sec = chave; r.push(lista[i]); }
+    for (var i = 0; i < lista.length; i++) if (lista[i] && lista[i].titulo) {
+      lista[i]._sec = chave;
+      var an = parseInt(lista[i].ano, 10);
+      if (!(an >= 1900 && an <= 2099)) {
+        var m = (lista[i].titulo + ' ' + decodeURIComponent(String(lista[i].video || '').replace(/%(?![0-9A-Fa-f]{2})/g, '%25'))).match(/(?:^|\D)((?:19|20)\d{2})(?!\d)/);
+        an = m ? parseInt(m[1], 10) : 0;
+      }
+      lista[i].ano = an;
+      r.push(lista[i]);
+    }
     if (tipo === 'filme') r.sort(function (a, b) {
       var d = (b.ano || 0) - (a.ano || 0);
       if (d !== 0) return d;
@@ -460,6 +470,165 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     if (S.back.length) { (S.back.pop())(); return true; }
     return false;
  }// ---------- menu lateral ----------
+  // ---------- coletâneas (franquias) ----------
+  // As chaves são comparadas com o título sem acento e em minúsculas.
+  // Mínimo de filmes para a coletânea aparecer no menu (0 = mostra todas, até as vazias).
+  var COLECAO_MINIMO = 0;
+  var COLECOES = [
+    { nome: 'A Era do Gelo', icone: '🧊', chaves: ['era do gelo'] },
+    { nome: 'A Hora do Pesadelo', icone: '😴', chaves: ['hora do pesadelo'] },
+    { nome: 'Alien', icone: '👽', chaves: ['alien:', 'alien,', 'aliens', '=alien', 'alien vs', 'alien x'] },
+    { nome: 'Alvin e os Esquilos', icone: '🐿️', chaves: ['alvin e os esquilos'] },
+    { nome: 'American Pie', icone: '🥧', chaves: ['american pie'] },
+    { nome: 'Animais Fantásticos', icone: '🐉', chaves: ['animais fantasticos'] },
+    { nome: 'Anjos da Noite', icone: '🐺', chaves: ['underworld', 'anjos da noite'] },
+    { nome: 'Aquaman', icone: '🔱', chaves: ['aquaman'] },
+    { nome: 'Aranhaverso', icone: '🕷️', chaves: ['aranhaverso'] },
+    { nome: 'As Crônicas de Nárnia', icone: '🦁', chaves: ['narnia'] },
+    { nome: 'Atividade Paranormal', icone: '📹', chaves: ['atividade paranormal'] },
+    { nome: 'Bad Boys', icone: '🚔', chaves: ['bad boys'] },
+    { nome: 'Barbie', icone: '💖', chaves: ['barbie'] },
+    { nome: 'Batman', icone: '🦇', chaves: ['batman'] },
+    { nome: 'Ben 10', icone: '⌚', chaves: ['ben 10'] },
+    { nome: 'Busca Implacável', icone: '📞', chaves: ['busca implacavel'] },
+    { nome: 'Caça-Fantasmas', icone: '👻', chaves: ['caca-fantasmas', 'ghostbusters'] },
+    { nome: 'Capitão América', icone: '🛡️', chaves: ['capitao america'] },
+    { nome: 'Carros', icone: '🚗', chaves: ['carros'] },
+    { nome: 'Cemitério Maldito', icone: '🪦', chaves: ['cemiterio maldito', 'pet sematary'] },
+    { nome: 'Chucky', icone: '🪆', chaves: ['chucky', 'brinquedo assassino'] },
+    { nome: 'Cinquenta Tons', icone: '🖤', chaves: ['cinquenta tons'] },
+    { nome: 'Como Treinar o Seu Dragão', icone: '🐲', chaves: ['como treinar o seu dragao'] },
+    { nome: 'Coringa', icone: '🃏', chaves: ['coringa'] },
+    { nome: 'Crepúsculo', icone: '🧛', chaves: ['crepusculo', 'lua nova', 'amanhecer'] },
+    { nome: 'De Volta para o Futuro', icone: '⏱️', chaves: ['de volta para o futuro'] },
+    { nome: 'Deadpool', icone: '🗡️', chaves: ['deadpool'] },
+    { nome: 'Divergente', icone: '🔷', chaves: ['divergente', 'insurgente', 'convergente'] },
+    { nome: 'Doutor Estranho', icone: '🔮', chaves: ['doutor estranho'] },
+    { nome: 'Duna', icone: '🏜️', chaves: ['duna'] },
+    { nome: 'Duro de Matar', icone: '💥', chaves: ['duro de matar'] },
+    { nome: 'Esquadrão Suicida', icone: '💣', chaves: ['esquadrao suicida'] },
+    { nome: 'Esqueceram de Mim', icone: '🏠', chaves: ['esqueceram de mim'] },
+    { nome: 'Evil Dead', icone: '🪓', chaves: ['evil dead', 'morte do demonio', 'uma noite alucinante'] },
+    { nome: 'Exterminador do Futuro', icone: '🦿', chaves: ['exterminador do futuro'] },
+    { nome: 'Extermínio', icone: '☣️', chaves: ['exterminio'] },
+    { nome: 'Five Nights at Freddy\'s', icone: '🐻', chaves: ['five nights'] },
+    { nome: 'Frozen', icone: '❄️', chaves: ['frozen'] },
+    { nome: 'Gato de Botas', icone: '🐱', chaves: ['gato de botas'] },
+    { nome: 'Gladiador', icone: '⚔️', chaves: ['gladiador'] },
+    { nome: 'Godzilla e Kong', icone: '🦍', chaves: ['godzilla', 'king kong', 'kong:'] },
+    { nome: 'Gremlins', icone: '🧌', chaves: ['gremlins'] },
+    { nome: 'Guardiões da Galáxia', icone: '🚀', chaves: ['guardioes da galaxia'] },
+    { nome: 'Halloween', icone: '🎃', chaves: ['halloween'] },
+    { nome: 'Harry Potter', icone: '⚡', chaves: ['harry potter'] },
+    { nome: 'Hellraiser', icone: '⛓️', chaves: ['hellraiser'] },
+    { nome: 'Homem de Ferro', icone: '🦾', chaves: ['homem de ferro'] },
+    { nome: 'Homem-Aranha', icone: '🕷️', chaves: ['homem-aranha'] },
+    { nome: 'Homem-Formiga', icone: '🐜', chaves: ['homem-formiga'] },
+    { nome: 'Homens de Preto', icone: '🕴️', chaves: ['homens de preto'] },
+    { nome: 'Hotel Transilvânia', icone: '🧛', chaves: ['hotel transilvania'] },
+    { nome: 'Indiana Jones', icone: '🤠', chaves: ['indiana jones'] },
+    { nome: 'Invocação do Mal', icone: '👻', chaves: ['invocacao do mal', 'annabelle', 'a freira'] },
+    { nome: 'It: A Coisa', icone: '🎈', chaves: ['it: a coisa'] },
+    { nome: 'Jack Ryan', icone: '🕵️', chaves: ['jack ryan', 'operacao sombra'] },
+    { nome: 'Jeepers Creepers', icone: '🦇', chaves: ['jeepers creepers'] },
+    { nome: 'Jogos Mortais', icone: '🪚', chaves: ['jogos mortais'] },
+    { nome: 'Jogos Vorazes', icone: '🏹', chaves: ['jogos vorazes'] },
+    { nome: 'John Wick', icone: '🔫', chaves: ['john wick'] },
+    { nome: 'Jumanji', icone: '🎲', chaves: ['jumanji'] },
+    { nome: 'Jurassic Park e World', icone: '🦖', chaves: ['jurassic'] },
+    { nome: 'Karate Kid', icone: '🥋', chaves: ['karate kid'] },
+    { nome: 'Kingsman', icone: '🎩', chaves: ['kingsman'] },
+    { nome: 'Kung Fu Panda', icone: '🐼', chaves: ['kung fu panda'] },
+    { nome: 'Lilo & Stitch', icone: '🌺', chaves: ['lilo'] },
+    { nome: 'M3GAN', icone: '🤖', chaves: ['m3gan'] },
+    { nome: 'Mad Max', icone: '🔥', chaves: ['mad max'] },
+    { nome: 'Madagascar', icone: '🦁', chaves: ['madagascar'] },
+    { nome: 'Massacre da Serra Elétrica', icone: '🪚', chaves: ['massacre da serra'] },
+    { nome: 'Matrix', icone: '🕶️', chaves: ['matrix'] },
+    { nome: 'Maze Runner', icone: '🌀', chaves: ['maze runner', 'correr ou morrer', 'prova de fogo', 'a cura mortal'] },
+    { nome: 'Meu Malvado Favorito e Minions', icone: '🍌', chaves: ['meu malvado favorito', 'minions'] },
+    { nome: 'Missão Impossível', icone: '🎯', chaves: ['missao impossivel'] },
+    { nome: 'Missão Resgate', icone: '🚁', chaves: ['missao resgate', 'tyler rake'] },
+    { nome: 'Monstros S.A.', icone: '👹', chaves: ['monstros s.a.', 'universidade monstros'] },
+    { nome: 'Mortal Kombat', icone: '🐉', chaves: ['mortal kombat'] },
+    { nome: 'Mulher-Maravilha', icone: '⭐', chaves: ['mulher-maravilha'] },
+    { nome: 'O Albergue', icone: '🏨', chaves: ['o albergue', 'hostel'] },
+    { nome: 'O Chamado', icone: '📼', chaves: ['o chamado'] },
+    { nome: 'O Escorpião Rei', icone: '🦂', chaves: ['escorpiao rei'] },
+    { nome: 'O Exorcista', icone: '✝️', chaves: ['exorcista'] },
+    { nome: 'O Grito', icone: '👁️', chaves: ['o grito'] },
+    { nome: 'O Poderoso Chefão', icone: '🌹', chaves: ['poderoso chefao'] },
+    { nome: 'O Rei Leão', icone: '🦁', chaves: ['rei leao'] },
+    { nome: 'Os Incríveis', icone: '🦸‍♂️', chaves: ['os incriveis'] },
+    { nome: 'Os Mercenários', icone: '💪', chaves: ['os mercenarios'] },
+    { nome: 'Os Smurfs', icone: '🔵', chaves: ['smurfs'] },
+    { nome: 'Pânico', icone: '🔪', chaves: ['panico'], exclui: ['todo mundo', 'panico no lago', 'panico na floresta'] },
+    { nome: 'Pânico no Lago', icone: '🐊', chaves: ['panico no lago', 'lake placid'] },
+    { nome: 'Pânico na Floresta', icone: '🌲', chaves: ['panico na floresta', 'wrong turn'] },
+    { nome: 'Pantera Negra', icone: '🐆', chaves: ['pantera negra'] },
+    { nome: 'Para Todos os Garotos', icone: '💌', chaves: ['para todos os garotos'] },
+    { nome: 'Percy Jackson', icone: '🔱', chaves: ['percy jackson'] },
+    { nome: 'Piratas do Caribe', icone: '🏴‍☠️', chaves: ['piratas do caribe'] },
+    { nome: 'Planeta dos Macacos', icone: '🦍', chaves: ['planeta dos macacos'] },
+    { nome: 'Poltergeist', icone: '📺', chaves: ['poltergeist'] },
+    { nome: 'Predador', icone: '🦎', chaves: ['predador', 'predator'] },
+    { nome: 'Premonição', icone: '💀', chaves: ['premonicao'] },
+    { nome: 'Procurando Nemo e Dory', icone: '🐠', chaves: ['procurando'] },
+    { nome: 'Rambo', icone: '🪖', chaves: ['rambo'] },
+    { nome: 'Resident Evil', icone: '🧟', chaves: ['resident evil'] },
+    { nome: 'Rocky e Creed', icone: '🥊', chaves: ['rocky', 'creed'] },
+    { nome: 'Se Beber, Não Case', icone: '🍻', chaves: ['se beber'] },
+    { nome: 'Senhor dos Anéis e O Hobbit', icone: '💍', chaves: ['senhor dos aneis', 'o hobbit'] },
+    { nome: 'Sexta-Feira 13', icone: '🏒', chaves: ['sexta-feira 13', 'jason'] },
+    { nome: 'Sherlock Holmes', icone: '🔍', chaves: ['sherlock holmes'] },
+    { nome: 'Shrek', icone: '🧅', chaves: ['shrek'] },
+    { nome: 'Sobrenatural', icone: '🌑', chaves: ['sobrenatural'] },
+    { nome: 'Sonic', icone: '💨', chaves: ['sonic'] },
+    { nome: 'Sorria', icone: '😁', chaves: ['sorria'] },
+    { nome: 'Star Trek', icone: '🖖', chaves: ['star trek'] },
+    { nome: 'Star Wars', icone: '✨', chaves: ['star wars'] },
+    { nome: 'Super Mario', icone: '🍄', chaves: ['super mario'] },
+    { nome: 'Superman', icone: '🦸', chaves: ['superman'] },
+    { nome: 'Tartarugas Ninja', icone: '🐢', chaves: ['tartarugas ninja'] },
+    { nome: 'Teen Wolf', icone: '🐺', chaves: ['teen wolf'] },
+    { nome: 'Terrifier', icone: '🤡', chaves: ['terrifier'] },
+    { nome: 'Thor', icone: '⚡', chaves: ['=thor', 'thor:'] },
+    { nome: 'Todo Mundo em Pânico', icone: '😱', chaves: ['todo mundo em panico'] },
+    { nome: 'Toy Story', icone: '🤠', chaves: ['toy story'] },
+    { nome: 'Transformers', icone: '🤖', chaves: ['transformers'] },
+    { nome: 'Um Lugar Silencioso', icone: '🤫', chaves: ['um lugar silencioso'] },
+    { nome: 'Uma Noite de Crime', icone: '🎭', chaves: ['noite de crime'] },
+    { nome: 'Velozes e Furiosos', icone: '🏎️', chaves: ['velozes e furiosos'] },
+    { nome: 'Venom', icone: '🕸️', chaves: ['venom'] },
+    { nome: 'Vingadores', icone: '🛡️', chaves: ['vingadores'] },
+    { nome: 'X-Men', icone: '🧬', chaves: ['x-men'] }
+  ];
+  // Filmes da coletânea em ordem de lançamento (do mais antigo ao mais novo).
+  function filmesDaColecao(c) {
+    var r = (dados.filmes || []).filter(function (it) {
+      var t = norm(it.titulo);
+      return c.chaves.some(function (k) { return k.charAt(0) === '=' ? t === k.substring(1) : t.indexOf(k) > -1; }) &&
+        !(c.exclui || []).some(function (k) { return t.indexOf(k) > -1; });
+    });
+    r.sort(function (a, b) {
+      var d = (a.ano || 0) - (b.ano || 0);
+      if (d !== 0) return d;
+      return norm(a.titulo) < norm(b.titulo) ? -1 : 1;
+    });
+    return r;
+  }
+  function abrirColecao(c) {
+    S.sec = 'filmes'; S.cat = 'Todos'; S.back = [];
+    S.re = function () {
+      S.modo = 'cat';
+      var lista = filmesDaColecao(c);
+      cabecalho('Coletâneas  ›  ' + c.nome + '  (' + lista.length + ')');
+      mostrarCards(lista.map(itemCard), 'Nada encontrado aqui');
+    };
+    S.re();
+    focusCard(0);
+  }
+
   function emoji(n) { return EMOJI[norm(n).split(' ')[0]] || '🎬'; }
   function montarDrawer() {
     var L = $('dlist');
@@ -478,7 +647,22 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     item('★  Favoritos (' + nFav() + ')', function () { fecharDrawer(); abrirFav(); });
     item('🔍  Pesquisa', function () { fecharDrawer(); abrirBusca(); });
     item('🎤  Pesquisa por voz', function () { fecharDrawer(); abrirBusca(); voz(); });
-    ORDEM.forEach(function (ch) {
+    function secaoColecoes() {
+      var vs = COLECOES.map(function (c) { return { c: c, l: filmesDaColecao(c) }; })
+        .filter(function (x) { return x.l.length >= COLECAO_MINIMO; });
+      if (!vs.length) return;
+      var h = item('COLETÂNEAS (' + vs.length + ')', function () {
+        S.exp = (S.exp === 'colecoes' ? '' : 'colecoes');
+        montarDrawer();
+        setFoco(document.querySelector('#dlist [data-sec="colecoes"]'));
+      }, 'sec');
+      h.setAttribute('data-sec', 'colecoes');
+      if (S.exp !== 'colecoes') return;
+      vs.forEach(function (x) {
+        item(x.c.icone + '  ' + x.c.nome + ' (' + x.l.length + ')', function () { fecharDrawer(); abrirColecao(x.c); });
+      });
+    }
+    function secao(ch) {
       var lista = dados[ch] || [];
       var h = item(FONTES[ch].titulo.toUpperCase() + ' (' + lista.length + ')', function () {
         S.exp = (S.exp === ch ? '' : ch);
@@ -507,6 +691,10 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
       nomes.forEach(function (k) {
         item(emoji(cont[k].nome) + '  ' + cont[k].nome + ' (' + cont[k].n + ')', function () { fecharDrawer(); abrirCat(ch, cont[k].nome); });
       });
+    }
+    ORDEM.forEach(function (ch) {
+      secao(ch);
+      if (ch === 'filmes') secaoColecoes();
     });
   }
   function abrirDrawer() {
