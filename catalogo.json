@@ -106,13 +106,6 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Bbaleia%20assassina.mp4"
     },
     {
-      "titulo": "O Escorpião Rei 5",
-      "ano": 2024,
-      "categoria": "Aventura",
-      "capa": "https://i.postimg.cc/g0vhDdF7/IMG-f5393520-9457-405f-83bf-c8e8aec9054d.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/escorpi%C3%A3o%20rei%205.mp4"
-    },
-    {
       "titulo": "Kickboxer: A Retaliação",
       "ano": 2018,
       "categoria": "Ação",
@@ -155,21 +148,21 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/e%20era%20do%20gelo%20o%20big%20bang.mp4"
     },
     {
-      "titulo": "A Era do Gelo 4",
+      "titulo": "A Era do Gelo 4: Deriva Continental",
       "ano": 2012,
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/SQGgCD3x/IMG-056a8510-6052-42d9-b7fc-d09e18d68de5.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202012.mp4"
     },
     {
-      "titulo": "A Era do Gelo 3",
+      "titulo": "A Era do Gelo 3: O Despertar dos Dinossauros",
       "ano": 2009,
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/VvP2vvJH/IMG-9ab15f71-24b4-4913-ad3e-6a54f4409ffa.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202009.mp4"
     },
     {
-      "titulo": "A Era do Gelo 2",
+      "titulo": "A Era do Gelo 2: O Degelo",
       "ano": 2006,
       "categoria": "Animação",
       "capa": "https://i.postimg.cc/3NZfwB5g/IMG-01333ccf-352d-46ce-934f-d8fab80c64a3.jpg",
@@ -1072,7 +1065,7 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/O.Escorpiao.Rei.1.mp4"
     },
     {
-      "titulo": "O Escorpião Rei 2: A Acreditação de um Guerreiro",
+      "titulo": "O Escorpião Rei 2: A Ascensão de um Guerreiro",
       "ano": 2008,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/x8qqWVhK/IMG-29e2cb1d-46c5-40c4-9918-0de681c3ab10.jpg",
@@ -1086,7 +1079,7 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/escorpi%C3%A3o3.mp4"
     },
     {
-      "titulo": "O Escorpião Rei: O Livro das Almas",
+      "titulo": "O Escorpião Rei 5: O Livro das Almas",
       "ano": 2018,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/J4Ntvxdp/IMG-65acb423-225e-437e-a223-b35ab6a1eec0.jpg",
