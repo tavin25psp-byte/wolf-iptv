@@ -386,8 +386,8 @@
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4"
     },
     {
-      "titulo": "Todo Mundo em Pânico 4",
-      "ano": 2006,
+      "titulo": "Todo Mundo em Pânico 6",
+      "ano": 2026,
       "categoria": "Comédia",
       "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico%204.mp4"
@@ -425,7 +425,7 @@
       "ano": 2017,
       "categoria": "Aventura",
       "capa": "https://i.postimg.cc/k4ptjpsN/jumanji.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Jumanji%20Bem-Vindo%20%C3%80%20Selva.mp4"
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Jumanji%20bem%20vindo%20a%20selva.mp4"
     },
     {
       "titulo": "17 Outra Vez",
@@ -916,6 +916,76 @@
       "categoria": "Terror",
       "capa": "https://i.postimg.cc/y6L03gxT/image-4.png",
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Dr%C3%A1cula%20a%20%C3%BAltima%20viagem%20do%20demeter.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos",
+      "ano": 2001,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/T1jsHRpF/IMG-ff981530-a4c3-498a-bc70-721356b775fe.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos2001.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos: Desafio em Tóquio",
+      "ano": 2006,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/KjsGjr5m/ecc7f2b505efef5964205cd522e1174178f56cccc2e9a8413c20e2dba1f72f80.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%20desafio%20em%20toquio.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos 4",
+      "ano": 2009,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VsSLZ2s0/IMG-b65ee3fa-1a45-4983-b465-0f2ac3a38146.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos4.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos 5: Operação Rio",
+      "ano": 2011,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/tg9K0nhk/IMG-29514c56-a641-4afb-90e3-aad182630c39.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%205operscao%20rio.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos 6",
+      "ano": 2013,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hPT4cxd4/IMG-959ee3f5-4196-4354-9835-6a09da0d3ba1.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%206.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos 7",
+      "ano": 2015,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/R0Vv7Db0/IMG-5b563910-861f-450d-8e35-4c5a9296e893.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos7.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos 8",
+      "ano": 2017,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/nc4x6JyH/IMG-840bcde0-7b1f-4ac5-a84b-8d0851131ee3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos8.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos: Hobbs & Shaw",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/SQLt4xKK/IMG-83803a7c-f17d-4fcf-b71e-199763002338.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%20Robin%20e%20shaw.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos 9",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/wTp85r16/IMG-7efa4438-105b-4020-b9e2-c5e2c58c58b0.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%209.mp4"
+    },
+    {
+      "titulo": "Velozes e Furiosos 10",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/vZYJk6Ld/IMG-67a558bf-050b-4f7c-bea7-39d339894d0b.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos10.mp4"
     }
   ]
 }
