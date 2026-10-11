@@ -1339,6 +1339,89 @@ class MainActivity : AppCompatActivity() {
         secoesMenu.add(SecaoMenu(titulo, total, cabecalho, corpo))
     }
 
+    // ===== COLETÂNEAS (franquias) =====
+
+    private class Colecao(
+        val nome: String,
+        val icone: String,
+        val chaves: List<String>
+    )
+
+    // As chaves são comparadas com o título sem acento e em minúsculas.
+    // Para incluir mais filmes numa coletânea, é só somar uma chave.
+    private val COLECOES = listOf(
+        Colecao("Velozes e Furiosos", "🏎️", listOf("velozes e furiosos")),
+        Colecao("Toy Story", "🤠", listOf("toy story")),
+        Colecao("Alvin e os Esquilos", "🐿️", listOf("alvin e os esquilos")),
+        Colecao("Carros", "🚗", listOf("carros")),
+        Colecao("Deadpool", "🗡️", listOf("deadpool")),
+        Colecao("Duro de Matar", "💥", listOf("duro de matar")),
+        Colecao("O Escorpião Rei", "🦂", listOf("escorpiao rei")),
+        Colecao("It: A Coisa", "🎈", listOf("it: a coisa")),
+        Colecao("Mortal Kombat", "🐉", listOf("mortal kombat")),
+        Colecao("Avatar", "🌍", listOf("avatar (2009)", "avatar:")),
+        Colecao("Homem-Aranha", "🕷️", listOf("homem-aranha")),
+        Colecao("Coringa", "🃏", listOf("coringa")),
+        Colecao("Super Mario", "🍄", listOf("super mario")),
+        Colecao("Sonic", "💨", listOf("sonic")),
+        Colecao("Jack Ryan", "🕵️", listOf("jack ryan", "operacao sombra"))
+    )
+
+    // Filmes da coletânea em ordem de lançamento.
+    private fun filmesDaColecao(colecao: Colecao): List<Filme> {
+        return filmes
+            .filter { f ->
+                val t = normalizarTexto(f.titulo)
+                colecao.chaves.any { t.contains(it) }
+            }
+            .sortedWith(compareBy<Filme> { it.ano }.thenBy { it.titulo.lowercase() })
+    }
+
+    // Só aparecem coletâneas com 2 filmes ou mais.
+    private fun secaoColetaneas(aberta: Boolean) {
+        val validas = COLECOES
+            .map { it to filmesDaColecao(it) }
+            .filter { it.second.size >= 2 }
+
+        if (validas.isEmpty()) return
+
+        val titulo = "COLETÂNEAS"
+
+        val corpo = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            visibility = if (aberta) View.VISIBLE else View.GONE
+        }
+
+        val cabecalho = adicionarItemMenu(
+            textoSecao(titulo, validas.size, aberta),
+            cor = COR_SECAO
+        ) {
+            alternarSecao(titulo)
+        }
+
+        cabecalho.setTypeface(null, Typeface.BOLD)
+
+        menuConteudo.addView(
+            corpo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        validas.forEach { (colecao, lista) ->
+            adicionarItemMenu(
+                "${colecao.icone}  ${colecao.nome} (${lista.size})",
+                pai = corpo
+            ) {
+                fecharMenu()
+                mostrarListaCards(lista)
+            }
+        }
+
+        secoesMenu.add(SecaoMenu(titulo, validas.size, cabecalho, corpo))
+    }
+
     private fun secaoFilmes(titulo: String, base: List<Filme>, aberta: Boolean) {
         adicionarSecaoCategorias(
             titulo,
@@ -1519,6 +1602,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         secaoFilmes("FILMES", filmes, true)
+        secaoColetaneas(false)
         secaoSeries("SÉRIES", series, false)
         secaoSeries("DORAMAS", doramas, false)
         secaoFilmes("DESENHOS", desenhos, false)
