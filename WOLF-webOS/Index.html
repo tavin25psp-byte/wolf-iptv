@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -99,7 +98,7 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
   };
   var ORDEM = ['filmes', 'series', 'doramas', 'animes', 'desenhos'];
   var EMOJI = { acao: '🔥', aventura: '🧭', animacao: '🧸', comedia: '😂', terror: '👻', drama: '🎭', romance: '❤️', ficcao: '🚀', fantasia: '✨', suspense: '🔪', familia: '👪', documentario: '🎥' };
-  var LOTE = 48;
+  var LOTE = 30;
 
   var dados = {}, raiz = {};
   var S = { z: 0, zmenu: false, zsel: 0, sec: 'filmes', cat: 'Todos', modo: 'cat', cards: [], els: [], shown: 0, back: [], re: null, drawer: false, exp: 'filmes', player: false, cur: null, pos: 0, pc: -1, next: null, avisouProx: false };
@@ -380,6 +379,8 @@ body{background:url(fundo.jpg) center/cover no-repeat,#05070d;-webkit-user-selec
     d._url = c.url || '';
     var img = document.createElement('img');
     img.alt = '';
+    img.setAttribute('decoding', 'async');
+    img.setAttribute('loading', 'lazy');
     img.onerror = function () { img.style.visibility = 'hidden'; };
     if (c.capa) img.src = c.capa;
     d.appendChild(img);
