@@ -1,6 +1,118 @@
 {
   "filmes": [
     {
+      "titulo": "Divergente: Convergente",
+      "ano": 2016,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/MHy2mVkB/IMG-5232f52d-d24a-41fc-8b06-82c99c433f75.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/divergente%20convergente.mp4"
+    },
+    {
+      "titulo": "Divergente: Insurgente",
+      "ano": 2015,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/VNV8fzBd/IMG-4e463d07-ab4e-402f-ae3f-ceaba6b792d0.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/divergente%20insurgente.mp4"
+    },
+    {
+      "titulo": "Divergente",
+      "ano": 2014,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/vZGMXqHz/IMG-b10af52b-17bc-45e9-bb67-d98c58a8ee87.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/divergente.mp4"
+    },
+    {
+      "titulo": "Conexão Perigosa",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/vH0V5H9t/7c766f1b99432286e4f4617fed4190e9400f7def54a6e8eeff41918237d128a0.png",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/conex%C3%A3o%20perigosa.mp4"
+    },
+    {
+      "titulo": "Baleia Assassina",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/tTd1JXpb/20260908-baleia-assassina-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Bbaleia%20assassina.mp4"
+    },
+    {
+      "titulo": "O Escorpião Rei 5",
+      "ano": 2024,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/g0vhDdF7/IMG-f5393520-9457-405f-83bf-c8e8aec9054d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/escorpi%C3%A3o%20rei%205.mp4"
+    },
+    {
+      "titulo": "Kickboxer: A Retaliação",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/L8kVdMZ1/0843807-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/kickboxer%20a%20retalia%C3%A7%C3%A3o%20.mp4"
+    },
+    {
+      "titulo": "Kraken: Terror no Mar",
+      "ano": 2022,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/W4Pfrn0T/MV5BMGU1Yz-Uw-Mzkt-Mzgx-Yy00ZGEw-LTg1Zjgt-ZTNh-Zjk3Mj-Zi-M2M5Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Kraken%20terror%20no%20mar.mp4"
+    },
+    {
+      "titulo": "Street Flow 3",
+      "ano": 2025,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/g0S8dcz1/images-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/street%20flow%203.mp4"
+    },
+    {
+      "titulo": "Tekken: A Vingança de Kazuya",
+      "ano": 2014,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/CKyGWqXP/IMG-c7792b66-4d99-45c7-80b2-3707aed109c9.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Tekken%20a%20vingan%C3%A7a%20de%20kazuya.mp4"
+    },
+    {
+      "titulo": "Tekken",
+      "ano": 2010,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/CKyGWqXP/IMG-c7792b66-4d99-45c7-80b2-3707aed109c9.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/tekken.mp4"
+    },
+    {
+      "titulo": "A Era do Gelo: O Big Bang",
+      "ano": 2016,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/L8GD27YN/IMG-823df687-e71c-4202-b383-fbacb97cea74.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/e%20era%20do%20gelo%20o%20big%20bang.mp4"
+    },
+    {
+      "titulo": "A Era do Gelo 4",
+      "ano": 2012,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/SQGgCD3x/IMG-056a8510-6052-42d9-b7fc-d09e18d68de5.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202012.mp4"
+    },
+    {
+      "titulo": "A Era do Gelo 3",
+      "ano": 2009,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/VvP2vvJH/IMG-9ab15f71-24b4-4913-ad3e-6a54f4409ffa.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202009.mp4"
+    },
+    {
+      "titulo": "A Era do Gelo 2",
+      "ano": 2006,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/3NZfwB5g/IMG-01333ccf-352d-46ce-934f-d8fab80c64a3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202006.mp4"
+    },
+    {
+      "titulo": "A Era do Gelo",
+      "ano": 2002,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/VvP2vvJH/IMG-9ab15f71-24b4-4913-ad3e-6a54f4409ffa.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202002.mp4"
+    },
+    {
       "titulo": "Star Wars: O Mandaloriano e Grogu",
       "ano": 2026,
       "categoria": "Ficção",
