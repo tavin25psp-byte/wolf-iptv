@@ -137,6 +137,20 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        // Guarda o erro que fechou o app, para mostrar na próxima abertura.
+        val anterior = Thread.getDefaultUncaughtExceptionHandler()
+        Thread.setDefaultUncaughtExceptionHandler { thread, erro ->
+            try {
+                val texto = android.util.Log.getStackTraceString(erro)
+                getSharedPreferences("wolf_prefs", MODE_PRIVATE)
+                    .edit()
+                    .putString("ultimo_erro", "[${thread.name}]\n$texto")
+                    .commit()
+            } catch (_: Throwable) {
+            }
+            anterior?.uncaughtException(thread, erro)
+        }
+
         window.decorView.systemUiVisibility =
             View.SYSTEM_UI_FLAG_FULLSCREEN or
             View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or
@@ -161,6 +175,28 @@ class MainActivity : AppCompatActivity() {
 
         criarInterface()
         carregarCatalogo()
+        mostrarUltimoErro()
+    }
+
+    private fun mostrarUltimoErro() {
+        try {
+            val prefs = getSharedPreferences("wolf_prefs", MODE_PRIVATE)
+            val erro = prefs.getString("ultimo_erro", null) ?: return
+            prefs.edit().remove("ultimo_erro").apply()
+
+            val resumo = erro.lines().filter {
+                it.isNotBlank() &&
+                    (!it.trimStart().startsWith("at ") ||
+                        it.contains("com.wolf.iptv"))
+            }.take(14).joinToString("\n")
+
+            AlertDialog.Builder(this)
+                .setTitle("O app fechou por este erro")
+                .setMessage(resumo)
+                .setPositiveButton("OK", null)
+                .show()
+        } catch (_: Throwable) {
+        }
     }
 
     private fun normalizarTexto(texto: String): String {
@@ -1739,7 +1775,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         secaoFilmes("FILMES", filmes, true)
-        secaoColetaneas(false)
+        // secaoColetaneas(false)  // coletâneas desligadas (tire o // para voltar)
         secaoSeries("SÉRIES", series, false)
         secaoSeries("DORAMAS", doramas, false)
         secaoFilmes("DESENHOS", desenhos, false)
