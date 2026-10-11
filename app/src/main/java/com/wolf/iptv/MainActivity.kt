@@ -101,7 +101,12 @@ class MainActivity : AppCompatActivity() {
 
     private val itensMenuFoco = mutableListOf<View>()
 
-    private val cacheCapas = ConcurrentHashMap<String, Bitmap>()
+    // Cache limitado por memória (antes crescia sem limite e derrubava o app).
+    private val cacheCapas = object : android.util.LruCache<String, Bitmap>(
+        (Runtime.getRuntime().maxMemory() / 6).toInt().coerceAtLeast(8 * 1024 * 1024)
+    ) {
+        override fun sizeOf(chave: String, valor: Bitmap): Int = valor.byteCount
+    }
     private val imagensEmCarregamento = ConcurrentHashMap.newKeySet<String>()
     private val executorImagens = Executors.newFixedThreadPool(8)
 
@@ -291,12 +296,12 @@ class MainActivity : AppCompatActivity() {
                     resources.displayMetrics.heightPixels
                 )
                 if (bitmap != null) {
-                    cacheCapas[url] = bitmap
+                    cacheCapas.put(url, bitmap)
                     imagem.setImageBitmap(bitmap)
                     return
                 }
             }
-        } catch (_: Exception) {
+        } catch (_: Throwable) {
         }
 
         carregarImagem(
@@ -310,11 +315,16 @@ class MainActivity : AppCompatActivity() {
     private fun carregarImagem(
         url: String,
         imagem: ImageView,
-        larguraAlvo: Int = 500,
-        alturaAlvo: Int = 700
+        larguraAlvo: Int = 0,
+        alturaAlvo: Int = 0
     ) {
         if (url.isBlank()) return
         imagem.tag = url
+
+        // Tamanho do card (nítido, sem decodificar a imagem grande inteira).
+        val largAlvo = if (larguraAlvo > 0) larguraAlvo
+            else (resources.displayMetrics.widthPixels / colunas.coerceAtLeast(1))
+        val altAlvo = if (alturaAlvo > 0) alturaAlvo else dp(275)
 
         cacheCapas[url]?.let { bitmap ->
             imagem.setImageBitmap(bitmap)
@@ -332,8 +342,8 @@ class MainActivity : AppCompatActivity() {
                 if (arquivoCache.exists() && arquivoCache.length() > 0L) {
                     bitmap = decodificarImagemOtimizada(
                         arquivoCache,
-                        larguraAlvo,
-                        alturaAlvo
+                        largAlvo,
+                        altAlvo
                     )
                 }
 
@@ -387,8 +397,8 @@ class MainActivity : AppCompatActivity() {
 
                                 bitmap = decodificarImagemOtimizada(
                                     arquivoCache,
-                                    larguraAlvo,
-                                    alturaAlvo
+                                    largAlvo,
+                                    altAlvo
                                 )
                             }
                         } finally {
@@ -402,14 +412,14 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 bitmap?.let { carregada ->
-                    cacheCapas[url] = carregada
+                    cacheCapas.put(url, carregada)
                     runOnUiThread {
                         if (imagem.tag == url) {
                             imagem.setImageBitmap(carregada)
                         }
                     }
                 }
-            } catch (_: Exception) {
+            } catch (_: Throwable) {
             } finally {
                 imagensEmCarregamento.remove(url)
             }
