@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Typeface
+import android.net.Uri
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.speech.RecognizerIntent
@@ -456,6 +457,14 @@ class MainActivity : AppCompatActivity() {
 
     // ===== CATÁLOGO =====
 
+    // Ano do JSON; se faltar, tenta achar um ano (1900-2099) no título ou no nome do vídeo
+    private fun anoDoItem(item: JSONObject): Int {
+        val ano = item.optInt("ano", 0)
+        if (ano in 1900..2099) return ano
+        val texto = item.optString("titulo", "") + " " + Uri.decode(item.optString("video", ""))
+        return Regex("(?<!\\d)(19|20)\\d{2}(?!\\d)").find(texto)?.value?.toInt() ?: 0
+    }
+
     private fun carregarCatalogo() {
         activityScope.launch(Dispatchers.IO) {
             var conexao: HttpURLConnection? = null
@@ -493,7 +502,7 @@ class MainActivity : AppCompatActivity() {
                                 novosFilmes.add(
                                     Filme(
                                         titulo,
-                                        item.optInt("ano", 0),
+                                        anoDoItem(item),
                                         item.optString("categoria", ""),
                                         item.optString("capa", ""),
                                         item.optString("video", "")
@@ -603,7 +612,7 @@ class MainActivity : AppCompatActivity() {
                                 resultado.add(
                                     Filme(
                                         titulo,
-                                        item.optInt("ano", 0),
+                                        anoDoItem(item),
                                         item.optString("categoria", ""),
                                         item.optString("capa", ""),
                                         item.optString("video", "")
@@ -1353,7 +1362,7 @@ class MainActivity : AppCompatActivity() {
     private val COLECOES = listOf(
         Colecao("A Era do Gelo", "🧊", listOf("era do gelo")),
         Colecao("A Hora do Pesadelo", "😴", listOf("hora do pesadelo")),
-        Colecao("Alien", "👽", listOf("alien:", "alien,", "aliens", "=alien")),
+        Colecao("Alien", "👽", listOf("alien:", "alien,", "aliens", "=alien", "alien vs", "alien x")),
         Colecao("Alvin e os Esquilos", "🐿️", listOf("alvin e os esquilos")),
         Colecao("American Pie", "🥧", listOf("american pie")),
         Colecao("Animais Fantásticos", "🐉", listOf("animais fantasticos")),
@@ -1361,6 +1370,7 @@ class MainActivity : AppCompatActivity() {
         Colecao("Aquaman", "🔱", listOf("aquaman")),
         Colecao("Aranhaverso", "🕷️", listOf("aranhaverso")),
         Colecao("As Crônicas de Nárnia", "🦁", listOf("narnia")),
+        Colecao("Atividade Paranormal", "📹", listOf("atividade paranormal")),
         Colecao("Bad Boys", "🚔", listOf("bad boys")),
         Colecao("Barbie", "💖", listOf("barbie")),
         Colecao("Batman", "🦇", listOf("batman")),
@@ -1369,6 +1379,8 @@ class MainActivity : AppCompatActivity() {
         Colecao("Caça-Fantasmas", "👻", listOf("caca-fantasmas", "ghostbusters")),
         Colecao("Capitão América", "🛡️", listOf("capitao america")),
         Colecao("Carros", "🚗", listOf("carros")),
+        Colecao("Cemitério Maldito", "🪦", listOf("cemiterio maldito", "pet sematary")),
+        Colecao("Chucky", "🪆", listOf("chucky", "brinquedo assassino")),
         Colecao("Cinquenta Tons", "🖤", listOf("cinquenta tons")),
         Colecao("Como Treinar o Seu Dragão", "🐲", listOf("como treinar o seu dragao")),
         Colecao("Coringa", "🃏", listOf("coringa")),
@@ -1381,14 +1393,19 @@ class MainActivity : AppCompatActivity() {
         Colecao("Duro de Matar", "💥", listOf("duro de matar")),
         Colecao("Esquadrão Suicida", "💣", listOf("esquadrao suicida")),
         Colecao("Esqueceram de Mim", "🏠", listOf("esqueceram de mim")),
+        Colecao("Evil Dead", "🪓", listOf("evil dead", "morte do demonio", "uma noite alucinante")),
         Colecao("Exterminador do Futuro", "🦿", listOf("exterminador do futuro")),
+        Colecao("Extermínio", "☣️", listOf("exterminio")),
+        Colecao("Five Nights at Freddy's", "🐻", listOf("five nights")),
         Colecao("Frozen", "❄️", listOf("frozen")),
         Colecao("Gato de Botas", "🐱", listOf("gato de botas")),
         Colecao("Gladiador", "⚔️", listOf("gladiador")),
         Colecao("Godzilla e Kong", "🦍", listOf("godzilla", "king kong", "kong:")),
+        Colecao("Gremlins", "🧌", listOf("gremlins")),
         Colecao("Guardiões da Galáxia", "🚀", listOf("guardioes da galaxia")),
         Colecao("Halloween", "🎃", listOf("halloween")),
         Colecao("Harry Potter", "⚡", listOf("harry potter")),
+        Colecao("Hellraiser", "⛓️", listOf("hellraiser")),
         Colecao("Homem de Ferro", "🦾", listOf("homem de ferro")),
         Colecao("Homem-Aranha", "🕷️", listOf("homem-aranha")),
         Colecao("Homem-Formiga", "🐜", listOf("homem-formiga")),
@@ -1398,6 +1415,7 @@ class MainActivity : AppCompatActivity() {
         Colecao("Invocação do Mal", "👻", listOf("invocacao do mal", "annabelle", "a freira")),
         Colecao("It: A Coisa", "🎈", listOf("it: a coisa")),
         Colecao("Jack Ryan", "🕵️", listOf("jack ryan", "operacao sombra")),
+        Colecao("Jeepers Creepers", "🦇", listOf("jeepers creepers")),
         Colecao("Jogos Mortais", "🪚", listOf("jogos mortais")),
         Colecao("Jogos Vorazes", "🏹", listOf("jogos vorazes")),
         Colecao("John Wick", "🔫", listOf("john wick")),
@@ -1407,8 +1425,10 @@ class MainActivity : AppCompatActivity() {
         Colecao("Kingsman", "🎩", listOf("kingsman")),
         Colecao("Kung Fu Panda", "🐼", listOf("kung fu panda")),
         Colecao("Lilo & Stitch", "🌺", listOf("lilo")),
+        Colecao("M3GAN", "🤖", listOf("m3gan")),
         Colecao("Mad Max", "🔥", listOf("mad max")),
         Colecao("Madagascar", "🦁", listOf("madagascar")),
+        Colecao("Massacre da Serra Elétrica", "🪚", listOf("massacre da serra")),
         Colecao("Matrix", "🕶️", listOf("matrix")),
         Colecao("Maze Runner", "🌀", listOf("maze runner", "correr ou morrer", "prova de fogo", "a cura mortal")),
         Colecao("Meu Malvado Favorito e Minions", "🍌", listOf("meu malvado favorito", "minions")),
@@ -1417,18 +1437,25 @@ class MainActivity : AppCompatActivity() {
         Colecao("Monstros S.A.", "👹", listOf("monstros s.a.", "universidade monstros")),
         Colecao("Mortal Kombat", "🐉", listOf("mortal kombat")),
         Colecao("Mulher-Maravilha", "⭐", listOf("mulher-maravilha")),
+        Colecao("O Albergue", "🏨", listOf("o albergue", "hostel")),
+        Colecao("O Chamado", "📼", listOf("o chamado")),
         Colecao("O Escorpião Rei", "🦂", listOf("escorpiao rei")),
+        Colecao("O Exorcista", "✝️", listOf("exorcista")),
+        Colecao("O Grito", "👁️", listOf("o grito")),
         Colecao("O Poderoso Chefão", "🌹", listOf("poderoso chefao")),
         Colecao("O Rei Leão", "🦁", listOf("rei leao")),
         Colecao("Os Incríveis", "🦸‍♂️", listOf("os incriveis")),
         Colecao("Os Mercenários", "💪", listOf("os mercenarios")),
         Colecao("Os Smurfs", "🔵", listOf("smurfs")),
-        Colecao("Pânico", "🔪", listOf("panico"), listOf("todo mundo")),
+        Colecao("Pânico", "🔪", listOf("panico"), listOf("todo mundo", "panico no lago", "panico na floresta")),
+        Colecao("Pânico no Lago", "🐊", listOf("panico no lago", "lake placid")),
+        Colecao("Pânico na Floresta", "🌲", listOf("panico na floresta", "wrong turn")),
         Colecao("Pantera Negra", "🐆", listOf("pantera negra")),
         Colecao("Para Todos os Garotos", "💌", listOf("para todos os garotos")),
         Colecao("Percy Jackson", "🔱", listOf("percy jackson")),
         Colecao("Piratas do Caribe", "🏴‍☠️", listOf("piratas do caribe")),
         Colecao("Planeta dos Macacos", "🦍", listOf("planeta dos macacos")),
+        Colecao("Poltergeist", "📺", listOf("poltergeist")),
         Colecao("Predador", "🦎", listOf("predador", "predator")),
         Colecao("Premonição", "💀", listOf("premonicao")),
         Colecao("Procurando Nemo e Dory", "🐠", listOf("procurando")),
@@ -1437,20 +1464,25 @@ class MainActivity : AppCompatActivity() {
         Colecao("Rocky e Creed", "🥊", listOf("rocky", "creed")),
         Colecao("Se Beber, Não Case", "🍻", listOf("se beber")),
         Colecao("Senhor dos Anéis e O Hobbit", "💍", listOf("senhor dos aneis", "o hobbit")),
-        Colecao("Sexta-Feira 13", "🏒", listOf("sexta-feira 13")),
+        Colecao("Sexta-Feira 13", "🏒", listOf("sexta-feira 13", "jason")),
         Colecao("Sherlock Holmes", "🔍", listOf("sherlock holmes")),
         Colecao("Shrek", "🧅", listOf("shrek")),
+        Colecao("Sobrenatural", "🌑", listOf("sobrenatural")),
         Colecao("Sonic", "💨", listOf("sonic")),
+        Colecao("Sorria", "😁", listOf("sorria")),
         Colecao("Star Trek", "🖖", listOf("star trek")),
         Colecao("Star Wars", "✨", listOf("star wars")),
         Colecao("Super Mario", "🍄", listOf("super mario")),
         Colecao("Superman", "🦸", listOf("superman")),
         Colecao("Tartarugas Ninja", "🐢", listOf("tartarugas ninja")),
         Colecao("Teen Wolf", "🐺", listOf("teen wolf")),
+        Colecao("Terrifier", "🤡", listOf("terrifier")),
         Colecao("Thor", "⚡", listOf("=thor", "thor:")),
         Colecao("Todo Mundo em Pânico", "😱", listOf("todo mundo em panico")),
         Colecao("Toy Story", "🤠", listOf("toy story")),
         Colecao("Transformers", "🤖", listOf("transformers")),
+        Colecao("Um Lugar Silencioso", "🤫", listOf("um lugar silencioso")),
+        Colecao("Uma Noite de Crime", "🎭", listOf("noite de crime")),
         Colecao("Velozes e Furiosos", "🏎️", listOf("velozes e furiosos")),
         Colecao("Venom", "🕸️", listOf("venom")),
         Colecao("Vingadores", "🛡️", listOf("vingadores")),
