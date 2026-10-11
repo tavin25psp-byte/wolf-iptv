@@ -1,6 +1,20 @@
 {
   "filmes": [
     {
+      "titulo": "Matchbox: O Filme",
+      "ano": 2026,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/508VDpqk/images-(5).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/Matchbox%20-%20O%20Filme.mp4"
+    },
+    {
+      "titulo": "O Corvo",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/43TwB5yP/MV5BMDE2Nj-Qw-OGEt-Njcw-Yy00ZWVk-LWI5Nz-At-OWQz-Yz-E5ZWFj-Mj-M1Xk-Ey-Xk-Fqc-Gc-V1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/O%20Corvo.mp4"
+    },
+    {
       "titulo": "A Captura",
       "ano": 2026,
       "categoria": "Ação",
@@ -16,7 +30,7 @@
     },
     {
       "titulo": "Como Perder Sua Popularidade",
-      "ano": 0,
+      "ano": 2026,
       "categoria": "Comédia",
       "capa": "https://i.postimg.cc/3Nd7cv37/IMG-0cd0e4fe-053f-4e30-aa5c-20e2775a73e3.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/como%20perder%20sua%20popularidade.mp4"
