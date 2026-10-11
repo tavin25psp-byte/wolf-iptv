@@ -1353,29 +1353,39 @@ class MainActivity : AppCompatActivity() {
     private val COLECOES = listOf(
         Colecao("A Era do Gelo", "🧊", listOf("era do gelo")),
         Colecao("A Hora do Pesadelo", "😴", listOf("hora do pesadelo")),
+        Colecao("Alien", "👽", listOf("alien:", "alien,", "aliens", "=alien")),
         Colecao("Alvin e os Esquilos", "🐿️", listOf("alvin e os esquilos")),
+        Colecao("American Pie", "🥧", listOf("american pie")),
         Colecao("Animais Fantásticos", "🐉", listOf("animais fantasticos")),
         Colecao("Anjos da Noite", "🐺", listOf("underworld", "anjos da noite")),
         Colecao("Aquaman", "🔱", listOf("aquaman")),
+        Colecao("Aranhaverso", "🕷️", listOf("aranhaverso")),
         Colecao("As Crônicas de Nárnia", "🦁", listOf("narnia")),
-        Colecao("Avatar", "🌍", listOf("avatar (2009)", "avatar:")),
         Colecao("Bad Boys", "🚔", listOf("bad boys")),
+        Colecao("Barbie", "💖", listOf("barbie")),
         Colecao("Batman", "🦇", listOf("batman")),
+        Colecao("Ben 10", "⌚", listOf("ben 10")),
+        Colecao("Busca Implacável", "📞", listOf("busca implacavel")),
+        Colecao("Caça-Fantasmas", "👻", listOf("caca-fantasmas", "ghostbusters")),
         Colecao("Capitão América", "🛡️", listOf("capitao america")),
         Colecao("Carros", "🚗", listOf("carros")),
         Colecao("Cinquenta Tons", "🖤", listOf("cinquenta tons")),
         Colecao("Como Treinar o Seu Dragão", "🐲", listOf("como treinar o seu dragao")),
         Colecao("Coringa", "🃏", listOf("coringa")),
         Colecao("Crepúsculo", "🧛", listOf("crepusculo", "lua nova", "amanhecer")),
+        Colecao("De Volta para o Futuro", "⏱️", listOf("de volta para o futuro")),
         Colecao("Deadpool", "🗡️", listOf("deadpool")),
         Colecao("Divergente", "🔷", listOf("divergente", "insurgente", "convergente")),
         Colecao("Doutor Estranho", "🔮", listOf("doutor estranho")),
         Colecao("Duna", "🏜️", listOf("duna")),
         Colecao("Duro de Matar", "💥", listOf("duro de matar")),
         Colecao("Esquadrão Suicida", "💣", listOf("esquadrao suicida")),
+        Colecao("Esqueceram de Mim", "🏠", listOf("esqueceram de mim")),
         Colecao("Exterminador do Futuro", "🦿", listOf("exterminador do futuro")),
         Colecao("Frozen", "❄️", listOf("frozen")),
         Colecao("Gato de Botas", "🐱", listOf("gato de botas")),
+        Colecao("Gladiador", "⚔️", listOf("gladiador")),
+        Colecao("Godzilla e Kong", "🦍", listOf("godzilla", "king kong", "kong:")),
         Colecao("Guardiões da Galáxia", "🚀", listOf("guardioes da galaxia")),
         Colecao("Halloween", "🎃", listOf("halloween")),
         Colecao("Harry Potter", "⚡", listOf("harry potter")),
@@ -1384,6 +1394,7 @@ class MainActivity : AppCompatActivity() {
         Colecao("Homem-Formiga", "🐜", listOf("homem-formiga")),
         Colecao("Homens de Preto", "🕴️", listOf("homens de preto")),
         Colecao("Hotel Transilvânia", "🧛", listOf("hotel transilvania")),
+        Colecao("Indiana Jones", "🤠", listOf("indiana jones")),
         Colecao("Invocação do Mal", "👻", listOf("invocacao do mal", "annabelle", "a freira")),
         Colecao("It: A Coisa", "🎈", listOf("it: a coisa")),
         Colecao("Jack Ryan", "🕵️", listOf("jack ryan", "operacao sombra")),
@@ -1393,31 +1404,41 @@ class MainActivity : AppCompatActivity() {
         Colecao("Jumanji", "🎲", listOf("jumanji")),
         Colecao("Jurassic Park e World", "🦖", listOf("jurassic")),
         Colecao("Karate Kid", "🥋", listOf("karate kid")),
+        Colecao("Kingsman", "🎩", listOf("kingsman")),
         Colecao("Kung Fu Panda", "🐼", listOf("kung fu panda")),
+        Colecao("Lilo & Stitch", "🌺", listOf("lilo")),
         Colecao("Mad Max", "🔥", listOf("mad max")),
         Colecao("Madagascar", "🦁", listOf("madagascar")),
         Colecao("Matrix", "🕶️", listOf("matrix")),
         Colecao("Maze Runner", "🌀", listOf("maze runner", "correr ou morrer", "prova de fogo", "a cura mortal")),
         Colecao("Meu Malvado Favorito e Minions", "🍌", listOf("meu malvado favorito", "minions")),
         Colecao("Missão Impossível", "🎯", listOf("missao impossivel")),
+        Colecao("Missão Resgate", "🚁", listOf("missao resgate", "tyler rake")),
         Colecao("Monstros S.A.", "👹", listOf("monstros s.a.", "universidade monstros")),
         Colecao("Mortal Kombat", "🐉", listOf("mortal kombat")),
         Colecao("Mulher-Maravilha", "⭐", listOf("mulher-maravilha")),
         Colecao("O Escorpião Rei", "🦂", listOf("escorpiao rei")),
+        Colecao("O Poderoso Chefão", "🌹", listOf("poderoso chefao")),
+        Colecao("O Rei Leão", "🦁", listOf("rei leao")),
         Colecao("Os Incríveis", "🦸‍♂️", listOf("os incriveis")),
+        Colecao("Os Mercenários", "💪", listOf("os mercenarios")),
+        Colecao("Os Smurfs", "🔵", listOf("smurfs")),
         Colecao("Pânico", "🔪", listOf("panico"), listOf("todo mundo")),
         Colecao("Pantera Negra", "🐆", listOf("pantera negra")),
         Colecao("Para Todos os Garotos", "💌", listOf("para todos os garotos")),
         Colecao("Percy Jackson", "🔱", listOf("percy jackson")),
         Colecao("Piratas do Caribe", "🏴‍☠️", listOf("piratas do caribe")),
         Colecao("Planeta dos Macacos", "🦍", listOf("planeta dos macacos")),
+        Colecao("Predador", "🦎", listOf("predador", "predator")),
         Colecao("Premonição", "💀", listOf("premonicao")),
         Colecao("Procurando Nemo e Dory", "🐠", listOf("procurando")),
         Colecao("Rambo", "🪖", listOf("rambo")),
         Colecao("Resident Evil", "🧟", listOf("resident evil")),
         Colecao("Rocky e Creed", "🥊", listOf("rocky", "creed")),
+        Colecao("Se Beber, Não Case", "🍻", listOf("se beber")),
         Colecao("Senhor dos Anéis e O Hobbit", "💍", listOf("senhor dos aneis", "o hobbit")),
         Colecao("Sexta-Feira 13", "🏒", listOf("sexta-feira 13")),
+        Colecao("Sherlock Holmes", "🔍", listOf("sherlock holmes")),
         Colecao("Shrek", "🧅", listOf("shrek")),
         Colecao("Sonic", "💨", listOf("sonic")),
         Colecao("Star Trek", "🖖", listOf("star trek")),
@@ -1425,6 +1446,8 @@ class MainActivity : AppCompatActivity() {
         Colecao("Super Mario", "🍄", listOf("super mario")),
         Colecao("Superman", "🦸", listOf("superman")),
         Colecao("Tartarugas Ninja", "🐢", listOf("tartarugas ninja")),
+        Colecao("Teen Wolf", "🐺", listOf("teen wolf")),
+        Colecao("Thor", "⚡", listOf("=thor", "thor:")),
         Colecao("Todo Mundo em Pânico", "😱", listOf("todo mundo em panico")),
         Colecao("Toy Story", "🤠", listOf("toy story")),
         Colecao("Transformers", "🤖", listOf("transformers")),
@@ -1439,17 +1462,21 @@ class MainActivity : AppCompatActivity() {
         return filmes
             .filter { f ->
                 val t = normalizarTexto(f.titulo)
-                colecao.chaves.any { t.contains(it) } &&
+                colecao.chaves.any { k ->
+                    if (k.startsWith("=")) t == k.substring(1) else t.contains(k)
+                } &&
                     colecao.exclui.none { t.contains(it) }
             }
             .sortedWith(compareBy<Filme> { it.ano }.thenBy { it.titulo.lowercase() })
     }
 
-    // Só aparecem coletâneas com 2 filmes ou mais.
+    // Mínimo de filmes para a coletânea aparecer no menu (0 = mostra todas, até as vazias).
+    private val COLECAO_MINIMO = 0
+
     private fun secaoColetaneas(aberta: Boolean) {
         val validas = COLECOES
             .map { it to filmesDaColecao(it) }
-            .filter { it.second.size >= 2 }
+            .filter { it.second.size >= COLECAO_MINIMO }
 
         if (validas.isEmpty()) return
 
