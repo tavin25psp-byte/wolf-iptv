@@ -986,6 +986,34 @@
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/vZYJk6Ld/IMG-67a558bf-050b-4f7c-bea7-39d339894d0b.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos10.mp4"
+    },
+    {
+      "titulo": "Os Vingadores",
+      "ano": 2012,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VvVqrRnX/IMG-d7fc30a9-3117-4771-939b-21dfc7f5cdf4.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores.mp4"
+    },
+    {
+      "titulo": "Vingadores: Era de Ultron",
+      "ano": 2015,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/rwS4Mcnb/IMG-07ffb357-87a8-4785-ba52-ee13d52e3679.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores%20a%20era%20de%20Ultron%20.mp4"
+    },
+    {
+      "titulo": "Vingadores: Guerra Infinita",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/WpCqZtQs/IMG-53530941-5499-4c2c-86e5-8b90c12e013d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores%20guerra%20infinita.mp4"
+    },
+    {
+      "titulo": "Vingadores: Ultimato",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/rF4gbD47/IMG-77161c2b-6d77-4d6a-ba6c-7b4928a1c3cf.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores%20ultimato.mp4"
     }
   ]
 }
