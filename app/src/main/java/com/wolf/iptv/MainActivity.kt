@@ -1,4 +1,5 @@
 
+
 package com.wolf.iptv
 
 import android.content.Intent
@@ -89,6 +90,9 @@ class MainActivity : AppCompatActivity() {
     private val ARQUIVOS_DESENHOS =
         listOf("desenho.json", "desenhos.json", "Desenho.json", "Desenhos.json")
 
+    private val ARQUIVOS_CANAIS =
+        listOf("canais.json", "Canais.json")
+
     private val REQ_VOZ = 100
 
     private val activityScope = CoroutineScope(Dispatchers.Main + Job())
@@ -123,6 +127,7 @@ class MainActivity : AppCompatActivity() {
     private val historicoConteudo = mutableListOf<() -> Unit>()
 
     private val filmes = mutableListOf<Filme>()
+    private val canais = mutableListOf<Filme>()
     private val series = mutableListOf<Serie>()
     private val doramas = mutableListOf<Serie>()
     private val animes = mutableListOf<Serie>()
@@ -743,6 +748,9 @@ class MainActivity : AppCompatActivity() {
 
                 val novosDesenhos = lerDesenhos(textoDesenhos)
 
+                val textoCanais = baixarPrimeiro(ARQUIVOS_CANAIS)
+                val novosCanais = lerCanais(textoCanais)
+
                 val novasColecoes = try {
                     calcularColecoes(novosFilmes)
                 } catch (_: Throwable) {
@@ -753,6 +761,9 @@ class MainActivity : AppCompatActivity() {
                     filmes.clear()
                     filmes.addAll(novosFilmes)
                     colecoesProntas = novasColecoes
+
+                    canais.clear()
+                    canais.addAll(novosCanais)
 
                     series.clear()
                     series.addAll(novasSeries)
@@ -771,7 +782,8 @@ class MainActivity : AppCompatActivity() {
                         "séries" to (textoSeries?.trim()?.hashCode() ?: 0),
                         "doramas" to (textoDoramas?.trim()?.hashCode() ?: 0),
                         "animes" to (textoAnimes?.trim()?.hashCode() ?: 0),
-                        "desenhos" to (textoDesenhos?.trim()?.hashCode() ?: 0)
+                        "desenhos" to (textoDesenhos?.trim()?.hashCode() ?: 0),
+                        "canais" to (textoCanais?.trim()?.hashCode() ?: 0)
                     )
                     novidades = emptyList()
                     aplicarNovidades()
@@ -1029,7 +1041,8 @@ class MainActivity : AppCompatActivity() {
                     "séries" to baixarPrimeiro(ARQUIVOS_SERIES),
                     "doramas" to baixarPrimeiro(ARQUIVOS_DORAMAS),
                     "animes" to baixarPrimeiro(ARQUIVOS_ANIMES),
-                    "desenhos" to baixarPrimeiro(ARQUIVOS_DESENHOS)
+                    "desenhos" to baixarPrimeiro(ARQUIVOS_DESENHOS),
+                    "canais" to baixarPrimeiro(ARQUIVOS_CANAIS)
                 )
 
                 // Sem internet: não avisa nada.
@@ -1689,6 +1702,147 @@ class MainActivity : AppCompatActivity() {
         secoesMenu.add(SecaoMenu(titulo, total, cabecalho, corpo))
     }
 
+    // ===== CANAIS AO VIVO =====
+    // Lê canais.json: { "canais": [ { "nome", "grupo", "logo", "url" } ] }
+    // (também aceita uma lista M3U colada dentro do arquivo).
+
+    private fun linkYoutube(url: String): Boolean =
+        url.contains("youtube.com") || url.contains("youtu.be")
+
+    private fun lerCanais(texto: String?): ArrayList<Filme> {
+        val resultado = ArrayList<Filme>()
+        if (texto.isNullOrBlank()) return resultado
+
+        val limpo = texto.trim().removePrefix("\uFEFF")
+
+        if (limpo.startsWith("#EXTM3U")) {
+            var nome = ""
+            var logo = ""
+            var grupo = ""
+
+            for (linha in limpo.lines()) {
+                val l = linha.trim()
+                if (l.startsWith("#EXTINF")) {
+                    nome = l.substringAfterLast(",").trim()
+                    logo = Regex("tvg-logo=\"([^\"]*)\"").find(l)?.groupValues?.get(1) ?: ""
+                    grupo = Regex("group-title=\"([^\"]*)\"").find(l)?.groupValues?.get(1) ?: ""
+                } else if (l.isNotEmpty() && !l.startsWith("#")) {
+                    if (nome.isNotBlank() && !linkYoutube(l)) {
+                        resultado.add(
+                            Filme(
+                                nome.replace(" Ⓨ", "").trim(),
+                                0,
+                                grupo.ifBlank { "Canais" },
+                                logo,
+                                l
+                            )
+                        )
+                    }
+                    nome = ""
+                }
+            }
+            return resultado
+        }
+
+        val array = extrairArray(limpo, "canais")
+            ?: extrairArray(limpo, "channels")
+            ?: return resultado
+
+        for (i in 0 until array.length()) {
+            try {
+                val item = array.getJSONObject(i)
+                val nome = item.optString("nome", item.optString("titulo", ""))
+                val url = item.optString("url", item.optString("video", ""))
+
+                if (nome.isBlank() || url.isBlank() || linkYoutube(url)) continue
+
+                resultado.add(
+                    Filme(
+                        nome,
+                        0,
+                        item.optString("grupo", item.optString("categoria", "Canais"))
+                            .ifBlank { "Canais" },
+                        item.optString("logo", item.optString("capa", "")),
+                        url
+                    )
+                )
+            } catch (_: Exception) {
+            }
+        }
+
+        return resultado
+    }
+
+    private fun criarCardCanal(canal: Filme): View {
+        val (card, _) = criarCardBase(
+            canal.capa,
+            rodapeDuasLinhas("📡 " + canal.titulo, "AO VIVO • " + canal.categoria)
+        )
+
+        card.setOnClickListener {
+            // Ao vivo: não guarda posição nem pergunta "continuar de onde parou".
+            iniciarPlayer(canal.titulo, canal.video, canal.capa, 0L)
+        }
+
+        return card
+    }
+
+    private fun mostrarListaCanais(lista: List<Filme>) {
+        limparConteudo()
+
+        if (lista.isEmpty()) {
+            mostrarMensagemVazia("Nenhum canal encontrado")
+            return
+        }
+
+        montarGrade(lista.map { criarCardCanal(it) })
+    }
+
+    private fun secaoCanais(aberta: Boolean) {
+        if (canais.isEmpty()) return
+
+        val titulo = "CANAIS AO VIVO"
+
+        val grupos = canais.map { it.categoria }.distinct().sortedBy { normalizarTexto(it) }
+
+        val corpo = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            visibility = if (aberta) View.VISIBLE else View.GONE
+        }
+
+        val cabecalho = adicionarItemMenu(
+            textoSecao(titulo, canais.size, aberta),
+            cor = COR_SECAO
+        ) {
+            alternarSecao(titulo)
+        }
+
+        cabecalho.setTypeface(null, Typeface.BOLD)
+
+        menuConteudo.addView(
+            corpo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        adicionarItemMenu("📡  Todos (${canais.size})", pai = corpo) {
+            fecharMenu()
+            mostrarListaCanais(canais.toList())
+        }
+
+        grupos.forEach { grupo ->
+            val lista = canais.filter { it.categoria == grupo }
+            adicionarItemMenu("📺  $grupo (${lista.size})", pai = corpo) {
+                fecharMenu()
+                mostrarListaCanais(lista)
+            }
+        }
+
+        secoesMenu.add(SecaoMenu(titulo, canais.size, cabecalho, corpo))
+    }
+
     // ===== COLETÂNEAS (franquias) =====
 
     private class Colecao(
@@ -2065,6 +2219,7 @@ class MainActivity : AppCompatActivity() {
 
         secaoFilmes("FILMES", filmes, true)
         secaoColetaneas(false)
+        secaoCanais(false)
         secaoSeries("SÉRIES", series, false)
         secaoSeries("DORAMAS", doramas, false)
         secaoFilmes("DESENHOS", desenhos, false)
