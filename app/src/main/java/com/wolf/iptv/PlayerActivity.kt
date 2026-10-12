@@ -389,6 +389,14 @@ class PlayerActivity : AppCompatActivity() {
                     }  
 
                     override fun onPlayerError(error: PlaybackException) {  
+                        // Canal ao vivo ficou para trás da janela: volta pro ao vivo e recarrega  
+                        if (error.errorCode == PlaybackException.ERROR_CODE_BEHIND_LIVE_WINDOW) {  
+                            player?.seekToDefaultPosition()  
+                            player?.prepare()  
+                            player?.playWhenReady = true  
+                            return  
+                        }  
+
                         val erroDeRede =  
                             error.errorCode == PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_TIMEOUT ||  
                             error.errorCode == PlaybackException.ERROR_CODE_IO_NETWORK_CONNECTION_FAILED ||  
