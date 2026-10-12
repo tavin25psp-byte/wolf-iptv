@@ -1,6 +1,48 @@
 {
   "filmes": [
     {
+      "titulo": "Rambo: Programado para Matar",
+      "ano": 1982,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/gcf2gY1N/IMG-3572f1ec-9dc4-49e5-af88-6f95634a9bae.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/Rambo%20Programado%20Para%20Matar.mp4"
+    },
+    {
+      "titulo": "Rambo 2: A Missão",
+      "ano": 1985,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/xjH2TLFx/IMG-79fe0fbb-da45-4280-8d22-212f33b6955b.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/rambo%202.mp4"
+    },
+    {
+      "titulo": "Rambo III",
+      "ano": 1988,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/0ytgHnbw/IMG-5d81b0fe-616e-4a8a-84e0-68027fec3d8e.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/rambo%203.mp4"
+    },
+    {
+      "titulo": "Rambo IV",
+      "ano": 2008,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hPrNfs8N/IMG-77ddda7c-ed65-4302-bf59-a348f75675dc.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/Rambo%20IV.mp4"
+    },
+    {
+      "titulo": "Rambo: Até o Fim",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/MZ0FF5LM/IMG-9be0494d-74c2-4c68-9db8-c8645cee269d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/rambo%20at%C3%A9%20o%20fim.mp4"
+    },
+    {
+      "titulo": "O Último Grande Assalto",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzPgQYcq/IMG-d155953b-140b-4ff5-b799-3ea396a23cdd.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/O%20%C3%9Altimo%20Grande%20Assalto.mp4"
+    },
+    {
       "titulo": "Matchbox: O Filme",
       "ano": 2026,
       "categoria": "Aventura",
