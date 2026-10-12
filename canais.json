@@ -7,7 +7,7 @@
 http://45.185.11.126:8000/play/a0a2/index.m3u8
 
 # ==========================================
-# CANAIS DO BRASIL - ESPORTES
+# ESPORTES (BRASIL)
 # ==========================================
 #EXTINF:-1 group-title="BR | Esportes",Band Sports HD
 http://45.185.11.126:8000/play/a05o/index.m3u8
@@ -45,6 +45,52 @@ http://45.185.11.126:8000/play/a05f/index.m3u8
 http://45.185.11.126:8000/play/a06v/index.m3u8
 #EXTINF:-1 group-title="BR | Esportes",TNT Sports HD
 http://45.185.11.126:8000/play/a0bi/index.m3u8
+
+# ==========================================
+# ESPORTES (INTERNACIONAL)
+# ==========================================
+#EXTINF:-1 group-title="EUA | Esportes",US: ACC Network
+http://206.212.244.63/2486/index.m3u8
+#EXTINF:-1 group-title="EUA | Esportes",US: Big Ten Network
+http://206.212.244.63/2489/index.m3u8
+#EXTINF:-1 group-title="EUA | Esportes",US: SEC Network
+http://206.212.244.63/2511/index.m3u8
+#EXTINF:-1 group-title="EUA | Esportes",USA | ESPN
+http://206.212.244.63/59/index.m3u8
+#EXTINF:-1 group-title="PT | Esportes",PT: EUROSPORT 1
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99481
+#EXTINF:-1 group-title="PT | Esportes",PT: EUROSPORT 2
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99482
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV +
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99483
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 1
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99484
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 2
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99485
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 3
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99486
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 4
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99487
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 5
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99488
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 6
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99489
+#EXTINF:-1 group-title="PT | Esportes",PT: SPORTING TV
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99490
+#EXTINF:-1 group-title="EU | Esportes",Eurosport HD (Svr 1)
+http://89.44.231.117:7000/eurosport
+#EXTINF:-1 group-title="EU | Esportes",Eurosport 2 HD (Svr 1)
+http://89.44.231.117:7000/eurosport2
+#EXTINF:-1 group-title="EU | Esportes",Eurosport HD (Svr 2)
+http://89.44.231.73:7000/eurosport
+#EXTINF:-1 group-title="EU | Esportes",Eurosport 2 HD (Svr 2)
+http://89.44.231.73:7000/eurosport2
+#EXTINF:-1 group-title="EU | Esportes",Eurosport HD (Svr 3)
+http://89.44.231.115:7000/eurosport
+#EXTINF:-1 group-title="EU | Esportes",Eurosport 2 HD (Svr 3)
+http://89.44.231.115:7000/eurosport2
+
+#EXTM3U
 
 # ==========================================
 # CANAIS DO BRASIL - FILMES E SÉRIES
@@ -109,6 +155,46 @@ http://45.185.11.126:8000/play/a08m/index.m3u8
 http://45.185.11.126:8000/play/a06k/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Warner Channel HD
 http://45.185.11.126:8000/play/a0am/index.m3u8
+
+# ==========================================
+# CANAIS DO BRASIL - ESPORTES
+# ==========================================
+#EXTINF:-1 group-title="BR | Esportes",Band Sports HD
+http://45.185.11.126:8000/play/a05o/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Combate HD
+http://45.185.11.126:8000/play/a073/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",ESPN 4 HD
+http://45.185.11.126:8000/play/a05m/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",ESPN 5 HD
+http://45.185.11.126:8000/play/a05n/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",ESPN 6 HD
+http://45.185.11.126:8000/play/a084/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",GE TV HD
+http://45.185.11.126:8000/play/a08v/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere Clubes HD
+http://45.185.11.126:8000/play/a06g/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 2 HD
+http://45.185.11.126:8000/play/a06h/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 3 HD
+http://45.185.11.126:8000/play/a0av/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 4 HD
+http://45.185.11.126:8000/play/a07b/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 5 HD
+http://45.185.11.126:8000/play/a07c/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 6 HD
+http://45.185.11.126:8000/play/a05j/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 7 HD
+http://45.185.11.126:8000/play/a05k/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 8 HD
+http://45.185.11.126:8000/play/a05l/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",sportv HD
+http://45.185.11.126:8000/play/a05g/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",sportv2 HD
+http://45.185.11.126:8000/play/a05f/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",sportv3 HD
+http://45.185.11.126:8000/play/a06v/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",TNT Sports HD
+http://45.185.11.126:8000/play/a0bi/index.m3u8
 
 # ==========================================
 # CANAIS DO BRASIL - NOTÍCIAS
