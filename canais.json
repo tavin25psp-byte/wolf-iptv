@@ -1,139 +1,320 @@
+
 #EXTM3U
-#EXT-X-SESSION-DATA:DATA-ID="com.xui.1_5_5r2"
+#EXTINF:11,AMC HD
+http://45.185.11.126:8000/play/a06s/index.m3u8
+#EXTINF:0,AXN HD
+http://45.185.11.126:8000/play/a0ao/index.m3u8
+#EXTINF:0,Adult Swim HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06m/index.m3u8
+#EXTINF:0,Animal Planet HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a09k/index.m3u8
+#EXTINF:0,BIS HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07w/index.m3u8
+#EXTINF:0,BM&C HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06i/index.m3u8
+#EXTINF:0,Band News HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a076/index.m3u8
+#EXTINF:0,Band Sports HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05o/index.m3u8
+#EXTINF:0,CNN Brasil Money HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0a6/index.m3u8
+#EXTINF:0,CNN International HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0ap/index.m3u8
+#EXTINF:0,Canal Brasil HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06x/index.m3u8
+#EXTINF:0,Canal Sony HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0an/index.m3u8
+#EXTINF:0,Canal UOL HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0a4/index.m3u8
+#EXTINF:0,Cartoon Network HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a087/index.m3u8
+#EXTINF:0,Cartoonito HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0ae/index.m3u8
+#EXTINF:0,Cinemax HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a081/index.m3u8
+#EXTINF:0,Claro TV+ 4K
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06f/index.m3u8
+#EXTINF:0,Combate HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a073/index.m3u8
+#EXTINF:0,DUMDUM HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a078/index.m3u8
+#EXTINF:0,Disc. Home & Health HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07y/index.m3u8
+#EXTINF:0,Discovery Channel HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0ac/index.m3u8
+#EXTINF:0,Discovery Kids HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0ad/index.m3u8
+#EXTINF:0,Discovery Science HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a077/index.m3u8
+#EXTINF:0,Discovery Theater HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a085/index.m3u8
+#EXTINF:0,Discovery Turbo HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07z/index.m3u8
+#EXTINF:0,Discovery World HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a086/index.m3u8
+#EXTINF:0,ESPN 4 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05m/index.m3u8
+#EXTINF:0,ESPN 5 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05n/index.m3u8
+#EXTINF:0,ESPN 6 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a084/index.m3u8
+#EXTINF:0,Food Network HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06j/index.m3u8
+#EXTINF:0,GE TV HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08v/index.m3u8
+#EXTINF:0,GNT HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a079/index.m3u8
+#EXTINF:0,GloboNews HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08d/index.m3u8
+#EXTINF:0,Globoplay Novelas HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06w/index.m3u8
+#EXTINF:0,Gloob HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07v/index.m3u8
+#EXTINF:0,Gloobinho HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a071/index.m3u8
+#EXTINF:0,HBO Family HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08q/index.m3u8
+#EXTINF:0,HBO HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08n/index.m3u8
+#EXTINF:0,HBO MUNDI HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a082/index.m3u8
+#EXTINF:0,HBO POP HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08s/index.m3u8
+#EXTINF:0,HBO Signature HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08r/index.m3u8
+#EXTINF:0,HBO XTREME HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a083/index.m3u8
+#EXTINF:0,HBO+ HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08p/index.m3u8
+#EXTINF:0,HBO2 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08o/index.m3u8
+#EXTINF:0,HGTV HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a074/index.m3u8
+#EXTINF:0,History HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0al/index.m3u8
+#EXTINF:0,ID HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a089/index.m3u8
+#EXTINF:0,JP News HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0a1/index.m3u8
+#EXTINF:0,Lifetime HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06l/index.m3u8
+#EXTINF:0,Megapix HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a057/index.m3u8
+#EXTINF:0,Modo Viagem HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07u/index.m3u8
+#EXTINF:0,Multishow HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07a/index.m3u8
+#EXTINF:0,OFF HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07t/index.m3u8
+#EXTINF:0,Paramount+ 4
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0aq/index.m3u8
+#EXTINF:0,Playboy TV HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a09n/index.m3u8
+#EXTINF:0,Premiere 2 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06h/index.m3u8
+#EXTINF:0,Premiere 3 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0av/index.m3u8
+#EXTINF:0,Premiere 4 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07b/index.m3u8
+#EXTINF:0,Premiere 5 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07c/index.m3u8
+#EXTINF:0,Premiere 6 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05j/index.m3u8
+#EXTINF:0,Premiere 7 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05k/index.m3u8
+#EXTINF:0,Premiere 8 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05l/index.m3u8
+#EXTINF:0,Premiere Clubes HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06g/index.m3u8
+#EXTINF:0,Record News HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0a2/index.m3u8
+#EXTINF:0,SBT News HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0a7/index.m3u8
+#EXTINF:0,Space HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08b/index.m3u8
+#EXTINF:0,Studio Universal HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06o/index.m3u8
+#EXTINF:0,TIMES | EXCLUSIVO CNBC
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0a5/index.m3u8
+#EXTINF:0,TLC HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0aa/index.m3u8
+#EXTINF:0,TNT Novelas HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a088/index.m3u8
+#EXTINF:0,TNT Sports HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0bi/index.m3u8
+#EXTINF:0,TNT SØries HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08a/index.m3u8
+#EXTINF:0,TV RÆ Tim Bum HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a080/index.m3u8
+#EXTINF:0,Telecine Action HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a058/index.m3u8
+#EXTINF:0,Telecine Cult HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05a/index.m3u8
+#EXTINF:0,Telecine Fun HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a059/index.m3u8
+#EXTINF:0,Telecine Pipoca HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08g/index.m3u8
+#EXTINF:0,Telecine Premium HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08e/index.m3u8
+#EXTINF:0,Telecine Touch HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08f/index.m3u8
+#EXTINF:0,Trace Brasil HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08l/index.m3u8
+#EXTINF:0,Travel Food & Drinks HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a07x/index.m3u8
+#EXTINF:0,USA HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06k/index.m3u8
+#EXTINF:0,Universal Premiere HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08m/index.m3u8
+#EXTINF:0,Universal Reality HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a08c/index.m3u8
+#EXTINF:0,Universal TV HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0af/index.m3u8
+#EXTINF:0,Warner Channel HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a0am/index.m3u8
+#EXTINF:0,Woohoo HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a075/index.m3u8
+#EXTINF:0,sportv HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05g/index.m3u8
+#EXTINF:0,sportv2 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a05f/index.m3u8
+#EXTINF:0,sportv3 HD
+#EXTVLCOPT:network-caching=1000
+http://45.185.11.126:8000/play/a06v/index.m3u8
 
-#EXTINF:-1 tvg-id="a.and.e.br" tvg-name="A&E FHD H.265" tvg-logo="http://1.bp.blogspot.com/-KVAJJtXKXUE/XmQOw0jLTMI/AAAAAAAACRo/GORUzAEatRU7S0MPBE7yXcIRsXTYmwN0QCK4BGAYYCw/s400/A%2526E.png" group-title="CANAIS: FILMES E SÉRIES ✨",A&E FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/81599.ts
-#EXTINF:-1 tvg-id="a.and.e.br" tvg-name="A&E" tvg-logo="http://1.bp.blogspot.com/-KVAJJtXKXUE/XmQOw0jLTMI/AAAAAAAACRo/GORUzAEatRU7S0MPBE7yXcIRsXTYmwN0QCK4BGAYYCw/s400/A%2526E.png" group-title="CANAIS: FILMES E SÉRIES ✨",A&E
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13497.ts
-#EXTINF:-1 tvg-id="a.and.e.br" tvg-name="A&E FHD" tvg-logo="http://1.bp.blogspot.com/-KVAJJtXKXUE/XmQOw0jLTMI/AAAAAAAACRo/GORUzAEatRU7S0MPBE7yXcIRsXTYmwN0QCK4BGAYYCw/s400/A%2526E.png" group-title="CANAIS: FILMES E SÉRIES ✨",A&E FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/23156.ts
-#EXTINF:-1 tvg-id="a.and.e.br" tvg-name="A&E HD" tvg-logo="http://1.bp.blogspot.com/-KVAJJtXKXUE/XmQOw0jLTMI/AAAAAAAACRo/GORUzAEatRU7S0MPBE7yXcIRsXTYmwN0QCK4BGAYYCw/s400/A%2526E.png" group-title="CANAIS: FILMES E SÉRIES ✨",A&E HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/23157.ts
 
-#EXTINF:-1 tvg-id="axn.br" tvg-name="AXN FHD H.265" tvg-logo="http://2.bp.blogspot.com/-nBtQ5UkiBI4/XmQcIAhLVYI/AAAAAAAACSk/posGzR9eqD4zllrPY3vGIk6wsFYBJtlRQCK4BGAYYCw/s400/AXN.png" group-title="CANAIS: FILMES E SÉRIES ✨",AXN FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/81600.ts
-#EXTINF:-1 tvg-id="axn.br" tvg-name="AXN" tvg-logo="http://2.bp.blogspot.com/-nBtQ5UkiBI4/XmQcIAhLVYI/AAAAAAAACSk/posGzR9eqD4zllrPY3vGIk6wsFYBJtlRQCK4BGAYYCw/s400/AXN.png" group-title="CANAIS: FILMES E SÉRIES ✨",AXN
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13500.ts
-#EXTINF:-1 tvg-id="axn.br" tvg-name="AXN FHD" tvg-logo="http://2.bp.blogspot.com/-nBtQ5UkiBI4/XmQcIAhLVYI/AAAAAAAACSk/posGzR9eqD4zllrPY3vGIk6wsFYBJtlRQCK4BGAYYCw/s400/AXN.png" group-title="CANAIS: FILMES E SÉRIES ✨",AXN FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/23691.ts
-#EXTINF:-1 tvg-id="axn.br" tvg-name="AXN HD" tvg-logo="http://2.bp.blogspot.com/-nBtQ5UkiBI4/XmQcIAhLVYI/AAAAAAAACSk/posGzR9eqD4zllrPY3vGIk6wsFYBJtlRQCK4BGAYYCw/s400/AXN.png" group-title="CANAIS: FILMES E SÉRIES ✨",AXN HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/23692.ts
+#EXTINF:-1,US: ACC Network
+http://206.212.244.63/2486/index.m3u8
+#EXTINF:-1,US: Big Ten Network
+http://206.212.244.63/2489/index.m3u8
+#EXTINF:-1,US: SEC Network
+http://206.212.244.63/2511/index.m3u8
+#EXTINF:-1,USA | ACCUWEATHER
+http://206.212.244.63/3/index.m3u8
+#EXTINF:-1,USA | ACCUWEATHER
+http://206.212.244.63/674/index.m3u8
+#EXTINF:-1,USA | ESPN
+http://206.212.244.63/59/index.m3u8
 
-#EXTINF:-1 tvg-id="amc.br" tvg-name="AMC FHD H.265" tvg-logo="http://4.bp.blogspot.com/-BmCyUz8X3A0/XmQWD7ze5gI/AAAAAAAACSA/_d2wlKKsAHYzfU44Qc98JkHlJtpB724-gCK4BGAYYCw/s400/AMC.png" group-title="CANAIS: FILMES E SÉRIES ✨",AMC FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/81601.ts
-#EXTINF:-1 tvg-id="amc.br" tvg-name="AMC" tvg-logo="http://4.bp.blogspot.com/-BmCyUz8X3A0/XmQWD7ze5gI/AAAAAAAACSA/_d2wlKKsAHYzfU44Qc98JkHlJtpB724-gCK4BGAYYCw/s400/AMC.png" group-title="CANAIS: FILMES E SÉRIES ✨",AMC
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13498.ts
-#EXTINF:-1 tvg-id="amc.br" tvg-name="AMC FHD" tvg-logo="http://4.bp.blogspot.com/-BmCyUz8X3A0/XmQWD7ze5gI/AAAAAAAACSA/_d2wlKKsAHYzfU44Qc98JkHlJtpB724-gCK4BGAYYCw/s400/AMC.png" group-title="CANAIS: FILMES E SÉRIES ✨",AMC FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/23687.ts
-#EXTINF:-1 tvg-id="amc.br" tvg-name="AMC HD" tvg-logo="http://4.bp.blogspot.com/-BmCyUz8X3A0/XmQWD7ze5gI/AAAAAAAACSA/_d2wlKKsAHYzfU44Qc98JkHlJtpB724-gCK4BGAYYCw/s400/AMC.png" group-title="CANAIS: FILMES E SÉRIES ✨",AMC HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/23688.ts
+#EXTINF:-1,PT: EUROSPORT 1
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99481
+#EXTINF:-1,PT: EUROSPORT 2
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99482
+#EXTINF:-1,PT: SPORT TV +
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99483
+#EXTINF:-1,PT: SPORT TV 1
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99484
+#EXTINF:-1,PT: SPORT TV 2
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99485
+#EXTINF:-1,PT: SPORT TV 3
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99486
+#EXTINF:-1,PT: SPORT TV 4
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99487
+#EXTINF:-1,PT: SPORT TV 5
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99488
+#EXTINF:-1,PT: SPORT TV 6
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99489
+#EXTINF:-1,PT: SPORTING TV
+http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99490
 
-#EXTINF:-1 tvg-id="animal.planet.br" tvg-name="ANIMAL PLANET FHD H.265" tvg-logo="http://topxz.live/logos/Documentarios/ANIMAL_PLANET.png" group-title="CANAIS: DOCUMENTÁRIOS ✨",ANIMAL PLANET FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/304490.ts
-#EXTINF:-1 tvg-id="animal.planet.br" tvg-name="ANIMAL PLANET" tvg-logo="http://topxz.live/logos/Documentarios/ANIMAL_PLANET.png" group-title="CANAIS: DOCUMENTÁRIOS ✨",ANIMAL PLANET
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/304493.ts
-#EXTINF:-1 tvg-id="animal.planet.br" tvg-name="ANIMAL PLANET FHD" tvg-logo="http://topxz.live/logos/Documentarios/ANIMAL_PLANET.png" group-title="CANAIS: DOCUMENTÁRIOS ✨",ANIMAL PLANET FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/304491.ts
-#EXTINF:-1 tvg-id="animal.planet.br" tvg-name="ANIMAL PLANET HD" tvg-logo="http://topxz.live/logos/Documentarios/ANIMAL_PLANET.png" group-title="CANAIS: DOCUMENTÁRIOS ✨",ANIMAL PLANET HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/304492.ts
 
-#EXTINF:-1 tvg-id="arte.1.br" tvg-name="ARTE 1 HD" tvg-logo="http://topxz.live/logos/VARIEDADES/ARTE.png" group-title="CANAIS: FILMES E SÉRIES ✨",ARTE 1 HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/67511.ts
-#EXTINF:-1 tvg-id="arte.1.br" tvg-name="ARTE 1 FHD" tvg-logo="http://topxz.live/logos/VARIEDADES/ARTE.png" group-title="CANAIS: FILMES E SÉRIES ✨",ARTE 1 FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/67512.ts
 
-#EXTINF:-1 tvg-id="band.br" tvg-name="BAND SP FHD H.265" tvg-logo="http://1.bp.blogspot.com/-7wD5BCJxD9Y/Xk70MQFgPEI/AAAAAAAACDQ/BpR4PcQ1ou48cOLmC77yc1mz9xkZ0zssgCLcBGAsYHQ/s1600/band_2.png" group-title="CANAIS: BAND ✨",BAND SP FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/107926.ts
-#EXTINF:-1 tvg-id="band.br" tvg-name="BAND SP FHD" tvg-logo="http://1.bp.blogspot.com/-7wD5BCJxD9Y/Xk70MQFgPEI/AAAAAAAACDQ/BpR4PcQ1ou48cOLmC77yc1mz9xkZ0zssgCLcBGAsYHQ/s1600/band_2.png" group-title="CANAIS: BAND ✨",BAND SP FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/20525.ts
-#EXTINF:-1 tvg-id="band.br" tvg-name="BAND SP HD" tvg-logo="http://1.bp.blogspot.com/-7wD5BCJxD9Y/Xk70MQFgPEI/AAAAAAAACDQ/BpR4PcQ1ou48cOLmC77yc1mz9xkZ0zssgCLcBGAsYHQ/s1600/band_2.png" group-title="CANAIS: BAND ✨",BAND SP HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8660.ts
-
-#EXTINF:-1 tvg-id="bandsports.br" tvg-name="BAND SPORTS FHD H.265" tvg-logo="http://1.bp.blogspot.com/-w_-8bx1hzcI/XmUJ5N5F7VI/AAAAAAAACVA/xJhpJpOiCMEJfcx7tucUtNqdLs53IFp-QCK4BGAYYCw/s400/BAND%2BSPORT.png" group-title="CANAIS: ESPORTES ⚽",BAND SPORTS FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/81585.ts
-#EXTINF:-1 tvg-id="bandsports.br" tvg-name="BAND SPORTS FHD" tvg-logo="http://1.bp.blogspot.com/-w_-8bx1hzcI/XmUJ5N5F7VI/AAAAAAAACVA/xJhpJpOiCMEJfcx7tucUtNqdLs53IFp-QCK4BGAYYCw/s400/BAND%2BSPORT.png" group-title="CANAIS: ESPORTES ⚽",BAND SPORTS FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8661.ts
-#EXTINF:-1 tvg-id="bandsports.br" tvg-name="BAND SPORTS HD" tvg-logo="http://1.bp.blogspot.com/-w_-8bx1hzcI/XmUJ5N5F7VI/AAAAAAAACVA/xJhpJpOiCMEJfcx7tucUtNqdLs53IFp-QCK4BGAYYCw/s400/BAND%2BSPORT.png" group-title="CANAIS: ESPORTES ⚽",BAND SPORTS HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8662.ts
-
-#EXTINF:-1 tvg-id="band.news.br" tvg-name="BAND NEWS FHD H.265" tvg-logo="http://1.bp.blogspot.com/-gKeB31JX8Xo/Xk70NkypJQI/AAAAAAAACDY/WvdRe4gJKEUygQHJTlYRheW18D3S3WGDwCLcBGAsYHQ/s1600/bandnews.png" group-title="CANAIS: NOTÍCIAS ✨",BAND NEWS FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/81596.ts
-#EXTINF:-1 tvg-id="band.news.br" tvg-name="BAND NEWS FHD" tvg-logo="http://1.bp.blogspot.com/-gKeB31JX8Xo/Xk70NkypJQI/AAAAAAAACDY/WvdRe4gJKEUygQHJTlYRheW18D3S3WGDwCLcBGAsYHQ/s1600/bandnews.png" group-title="CANAIS: NOTÍCIAS ✨",BAND NEWS FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/108367.ts
-#EXTINF:-1 tvg-id="band.news.br" tvg-name="BAND NEWS HD" tvg-logo="http://1.bp.blogspot.com/-gKeB31JX8Xo/Xk70NkypJQI/AAAAAAAACDY/WvdRe4gJKEUygQHJTlYRheW18D3S3WGDwCLcBGAsYHQ/s1600/bandnews.png" group-title="CANAIS: NOTÍCIAS ✨",BAND NEWS HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/11769.ts
-
-#EXTINF:-1 tvg-id="cartoon.network.br" tvg-name="CARTOON NETWORK FHD H.265" tvg-logo="http://1.bp.blogspot.com/-aondLW2i3Nw/Xk70ObLd84I/AAAAAAAACDk/UaL7ElNQW-AaFhG-9gEv2FSWp28Cci5hACLcBGAsYHQ/s1600/cartoonnetwork.png" group-title="CANAIS: INFANTIS ✨",CARTOON NETWORK FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/125439.ts
-#EXTINF:-1 tvg-id="cartoon.network.br" tvg-name="CARTOON NETWORK" tvg-logo="http://1.bp.blogspot.com/-aondLW2i3Nw/Xk70ObLd84I/AAAAAAAACDk/UaL7ElNQW-AaFhG-9gEv2FSWp28Cci5hACLcBGAsYHQ/s1600/cartoonnetwork.png" group-title="CANAIS: INFANTIS ✨",CARTOON NETWORK
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13504.ts
-#EXTINF:-1 tvg-id="cartoon.network.br" tvg-name="CARTOON NETWORK FHD" tvg-logo="http://1.bp.blogspot.com/-aondLW2i3Nw/Xk70ObLd84I/AAAAAAAACDk/UaL7ElNQW-AaFhG-9gEv2FSWp28Cci5hACLcBGAsYHQ/s1600/cartoonnetwork.png" group-title="CANAIS: INFANTIS ✨",CARTOON NETWORK FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8698.ts
-#EXTINF:-1 tvg-id="cartoon.network.br" tvg-name="CARTOON NETWORK HD" tvg-logo="http://1.bp.blogspot.com/-aondLW2i3Nw/Xk70ObLd84I/AAAAAAAACDk/UaL7ElNQW-AaFhG-9gEv2FSWp28Cci5hACLcBGAsYHQ/s1600/cartoonnetwork.png" group-title="CANAIS: INFANTIS ✨",CARTOON NETWORK HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8699.ts
-
-#EXTINF:-1 tvg-id="cartoonito.br" tvg-name="CARTOONITO" tvg-logo="http://1.bp.blogspot.com/-n17CiRTaCyE/Xk70Nj_rjpI/AAAAAAAACDc/TsDf_fpQBlosivwrkLjoygIHYogbaV70ACLcBGAsYHQ/s1600/boomerang.png" group-title="CANAIS: INFANTIS ✨",CARTOONITO
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13503.ts
-#EXTINF:-1 tvg-id="cartoonito.br" tvg-name="CARTOONITO FHD" tvg-logo="http://1.bp.blogspot.com/-n17CiRTaCyE/Xk70Nj_rjpI/AAAAAAAACDc/TsDf_fpQBlosivwrkLjoygIHYogbaV70ACLcBGAsYHQ/s1600/boomerang.png" group-title="CANAIS: INFANTIS ✨",CARTOONITO FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8687.ts
-#EXTINF:-1 tvg-id="cartoonito.br" tvg-name="CARTOONITO HD" tvg-logo="http://1.bp.blogspot.com/-n17CiRTaCyE/Xk70Nj_rjpI/AAAAAAAACDc/TsDf_fpQBlosivwrkLjoygIHYogbaV70ACLcBGAsYHQ/s1600/boomerang.png" group-title="CANAIS: INFANTIS ✨",CARTOONITO HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8688.ts
-
-#EXTINF:-1 tvg-id="cinemax.br" tvg-name="CINEMAX FHD H.265" tvg-logo="http://2.bp.blogspot.com/-Pv-Nhnad2FE/XmQd6C0TObI/AAAAAAAACS8/bIFwGCAlgyQPppDIppaHqzF4js5Z4F4aQCK4BGAYYCw/s400/CINEMAX.png" group-title="CANAIS: FILMES E SÉRIES ✨",CINEMAX FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/107978.ts
-#EXTINF:-1 tvg-id="cinemax.br" tvg-name="CINEMAX" tvg-logo="http://2.bp.blogspot.com/-Pv-Nhnad2FE/XmQd6C0TObI/AAAAAAAACS8/bIFwGCAlgyQPppDIppaHqzF4js5Z4F4aQCK4BGAYYCw/s400/CINEMAX.png" group-title="CANAIS: FILMES E SÉRIES ✨",CINEMAX
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13505.ts
-#EXTINF:-1 tvg-id="cinemax.br" tvg-name="CINEMAX FHD" tvg-logo="http://2.bp.blogspot.com/-Pv-Nhnad2FE/XmQd6C0TObI/AAAAAAAACS8/bIFwGCAlgyQPppDIppaHqzF4js5Z4F4aQCK4BGAYYCw/s400/CINEMAX.png" group-title="CANAIS: FILMES E SÉRIES ✨",CINEMAX FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8708.ts
-#EXTINF:-1 tvg-id="cinemax.br" tvg-name="CINEMAX HD" tvg-logo="http://2.bp.blogspot.com/-Pv-Nhnad2FE/XmQd6C0TObI/AAAAAAAACS8/bIFwGCAlgyQPppDIppaHqzF4js5Z4F4aQCK4BGAYYCw/s400/CINEMAX.png" group-title="CANAIS: FILMES E SÉRIES ✨",CINEMAX HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8709.ts
-
-#EXTINF:-1 tvg-id="espn.br" tvg-name="ESPN FHD H.265" tvg-logo="http://1.bp.blogspot.com/-6WHUXIszhSo/Xk70ThUHf7I/AAAAAAAACEg/SiQTddgay9gyeGmfwBsvm57Fd4glh4wfgCLcBGAsYHQ/s1600/espn.png" group-title="CANAIS: ESPN ⚽",ESPN FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/598912.ts
-#EXTINF:-1 tvg-id="espn.br" tvg-name="ESPN" tvg-logo="http://1.bp.blogspot.com/-6WHUXIszhSo/Xk70ThUHf7I/AAAAAAAACEg/SiQTddgay9gyeGmfwBsvm57Fd4glh4wfgCLcBGAsYHQ/s1600/espn.png" group-title="CANAIS: ESPN ⚽",ESPN
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/598913.ts
-#EXTINF:-1 tvg-id="espn.br" tvg-name="ESPN FHD" tvg-logo="http://1.bp.blogspot.com/-6WHUXIszhSo/Xk70ThUHf7I/AAAAAAAACEg/SiQTddgay9gyeGmfwBsvm57Fd4glh4wfgCLcBGAsYHQ/s1600/espn.png" group-title="CANAIS: ESPN ⚽",ESPN FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/598914.ts
-#EXTINF:-1 tvg-id="espn.br" tvg-name="ESPN HD" tvg-logo="http://1.bp.blogspot.com/-6WHUXIszhSo/Xk70ThUHf7I/AAAAAAAACEg/SiQTddgay9gyeGmfwBsvm57Fd4glh4wfgCLcBGAsYHQ/s1600/espn.png" group-title="CANAIS: ESPN ⚽",ESPN HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/598916.ts
-
-#EXTINF:-1 tvg-id="espn.2.br" tvg-name="ESPN 2 FHD H.265" tvg-logo="http://4.bp.blogspot.com/-QEKZP5wwMMk/XmUOLIjM24I/AAAAAAAACVk/vYZXgfpe2V8F0hGEdRxhsJ6RACB0jei_gCK4BGAYYCw/s400/ESPN%2B2.png" group-title="CANAIS: ESPN ⚽",ESPN 2 FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/81587.ts
-#EXTINF:-1 tvg-id="espn.2.br" tvg-name="ESPN 2" tvg-logo="http://4.bp.blogspot.com/-QEKZP5wwMMk/XmUOLIjM24I/AAAAAAAACVk/vYZXgfpe2V8F0hGEdRxhsJ6RACB0jei_gCK4BGAYYCw/s400/ESPN%2B2.png" group-title="CANAIS: ESPN ⚽",ESPN 2
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13519.ts
-#EXTINF:-1 tvg-id="espn.2.br" tvg-name="ESPN 2 HD" tvg-logo="http://4.bp.blogspot.com/-QEKZP5wwMMk/XmUOLIjM24I/AAAAAAAACVk/vYZXgfpe2V8F0hGEdRxhsJ6RACB0jei_gCK4BGAYYCw/s400/ESPN%2B2.png" group-title="CANAIS: ESPN ⚽",ESPN 2 HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8786.ts
-#EXTINF:-1 tvg-id="espn.2.br" tvg-name="ESPN 2 FHD" tvg-logo="http://4.bp.blogspot.com/-QEKZP5wwMMk/XmUOLIjM24I/AAAAAAAACVk/vYZXgfpe2V8F0hGEdRxhsJ6RACB0jei_gCK4BGAYYCw/s400/ESPN%2B2.png" group-title="CANAIS: ESPN ⚽",ESPN 2 FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/131131.ts
-
-#EXTINF:-1 tvg-id="espn.3.br" tvg-name="ESPN 3 FHD H.265" tvg-logo="http://cdn.mitvstatic.com/channels/gt_espn-3_m.png" group-title="CANAIS: ESPN ⚽",ESPN 3 FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/81588.ts
-#EXTINF:-1 tvg-id="espn.3.br" tvg-name="ESPN 3" tvg-logo="http://cdn.mitvstatic.com/channels/gt_espn-3_m.png" group-title="CANAIS: ESPN ⚽",ESPN 3
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13520.ts
-#EXTINF:-1 tvg-id="espn.3.br" tvg-name="ESPN 3 FHD" tvg-logo="http://cdn.mitvstatic.com/channels/gt_espn-3_m.png" group-title="CANAIS: ESPN ⚽",ESPN 3 FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8788.ts
-#EXTINF:-1 tvg-id="espn.3.br" tvg-name="ESPN 3 HD" tvg-logo="http://cdn.mitvstatic.com/channels/gt_espn-3_m.png" group-title="CANAIS: ESPN ⚽",ESPN 3 HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8787.ts
-
-#EXTINF:-1 tvg-id="hbo.br" tvg-name="HBO FHD H.265" tvg-logo="http://1.bp.blogspot.com/-KUhkg79gvtE/Xk70Ycy0l6I/AAAAAAAACFU/FSdt9HsRs98gkzltg-oGA049omcb1KWlQCLcBGAsYHQ/s1600/hbo.png" group-title="CANAIS: HBO ✨",HBO FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/94381.ts
-#EXTINF:-1 tvg-id="hbo.br" tvg-name="HBO FHD" tvg-logo="http://1.bp.blogspot.com/-KUhkg79gvtE/Xk70Ycy0l6I/AAAAAAAACFU/FSdt9HsRs98gkzltg-oGA049omcb1KWlQCLcBGAsYHQ/s1600/hbo.png" group-title="CANAIS: HBO ✨",HBO FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8902.ts
-#EXTINF:-1 tvg-id="hbo.br" tvg-name="HBO HD" tvg-logo="http://1.bp.blogspot.com/-KUhkg79gvtE/Xk70Ycy0l6I/AAAAAAAACFU/FSdt9HsRs98gkzltg-oGA049omcb1KWlQCLcBGAsYHQ/s1600/hbo.png" group-title="CANAIS: HBO ✨",HBO HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8903.ts
-
-#EXTINF:-1 tvg-id="hbo2.br" tvg-name="HBO 2 FHD H.265" tvg-logo="http://1.bp.blogspot.com/-lDifYsJ1bkU/Xk70YgIlO9I/AAAAAAAACFY/H1zNEDSJMCwy4RC_c_8ol0eGstwkb4R7gCLcBGAsYHQ/s1600/hbo2.png" group-title="CANAIS: HBO ✨",HBO 2 FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/94382.ts
-#EXTINF:-1 tvg-id="hbo2.br" tvg-name="HBO 2" tvg-logo="http://1.bp.blogspot.com/-lDifYsJ1bkU/Xk70YgIlO9I/AAAAAAAACFY/H1zNEDSJMCwy4RC_c_8ol0eGstwkb4R7gCLcBGAsYHQ/s1600/hbo2.png" group-title="CANAIS: HBO ✨",HBO 2
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/13529.ts
-#EXTINF:-1 tvg-id="hbo2.br" tvg-name="HBO 2 FHD" tvg-logo="http://1.bp.blogspot.com/-lDifYsJ1bkU/Xk70YgIlO9I/AAAAAAAACFY/H1zNEDSJMCwy4RC_c_8ol0eGstwkb4R7gCLcBGAsYHQ/s1600/hbo2.png" group-title="CANAIS: HBO ✨",HBO 2 FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/8897.ts
-
-#EXTINF:-1 tvg-id="telecine.action.br" tvg-name="TELECINE ACTION FHD H.265" tvg-logo="http://1.bp.blogspot.com/-pIwQ4jpCaSA/Xk70h2WvMuI/AAAAAAAACG8/H7IRhohaMuIRdiA7vvJOAP8WhylZVCw8ACLcBGAsYHQ/s1600/tcaction.png" group-title="CANAIS: TELECINE ✨",TELECINE ACTION FHD H.265
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/94375.ts
-#EXTINF:-1 tvg-id="telecine.action.br" tvg-name="TELECINE ACTION" tvg-logo="http://1.bp.blogspot.com/-pIwQ4jpCaSA/Xk70h2WvMuI/AAAAAAAACG8/H7IRhohaMuIRdiA7vvJOAP8WhylZVCw8ACLcBGAsYHQ/s1600/tcaction.png" group-title="CANAIS: TELECINE ✨",TELECINE ACTION
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/24533.ts
-#EXTINF:-1 tvg-id="telecine.action.br" tvg-name="TELECINE ACTION FHD" tvg-logo="http://1.bp.blogspot.com/-pIwQ4jpCaSA/Xk70h2WvMuI/AAAAAAAACG8/H7IRhohaMuIRdiA7vvJOAP8WhylZVCw8ACLcBGAsYHQ/s1600/tcaction.png" group-title="CANAIS: TELECINE ✨",TELECINE ACTION FHD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/9126.ts
-#EXTINF:-1 tvg-id="telecine.action.br" tvg-name="TELECINE ACTION HD" tvg-logo="http://1.bp.blogspot.com/-pIwQ4jpCaSA/Xk70h2WvMuI/AAAAAAAACG8/H7IRhohaMuIRdiA7vvJOAP8WhylZVCw8ACLcBGAsYHQ/s1600/tcaction.png" group-title="CANAIS: TELECINE ✨",TELECINE ACTION HD
-http://corruptx.org:80/3llohwk4g9/kwf099q30o/9127.ts
+#EXTINF:-1,Eurosport 2  HD
+http://89.44.231.117:7000/eurosport2
+#EXTINF:-1,Eurosport HD
+http://89.44.231.117:7000/eurosport
+#EXTINF:-1,Eurosport 2 HD
+http://89.44.231.73:7000/eurosport2
+#EXTINF:-1,Eurosport HD
+http://89.44.231.73:7000/eurosport
+#EXTINF:-1,Eurosport 2 HD
+http://89.44.231.115:7000/eurosport2
+#EXTINF:-1,Eurosport HD
+http://89.44.231.115:7000/eurosport
