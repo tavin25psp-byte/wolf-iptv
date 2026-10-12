@@ -10,6 +10,7 @@ import android.net.Uri
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.speech.RecognizerIntent
+import android.text.InputType
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.KeyEvent
@@ -37,6 +38,9 @@ import java.net.HttpURLConnection
 import java.net.URL
 import java.security.MessageDigest
 import java.text.Normalizer
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 
@@ -174,14 +178,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         criarInterface()
-        carregarCatalogo()
+        verificarAssinatura()   // só carrega o catálogo se o código estiver válido
         mostrarUltimoErro()
 
-        // A cada 2 minutos confere se há novidades no catálogo.
+        // A cada 2 minutos confere novidades; a cada 10, a assinatura.
         activityScope.launch {
+            var ciclo = 0
             while (true) {
                 delay(120_000L)
-                verificarNovidades()
+                ciclo++
+                if (catalogoIniciado) verificarNovidades()
+                if (ciclo % 5 == 0) verificarAssinatura()
             }
         }
     }
@@ -820,6 +827,161 @@ class MainActivity : AppCompatActivity() {
         } finally {
             conexao?.disconnect()
         }
+    }
+
+    // ===== ASSINATURA (CÓDIGO DO CLIENTE) =====
+    // Cada cliente tem um código. O app confere em clientes/<hash do código>.json
+    // no GitHub: {"ativo": true, "ate": "2026-12-31"}. Vencido, bloqueado ou
+    // inexistente = o app não carrega o catálogo.
+
+    // Mude para true quando quiser exigir o código de acesso dos clientes.
+    private val EXIGIR_CODIGO = false
+
+    private val DIAS_OFFLINE = 3
+    private var dialogoCodigoAberto = false
+    private var catalogoIniciado = false
+
+    private enum class ResultadoCodigo { OK, VENCIDO, BLOQUEADO, INVALIDO, SEM_INTERNET }
+
+    private fun normalizarCodigo(codigo: String): String =
+        codigo.uppercase().filter { it in 'A'..'Z' || it in '0'..'9' }
+
+    private fun nomeArquivoCodigo(codigo: String): String {
+        val resumo = MessageDigest.getInstance("SHA-256")
+            .digest(normalizarCodigo(codigo).toByteArray(Charsets.UTF_8))
+            .joinToString("") { "%02x".format(it) }
+        return resumo.take(16)
+    }
+
+    // Roda fora da tela principal (rede).
+    private fun conferirCodigo(codigo: String): ResultadoCodigo {
+        if (normalizarCodigo(codigo).length < 4) return ResultadoCodigo.INVALIDO
+
+        var conexao: HttpURLConnection? = null
+        return try {
+            val url = BASE_URL + "clientes/" + nomeArquivoCodigo(codigo) +
+                ".json?t=" + System.currentTimeMillis()
+
+            conexao = URL(url).openConnection() as HttpURLConnection
+            conexao.connectTimeout = 15000
+            conexao.readTimeout = 15000
+            conexao.requestMethod = "GET"
+            conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
+            conexao.setRequestProperty("Cache-Control", "no-cache")
+            conexao.connect()
+
+            val status = conexao.responseCode
+            if (status == 404) return ResultadoCodigo.INVALIDO
+            if (status !in 200..299) return ResultadoCodigo.SEM_INTERNET
+
+            val texto = conexao.inputStream
+                .bufferedReader(Charsets.UTF_8).use { it.readText() }
+            val json = JSONObject(texto.trim())
+
+            if (!json.optBoolean("ativo", false)) return ResultadoCodigo.BLOQUEADO
+
+            val ate = json.optString("ate", "")
+            val hoje = SimpleDateFormat("yyyy-MM-dd", Locale.US).format(Date())
+
+            if (ate.isNotBlank() && hoje > ate) ResultadoCodigo.VENCIDO
+            else ResultadoCodigo.OK
+        } catch (_: Throwable) {
+            ResultadoCodigo.SEM_INTERNET
+        } finally {
+            conexao?.disconnect()
+        }
+    }
+
+    private fun liberarApp() {
+        if (!catalogoIniciado) {
+            catalogoIniciado = true
+            carregarCatalogo()
+        }
+    }
+
+    private fun bloquearApp(mensagem: String) {
+        limparConteudo()
+        mostrarMensagemVazia(mensagem)
+        pedirCodigo(mensagem)
+    }
+
+    private fun verificarAssinatura() {
+        if (!EXIGIR_CODIGO) {
+            liberarApp()
+            return
+        }
+
+        activityScope.launch(Dispatchers.IO) {
+            val prefs = getSharedPreferences("wolf_prefs", MODE_PRIVATE)
+            val codigo = prefs.getString("codigo", null)
+
+            if (codigo.isNullOrBlank()) {
+                withContext(Dispatchers.Main) {
+                    pedirCodigo("Digite o código de acesso que você recebeu.")
+                }
+                return@launch
+            }
+
+            var resultado = conferirCodigo(codigo)
+
+            if (resultado == ResultadoCodigo.OK) {
+                prefs.edit().putLong("ultima_ok", System.currentTimeMillis()).apply()
+            } else if (resultado == ResultadoCodigo.SEM_INTERNET) {
+                // Sem internet: deixa usar por alguns dias com a última validação.
+                val ultima = prefs.getLong("ultima_ok", 0L)
+                if (System.currentTimeMillis() - ultima <= DIAS_OFFLINE * 86400000L) {
+                    resultado = ResultadoCodigo.OK
+                }
+            }
+
+            withContext(Dispatchers.Main) {
+                when (resultado) {
+                    ResultadoCodigo.OK -> liberarApp()
+                    ResultadoCodigo.VENCIDO ->
+                        bloquearApp("Assinatura vencida. Fale com o suporte para renovar.")
+                    ResultadoCodigo.BLOQUEADO ->
+                        bloquearApp("Acesso bloqueado. Fale com o suporte.")
+                    ResultadoCodigo.INVALIDO ->
+                        bloquearApp("Código inválido. Confira e digite de novo.")
+                    ResultadoCodigo.SEM_INTERNET ->
+                        bloquearApp("Sem internet. Conecte a internet para validar seu acesso.")
+                }
+            }
+        }
+    }
+
+    private fun pedirCodigo(mensagem: String) {
+        if (dialogoCodigoAberto || isFinishing) return
+        dialogoCodigoAberto = true
+
+        val prefs = getSharedPreferences("wolf_prefs", MODE_PRIVATE)
+
+        val campo = EditText(this).apply {
+            hint = "XXXX-XXXX"
+            textSize = 22f
+            setSingleLine(true)
+            inputType = InputType.TYPE_CLASS_TEXT or
+                InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS
+            setText(prefs.getString("codigo", "") ?: "")
+        }
+
+        AlertDialog.Builder(this)
+            .setTitle("WOLF IPTV – Código de acesso")
+            .setMessage(mensagem)
+            .setView(campo)
+            .setCancelable(false)
+            .setPositiveButton("Entrar") { _, _ ->
+                dialogoCodigoAberto = false
+                prefs.edit()
+                    .putString("codigo", campo.text.toString().trim())
+                    .apply()
+                verificarAssinatura()
+            }
+            .setNegativeButton("Sair") { _, _ ->
+                dialogoCodigoAberto = false
+                finish()
+            }
+            .show()
     }
 
     // ===== AVISO DE NOVIDADES NO "ATUALIZAR CATÁLOGO" =====
@@ -1672,6 +1834,8 @@ class MainActivity : AppCompatActivity() {
         val validas = COLECOES
             .map { it to filmesDaColecao(it) }
             .filter { it.second.size >= COLECAO_MINIMO }
+            // As que já têm filmes vão primeiro (a ordem alfabética se mantém).
+            .sortedByDescending { it.second.isNotEmpty() }
 
         if (validas.isEmpty()) return
 
