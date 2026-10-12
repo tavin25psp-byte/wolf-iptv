@@ -1,4 +1,5 @@
 
+
 package com.wolf.iptv
 
 import android.content.Intent
@@ -49,7 +50,8 @@ data class Filme(
     val ano: Int,
     val categoria: String,
     val capa: String,
-    val video: String
+    val video: String,
+    val sinopse: String = ""
 )
 
 data class Episodio(
@@ -67,7 +69,8 @@ data class Serie(
     val titulo: String,
     val categoria: String,
     val capa: String,
-    val temporadas: List<Temporada>
+    val temporadas: List<Temporada>,
+    val sinopse: String = ""
 )
 
 class MainActivity : AppCompatActivity() {
@@ -595,7 +598,8 @@ class MainActivity : AppCompatActivity() {
                                         anoDoItem(item),
                                         item.optString("categoria", ""),
                                         item.optString("capa", ""),
-                                        item.optString("video", "")
+                                        item.optString("video", ""),
+                                        item.optString("sinopse", item.optString("descricao", ""))
                                     )
                                 )
                             }
@@ -675,7 +679,7 @@ class MainActivity : AppCompatActivity() {
 
                             if (titulo.isNotBlank()) {
                                 resultado.add(
-                                    Serie(titulo, categoria, capa, temporadas)
+                                    Serie(titulo, categoria, capa, temporadas, objeto.optString("sinopse", objeto.optString("descricao", "")))
                                 )
                             }
                         } catch (_: Exception) {
@@ -705,7 +709,8 @@ class MainActivity : AppCompatActivity() {
                                         anoDoItem(item),
                                         item.optString("categoria", ""),
                                         item.optString("capa", ""),
-                                        item.optString("video", "")
+                                        item.optString("video", ""),
+                                        item.optString("sinopse", item.optString("descricao", ""))
                                     )
                                 )
                             }
@@ -1278,7 +1283,7 @@ class MainActivity : AppCompatActivity() {
         montarGrade(lista.map { criarCard(it) })
     }
 
-    private fun criarCard(filme: Filme): View {
+    private fun criarCard(filme: Filme, comDetalhes: Boolean = true): View {
         val (card, _) = criarCardBase(
             filme.capa,
             rodapeDuasLinhas(
@@ -1292,7 +1297,18 @@ class MainActivity : AppCompatActivity() {
         )
 
         card.setOnClickListener {
-            abrirVideo(filme.titulo, filme.video, filme.capa)
+            if (comDetalhes) {
+                mostrarDetalhes(
+                    filme.titulo,
+                    filme.capa,
+                    if (filme.ano > 0) "${filme.ano}  •  ${filme.categoria}" else filme.categoria,
+                    filme.sinopse,
+                    "▶  ASSISTIR",
+                    WolfProgress.posicao(this, filme.video)
+                ) { abrirVideo(filme.titulo, filme.video, filme.capa) }
+            } else {
+                abrirVideo(filme.titulo, filme.video, filme.capa)
+            }
         }
 
         return card
@@ -1310,6 +1326,187 @@ class MainActivity : AppCompatActivity() {
         montarGrade(lista.map { criarCardSerie(it) })
     }
 
+    // ===== TELA DE SINOPSE (detalhes) =====
+
+    private fun botaoDetalhe(texto: String, principal: Boolean): TextView {
+        val b = TextView(this).apply {
+            text = texto
+            setTextColor(Color.WHITE)
+            textSize = 17f
+            typeface = Typeface.DEFAULT_BOLD
+            gravity = Gravity.CENTER
+            isFocusable = true
+            isFocusableInTouchMode = true
+            isClickable = true
+            setPadding(dp(28), dp(14), dp(28), dp(14))
+        }
+        fun estilo(foco: Boolean) {
+            val g = GradientDrawable()
+            g.cornerRadius = dp(10).toFloat()
+            g.setColor(
+                if (principal) Color.rgb(220, 20, 30)
+                else Color.argb(150, 60, 60, 60)
+            )
+            if (foco) g.setStroke(dp(3), Color.WHITE)
+            b.background = g
+            b.scaleX = if (foco) 1.06f else 1f
+            b.scaleY = if (foco) 1.06f else 1f
+        }
+        estilo(false)
+        b.setOnFocusChangeListener { _, f -> estilo(f) }
+        return b
+    }
+
+    private fun mostrarDetalhes(
+        titulo: String,
+        capa: String,
+        meta: String,
+        sinopse: String,
+        textoAssistir: String,
+        posicaoMs: Long,
+        aoAssistir: () -> Unit
+    ) {
+        val dialogo = android.app.Dialog(
+            this,
+            android.R.style.Theme_Black_NoTitleBar_Fullscreen
+        )
+
+        val raizD = FrameLayout(this).apply { setBackgroundColor(Color.BLACK) }
+
+        // Fundo: a própria capa, escurecida
+        val fundo = ImageView(this).apply {
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            alpha = 0.30f
+        }
+        carregarImagem(
+            capa, fundo,
+            resources.displayMetrics.widthPixels / 2,
+            resources.displayMetrics.heightPixels / 2,
+            true
+        )
+        raizD.addView(fundo, FrameLayout.LayoutParams(-1, -1))
+
+        val veu = View(this).apply {
+            background = GradientDrawable(
+                GradientDrawable.Orientation.LEFT_RIGHT,
+                intArrayOf(Color.argb(235, 0, 0, 0), Color.argb(120, 0, 0, 0))
+            )
+        }
+        raizD.addView(veu, FrameLayout.LayoutParams(-1, -1))
+
+        val paisagem = resources.displayMetrics.widthPixels >
+            resources.displayMetrics.heightPixels
+
+        val poster = ImageView(this).apply {
+            scaleType = ImageView.ScaleType.FIT_CENTER
+            val g = GradientDrawable()
+            g.setColor(Color.argb(120, 20, 20, 20))
+            g.cornerRadius = dp(12).toFloat()
+            background = g
+            clipToOutline = true
+        }
+        carregarImagem(capa, poster)
+
+        val coluna = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+        }
+
+        coluna.addView(TextView(this).apply {
+            text = titulo
+            setTextColor(Color.WHITE)
+            textSize = if (paisagem) 32f else 26f
+            typeface = Typeface.DEFAULT_BOLD
+        })
+
+        coluna.addView(TextView(this).apply {
+            text = meta
+            setTextColor(Color.rgb(255, 90, 90))
+            textSize = 16f
+            typeface = Typeface.DEFAULT_BOLD
+            setPadding(0, dp(8), 0, dp(14))
+        })
+
+        coluna.addView(TextView(this).apply {
+            text = "SINOPSE"
+            setTextColor(Color.rgb(170, 170, 170))
+            textSize = 13f
+            letterSpacing = 0.15f
+            typeface = Typeface.DEFAULT_BOLD
+            setPadding(0, 0, 0, dp(6))
+        })
+
+        coluna.addView(TextView(this).apply {
+            text = if (sinopse.isNotBlank()) sinopse
+                else "Sinopse ainda não disponível para este título."
+            setTextColor(
+                if (sinopse.isNotBlank()) Color.rgb(225, 225, 225)
+                else Color.rgb(140, 140, 140)
+            )
+            textSize = 17f
+            setLineSpacing(0f, 1.2f)
+        })
+
+        val botoes = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            setPadding(0, dp(26), 0, 0)
+        }
+
+        val assistir = botaoDetalhe(
+            if (posicaoMs > 0L) "▶  CONTINUAR (${WolfProgress.formatar(posicaoMs)})"
+            else textoAssistir,
+            true
+        )
+        assistir.setOnClickListener {
+            dialogo.dismiss()
+            aoAssistir()
+        }
+        botoes.addView(
+            assistir,
+            LinearLayout.LayoutParams(-2, -2).apply { rightMargin = dp(14) }
+        )
+
+        val voltar = botaoDetalhe("VOLTAR", false)
+        voltar.setOnClickListener { dialogo.dismiss() }
+        botoes.addView(voltar, LinearLayout.LayoutParams(-2, -2))
+
+        coluna.addView(botoes)
+
+        val conteudo = LinearLayout(this).apply {
+            orientation = if (paisagem) LinearLayout.HORIZONTAL
+                else LinearLayout.VERTICAL
+            setPadding(dp(40), dp(28), dp(40), dp(28))
+        }
+
+        if (paisagem) {
+            conteudo.addView(
+                poster,
+                LinearLayout.LayoutParams(dp(230), dp(345)).apply {
+                    rightMargin = dp(36)
+                }
+            )
+        } else {
+            conteudo.addView(
+                poster,
+                LinearLayout.LayoutParams(dp(180), dp(270)).apply {
+                    bottomMargin = dp(20)
+                    gravity = Gravity.CENTER_HORIZONTAL
+                }
+            )
+        }
+
+        val rolagem = ScrollView(this).apply { isFillViewport = true }
+        rolagem.addView(coluna)
+        conteudo.addView(rolagem, LinearLayout.LayoutParams(0, -1, 1f).also {
+            if (!paisagem) { it.width = -1; it.height = 0 }
+        })
+
+        raizD.addView(conteudo, FrameLayout.LayoutParams(-1, -1))
+
+        dialogo.setContentView(raizD)
+        dialogo.show()
+        assistir.requestFocus()
+    }
+
     private fun criarCardSerie(serie: Serie): View {
         val (card, _) = criarCardBase(
             serie.capa,
@@ -1320,9 +1517,19 @@ class MainActivity : AppCompatActivity() {
         )
 
         card.setOnClickListener {
-            val origem = listaSeriesAtual
-            historicoConteudo.add { mostrarListaSeries(origem) }
-            mostrarTemporadas(serie)
+            val total = serie.temporadas.sumOf { it.episodios.size }
+            mostrarDetalhes(
+                serie.titulo,
+                serie.capa,
+                "${serie.categoria}  •  ${serie.temporadas.size} temporada(s)  •  $total episódios",
+                serie.sinopse,
+                "▶  VER EPISÓDIOS",
+                0L
+            ) {
+                val origem = listaSeriesAtual
+                historicoConteudo.add { mostrarListaSeries(origem) }
+                mostrarTemporadas(serie)
+            }
         }
 
         return card
@@ -1555,7 +1762,7 @@ class MainActivity : AppCompatActivity() {
             Filme(it.titulo, 0, it.resumo(), it.capa, it.url)
         }
 
-        montarGrade(filmesEmAndamento.map { criarCard(it) })
+        montarGrade(filmesEmAndamento.map { criarCard(it, false) })
     }
 
     // ===== MENU LATERAL =====
