@@ -1,6 +1,52 @@
 #EXTM3U
 
 # ==========================================
+# REALITY SHOW
+# ==========================================
+#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h
+http://45.185.11.126:8000/play/a0a2/index.m3u8
+
+# ==========================================
+# CANAIS DO BRASIL - ESPORTES
+# ==========================================
+#EXTINF:-1 group-title="BR | Esportes",Band Sports HD
+http://45.185.11.126:8000/play/a05o/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Combate HD
+http://45.185.11.126:8000/play/a073/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",ESPN 4 HD
+http://45.185.11.126:8000/play/a05m/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",ESPN 5 HD
+http://45.185.11.126:8000/play/a05n/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",ESPN 6 HD
+http://45.185.11.126:8000/play/a084/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",GE TV HD
+http://45.185.11.126:8000/play/a08v/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere Clubes HD
+http://45.185.11.126:8000/play/a06g/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 2 HD
+http://45.185.11.126:8000/play/a06h/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 3 HD
+http://45.185.11.126:8000/play/a0av/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 4 HD
+http://45.185.11.126:8000/play/a07b/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 5 HD
+http://45.185.11.126:8000/play/a07c/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 6 HD
+http://45.185.11.126:8000/play/a05j/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 7 HD
+http://45.185.11.126:8000/play/a05k/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",Premiere 8 HD
+http://45.185.11.126:8000/play/a05l/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",sportv HD
+http://45.185.11.126:8000/play/a05g/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",sportv2 HD
+http://45.185.11.126:8000/play/a05f/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",sportv3 HD
+http://45.185.11.126:8000/play/a06v/index.m3u8
+#EXTINF:-1 group-title="BR | Esportes",TNT Sports HD
+http://45.185.11.126:8000/play/a0bi/index.m3u8
+
+# ==========================================
 # CANAIS DO BRASIL - FILMES E SÉRIES
 # ==========================================
 #EXTINF:-1 group-title="BR | Filmes e Séries",AMC HD
@@ -63,46 +109,6 @@ http://45.185.11.126:8000/play/a08m/index.m3u8
 http://45.185.11.126:8000/play/a06k/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Warner Channel HD
 http://45.185.11.126:8000/play/a0am/index.m3u8
-
-# ==========================================
-# CANAIS DO BRASIL - ESPORTES
-# ==========================================
-#EXTINF:-1 group-title="BR | Esportes",Band Sports HD
-http://45.185.11.126:8000/play/a05o/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Combate HD
-http://45.185.11.126:8000/play/a073/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",ESPN 4 HD
-http://45.185.11.126:8000/play/a05m/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",ESPN 5 HD
-http://45.185.11.126:8000/play/a05n/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",ESPN 6 HD
-http://45.185.11.126:8000/play/a084/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",GE TV HD
-http://45.185.11.126:8000/play/a08v/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere Clubes HD
-http://45.185.11.126:8000/play/a06g/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere 2 HD
-http://45.185.11.126:8000/play/a06h/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere 3 HD
-http://45.185.11.126:8000/play/a0av/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere 4 HD
-http://45.185.11.126:8000/play/a07b/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere 5 HD
-http://45.185.11.126:8000/play/a07c/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere 6 HD
-http://45.185.11.126:8000/play/a05j/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere 7 HD
-http://45.185.11.126:8000/play/a05k/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",Premiere 8 HD
-http://45.185.11.126:8000/play/a05l/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",sportv HD
-http://45.185.11.126:8000/play/a05g/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",sportv2 HD
-http://45.185.11.126:8000/play/a05f/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",sportv3 HD
-http://45.185.11.126:8000/play/a06v/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",TNT Sports HD
-http://45.185.11.126:8000/play/a0bi/index.m3u8
 
 # ==========================================
 # CANAIS DO BRASIL - NOTÍCIAS
