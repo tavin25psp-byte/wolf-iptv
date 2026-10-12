@@ -71,78 +71,32 @@ http://45.185.11.126:8000/play/a0aq/index.m3u8
 http://45.185.11.126:8000/play/a08b/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Studio Universal HD
 http://45.185.11.126:8000/play/a06o/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Premium HD
-http://45.185.11.126:8000/play/a08e/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action HD
-http://45.185.11.126:8000/play/a058/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Touch HD
-http://45.185.11.126:8000/play/a08f/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun HD
-http://45.185.11.126:8000/play/a059/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Pipoca HD
-http://45.185.11.126:8000/play/a08g/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult HD
-http://45.185.11.126:8000/play/a05a/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action 4K
-http://149.102.252.201:80/171350/B89tAq/90503.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/90239.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action FHD
-http://149.102.252.201:80/171350/B89tAq/72346.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/72346.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action FHD [H265]
-http://149.102.252.201:80/171350/B89tAq/72347.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/72347.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action FHD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90668.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/90668.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action HD
-http://149.102.252.201:80/171350/B89tAq/72348.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/72348.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action HD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90667.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/90667.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action SD
-http://149.102.252.201:80/171350/B89tAq/72349.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/72349.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Action SD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90666.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/90666.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult 4K
-http://149.102.252.201:80/171350/B89tAq/103456.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/103456.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult FHD
-http://149.102.252.201:80/171350/B89tAq/72350.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/72350.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult FHD [H265]
-http://149.102.252.201:80/171350/B89tAq/72351.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/72351.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult FHD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90665.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/90665.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult HD
-http://149.102.252.201:80/171350/B89tAq/72352.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult HD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90664.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult SD
-http://149.102.252.201:80/171350/B89tAq/72353.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Cult SD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90663.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun 4K
-http://149.102.252.201:80/171350/B89tAq/103455.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun FHD
-http://149.102.252.201:80/171350/B89tAq/72354.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun FHD [H265]
-http://149.102.252.201:80/171350/B89tAq/72355.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun FHD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90662.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun HD
-http://149.102.252.201:80/171350/B89tAq/72356.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun HD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90661.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun SD
-http://149.102.252.201:80/171350/B89tAq/72357.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Fun SD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90660.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Pipoca 4K
-http://149.102.252.201:80/171350/B89tAq/90238.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Pipoca FHD
-http://149.102.252.201:80/171350/B89tAq/72358.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Pipoca FHD [H265]
-http://149.102.252.201:80/171350/B89tAq/72359.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Pipoca FHD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90659.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Pipoca HD
-http://149.102.252.201:80/171350/B89tAq/72360.ts
-#EXTINF:-1 group-title="BR | Filmes e Séries",Telecine Pipoca HD [LEG]
-http://149.102.252.201:80/171350/B89tAq/90658.ts
+http://tjtor8411.com:80/Osiel123/Felicidade321/72352.ts
 #EXTINF:-1 group-title="BR | Filmes e Séries",TNT Novelas HD
 http://45.185.11.126:8000/play/a088/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",TNT Séries HD
@@ -231,6 +185,18 @@ http://45.185.11.126:8000/play/a07x/index.m3u8
 http://45.185.11.126:8000/play/a08c/index.m3u8
 #EXTINF:-1 group-title="BR | Variedades",Woohoo HD
 http://45.185.11.126:8000/play/a075/index.m3u8
+#EXTINF:-1 group-title="BR | Variedades",A Fazenda Cam 1 FHD
+http://tjtor8411.com:80/Osiel123/Felicidade321/397317.ts
+#EXTINF:-1 group-title="BR | Variedades",A Fazenda Cam 2 FHD
+http://tjtor8411.com:80/Osiel123/Felicidade321/397320.ts
+#EXTINF:-1 group-title="BR | Variedades",A Fazenda Cam 3 FHD
+http://tjtor8411.com:80/Osiel123/Felicidade321/397321.ts
+#EXTINF:-1 group-title="BR | Variedades",A Fazenda Cam 4 FHD
+http://tjtor8411.com:80/Osiel123/Felicidade321/397322.ts
+#EXTINF:-1 group-title="BR | Variedades",A Fazenda Cam 5 FHD
+http://tjtor8411.com:80/Osiel123/Felicidade321/397323.ts
+#EXTINF:-1 group-title="BR | Variedades",A Fazenda Cam 6 FHD
+http://tjtor8411.com:80/Osiel123/Felicidade321/397324.ts
 #EXTINF:-1 group-title="EUA | Esportes",US ACC Network
 http://206.212.244.63/2486/index.m3u8
 #EXTINF:-1 group-title="EUA | Esportes",US Big Ten Network
