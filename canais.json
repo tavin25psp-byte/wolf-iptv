@@ -1,12 +1,16 @@
 #EXTM3U
-#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h
-http://45.185.11.126:8000/play/a0a2/index.m3u8
-#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h - Câmera 2
-http://45.185.11.126:8000/play/a0a3/index.m3u8
-#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h - Câmera 3
-http://45.185.11.126:8000/play/a0a4/index.m3u8
-#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h - Câmera 4
-http://45.185.11.126:8000/play/a0a5/index.m3u8
+#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda Cam 1 FHD
+http://149.102.252.201:80/171350/B89tAq/397317.ts
+#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda Cam 2 FHD
+http://149.102.252.201:80/171350/B89tAq/397320.ts
+#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda Cam 3 FHD
+http://149.102.252.201:80/171350/B89tAq/397321.ts
+#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda Cam 4 FHD
+http://149.102.252.201:80/171350/B89tAq/397322.ts
+#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda Cam 5 FHD
+http://149.102.252.201:80/171350/B89tAq/397323.ts
+#EXTINF:-1 group-title="BR | Reality Shows",A Fazenda Cam 6 FHD
+http://149.102.252.201:80/171350/B89tAq/397324.ts
 #EXTINF:-1 group-title="BR | Esportes",Band Sports HD
 http://45.185.11.126:8000/play/a05o/index.m3u8
 #EXTINF:-1 group-title="BR | Esportes",Combate HD
