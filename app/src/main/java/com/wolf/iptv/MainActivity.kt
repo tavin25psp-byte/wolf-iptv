@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONArray
@@ -175,6 +176,14 @@ class MainActivity : AppCompatActivity() {
         criarInterface()
         carregarCatalogo()
         mostrarUltimoErro()
+
+        // A cada 2 minutos confere se há novidades no catálogo.
+        activityScope.launch {
+            while (true) {
+                delay(120_000L)
+                verificarNovidades()
+            }
+        }
     }
 
     private fun mostrarUltimoErro() {
@@ -328,7 +337,8 @@ class MainActivity : AppCompatActivity() {
                 val bitmap = decodificarImagemOtimizada(
                     arquivo,
                     resources.displayMetrics.widthPixels,
-                    resources.displayMetrics.heightPixels
+                    resources.displayMetrics.heightPixels,
+                    true
                 )
                 if (bitmap != null) {
                     cacheCapas.put(url, bitmap)
@@ -343,7 +353,8 @@ class MainActivity : AppCompatActivity() {
             url,
             imagem,
             resources.displayMetrics.widthPixels,
-            resources.displayMetrics.heightPixels
+            resources.displayMetrics.heightPixels,
+            true
         )
     }
 
@@ -424,7 +435,8 @@ class MainActivity : AppCompatActivity() {
         url: String,
         imagem: ImageView,
         larguraAlvo: Int = 0,
-        alturaAlvo: Int = 0
+        alturaAlvo: Int = 0,
+        leve: Boolean = false
     ) {
         if (url.isBlank()) return
         imagem.tag = url
@@ -455,7 +467,7 @@ class MainActivity : AppCompatActivity() {
             try {
                 val arquivo = baixarCapaParaCache(url)
                 if (arquivo != null) {
-                    bitmap = decodificarImagemOtimizada(arquivo, largAlvo, altAlvo)
+                    bitmap = decodificarImagemOtimizada(arquivo, largAlvo, altAlvo, leve)
                     // Arquivo corrompido: apaga para baixar de novo na próxima vez.
                     if (bitmap == null) arquivo.delete()
                 }
@@ -479,7 +491,8 @@ class MainActivity : AppCompatActivity() {
     private fun decodificarImagemOtimizada(
         arquivo: File,
         larguraAlvo: Int,
-        alturaAlvo: Int
+        alturaAlvo: Int,
+        leve: Boolean = false
     ): Bitmap? {
         val opcoes = BitmapFactory.Options()
         opcoes.inJustDecodeBounds = true
@@ -501,7 +514,8 @@ class MainActivity : AppCompatActivity() {
 
         val leitura = BitmapFactory.Options()
         leitura.inSampleSize = amostra
-        leitura.inPreferredConfig = Bitmap.Config.ARGB_8888
+        leitura.inPreferredConfig =
+            if (leve) Bitmap.Config.RGB_565 else Bitmap.Config.ARGB_8888
         leitura.inScaled = true
 
         return BitmapFactory.decodeFile(arquivo.absolutePath, leitura)
@@ -729,6 +743,16 @@ class MainActivity : AppCompatActivity() {
                     desenhos.clear()
                     desenhos.addAll(novosDesenhos)
 
+                    assinaturasCarregadas = mapOf(
+                        "filmes" to resposta.trim().hashCode(),
+                        "séries" to (textoSeries?.trim()?.hashCode() ?: 0),
+                        "doramas" to (textoDoramas?.trim()?.hashCode() ?: 0),
+                        "animes" to (textoAnimes?.trim()?.hashCode() ?: 0),
+                        "desenhos" to (textoDesenhos?.trim()?.hashCode() ?: 0)
+                    )
+                    novidades = emptyList()
+                    aplicarNovidades()
+
                     mostrarListaCards(filmes)
 
                     precarregarCapas(
@@ -795,6 +819,77 @@ class MainActivity : AppCompatActivity() {
             null
         } finally {
             conexao?.disconnect()
+        }
+    }
+
+    // ===== AVISO DE NOVIDADES NO "ATUALIZAR CATÁLOGO" =====
+
+    private var assinaturasCarregadas: Map<String, Int> = emptyMap()
+    private var novidades: List<String> = emptyList()
+    private var itemAtualizar: TextView? = null
+    private var verificandoNovidades = false
+
+    private fun textoAtualizar(): String =
+        if (novidades.isEmpty()) "🔄  Atualizar catálogo"
+        else "🔔  Atualizar catálogo (novo!)"
+
+    private fun aplicarNovidades() {
+        botaoMenu.text =
+            if (novidades.isEmpty()) "☰  WOLF MENU" else "☰  WOLF MENU  🔔"
+        itemAtualizar?.text = textoAtualizar()
+    }
+
+    // Compara o catálogo da internet com o que já está carregado no app.
+    private fun verificarNovidades() {
+        if (verificandoNovidades) return
+        verificandoNovidades = true
+
+        activityScope.launch(Dispatchers.IO) {
+            try {
+                val textos = linkedMapOf(
+                    "filmes" to baixarTexto(CATALOGO_URL),
+                    "séries" to baixarPrimeiro(ARQUIVOS_SERIES),
+                    "doramas" to baixarPrimeiro(ARQUIVOS_DORAMAS),
+                    "animes" to baixarPrimeiro(ARQUIVOS_ANIMES),
+                    "desenhos" to baixarPrimeiro(ARQUIVOS_DESENHOS)
+                )
+
+                // Sem internet: não avisa nada.
+                if (textos["filmes"].isNullOrBlank()) return@launch
+
+                val lista = ArrayList<String>()
+                for ((nome, texto) in textos) {
+                    if (texto.isNullOrBlank()) continue
+                    val assinatura = texto.trim().hashCode()
+                    if ((assinaturasCarregadas[nome] ?: 0) == assinatura) continue
+
+                    if (nome == "filmes") {
+                        val total = extrairArray(texto, "filmes")?.length() ?: 0
+                        val diferenca = total - filmes.size
+                        lista.add(if (diferenca > 0) "+$diferenca filmes" else "filmes")
+                    } else {
+                        lista.add(nome)
+                    }
+                }
+
+                withContext(Dispatchers.Main) {
+                    val eraVazio = novidades.isEmpty()
+                    novidades = lista
+                    aplicarNovidades()
+
+                    if (lista.isNotEmpty() && eraVazio) {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Novidades: ${lista.joinToString(", ")}. " +
+                                "Abra o menu e toque em Atualizar catálogo.",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                }
+            } catch (_: Throwable) {
+            } finally {
+                verificandoNovidades = false
+            }
         }
     }
 
@@ -1770,7 +1865,7 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        adicionarItemMenu("🔄  Atualizar catálogo") {
+        itemAtualizar = adicionarItemMenu(textoAtualizar()) {
             fecharMenu()
             Toast.makeText(
                 this,
@@ -1796,6 +1891,8 @@ class MainActivity : AppCompatActivity() {
             abrirPesquisa()
         }
 
+        verificarNovidades()
+
         secaoFilmes("FILMES", filmes, true)
         secaoColetaneas(false)
         secaoSeries("SÉRIES", series, false)
@@ -1810,6 +1907,7 @@ class MainActivity : AppCompatActivity() {
         if (!menuAberto) return
 
         menuAberto = false
+        itemAtualizar = null
         menuLateral?.let { raiz.removeView(it) }
         menuLateral = null
         itensMenuFoco.clear()
