@@ -107,7 +107,6 @@ class MainActivity : AppCompatActivity() {
     ) {
         override fun sizeOf(chave: String, valor: Bitmap): Int = valor.byteCount
     }
-    private val imagensEmCarregamento = ConcurrentHashMap.newKeySet<String>()
     private val executorImagens = Executors.newFixedThreadPool(8)
 
     private val pastaCacheImagens: File by lazy {
@@ -348,6 +347,79 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    // Várias telas podem pedir a mesma capa ao mesmo tempo (capas repetidas).
+    // Antes só a primeira recebia a imagem; agora todas são atendidas.
+    private val aguardandoImagem = HashMap<String, MutableList<ImageView>>()
+    private val executorPrecarga = Executors.newFixedThreadPool(3)
+
+    // Baixa a capa para o cache em disco (com novas tentativas). Retorna o arquivo ou null.
+    private fun baixarCapaParaCache(url: String): File? {
+        val arquivoCache = arquivoCacheImagem(url)
+        if (arquivoCache.exists() && arquivoCache.length() > 0L) return arquivoCache
+
+        for (tentativa in 1..3) {
+            var conexao: HttpURLConnection? = null
+            val temporario = File(
+                pastaCacheImagens,
+                "${arquivoCache.name}.${Thread.currentThread().id}.tmp"
+            )
+            try {
+                conexao = URL(url).openConnection() as HttpURLConnection
+                conexao.connectTimeout = 10000
+                conexao.readTimeout = 20000
+                conexao.doInput = true
+                conexao.instanceFollowRedirects = true
+                conexao.setRequestProperty("User-Agent", "Mozilla/5.0 (Android)")
+                conexao.setRequestProperty(
+                    "Accept",
+                    "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
+                )
+                conexao.connect()
+
+                if (conexao.responseCode !in 200..299) {
+                    throw Exception("HTTP ${conexao.responseCode}")
+                }
+
+                conexao.inputStream.buffered(64 * 1024).use { entrada ->
+                    temporario.outputStream().buffered(64 * 1024).use { saida ->
+                        entrada.copyTo(saida, 64 * 1024)
+                    }
+                }
+
+                if (temporario.exists() && temporario.length() > 0L) {
+                    if (arquivoCache.exists()) arquivoCache.delete()
+                    if (temporario.renameTo(arquivoCache)) return arquivoCache
+                }
+            } catch (_: Throwable) {
+            } finally {
+                conexao?.disconnect()
+                if (temporario.exists()) temporario.delete()
+            }
+
+            try {
+                Thread.sleep(700L * tentativa)
+            } catch (_: InterruptedException) {
+                return null
+            }
+        }
+        return null
+    }
+
+    // Baixa todas as capas em segundo plano, para abrirem rápido depois.
+    private fun precarregarCapas(urls: List<String>) {
+        urls.filter { it.isNotBlank() }.distinct().forEach { url ->
+            try {
+                executorPrecarga.execute {
+                    try {
+                        baixarCapaParaCache(url)
+                    } catch (_: Throwable) {
+                    }
+                }
+            } catch (_: Throwable) {
+            }
+        }
+    }
+
     private fun carregarImagem(
         url: String,
         imagem: ImageView,
@@ -358,106 +430,48 @@ class MainActivity : AppCompatActivity() {
         imagem.tag = url
 
         // Tamanho do card (nítido, sem decodificar a imagem grande inteira).
+        // 1,5x o tamanho do card: dá nitidez mesmo com a TV ampliando a imagem.
         val largAlvo = if (larguraAlvo > 0) larguraAlvo
-            else (resources.displayMetrics.widthPixels / colunas.coerceAtLeast(1))
-        val altAlvo = if (alturaAlvo > 0) alturaAlvo else dp(275)
+            else (resources.displayMetrics.widthPixels / colunas.coerceAtLeast(1)) * 3 / 2
+        val altAlvo = if (alturaAlvo > 0) alturaAlvo else dp(275) * 3 / 2
 
         cacheCapas[url]?.let { bitmap ->
             imagem.setImageBitmap(bitmap)
             return
         }
 
-        if (!imagensEmCarregamento.add(url)) return
+        synchronized(aguardandoImagem) {
+            val fila = aguardandoImagem[url]
+            if (fila != null) {
+                fila.add(imagem)
+                return
+            }
+            aguardandoImagem[url] = mutableListOf(imagem)
+        }
 
         executorImagens.execute {
             var bitmap: Bitmap? = null
 
             try {
-                val arquivoCache = arquivoCacheImagem(url)
-
-                if (arquivoCache.exists() && arquivoCache.length() > 0L) {
-                    bitmap = decodificarImagemOtimizada(
-                        arquivoCache,
-                        largAlvo,
-                        altAlvo
-                    )
+                val arquivo = baixarCapaParaCache(url)
+                if (arquivo != null) {
+                    bitmap = decodificarImagemOtimizada(arquivo, largAlvo, altAlvo)
+                    // Arquivo corrompido: apaga para baixar de novo na próxima vez.
+                    if (bitmap == null) arquivo.delete()
                 }
-
-                if (bitmap == null) {
-                    var conexao: HttpURLConnection? = null
-                    try {
-                        conexao = URL(url).openConnection() as HttpURLConnection
-                        conexao.connectTimeout = 5000
-                        conexao.readTimeout = 8000
-                        conexao.doInput = true
-                        conexao.instanceFollowRedirects = true
-                        conexao.useCaches = true
-
-                        conexao.setRequestProperty(
-                            "User-Agent",
-                            "Mozilla/5.0 (Android)"
-                        )
-                        conexao.setRequestProperty(
-                            "Accept",
-                            "image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8"
-                        )
-                        conexao.setRequestProperty(
-                            "Connection",
-                            "keep-alive"
-                        )
-                        conexao.connect()
-
-                        if (conexao.responseCode !in 200..299) {
-                            throw Exception("HTTP ${conexao.responseCode}")
-                        }
-
-                        val arquivoTemporario = File(
-                            pastaCacheImagens,
-                            "${arquivoCache.name}.tmp"
-                        )
-
-                        try {
-                            conexao.inputStream.buffered(128 * 1024).use { input ->
-                                arquivoTemporario.outputStream()
-                                    .buffered(128 * 1024).use { output ->
-                                        input.copyTo(output, 128 * 1024)
-                                    }
-                            }
-
-                            if (
-                                arquivoTemporario.exists() &&
-                                arquivoTemporario.length() > 0L
-                            ) {
-                                if (arquivoCache.exists()) arquivoCache.delete()
-                                arquivoTemporario.renameTo(arquivoCache)
-
-                                bitmap = decodificarImagemOtimizada(
-                                    arquivoCache,
-                                    largAlvo,
-                                    altAlvo
-                                )
-                            }
-                        } finally {
-                            if (arquivoTemporario.exists()) {
-                                arquivoTemporario.delete()
-                            }
-                        }
-                    } finally {
-                        conexao?.disconnect()
-                    }
-                }
-
-                bitmap?.let { carregada ->
-                    cacheCapas.put(url, carregada)
-                    runOnUiThread {
-                        if (imagem.tag == url) {
-                            imagem.setImageBitmap(carregada)
-                        }
-                    }
-                }
+                bitmap?.let { cacheCapas.put(url, it) }
             } catch (_: Throwable) {
             } finally {
-                imagensEmCarregamento.remove(url)
+                val telas = synchronized(aguardandoImagem) {
+                    aguardandoImagem.remove(url)
+                } ?: mutableListOf()
+
+                val pronta = bitmap
+                if (pronta != null) {
+                    runOnUiThread {
+                        telas.forEach { if (it.tag == url) it.setImageBitmap(pronta) }
+                    }
+                }
             }
         }
     }
@@ -487,7 +501,7 @@ class MainActivity : AppCompatActivity() {
 
         val leitura = BitmapFactory.Options()
         leitura.inSampleSize = amostra
-        leitura.inPreferredConfig = Bitmap.Config.RGB_565
+        leitura.inPreferredConfig = Bitmap.Config.ARGB_8888
         leitura.inScaled = true
 
         return BitmapFactory.decodeFile(arquivo.absolutePath, leitura)
@@ -716,6 +730,14 @@ class MainActivity : AppCompatActivity() {
                     desenhos.addAll(novosDesenhos)
 
                     mostrarListaCards(filmes)
+
+                    precarregarCapas(
+                        filmes.map { it.capa } +
+                            desenhos.map { it.capa } +
+                            series.map { it.capa } +
+                            doramas.map { it.capa } +
+                            animes.map { it.capa }
+                    )
 
                     Toast.makeText(
                         this@MainActivity,
@@ -1775,7 +1797,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         secaoFilmes("FILMES", filmes, true)
-        // secaoColetaneas(false)  // coletâneas desligadas (tire o // para voltar)
+        secaoColetaneas(false)
         secaoSeries("SÉRIES", series, false)
         secaoSeries("DORAMAS", doramas, false)
         secaoFilmes("DESENHOS", desenhos, false)
@@ -2065,6 +2087,7 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         activityScope.coroutineContext[Job]?.cancel()
         executorImagens.shutdownNow()
+        executorPrecarga.shutdownNow()
         super.onDestroy()
     }
 }
