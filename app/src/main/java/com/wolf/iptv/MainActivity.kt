@@ -214,12 +214,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // Regex compilada uma vez só e resultados guardados: o menu chama isso
+    // milhares de vezes e, sem isso, travava TVs mais fracas.
+    private val REGEX_ACENTOS = "\\p{InCombiningDiacriticalMarks}+".toRegex()
+    private val cacheNormalizado = ConcurrentHashMap<String, String>()
+
     private fun normalizarTexto(texto: String): String {
-        val temp = Normalizer.normalize(texto, Normalizer.Form.NFD)
-        return temp.replace(
-            "\\p{InCombiningDiacriticalMarks}+".toRegex(),
-            ""
-        ).lowercase().trim()
+        cacheNormalizado[texto]?.let { return it }
+
+        val resultado = Normalizer.normalize(texto, Normalizer.Form.NFD)
+            .replace(REGEX_ACENTOS, "")
+            .lowercase()
+            .trim()
+
+        if (cacheNormalizado.size < 20000) cacheNormalizado[texto] = resultado
+        return resultado
     }
 
     private fun criarInterface() {
@@ -734,9 +743,16 @@ class MainActivity : AppCompatActivity() {
 
                 val novosDesenhos = lerDesenhos(textoDesenhos)
 
+                val novasColecoes = try {
+                    calcularColecoes(novosFilmes)
+                } catch (_: Throwable) {
+                    emptyList()
+                }
+
                 withContext(Dispatchers.Main) {
                     filmes.clear()
                     filmes.addAll(novosFilmes)
+                    colecoesProntas = novasColecoes
 
                     series.clear()
                     series.addAll(novasSeries)
@@ -1815,8 +1831,8 @@ class MainActivity : AppCompatActivity() {
     )
 
     // Filmes da coletânea em ordem de lançamento.
-    private fun filmesDaColecao(colecao: Colecao): List<Filme> {
-        return filmes
+    private fun filmesDaColecao(colecao: Colecao, base: List<Filme> = filmes): List<Filme> {
+        return base
             .filter { f ->
                 val t = normalizarTexto(f.titulo)
                 colecao.chaves.any { k ->
@@ -1830,12 +1846,19 @@ class MainActivity : AppCompatActivity() {
     // Mínimo de filmes para a coletânea aparecer no menu (0 = mostra todas, até as vazias).
     private val COLECAO_MINIMO = 0
 
-    private fun secaoColetaneas(aberta: Boolean) {
-        val validas = COLECOES
-            .map { it to filmesDaColecao(it) }
+    // Calculado uma vez quando o catálogo carrega (e não a cada abertura do menu).
+    private var colecoesProntas: List<Pair<Colecao, List<Filme>>> = emptyList()
+
+    private fun calcularColecoes(base: List<Filme>): List<Pair<Colecao, List<Filme>>> {
+        return COLECOES
+            .map { it to filmesDaColecao(it, base) }
             .filter { it.second.size >= COLECAO_MINIMO }
             // As que já têm filmes vão primeiro (a ordem alfabética se mantém).
             .sortedByDescending { it.second.isNotEmpty() }
+    }
+
+    private fun secaoColetaneas(aberta: Boolean) {
+        val validas = colecoesProntas
 
         if (validas.isEmpty()) return
 
