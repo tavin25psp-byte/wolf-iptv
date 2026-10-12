@@ -1,20 +1,12 @@
 #EXTM3U
-
-# ==========================================
-# REALITY SHOW - A FAZENDA 24H
-# ==========================================
 #EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h
-https://45.185.11.126:8000/play/a0a2/index.m3u8
+http://45.185.11.126:8000/play/a0a2/index.m3u8
 #EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h - Câmera 2
-https://45.185.11.126:8000/play/a0a3/index.m3u8
+http://45.185.11.126:8000/play/a0a3/index.m3u8
 #EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h - Câmera 3
-https://45.185.11.126:8000/play/a0a4/index.m3u8
+http://45.185.11.126:8000/play/a0a4/index.m3u8
 #EXTINF:-1 group-title="BR | Reality Shows",A Fazenda 24h - Câmera 4
-https://45.185.11.126:8000/play/a0a5/index.m3u8
-
-# ==========================================
-# CANAIS DO BRASIL - ESPORTES
-# ==========================================
+http://45.185.11.126:8000/play/a0a5/index.m3u8
 #EXTINF:-1 group-title="BR | Esportes",Band Sports HD
 http://45.185.11.126:8000/play/a05o/index.m3u8
 #EXTINF:-1 group-title="BR | Esportes",Combate HD
@@ -43,18 +35,14 @@ http://45.185.11.126:8000/play/a05j/index.m3u8
 http://45.185.11.126:8000/play/a05k/index.m3u8
 #EXTINF:-1 group-title="BR | Esportes",Premiere 8 HD
 http://45.185.11.126:8000/play/a05l/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",sportv HD
+#EXTINF:-1 group-title="BR | Esportes",SporTV HD
 http://45.185.11.126:8000/play/a05g/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",sportv2 HD
+#EXTINF:-1 group-title="BR | Esportes",SporTV 2 HD
 http://45.185.11.126:8000/play/a05f/index.m3u8
-#EXTINF:-1 group-title="BR | Esportes",sportv3 HD
+#EXTINF:-1 group-title="BR | Esportes",SporTV 3 HD
 http://45.185.11.126:8000/play/a06v/index.m3u8
 #EXTINF:-1 group-title="BR | Esportes",TNT Sports HD
 http://45.185.11.126:8000/play/a0bi/index.m3u8
-
-# ==========================================
-# CANAIS DO BRASIL - FILMES E SÉRIES
-# ==========================================
 #EXTINF:-1 group-title="BR | Filmes e Séries",AMC HD
 http://45.185.11.126:8000/play/a06s/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",AXN HD
@@ -69,23 +57,23 @@ http://45.185.11.126:8000/play/a06w/index.m3u8
 http://45.185.11.126:8000/play/a08n/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",HBO2 HD
 http://45.185.11.126:8000/play/a08o/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",HBO+ HD
+#EXTINF:-1 group-title="BR | Filmes e Séries",HBO Plus HD
 http://45.185.11.126:8000/play/a08p/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",HBO Family HD
 http://45.185.11.126:8000/play/a08q/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",HBO Signature HD
 http://45.185.11.126:8000/play/a08r/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",HBO POP HD
+#EXTINF:-1 group-title="BR | Filmes e Séries",HBO Pop HD
 http://45.185.11.126:8000/play/a08s/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",HBO MUNDI HD
+#EXTINF:-1 group-title="BR | Filmes e Séries",HBO Mundi HD
 http://45.185.11.126:8000/play/a082/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",HBO XTREME HD
+#EXTINF:-1 group-title="BR | Filmes e Séries",HBO Xtreme HD
 http://45.185.11.126:8000/play/a083/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Lifetime HD
 http://45.185.11.126:8000/play/a06l/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Megapix HD
 http://45.185.11.126:8000/play/a057/index.m3u8
-#EXTINF:-1 group-title="BR | Filmes e Séries",Paramount+ 4
+#EXTINF:-1 group-title="BR | Filmes e Séries",Paramount Plus 4
 http://45.185.11.126:8000/play/a0aq/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Space HD
 http://45.185.11.126:8000/play/a08b/index.m3u8
@@ -115,13 +103,9 @@ http://45.185.11.126:8000/play/a08m/index.m3u8
 http://45.185.11.126:8000/play/a06k/index.m3u8
 #EXTINF:-1 group-title="BR | Filmes e Séries",Warner Channel HD
 http://45.185.11.126:8000/play/a0am/index.m3u8
-
-# ==========================================
-# CANAIS DO BRASIL - NOTÍCIAS
-# ==========================================
 #EXTINF:-1 group-title="BR | Notícias",Band News HD
 http://45.185.11.126:8000/play/a076/index.m3u8
-#EXTINF:-1 group-title="BR | Notícias",BM&C HD
+#EXTINF:-1 group-title="BR | Notícias",BM e C HD
 http://45.185.11.126:8000/play/a06i/index.m3u8
 #EXTINF:-1 group-title="BR | Notícias",CNN Brasil Money HD
 http://45.185.11.126:8000/play/a0a6/index.m3u8
@@ -131,16 +115,8 @@ http://45.185.11.126:8000/play/a0ap/index.m3u8
 http://45.185.11.126:8000/play/a08d/index.m3u8
 #EXTINF:-1 group-title="BR | Notícias",JP News HD
 http://45.185.11.126:8000/play/a0a1/index.m3u8
-#EXTINF:-1 group-title="BR | Notícias",Record News HD
-http://45.185.11.126:8000/play/a0a6/index.m3u8
 #EXTINF:-1 group-title="BR | Notícias",SBT News HD
 http://45.185.11.126:8000/play/a0a7/index.m3u8
-#EXTINF:-1 group-title="BR | Notícias",TIMES | CNBC HD
-http://45.185.11.126:8000/play/a0a5/index.m3u8
-
-# ==========================================
-# CANAIS DO BRASIL - INFANTIL
-# ==========================================
 #EXTINF:-1 group-title="BR | Infantil",Adult Swim HD
 http://45.185.11.126:8000/play/a06m/index.m3u8
 #EXTINF:-1 group-title="BR | Infantil",Cartoon Network HD
@@ -157,21 +133,15 @@ http://45.185.11.126:8000/play/a07v/index.m3u8
 http://45.185.11.126:8000/play/a071/index.m3u8
 #EXTINF:-1 group-title="BR | Infantil",TV Rá Tim Bum HD
 http://45.185.11.126:8000/play/a080/index.m3u8
-
-# ==========================================
-# CANAIS DO BRASIL - VARIEDADES E DOCUMENTÁRIOS
-# ==========================================
 #EXTINF:-1 group-title="BR | Variedades",Animal Planet HD
 http://45.185.11.126:8000/play/a09k/index.m3u8
 #EXTINF:-1 group-title="BR | Variedades",BIS HD
 http://45.185.11.126:8000/play/a07w/index.m3u8
 #EXTINF:-1 group-title="BR | Variedades",Canal Brasil HD
 http://45.185.11.126:8000/play/a06x/index.m3u8
-#EXTINF:-1 group-title="BR | Variedades",Canal UOL HD
-http://45.185.11.126:8000/play/a0a4/index.m3u8
-#EXTINF:-1 group-title="BR | Variedades",Claro TV+ 4K
+#EXTINF:-1 group-title="BR | Variedades",Claro TV Plus 4K
 http://45.185.11.126:8000/play/a06f/index.m3u8
-#EXTINF:-1 group-title="BR | Variedades",Disc. Home & Health HD
+#EXTINF:-1 group-title="BR | Variedades",Discovery Home e Health HD
 http://45.185.11.126:8000/play/a07y/index.m3u8
 #EXTINF:-1 group-title="BR | Variedades",Discovery Channel HD
 http://45.185.11.126:8000/play/a0ac/index.m3u8
@@ -203,50 +173,44 @@ http://45.185.11.126:8000/play/a07t/index.m3u8
 http://45.185.11.126:8000/play/a0aa/index.m3u8
 #EXTINF:-1 group-title="BR | Variedades",Trace Brasil HD
 http://45.185.11.126:8000/play/a08l/index.m3u8
-#EXTINF:-1 group-title="BR | Variedades",Travel Food & Drinks HD
+#EXTINF:-1 group-title="BR | Variedades",Travel Food e Drinks HD
 http://45.185.11.126:8000/play/a07x/index.m3u8
 #EXTINF:-1 group-title="BR | Variedades",Universal Reality HD
 http://45.185.11.126:8000/play/a08c/index.m3u8
 #EXTINF:-1 group-title="BR | Variedades",Woohoo HD
 http://45.185.11.126:8000/play/a075/index.m3u8
-
-# ==========================================
-# CANAIS INTERNACIONAIS (EUA / PORTUGAL / EUROPA)
-# ==========================================
-#EXTINF:-1 group-title="EUA | Esportes",US: ACC Network
+#EXTINF:-1 group-title="EUA | Esportes",US ACC Network
 http://206.212.244.63/2486/index.m3u8
-#EXTINF:-1 group-title="EUA | Esportes",US: Big Ten Network
+#EXTINF:-1 group-title="EUA | Esportes",US Big Ten Network
 http://206.212.244.63/2489/index.m3u8
-#EXTINF:-1 group-title="EUA | Esportes",US: SEC Network
+#EXTINF:-1 group-title="EUA | Esportes",US SEC Network
 http://206.212.244.63/2511/index.m3u8
-#EXTINF:-1 group-title="EUA | Notícias",USA | ACCUWEATHER
+#EXTINF:-1 group-title="EUA | Notícias",USA AccuWeather 1
 http://206.212.244.63/3/index.m3u8
-#EXTINF:-1 group-title="EUA | Notícias",USA | ACCUWEATHER
+#EXTINF:-1 group-title="EUA | Notícias",USA AccuWeather 2
 http://206.212.244.63/674/index.m3u8
-#EXTINF:-1 group-title="EUA | Esportes",USA | ESPN
+#EXTINF:-1 group-title="EUA | Esportes",USA ESPN
 http://206.212.244.63/59/index.m3u8
-
-#EXTINF:-1 group-title="PT | Esportes",PT: EUROSPORT 1
+#EXTINF:-1 group-title="PT | Esportes",PT Eurosport 1
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99481
-#EXTINF:-1 group-title="PT | Esportes",PT: EUROSPORT 2
+#EXTINF:-1 group-title="PT | Esportes",PT Eurosport 2
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99482
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV +
+#EXTINF:-1 group-title="PT | Esportes",PT Sport TV Plus
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99483
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 1
+#EXTINF:-1 group-title="PT | Esportes",PT Sport TV 1
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99484
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 2
+#EXTINF:-1 group-title="PT | Esportes",PT Sport TV 2
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99485
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 3
+#EXTINF:-1 group-title="PT | Esportes",PT Sport TV 3
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99486
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 4
+#EXTINF:-1 group-title="PT | Esportes",PT Sport TV 4
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99487
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 5
+#EXTINF:-1 group-title="PT | Esportes",PT Sport TV 5
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99488
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORT TV 6
+#EXTINF:-1 group-title="PT | Esportes",PT Sport TV 6
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99489
-#EXTINF:-1 group-title="PT | Esportes",PT: SPORTING TV
+#EXTINF:-1 group-title="PT | Esportes",PT Sporting TV
 http://31.43.191.125:8080/VIP014391751994706511/b425720d22ff/99490
-
 #EXTINF:-1 group-title="EU | Esportes",Eurosport HD (Svr 1)
 http://89.44.231.117:7000/eurosport
 #EXTINF:-1 group-title="EU | Esportes",Eurosport 2 HD (Svr 1)
