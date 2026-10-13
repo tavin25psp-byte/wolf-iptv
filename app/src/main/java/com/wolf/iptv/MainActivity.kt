@@ -1343,7 +1343,8 @@ class MainActivity : AppCompatActivity() {
                     if (filme.ano > 0) "${filme.ano}  •  ${filme.categoria}" else filme.categoria,
                     filme.sinopse,
                     "▶  ASSISTIR",
-                    WolfProgress.posicao(this, filme.video)
+                    WolfProgress.posicao(this, filme.video),
+                    true
                 ) { abrirVideo(filme.titulo, filme.video, filme.capa) }
             } else {
                 abrirVideo(filme.titulo, filme.video, filme.capa)
@@ -1403,6 +1404,7 @@ class MainActivity : AppCompatActivity() {
         sinopse: String,
         textoAssistir: String,
         posicaoMs: Long,
+        manterAberta: Boolean = false,
         aoAssistir: () -> Unit
     ) {
         val dialogo = android.app.Dialog(
@@ -1496,8 +1498,14 @@ class MainActivity : AppCompatActivity() {
             true
         )
         assistir.setOnClickListener {
-            dialogo.dismiss()
-            aoAssistir()
+            if (manterAberta) {
+                // Filme: a tela fica aberta por baixo enquanto o player abre,
+                // sem piscar a lista de filmes.
+                aoAssistir()
+            } else {
+                dialogo.dismiss()
+                aoAssistir()
+            }
         }
         botoes.addView(
             assistir,
