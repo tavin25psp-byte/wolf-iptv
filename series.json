@@ -3090,6 +3090,58 @@
           ]
         }
       ]
+    },
+    {
+      "titulo": "One Piece",
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/hjGf7znQ/images-(23).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/one%20piece%20EP1.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/ep2.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/ep3.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/ep4.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/ep5.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/ep6.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/ep7.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/one%20piece%20season%201/ep8.mp4"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
