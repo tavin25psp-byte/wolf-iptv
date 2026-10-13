@@ -1,0 +1,568 @@
+{
+  "canais": [
+    {
+      "nome": "AMC HD",
+      "logo": "https://logo.clearbit.com/amc.com",
+      "url": "http://45.185.11.126:8000/play/a06s/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "AXN HD",
+      "logo": "https://logo.clearbit.com/axn.com",
+      "url": "http://45.185.11.126:8000/play/a0ao/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Adult Swim HD",
+      "logo": "https://logo.clearbit.com/adultswim.com",
+      "url": "http://45.185.11.126:8000/play/a06m/index.m3u8",
+      "categoria": "Infantil"
+    },
+    {
+      "nome": "Animal Planet HD",
+      "logo": "https://logo.clearbit.com/animalplanet.com",
+      "url": "http://45.185.11.126:8000/play/a09k/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "BIS HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a07w/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "BM&C HD",
+      "logo": "https://logo.clearbit.com/bmcnews.com.br",
+      "url": "http://45.185.11.126:8000/play/a06i/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Band News HD",
+      "logo": "https://logo.clearbit.com/band.uol.com.br",
+      "url": "http://45.185.11.126:8000/play/a076/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "Band Sports HD",
+      "logo": "https://logo.clearbit.com/bandsports.com.br",
+      "url": "http://45.185.11.126:8000/play/a05o/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "CNN Brasil Money HD",
+      "logo": "https://logo.clearbit.com/cnnbrasil.com.br",
+      "url": "http://45.185.11.126:8000/play/a0a6/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "CNN International HD",
+      "logo": "https://logo.clearbit.com/cnn.com",
+      "url": "http://45.185.11.126:8000/play/a0ap/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "Canal Brasil HD",
+      "logo": "https://logo.clearbit.com/canalbrasil.tv",
+      "url": "http://45.185.11.126:8000/play/a06x/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Canal Sony HD",
+      "logo": "https://logo.clearbit.com/sonypictures.com",
+      "url": "http://45.185.11.126:8000/play/a0an/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Canal UOL HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a0a4/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Cartoonito HD",
+      "logo": "https://logo.clearbit.com/cartoonito.com",
+      "url": "http://45.185.11.126:8000/play/a0ae/index.m3u8",
+      "categoria": "Infantil"
+    },
+    {
+      "nome": "Cinemax HD",
+      "logo": "https://logo.clearbit.com/cinemax.com",
+      "url": "http://45.185.11.126:8000/play/a081/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Claro TV+ 4K",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a06f/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Combate HD",
+      "logo": "https://logo.clearbit.com/combate.com",
+      "url": "http://45.185.11.126:8000/play/a073/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "DUMDUM HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a078/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Disc. Home & Health HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a07y/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Discovery Channel HD",
+      "logo": "https://logo.clearbit.com/discovery.com",
+      "url": "http://45.185.11.126:8000/play/a0ac/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Discovery Kids HD",
+      "logo": "https://logo.clearbit.com/discovery.com",
+      "url": "http://45.185.11.126:8000/play/a0ad/index.m3u8",
+      "categoria": "Infantil"
+    },
+    {
+      "nome": "Discovery Science HD",
+      "logo": "https://logo.clearbit.com/discovery.com",
+      "url": "http://45.185.11.126:8000/play/a077/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Discovery Theater HD",
+      "logo": "https://logo.clearbit.com/discovery.com",
+      "url": "http://45.185.11.126:8000/play/a085/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Discovery Turbo HD",
+      "logo": "https://logo.clearbit.com/discovery.com",
+      "url": "http://45.185.11.126:8000/play/a07z/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Discovery World HD",
+      "logo": "https://logo.clearbit.com/discovery.com",
+      "url": "http://45.185.11.126:8000/play/a086/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "ESPN 4 HD",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://45.185.11.126:8000/play/a05m/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "ESPN 5 HD",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://45.185.11.126:8000/play/a05n/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "ESPN 6 HD",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://45.185.11.126:8000/play/a084/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Food Network HD",
+      "logo": "https://logo.clearbit.com/foodnetwork.com",
+      "url": "http://45.185.11.126:8000/play/a06j/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "GE TV HD",
+      "logo": "https://logo.clearbit.com/ge.globo.com",
+      "url": "http://45.185.11.126:8000/play/a08v/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "GNT HD",
+      "logo": "https://logo.clearbit.com/gnt.globo.com",
+      "url": "http://45.185.11.126:8000/play/a079/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "GloboNews HD",
+      "logo": "https://logo.clearbit.com/g1.globo.com",
+      "url": "http://45.185.11.126:8000/play/a08d/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "Globoplay Novelas HD",
+      "logo": "https://logo.clearbit.com/globoplay.globo.com",
+      "url": "http://45.185.11.126:8000/play/a06w/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Gloob HD",
+      "logo": "https://logo.clearbit.com/mundogloob.globo.com",
+      "url": "http://45.185.11.126:8000/play/a07v/index.m3u8",
+      "categoria": "Infantil"
+    },
+    {
+      "nome": "Gloobinho HD",
+      "logo": "https://logo.clearbit.com/mundogloob.globo.com",
+      "url": "http://45.185.11.126:8000/play/a071/index.m3u8",
+      "categoria": "Infantil"
+    },
+    {
+      "nome": "HBO Family HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a08q/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HBO HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a08n/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HBO MUNDI HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a082/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HBO POP HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a08s/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HBO Signature HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a08r/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HBO XTREME HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a083/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HBO+ HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a08p/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HBO2 HD",
+      "logo": "https://logo.clearbit.com/hbo.com",
+      "url": "http://45.185.11.126:8000/play/a08o/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "HGTV HD",
+      "logo": "https://logo.clearbit.com/hgtv.com",
+      "url": "http://45.185.11.126:8000/play/a074/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "History HD",
+      "logo": "https://logo.clearbit.com/history.com",
+      "url": "http://45.185.11.126:8000/play/a0al/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "ID HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a089/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "JP News HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a0a1/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "Lifetime HD",
+      "logo": "https://logo.clearbit.com/mylifetime.com",
+      "url": "http://45.185.11.126:8000/play/a06l/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Megapix HD",
+      "logo": "https://logo.clearbit.com/megapix.com.br",
+      "url": "http://45.185.11.126:8000/play/a057/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Modo Viagem HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a07u/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Multishow HD",
+      "logo": "https://logo.clearbit.com/multishow.globo.com",
+      "url": "http://45.185.11.126:8000/play/a07a/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "OFF HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a07t/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Paramount+ 4",
+      "logo": "https://logo.clearbit.com/paramountplus.com",
+      "url": "http://45.185.11.126:8000/play/a0aq/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Premiere 2 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a06h/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 3 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a0av/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 4 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a07b/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 5 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a07c/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 6 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05j/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 7 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05k/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 8 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05l/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere Clubes HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a06g/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Record News HD",
+      "logo": "https://logo.clearbit.com/recordnews.r7.com",
+      "url": "http://45.162.64.114/RECORD_NEWS/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "SBT News HD",
+      "logo": "https://logo.clearbit.com/sbtnews.sbt.com.br",
+      "url": "http://45.185.11.126:8000/play/a0a7/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "Studio Universal HD",
+      "logo": "https://logo.clearbit.com/universalpictures.com",
+      "url": "http://45.185.11.126:8000/play/a06o/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "TIMES | EXCLUSIVO CNBC",
+      "logo": "https://logo.clearbit.com/cnbc.com",
+      "url": "http://45.185.11.126:8000/play/a0a5/index.m3u8",
+      "categoria": "Notícias"
+    },
+    {
+      "nome": "TLC HD",
+      "logo": "https://logo.clearbit.com/tlc.com",
+      "url": "http://45.185.11.126:8000/play/a0aa/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "TNT Novelas HD",
+      "logo": "https://logo.clearbit.com/tnt.com",
+      "url": "http://45.185.11.126:8000/play/a088/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "TNT Sports HD",
+      "logo": "https://logo.clearbit.com/tnt.com",
+      "url": "http://45.185.11.126:8000/play/a0bi/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "TNT SØries HD",
+      "logo": "https://logo.clearbit.com/tnt.com",
+      "url": "http://45.185.11.126:8000/play/a08a/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "TV RÆ Tim Bum HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a080/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Telecine Action HD",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a058/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Telecine Cult HD",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a05a/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Telecine Fun HD",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a059/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Telecine Pipoca HD",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a08g/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Telecine Premium HD",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a08e/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Telecine Touch HD",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a08f/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Trace Brasil HD",
+      "logo": "https://logo.clearbit.com/trace.tv",
+      "url": "http://45.185.11.126:8000/play/a08l/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Travel Food & Drinks HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a07x/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "USA HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a06k/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Universal Premiere HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a08m/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Universal Reality HD",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a08c/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Universal TV HD",
+      "logo": "https://logo.clearbit.com/universalplus.com",
+      "url": "http://45.185.11.126:8000/play/a0af/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Warner Channel HD",
+      "logo": "https://logo.clearbit.com/wbd.com",
+      "url": "http://45.185.11.126:8000/play/a0am/index.m3u8",
+      "categoria": "Filmes e Séries"
+    },
+    {
+      "nome": "Woohoo HD",
+      "logo": "https://logo.clearbit.com/woohoo.com.br",
+      "url": "http://45.185.11.126:8000/play/a075/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "sportv HD",
+      "logo": "https://logo.clearbit.com/ge.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05g/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "sportv2 HD",
+      "logo": "https://logo.clearbit.com/ge.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05f/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "sportv3 HD",
+      "logo": "https://logo.clearbit.com/ge.globo.com",
+      "url": "http://45.185.11.126:8000/play/a06v/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "US: ACC Network",
+      "logo": "",
+      "url": "http://206.212.244.63/2486/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "US: Big Ten Network",
+      "logo": "",
+      "url": "http://206.212.244.63/2489/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "US: SEC Network",
+      "logo": "",
+      "url": "http://206.212.244.63/2511/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "USA | ACCUWEATHER",
+      "logo": "",
+      "url": "http://206.212.244.63/3/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "USA | ACCUWEATHER",
+      "logo": "",
+      "url": "http://206.212.244.63/674/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
+      "nome": "USA | ESPN",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://206.212.244.63/59/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Disney Jr. HD",
+      "logo": "https://logo.clearbit.com/disneyjunior.com",
+      "url": "http://45.185.163.75:8000/play/a016/index.m3u8",
+      "categoria": "Infantil"
+    }
+  ]
+}
