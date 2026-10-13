@@ -1,5 +1,4 @@
 
-
 package com.wolf.iptv
 
 import android.content.Intent
@@ -558,27 +557,64 @@ class MainActivity : AppCompatActivity() {
         return Regex("(?<!\\d)(19|20)\\d{2}(?!\\d)").find(texto)?.value?.toInt() ?: 0
     }
 
-    private fun carregarCatalogo() {
+    // ===== CACHE DO CATÁLOGO (abre rápido, sem baixar tudo toda vez) =====
+
+    private fun arquivoCacheCatalogo(nome: String): File =
+        File(filesDir, "cat_" + nome + ".json")
+
+    private fun lerCacheCatalogo(nome: String): String? = try {
+        val f = arquivoCacheCatalogo(nome)
+        if (f.exists() && f.length() > 0) f.readText(Charsets.UTF_8) else null
+    } catch (_: Throwable) {
+        null
+    }
+
+    private fun salvarCacheCatalogo(nome: String, texto: String?) {
+        if (texto.isNullOrBlank()) return
+        try {
+            arquivoCacheCatalogo(nome).writeText(texto, Charsets.UTF_8)
+        } catch (_: Throwable) {
+        }
+    }
+
+    // forcarRede = true: baixa tudo da internet (botão "Atualizar catálogo").
+    // false: usa o que ficou salvo e só vai à internet se não houver nada salvo.
+    private fun carregarCatalogo(forcarRede: Boolean = false) {
         activityScope.launch(Dispatchers.IO) {
-            var conexao: HttpURLConnection? = null
-
             try {
-                conexao = URL(CATALOGO_URL).openConnection() as HttpURLConnection
-                conexao.connectTimeout = 20000
-                conexao.readTimeout = 20000
-                conexao.requestMethod = "GET"
-                conexao.doInput = true
-                conexao.setRequestProperty("User-Agent", "Mozilla/5.0")
-                conexao.connect()
+                var vindoDoCache = false
+                var respostaTmp: String? = if (forcarRede) null else lerCacheCatalogo("filmes")
 
-                if (conexao.responseCode !in 200..299) {
-                    throw Exception("HTTP ${conexao.responseCode}")
+                if (respostaTmp != null) {
+                    vindoDoCache = true
+                } else {
+                    respostaTmp = baixarTexto(CATALOGO_URL)
+                    if (respostaTmp.isNullOrBlank()) {
+                        respostaTmp = lerCacheCatalogo("filmes")
+                        if (respostaTmp != null) vindoDoCache = true
+                    } else {
+                        salvarCacheCatalogo("filmes", respostaTmp)
+                    }
                 }
 
-                val resposta = conexao.inputStream
-                    .bufferedReader(Charsets.UTF_8).use { it.readText() }
+                if (respostaTmp.isNullOrBlank()) {
+                    throw Exception("Sem internet e sem catálogo salvo")
+                }
+                val resposta: String = respostaTmp
+                val cacheUsado = vindoDoCache
 
-                if (resposta.isBlank()) throw Exception("Catálogo vazio")
+                fun textoDe(nome: String, arquivos: List<String>): String? {
+                    if (cacheUsado) {
+                        val salvo = lerCacheCatalogo(nome)
+                        if (salvo != null) return salvo
+                    }
+                    val baixado = baixarPrimeiro(arquivos)
+                    if (!baixado.isNullOrBlank()) {
+                        salvarCacheCatalogo(nome, baixado)
+                        return baixado
+                    }
+                    return lerCacheCatalogo(nome)
+                }
 
                 val raizJson = JSONObject(resposta.trim())
 
@@ -726,10 +762,10 @@ class MainActivity : AppCompatActivity() {
                     return resultado
                 }
 
-                val textoSeries = baixarPrimeiro(ARQUIVOS_SERIES)
-                val textoDoramas = baixarPrimeiro(ARQUIVOS_DORAMAS)
-                val textoAnimes = baixarPrimeiro(ARQUIVOS_ANIMES)
-                val textoDesenhos = baixarPrimeiro(ARQUIVOS_DESENHOS)
+                val textoSeries = textoDe("series", ARQUIVOS_SERIES)
+                val textoDoramas = textoDe("doramas", ARQUIVOS_DORAMAS)
+                val textoAnimes = textoDe("animes", ARQUIVOS_ANIMES)
+                val textoDesenhos = textoDe("desenhos", ARQUIVOS_DESENHOS)
 
                 val novasSeries = lerSeries(
                     extrairArray(textoSeries, "series")
@@ -791,13 +827,18 @@ class MainActivity : AppCompatActivity() {
                             animes.map { it.capa }
                     )
 
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Catálogo carregado: ${filmes.size} filmes, " +
-                            "${series.size} séries, ${doramas.size} doramas, " +
-                            "${animes.size} animes e ${desenhos.size} desenhos",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    if (cacheUsado) {
+                        // Abriu na hora com o que estava salvo; confere novidades em segundo plano.
+                        verificarNovidades()
+                    } else {
+                        Toast.makeText(
+                            this@MainActivity,
+                            "Catálogo carregado: ${filmes.size} filmes, " +
+                                "${series.size} séries, ${doramas.size} doramas, " +
+                                "${animes.size} animes e ${desenhos.size} desenhos",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             } catch (erro: Exception) {
                 withContext(Dispatchers.Main) {
@@ -819,8 +860,6 @@ class MainActivity : AppCompatActivity() {
 
                     conteudo.addView(erroTexto)
                 }
-            } finally {
-                conexao?.disconnect()
             }
         }
     }
@@ -2249,7 +2288,7 @@ class MainActivity : AppCompatActivity() {
                 "Atualizando catálogo...",
                 Toast.LENGTH_SHORT
             ).show()
-            carregarCatalogo()
+            carregarCatalogo(true)
         }
 
         adicionarItemMenu("▶  Continuar assistindo") {
