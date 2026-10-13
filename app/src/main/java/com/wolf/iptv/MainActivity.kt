@@ -243,80 +243,125 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun criarInterface() {
-        raiz = FrameLayout(this)
-        raiz.setBackgroundColor(Color.BLACK)
+        raiz = FrameLayout(this).apply { setBackgroundColor(Color.BLACK) }
 
-        val fundo = ImageView(this)
-        fundo.scaleType = ImageView.ScaleType.CENTER_CROP
-        fundo.alpha = 0.55f
-
-        carregarImagemFundoPrioritaria(
-            "https://i.postimg.cc/Ghk8PP7w/wolf.png",
-            fundo
-        )
-
-        raiz.addView(
-            fundo,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-
-        val camada = LinearLayout(this)
-        camada.orientation = LinearLayout.VERTICAL
-        camada.setPadding(dp(20), dp(12), dp(20), dp(12))
-
-        raiz.addView(
-            camada,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT
-            )
-        )
-
-        botaoMenu = TextView(this)
-        botaoMenu.text = "☰  WOLF MENU"
-        botaoMenu.setTextColor(Color.WHITE)
-        botaoMenu.textSize = 20f
-        botaoMenu.setTypeface(null, Typeface.BOLD)
-        botaoMenu.gravity = Gravity.CENTER
-        botaoMenu.isFocusable = true
-        botaoMenu.isClickable = true
-        botaoMenu.background = criarFundoCard(false)
-        botaoMenu.setOnFocusChangeListener { _, foco ->
-            botaoMenu.background = criarFundoCard(foco)
+        val fundo = ImageView(this).apply {
+            scaleType = ImageView.ScaleType.CENTER_CROP
+            alpha = 0.48f
         }
-        botaoMenu.setOnClickListener { abrirMenu() }
+        carregarImagemFundoPrioritaria("https://i.postimg.cc/Ghk8PP7w/wolf.png", fundo)
+        raiz.addView(fundo, FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+        ))
 
-        camada.addView(
-            botaoMenu,
-            LinearLayout.LayoutParams(dp(235), dp(58))
-        )
+        val camada = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(18), dp(10), dp(18), dp(10))
+        }
+        raiz.addView(camada, FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
+        ))
 
-        val scroll = ScrollView(this)
-        scroll.isFocusable = false
-        scroll.isFocusableInTouchMode = false
+        // Cabeçalho inspirado na referência: marca forte, busca e menu.
+        val topo = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(8), dp(2), dp(8), dp(12))
+        }
+        val marca = TextView(this).apply {
+            text = "🐺  WOLF "
+            setTextColor(Color.WHITE)
+            textSize = 30f
+            setTypeface(null, Typeface.BLACK)
+            gravity = Gravity.CENTER_VERTICAL
+        }
+        topo.addView(marca, LinearLayout.LayoutParams(0, dp(58), 1f))
+        topo.addView(TextView(this).apply {
+            text = "IPTV"
+            setTextColor(Color.rgb(245, 25, 45))
+            textSize = 30f
+            setTypeface(null, Typeface.BLACK)
+            gravity = Gravity.CENTER_VERTICAL
+        })
+        botaoMenu = TextView(this).apply {
+            text = "  ☰  "
+            setTextColor(Color.WHITE)
+            textSize = 24f
+            gravity = Gravity.CENTER
+            isFocusable = true
+            isClickable = true
+            background = criarFundoCard(false)
+            setOnFocusChangeListener { _, foco -> background = criarFundoCard(foco) }
+            setOnClickListener { abrirMenu() }
+        }
+        topo.addView(botaoMenu, LinearLayout.LayoutParams(dp(64), dp(52)).apply {
+            leftMargin = dp(16)
+        })
+        camada.addView(topo, LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+        ))
 
-        conteudo = LinearLayout(this)
-        conteudo.orientation = LinearLayout.VERTICAL
+        val principal = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.TOP
+        }
+        camada.addView(principal, LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f
+        ))
 
-        scroll.addView(
-            conteudo,
-            ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            )
-        )
+        // Menu lateral fixo, com seleção vermelha e acesso direto às áreas.
+        val lateral = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(2), dp(4), dp(10), dp(4))
+        }
+        principal.addView(lateral, LinearLayout.LayoutParams(
+            dp(if (colunas >= 5) 230 else 145), ViewGroup.LayoutParams.MATCH_PARENT
+        ))
 
-        camada.addView(
-            scroll,
-            LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                0,
-                1f
-            )
-        )
+        val scroll = ScrollView(this).apply {
+            isFocusable = false
+            isFocusableInTouchMode = false
+            clipToPadding = false
+        }
+        conteudo = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(dp(4), dp(4), dp(4), dp(24))
+        }
+        scroll.addView(conteudo, ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
+        ))
+        principal.addView(scroll, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f))
+
+        fun itemLateral(rotulo: String, acao: () -> Unit) {
+            val item = TextView(this).apply {
+                text = rotulo
+                setTextColor(Color.rgb(235, 238, 250))
+                textSize = if (colunas >= 5) 16f else 12f
+                setTypeface(null, Typeface.BOLD)
+                gravity = Gravity.CENTER_VERTICAL
+                setPadding(dp(12), dp(8), dp(8), dp(8))
+                isFocusable = true
+                isClickable = true
+                background = criarFundoCard(false)
+                setOnFocusChangeListener { _, foco ->
+                    background = criarFundoCard(foco)
+                    setTextColor(if (foco) Color.WHITE else Color.rgb(225, 228, 242))
+                }
+                setOnClickListener { acao() }
+            }
+            lateral.addView(item, LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT, dp(if (colunas >= 5) 54 else 44)
+            ).apply { bottomMargin = dp(7) })
+        }
+
+        itemLateral("🎬  FILMES") { mostrarListaCards(filmes, true) }
+        itemLateral("▣  COLETÂNEAS") { mostrarListaCards(filmes, true) }
+        itemLateral("▣  SÉRIES") { mostrarListaSeries(series) }
+        itemLateral("🎭  DORAMAS") { mostrarListaSeries(doramas) }
+        itemLateral("☻  DESENHOS") { mostrarListaCards(desenhos) }
+        itemLateral("✦  ANIMES") { mostrarListaSeries(animes) }
+        itemLateral("▣  TV AO VIVO") { mostrarListaCanais(canais) }
+        itemLateral("★  FAVORITOS") { abrirMenu() }
 
         setContentView(raiz)
         criarSplash()
