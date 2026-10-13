@@ -3142,6 +3142,148 @@
           ]
         }
       ]
+    },
+    {
+      "titulo": "Vikings: Valhalla",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/qR0cWLjQ/71nd-U9amf-ZL-UF1000-1000-QL80-(1).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/vikings%20valhalla%20ep1.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/ep2.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/ep3.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/ep4.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/ep5.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/ep6.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/ep7.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Season%201%20viking%20valhalla/ep8.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep1.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep2.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep3.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep4.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep5.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep6.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep7.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%202%20vikings%20valhalla/ep8.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/ep1.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/epi2.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/ep3.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/ep4.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/ep5.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/ep6.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/ep7.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/season%203%20viking%20valhalla/ep8.mp4"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
