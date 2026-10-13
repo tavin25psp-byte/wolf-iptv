@@ -70,7 +70,7 @@ jobs:
       - name: Corrigir appinfo.json
         run: |
           python3 <<'PY'
-          import json
+          import json, os
 
           path = "WOLF-webOS/appinfo.json"
 
@@ -78,8 +78,13 @@ jobs:
               data = json.load(f)
 
           data["icon"] = "icon.png"
+          data["largeIcon"] = "icon.png"
           data["main"] = "Index.html"
           data["requiredACG"] = []
+          # Versão sempre maior que a anterior (a TV só atualiza se for maior)
+          data["version"] = "1.1." + os.environ["GITHUB_RUN_NUMBER"]
+          # O fundo já está dentro do Index.html
+          data.pop("bgImage", None)
 
           with open(path, "w", encoding="utf-8") as f:
               json.dump(data, f, ensure_ascii=False, indent=2)
@@ -126,3 +131,5 @@ jobs:
           path: "dist/*.ipk"
           if-no-files-found: error
           retention-days: 30
+```"
+}
