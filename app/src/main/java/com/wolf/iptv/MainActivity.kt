@@ -242,6 +242,117 @@ class MainActivity : AppCompatActivity() {
         return resultado
     }
 
+    // ===== FUNDO (fundo.png) E LOGO DO TOPO =====
+
+    // Procura o fundo.png dentro do app: res/drawable, res/raw, res/mipmap ou assets.
+    private fun abridorFundoLocal(): (() -> java.io.InputStream)? {
+        for (tipo in listOf("drawable", "raw", "mipmap")) {
+            val id = resources.getIdentifier("fundo", tipo, packageName)
+            if (id != 0) {
+                val abrirRes: () -> java.io.InputStream = { resources.openRawResource(id) }
+                return abrirRes
+            }
+        }
+
+        try {
+            assets.open("fundo.png").close()
+            val abrirAsset: () -> java.io.InputStream = { assets.open("fundo.png") }
+            return abrirAsset
+        } catch (_: Throwable) {
+        }
+
+        return null
+    }
+
+    // Decodifica já reduzida para o tamanho da tela (não estoura a memória).
+    private fun decodificarFundoAmostrado(
+        abrir: () -> java.io.InputStream,
+        larguraAlvo: Int,
+        alturaAlvo: Int
+    ): Bitmap? {
+        val limites = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        abrir().use { BitmapFactory.decodeStream(it, null, limites) }
+        if (limites.outWidth <= 0 || limites.outHeight <= 0) return null
+
+        var amostra = 1
+        while (
+            limites.outWidth / (amostra * 2) >= larguraAlvo &&
+            limites.outHeight / (amostra * 2) >= alturaAlvo
+        ) {
+            amostra *= 2
+        }
+
+        val leitura = BitmapFactory.Options().apply {
+            inSampleSize = amostra
+            inPreferredConfig = Bitmap.Config.ARGB_8888
+        }
+        return abrir().use { BitmapFactory.decodeStream(it, null, leitura) }
+    }
+
+    private fun carregarFundoApp(fundo: ImageView) {
+        val larg = resources.displayMetrics.widthPixels
+        val alt = resources.displayMetrics.heightPixels
+
+        executorImagens.execute {
+            var bitmap: Bitmap? = null
+            try {
+                val abrir = abridorFundoLocal()
+                if (abrir != null) bitmap = decodificarFundoAmostrado(abrir, larg, alt)
+            } catch (_: Throwable) {
+            }
+
+            val pronto = bitmap
+            runOnUiThread {
+                if (pronto != null) {
+                    fundo.setImageBitmap(pronto)
+                } else {
+                    // Não achou o fundo.png: usa a imagem antiga.
+                    carregarImagemFundoPrioritaria(
+                        "https://i.postimg.cc/Ghk8PP7w/wolf.png",
+                        fundo
+                    )
+                }
+            }
+        }
+    }
+
+    // O logo é um JPEG com fundo preto. Aqui o preto vira transparente (brilho vira
+    // transparência), assim o lobo e o "WOLF IPTV" ficam flutuando sobre o fundo do app.
+    private fun criarLogoCabecalho(): Bitmap? {
+        return try {
+            val bytes = android.util.Base64.decode(
+                LOGO_PARTES.joinToString(""),
+                android.util.Base64.DEFAULT
+            )
+            val original = BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                ?: return null
+
+            val lado = 360
+            val reduzido = Bitmap.createScaledBitmap(original, lado, lado, true)
+            val pixels = IntArray(lado * lado)
+            reduzido.getPixels(pixels, 0, lado, 0, 0, lado, lado)
+
+            for (i in pixels.indices) {
+                val p = pixels[i]
+                val r = (p shr 16) and 0xFF
+                val g = (p shr 8) and 0xFF
+                val b = p and 0xFF
+                val brilho = maxOf(r, g, b)
+                val alfa = ((brilho - 10) * 255 / 245).coerceIn(0, 255)
+
+                pixels[i] = if (brilho == 0 || alfa == 0) {
+                    0
+                } else {
+                    Color.argb(alfa, r * 255 / brilho, g * 255 / brilho, b * 255 / brilho)
+                }
+            }
+
+            Bitmap.createBitmap(pixels, lado, lado, Bitmap.Config.ARGB_8888)
+        } catch (_: Throwable) {
+            null
+        }
+    }
+
     private fun criarInterface() {
         raiz = FrameLayout(this)
         raiz.setBackgroundColor(Color.BLACK)
@@ -250,10 +361,8 @@ class MainActivity : AppCompatActivity() {
         fundo.scaleType = ImageView.ScaleType.CENTER_CROP
         fundo.alpha = 0.55f
 
-        carregarImagemFundoPrioritaria(
-            "https://i.postimg.cc/Ghk8PP7w/wolf.png",
-            fundo
-        )
+        // Lê o fundo.png que está dentro do app (se não achar, usa a imagem antiga da internet).
+        carregarFundoApp(fundo)
 
         raiz.addView(
             fundo,
@@ -312,14 +421,48 @@ class MainActivity : AppCompatActivity() {
             gravity = Gravity.CENTER_VERTICAL
         }
 
-        barraTopo.addView(
-            botaoMenu,
-            LinearLayout.LayoutParams(dp(235), dp(58))
-        )
+        // Celular usa o topo menor; TV e tablet usam o tamanho grande.
+        val compacto = resources.configuration.screenWidthDp < 600
+        botaoMenu.textSize = if (compacto) 15f else 20f
+
+        // Logo WOLF IPTV com o lobo, no canto esquerdo do topo.
+        val logoTopo = criarLogoCabecalho()
+        val tamanhoLogo = if (compacto) dp(76) else dp(104)
+
+        if (logoTopo != null) {
+            barraTopo.addView(
+                ImageView(this).apply {
+                    setImageBitmap(logoTopo)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                },
+                LinearLayout.LayoutParams(tamanhoLogo, tamanhoLogo)
+            )
+        } else {
+            barraTopo.addView(
+                TextView(this).apply {
+                    text = "WOLF IPTV"
+                    setTextColor(Color.rgb(230, 25, 35))
+                    textSize = if (compacto) 20f else 30f
+                    setTypeface(null, Typeface.BOLD_ITALIC)
+                },
+                LinearLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            )
+        }
 
         barraTopo.addView(
             View(this),
             LinearLayout.LayoutParams(0, 1, 1f)
+        )
+
+        barraTopo.addView(
+            botaoMenu,
+            LinearLayout.LayoutParams(
+                if (compacto) dp(150) else dp(235),
+                if (compacto) dp(46) else dp(58)
+            )
         )
 
         barraTopo.addView(
