@@ -243,125 +243,124 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun criarInterface() {
-        raiz = FrameLayout(this).apply { setBackgroundColor(Color.BLACK) }
+        raiz = FrameLayout(this)
+        raiz.setBackgroundColor(Color.BLACK)
 
-        val fundo = ImageView(this).apply {
-            scaleType = ImageView.ScaleType.CENTER_CROP
-            alpha = 0.48f
+        val fundo = ImageView(this)
+        fundo.scaleType = ImageView.ScaleType.CENTER_CROP
+        fundo.alpha = 0.55f
+
+        carregarImagemFundoPrioritaria(
+            "https://i.postimg.cc/Ghk8PP7w/wolf.png",
+            fundo
+        )
+
+        raiz.addView(
+            fundo,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        // Degradê: o lobo aparece em cima e o fundo vai ficando azul-marinho escuro embaixo.
+        val degrade = View(this)
+        degrade.background = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            intArrayOf(
+                Color.argb(40, 5, 7, 18),
+                Color.argb(215, 5, 7, 18),
+                Color.argb(250, 4, 6, 16)
+            )
+        )
+        raiz.addView(
+            degrade,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        val camada = LinearLayout(this)
+        camada.orientation = LinearLayout.VERTICAL
+        camada.setPadding(dp(20), dp(12), dp(20), dp(12))
+
+        raiz.addView(
+            camada,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
+
+        botaoMenu = TextView(this)
+        botaoMenu.text = "☰  WOLF MENU"
+        botaoMenu.setTextColor(Color.WHITE)
+        botaoMenu.textSize = 20f
+        botaoMenu.setTypeface(null, Typeface.BOLD)
+        botaoMenu.gravity = Gravity.CENTER
+        botaoMenu.isFocusable = true
+        botaoMenu.isClickable = true
+        botaoMenu.background = criarFundoCard(false)
+        botaoMenu.setOnFocusChangeListener { _, foco ->
+            botaoMenu.background = criarFundoCard(foco)
         }
-        carregarImagemFundoPrioritaria("https://i.postimg.cc/Ghk8PP7w/wolf.png", fundo)
-        raiz.addView(fundo, FrameLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-        ))
+        botaoMenu.setOnClickListener { abrirMenu() }
 
-        val camada = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(dp(18), dp(10), dp(18), dp(10))
-        }
-        raiz.addView(camada, FrameLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT
-        ))
-
-        // Cabeçalho inspirado na referência: marca forte, busca e menu.
-        val topo = LinearLayout(this).apply {
+        val barraTopo = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(8), dp(2), dp(8), dp(12))
-        }
-        val marca = TextView(this).apply {
-            text = "🐺  WOLF "
-            setTextColor(Color.WHITE)
-            textSize = 30f
-            setTypeface(null, Typeface.BLACK)
-            gravity = Gravity.CENTER_VERTICAL
-        }
-        topo.addView(marca, LinearLayout.LayoutParams(0, dp(58), 1f))
-        topo.addView(TextView(this).apply {
-            text = "IPTV"
-            setTextColor(Color.rgb(245, 25, 45))
-            textSize = 30f
-            setTypeface(null, Typeface.BLACK)
-            gravity = Gravity.CENTER_VERTICAL
-        })
-        botaoMenu = TextView(this).apply {
-            text = "  ☰  "
-            setTextColor(Color.WHITE)
-            textSize = 24f
-            gravity = Gravity.CENTER
-            isFocusable = true
-            isClickable = true
-            background = criarFundoCard(false)
-            setOnFocusChangeListener { _, foco -> background = criarFundoCard(foco) }
-            setOnClickListener { abrirMenu() }
-        }
-        topo.addView(botaoMenu, LinearLayout.LayoutParams(dp(64), dp(52)).apply {
-            leftMargin = dp(16)
-        })
-        camada.addView(topo, LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        ))
-
-        val principal = LinearLayout(this).apply {
-            orientation = LinearLayout.HORIZONTAL
-            gravity = Gravity.TOP
-        }
-        camada.addView(principal, LinearLayout.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, 0, 1f
-        ))
-
-        // Menu lateral fixo, com seleção vermelha e acesso direto às áreas.
-        val lateral = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(dp(2), dp(4), dp(10), dp(4))
-        }
-        principal.addView(lateral, LinearLayout.LayoutParams(
-            dp(if (colunas >= 5) 230 else 145), ViewGroup.LayoutParams.MATCH_PARENT
-        ))
-
-        val scroll = ScrollView(this).apply {
-            isFocusable = false
-            isFocusableInTouchMode = false
-            clipToPadding = false
-        }
-        conteudo = LinearLayout(this).apply {
-            orientation = LinearLayout.VERTICAL
-            setPadding(dp(4), dp(4), dp(4), dp(24))
-        }
-        scroll.addView(conteudo, ViewGroup.LayoutParams(
-            ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT
-        ))
-        principal.addView(scroll, LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f))
-
-        fun itemLateral(rotulo: String, acao: () -> Unit) {
-            val item = TextView(this).apply {
-                text = rotulo
-                setTextColor(Color.rgb(235, 238, 250))
-                textSize = if (colunas >= 5) 16f else 12f
-                setTypeface(null, Typeface.BOLD)
-                gravity = Gravity.CENTER_VERTICAL
-                setPadding(dp(12), dp(8), dp(8), dp(8))
-                isFocusable = true
-                isClickable = true
-                background = criarFundoCard(false)
-                setOnFocusChangeListener { _, foco ->
-                    background = criarFundoCard(foco)
-                    setTextColor(if (foco) Color.WHITE else Color.rgb(225, 228, 242))
-                }
-                setOnClickListener { acao() }
-            }
-            lateral.addView(item, LinearLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT, dp(if (colunas >= 5) 54 else 44)
-            ).apply { bottomMargin = dp(7) })
         }
 
-        itemLateral("🎬  FILMES") { mostrarListaCards(filmes, true) }
-        itemLateral("▣  COLETÂNEAS") { mostrarListaCards(filmes, true) }
-        itemLateral("▣  SÉRIES") { mostrarListaSeries(series) }
-        itemLateral("🎭  DORAMAS") { mostrarListaSeries(doramas) }
-        itemLateral("☻  DESENHOS") { mostrarListaCards(desenhos) }
-        itemLateral("✦  ANIMES") { mostrarListaSeries(animes) }
-        itemLateral("▣  TV AO VIVO") { mostrarListaCanais(canais) }
-        itemLateral("★  FAVORITOS") { abrirMenu() }
+        barraTopo.addView(
+            botaoMenu,
+            LinearLayout.LayoutParams(dp(235), dp(58))
+        )
+
+        barraTopo.addView(
+            View(this),
+            LinearLayout.LayoutParams(0, 1, 1f)
+        )
+
+        barraTopo.addView(
+            criarRelogio(),
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        camada.addView(
+            barraTopo,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        val scroll = ScrollView(this)
+        scroll.isFocusable = false
+        scroll.isFocusableInTouchMode = false
+
+        conteudo = LinearLayout(this)
+        conteudo.orientation = LinearLayout.VERTICAL
+
+        scroll.addView(
+            conteudo,
+            ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        camada.addView(
+            scroll,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                0,
+                1f
+            )
+        )
 
         setContentView(raiz)
         criarSplash()
@@ -494,14 +493,110 @@ class MainActivity : AppCompatActivity() {
         return (valor * resources.displayMetrics.density).toInt()
     }
 
+    // ===== ESTILO WOLF (visual da tela inicial) =====
+
+    // Seta "›" desenhada à direita dos itens do menu.
+    private fun criarSeta(): android.graphics.drawable.Drawable {
+        val tamanho = dp(22)
+        return object : android.graphics.drawable.Drawable() {
+            private val pincel = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+                color = Color.WHITE
+                textSize = dp(26).toFloat()
+                textAlign = android.graphics.Paint.Align.CENTER
+                typeface = Typeface.DEFAULT_BOLD
+            }
+
+            override fun draw(canvas: android.graphics.Canvas) {
+                val b = bounds
+                canvas.drawText("›", b.exactCenterX(), b.centerY() + dp(9).toFloat(), pincel)
+            }
+
+            override fun setAlpha(alpha: Int) { pincel.alpha = alpha }
+            override fun setColorFilter(filtro: android.graphics.ColorFilter?) { pincel.colorFilter = filtro }
+            @Suppress("OVERRIDE_DEPRECATION")
+            override fun getOpacity(): Int = android.graphics.PixelFormat.TRANSLUCENT
+            override fun getIntrinsicWidth(): Int = tamanho
+            override fun getIntrinsicHeight(): Int = tamanho
+        }
+    }
+
+    // Título de seção com a barrinha vermelha na frente ("| FILMES EM DESTAQUE").
+    private fun tituloSecao(texto: String, cinza: Boolean = false): View {
+        val linha = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            gravity = Gravity.CENTER_VERTICAL
+            setPadding(dp(8), dp(8), dp(8), dp(8))
+        }
+
+        linha.addView(
+            View(this).apply { setBackgroundColor(Color.rgb(255, 40, 40)) },
+            LinearLayout.LayoutParams(dp(4), dp(22)).apply { rightMargin = dp(10) }
+        )
+
+        linha.addView(
+            TextView(this).apply {
+                this.text = texto
+                setTextColor(if (cinza) Color.rgb(170, 170, 170) else Color.WHITE)
+                textSize = 18f
+                setTypeface(null, Typeface.BOLD)
+                letterSpacing = 0.04f
+            }
+        )
+
+        return linha
+    }
+
+    private lateinit var relogioHora: TextView
+    private lateinit var relogioData: TextView
+
+    private fun criarRelogio(): View {
+        val caixa = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            gravity = Gravity.END
+            setPadding(dp(14), 0, dp(6), 0)
+        }
+
+        relogioHora = TextView(this).apply {
+            setTextColor(Color.WHITE)
+            textSize = 24f
+            setTypeface(null, Typeface.BOLD)
+            gravity = Gravity.END
+        }
+
+        relogioData = TextView(this).apply {
+            setTextColor(Color.rgb(200, 200, 210))
+            textSize = 13f
+            gravity = Gravity.END
+        }
+
+        caixa.addView(relogioHora)
+        caixa.addView(relogioData)
+
+        activityScope.launch {
+            val formatoHora = SimpleDateFormat("HH:mm", Locale("pt", "BR"))
+            val formatoData = SimpleDateFormat("EEE, dd MMM", Locale("pt", "BR"))
+            while (true) {
+                val agora = Date()
+                relogioHora.text = formatoHora.format(agora)
+                relogioData.text = formatoData.format(agora)
+                    .replace(".", "")
+                    .replaceFirstChar { it.uppercase() }
+                delay(30_000)
+            }
+        }
+
+        return caixa
+    }
+
     private fun criarFundoCard(foco: Boolean): GradientDrawable {
         val fundo = GradientDrawable()
         fundo.setColor(
-            if (foco) Color.argb(235, 10, 10, 10)
-            else Color.argb(190, 10, 10, 10)
+            if (foco) Color.argb(245, 10, 14, 32)
+            else Color.argb(225, 8, 12, 28)
         )
         fundo.cornerRadius = dp(14).toFloat()
-        if (foco) fundo.setStroke(dp(4), Color.RED)
+        if (foco) fundo.setStroke(dp(3), Color.rgb(255, 40, 40))
+        else fundo.setStroke(dp(1), Color.rgb(44, 62, 120))
         return fundo
     }
 
@@ -509,7 +604,7 @@ class MainActivity : AppCompatActivity() {
         val borda = GradientDrawable()
         borda.setColor(Color.TRANSPARENT)
         borda.cornerRadius = dp(14).toFloat()
-        borda.setStroke(dp(4), Color.RED)
+        borda.setStroke(dp(3), Color.rgb(255, 40, 40))
         return borda
     }
 
@@ -1391,15 +1486,19 @@ class MainActivity : AppCompatActivity() {
     ): View {
         val informacoes = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
-            gravity = Gravity.CENTER_VERTICAL
+            gravity = Gravity.CENTER
             setPadding(dp(8), dp(3), dp(8), dp(3))
-            setBackgroundColor(Color.argb(235, 10, 10, 10))
+            background = GradientDrawable(
+                GradientDrawable.Orientation.TOP_BOTTOM,
+                intArrayOf(Color.argb(60, 6, 9, 22), Color.argb(245, 6, 9, 22))
+            )
         }
 
         val titulo = TextView(this).apply {
             text = linha1
             setTextColor(Color.WHITE)
             textSize = 14f
+            gravity = Gravity.CENTER
             setTypeface(null, Typeface.BOLD)
             maxLines = 1
             ellipsize = TextUtils.TruncateAt.END
@@ -1415,8 +1514,9 @@ class MainActivity : AppCompatActivity() {
 
         val detalhes = TextView(this).apply {
             text = linha2
-            setTextColor(Color.LTGRAY)
+            setTextColor(Color.rgb(190, 195, 210))
             textSize = 12f
+            gravity = Gravity.CENTER
             maxLines = 1
             ellipsize = TextUtils.TruncateAt.END
         }
@@ -1506,7 +1606,10 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if (comContinuar) montarFileiraContinuar()
+        if (comContinuar) {
+            montarFileiraContinuar()
+            montarFileiraLancamentos(lista)
+        }
 
         montarGrade(lista.map { criarCard(it) })
     }
@@ -1521,14 +1624,7 @@ class MainActivity : AppCompatActivity() {
         if (itens.isEmpty()) return
 
         conteudo.addView(
-            TextView(this).apply {
-                text = "▶  CONTINUAR ASSISTINDO"
-                setTextColor(Color.WHITE)
-                textSize = 17f
-                setTypeface(null, Typeface.BOLD)
-                letterSpacing = 0.05f
-                setPadding(dp(8), dp(6), dp(8), dp(8))
-            },
+            tituloSecao("CONTINUAR ASSISTINDO"),
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
@@ -1550,6 +1646,7 @@ class MainActivity : AppCompatActivity() {
                 Filme(it.titulo, 0, it.resumo(), it.capa, it.url),
                 false
             )
+            adicionarBarraProgresso(card, it)
             linha.addView(card, parametros())
             cardsAtuais.add(card)
         }
@@ -1572,19 +1669,120 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
+    }
+
+    // Fileira com os filmes mais novos (maior ano primeiro).
+    private fun montarFileiraLancamentos(lista: List<Filme>): Boolean {
+        val novos = lista
+            .filter { it.ano > 0 }
+            .sortedByDescending { it.ano }
+            .take(colunas)
+        if (novos.isEmpty()) return false
+
         conteudo.addView(
-            TextView(this).apply {
-                text = "TODOS OS FILMES"
-                setTextColor(Color.rgb(170, 170, 170))
-                textSize = 14f
-                setTypeface(null, Typeface.BOLD)
-                letterSpacing = 0.1f
-                setPadding(dp(8), dp(6), dp(8), dp(8))
-            },
+            tituloSecao("LANÇAMENTOS RECENTES"),
             LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
+        )
+
+        val linha = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+        }
+
+        fun parametros() = LinearLayout.LayoutParams(0, dp(335), 1f).apply {
+            leftMargin = dp(4)
+            rightMargin = dp(4)
+            bottomMargin = dp(12)
+        }
+
+        novos.forEach {
+            val card = criarCard(it)
+            linha.addView(card, parametros())
+            cardsAtuais.add(card)
+        }
+
+        // Espaços vazios mantêm a navegação da grade alinhada.
+        repeat(colunas - novos.size) {
+            val vazio = View(this).apply {
+                tag = "vazio"
+                isFocusable = false
+            }
+            linha.addView(vazio, parametros())
+            cardsAtuais.add(vazio)
+        }
+
+        conteudo.addView(
+            linha,
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(350)
+            )
+        )
+
+        conteudo.addView(
+            tituloSecao("TODOS OS FILMES", cinza = true),
+            LinearLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+        )
+
+        return true
+    }
+
+    // Barra vermelha de progresso com a porcentagem, em cima do rodapé do card.
+    private fun adicionarBarraProgresso(card: View, item: ProgressoItem) {
+        val moldura = card as? FrameLayout ?: return
+        if (item.duracao <= 0L) return
+
+        val pct = ((item.posicao * 100) / item.duracao).toInt().coerceIn(0, 100)
+
+        val trilho = LinearLayout(this).apply {
+            orientation = LinearLayout.HORIZONTAL
+            weightSum = 100f
+            background = GradientDrawable().apply {
+                setColor(Color.argb(170, 60, 66, 90))
+                cornerRadius = dp(2).toFloat()
+            }
+        }
+
+        trilho.addView(
+            View(this).apply {
+                background = GradientDrawable().apply {
+                    setColor(Color.rgb(255, 40, 40))
+                    cornerRadius = dp(2).toFloat()
+                }
+            },
+            LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, pct.toFloat())
+        )
+
+        moldura.addView(
+            trilho,
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                dp(4)
+            ).apply {
+                gravity = Gravity.BOTTOM
+                setMargins(dp(10), 0, dp(10), dp(66))
+            }
+        )
+
+        moldura.addView(
+            TextView(this).apply {
+                text = "$pct%"
+                setTextColor(Color.WHITE)
+                textSize = 11f
+                setShadowLayer(4f, 0f, 0f, Color.BLACK)
+            },
+            FrameLayout.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            ).apply {
+                gravity = Gravity.BOTTOM or Gravity.END
+                setMargins(0, 0, dp(10), dp(72))
+            }
         )
     }
 
@@ -2183,8 +2381,8 @@ class MainActivity : AppCompatActivity() {
 
     private val secoesMenu = mutableListOf<SecaoMenu>()
 
-    private val COR_PAINEL = Color.argb(250, 12, 16, 38)
-    private val COR_ITEM = Color.argb(255, 27, 32, 56)
+    private val COR_PAINEL = Color.argb(250, 6, 9, 22)
+    private val COR_ITEM = Color.argb(255, 12, 17, 38)
     private val COR_SECAO = Color.argb(255, 44, 56, 108)
 
     private fun criarFundoMenu(
@@ -2195,7 +2393,8 @@ class MainActivity : AppCompatActivity() {
         val fundo = GradientDrawable()
         fundo.setColor(cor)
         fundo.cornerRadius = dp(raio).toFloat()
-        if (foco) fundo.setStroke(dp(3), Color.RED)
+        if (foco) fundo.setStroke(dp(3), Color.rgb(255, 40, 40))
+        else fundo.setStroke(dp(1), Color.rgb(36, 52, 104))
         return fundo
     }
 
@@ -2214,7 +2413,10 @@ class MainActivity : AppCompatActivity() {
             setTextColor(Color.WHITE)
             textSize = 16f
             gravity = Gravity.CENTER_VERTICAL
-            setPadding(dp(18), 0, dp(12), 0)
+            setPadding(dp(18), 0, dp(16), 0)
+            setTypeface(null, Typeface.BOLD)
+            compoundDrawablePadding = dp(8)
+            setCompoundDrawablesWithIntrinsicBounds(null, null, criarSeta(), null)
             isFocusable = true
             isFocusableInTouchMode = true
             isClickable = true
