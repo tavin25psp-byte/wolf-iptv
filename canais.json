@@ -79,12 +79,6 @@
       "categoria": "Entretenimento"
     },
     {
-      "nome": "Cartoon Network HD",
-      "logo": "",
-      "url": "http://45.185.11.126:8000/play/a087/index.m3u8",
-      "categoria": "Infantil"
-    },
-    {
       "nome": "Cartoonito HD",
       "logo": "",
       "url": "http://45.185.11.126:8000/play/a0ae/index.m3u8",
@@ -325,12 +319,6 @@
       "categoria": "Filmes e Séries"
     },
     {
-      "nome": "Playboy TV HD",
-      "logo": "",
-      "url": "http://45.185.11.126:8000/play/a09n/index.m3u8",
-      "categoria": "Entretenimento"
-    },
-    {
       "nome": "Premiere 2 HD",
       "logo": "",
       "url": "http://45.185.11.126:8000/play/a06h/index.m3u8",
@@ -381,7 +369,7 @@
     {
       "nome": "Record News HD",
       "logo": "",
-      "url": "http://45.185.11.126:8000/play/a0a2/index.m3u8",
+      "url": "http://45.162.64.114/RECORD_NEWS/index.m3u8",
       "categoria": "Notícias"
     },
     {
@@ -389,12 +377,6 @@
       "logo": "",
       "url": "http://45.185.11.126:8000/play/a0a7/index.m3u8",
       "categoria": "Notícias"
-    },
-    {
-      "nome": "Space HD",
-      "logo": "",
-      "url": "http://45.185.11.126:8000/play/a08b/index.m3u8",
-      "categoria": "Filmes e Séries"
     },
     {
       "nome": "Studio Universal HD",
@@ -671,6 +653,48 @@
       "logo": "",
       "url": "http://89.44.231.115:7000/eurosport",
       "categoria": "Esportes"
+    },
+    {
+      "nome": "A FAZENDA 18 MOSAICO",
+      "logo": "",
+      "url": "http://corruptx.org:80/3l1ohwk4g9/kwf099q30o/2470067.ts",
+      "categoria": "A Fazenda 18"
+    },
+    {
+      "nome": "A FAZENDA 18 01",
+      "logo": "",
+      "url": "http://corruptx.org:80/3l1ohwk4g9/kwf099q30o/2470061.ts",
+      "categoria": "A Fazenda 18"
+    },
+    {
+      "nome": "A FAZENDA 18 02",
+      "logo": "",
+      "url": "http://corruptx.org:80/3l1ohwk4g9/kwf099q30o/2470062.ts",
+      "categoria": "A Fazenda 18"
+    },
+    {
+      "nome": "A FAZENDA 18 03",
+      "logo": "",
+      "url": "http://corruptx.org:80/3l1ohwk4g9/kwf099q30o/2470063.ts",
+      "categoria": "A Fazenda 18"
+    },
+    {
+      "nome": "A FAZENDA 18 04",
+      "logo": "",
+      "url": "http://corruptx.org:80/3l1ohwk4g9/kwf099q30o/2470064.ts",
+      "categoria": "A Fazenda 18"
+    },
+    {
+      "nome": "A FAZENDA 18 05",
+      "logo": "",
+      "url": "http://corruptx.org:80/3l1ohwk4g9/kwf099q30o/2470065.ts",
+      "categoria": "A Fazenda 18"
+    },
+    {
+      "nome": "A FAZENDA 18 06",
+      "logo": "",
+      "url": "http://corruptx.org:80/3l1ohwk4g9/kwf099q30o/2470066.ts",
+      "categoria": "A Fazenda 18"
     }
   ]
 }
