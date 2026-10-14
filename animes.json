@@ -8,166 +8,38 @@
         {
           "numero": 1,
           "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E01.Homecoming.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E02.The.Akatsuki.Makes.Its.Move.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E03.The.Results.of.Training.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E04.The.Jinchuriki.of.the.Sand.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E05.The.Kazekage.Stands.Tall.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E06.Mission.Cleared.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E07.Run.Kankuro.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E08.Team.Kakashi.Deployed.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E09.The.Jinchurikis.Tears.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E10.Sealing.Jutsu.Nine.Phantom.Dragons.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E11.The.Medical.Ninjas.Student.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E12.The.Retired.Grannys.Determination.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 13,
-              "titulo": "Episódio 13",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E13.A.Meeting.With.Destiny.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 14,
-              "titulo": "Episódio 14",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E14.Narutos.Growth.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 15,
-              "titulo": "Episódio 15",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E15.The.Secret.Weapon.is.Called.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 16,
-              "titulo": "Episódio 16",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E16.The.Secret.of.Jinchuriki.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 17,
-              "titulo": "Episódio 17",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E17.The.Death.of.Gaara.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 18,
-              "titulo": "Episódio 18",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E18.Charge.Tactic.Button.Hook.Entry.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 19,
-              "titulo": "Episódio 19",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E19.Traps.Activate.Team.Guys.Enemy.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 20,
-              "titulo": "Episódio 20",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E20.Hiruko.vs.Two.Kunoichi.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 21,
-              "titulo": "Episódio 21",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E21.Sasoris.Real.Face.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 22,
-              "titulo": "Episódio 22",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E22.Chiyos.Secret.Skills.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 23,
-              "titulo": "Episódio 23",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E23.Father.and.Mother.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 24,
-              "titulo": "Episódio 24",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E24.The.Third.Kazekage.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 25,
-              "titulo": "Episódio 25",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E25.Three.Minutes.Between.Life.and.Death.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 26,
-              "titulo": "Episódio 26",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E26.Puppet.Fight.10.vs.100.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 27,
-              "titulo": "Episódio 27",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E27.Impossible.Dream.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 28,
-              "titulo": "Episódio 28",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E28.Beasts.Alive.Again.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 29,
-              "titulo": "Episódio 29",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E29.Kakashi.Enlightened.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 30,
-              "titulo": "Episódio 30",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Narutoep30.mp4"
-            },
-            {
-              "numero": 31,
-              "titulo": "Episódio 31",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E31.The.Legacy.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            },
-            {
-              "numero": 32,
-              "titulo": "Episódio 32",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E32.Return.of.the.Kazekage.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4"
-            }
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E01.Homecoming.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E02.The.Akatsuki.Makes.Its.Move.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E03.The.Results.of.Training.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E04.The.Jinchuriki.of.the.Sand.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E05.The.Kazekage.Stands.Tall.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E06.Mission.Cleared.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E07.Run.Kankuro.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E08.Team.Kakashi.Deployed.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E09.The.Jinchurikis.Tears.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E10.Sealing.Jutsu.Nine.Phantom.Dragons.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E11.The.Medical.Ninjas.Student.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E12.The.Retired.Grannys.Determination.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E13.A.Meeting.With.Destiny.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 14, "titulo": "Episódio 14", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E14.Narutos.Growth.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 15, "titulo": "Episódio 15", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E15.The.Secret.Weapon.is.Called.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 16, "titulo": "Episódio 16", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E16.The.Secret.of.Jinchuriki.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 17, "titulo": "Episódio 17", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E17.The.Death.of.Gaara.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 18, "titulo": "Episódio 18", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E18.Charge.Tactic.Button.Hook.Entry.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 19, "titulo": "Episódio 19", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E19.Traps.Activate.Team.Guys.Enemy.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 20, "titulo": "Episódio 20", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E20.Hiruko.vs.Two.Kunoichi.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 21, "titulo": "Episódio 21", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E21.Sasoris.Real.Face.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 22, "titulo": "Episódio 22", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E22.Chiyos.Secret.Skills.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 23, "titulo": "Episódio 23", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E23.Father.and.Mother.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 24, "titulo": "Episódio 24", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E24.The.Third.Kazekage.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 25, "titulo": "Episódio 25", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E25.Three.Minutes.Between.Life.and.Death.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 26, "titulo": "Episódio 26", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E26.Puppet.Fight.10.vs.100.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 27, "titulo": "Episódio 27", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E27.Impossible.Dream.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 28, "titulo": "Episódio 28", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E28.Beasts.Alive.Again.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 29, "titulo": "Episódio 29", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E29.Kakashi.Enlightened.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 30, "titulo": "Episódio 30", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Narutoep30.mp4" },
+            { "numero": 31, "titulo": "Episódio 31", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E31.The.Legacy.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" },
+            { "numero": 32, "titulo": "Episódio 32", "video": "https://wolf-channel-cdn.b-cdn.net/Animes%20do%20tavin/Naruto.Shippuden.S01E32.Return.of.the.Kazekage.1080p.AMZN.WEB-DL.DDP2.0.H.264.DUAL-OLYMPUS.mp4" }
           ]
         },
         {
@@ -206,126 +78,84 @@
         {
           "numero": 1,
           "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1 - Renascer",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%201%20-%20Renascer.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2 - Resistir",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%202%20-%20Resistir.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3 - Resolução",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%203%20-%20Resolu%C3%A7%C3%A3o.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4 - Retorno",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%204%20-%20Retorno.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5 - Regresso",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%205%20-%20Regresso.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6 - Remorso",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%206%20-%20Remorso.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7 - Reviver",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%207%20-%20Reviver.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8 - Renovar",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%208%20-%20Renovar.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9 - Revolta",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%209%20-%20Revolta.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10 - Reerguer",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2010%20-%20Reerguer.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11 - Respeito",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2011%20-%20Respeito.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12 - Retaliação",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2012%20-%20Retalia%C3%A7%C3%A3o.mp4"
-            },
-            {
-              "numero": 13,
-              "titulo": "Episódio 13 - Pontas soltas",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2013%20-%20Pontas%20soltas.mp4"
-            },
-            {
-              "numero": 14,
-              "titulo": "Episódio 14 - Rompimento",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2014%20-%20Rompimento.mp4"
-            },
-            {
-              "numero": 15,
-              "titulo": "Episódio 15 - Sem Dor, Sem Ganho",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2015%20-%20Sem%20Dor%2C%20Sem%20Ganho.mp4"
-            },
-            {
-              "numero": 16,
-              "titulo": "Episódio 16 - Era uma vez",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2016%20-%20Era%20uma%20vez.mp4"
-            },
-            {
-              "numero": 17,
-              "titulo": "Episódio 17 - Não pode ser",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2017%20-%20N%C3%A3o%20pode%20ser.mp4"
-            },
-            {
-              "numero": 18,
-              "titulo": "Episódio 18 - Abrir fogo",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2018%20-%20Abrir%20fogo.mp4"
-            },
-            {
-              "numero": 19,
-              "titulo": "Episódio 19 - Virada",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2019%20-%20Virada.mp4"
-            },
-            {
-              "numero": 20,
-              "titulo": "Episódio 20 - Vivo ou morto",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2020%20-%20Vivo%20ou%20morto.mp4"
-            },
-            {
-              "numero": 21,
-              "titulo": "Episódio 21 - Primeiro e único",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2021%20-%20Primeiro%20e%20%C3%BAnico.mp4"
-            },
-            {
-              "numero": 22,
-              "titulo": "Episódio 22 - Um por todos",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2022%20-%20Um%20por%20todos.mp4"
-            },
-            {
-              "numero": 23,
-              "titulo": "Episódio 23 - Fim da guerra",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2023%20-%20Fim%20da%20guerra.mp4"
-            },
-            {
-              "numero": 24,
-              "titulo": "Episódio 24 - Um bebê chorão",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2024%20-%20Um%20beb%C3%AA%20chor%C3%A3o.mp4"
-            }
+            { "numero": 1, "titulo": "Episódio 1 - Renascer", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%201%20-%20Renascer.mp4" },
+            { "numero": 2, "titulo": "Episódio 2 - Resistir", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%202%20-%20Resistir.mp4" },
+            { "numero": 3, "titulo": "Episódio 3 - Resolução", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%203%20-%20Resolu%C3%A7%C3%A3o.mp4" },
+            { "numero": 4, "titulo": "Episódio 4 - Retorno", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%204%20-%20Retorno.mp4" },
+            { "numero": 5, "titulo": "Episódio 5 - Regresso", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%205%20-%20Regresso.mp4" },
+            { "numero": 6, "titulo": "Episódio 6 - Remorso", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%206%20-%20Remorso.mp4" },
+            { "numero": 7, "titulo": "Episódio 7 - Reviver", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%207%20-%20Reviver.mp4" },
+            { "numero": 8, "titulo": "Episódio 8 - Renovar", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%208%20-%20Renovar.mp4" },
+            { "numero": 9, "titulo": "Episódio 9 - Revolta", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%209%20-%20Revolta.mp4" },
+            { "numero": 10, "titulo": "Episódio 10 - Reerguer", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2010%20-%20Reerguer.mp4" },
+            { "numero": 11, "titulo": "Episódio 11 - Respeito", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2011%20-%20Respeito.mp4" },
+            { "numero": 12, "titulo": "Episódio 12 - Retaliação", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2012%20-%20Retalia%C3%A7%C3%A3o.mp4" },
+            { "numero": 13, "titulo": "Episódio 13 - Pontas soltas", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2013%20-%20Pontas%20soltas.mp4" },
+            { "numero": 14, "titulo": "Episódio 14 - Rompimento", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2014%20-%20Rompimento.mp4" },
+            { "numero": 15, "titulo": "Episódio 15 - Sem Dor, Sem Ganho", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2015%20-%20Sem%20Dor%2C%20Sem%20Ganho.mp4" },
+            { "numero": 16, "titulo": "Episódio 16 - Era uma vez", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2016%20-%20Era%20uma%20vez.mp4" },
+            { "numero": 17, "titulo": "Episódio 17 - Não pode ser", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2017%20-%20N%C3%A3o%20pode%20ser.mp4" },
+            { "numero": 18, "titulo": "Episódio 18 - Abrir fogo", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2018%20-%20Abrir%20fogo.mp4" },
+            { "numero": 19, "titulo": "Episódio 19 - Virada", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2019%20-%20Virada.mp4" },
+            { "numero": 20, "titulo": "Episódio 20 - Vivo ou morto", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2020%20-%20Vivo%20ou%20morto.mp4" },
+            { "numero": 21, "titulo": "Episódio 21 - Primeiro e único", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2021%20-%20Primeiro%20e%20%C3%BAnico.mp4" },
+            { "numero": 22, "titulo": "Episódio 22 - Um por todos", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2022%20-%20Um%20por%20todos.mp4" },
+            { "numero": 23, "titulo": "Episódio 23 - Fim da guerra", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2023%20-%20Fim%20da%20guerra.mp4" },
+            { "numero": 24, "titulo": "Episódio 24 - Um bebê chorão", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%201/Temporada%201%20Epis%C3%B3dio%2024%20-%20Um%20beb%C3%AA%20chor%C3%A3o.mp4" }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%201%20-%20Epis%C3%B3dio%201.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%202%20-%20Epis%C3%B3dio%202.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%203%20-%20Epis%C3%B3dio%203.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%204%20-%20Epis%C3%B3dio%204.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%205%20-%20Epis%C3%B3dio%205.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%206%20-%20Epis%C3%B3dio%206.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%207%20-%20Epis%C3%B3dio%207.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%208%20-%20Epis%C3%B3dio%208.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%209%20-%20Epis%C3%B3dio%209.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%2010%20-%20Epis%C3%B3dio%2010.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%2011%20-%20Epis%C3%B3dio%2011.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%2012%20-%20Epis%C3%B3dio%2012.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%202/Temporada%202%20Epis%C3%B3dio%2013%20-%20Epis%C3%B3dio%2013.mp4" }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%201%20-%20Epis%C3%B3dio%201.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%202%20-%20Epis%C3%B3dio%202.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%203%20-%20Epis%C3%B3dio%203.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%204%20-%20Epis%C3%B3dio%204.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%205%20-%20Epis%C3%B3dio%205.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%206%20-%20Epis%C3%B3dio%206.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%207%20-%20Epis%C3%B3dio%207.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%208%20-%20Epis%C3%B3dio%208.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%209%20-%20Epis%C3%B3dio%209.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%2010%20-%20Epis%C3%B3dio%2010.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%2011%20-%20Epis%C3%B3dio%2011.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%2012%20-%20Epis%C3%B3dio%2012.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%203/Temporada%203%20Epis%C3%B3dio%2013%20-%20Epis%C3%B3dio%2013.mp4" }
+          ]
+        },
+        {
+          "numero": 4,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%204/Temporada%204%20Epis%C3%B3dio%201%20-.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Tokyo%20revenger%20season%204/Temporada%204%20Epis%C3%B3dio%202%20-.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "" }
           ]
         }
       ]
@@ -338,66 +168,36 @@
         {
           "numero": 1,
           "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP01.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP02.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP03.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP04.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP05.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP06.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP07.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP08.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP09.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP10.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP11.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP12.mp4"
-            }
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%201/SLOLVLNGT01EP12.mp4" }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP12.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "https://wolf-channel-cdn.b-cdn.net/Solo%20leveling%20season%202/SLOLVLNGT02EP13.mp4" }
           ]
         }
       ]
@@ -410,91 +210,27 @@
         {
           "numero": 1,
           "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP01.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP02.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP03.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP04.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP05.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP06.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP07.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP08.mp4"
-            }
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP08.mp4" }
           ]
         },
         {
           "numero": 2,
           "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP01.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP02.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP03.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP04.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP05.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP06.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP07.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP08.mp4"
-            }
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP08.mp4" }
           ]
         }
       ]
@@ -507,66 +243,18 @@
         {
           "numero": 1,
           "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP01%20(1).mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP02.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP03.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP04.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP05.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP06.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP07.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP08.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP09.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP10.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP11.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP12.mp4"
-            }
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP01%20(1).mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Super%20cubo%20season%201/SPRCBOT01EP12.mp4" }
           ]
         }
       ]
@@ -579,83 +267,91 @@
         {
           "numero": 1,
           "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP01.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP02.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP03.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP04.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP05.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP06.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP07.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP08.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP09.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP10.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP11.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP12.mp4"
-            }
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Dandadan%20season%201/DANDADANT01EP12.mp4" }
           ]
         },
         {
           "numero": 2,
           "episodios": [
-            { "numero": 1, "titulo": "Episódio 1", "video": "" },
-            { "numero": 2, "titulo": "Episódio 2", "video": "" },
-            { "numero": 3, "titulo": "Episódio 3", "video": "" },
-            { "numero": 4, "titulo": "Episódio 4", "video": "" },
-            { "numero": 5, "titulo": "Episódio 5", "video": "" },
-            { "numero": 6, "titulo": "Episódio 6", "video": "" },
-            { "numero": 7, "titulo": "Episódio 7", "video": "" },
-            { "numero": 8, "titulo": "Episódio 8", "video": "" },
-            { "numero": 9, "titulo": "Episódio 9", "video": "" },
-            { "numero": 10, "titulo": "Episódio 10", "video": "" },
-            { "numero": 11, "titulo": "Episódio 11", "video": "" },
-            { "numero": 12, "titulo": "Episódio 12", "video": "" }
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/DANDADANT02EP12.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Gachiakuta",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/QtpKbw7h/IMG-811b3ba4-fbfb-4737-a3c8-4f36a6fa3b21.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP12.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP13.mp4" },
+            { "numero": 14, "titulo": "Episódio 14", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP14.mp4" },
+            { "numero": 15, "titulo": "Episódio 15", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP15.mp4" },
+            { "numero": 16, "titulo": "Episódio 16", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP16.mp4" },
+            { "numero": 17, "titulo": "Episódio 17", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP17.mp4" },
+            { "numero": 18, "titulo": "Episódio 18", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP18.mp4" },
+            { "numero": 19, "titulo": "Episódio 19", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP19.mp4" },
+            { "numero": 20, "titulo": "Episódio 20", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP20.mp4" },
+            { "numero": 21, "titulo": "Episódio 21", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP21.mp4" },
+            { "numero": 22, "titulo": "Episódio 22", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP22.mp4" },
+            { "numero": 23, "titulo": "Episódio 23", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP23.mp4" },
+            { "numero": 24, "titulo": "Episódio 24", "video": "https://wolf-channel-cdn.b-cdn.net/GACHAKTAT01EP24.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Exception",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VvK6Z8Lh/IMG-d0108d9d-c120-4376-872a-5ea30d315f07.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/EXCPTNT01EP08.mp4" }
           ]
         }
       ]
