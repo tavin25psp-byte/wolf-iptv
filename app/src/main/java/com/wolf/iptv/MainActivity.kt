@@ -197,6 +197,7 @@ class MainActivity : AppCompatActivity() {
             var ciclo = 0
             while (true) {
                 delay(120_000L)
+                if (!noPrimeiroPlano) continue   // filme aberto: não baixa nada
                 ciclo++
                 if (catalogoIniciado) verificarNovidades()
                 if (ciclo % 5 == 0) verificarAssinatura()
@@ -3448,6 +3449,25 @@ class MainActivity : AppCompatActivity() {
         }
 
         return super.dispatchKeyEvent(event)
+    }
+
+    // Controla se a lista está na tela (false enquanto o player está aberto).
+    private var noPrimeiroPlano = true
+
+    override fun onStart() {
+        super.onStart()
+        noPrimeiroPlano = true
+    }
+
+    override fun onStop() {
+        noPrimeiroPlano = false
+        super.onStop()
+    }
+
+    // Libera memória das capas quando o app sai da tela (ex.: abriu o filme).
+    override fun onTrimMemory(level: Int) {
+        super.onTrimMemory(level)
+        if (level >= TRIM_MEMORY_UI_HIDDEN) cacheCapas.evictAll()
     }
 
     override fun onResume() {
