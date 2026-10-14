@@ -1,1 +1,60 @@
+{
+    "serie": "Alice in Borderland",
+    "imagem": "https://i.postimg.cc/gJnTFvVS/images-(27).jpg",
+    "temporadas": [
+        {
+            "temporada": 1,
+            "episodios": [
+                {
+                    "episodio": 1,
+                    "titulo": "Episódio 1",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP01.mp4"
+                },
+                {
+                    "episodio": 2,
+                    "titulo": "Episódio 2",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP02.mp4"
+                },
+                {
+                    "episodio": 3,
+                    "titulo": "Episódio 3",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP03.mp4"
+                },
+                {
+                    "episodio": 4,
+                    "titulo": "Episódio 4",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP04.mp4"
+                },
+                {
+                    "episodio": 5,
+                    "titulo": "Episódio 5",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP05.mp4"
+                },
+                {
+                    "episodio": 6,
+                    "titulo": "Episódio 6",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP06.mp4"
+                },
+                {
+                    "episodio": 7,
+                    "titulo": "Episódio 7",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP07.mp4"
+                },
+                {
+                    "episodio": 8,
+                    "titulo": "Episódio 8",
+                    "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP08.mp4"
+                }
+            ]
+        },
+        {
+            "temporada": 2,
+            "episodios": []
+        },
+        {
+            "temporada": 3,
+            "episodios": []
+        }
+    ]
+        }
 
