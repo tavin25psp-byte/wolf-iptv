@@ -1,6 +1,12 @@
 {
   "canais": [
     {
+      "nome": "A Fazenda 24H HD",
+      "logo": "https://i.imgur.com/FuRKLSq.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/2061.ts",
+      "categoria": "Entretenimento"
+    },
+    {
       "nome": "AMC HD",
       "logo": "https://logo.clearbit.com/amc.com",
       "url": "http://45.185.11.126:8000/play/a06s/index.m3u8",
@@ -77,6 +83,30 @@
       "logo": "https://logo.clearbit.com/bandsports.com.br",
       "url": "http://45.185.11.126:8000/play/a05o/index.m3u8",
       "categoria": "Esportes"
+    },
+    {
+      "nome": "Banda",
+      "logo": "https://i.imgur.com/CzBgspt.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/124.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "Banda Alternativa",
+      "logo": "https://i.imgur.com/CzBgspt.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/2083.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "Banda HD",
+      "logo": "https://i.imgur.com/rDtkGvf.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/193.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "Banda HD Alternativa",
+      "logo": "https://i.imgur.com/rDtkGvf.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/1816.ts",
+      "categoria": "Canais Abertos"
     },
     {
       "nome": "Bloomberg HD",
@@ -283,6 +313,12 @@
       "categoria": "Canais Abertos"
     },
     {
+      "nome": "Futura Alternativa",
+      "logo": "https://i.imgur.com/wuunLnX.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/2064.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
       "nome": "GE TV HD",
       "logo": "https://logo.clearbit.com/ge.globo.com",
       "url": "http://45.185.11.126:8000/play/a08v/index.m3u8",
@@ -293,6 +329,12 @@
       "logo": "https://logo.clearbit.com/gnt.globo.com",
       "url": "http://45.185.11.126:8000/play/a079/index.m3u8",
       "categoria": "Entretenimento"
+    },
+    {
+      "nome": "Globo Portugal Premium",
+      "logo": "https://i.imgur.com/NYgeGoO.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/449.ts",
+      "categoria": "Rede Globo"
     },
     {
       "nome": "Globo RJ HD",
@@ -417,7 +459,7 @@
     {
       "nome": "MAX Prime HD",
       "logo": "",
-      "url": "http://45.185.11.126:8000/play/a0e2/index.m3u8",
+      "url": "http://45.185.11.126:8000/play/a0e3/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
@@ -559,9 +601,57 @@
       "categoria": "Notícias"
     },
     {
+      "nome": "RecordTV",
+      "logo": "https://i.imgur.com/BpBs3ZF.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/41.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RecordTV Alternativo",
+      "logo": "https://i.imgur.com/BpBs3ZF.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/2030.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RecordTV HD",
+      "logo": "https://i.imgur.com/BpBs3ZF.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/149.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RecordTV HD Alternativo",
+      "logo": "https://i.imgur.com/BpBs3ZF.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/3494.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RecordTV HD Portugal",
+      "logo": "https://i.imgur.com/BpBs3ZF.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/1124.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RecordTV Portugal",
+      "logo": "https://i.imgur.com/BpBs3ZF.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/2029.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RecordTV USA",
+      "logo": "https://i.imgur.com/BpBs3ZF.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/3493.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
       "nome": "Rede Brasil",
       "logo": "https://logo.clearbit.com/rbtv.com.br",
       "url": "http://45.185.11.126:8000/play/a0f3/index.m3u8",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "Rede Brasil Alternativa",
+      "logo": "https://i.imgur.com/vdNSOEq.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/2031.ts",
       "categoria": "Canais Abertos"
     },
     {
@@ -577,6 +667,24 @@
       "categoria": "Canais Abertos"
     },
     {
+      "nome": "RedeTV!",
+      "logo": "https://i.imgur.com/8pIoHeV.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/39.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RedeTV! Alternativa",
+      "logo": "https://i.imgur.com/8pIoHeV.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/1954.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "RedeTV! alta definição",
+      "logo": "https://i.imgur.com/8pIoHeV.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/148.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
       "nome": "Retrô Cartoon",
       "logo": "",
       "url": "http://45.185.11.126:8000/play/a0f6/index.m3u8",
@@ -586,6 +694,18 @@
       "nome": "RIT",
       "logo": "https://logo.clearbit.com/rittv.com.br",
       "url": "http://45.185.11.126:8000/play/a0f7/index.m3u8",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "SBT",
+      "logo": "https://i.imgur.com/Wl5nvKp.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/36.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "SBT Alternativo",
+      "logo": "https://i.imgur.com/Wl5nvKp.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/2027.ts",
       "categoria": "Canais Abertos"
     },
     {
@@ -694,6 +814,24 @@
       "nome": "TV Cultura",
       "logo": "https://logo.clearbit.com/tvcultura.com.br",
       "url": "http://45.185.11.126:8000/play/a0g7/index.m3u8",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "TV Cultura HD",
+      "logo": "https://i.imgur.com/HsTKIrZ.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/564.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "TV Cultura HD Alternativa",
+      "logo": "https://i.imgur.com/HsTKIrZ.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/1766.ts",
+      "categoria": "Canais Abertos"
+    },
+    {
+      "nome": "TV Gazeta HD",
+      "logo": "https://i.imgur.com/UOFLJYt.png",
+      "url": "http://giantofthefuture.gleeze.com:25461/live/colepty1679/Hbplloxye/570.ts",
       "categoria": "Canais Abertos"
     },
     {
