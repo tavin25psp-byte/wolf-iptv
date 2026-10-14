@@ -22,7 +22,7 @@
                 },
                 {
                     "episodio": 4,
-                    "titulo": "Episódio 4",
+                    "titulo": "Episodio 4",
                     "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP04.mp4"
                 },
                 {
@@ -56,5 +56,4 @@
             "episodios": []
         }
     ]
-        }
-
+}
