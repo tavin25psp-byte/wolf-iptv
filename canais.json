@@ -73,6 +73,12 @@
       "categoria": "Notícias"
     },
     {
+      "nome": "Band Sports HD",
+      "logo": "https://logo.clearbit.com/bandsports.com.br",
+      "url": "http://45.185.11.126:8000/play/a05o/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
       "nome": "Bloomberg HD",
       "logo": "https://logo.clearbit.com/bloomberg.com",
       "url": "http://45.185.11.126:8000/play/a0c5/index.m3u8",
@@ -151,6 +157,12 @@
       "categoria": "Entretenimento"
     },
     {
+      "nome": "Combate HD",
+      "logo": "https://logo.clearbit.com/combate.com",
+      "url": "http://45.185.11.126:8000/play/a073/index.m3u8",
+      "categoria": "Entretenimento"
+    },
+    {
       "nome": "DUMDUM HD",
       "logo": "",
       "url": "http://45.185.11.126:8000/play/a078/index.m3u8",
@@ -215,6 +227,24 @@
       "logo": "https://logo.clearbit.com/disney.com",
       "url": "http://45.185.11.126:8000/play/a0d2/index.m3u8",
       "categoria": "Infantil"
+    },
+    {
+      "nome": "ESPN 4 HD",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://45.185.11.126:8000/play/a05m/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "ESPN 5 HD",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://45.185.11.126:8000/play/a05n/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "ESPN 6 HD",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://45.185.11.126:8000/play/a084/index.m3u8",
+      "categoria": "Esportes"
     },
     {
       "nome": "FOX HD",
@@ -457,135 +487,111 @@
       "categoria": "Filmes e Séries"
     },
     {
-      "nome": "Play TV",
-      "logo": "http://i.imgur.com/0Kp413X.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1279.m3u8",
-      "categoria": "Variedades"
+      "nome": "Premiere 2 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a06h/index.m3u8",
+      "categoria": "Esportes"
     },
     {
-      "nome": "Portal Gospel HD",
-      "logo": "http://images.mi.tv/channels/br_rede-gospel_m.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1425.m3u8",
-      "categoria": "Canais Religiosos"
+      "nome": "Premiere 3 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a0av/index.m3u8",
+      "categoria": "Esportes"
     },
     {
-      "nome": "Premiere Clubes",
-      "logo": "http://i.imgur.com/8d0cM31.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1269.m3u8",
+      "nome": "Premiere 4 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a07b/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 5 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a07c/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 6 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05j/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 7 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05k/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Premiere 8 HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05l/index.m3u8",
       "categoria": "Esportes"
     },
     {
       "nome": "Premiere Clubes HD",
-      "logo": "http://i.imgur.com/8d0cM31.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1378.m3u8",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a06g/index.m3u8",
       "categoria": "Esportes"
     },
     {
       "nome": "Prime Box Brazil",
-      "logo": "http://i.imgur.com/tjEoZDA.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1268.m3u8",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a0e9/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
       "nome": "RBI",
-      "logo": "http://i.imgur.com/BtATkqN.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1267.m3u8",
-      "categoria": "Canais Abertos"
-    },
-    {
-      "nome": "Record",
-      "logo": "http://i.imgur.com/1Zb1lr8.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1264.m3u8",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a0f1/index.m3u8",
       "categoria": "Canais Abertos"
     },
     {
       "nome": "Record HD",
-      "logo": "http://i.imgur.com/1Zb1lr8.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1373.m3u8",
+      "logo": "https://logo.clearbit.com/r7.com",
+      "url": "http://45.185.11.126:8000/play/a0f2/index.m3u8",
       "categoria": "Canais Abertos"
     },
     {
-      "nome": "Record HD [Alter]",
-      "logo": "http://i.imgur.com/1Zb1lr8.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/3104.m3u8",
-      "categoria": "Canais Abertos"
-    },
-    {
-      "nome": "Record News",
-      "logo": "http://i.imgur.com/I99RZ9n.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1265.m3u8",
+      "nome": "Record News HD",
+      "logo": "https://logo.clearbit.com/recordnews.r7.com",
+      "url": "http://45.162.64.114/RECORD_NEWS/index.m3u8",
       "categoria": "Notícias"
     },
     {
       "nome": "Rede Brasil",
-      "logo": "http://i.imgur.com/LfJlPyw.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1263.m3u8",
-      "categoria": "Canais Abertos"
-    },
-    {
-      "nome": "Rede Genesis",
-      "logo": "http://sntuberlandia.com.br/wp-content/uploads/2016/11/R_Genesis.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1855.m3u8",
-      "categoria": "Canais Religiosos"
-    },
-    {
-      "nome": "Rede Gospel",
-      "logo": "http://www.tvmagazine.com.br/imagens/icones/600/redegospel.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1424.m3u8",
-      "categoria": "Canais Religiosos"
-    },
-    {
-      "nome": "Rede Super",
-      "logo": "http://i.imgur.com/l2Fy8cv.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1120.m3u8",
-      "categoria": "Canais Religiosos"
-    },
-    {
-      "nome": "Rede TV",
-      "logo": "http://i.imgur.com/mFIHvKN.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1262.m3u8",
+      "logo": "https://logo.clearbit.com/rbtv.com.br",
+      "url": "http://45.185.11.126:8000/play/a0f3/index.m3u8",
       "categoria": "Canais Abertos"
     },
     {
       "nome": "Rede TV HD",
-      "logo": "http://i.imgur.com/mFIHvKN.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1372.m3u8",
+      "logo": "https://logo.clearbit.com/redetv.uol.com.br",
+      "url": "http://45.185.11.126:8000/play/a0f4/index.m3u8",
       "categoria": "Canais Abertos"
     },
     {
       "nome": "Rede Vida",
-      "logo": "http://i.imgur.com/3DDTajO.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1261.m3u8",
-      "categoria": "Canais Religiosos"
+      "logo": "https://logo.clearbit.com/redevida.com.br",
+      "url": "http://45.185.11.126:8000/play/a0f5/index.m3u8",
+      "categoria": "Canais Abertos"
     },
     {
       "nome": "Retrô Cartoon",
-      "logo": "https://1.bp.blogspot.com/-ogVexm6P874/WSJavg7hpwI/AAAAAAAACpQ/Gwqnb789JlQxyZbuwPo4ph_ZxUqNVyUsQCLcB/s1600/retro-cartoon.jpg",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1125.m3u8",
+      "logo": "",
+      "url": "http://45.185.11.126:8000/play/a0f6/index.m3u8",
       "categoria": "Infantil"
     },
     {
       "nome": "RIT",
-      "logo": "http://i.imgur.com/6cNzaQA.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1260.m3u8",
-      "categoria": "Canais Religiosos"
-    },
-    {
-      "nome": "SBT",
-      "logo": "http://i.imgur.com/Jotugf0.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1259.m3u8",
+      "logo": "https://logo.clearbit.com/rittv.com.br",
+      "url": "http://45.185.11.126:8000/play/a0f7/index.m3u8",
       "categoria": "Canais Abertos"
     },
     {
       "nome": "SBT HD",
-      "logo": "http://i.imgur.com/Jotugf0.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1371.m3u8",
-      "categoria": "Canais Abertos"
-    },
-    {
-      "nome": "SBT HD [Alter]",
-      "logo": "http://i.imgur.com/Jotugf0.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/3103.m3u8",
+      "logo": "https://logo.clearbit.com/sbt.com.br",
+      "url": "http://45.185.11.126:8000/play/a0f8/index.m3u8",
       "categoria": "Canais Abertos"
     },
     {
@@ -595,27 +601,9 @@
       "categoria": "Notícias"
     },
     {
-      "nome": "SIC Internacional",
-      "logo": "http://i.imgur.com/A48xYai.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1256.m3u8",
-      "categoria": "Variedades"
-    },
-    {
-      "nome": "Space",
-      "logo": "http://i.imgur.com/wP2GD1G.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1255.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
       "nome": "Space HD",
-      "logo": "http://i.imgur.com/wP2GD1G.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1370.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
-      "nome": "Studio Universal",
-      "logo": "http://i.imgur.com/WnUlcx6.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1251.m3u8",
+      "logo": "https://logo.clearbit.com/canalspace.tv",
+      "url": "http://45.185.11.126:8000/play/a0f9/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
@@ -625,33 +613,21 @@
       "categoria": "Filmes e Séries"
     },
     {
-      "nome": "Syfy",
-      "logo": "http://i.imgur.com/2lKk7Jw.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1250.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
       "nome": "Syfy HD",
-      "logo": "",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/3487.m3u8",
+      "logo": "https://logo.clearbit.com/syfy.com",
+      "url": "http://45.185.11.126:8000/play/a0g1/index.m3u8",
       "categoria": "Filmes e Séries"
-    },
-    {
-      "nome": "TBS",
-      "logo": "http://i.imgur.com/XHUoj3n.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1249.m3u8",
-      "categoria": "Variedades"
     },
     {
       "nome": "TBS HD",
-      "logo": "http://i.imgur.com/XHUoj3n.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1366.m3u8",
-      "categoria": "Variedades"
+      "logo": "https://logo.clearbit.com/tbs.com",
+      "url": "http://45.185.11.126:8000/play/a0g2/index.m3u8",
+      "categoria": "Filmes e Séries"
     },
     {
       "nome": "TCM",
-      "logo": "http://i.imgur.com/4fLVLhF.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1248.m3u8",
+      "logo": "https://logo.clearbit.com/tcm.com",
+      "url": "http://45.185.11.126:8000/play/a0g3/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
@@ -661,27 +637,15 @@
       "categoria": "Notícias"
     },
     {
-      "nome": "TLC",
-      "logo": "http://i.imgur.com/zQM47Cf.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1239.m3u8",
-      "categoria": "Variedades"
-    },
-    {
       "nome": "TLC HD",
-      "logo": "",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/3486.m3u8",
-      "categoria": "Variedades"
-    },
-    {
-      "nome": "TNT",
-      "logo": "http://i.imgur.com/VhQUWnY.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1238.m3u8",
-      "categoria": "Filmes e Séries"
+      "logo": "https://logo.clearbit.com/tlc.com",
+      "url": "http://45.185.11.126:8000/play/a0aa/index.m3u8",
+      "categoria": "Entretenimento"
     },
     {
       "nome": "TNT HD",
-      "logo": "http://i.imgur.com/VhQUWnY.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1360.m3u8",
+      "logo": "https://logo.clearbit.com/tnt.com",
+      "url": "http://45.185.11.126:8000/play/a0g4/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
@@ -691,16 +655,10 @@
       "categoria": "Entretenimento"
     },
     {
-      "nome": "TNT Series",
-      "logo": "http://i.imgur.com/HE2yMfG.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1237.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
-      "nome": "TNT Series HD",
-      "logo": "http://i.imgur.com/HE2yMfG.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1359.m3u8",
-      "categoria": "Filmes e Séries"
+      "nome": "TNT Sports HD",
+      "logo": "https://logo.clearbit.com/tnt.com",
+      "url": "http://45.185.11.126:8000/play/a0bi/index.m3u8",
+      "categoria": "Esportes"
     },
     {
       "nome": "TNT SØries HD",
@@ -710,8 +668,8 @@
     },
     {
       "nome": "Tooncast",
-      "logo": "http://i.imgur.com/USRKuyc.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1236.m3u8",
+      "logo": "https://logo.clearbit.com/tooncast.tv",
+      "url": "http://45.185.11.126:8000/play/a0g5/index.m3u8",
       "categoria": "Infantil"
     },
     {
@@ -727,32 +685,14 @@
       "categoria": "Entretenimento"
     },
     {
-      "nome": "TruTV",
-      "logo": "http://i.imgur.com/U4VgGuN.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1235.m3u8",
-      "categoria": "Variedades"
-    },
-    {
-      "nome": "TV BR NEWS",
-      "logo": "http://tvbrnews.com/wp-content/uploads/2017/08/logo-tv.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1216.m3u8",
-      "categoria": "Canais Abertos"
-    },
-    {
       "nome": "TV Brasil",
-      "logo": "http://i.imgur.com/R9HmhBD.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1234.m3u8",
+      "logo": "https://logo.clearbit.com/tvbrasil.ebc.com.br",
+      "url": "http://45.185.11.126:8000/play/a0g6/index.m3u8",
       "categoria": "Canais Abertos"
-    },
-    {
-      "nome": "TV Cult HD",
-      "logo": "",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/3485.m3u8",
-      "categoria": "Variedades"
     },
     {
       "nome": "TV Cultura",
-      "logo": "http://i.imgur.com/lGy7Q6S.png",
+      "logo": "https://logo.clearbit.com/tvcultura.com.br",
       "url": "http://45.185.11.126:8000/play/a0g7/index.m3u8",
       "categoria": "Canais Abertos"
     },
@@ -769,21 +709,9 @@
       "categoria": "Entretenimento"
     },
     {
-      "nome": "Telecine Action",
-      "logo": "http://i.imgur.com/Lx3R36Y.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1247.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
       "nome": "Telecine Action HD",
-      "logo": "http://i.imgur.com/Lx3R36Y.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1365.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
-      "nome": "Telecine Cult",
-      "logo": "http://i.imgur.com/CHaWCed.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1246.m3u8",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a058/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
@@ -793,58 +721,46 @@
       "categoria": "Filmes e Séries"
     },
     {
-      "nome": "Telecine Fun",
-      "logo": "http://i.imgur.com/ltpUjbD.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1245.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
       "nome": "Telecine Fun HD",
-      "logo": "http://i.imgur.com/ltpUjbD.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1364.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
-      "nome": "Telecine Pipoca",
-      "logo": "http://i.imgur.com/lfOS7gF.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1244.m3u8",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a059/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
       "nome": "Telecine Pipoca HD",
-      "logo": "http://i.imgur.com/lfOS7gF.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1363.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
-      "nome": "Telecine Premium",
-      "logo": "http://i.imgur.com/aMWCWA0.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1243.m3u8",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a08g/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
       "nome": "Telecine Premium HD",
-      "logo": "http://i.imgur.com/aMWCWA0.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1362.m3u8",
-      "categoria": "Filmes e Séries"
-    },
-    {
-      "nome": "Telecine Touch",
-      "logo": "http://i.imgur.com/849pB2j.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1242.m3u8",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a08e/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
       "nome": "Telecine Touch HD",
-      "logo": "http://i.imgur.com/849pB2j.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1361.m3u8",
+      "logo": "https://logo.clearbit.com/telecine.com.br",
+      "url": "http://45.185.11.126:8000/play/a08f/index.m3u8",
       "categoria": "Filmes e Séries"
     },
     {
-      "nome": "Terra Viva",
-      "logo": "http://i.imgur.com/Lasl3ys.png",
-      "url": "http://painel.iptvmove.com:25461/live/danga07/1963/1241.m3u8",
-      "categoria": "Canais Abertos"
+      "nome": "US: ACC Network",
+      "logo": "",
+      "url": "http://206.212.244.63/2486/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "US: Big Ten Network",
+      "logo": "",
+      "url": "http://206.212.244.63/2489/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "US: SEC Network",
+      "logo": "",
+      "url": "http://206.212.244.63/2511/index.m3u8",
+      "categoria": "Esportes"
     },
     {
       "nome": "USA HD",
@@ -863,6 +779,18 @@
       "logo": "",
       "url": "http://206.212.244.63/674/index.m3u8",
       "categoria": "Entretenimento"
+    },
+    {
+      "nome": "USA | ESPN",
+      "logo": "https://logo.clearbit.com/espn.com",
+      "url": "http://206.212.244.63/59/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "Universal Premiere HD",
+      "logo": "https://logo.clearbit.com/premiere.globo.com",
+      "url": "http://45.185.11.126:8000/play/a08m/index.m3u8",
+      "categoria": "Esportes"
     },
     {
       "nome": "Universal Reality HD",
@@ -887,6 +815,24 @@
       "logo": "https://logo.clearbit.com/woohoo.com.br",
       "url": "http://45.185.11.126:8000/play/a075/index.m3u8",
       "categoria": "Entretenimento"
+    },
+    {
+      "nome": "sportv HD",
+      "logo": "https://logo.clearbit.com/ge.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05g/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "sportv2 HD",
+      "logo": "https://logo.clearbit.com/ge.globo.com",
+      "url": "http://45.185.11.126:8000/play/a05f/index.m3u8",
+      "categoria": "Esportes"
+    },
+    {
+      "nome": "sportv3 HD",
+      "logo": "https://logo.clearbit.com/ge.globo.com",
+      "url": "http://45.185.11.126:8000/play/a06v/index.m3u8",
+      "categoria": "Esportes"
     }
   ]
 }
