@@ -1,75 +1,225 @@
 {
   "doramas": [
     {
-      "nome": "Alice in Borderland",
+      "titulo": "Alice in Borderland",
+      "categoria": "Suspense",
       "capa": "https://i.postimg.cc/gJnTFvVS/images-(27).jpg",
       "temporadas": [
         {
-          "temporada": 1,
+          "numero": 1,
           "episodios": [
-            { "episodio": 1, "titulo": "Episódio 1", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP01.mp4" },
-            { "episodio": 2, "titulo": "Episódio 2", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%1/ALCINBRDLNDST01EP02.mp4" },
-            { "episodio": 3, "titulo": "Episódio 3", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%1/ALCINBRDLNDST01EP03.mp4" },
-            { "episodio": 4, "titulo": "Episódio 4", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%1/ALCINBRDLNDST01EP04.mp4" },
-            { "episodio": 5, "titulo": "Episódio 5", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%1/ALCINBRDLNDST01EP05.mp4" },
-            { "episodio": 6, "titulo": "Episódio 6", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%1/ALCINBRDLNDST01EP06.mp4" },
-            { "episodio": 7, "titulo": "Episódio 7", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%1/ALCINBRDLNDST01EP07.mp4" },
-            { "episodio": 8, "titulo": "Episódio 8", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%1/ALCINBRDLNDST01EP08.mp4" }
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20bondelander%20season%201/ALCINBRDLNDST01EP08.mp4"
+            }
           ]
         },
         {
-          "temporada": 2,
+          "numero": 2,
           "episodios": [
-            { "episodio": 1, "titulo": "Episódio 1", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/proxy%20(1).mp4" },
-            { "episodio": 2, "titulo": "Episódio 2", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP02.mp4" },
-            { "episodio": 3, "titulo": "Episódio 3", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP03.mp4" },
-            { "episodio": 4, "titulo": "Episódio 4", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP04.mp4" },
-            { "episodio": 5, "titulo": "Episódio 5", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP05.mp4" },
-            { "episodio": 6, "titulo": "Episódio 6", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP06.mp4" },
-            { "episodio": 7, "titulo": "Episódio 7", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP07.mp4" },
-            { "episodio": 8, "titulo": "Episódio 8", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP08.mp4" }
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/proxy%20(1).mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20in%20bondelander%20season%202/ALCINBRDLNDST02EP08.mp4"
+            }
           ]
         },
         {
-          "temporada": 3,
+          "numero": 3,
           "episodios": [
-            { "episodio": 1, "titulo": "Episódio 1", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP01.mp4" },
-            { "episodio": 2, "titulo": "Episódio 2", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP06.mp4" },
-            { "episodio": 3, "titulo": "Episódio 3", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP03.mp4" },
-            { "episodio": 4, "titulo": "Episódio 4", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP04.mp4" },
-            { "episodio": 5, "titulo": "Episódio 5", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP05.mp4" },
-            { "episodio": 6, "titulo": "Episódio 6", "url": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP06.mp4" }
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Alice%20season%203/ALCINBRDLNDST03EP06.mp4"
+            }
           ]
         }
       ]
     },
     {
-      "nome": "Cães de Caça",
+      "titulo": "Cães de Caça",
+      "categoria": "Ação",
       "capa": "https://i.postimg.cc/MTLDgvKk/76c96d874daee0a6f15e6d8a094cf0dd-(1).jpg",
       "temporadas": [
         {
-          "temporada": 1,
+          "numero": 1,
           "episodios": [
-            { "episodio": 1, "titulo": "Episódio 1", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP01.mp4" },
-            { "episodio": 2, "titulo": "Episódio 2", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP02.mp4" },
-            { "episodio": 3, "titulo": "Episódio 3", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP03.mp4" },
-            { "episodio": 4, "titulo": "Episódio 4", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP04.mp4" },
-            { "episodio": 5, "titulo": "Episódio 5", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP05.mp4" },
-            { "episodio": 6, "titulo": "Episódio 6", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP06.mp4" },
-            { "episodio": 7, "titulo": "Episódio 7", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP07.mp4" },
-            { "episodio": 8, "titulo": "Episódio 8", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP08.mp4" }
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20ca%C3%A7a%20season%201/CASDCACT01EP08.mp4"
+            }
           ]
         },
         {
-          "temporada": 2,
+          "numero": 2,
           "episodios": [
-            { "episodio": 1, "titulo": "Episódio 1", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP01.mp4" },
-            { "episodio": 2, "titulo": "Episódio 2", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP02.mp4" },
-            { "episodio": 3, "titulo": "Episódio 3", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP03.mp4" },
-            { "episodio": 4, "titulo": "Episódio 4", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP04.mp4" },
-            { "episodio": 5, "titulo": "Episódio 5", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP05.mp4" },
-            { "episodio": 6, "titulo": "Episódio 6", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP06.mp4" },
-            { "episodio": 7, "titulo": "Episódio 7", "url": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP07.mp4" }
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/c%C3%A3es%20de%20casa%20season%202/CASDCACT02EP07.mp4"
+            }
           ]
         }
       ]
