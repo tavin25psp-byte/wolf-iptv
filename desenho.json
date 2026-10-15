@@ -74,6 +74,146 @@
               "video": "https://wolf-channel-cdn.b-cdn.net/bem%2010%20season%201/Temporada%201%20Epis%C3%B3dio%2013%20-%20Segredos.mp4"
             }
           ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Verdade",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%201%20-%20Verdade.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "O Grande Carrapato",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%202%20-%20O%20Grande%20Carrapato.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Acusado",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%203%20-%20Acusado.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Gwen 10",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%204%20-%20Gwen%2010.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Luta de Revanche",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%205%20-%20Luta%20de%20Revanche.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Força Galáctica",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%206%20-%20For%C3%A7a%20Gal%C3%A1ctica.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Acampamento do Medo",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%207%20-%20Acampamento%20do%20Medo.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Arma Poderosa",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%208%20-%20Arma%20Poderosa.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Má Sorte",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%209%20-%20M%C3%A1%20Sorte.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Eles Se Escondem No Fundo",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%2010%20-%20Eles%20Se%20Escondem%20No%20Fundo.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Ataque do Fantasmático",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%2011%20-%20Ataque%20do%20Fantasm%C3%A1tico.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Doutor Animal e o Raio Mutante",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%2012%20-%20Doutor%20Animal%20e%20o%20Raio%20Mutante.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "De Volta Com Uma Vingança",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%202/Temporada%202%20Epis%C3%B3dio%2013%20-%20De%20Volta%20Com%20Uma%20Vingan%C3%A7a.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Ben 10 Mil",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%201%20-%20Ben%2010%20Mil.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Loucura noturna",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%202%20-%20Loucura%20noturna.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Mudando de Corpo",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%203%20-%20Mudando%20de%20Corpo.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Feliz Natal",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%204%20-%20Feliz%20Natal.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Lobisben",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%205%20-%20Lobisben.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Fim de Jogo",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%206%20-%20Fim%20de%20Jogo.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Aventuras do herois alienigenas",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%207%20-%20Aventuras%20do%20herois%20alienigenas.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Enrolados",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%208%20-%20Enrolados.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Os desnaturados",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%209%20-%20Os%20desnaturados.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Monstro climático",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%2010%20-%20Monstro%20clim%C3%A1tico.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "O Retorno - Parte 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%2011%20-%20O%20Retorno%20-%20Parte%201.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "O Retorno - Parte 2 - Tenha Medo Do Escuro",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%2012%20-%20O%20Retorno%20-%20Parte%202%20-%20Tenha%20Medo%20Do%20Escuro.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "A visita",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Ben%2010%20season%203/Temporada%203%20Epis%C3%B3dio%2013%20-%20A%20visita.mp4"
+            }
+          ]
         }
       ]
     }
