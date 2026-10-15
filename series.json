@@ -3442,6 +3442,78 @@
           ]
         }
       ]
+    },
+    {
+      "titulo": "Teen Wolf",
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/1tDR0MP2/images-(30).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Wolf Moon",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Second Chance at First Line",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Pack Mentality",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Magic Bullet",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "The Tell",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Heart Monitor",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Night School",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Lunatic",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP08.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Wolf's Bane",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP09.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Co-Captain",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP10.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Formality",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP11.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Code Breaker",
+              "video": "https://wolf-channel-cdn.b-cdn.net/teen%20Wolf%20season%201/TNWLFT01EP12.mp4"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
