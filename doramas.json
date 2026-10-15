@@ -566,6 +566,98 @@
           ]
         }
       ]
+    },
+    {
+      "titulo": "Um Bom Garoto",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/P5qXmpbd/MV5BMGI2NDQz-NDYt-MDEy-My00ZDBl-LWEx-OWUt-Nm-Yz-MTVk-YTQz-NDky-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Nosso Herói Desacreditado",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%201%20-%20Nosso%20Her%C3%B3i%20Desacreditado.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Mais Rápido, Mais Distante, Mais Forte",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%202%20-%20Mais%20R%C3%A1pido%2C%20Mais%20Distante%2C%20Mais%20Forte.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Garota de Ouro",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%203%20-%20Garota%20de%20Ouro.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Voe Como uma Borboleta",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%204%20-%20Voe%20Como%20uma%20Borboleta.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Embriagado de Amor",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%205%20-%20Embriagado%20de%20Amor.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Contragolpe",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%206%20-%20Contragolpe.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Par Terre, Par Terre",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%207%20-%20Par%20Terre%2C%20Par%20Terre.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "A Bala Perdida",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%208%20-%20A%20Bala%20Perdida.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Allez",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%209%20-%20Allez.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Intervalo",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%2010%20-%20Intervalo.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%2011%20-%20Epis%C3%B3dio%2011.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%2012%20-%20Epis%C3%B3dio%2012.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%2013%20-%20Epis%C3%B3dio%2013.mp4"
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%2014%20-%20Epis%C3%B3dio%2014.mp4"
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%2015%20-%20Epis%C3%B3dio%2015.mp4"
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Um%20bom%20garoto%20season%201/Temporada%201%20Epis%C3%B3dio%2016%20-%20Epis%C3%B3dio%2016.mp4"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
