@@ -408,6 +408,148 @@
           ]
         }
       ]
+    },
+    {
+      "titulo": "Max Steel",
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/GtFrBtQx/images-(29).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP06.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP08.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP09.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP10.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP11.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP12.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP13.mp4"
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP14.mp4"
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP15.mp4"
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP16.mp4"
+            },
+            {
+              "numero": 17,
+              "titulo": "Episódio 17",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP17.mp4"
+            },
+            {
+              "numero": 18,
+              "titulo": "Episódio 18",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP18.mp4"
+            },
+            {
+              "numero": 19,
+              "titulo": "Episódio 19",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP19.mp4"
+            },
+            {
+              "numero": 20,
+              "titulo": "Episódio 20",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP20.mp4"
+            },
+            {
+              "numero": 21,
+              "titulo": "Episódio 21",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP21.mp4"
+            },
+            {
+              "numero": 22,
+              "titulo": "Episódio 22",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP22.mp4"
+            },
+            {
+              "numero": 23,
+              "titulo": "Episódio 23",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP23.mp4"
+            },
+            {
+              "numero": 24,
+              "titulo": "Episódio 24",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP24.mp4"
+            },
+            {
+              "numero": 25,
+              "titulo": "Episódio 25",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP25.mp4"
+            },
+            {
+              "numero": 26,
+              "titulo": "Episódio 26",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Max%20steel%20season%201/MXSTELEP26.mp4"
+            }
+          ]
+        }
+      ]
     }
   ]
-            }
+}
