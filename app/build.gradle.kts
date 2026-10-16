@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.wolf.iptv"
-    compileSdk = 36
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.wolf.iptv"
         minSdk = 21
-        targetSdk = 36
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -26,12 +26,12 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core-ktx:1.17.0")
-    implementation("androidx.appcompat:appcompat:1.7.1")
-    implementation("com.google.android.material:material:1.13.0")
+    implementation("androidx.core:core-ktx:1.13.1")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("com.google.android.material:material:1.11.0")
 
     // Media3 / ExoPlayer
-    implementation("androidx.media3:media3-exoplayer:1.9.0")
-    implementation("androidx.media3:media3-exoplayer-hls:1.9.0")
-    implementation("androidx.media3:media3-ui:1.9.0")
+    implementation("androidx.media3:media3-exoplayer:1.4.1")
+    implementation("androidx.media3:media3-exoplayer-hls:1.4.1")
+    implementation("androidx.media3:media3-ui:1.4.1")
 }
