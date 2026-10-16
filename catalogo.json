@@ -1,6 +1,145 @@
 {
   "filmes": [
     {
+      "titulo": "Aquaman",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/63vZXZZS/Aquaman-(2018)-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/AQAMN.mp4",
+      "sinopse": "Arthur Curry, meio humano e meio atlante, precisa assumir seu destino e enfrentar o meio-irmão Orm para impedir uma guerra entre Atlântida e a superfície."
+    },
+    {
+      "titulo": "As Aventuras de Tadeo e a Lâmpada Mágica",
+      "ano": 2022,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/2yCSKL7y/as-aventuras-de-tadeo-e-a-lampada-magica-posterportrait-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/ASAVNTRSDTADEALMPDAMGCA.mp4",
+      "sinopse": "Tadeo, Sara e o papagaio Belzoni se envolvem em uma nova aventura quando uma lâmpada mágica, com um gênio dentro, cai nas mãos erradas."
+    },
+    {
+      "titulo": "Crepúsculo: Amanhecer - Parte 2",
+      "ano": 2012,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/W38vtW0m/images-(29).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/crep%C3%BAsculo%20amanhecer%20parte%202.mp4",
+      "sinopse": "Bella, agora vampira, e Edward precisam reunir aliados para proteger a filha Renesmee da ameaça dos Volturi."
+    },
+    {
+      "titulo": "Crepúsculo: Amanhecer - Parte 1",
+      "ano": 2011,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/G3gWNsKT/images-(30).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/crep%C3%BAsculo%20amanhecer%20parte1.mp4",
+      "sinopse": "Bella e Edward se casam e a lua de mel traz uma surpresa que muda a vida de todos e coloca vampiros e lobisomens em conflito."
+    },
+    {
+      "titulo": "Crepúsculo: Lua Nova",
+      "ano": 2009,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/qvsZktsx/images-(32).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/crep%C3%BAsculo%20lua%20nova.mp4",
+      "sinopse": "Depois que Edward vai embora, Bella se aproxima de Jacob e descobre o segredo dele, enquanto corre perigo."
+    },
+    {
+      "titulo": "Crepúsculo: Eclipse",
+      "ano": 2010,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/CLjWK6YR/Twilight-Saga-Eclipse-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/Crepusculo.3.Eclipse.mp4",
+      "sinopse": "Bella precisa escolher entre Edward e Jacob enquanto uma ameaça vampírica cresce em Seattle."
+    },
+    {
+      "titulo": "Crepúsculo",
+      "ano": 2008,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/y60fhgGT/MV5BYWVk-OGNm-NWIt-NDE2MC00NTk2LWEw-Zm-Yt-Yj-Fk-Zm-Zl-ZTcx-ODhi-Xk-Ey-Xk-Fqc-Gc-V1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/Crepusculo.mp4",
+      "sinopse": "Bella Swan se muda para Forks e se apaixona por Edward Cullen, um vampiro que luta contra sua natureza."
+    },
+    {
+      "titulo": "Lobos",
+      "ano": 2014,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/bw5HfpMH/images-(33).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/LOBOS.mp4",
+      "sinopse": "Após uma tragédia, o jovem Cayden descobre ser um lobisomem e parte para a cidade de Lupine Ridge em busca de respostas sobre suas origens, onde enfrenta clãs rivais de lobisomens."
+    },
+    {
+      "titulo": "O Refúgio",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/HnS80t1Q/images-(34).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/ORFGIO2026.mp4"
+    },
+    {
+      "titulo": "Perdida no Ártico",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/nLYzY1vL/images-(35).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/PRDANARTCO.mp4"
+    },
+    {
+      "titulo": "Sua Culpa: Londres",
+      "ano": 2025,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/FHXNWLFH/images-(37).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/SUACLPLNDRS.mp4"
+    },
+    {
+      "titulo": "Alien: Covenant",
+      "ano": 2017,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/mr1RXgYX/images-(29).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20covenant.mp4",
+      "sinopse": "A tripulação da nave Covenant, rumo a um planeta remoto, descobre um paraíso aparente que esconde uma ameaça mortal e um sobrevivente sombrio."
+    },
+    {
+      "titulo": "Alien: A Ressurreição",
+      "ano": 1997,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/WzbHy9Rt/images-(31).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20a%20ressurrei%C3%A7%C3%A3o.mp4",
+      "sinopse": "Duzentos anos após sua morte, Ripley é clonada por cientistas que querem a criatura alienígena, e a experiência foge do controle."
+    },
+    {
+      "titulo": "Alien: O Oitavo Passageiro",
+      "ano": 1979,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/tJM2MptW/images-(34).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20o%20oitavo%20passageiro.mp4",
+      "sinopse": "A tripulação da nave Nostromo atende a um chamado em um planeta desconhecido e leva a bordo uma criatura mortal."
+    },
+    {
+      "titulo": "Aliens: O Resgate",
+      "ano": 1986,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/NMN4KBnn/images-(35).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20o%20resgate.mp4",
+      "sinopse": "Ripley volta ao planeta dos aliens acompanhada de fuzileiros coloniais para investigar o sumiço de uma colônia."
+    },
+    {
+      "titulo": "Alien: Romulus",
+      "ano": 2024,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/P5GMp66N/images-(36).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20romulos.mp4",
+      "sinopse": "Jovens colonos em busca de uma vida melhor invadem uma estação espacial abandonada e encontram a forma de vida mais aterrorizante do universo."
+    },
+    {
+      "titulo": "Sobrevivência",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/1X9bGCCp/IMG-1afbc8d5-5561-4cb8-8a40-602db7e3ba7d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/SBRVIVNCIA.mp4"
+    },
+    {
+      "titulo": "Soulm8te",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/QxcfbGKz/IMG-942d1335-b393-4af7-ac74-753b3da035ff.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/SOULM8TE.mp4"
+    },
+    {
       "titulo": "Gladiadores",
       "ano": 2026,
       "categoria": "Ação",
@@ -925,7 +1064,7 @@
       "ano": 2026,
       "categoria": "Ação",
       "capa": "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
-      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Odisseia.mp4",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/A%20Odisseia.mp4",
       "sinopse": "Dirigido por Christopher Nolan, adapta o poema de Homero: Odisseu (Matt Damon) tenta voltar para casa após a Guerra de Troia, enfrentando criaturas míticas e deuses enquanto Penélope o espera em Ítaca."
     },
     {
