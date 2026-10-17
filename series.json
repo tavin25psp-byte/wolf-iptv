@@ -522,7 +522,7 @@
             { "numero": 68, "titulo": "Episódio 68", "video": "https://wolf-channel-cdn.b-cdn.net/Continua%20season%202%20marcados/pproxy68.mp4" },
             { "numero": 69, "titulo": "Episódio 69", "video": "https://wolf-channel-cdn.b-cdn.net/Continua%20season%202%20marcados/pproxy69.mp4" },
             { "numero": 70, "titulo": "Episódio 70", "video": "https://wolf-channel-cdn.b-cdn.net/Continua%20season%202%20marcados/pproxy70.mp4" },
-            { "numero": 71, "titulo": "Episódio 71", "video": "https://wolf-channel-cdn.b-cdn.net/Continua%20season%202%20temporada/pproxy71.mp4" },
+            { "numero": 71, "titulo": "Episódio 71", "video": "https://wolf-channel-cdn.b-cdn.net/MC/MRCDSPLPSDOT02CP071.mp4" },
             { "numero": 72, "titulo": "Episódio 72", "video": "https://wolf-channel-cdn.b-cdn.net/Continua%20season%202%20marcados/pproxy72.mp4" },
             { "numero": 73, "titulo": "Episódio 73", "video": "https://wolf-channel-cdn.b-cdn.net/Continua%20season%202%20marcados/ep73.mp4" },
             { "numero": 74, "titulo": "Episódio 74", "video": "https://wolf-channel-cdn.b-cdn.net/Continua%20season%202%20marcados/pproxy74.mp4" },
@@ -1240,6 +1240,49 @@
             { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Estranha/CARIEAESTNHT01EP06.mp4" },
             { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Estranha/CARIEAESTNHT01EP07.mp4" },
             { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Estranha/CARIEAESTNHT01EP08.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Demolidor",
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/1X9B23dP/Demolidor-Primeira-Temporada.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP12.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "https://wolf-channel-cdn.b-cdn.net/demolidor%20season%201/DMLDRT01EP13.mp4" }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP01.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP02.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP03.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP04.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP05.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP06.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP07.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP08.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP09.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP10.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP11.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP12.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "https://wolf-channel-cdn.b-cdn.net/Demolidor%20season%202/DMLDRT02EP13.mp4" }
           ]
         }
       ]
