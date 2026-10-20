@@ -352,8 +352,8 @@ class PlayerActivity : AppCompatActivity() {
                     )  
                     .setLoadControl(  
                         DefaultLoadControl.Builder()  
-                            .setBufferDurationsMs(20_000, 50_000, 2_500, 5_000)
-                            .setTargetBufferBytes(40 * 1024 * 1024)
+                            .setBufferDurationsMs(15_000, 30_000, 2_500, 5_000)
+                            .setTargetBufferBytes(20 * 1024 * 1024)
                             .setPrioritizeTimeOverSizeThresholds(false)
                             .build()  
                     )  
@@ -663,7 +663,15 @@ class PlayerActivity : AppCompatActivity() {
         super.onPause()  
     }  
 
-    override fun onDestroy() {  
+    override fun onStop() {
+        playerView.removeCallbacks(salvarLoop)
+        salvarProgresso()
+        player?.pause()
+        super.onStop()
+    }
+
+    override fun onDestroy() {
+        salvarProgresso()  
         playerView.removeCallbacks(salvarLoop)  
         playerView.player = null  
         player?.release()  
