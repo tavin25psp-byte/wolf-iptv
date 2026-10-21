@@ -188,7 +188,6 @@ private fun WolfHome() {
                         Modifier.fillMaxWidth().height(290.dp).clip(RoundedCornerShape(18.dp))
                             .background(Brush.horizontalGradient(listOf(Color(0xFF32050B), Color(0xFF100B13), Color(0xFF07182E))))
                     ) {
-                        // Decorative light streaks give the hero a cinematic red/blue look.
                         Box(Modifier.fillMaxSize().background(Brush.horizontalGradient(
                             0.0f to Color(0x66FF102A), 0.42f to Color.Transparent,
                             0.72f to Color(0x33216EFF), 1.0f to Color(0x77216EFF)
