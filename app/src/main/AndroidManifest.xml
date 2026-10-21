@@ -1,94 +1,157 @@
-[
-  {
-    "group": "Abertos",
-    "canais": [
-      {
-        "id": 1,
-        "nome": "TV GLOBO HD",
-        "logo": "https://i.imgur.com/vHqQ9zH.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1001.ts"
-      },
-      {
-        "id": 2,
-        "nome": "RECORD TV HD",
-        "logo": "https://i.imgur.com/kLqO7zW.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1002.ts"
-      },
-      {
-        "id": 3,
-        "nome": "SBT HD",
-        "logo": "https://i.imgur.com/J3yP9zA.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1003.ts"
-      },
-      {
-        "id": 4,
-        "nome": "BAND HD",
-        "logo": "https://i.imgur.com/G4xF8zQ.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1004.ts"
-      }
-    ]
-  },
-  {
-    "group": "Esportes",
-    "canais": [
-      {
-        "id": 5,
-        "nome": "SPORTV HD",
-        "logo": "https://i.imgur.com/pYxL9zR.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2001.ts"
-      },
-      {
-        "id": 6,
-        "nome": "SPORTV 2 HD",
-        "logo": "https://i.imgur.com/pYxL9zR.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2002.ts"
-      },
-      {
-        "id": 7,
-        "nome": "SPORTV 3 HD",
-        "logo": "https://i.imgur.com/pYxL9zR.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2003.ts"
-      },
-      {
-        "id": 8,
-        "nome": "ESPN HD",
-        "logo": "https://i.imgur.com/dKxM1zW.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2004.ts"
-      },
-      {
-        "id": 9,
-        "nome": "PREMIERE CLUBES HD",
-        "logo": "https://i.imgur.com/tZqR3zP.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2006.ts"
-      }
-    ]
-  },
-  {
-    "group": "Filmes e Séries",
-    "canais": [
-      {
-        "id": 10,
-        "nome": "HBO HD",
-        "logo": "https://i.imgur.com/hB3xL2Q.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3001.ts"
-      },
-      {
-        "id": 11,
-        "nome": "TELECINE PREMIUM HD",
-        "logo": "https://i.imgur.com/mL9xK4W.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3003.ts"
-      }
-    ]
-  },
-  {
-    "group": "Infantil",
-    "canais": [
-      {
-        "id": 12,
-        "nome": "CARTOON NETWORK HD",
-        "logo": "https://i.imgur.com/cN7xP9Q.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/4001.ts"
-      }
-    ]
-  }
-]
+{
+  "channels": [
+    {
+      "user": "weverton4180",
+      "pass": "DJOnat2022",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=weverton4180&password=DJOnat2022&type=m3u_plus",
+      "expiration": "01/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "Candidodanilo1",
+      "pass": "Quarto123",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=Candidodanilo1&password=Quarto123&type=m3u_plus",
+      "expiration": "11/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "thiagoviana",
+      "pass": "Tv8034maz",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=thiagoviana&password=Tv8034maz&type=m3u_plus",
+      "expiration": "23/10/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "EdGuimaraes02",
+      "pass": "Eg82738273",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=EdGuimaraes02&password=Eg82738273&type=m3u_plus",
+      "expiration": "16/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "WJbU3SYge",
+      "pass": "5968EDRJzjrp",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=WJbU3SYge&password=5968EDRJzjrp&type=m3u_plus",
+      "expiration": "16/10/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "382395",
+      "pass": "TttQTy",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=382395&password=TttQTy&type=m3u_plus",
+      "expiration": "💎 ᴜɴʟɪᴍɪᴛᴇᴅ",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "vladiane4161",
+      "pass": "P8f9aV4161",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=vladiane4161&password=P8f9aV4161&type=m3u_plus",
+      "expiration": "19/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "vrjXybqb",
+      "pass": "5m3HQu",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=vrjXybqb&password=5m3HQu&type=m3u_plus",
+      "expiration": "11/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "891366",
+      "pass": "S9bpWQ",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=891366&password=S9bpWQ&type=m3u_plus",
+      "expiration": "31/10/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "444332",
+      "pass": "AwZK2N",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=444332&password=AwZK2N&type=m3u_plus",
+      "expiration": "10/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "Gustavopaz",
+      "pass": "ZT6cu3",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=Gustavopaz&password=ZT6cu3&type=m3u_plus",
+      "expiration": "28/10/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "tdsCncuA",
+      "pass": "Ek97uH",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=tdsCncuA&password=Ek97uH&type=m3u_plus",
+      "expiration": "02/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "RgnjFyTz",
+      "pass": "P9bqG6",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=RgnjFyTz&password=P9bqG6&type=m3u_plus",
+      "expiration": "29/10/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "282545",
+      "pass": "DWR38H",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=282545&password=DWR38H&type=m3u_plus",
+      "expiration": "01/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "maizaalves",
+      "pass": "Wqaia9012",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=maizaalves&password=Wqaia9012&type=m3u_plus",
+      "expiration": "24/12/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "pe8244422",
+      "pass": "W4z3nJ111",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=pe8244422&password=W4z3nJ111&type=m3u_plus",
+      "expiration": "13/11/2026",
+      "timezone": "America/Sao_Paulo"
+    },
+    {
+      "user": "fabianor399",
+      "pass": "aB8bE2ts2y",
+      "status": "Active",
+      "server": "http://rrcwb.biz",
+      "m3u_url": "http://rrcwb.biz/get.php?username=fabianor399&password=aB8bE2ts2y&type=m3u_plus",
+      "expiration": "16/11/2026",
+      "timezone": "America/Sao_Paulo"
+    }
+  ]
+}
