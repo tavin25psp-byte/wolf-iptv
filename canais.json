@@ -1,94 +1,435 @@
-[
-  {
-    "group": "Abertos",
-    "canais": [
-      {
-        "id": 1,
-        "nome": "TV GLOBO HD",
-        "logo": "https://i.imgur.com/vHqQ9zH.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1001.ts"
-      },
-      {
-        "id": 2,
-        "nome": "RECORD TV HD",
-        "logo": "https://i.imgur.com/kLqO7zW.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1002.ts"
-      },
-      {
-        "id": 3,
-        "nome": "SBT HD",
-        "logo": "https://i.imgur.com/J3yP9zA.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1003.ts"
-      },
-      {
-        "id": 4,
-        "nome": "BAND HD",
-        "logo": "https://i.imgur.com/G4xF8zQ.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1004.ts"
-      }
-    ]
-  },
-  {
-    "group": "Esportes",
-    "canais": [
-      {
-        "id": 5,
-        "nome": "SPORTV HD",
-        "logo": "https://i.imgur.com/pYxL9zR.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2001.ts"
-      },
-      {
-        "id": 6,
-        "nome": "SPORTV 2 HD",
-        "logo": "https://i.imgur.com/pYxL9zR.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2002.ts"
-      },
-      {
-        "id": 7,
-        "nome": "SPORTV 3 HD",
-        "logo": "https://i.imgur.com/pYxL9zR.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2003.ts"
-      },
-      {
-        "id": 8,
-        "nome": "ESPN HD",
-        "logo": "https://i.imgur.com/dKxM1zW.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2004.ts"
-      },
-      {
-        "id": 9,
-        "nome": "PREMIERE CLUBES HD",
-        "logo": "https://i.imgur.com/tZqR3zP.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2006.ts"
-      }
-    ]
-  },
-  {
-    "group": "Filmes e Séries",
-    "canais": [
-      {
-        "id": 10,
-        "nome": "HBO HD",
-        "logo": "https://i.imgur.com/hB3xL2Q.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3001.ts"
-      },
-      {
-        "id": 11,
-        "nome": "TELECINE PREMIUM HD",
-        "logo": "https://i.imgur.com/mL9xK4W.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3003.ts"
-      }
-    ]
-  },
-  {
-    "group": "Infantil",
-    "canais": [
-      {
-        "id": 12,
-        "nome": "CARTOON NETWORK HD",
-        "logo": "https://i.imgur.com/cN7xP9Q.png",
-        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/4001.ts"
-      }
-    ]
-  }
-]
+{
+  "servidor": "http://rrcwb.biz",
+  "porta": 80,
+  "contas": [
+    {
+      "usuario": "814332",
+      "senha": "33uq6h",
+      "conexao": "1/3",
+      "criada_em": "09/01/2026",
+      "expira_em": "09/01/2027",
+      "dias_restantes": 80,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=814332&password=33uq6h&type=m3u_plus"
+    },
+    {
+      "usuario": "S92436641",
+      "senha": "Dunnas1425",
+      "conexao": "0/1",
+      "criada_em": "25/05/2024",
+      "expira_em": "07/11/2026",
+      "dias_restantes": 17,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=S92436641&password=Dunnas1425&type=m3u_plus"
+    },
+    {
+      "usuario": "ucqpt9Eu",
+      "senha": "S3r8Qp",
+      "conexao": "1/1",
+      "criada_em": "22/08/2026",
+      "expira_em": "23/10/2026",
+      "dias_restantes": 2,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=ucqpt9Eu&password=S3r8Qp&type=m3u_plus"
+    },
+    {
+      "usuario": "a32600110",
+      "senha": "112233Aa",
+      "conexao": "0/1",
+      "criada_em": "13/10/2026",
+      "expira_em": "13/11/2026",
+      "dias_restantes": 23,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=a32600110&password=112233Aa&type=m3u_plus"
+    },
+    {
+      "usuario": "253048",
+      "senha": "rYrYHa",
+      "conexao": "0/3",
+      "criada_em": "08/12/2019",
+      "expira_em": "14/12/2026",
+      "dias_restantes": 54,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=253048&password=rYrYHa&type=m3u_plus"
+    },
+    {
+      "usuario": "davidin2",
+      "senha": "7WrgS7",
+      "conexao": "1/1",
+      "criada_em": "12/11/2025",
+      "expira_em": "18/11/2026",
+      "dias_restantes": 28,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=davidin2&password=7WrgS7&type=m3u_plus"
+    },
+    {
+      "usuario": "371755",
+      "senha": "ugWWZQ",
+      "conexao": "0/3",
+      "criada_em": "09/08/2022",
+      "expira_em": "06/11/2026",
+      "dias_restantes": 16,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=371755&password=ugWWZQ&type=m3u_plus"
+    },
+    {
+      "usuario": "GildoJunior",
+      "senha": "Gj2022x",
+      "conexao": "0/1",
+      "criada_em": "21/10/2026",
+      "expira_em": "21/11/2026",
+      "dias_restantes": 31,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=GildoJunior&password=Gj2022x&type=m3u_plus"
+    },
+    {
+      "usuario": "club9233",
+      "senha": "74948Ca",
+      "conexao": "0/1",
+      "criada_em": "27/09/2022",
+      "expira_em": "24/10/2026",
+      "dias_restantes": 3,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=club9233&password=74948Ca&type=m3u_plus"
+    },
+    {
+      "usuario": "a85148928",
+      "senha": "112233Aa",
+      "conexao": "1/1",
+      "criada_em": "13/07/2026",
+      "expira_em": "14/11/2026",
+      "dias_restantes": 24,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=a85148928&password=112233Aa&type=m3u_plus"
+    },
+    {
+      "usuario": "41782099309tv1",
+      "senha": "0123789456Ab",
+      "conexao": "1/1",
+      "criada_em": "05/01/2025",
+      "expira_em": "08/01/2027",
+      "dias_restantes": 79,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=41782099309tv1&password=0123789456Ab&type=m3u_plus"
+    },
+    {
+      "usuario": "286736",
+      "senha": "ZyRR68",
+      "conexao": "0/3",
+      "criada_em": "01/08/2024",
+      "expira_em": "20/01/2027",
+      "dias_restantes": 91,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=286736&password=ZyRR68&type=m3u_plus"
+    },
+    {
+      "usuario": "bryancosmo",
+      "senha": "8913YJCKwkhp",
+      "conexao": "0/1",
+      "criada_em": "11/04/2024",
+      "expira_em": "18/11/2026",
+      "dias_restantes": 28,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=bryancosmo&password=8913YJCKwkhp&type=m3u_plus"
+    },
+    {
+      "usuario": "elainealvestv1",
+      "senha": "Elai102030",
+      "conexao": "0/1",
+      "criada_em": "16/08/2026",
+      "expira_em": "21/11/2026",
+      "dias_restantes": 31,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=elainealvestv1&password=Elai102030&type=m3u_plus"
+    },
+    {
+      "usuario": "rwjkVFKe",
+      "senha": "3km4DB",
+      "conexao": "0/1",
+      "criada_em": "29/03/2025",
+      "expira_em": "02/11/2026",
+      "dias_restantes": 12,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=rwjkVFKe&password=3km4DB&type=m3u_plus"
+    },
+    {
+      "usuario": "claudio4074sdx",
+      "senha": "axvdhh542d8xA",
+      "conexao": "0/1",
+      "criada_em": "10/03/2025",
+      "expira_em": "15/11/2026",
+      "dias_restantes": 25,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=claudio4074sdx&password=axvdhh542d8xA&type=m3u_plus"
+    },
+    {
+      "usuario": "4499595054a",
+      "senha": "4612849Play",
+      "conexao": "0/1",
+      "criada_em": "01/12/2020",
+      "expira_em": "05/11/2026",
+      "dias_restantes": 15,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=4499595054a&password=4612849Play&type=m3u_plus"
+    },
+    {
+      "usuario": "gDHuD",
+      "senha": "HT44eb",
+      "conexao": "0/1",
+      "criada_em": "25/11/2023",
+      "expira_em": "17/11/2026",
+      "dias_restantes": 27,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=gDHuD&password=HT44eb&type=m3u_plus"
+    },
+    {
+      "usuario": "Hp26rR",
+      "senha": "m3FTd4",
+      "conexao": "0/1",
+      "criada_em": "13/09/2025",
+      "expira_em": "19/11/2026",
+      "dias_restantes": 29,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=Hp26rR&password=m3FTd4&type=m3u_plus"
+    },
+    {
+      "usuario": "LucasCabral",
+      "senha": "aAZ26t",
+      "conexao": "0/1",
+      "criada_em": "25/09/2023",
+      "expira_em": "06/11/2026",
+      "dias_restantes": 16,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=LucasCabral&password=aAZ26t&type=m3u_plus"
+    },
+    {
+      "usuario": "pluto3933",
+      "senha": "2Gd1gU",
+      "conexao": "0/1",
+      "criada_em": "18/10/2026",
+      "expira_em": "18/01/2027",
+      "dias_restantes": 89,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=pluto3933&password=2Gd1gU&type=m3u_plus"
+    },
+    {
+      "usuario": "NATALI25",
+      "senha": "Lista1122",
+      "conexao": "0/1",
+      "criada_em": "01/11/2025",
+      "expira_em": "08/11/2026",
+      "dias_restantes": 18,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=NATALI25&password=Lista1122&type=m3u_plus"
+    },
+    {
+      "usuario": "Clayweroliveira",
+      "senha": "b3USd5",
+      "conexao": "0/1",
+      "criada_em": "30/10/2024",
+      "expira_em": "15/11/2026",
+      "dias_restantes": 25,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=Clayweroliveira&password=b3USd5&type=m3u_plus"
+    },
+    {
+      "usuario": "762159",
+      "senha": "DD3Mub",
+      "conexao": "0/3",
+      "criada_em": "04/11/2025",
+      "expira_em": "08/11/2026",
+      "dias_restantes": 18,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=762159&password=DD3Mub&type=m3u_plus"
+    },
+    {
+      "usuario": "WjB1e7",
+      "senha": "e6P6wK",
+      "conexao": "0/1",
+      "criada_em": "07/02/2022",
+      "expira_em": "19/11/2026",
+      "dias_restantes": 29,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=WjB1e7&password=e6P6wK&type=m3u_plus"
+    },
+    {
+      "usuario": "Falcao22",
+      "senha": "Andrebh25",
+      "conexao": "0/1",
+      "criada_em": "18/12/2021",
+      "expira_em": "25/10/2026",
+      "dias_restantes": 4,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=Falcao22&password=Andrebh25&type=m3u_plus"
+    },
+    {
+      "usuario": "Cris25387",
+      "senha": "4603Cris",
+      "conexao": "0/1",
+      "criada_em": "09/07/2025",
+      "expira_em": "07/11/2026",
+      "dias_restantes": 17,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=Cris25387&password=4603Cris&type=m3u_plus"
+    },
+    {
+      "usuario": "atx44722",
+      "senha": "At6231551",
+      "conexao": "0/1",
+      "criada_em": "20/02/2022",
+      "expira_em": "12/11/2026",
+      "dias_restantes": 22,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=atx44722&password=At6231551&type=m3u_plus"
+    },
+    {
+      "usuario": "ana8572p2",
+      "senha": "Refeito1a",
+      "conexao": "0/1",
+      "criada_em": "24/03/2025",
+      "expira_em": "28/11/2026",
+      "dias_restantes": 38,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=ana8572p2&password=Refeito1a&type=m3u_plus"
+    },
+    {
+      "usuario": "718939",
+      "senha": "rzX8vy",
+      "conexao": "4/3",
+      "criada_em": "17/06/2022",
+      "expira_em": "02/11/2026",
+      "dias_restantes": 12,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=718939&password=rzX8vy&type=m3u_plus"
+    },
+    {
+      "usuario": "8nCaH7",
+      "senha": "SjeZ89",
+      "conexao": "0/1",
+      "criada_em": "28/03/2024",
+      "expira_em": "13/11/2026",
+      "dias_restantes": 23,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=8nCaH7&password=SjeZ89&type=m3u_plus"
+    },
+    {
+      "usuario": "Eduardoiptv431",
+      "senha": "73029683Ee",
+      "conexao": "0/1",
+      "criada_em": "24/01/2024",
+      "expira_em": "30/10/2026",
+      "dias_restantes": 9,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=Eduardoiptv431&password=73029683Ee&type=m3u_plus"
+    },
+    {
+      "usuario": "521832",
+      "senha": "EhwmM4",
+      "conexao": "0/3",
+      "criada_em": "04/07/2025",
+      "expira_em": "08/11/2026",
+      "dias_restantes": 18,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=521832&password=EhwmM4&type=m3u_plus"
+    },
+    {
+      "usuario": "charlene050tv",
+      "senha": "1234587Xx",
+      "conexao": "0/1",
+      "criada_em": "15/05/2026",
+      "expira_em": "15/11/2026",
+      "dias_restantes": 25,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=charlene050tv&password=1234587Xx&type=m3u_plus"
+    },
+    {
+      "usuario": "5519987277687",
+      "senha": "ga7687",
+      "conexao": "0/1",
+      "criada_em": "08/11/2019",
+      "expira_em": "14/11/2026",
+      "dias_restantes": 24,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=5519987277687&password=ga7687&type=m3u_plus"
+    },
+    {
+      "usuario": "RafaF12",
+      "senha": "4kC2rQ",
+      "conexao": "0/1",
+      "criada_em": "01/03/2023",
+      "expira_em": "05/11/2026",
+      "dias_restantes": 15,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=RafaF12&password=4kC2rQ&type=m3u_plus"
+    },
+    {
+      "usuario": "asd987412471",
+      "senha": "Zaptv2026",
+      "conexao": "0/1",
+      "criada_em": "23/10/2025",
+      "expira_em": "28/10/2026",
+      "dias_restantes": 7,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=asd987412471&password=Zaptv2026&type=m3u_plus"
+    },
+    {
+      "usuario": "878975",
+      "senha": "zPMyZ3",
+      "conexao": "0/3",
+      "criada_em": "27/11/2019",
+      "expira_em": "29/11/2026",
+      "dias_restantes": 39,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=878975&password=zPMyZ3&type=m3u_plus"
+    },
+    {
+      "usuario": "swrmPv3U",
+      "senha": "aPn39S",
+      "conexao": "0/1",
+      "criada_em": "23/03/2025",
+      "expira_em": "07/11/2026",
+      "dias_restantes": 17,
+      "conteudo_adulto": false,
+      "plano": "Premium",
+      "link_m3u": "http://rrcwb.biz/get.php?username=swrmPv3U&password=aPn39S&type=m3u_plus"
+    }
+  ]
+}
