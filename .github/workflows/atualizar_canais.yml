@@ -1,0 +1,30 @@
+name: Atualizar Lista de Canais
+
+on:
+  workflow_dispatch: # Permite executar manualmente pelo telemóvel
+  schedule:
+    - cron: '0 0 * * *' # Executa automaticamente todos os dias à meia-noite
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Baixar código do repositório
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Gerar ficheiro de canais
+        run: python gerar_canais.py
+
+      - name: Guardar alterações no GitHub
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add canais.json
+          git commit -m "Atualização automática dos canais" || exit 0
+          git push
+          
