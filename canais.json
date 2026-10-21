@@ -1,2304 +1,509 @@
-{
-  "servidor": "http://rrcwb.biz",
-  "porta": 80,
-  "conteudo_adulto": false,
-  "plano": "Premium",
-  "total_contas": 100,
-  "contas": [
-    {
-      "usuario": "814332",
-      "senha": "33uq6h",
-      "conexao": "1/3",
-      "criada_em": "09/01/2026",
-      "expira_em": "09/01/2027",
-      "dias_restantes": 80,
-      "link_m3u": "http://rrcwb.biz/get.php?username=814332&password=33uq6h&type=m3u_plus"
-    },
-    {
-      "usuario": "S92436641",
-      "senha": "Dunnas1425",
-      "conexao": "0/1",
-      "criada_em": "25/05/2024",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=S92436641&password=Dunnas1425&type=m3u_plus"
-    },
-    {
-      "usuario": "ucqpt9Eu",
-      "senha": "S3r8Qp",
-      "conexao": "1/1",
-      "criada_em": "22/08/2026",
-      "expira_em": "23/10/2026",
-      "dias_restantes": 2,
-      "link_m3u": "http://rrcwb.biz/get.php?username=ucqpt9Eu&password=S3r8Qp&type=m3u_plus"
-    },
-    {
-      "usuario": "a32600110",
-      "senha": "112233Aa",
-      "conexao": "0/1",
-      "criada_em": "13/10/2026",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a32600110&password=112233Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "253048",
-      "senha": "rYrYHa",
-      "conexao": "0/3",
-      "criada_em": "08/12/2019",
-      "expira_em": "14/12/2026",
-      "dias_restantes": 54,
-      "link_m3u": "http://rrcwb.biz/get.php?username=253048&password=rYrYHa&type=m3u_plus"
-    },
-    {
-      "usuario": "davidin2",
-      "senha": "7WrgS7",
-      "conexao": "1/1",
-      "criada_em": "12/11/2025",
-      "expira_em": "18/11/2026",
-      "dias_restantes": 28,
-      "link_m3u": "http://rrcwb.biz/get.php?username=davidin2&password=7WrgS7&type=m3u_plus"
-    },
-    {
-      "usuario": "371755",
-      "senha": "ugWWZQ",
-      "conexao": "0/3",
-      "criada_em": "09/08/2022",
-      "expira_em": "06/11/2026",
-      "dias_restantes": 16,
-      "link_m3u": "http://rrcwb.biz/get.php?username=371755&password=ugWWZQ&type=m3u_plus"
-    },
-    {
-      "usuario": "GildoJunior",
-      "senha": "Gj2022x",
-      "conexao": "0/1",
-      "criada_em": "21/10/2026",
-      "expira_em": "21/11/2026",
-      "dias_restantes": 31,
-      "link_m3u": "http://rrcwb.biz/get.php?username=GildoJunior&password=Gj2022x&type=m3u_plus"
-    },
-    {
-      "usuario": "club9233",
-      "senha": "74948Ca",
-      "conexao": "0/1",
-      "criada_em": "27/09/2022",
-      "expira_em": "24/10/2026",
-      "dias_restantes": 3,
-      "link_m3u": "http://rrcwb.biz/get.php?username=club9233&password=74948Ca&type=m3u_plus"
-    },
-    {
-      "usuario": "a85148928",
-      "senha": "112233Aa",
-      "conexao": "1/1",
-      "criada_em": "13/07/2026",
-      "expira_em": "14/11/2026",
-      "dias_restantes": 24,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a85148928&password=112233Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "41782099309tv1",
-      "senha": "0123789456Ab",
-      "conexao": "1/1",
-      "criada_em": "05/01/2025",
-      "expira_em": "08/01/2027",
-      "dias_restantes": 79,
-      "link_m3u": "http://rrcwb.biz/get.php?username=41782099309tv1&password=0123789456Ab&type=m3u_plus"
-    },
-    {
-      "usuario": "286736",
-      "senha": "ZyRR68",
-      "conexao": "0/3",
-      "criada_em": "01/08/2024",
-      "expira_em": "20/01/2027",
-      "dias_restantes": 91,
-      "link_m3u": "http://rrcwb.biz/get.php?username=286736&password=ZyRR68&type=m3u_plus"
-    },
-    {
-      "usuario": "bryancosmo",
-      "senha": "8913YJCKwkhp",
-      "conexao": "0/1",
-      "criada_em": "11/04/2024",
-      "expira_em": "18/11/2026",
-      "dias_restantes": 28,
-      "link_m3u": "http://rrcwb.biz/get.php?username=bryancosmo&password=8913YJCKwkhp&type=m3u_plus"
-    },
-    {
-      "usuario": "elainealvestv1",
-      "senha": "Elai102030",
-      "conexao": "0/1",
-      "criada_em": "16/08/2026",
-      "expira_em": "21/11/2026",
-      "dias_restantes": 31,
-      "link_m3u": "http://rrcwb.biz/get.php?username=elainealvestv1&password=Elai102030&type=m3u_plus"
-    },
-    {
-      "usuario": "rwjkVFKe",
-      "senha": "3km4DB",
-      "conexao": "0/1",
-      "criada_em": "29/03/2025",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=rwjkVFKe&password=3km4DB&type=m3u_plus"
-    },
-    {
-      "usuario": "claudio4074sdx",
-      "senha": "axvdhh542d8xA",
-      "conexao": "0/1",
-      "criada_em": "10/03/2025",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=claudio4074sdx&password=axvdhh542d8xA&type=m3u_plus"
-    },
-    {
-      "usuario": "4499595054a",
-      "senha": "4612849Play",
-      "conexao": "0/1",
-      "criada_em": "01/12/2020",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=4499595054a&password=4612849Play&type=m3u_plus"
-    },
-    {
-      "usuario": "gDHuD",
-      "senha": "HT44eb",
-      "conexao": "0/1",
-      "criada_em": "25/11/2023",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=gDHuD&password=HT44eb&type=m3u_plus"
-    },
-    {
-      "usuario": "Hp26rR",
-      "senha": "m3FTd4",
-      "conexao": "0/1",
-      "criada_em": "13/09/2025",
-      "expira_em": "19/11/2026",
-      "dias_restantes": 29,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Hp26rR&password=m3FTd4&type=m3u_plus"
-    },
-    {
-      "usuario": "LucasCabral",
-      "senha": "aAZ26t",
-      "conexao": "0/1",
-      "criada_em": "25/09/2023",
-      "expira_em": "06/11/2026",
-      "dias_restantes": 16,
-      "link_m3u": "http://rrcwb.biz/get.php?username=LucasCabral&password=aAZ26t&type=m3u_plus"
-    },
-    {
-      "usuario": "pluto3933",
-      "senha": "2Gd1gU",
-      "conexao": "0/1",
-      "criada_em": "18/10/2026",
-      "expira_em": "18/01/2027",
-      "dias_restantes": 89,
-      "link_m3u": "http://rrcwb.biz/get.php?username=pluto3933&password=2Gd1gU&type=m3u_plus"
-    },
-    {
-      "usuario": "NATALI25",
-      "senha": "Lista1122",
-      "conexao": "0/1",
-      "criada_em": "01/11/2025",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=NATALI25&password=Lista1122&type=m3u_plus"
-    },
-    {
-      "usuario": "Clayweroliveira",
-      "senha": "b3USd5",
-      "conexao": "0/1",
-      "criada_em": "30/10/2024",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Clayweroliveira&password=b3USd5&type=m3u_plus"
-    },
-    {
-      "usuario": "762159",
-      "senha": "DD3Mub",
-      "conexao": "0/3",
-      "criada_em": "04/11/2025",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=762159&password=DD3Mub&type=m3u_plus"
-    },
-    {
-      "usuario": "WjB1e7",
-      "senha": "e6P6wK",
-      "conexao": "0/1",
-      "criada_em": "07/02/2022",
-      "expira_em": "19/11/2026",
-      "dias_restantes": 29,
-      "link_m3u": "http://rrcwb.biz/get.php?username=WjB1e7&password=e6P6wK&type=m3u_plus"
-    },
-    {
-      "usuario": "Falcao22",
-      "senha": "Andrebh25",
-      "conexao": "0/1",
-      "criada_em": "18/12/2021",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Falcao22&password=Andrebh25&type=m3u_plus"
-    },
-    {
-      "usuario": "Cris25387",
-      "senha": "4603Cris",
-      "conexao": "0/1",
-      "criada_em": "09/07/2025",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Cris25387&password=4603Cris&type=m3u_plus"
-    },
-    {
-      "usuario": "atx44722",
-      "senha": "At6231551",
-      "conexao": "0/1",
-      "criada_em": "20/02/2022",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=atx44722&password=At6231551&type=m3u_plus"
-    },
-    {
-      "usuario": "ana8572p2",
-      "senha": "Refeito1a",
-      "conexao": "0/1",
-      "criada_em": "24/03/2025",
-      "expira_em": "28/11/2026",
-      "dias_restantes": 38,
-      "link_m3u": "http://rrcwb.biz/get.php?username=ana8572p2&password=Refeito1a&type=m3u_plus"
-    },
-    {
-      "usuario": "718939",
-      "senha": "rzX8vy",
-      "conexao": "4/3",
-      "criada_em": "17/06/2022",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=718939&password=rzX8vy&type=m3u_plus"
-    },
-    {
-      "usuario": "8nCaH7",
-      "senha": "SjeZ89",
-      "conexao": "0/1",
-      "criada_em": "28/03/2024",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=8nCaH7&password=SjeZ89&type=m3u_plus"
-    },
-    {
-      "usuario": "Eduardoiptv431",
-      "senha": "73029683Ee",
-      "conexao": "0/1",
-      "criada_em": "24/01/2024",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Eduardoiptv431&password=73029683Ee&type=m3u_plus"
-    },
-    {
-      "usuario": "521832",
-      "senha": "EhwmM4",
-      "conexao": "0/3",
-      "criada_em": "04/07/2025",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=521832&password=EhwmM4&type=m3u_plus"
-    },
-    {
-      "usuario": "charlene050tv",
-      "senha": "1234587Xx",
-      "conexao": "0/1",
-      "criada_em": "15/05/2026",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=charlene050tv&password=1234587Xx&type=m3u_plus"
-    },
-    {
-      "usuario": "5519987277687",
-      "senha": "ga7687",
-      "conexao": "0/1",
-      "criada_em": "08/11/2019",
-      "expira_em": "14/11/2026",
-      "dias_restantes": 24,
-      "link_m3u": "http://rrcwb.biz/get.php?username=5519987277687&password=ga7687&type=m3u_plus"
-    },
-    {
-      "usuario": "RafaF12",
-      "senha": "4kC2rQ",
-      "conexao": "0/1",
-      "criada_em": "01/03/2023",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=RafaF12&password=4kC2rQ&type=m3u_plus"
-    },
-    {
-      "usuario": "asd987412471",
-      "senha": "Zaptv2026",
-      "conexao": "0/1",
-      "criada_em": "23/10/2025",
-      "expira_em": "28/10/2026",
-      "dias_restantes": 7,
-      "link_m3u": "http://rrcwb.biz/get.php?username=asd987412471&password=Zaptv2026&type=m3u_plus"
-    },
-    {
-      "usuario": "878975",
-      "senha": "zPMyZ3",
-      "conexao": "0/3",
-      "criada_em": "27/11/2019",
-      "expira_em": "29/11/2026",
-      "dias_restantes": 39,
-      "link_m3u": "http://rrcwb.biz/get.php?username=878975&password=zPMyZ3&type=m3u_plus"
-    },
-    {
-      "usuario": "swrmPv3U",
-      "senha": "aPn39S",
-      "conexao": "0/1",
-      "criada_em": "23/03/2025",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=swrmPv3U&password=aPn39S&type=m3u_plus"
-    },
-    {
-      "usuario": "Marcos3402",
-      "senha": "w8h2djkkMS",
-      "conexao": "0/1",
-      "criada_em": "18/01/2021",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Marcos3402&password=w8h2djkkMS&type=m3u_plus"
-    },
-    {
-      "usuario": "VanessaClubTV",
-      "senha": "VClub2024",
-      "conexao": "0/2",
-      "criada_em": "19/01/2024",
-      "expira_em": "06/11/2026",
-      "dias_restantes": 16,
-      "link_m3u": "http://rrcwb.biz/get.php?username=VanessaClubTV&password=VClub2024&type=m3u_plus"
-    },
-    {
-      "usuario": "Jozival6543",
-      "senha": "Jozival1234",
-      "conexao": "0/1",
-      "criada_em": "29/08/2026",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Jozival6543&password=Jozival1234&type=m3u_plus"
-    },
-    {
-      "usuario": "EXSK3wVqY",
-      "senha": "jA2j8J",
-      "conexao": "0/1",
-      "criada_em": "02/01/2026",
-      "expira_em": "16/11/2026",
-      "dias_restantes": 26,
-      "link_m3u": "http://rrcwb.biz/get.php?username=EXSK3wVqY&password=jA2j8J&type=m3u_plus"
-    },
-    {
-      "usuario": "p7eJ7Q",
-      "senha": "4jyV8D",
-      "conexao": "0/1",
-      "criada_em": "02/11/2024",
-      "expira_em": "01/11/2026",
-      "dias_restantes": 11,
-      "link_m3u": "http://rrcwb.biz/get.php?username=p7eJ7Q&password=4jyV8D&type=m3u_plus"
-    },
-    {
-      "usuario": "MarcosP1909",
-      "senha": "FjR88w",
-      "conexao": "0/1",
-      "criada_em": "19/09/2025",
-      "expira_em": "04/11/2026",
-      "dias_restantes": 14,
-      "link_m3u": "http://rrcwb.biz/get.php?username=MarcosP1909&password=FjR88w&type=m3u_plus"
-    },
-    {
-      "usuario": "Joaobas1",
-      "senha": "W4gN8f",
-      "conexao": "2/1",
-      "criada_em": "22/08/2026",
-      "expira_em": "22/01/2027",
-      "dias_restantes": 93,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Joaobas1&password=W4gN8f&type=m3u_plus"
-    },
-    {
-      "usuario": "Marcos_Andre",
-      "senha": "mz1X4E",
-      "conexao": "1/1",
-      "criada_em": "24/09/2024",
-      "expira_em": "26/11/2026",
-      "dias_restantes": 36,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Marcos_Andre&password=mz1X4E&type=m3u_plus"
-    },
-    {
-      "usuario": "Amanda2024lg",
-      "senha": "Ac56283",
-      "conexao": "0/1",
-      "criada_em": "10/08/2024",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Amanda2024lg&password=Ac56283&type=m3u_plus"
-    },
-    {
-      "usuario": "gisele5522",
-      "senha": "TOPplay2300",
-      "conexao": "1/1",
-      "criada_em": "27/06/2024",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=gisele5522&password=TOPplay2300&type=m3u_plus"
-    },
-    {
-      "usuario": "SDpXWtZt",
-      "senha": "Z5N9wr",
-      "conexao": "0/1",
-      "criada_em": "27/08/2023",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=SDpXWtZt&password=Z5N9wr&type=m3u_plus"
-    },
-    {
-      "usuario": "Mario14014",
-      "senha": "Sar4164",
-      "conexao": "0/1",
-      "criada_em": "14/01/2024",
-      "expira_em": "26/01/2027",
-      "dias_restantes": 97,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Mario14014&password=Sar4164&type=m3u_plus"
-    },
-    {
-      "usuario": "AndreaCalvo2",
-      "senha": "Senha1234",
-      "conexao": "1/1",
-      "criada_em": "09/12/2025",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=AndreaCalvo2&password=Senha1234&type=m3u_plus"
-    },
-    {
-      "usuario": "Victorrjsantos",
-      "senha": "EX89wf",
-      "conexao": "0/1",
-      "criada_em": "17/02/2025",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Victorrjsantos&password=EX89wf&type=m3u_plus"
-    },
-    {
-      "usuario": "lailaghilardi",
-      "senha": "Ghilardi2022",
-      "conexao": "0/1",
-      "criada_em": "21/11/2022",
-      "expira_em": "23/10/2026",
-      "dias_restantes": 2,
-      "link_m3u": "http://rrcwb.biz/get.php?username=lailaghilardi&password=Ghilardi2022&type=m3u_plus"
-    },
-    {
-      "usuario": "MarceloSuica21",
-      "senha": "82739172Mc",
-      "conexao": "1/1",
-      "criada_em": "22/03/2026",
-      "expira_em": "24/03/2027",
-      "dias_restantes": 154,
-      "link_m3u": "http://rrcwb.biz/get.php?username=MarceloSuica21&password=82739172Mc&type=m3u_plus"
-    },
-    {
-      "usuario": "Lau761534",
-      "senha": "Grin890175",
-      "conexao": "1/1",
-      "criada_em": "02/12/2025",
-      "expira_em": "05/01/2027",
-      "dias_restantes": 76,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Lau761534&password=Grin890175&type=m3u_plus"
-    },
-    {
-      "usuario": "UELTONTT",
-      "senha": "591645UeA",
-      "conexao": "0/1",
-      "criada_em": "16/08/2026",
-      "expira_em": "18/11/2026",
-      "dias_restantes": 28,
-      "link_m3u": "http://rrcwb.biz/get.php?username=UELTONTT&password=591645UeA&type=m3u_plus"
-    },
-    {
-      "usuario": "jyQ9K9",
-      "senha": "zCqQ57",
-      "conexao": "0/1",
-      "criada_em": "13/05/2026",
-      "expira_em": "19/11/2026",
-      "dias_restantes": 29,
-      "link_m3u": "http://rrcwb.biz/get.php?username=jyQ9K9&password=zCqQ57&type=m3u_plus"
-    },
-    {
-      "usuario": "9x485hxN",
-      "senha": "B67Ugj",
-      "conexao": "0/1",
-      "criada_em": "24/09/2025",
-      "expira_em": "28/10/2026",
-      "dias_restantes": 7,
-      "link_m3u": "http://rrcwb.biz/get.php?username=9x485hxN&password=B67Ugj&type=m3u_plus"
-    },
-    {
-      "usuario": "elu2036",
-      "senha": "Ep5263145",
-      "conexao": "0/1",
-      "criada_em": "18/02/2026",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=elu2036&password=Ep5263145&type=m3u_plus"
-    },
-    {
-      "usuario": "marjanabp",
-      "senha": "M9173825a",
-      "conexao": "0/1",
-      "criada_em": "18/07/2025",
-      "expira_em": "20/11/2026",
-      "dias_restantes": 30,
-      "link_m3u": "http://rrcwb.biz/get.php?username=marjanabp&password=M9173825a&type=m3u_plus"
-    },
-    {
-      "usuario": "6deSd4QJ",
-      "senha": "uFx67K",
-      "conexao": "0/1",
-      "criada_em": "30/04/2025",
-      "expira_em": "04/11/2026",
-      "dias_restantes": 14,
-      "link_m3u": "http://rrcwb.biz/get.php?username=6deSd4QJ&password=uFx67K&type=m3u_plus"
-    },
-    {
-      "usuario": "76432fE",
-      "senha": "24689gD",
-      "conexao": "0/1",
-      "criada_em": "30/08/2022",
-      "expira_em": "21/10/2026",
-      "dias_restantes": 0,
-      "link_m3u": "http://rrcwb.biz/get.php?username=76432fE&password=24689gD&type=m3u_plus"
-    },
-    {
-      "usuario": "ttcHy",
-      "senha": "dGhkf21",
-      "conexao": "0/1",
-      "criada_em": "13/06/2022",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=ttcHy&password=dGhkf21&type=m3u_plus"
-    },
-    {
-      "usuario": "a47191068",
-      "senha": "112233Aa",
-      "conexao": "0/1",
-      "criada_em": "29/12/2024",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a47191068&password=112233Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "sVngRzSY",
-      "senha": "3967BWPTqzkd",
-      "conexao": "0/1",
-      "criada_em": "28/05/2023",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=sVngRzSY&password=3967BWPTqzkd&type=m3u_plus"
-    },
-    {
-      "usuario": "sfASYqA3",
-      "senha": "xY8C9h",
-      "conexao": "0/1",
-      "criada_em": "08/09/2024",
-      "expira_em": "06/01/2027",
-      "dias_restantes": 77,
-      "link_m3u": "http://rrcwb.biz/get.php?username=sfASYqA3&password=xY8C9h&type=m3u_plus"
-    },
-    {
-      "usuario": "Andersonteste10",
-      "senha": "Tayna10",
-      "conexao": "0/1",
-      "criada_em": "29/11/2025",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Andersonteste10&password=Tayna10&type=m3u_plus"
-    },
-    {
-      "usuario": "may34220",
-      "senha": "qHk8Q5566",
-      "conexao": "0/1",
-      "criada_em": "10/04/2025",
-      "expira_em": "14/11/2026",
-      "dias_restantes": 24,
-      "link_m3u": "http://rrcwb.biz/get.php?username=may34220&password=qHk8Q5566&type=m3u_plus"
-    },
-    {
-      "usuario": "2danilloescocio",
-      "senha": "A63846847x",
-      "conexao": "0/1",
-      "criada_em": "05/11/2024",
-      "expira_em": "20/11/2026",
-      "dias_restantes": 30,
-      "link_m3u": "http://rrcwb.biz/get.php?username=2danilloescocio&password=A63846847x&type=m3u_plus"
-    },
-    {
-      "usuario": "953609",
-      "senha": "wUu18K",
-      "conexao": "0/3",
-      "criada_em": "15/09/2021",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=953609&password=wUu18K&type=m3u_plus"
-    },
-    {
-      "usuario": "anasilvatv",
-      "senha": "Asiptv123",
-      "conexao": "0/1",
-      "criada_em": "21/05/2026",
-      "expira_em": "04/11/2026",
-      "dias_restantes": 14,
-      "link_m3u": "http://rrcwb.biz/get.php?username=anasilvatv&password=Asiptv123&type=m3u_plus"
-    },
-    {
-      "usuario": "889793",
-      "senha": "n4EhZ2",
-      "conexao": "0/3",
-      "criada_em": "05/05/2025",
-      "expira_em": "23/10/2026",
-      "dias_restantes": 2,
-      "link_m3u": "http://rrcwb.biz/get.php?username=889793&password=n4EhZ2&type=m3u_plus"
-    },
-    {
-      "usuario": "ViCtor25Sala",
-      "senha": "634YZCauw",
-      "conexao": "3/1",
-      "criada_em": "13/09/2025",
-      "expira_em": "07/07/2027",
-      "dias_restantes": 259,
-      "link_m3u": "http://rrcwb.biz/get.php?username=ViCtor25Sala&password=634YZCauw&type=m3u_plus"
-    },
-    {
-      "usuario": "546961",
-      "senha": "KsKuw4",
-      "conexao": "0/3",
-      "criada_em": "03/04/2022",
-      "expira_em": "08/01/2027",
-      "dias_restantes": 79,
-      "link_m3u": "http://rrcwb.biz/get.php?username=546961&password=KsKuw4&type=m3u_plus"
-    },
-    {
-      "usuario": "Antunes1",
-      "senha": "Azcv45211",
-      "conexao": "0/1",
-      "criada_em": "11/04/2023",
-      "expira_em": "11/11/2026",
-      "dias_restantes": 21,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Antunes1&password=Azcv45211&type=m3u_plus"
-    },
-    {
-      "usuario": "329297",
-      "senha": "4y1Fst",
-      "conexao": "1/3",
-      "criada_em": "10/04/2021",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=329297&password=4y1Fst&type=m3u_plus"
-    },
-    {
-      "usuario": "w42Bhhgu",
-      "senha": "6AAk3e",
-      "conexao": "0/1",
-      "criada_em": "01/07/2026",
-      "expira_em": "03/11/2026",
-      "dias_restantes": 13,
-      "link_m3u": "http://rrcwb.biz/get.php?username=w42Bhhgu&password=6AAk3e&type=m3u_plus"
-    },
-    {
-      "usuario": "Madrtv41",
-      "senha": "5wX3aN",
-      "conexao": "0/1",
-      "criada_em": "17/06/2024",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Madrtv41&password=5wX3aN&type=m3u_plus"
-    },
-    {
-      "usuario": "caioCarl1",
-      "senha": "neWsenha1",
-      "conexao": "0/1",
-      "criada_em": "01/06/2023",
-      "expira_em": "24/10/2026",
-      "dias_restantes": 3,
-      "link_m3u": "http://rrcwb.biz/get.php?username=caioCarl1&password=neWsenha1&type=m3u_plus"
-    },
-    {
-      "usuario": "073998",
-      "senha": "FA4UDu",
-      "conexao": "1/3",
-      "criada_em": "17/08/2024",
-      "expira_em": "25/11/2026",
-      "dias_restantes": 35,
-      "link_m3u": "http://rrcwb.biz/get.php?username=073998&password=FA4UDu&type=m3u_plus"
-    },
-    {
-      "usuario": "juliob8055",
-      "senha": "Smarters1a",
-      "conexao": "0/1",
-      "criada_em": "07/11/2025",
-      "expira_em": "16/11/2026",
-      "dias_restantes": 26,
-      "link_m3u": "http://rrcwb.biz/get.php?username=juliob8055&password=Smarters1a&type=m3u_plus"
-    },
-    {
-      "usuario": "351933469998",
-      "senha": "Aa25471",
-      "conexao": "1/1",
-      "criada_em": "03/06/2020",
-      "expira_em": "13/05/2027",
-      "dias_restantes": 204,
-      "link_m3u": "http://rrcwb.biz/get.php?username=351933469998&password=Aa25471&type=m3u_plus"
-    },
-    {
-      "usuario": "MarizaSoares",
-      "senha": "T9m1Uz",
-      "conexao": "1/1",
-      "criada_em": "17/08/2023",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=MarizaSoares&password=T9m1Uz&type=m3u_plus"
-    },
-    {
-      "usuario": "Bruno1211",
-      "senha": "9856VSFKaaaa",
-      "conexao": "1/1",
-      "criada_em": "07/07/2024",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Bruno1211&password=9856VSFKaaaa&type=m3u_plus"
-    },
-    {
-      "usuario": "V2rnXTKJV",
-      "senha": "ByQ57y",
-      "conexao": "0/1",
-      "criada_em": "05/09/2025",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=V2rnXTKJV&password=ByQ57y&type=m3u_plus"
-    },
-    {
-      "usuario": "AuritaTiangua",
-      "senha": "Brasil2024",
-      "conexao": "0/1",
-      "criada_em": "14/01/2024",
-      "expira_em": "27/10/2026",
-      "dias_restantes": 6,
-      "link_m3u": "http://rrcwb.biz/get.php?username=AuritaTiangua&password=Brasil2024&type=m3u_plus"
-    },
-    {
-      "usuario": "19998259880tv1",
-      "senha": "123789456Ab",
-      "conexao": "0/1",
-      "criada_em": "16/05/2025",
-      "expira_em": "22/11/2026",
-      "dias_restantes": 32,
-      "link_m3u": "http://rrcwb.biz/get.php?username=19998259880tv1&password=123789456Ab&type=m3u_plus"
-    },
-    {
-      "usuario": "arthur2030",
-      "senha": "Matheus202",
-      "conexao": "0/1",
-      "criada_em": "09/04/2020",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=arthur2030&password=Matheus202&type=m3u_plus"
-    },
-    {
-      "usuario": "h12HaG",
-      "senha": "1pBW3w",
-      "conexao": "1/1",
-      "criada_em": "27/01/2026",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=h12HaG&password=1pBW3w&type=m3u_plus"
-    },
-    {
-      "usuario": "QmVkGKVRe",
-      "senha": "hK75St",
-      "conexao": "0/1",
-      "criada_em": "20/09/2025",
-      "expira_em": "22/10/2026",
-      "dias_restantes": 1,
-      "link_m3u": "http://rrcwb.biz/get.php?username=QmVkGKVRe&password=hK75St&type=m3u_plus"
-    },
-    {
-      "usuario": "David17",
-      "senha": "Trio23",
-      "conexao": "0/1",
-      "criada_em": "06/03/2026",
-      "expira_em": "08/03/2027",
-      "dias_restantes": 138,
-      "link_m3u": "http://rrcwb.biz/get.php?username=David17&password=Trio23&type=m3u_plus"
-    },
-    {
-      "usuario": "WYTAZzhpRT",
-      "senha": "4637FGDTqvnc",
-      "conexao": "0/1",
-      "criada_em": "10/09/2025",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=WYTAZzhpRT&password=4637FGDTqvnc&type=m3u_plus"
-    },
-    {
-      "usuario": "Ubiratamcr",
-      "senha": "Fgh566u54",
-      "conexao": "1/1",
-      "criada_em": "02/04/2025",
-      "expira_em": "08/04/2027",
-      "dias_restantes": 169,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Ubiratamcr&password=Fgh566u54&type=m3u_plus"
-    },
-    {
-      "usuario": "caiosc",
-      "senha": "5g8XPn",
-      "conexao": "0/1",
-      "criada_em": "25/01/2026",
-      "expira_em": "06/11/2026",
-      "dias_restantes": 16,
-      "link_m3u": "http://rrcwb.biz/get.php?username=caiosc&password=5g8XPn&type=m3u_plus"
-    },
-    {
-      "usuario": "673588",
-      "senha": "nb6YX6",
-      "conexao": "1/3",
-      "criada_em": "25/07/2022",
-      "expira_em": "04/11/2026",
-      "dias_restantes": 14,
-      "link_m3u": "http://rrcwb.biz/get.php?username=673588&password=nb6YX6&type=m3u_plus"
-    },
-    {
-      "usuario": "ubd317377",
-      "senha": "F4c5Fp",
-      "conexao": "0/1",
-      "criada_em": "25/01/2026",
-      "expira_em": "04/11/2026",
-      "dias_restantes": 14,
-      "link_m3u": "http://rrcwb.biz/get.php?username=ubd317377&password=F4c5Fp&type=m3u_plus"
-    },
-    {
-      "usuario": "lindinalva8282",
-      "senha": "HcH9f1",
-      "conexao": "0/1",
-      "criada_em": "06/12/2024",
-      "expira_em": "10/01/2027",
-      "dias_restantes": 81,
-      "link_m3u": "http://rrcwb.biz/get.php?username=lindinalva8282&password=HcH9f1&type=m3u_plus"
-    },
-    {
-      "usuario": "uanderson",
-      "senha": "U203142son",
-      "conexao": "1/1",
-      "criada_em": "23/10/2024",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=uanderson&password=U203142son&type=m3u_plus"
-    },
-    {
-      "usuario": "jessica1442",
-      "senha": "Je52631452",
-      "conexao": "0/1",
-      "criada_em": "15/03/2026",
-      "expira_em": "03/11/2026",
-      "dias_restantes": 13,
-      "link_m3u": "http://rrcwb.biz/get.php?username=jessica1442&password=Je52631452&type=m3u_plus"
-    },
-    {
-      "usuario": "DNgNrpbU",
-      "senha": "4HT7eb",
-      "conexao": "1/1",
-      "criada_em": "05/02/2025",
-      "expira_em": "03/11/2026",
-      "dias_restantes": 13,
-      "link_m3u": "http://rrcwb.biz/get.php?username=DNgNrpbU&password=4HT7eb&type=m3u_plus"
-    },
-    {
-      "usuario": "PABLOMAR2",
-      "senha": "199525Pa",
-      "conexao": "0/1",
-      "criada_em": "01/02/2022",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=PABLOMAR2&password=199525Pa&type=m3u_plus"
-    },
-    {
-      "usuario": "helitw234QJv",
-      "senha": "85532NZqgmd",
-      "conexao": "0/1",
-      "criada_em": "08/08/2025",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=helitw234QJv&password=85532NZqgmd&type=m3u_plus"
-    },
-    {
-      "usuario": "onatam",
-      "senha": "Cap1977",
-      "conexao": "0/1",
-      "criada_em": "19/08/2025",
-      "expira_em": "26/08/2027",
-      "dias_restantes": 309,
-      "link_m3u": "http://rrcwb.biz/get.php?username=onatam&password=Cap1977&type=m3u_plus"
-    },
-    {
-      "usuario": "773137",
-      "senha": "YaBW9D",
-      "conexao": "1/3",
-      "criada_em": "17/11/2025",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=773137&password=YaBW9D&type=m3u_plus"
-    },
-    {
-      "usuario": "Lr03",
-      "senha": "Le10203040",
-      "conexao": "0/1",
-      "criada_em": "12/12/2022",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Lr03&password=Le10203040&type=m3u_plus"
-    },
-    {
-      "usuario": "leandro6325a",
-      "senha": "Refeito3a",
-      "conexao": "0/1",
-      "criada_em": "17/03/2025",
-      "expira_em": "24/12/2026",
-      "dias_restantes": 64,
-      "link_m3u": "http://rrcwb.biz/get.php?username=leandro6325a&password=Refeito3a&type=m3u_plus"
-    },
-    {
-      "usuario": "426613",
-      "senha": "Aws0824",
-      "conexao": "0/1",
-      "criada_em": "16/03/2024",
-      "expira_em": "18/11/2026",
-      "dias_restantes": 28,
-      "link_m3u": "http://rrcwb.biz/get.php?username=426613&password=Aws0824&type=m3u_plus"
-    },
-    {
-      "usuario": "4cJJAFCK",
-      "senha": "2Uev8X",
-      "conexao": "0/1",
-      "criada_em": "24/03/2025",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=4cJJAFCK&password=2Uev8X&type=m3u_plus"
-    },
-    {
-      "usuario": "Marcelo421",
-      "senha": "Top10canais",
-      "conexao": "1/1",
-      "criada_em": "23/07/2022",
-      "expira_em": "06/11/2026",
-      "dias_restantes": 16,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Marcelo421&password=Top10canais&type=m3u_plus"
-    },
-    {
-      "usuario": "marlon266",
-      "senha": "Ma152226",
-      "conexao": "1/1",
-      "criada_em": "06/04/2020",
-      "expira_em": "11/11/2026",
-      "dias_restantes": 21,
-      "link_m3u": "http://rrcwb.biz/get.php?username=marlon266&password=Ma152226&type=m3u_plus"
-    },
-    {
-      "usuario": "manastata051",
-      "senha": "8pbkP6nx77",
-      "conexao": "0/2",
-      "criada_em": "03/08/2026",
-      "expira_em": "04/02/2027",
-      "dias_restantes": 105,
-      "link_m3u": "http://rrcwb.biz/get.php?username=manastata051&password=8pbkP6nx77&type=m3u_plus"
-    },
-    {
-      "usuario": "a62937617",
-      "senha": "112233Aa",
-      "conexao": "0/1",
-      "criada_em": "31/12/2024",
-      "expira_em": "25/01/2027",
-      "dias_restantes": 96,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a62937617&password=112233Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "ThaDanTv",
-      "senha": "Senhadatv1",
-      "conexao": "1/1",
-      "criada_em": "21/10/2024",
-      "expira_em": "23/10/2026",
-      "dias_restantes": 2,
-      "link_m3u": "http://rrcwb.biz/get.php?username=ThaDanTv&password=Senhadatv1&type=m3u_plus"
-    },
-    {
-      "usuario": "Dantebrunosouza",
-      "senha": "6Cu9uY",
-      "conexao": "0/1",
-      "criada_em": "25/08/2024",
-      "expira_em": "22/10/2026",
-      "dias_restantes": 1,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Dantebrunosouza&password=6Cu9uY&type=m3u_plus"
-    },
-    {
-      "usuario": "Stefany2685",
-      "senha": "5450Ste",
-      "conexao": "0/1",
-      "criada_em": "04/04/2025",
-      "expira_em": "10/11/2026",
-      "dias_restantes": 20,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Stefany2685&password=5450Ste&type=m3u_plus"
-    },
-    {
-      "usuario": "515457",
-      "senha": "wc8JZz",
-      "conexao": "0/3",
-      "criada_em": "01/06/2023",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=515457&password=wc8JZz&type=m3u_plus"
-    },
-    {
-      "usuario": "590705",
-      "senha": "Fmm2M8",
-      "conexao": "0/3",
-      "criada_em": "01/09/2024",
-      "expira_em": "04/12/2026",
-      "dias_restantes": 44,
-      "link_m3u": "http://rrcwb.biz/get.php?username=590705&password=Fmm2M8&type=m3u_plus"
-    },
-    {
-      "usuario": "Kelvin553",
-      "senha": "K492497k",
-      "conexao": "0/1",
-      "criada_em": "30/07/2026",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Kelvin553&password=K492497k&type=m3u_plus"
-    },
-    {
-      "usuario": "maurilioone1",
-      "senha": "102030Ee",
-      "conexao": "0/1",
-      "criada_em": "18/03/2024",
-      "expira_em": "14/11/2026",
-      "dias_restantes": 24,
-      "link_m3u": "http://rrcwb.biz/get.php?username=maurilioone1&password=102030Ee&type=m3u_plus"
-    },
-    {
-      "usuario": "F6A6Y",
-      "senha": "1zZzZ9",
-      "conexao": "1/1",
-      "criada_em": "03/12/2023",
-      "expira_em": "10/11/2026",
-      "dias_restantes": 20,
-      "link_m3u": "http://rrcwb.biz/get.php?username=F6A6Y&password=1zZzZ9&type=m3u_plus"
-    },
-    {
-      "usuario": "Mile5353",
-      "senha": "Iptv20252025",
-      "conexao": "0/1",
-      "criada_em": "04/02/2025",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Mile5353&password=Iptv20252025&type=m3u_plus"
-    },
-    {
-      "usuario": "zeh2752a",
-      "senha": "Refeito1a",
-      "conexao": "0/1",
-      "criada_em": "01/09/2025",
-      "expira_em": "11/11/2026",
-      "dias_restantes": 21,
-      "link_m3u": "http://rrcwb.biz/get.php?username=zeh2752a&password=Refeito1a&type=m3u_plus"
-    },
-    {
-      "usuario": "WwST8",
-      "senha": "jYC5u3",
-      "conexao": "0/1",
-      "criada_em": "07/01/2022",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=WwST8&password=jYC5u3&type=m3u_plus"
-    },
-    {
-      "usuario": "Cassiano1011",
-      "senha": "Hubner8880",
-      "conexao": "0/1",
-      "criada_em": "25/09/2026",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Cassiano1011&password=Hubner8880&type=m3u_plus"
-    },
-    {
-      "usuario": "PN48qb",
-      "senha": "zQ6g9P",
-      "conexao": "1/1",
-      "criada_em": "20/08/2026",
-      "expira_em": "20/11/2026",
-      "dias_restantes": 30,
-      "link_m3u": "http://rrcwb.biz/get.php?username=PN48qb&password=zQ6g9P&type=m3u_plus"
-    },
-    {
-      "usuario": "Maxwell5680",
-      "senha": "R3aaS1",
-      "conexao": "0/1",
-      "criada_em": "17/01/2026",
-      "expira_em": "03/11/2026",
-      "dias_restantes": 13,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Maxwell5680&password=R3aaS1&type=m3u_plus"
-    },
-    {
-      "usuario": "Danielmenezes",
-      "senha": "Js15082023",
-      "conexao": "0/1",
-      "criada_em": "17/02/2025",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Danielmenezes&password=Js15082023&type=m3u_plus"
-    },
-    {
-      "usuario": "676808",
-      "senha": "P2vCB6",
-      "conexao": "0/3",
-      "criada_em": "08/09/2021",
-      "expira_em": "20/12/2026",
-      "dias_restantes": 60,
-      "link_m3u": "http://rrcwb.biz/get.php?username=676808&password=P2vCB6&type=m3u_plus"
-    },
-    {
-      "usuario": "jffXtVzDB",
-      "senha": "jkV61N",
-      "conexao": "0/1",
-      "criada_em": "10/01/2026",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=jffXtVzDB&password=jkV61N&type=m3u_plus"
-    },
-    {
-      "usuario": "JeFdezd726",
-      "senha": "t1GHh7",
-      "conexao": "0/1",
-      "criada_em": "23/01/2025",
-      "expira_em": "26/10/2026",
-      "dias_restantes": 5,
-      "link_m3u": "http://rrcwb.biz/get.php?username=JeFdezd726&password=t1GHh7&type=m3u_plus"
-    },
-    {
-      "usuario": "938778",
-      "senha": "QrWHkq",
-      "conexao": "0/3",
-      "criada_em": "28/04/2020",
-      "expira_em": "26/10/2026",
-      "dias_restantes": 5,
-      "link_m3u": "http://rrcwb.biz/get.php?username=938778&password=QrWHkq&type=m3u_plus"
-    },
-    {
-      "usuario": "Joenia23",
-      "senha": "Kd2023",
-      "conexao": "1/1",
-      "criada_em": "16/10/2023",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Joenia23&password=Kd2023&type=m3u_plus"
-    },
-    {
-      "usuario": "Amauri896",
-      "senha": "4986474Am",
-      "conexao": "0/1",
-      "criada_em": "27/05/2025",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Amauri896&password=4986474Am&type=m3u_plus"
-    },
-    {
-      "usuario": "879513",
-      "senha": "wxrMtt",
-      "conexao": "0/3",
-      "criada_em": "12/05/2022",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=879513&password=wxrMtt&type=m3u_plus"
-    },
-    {
-      "usuario": "Ws224562",
-      "senha": "Ws098769",
-      "conexao": "0/1",
-      "criada_em": "02/02/2026",
-      "expira_em": "05/02/2027",
-      "dias_restantes": 107,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Ws224562&password=Ws098769&type=m3u_plus"
-    },
-    {
-      "usuario": "daliatv58",
-      "senha": "Aa88996177370",
-      "conexao": "0/1",
-      "criada_em": "19/10/2026",
-      "expira_em": "19/11/2026",
-      "dias_restantes": 29,
-      "link_m3u": "http://rrcwb.biz/get.php?username=daliatv58&password=Aa88996177370&type=m3u_plus"
-    },
-    {
-      "usuario": "537641",
-      "senha": "rs3KXf",
-      "conexao": "2/3",
-      "criada_em": "18/03/2026",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=537641&password=rs3KXf&type=m3u_plus"
-    },
-    {
-      "usuario": "339557",
-      "senha": "YxC1Aa",
-      "conexao": "0/5",
-      "criada_em": "09/02/2023",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=339557&password=YxC1Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "Evandro0209",
-      "senha": "816YQNkrs",
-      "conexao": "1/1",
-      "criada_em": "02/11/2021",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Evandro0209&password=816YQNkrs&type=m3u_plus"
-    },
-    {
-      "usuario": "Ravel2001",
-      "senha": "2vv9CR",
-      "conexao": "0/1",
-      "criada_em": "20/05/2024",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Ravel2001&password=2vv9CR&type=m3u_plus"
-    },
-    {
-      "usuario": "douglashsampaio",
-      "senha": "Aa99617657",
-      "conexao": "0/1",
-      "criada_em": "03/04/2023",
-      "expira_em": "10/11/2026",
-      "dias_restantes": 20,
-      "link_m3u": "http://rrcwb.biz/get.php?username=douglashsampaio&password=Aa99617657&type=m3u_plus"
-    },
-    {
-      "usuario": "798405",
-      "senha": "q146RT",
-      "conexao": "0/3",
-      "criada_em": "26/09/2024",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=798405&password=q146RT&type=m3u_plus"
-    },
-    {
-      "usuario": "sErq782035",
-      "senha": "rRA4z76295",
-      "conexao": "0/1",
-      "criada_em": "27/04/2025",
-      "expira_em": "13/12/2026",
-      "dias_restantes": 53,
-      "link_m3u": "http://rrcwb.biz/get.php?username=sErq782035&password=rRA4z76295&type=m3u_plus"
-    },
-    {
-      "usuario": "127861",
-      "senha": "QWxZzz",
-      "conexao": "1/3",
-      "criada_em": "04/11/2022",
-      "expira_em": "04/11/2026",
-      "dias_restantes": 14,
-      "link_m3u": "http://rrcwb.biz/get.php?username=127861&password=QWxZzz&type=m3u_plus"
-    },
-    {
-      "usuario": "87sUnK",
-      "senha": "J9fPk2",
-      "conexao": "0/1",
-      "criada_em": "14/05/2020",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=87sUnK&password=J9fPk2&type=m3u_plus"
-    },
-    {
-      "usuario": "Renilson8838",
-      "senha": "Re88381991",
-      "conexao": "0/1",
-      "criada_em": "04/09/2025",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Renilson8838&password=Re88381991&type=m3u_plus"
-    },
-    {
-      "usuario": "GpMdMhUGzT",
-      "senha": "7884WKNEtwdt",
-      "conexao": "0/1",
-      "criada_em": "21/06/2023",
-      "expira_em": "22/10/2026",
-      "dias_restantes": 1,
-      "link_m3u": "http://rrcwb.biz/get.php?username=GpMdMhUGzT&password=7884WKNEtwdt&type=m3u_plus"
-    },
-    {
-      "usuario": "Aw5fV55np",
-      "senha": "3S1ceY",
-      "conexao": "0/1",
-      "criada_em": "25/01/2026",
-      "expira_em": "27/11/2026",
-      "dias_restantes": 37,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Aw5fV55np&password=3S1ceY&type=m3u_plus"
-    },
-    {
-      "usuario": "333taty3",
-      "senha": "909090Pkk",
-      "conexao": "0/1",
-      "criada_em": "05/06/2023",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=333taty3&password=909090Pkk&type=m3u_plus"
-    },
-    {
-      "usuario": "camilamachadoo",
-      "senha": "Cm19082025",
-      "conexao": "0/1",
-      "criada_em": "19/08/2025",
-      "expira_em": "22/10/2026",
-      "dias_restantes": 1,
-      "link_m3u": "http://rrcwb.biz/get.php?username=camilamachadoo&password=Cm19082025&type=m3u_plus"
-    },
-    {
-      "usuario": "Antonio01",
-      "senha": "102030Ttt",
-      "conexao": "0/1",
-      "criada_em": "15/08/2026",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Antonio01&password=102030Ttt&type=m3u_plus"
-    },
-    {
-      "usuario": "vk4XM9",
-      "senha": "y61AcC",
-      "conexao": "0/1",
-      "criada_em": "09/06/2025",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=vk4XM9&password=y61AcC&type=m3u_plus"
-    },
-    {
-      "usuario": "KbqnqS1X8",
-      "senha": "2234XREVurjh",
-      "conexao": "0/1",
-      "criada_em": "13/09/2023",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=KbqnqS1X8&password=2234XREVurjh&type=m3u_plus"
-    },
-    {
-      "usuario": "Katarinaproj",
-      "senha": "Lz7798133",
-      "conexao": "0/1",
-      "criada_em": "28/03/2025",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Katarinaproj&password=Lz7798133&type=m3u_plus"
-    },
-    {
-      "usuario": "Brun22clb",
-      "senha": "K3V5kt",
-      "conexao": "0/1",
-      "criada_em": "04/11/2024",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Brun22clb&password=K3V5kt&type=m3u_plus"
-    },
-    {
-      "usuario": "valdoir",
-      "senha": "Cap1977",
-      "conexao": "0/1",
-      "criada_em": "11/03/2025",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=valdoir&password=Cap1977&type=m3u_plus"
-    },
-    {
-      "usuario": "luiz8090",
-      "senha": "Ade15258",
-      "conexao": "0/1",
-      "criada_em": "28/03/2024",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=luiz8090&password=Ade15258&type=m3u_plus"
-    },
-    {
-      "usuario": "772442",
-      "senha": "bSvSPe",
-      "conexao": "0/3",
-      "criada_em": "04/08/2023",
-      "expira_em": "27/10/2026",
-      "dias_restantes": 6,
-      "link_m3u": "http://rrcwb.biz/get.php?username=772442&password=bSvSPe&type=m3u_plus"
-    },
-    {
-      "usuario": "Ricardo3188",
-      "senha": "5f4GbS",
-      "conexao": "0/1",
-      "criada_em": "11/09/2024",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Ricardo3188&password=5f4GbS&type=m3u_plus"
-    },
-    {
-      "usuario": "zECJBhmzS",
-      "senha": "4KbpY7",
-      "conexao": "0/1",
-      "criada_em": "20/09/2024",
-      "expira_em": "19/11/2026",
-      "dias_restantes": 29,
-      "link_m3u": "http://rrcwb.biz/get.php?username=zECJBhmzS&password=4KbpY7&type=m3u_plus"
-    },
-    {
-      "usuario": "jakeline1752",
-      "senha": "XD6wb1",
-      "conexao": "0/1",
-      "criada_em": "16/01/2022",
-      "expira_em": "20/11/2026",
-      "dias_restantes": 30,
-      "link_m3u": "http://rrcwb.biz/get.php?username=jakeline1752&password=XD6wb1&type=m3u_plus"
-    },
-    {
-      "usuario": "522405",
-      "senha": "cVarAB",
-      "conexao": "0/3",
-      "criada_em": "28/04/2021",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=522405&password=cVarAB&type=m3u_plus"
-    },
-    {
-      "usuario": "QF3sgsAv",
-      "senha": "kdHA58",
-      "conexao": "0/1",
-      "criada_em": "09/03/2025",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=QF3sgsAv&password=kdHA58&type=m3u_plus"
-    },
-    {
-      "usuario": "fnTnUBXE",
-      "senha": "Sw4J4g",
-      "conexao": "0/1",
-      "criada_em": "31/12/2023",
-      "expira_em": "22/02/2027",
-      "dias_restantes": 124,
-      "link_m3u": "http://rrcwb.biz/get.php?username=fnTnUBXE&password=Sw4J4g&type=m3u_plus"
-    },
-    {
-      "usuario": "5972jffxbar1",
-      "senha": "S2Rv1z",
-      "conexao": "0/1",
-      "criada_em": "28/10/2022",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=5972jffxbar1&password=S2Rv1z&type=m3u_plus"
-    },
-    {
-      "usuario": "rayanne1626",
-      "senha": "Pa58914632",
-      "conexao": "0/1",
-      "criada_em": "26/12/2024",
-      "expira_em": "22/11/2026",
-      "dias_restantes": 32,
-      "link_m3u": "http://rrcwb.biz/get.php?username=rayanne1626&password=Pa58914632&type=m3u_plus"
-    },
-    {
-      "usuario": "amgCMsNZ",
-      "senha": "9hDK2n",
-      "conexao": "1/1",
-      "criada_em": "26/08/2026",
-      "expira_em": "26/11/2026",
-      "dias_restantes": 36,
-      "link_m3u": "http://rrcwb.biz/get.php?username=amgCMsNZ&password=9hDK2n&type=m3u_plus"
-    },
-    {
-      "usuario": "WXhVs8cA",
-      "senha": "7296ZNEZpxru",
-      "conexao": "0/1",
-      "criada_em": "17/01/2025",
-      "expira_em": "27/10/2026",
-      "dias_restantes": 6,
-      "link_m3u": "http://rrcwb.biz/get.php?username=WXhVs8cA&password=7296ZNEZpxru&type=m3u_plus"
-    },
-    {
-      "usuario": "jana1117d",
-      "senha": "Refeito1a",
-      "conexao": "0/1",
-      "criada_em": "06/01/2025",
-      "expira_em": "14/01/2027",
-      "dias_restantes": 85,
-      "link_m3u": "http://rrcwb.biz/get.php?username=jana1117d&password=Refeito1a&type=m3u_plus"
-    },
-    {
-      "usuario": "a01870433",
-      "senha": "1234567Aa",
-      "conexao": "0/1",
-      "criada_em": "06/01/2025",
-      "expira_em": "09/01/2027",
-      "dias_restantes": 80,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a01870433&password=1234567Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "samuel289",
-      "senha": "k6ZwE8",
-      "conexao": "0/1",
-      "criada_em": "16/08/2026",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=samuel289&password=k6ZwE8&type=m3u_plus"
-    },
-    {
-      "usuario": "q4XnX6",
-      "senha": "kZ9a3P",
-      "conexao": "0/1",
-      "criada_em": "11/08/2021",
-      "expira_em": "21/12/2026",
-      "dias_restantes": 61,
-      "link_m3u": "http://rrcwb.biz/get.php?username=q4XnX6&password=kZ9a3P&type=m3u_plus"
-    },
-    {
-      "usuario": "482082",
-      "senha": "sFPKGs",
-      "conexao": "0/3",
-      "criada_em": "17/06/2022",
-      "expira_em": "03/11/2026",
-      "dias_restantes": 13,
-      "link_m3u": "http://rrcwb.biz/get.php?username=482082&password=sFPKGs&type=m3u_plus"
-    },
-    {
-      "usuario": "ricardo11zyrf",
-      "senha": "AJ54gdaez5",
-      "conexao": "0/1",
-      "criada_em": "08/07/2024",
-      "expira_em": "12/11/2026",
-      "dias_restantes": 22,
-      "link_m3u": "http://rrcwb.biz/get.php?username=ricardo11zyrf&password=AJ54gdaez5&type=m3u_plus"
-    },
-    {
-      "usuario": "19lucas19",
-      "senha": "20Dmattos20",
-      "conexao": "0/1",
-      "criada_em": "11/10/2024",
-      "expira_em": "16/11/2026",
-      "dias_restantes": 26,
-      "link_m3u": "http://rrcwb.biz/get.php?username=19lucas19&password=20Dmattos20&type=m3u_plus"
-    },
-    {
-      "usuario": "a60926221",
-      "senha": "112233Aa",
-      "conexao": "0/1",
-      "criada_em": "01/03/2026",
-      "expira_em": "18/11/2026",
-      "dias_restantes": 28,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a60926221&password=112233Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "vQBGs6BJc",
-      "senha": "GE7tb9",
-      "conexao": "1/1",
-      "criada_em": "26/03/2026",
-      "expira_em": "06/11/2026",
-      "dias_restantes": 16,
-      "link_m3u": "http://rrcwb.biz/get.php?username=vQBGs6BJc&password=GE7tb9&type=m3u_plus"
-    },
-    {
-      "usuario": "nilton279",
-      "senha": "Cb0379268",
-      "conexao": "1/1",
-      "criada_em": "30/08/2026",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=nilton279&password=Cb0379268&type=m3u_plus"
-    },
-    {
-      "usuario": "Ciro8365",
-      "senha": "Fn937542",
-      "conexao": "0/1",
-      "criada_em": "11/09/2023",
-      "expira_em": "27/10/2026",
-      "dias_restantes": 6,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Ciro8365&password=Fn937542&type=m3u_plus"
-    },
-    {
-      "usuario": "Paula8374",
-      "senha": "Abpet929544",
-      "conexao": "0/1",
-      "criada_em": "07/01/2025",
-      "expira_em": "30/11/2026",
-      "dias_restantes": 40,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Paula8374&password=Abpet929544&type=m3u_plus"
-    },
-    {
-      "usuario": "Dionisio1",
-      "senha": "Pughn2315",
-      "conexao": "0/1",
-      "criada_em": "21/06/2026",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Dionisio1&password=Pughn2315&type=m3u_plus"
-    },
-    {
-      "usuario": "293862",
-      "senha": "xkAAx3",
-      "conexao": "0/3",
-      "criada_em": "02/02/2024",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=293862&password=xkAAx3&type=m3u_plus"
-    },
-    {
-      "usuario": "Geansanti01",
-      "senha": "Brasil2025",
-      "conexao": "0/1",
-      "criada_em": "26/03/2023",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Geansanti01&password=Brasil2025&type=m3u_plus"
-    },
-    {
-      "usuario": "A134flavio",
-      "senha": "66vbGC",
-      "conexao": "0/1",
-      "criada_em": "03/03/2026",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=A134flavio&password=66vbGC&type=m3u_plus"
-    },
-    {
-      "usuario": "11966153231tv1",
-      "senha": "123789456Ab",
-      "conexao": "0/1",
-      "criada_em": "06/12/2025",
-      "expira_em": "13/12/2026",
-      "dias_restantes": 53,
-      "link_m3u": "http://rrcwb.biz/get.php?username=11966153231tv1&password=123789456Ab&type=m3u_plus"
-    },
-    {
-      "usuario": "asd86952362",
-      "senha": "Zaptv2026",
-      "conexao": "0/1",
-      "criada_em": "23/02/2026",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=asd86952362&password=Zaptv2026&type=m3u_plus"
-    },
-    {
-      "usuario": "Givatv991",
-      "senha": "Toptudo10",
-      "conexao": "0/1",
-      "criada_em": "10/02/2025",
-      "expira_em": "23/10/2026",
-      "dias_restantes": 2,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Givatv991&password=Toptudo10&type=m3u_plus"
-    },
-    {
-      "usuario": "017465",
-      "senha": "FM93Je",
-      "conexao": "1/3",
-      "criada_em": "15/09/2022",
-      "expira_em": "20/12/2026",
-      "dias_restantes": 60,
-      "link_m3u": "http://rrcwb.biz/get.php?username=017465&password=FM93Je&type=m3u_plus"
-    },
-    {
-      "usuario": "BuarqueRoku35",
-      "senha": "7Qwt5Z",
-      "conexao": "1/1",
-      "criada_em": "26/10/2025",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=BuarqueRoku35&password=7Qwt5Z&type=m3u_plus"
-    },
-    {
-      "usuario": "Za4kG5",
-      "senha": "fH52Be",
-      "conexao": "0/1",
-      "criada_em": "02/08/2026",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Za4kG5&password=fH52Be&type=m3u_plus"
-    },
-    {
-      "usuario": "Ana4834",
-      "senha": "Zj3Kx2",
-      "conexao": "0/1",
-      "criada_em": "22/02/2026",
-      "expira_em": "25/10/2026",
-      "dias_restantes": 4,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Ana4834&password=Zj3Kx2&type=m3u_plus"
-    },
-    {
-      "usuario": "Bluuh4557",
-      "senha": "Dunna1627399",
-      "conexao": "0/1",
-      "criada_em": "13/02/2025",
-      "expira_em": "20/11/2026",
-      "dias_restantes": 30,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Bluuh4557&password=Dunna1627399&type=m3u_plus"
-    },
-    {
-      "usuario": "Xerife16",
-      "senha": "Cb170427",
-      "conexao": "0/1",
-      "criada_em": "16/02/2026",
-      "expira_em": "18/02/2027",
-      "dias_restantes": 120,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Xerife16&password=Cb170427&type=m3u_plus"
-    },
-    {
-      "usuario": "Tomcassi",
-      "senha": "swCB17",
-      "conexao": "0/1",
-      "criada_em": "09/06/2025",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Tomcassi&password=swCB17&type=m3u_plus"
-    },
-    {
-      "usuario": "356592",
-      "senha": "vmdMw8",
-      "conexao": "0/3",
-      "criada_em": "25/06/2022",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=356592&password=vmdMw8&type=m3u_plus"
-    },
-    {
-      "usuario": "filipe7474",
-      "senha": "Kf5nG2",
-      "conexao": "0/1",
-      "criada_em": "16/07/2025",
-      "expira_em": "20/11/2026",
-      "dias_restantes": 30,
-      "link_m3u": "http://rrcwb.biz/get.php?username=filipe7474&password=Kf5nG2&type=m3u_plus"
-    },
-    {
-      "usuario": "504299",
-      "senha": "DMKUdh",
-      "conexao": "0/3",
-      "criada_em": "14/04/2025",
-      "expira_em": "29/10/2026",
-      "dias_restantes": 8,
-      "link_m3u": "http://rrcwb.biz/get.php?username=504299&password=DMKUdh&type=m3u_plus"
-    },
-    {
-      "usuario": "jorge4162",
-      "senha": "R3h2wQ",
-      "conexao": "0/1",
-      "criada_em": "07/04/2026",
-      "expira_em": "10/11/2026",
-      "dias_restantes": 20,
-      "link_m3u": "http://rrcwb.biz/get.php?username=jorge4162&password=R3h2wQ&type=m3u_plus"
-    },
-    {
-      "usuario": "miguel9635",
-      "senha": "Casa152525",
-      "conexao": "0/1",
-      "criada_em": "24/11/2022",
-      "expira_em": "11/11/2026",
-      "dias_restantes": 21,
-      "link_m3u": "http://rrcwb.biz/get.php?username=miguel9635&password=Casa152525&type=m3u_plus"
-    },
-    {
-      "usuario": "772946",
-      "senha": "kE18Cs",
-      "conexao": "1/3",
-      "criada_em": "27/05/2025",
-      "expira_em": "26/11/2026",
-      "dias_restantes": 36,
-      "link_m3u": "http://rrcwb.biz/get.php?username=772946&password=kE18Cs&type=m3u_plus"
-    },
-    {
-      "usuario": "gabrieldutra",
-      "senha": "Gdiptv123",
-      "conexao": "0/1",
-      "criada_em": "27/09/2026",
-      "expira_em": "28/10/2026",
-      "dias_restantes": 7,
-      "link_m3u": "http://rrcwb.biz/get.php?username=gabrieldutra&password=Gdiptv123&type=m3u_plus"
-    },
-    {
-      "usuario": "028josedream",
-      "senha": "K9kBh7",
-      "conexao": "0/1",
-      "criada_em": "28/10/2025",
-      "expira_em": "30/11/2026",
-      "dias_restantes": 40,
-      "link_m3u": "http://rrcwb.biz/get.php?username=028josedream&password=K9kBh7&type=m3u_plus"
-    },
-    {
-      "usuario": "Alisson113726",
-      "senha": "Hd10203040",
-      "conexao": "0/1",
-      "criada_em": "20/03/2026",
-      "expira_em": "03/11/2026",
-      "dias_restantes": 13,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Alisson113726&password=Hd10203040&type=m3u_plus"
-    },
-    {
-      "usuario": "Vns9G6",
-      "senha": "4qGA1k",
-      "conexao": "0/1",
-      "criada_em": "14/01/2026",
-      "expira_em": "22/10/2026",
-      "dias_restantes": 1,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Vns9G6&password=4qGA1k&type=m3u_plus"
-    },
-    {
-      "usuario": "999913",
-      "senha": "S3CvUB",
-      "conexao": "38/3",
-      "criada_em": "08/10/2020",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=999913&password=S3CvUB&type=m3u_plus"
-    },
-    {
-      "usuario": "edilsonsala",
-      "senha": "228855tT99",
-      "conexao": "0/1",
-      "criada_em": "14/12/2019",
-      "expira_em": "18/11/2026",
-      "dias_restantes": 28,
-      "link_m3u": "http://rrcwb.biz/get.php?username=edilsonsala&password=228855tT99&type=m3u_plus"
-    },
-    {
-      "usuario": "carlosaraujo",
-      "senha": "9Addkksseu",
-      "conexao": "0/1",
-      "criada_em": "26/01/2025",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=carlosaraujo&password=9Addkksseu&type=m3u_plus"
-    },
-    {
-      "usuario": "942410",
-      "senha": "QFJXDk",
-      "conexao": "0/3",
-      "criada_em": "21/02/2020",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=942410&password=QFJXDk&type=m3u_plus"
-    },
-    {
-      "usuario": "KuRUEz85c",
-      "senha": "62yNQn",
-      "conexao": "0/1",
-      "criada_em": "14/04/2024",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=KuRUEz85c&password=62yNQn&type=m3u_plus"
-    },
-    {
-      "usuario": "Cliente6261one",
-      "senha": "A87jCn1010",
-      "conexao": "1/1",
-      "criada_em": "21/06/2024",
-      "expira_em": "27/10/2026",
-      "dias_restantes": 6,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Cliente6261one&password=A87jCn1010&type=m3u_plus"
-    },
-    {
-      "usuario": "171717",
-      "senha": "T1R5Qp",
-      "conexao": "0/3",
-      "criada_em": "27/04/2022",
-      "expira_em": "20/01/2027",
-      "dias_restantes": 91,
-      "link_m3u": "http://rrcwb.biz/get.php?username=171717&password=T1R5Qp&type=m3u_plus"
-    },
-    {
-      "usuario": "Macintoxico",
-      "senha": "Lucasolr190xbr",
-      "conexao": "0/1",
-      "criada_em": "15/09/2026",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Macintoxico&password=Lucasolr190xbr&type=m3u_plus"
-    },
-    {
-      "usuario": "aldofrota",
-      "senha": "Aldo2301",
-      "conexao": "0/1",
-      "criada_em": "22/02/2026",
-      "expira_em": "24/12/2026",
-      "dias_restantes": 64,
-      "link_m3u": "http://rrcwb.biz/get.php?username=aldofrota&password=Aldo2301&type=m3u_plus"
-    },
-    {
-      "usuario": "GabrielMuller01",
-      "senha": "5YydV3",
-      "conexao": "0/1",
-      "criada_em": "03/08/2025",
-      "expira_em": "11/03/2027",
-      "dias_restantes": 141,
-      "link_m3u": "http://rrcwb.biz/get.php?username=GabrielMuller01&password=5YydV3&type=m3u_plus"
-    },
-    {
-      "usuario": "Mmra",
-      "senha": "FT2026v",
-      "conexao": "0/1",
-      "criada_em": "26/02/2026",
-      "expira_em": "28/10/2026",
-      "dias_restantes": 7,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Mmra&password=FT2026v&type=m3u_plus"
-    },
-    {
-      "usuario": "368243",
-      "senha": "8hzdR2",
-      "conexao": "0/3",
-      "criada_em": "28/05/2025",
-      "expira_em": "01/12/2026",
-      "dias_restantes": 41,
-      "link_m3u": "http://rrcwb.biz/get.php?username=368243&password=8hzdR2&type=m3u_plus"
-    },
-    {
-      "usuario": "Club152715",
-      "senha": "Dunnas1426523",
-      "conexao": "0/1",
-      "criada_em": "21/05/2024",
-      "expira_em": "10/11/2026",
-      "dias_restantes": 20,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Club152715&password=Dunnas1426523&type=m3u_plus"
-    },
-    {
-      "usuario": "LuanAmx",
-      "senha": "Lk9080701",
-      "conexao": "0/1",
-      "criada_em": "07/10/2026",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=LuanAmx&password=Lk9080701&type=m3u_plus"
-    },
-    {
-      "usuario": "97391243a",
-      "senha": "404020AAa",
-      "conexao": "0/1",
-      "criada_em": "06/12/2025",
-      "expira_em": "15/11/2026",
-      "dias_restantes": 25,
-      "link_m3u": "http://rrcwb.biz/get.php?username=97391243a&password=404020AAa&type=m3u_plus"
-    },
-    {
-      "usuario": "982012",
-      "senha": "RzCAv7",
-      "conexao": "0/3",
-      "criada_em": "18/06/2025",
-      "expira_em": "17/12/2026",
-      "dias_restantes": 57,
-      "link_m3u": "http://rrcwb.biz/get.php?username=982012&password=RzCAv7&type=m3u_plus"
-    },
-    {
-      "usuario": "Raquel98701",
-      "senha": "353ZKKtxt",
-      "conexao": "0/1",
-      "criada_em": "16/06/2025",
-      "expira_em": "20/11/2026",
-      "dias_restantes": 30,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Raquel98701&password=353ZKKtxt&type=m3u_plus"
-    },
-    {
-      "usuario": "IgorJFNovo",
-      "senha": "Brasil2025",
-      "conexao": "0/1",
-      "criada_em": "05/10/2025",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=IgorJFNovo&password=Brasil2025&type=m3u_plus"
-    },
-    {
-      "usuario": "2Brendow2631",
-      "senha": "Peihd1017",
-      "conexao": "0/1",
-      "criada_em": "12/10/2025",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=2Brendow2631&password=Peihd1017&type=m3u_plus"
-    },
-    {
-      "usuario": "Evandro3880",
-      "senha": "4JzB3n",
-      "conexao": "1/1",
-      "criada_em": "16/02/2026",
-      "expira_em": "18/11/2026",
-      "dias_restantes": 28,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Evandro3880&password=4JzB3n&type=m3u_plus"
-    },
-    {
-      "usuario": "621035",
-      "senha": "ySv6ah",
-      "conexao": "0/3",
-      "criada_em": "30/04/2021",
-      "expira_em": "29/10/2026",
-      "dias_restantes": 8,
-      "link_m3u": "http://rrcwb.biz/get.php?username=621035&password=ySv6ah&type=m3u_plus"
-    },
-    {
-      "usuario": "robertofaust22",
-      "senha": "36562cxaA",
-      "conexao": "0/1",
-      "criada_em": "15/08/2020",
-      "expira_em": "02/11/2026",
-      "dias_restantes": 12,
-      "link_m3u": "http://rrcwb.biz/get.php?username=robertofaust22&password=36562cxaA&type=m3u_plus"
-    },
-    {
-      "usuario": "Ana8128c",
-      "senha": "Retiro21xS",
-      "conexao": "0/1",
-      "criada_em": "15/09/2024",
-      "expira_em": "17/11/2026",
-      "dias_restantes": 27,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Ana8128c&password=Retiro21xS&type=m3u_plus"
-    },
-    {
-      "usuario": "sansc",
-      "senha": "Cap1977",
-      "conexao": "0/1",
-      "criada_em": "23/02/2025",
-      "expira_em": "26/01/2027",
-      "dias_restantes": 97,
-      "link_m3u": "http://rrcwb.biz/get.php?username=sansc&password=Cap1977&type=m3u_plus"
-    },
-    {
-      "usuario": "VitorSaar482",
-      "senha": "Ashsw358as",
-      "conexao": "0/1",
-      "criada_em": "22/08/2025",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=VitorSaar482&password=Ashsw358as&type=m3u_plus"
-    },
-    {
-      "usuario": "renato0020",
-      "senha": "Cb704918",
-      "conexao": "0/1",
-      "criada_em": "05/09/2026",
-      "expira_em": "05/11/2026",
-      "dias_restantes": 15,
-      "link_m3u": "http://rrcwb.biz/get.php?username=renato0020&password=Cb704918&type=m3u_plus"
-    },
-    {
-      "usuario": "216047",
-      "senha": "gD9T3v",
-      "conexao": "0/1",
-      "criada_em": "18/06/2025",
-      "expira_em": "Desconhecido",
-      "dias_restantes": null,
-      "link_m3u": "http://rrcwb.biz/get.php?username=216047&password=gD9T3v&type=m3u_plus"
-    },
-    {
-      "usuario": "Fabiana56961",
-      "senha": "Alpha9845",
-      "conexao": "0/1",
-      "criada_em": "07/03/2026",
-      "expira_em": "09/04/2027",
-      "dias_restantes": 170,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Fabiana56961&password=Alpha9845&type=m3u_plus"
-    },
-    {
-      "usuario": "LucianaBDream",
-      "senha": "Admin9901",
-      "conexao": "0/1",
-      "criada_em": "27/11/2025",
-      "expira_em": "29/10/2026",
-      "dias_restantes": 8,
-      "link_m3u": "http://rrcwb.biz/get.php?username=LucianaBDream&password=Admin9901&type=m3u_plus"
-    },
-    {
-      "usuario": "emersonsouto",
-      "senha": "Qaao8342xz",
-      "conexao": "0/1",
-      "criada_em": "17/02/2024",
-      "expira_em": "03/11/2026",
-      "dias_restantes": 13,
-      "link_m3u": "http://rrcwb.biz/get.php?username=emersonsouto&password=Qaao8342xz&type=m3u_plus"
-    },
-    {
-      "usuario": "felipept845",
-      "senha": "Casa152525",
-      "conexao": "0/1",
-      "criada_em": "21/06/2022",
-      "expira_em": "24/10/2026",
-      "dias_restantes": 3,
-      "link_m3u": "http://rrcwb.biz/get.php?username=felipept845&password=Casa152525&type=m3u_plus"
-    },
-    {
-      "usuario": "Adriano4k2025",
-      "senha": "5911RCTSetfq",
-      "conexao": "0/1",
-      "criada_em": "30/08/2025",
-      "expira_em": "14/01/2027",
-      "dias_restantes": 85,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Adriano4k2025&password=5911RCTSetfq&type=m3u_plus"
-    },
-    {
-      "usuario": "leonardolima01",
-      "senha": "Leo10203040",
-      "conexao": "0/1",
-      "criada_em": "23/08/2026",
-      "expira_em": "24/10/2026",
-      "dias_restantes": 3,
-      "link_m3u": "http://rrcwb.biz/get.php?username=leonardolima01&password=Leo10203040&type=m3u_plus"
-    },
-    {
-      "usuario": "081177",
-      "senha": "vJsYGq",
-      "conexao": "0/3",
-      "criada_em": "03/06/2019",
-      "expira_em": "10/11/2026",
-      "dias_restantes": 20,
-      "link_m3u": "http://rrcwb.biz/get.php?username=081177&password=vJsYGq&type=m3u_plus"
-    },
-    {
-      "usuario": "RemilusUsina",
-      "senha": "Brasil2025",
-      "conexao": "0/1",
-      "criada_em": "06/06/2024",
-      "expira_em": "09/11/2026",
-      "dias_restantes": 19,
-      "link_m3u": "http://rrcwb.biz/get.php?username=RemilusUsina&password=Brasil2025&type=m3u_plus"
-    },
-    {
-      "usuario": "carlosvirginio2",
-      "senha": "Essa1044u",
-      "conexao": "0/1",
-      "criada_em": "02/02/2025",
-      "expira_em": "28/10/2026",
-      "dias_restantes": 7,
-      "link_m3u": "http://rrcwb.biz/get.php?username=carlosvirginio2&password=Essa1044u&type=m3u_plus"
-    },
-    {
-      "usuario": "arthurhentique",
-      "senha": "YD6f4j",
-      "conexao": "0/1",
-      "criada_em": "02/02/2025",
-      "expira_em": "23/10/2026",
-      "dias_restantes": 2,
-      "link_m3u": "http://rrcwb.biz/get.php?username=arthurhentique&password=YD6f4j&type=m3u_plus"
-    },
-    {
-      "usuario": "Abn68547",
-      "senha": "Qdresi353",
-      "conexao": "0/1",
-      "criada_em": "11/01/2026",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Abn68547&password=Qdresi353&type=m3u_plus"
-    },
-    {
-      "usuario": "Daiana046",
-      "senha": "Dswxz4521",
-      "conexao": "0/1",
-      "criada_em": "12/08/2025",
-      "expira_em": "14/11/2026",
-      "dias_restantes": 24,
-      "link_m3u": "http://rrcwb.biz/get.php?username=Daiana046&password=Dswxz4521&type=m3u_plus"
-    },
-    {
-      "usuario": "zJQNHMgq",
-      "senha": "hPsW31",
-      "conexao": "0/1",
-      "criada_em": "05/06/2026",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=zJQNHMgq&password=hPsW31&type=m3u_plus"
-    },
-    {
-      "usuario": "901350",
-      "senha": "pGZ51u",
-      "conexao": "0/3",
-      "criada_em": "17/01/2022",
-      "expira_em": "30/11/2026",
-      "dias_restantes": 40,
-      "link_m3u": "http://rrcwb.biz/get.php?username=901350&password=pGZ51u&type=m3u_plus"
-    },
-    {
-      "usuario": "a00664402",
-      "senha": "1234567Aa",
-      "conexao": "0/1",
-      "criada_em": "14/12/2024",
-      "expira_em": "21/11/2026",
-      "dias_restantes": 31,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a00664402&password=1234567Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "a75344711",
-      "senha": "112233Aa",
-      "conexao": "0/1",
-      "criada_em": "13/06/2025",
-      "expira_em": "08/11/2026",
-      "dias_restantes": 18,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a75344711&password=112233Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "215458",
-      "senha": "zMKyAb",
-      "conexao": "0/3",
-      "criada_em": "12/03/2022",
-      "expira_em": "21/12/2026",
-      "dias_restantes": 61,
-      "link_m3u": "http://rrcwb.biz/get.php?username=215458&password=zMKyAb&type=m3u_plus"
-    },
-    {
-      "usuario": "a50298324",
-      "senha": "112233Aa",
-      "conexao": "1/1",
-      "criada_em": "19/08/2026",
-      "expira_em": "20/02/2027",
-      "dias_restantes": 122,
-      "link_m3u": "http://rrcwb.biz/get.php?username=a50298324&password=112233Aa&type=m3u_plus"
-    },
-    {
-      "usuario": "029748",
-      "senha": "vbw28b",
-      "conexao": "0/3",
-      "criada_em": "16/05/2024",
-      "expira_em": "16/11/2026",
-      "dias_restantes": 26,
-      "link_m3u": "http://rrcwb.biz/get.php?username=029748&password=vbw28b&type=m3u_plus"
-    },
-    {
-      "usuario": "6ECqp3",
-      "senha": "h4Ku2X",
-      "conexao": "0/1",
-      "criada_em": "23/07/2026",
-      "expira_em": "23/10/2026",
-      "dias_restantes": 2,
-      "link_m3u": "http://rrcwb.biz/get.php?username=6ECqp3&password=h4Ku2X&type=m3u_plus"
-    },
-    {
-      "usuario": "450718",
-      "senha": "8Snppj",
-      "conexao": "1/3",
-      "criada_em": "09/07/2024",
-      "expira_em": "07/11/2026",
-      "dias_restantes": 17,
-      "link_m3u": "http://rrcwb.biz/get.php?username=450718&password=8Snppj&type=m3u_plus"
-    },
-    {
-      "usuario": "796014",
-      "senha": "PQAnyH",
-      "conexao": "1/3",
-      "criada_em": "08/02/2026",
-      "expira_em": "13/11/2026",
-      "dias_restantes": 23,
-      "link_m3u": "http://rrcwb.biz/get.php?username=796014&password=PQAnyH&type=m3u_plus"
-    },
-    {
-      "usuario": "FernandoC24",
-      "senha": "Pg3J2q",
-      "conexao": "0/1",
-      "criada_em": "20/01/2024",
-      "expira_em": "30/10/2026",
-      "dias_restantes": 9,
-      "link_m3u": "http://rrcwb.biz/get.php?username=FernandoC24&password=Pg3J2q&type=m3u_plus"
-    }
-  ]
-}
+#EXTM3U
+#EXTINF:-1 tvg-id="" tvg-name="814332" tvg-logo="" group-title="Canais",814332
+http://rrcwb.biz/get.php?username=814332&password=33uq6h&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="S92436641" tvg-logo="" group-title="Canais",S92436641
+http://rrcwb.biz/get.php?username=S92436641&password=Dunnas1425&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="ucqpt9Eu" tvg-logo="" group-title="Canais",ucqpt9Eu
+http://rrcwb.biz/get.php?username=ucqpt9Eu&password=S3r8Qp&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a32600110" tvg-logo="" group-title="Canais",a32600110
+http://rrcwb.biz/get.php?username=a32600110&password=112233Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="253048" tvg-logo="" group-title="Canais",253048
+http://rrcwb.biz/get.php?username=253048&password=rYrYHa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="davidin2" tvg-logo="" group-title="Canais",davidin2
+http://rrcwb.biz/get.php?username=davidin2&password=7WrgS7&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="371755" tvg-logo="" group-title="Canais",371755
+http://rrcwb.biz/get.php?username=371755&password=ugWWZQ&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="GildoJunior" tvg-logo="" group-title="Canais",GildoJunior
+http://rrcwb.biz/get.php?username=GildoJunior&password=Gj2022x&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="club9233" tvg-logo="" group-title="Canais",club9233
+http://rrcwb.biz/get.php?username=club9233&password=74948Ca&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a85148928" tvg-logo="" group-title="Canais",a85148928
+http://rrcwb.biz/get.php?username=a85148928&password=112233Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="41782099309tv1" tvg-logo="" group-title="Canais",41782099309tv1
+http://rrcwb.biz/get.php?username=41782099309tv1&password=0123789456Ab&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="286736" tvg-logo="" group-title="Canais",286736
+http://rrcwb.biz/get.php?username=286736&password=ZyRR68&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="bryancosmo" tvg-logo="" group-title="Canais",bryancosmo
+http://rrcwb.biz/get.php?username=bryancosmo&password=8913YJCKwkhp&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="elainealvestv1" tvg-logo="" group-title="Canais",elainealvestv1
+http://rrcwb.biz/get.php?username=elainealvestv1&password=Elai102030&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="rwjkVFKe" tvg-logo="" group-title="Canais",rwjkVFKe
+http://rrcwb.biz/get.php?username=rwjkVFKe&password=3km4DB&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="claudio4074sdx" tvg-logo="" group-title="Canais",claudio4074sdx
+http://rrcwb.biz/get.php?username=claudio4074sdx&password=axvdhh542d8xA&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="4499595054a" tvg-logo="" group-title="Canais",4499595054a
+http://rrcwb.biz/get.php?username=4499595054a&password=4612849Play&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="gDHuD" tvg-logo="" group-title="Canais",gDHuD
+http://rrcwb.biz/get.php?username=gDHuD&password=HT44eb&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Hp26rR" tvg-logo="" group-title="Canais",Hp26rR
+http://rrcwb.biz/get.php?username=Hp26rR&password=m3FTd4&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="LucasCabral" tvg-logo="" group-title="Canais",LucasCabral
+http://rrcwb.biz/get.php?username=LucasCabral&password=aAZ26t&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="pluto3933" tvg-logo="" group-title="Canais",pluto3933
+http://rrcwb.biz/get.php?username=pluto3933&password=2Gd1gU&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="NATALI25" tvg-logo="" group-title="Canais",NATALI25
+http://rrcwb.biz/get.php?username=NATALI25&password=Lista1122&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Clayweroliveira" tvg-logo="" group-title="Canais",Clayweroliveira
+http://rrcwb.biz/get.php?username=Clayweroliveira&password=b3USd5&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="762159" tvg-logo="" group-title="Canais",762159
+http://rrcwb.biz/get.php?username=762159&password=DD3Mub&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="WjB1e7" tvg-logo="" group-title="Canais",WjB1e7
+http://rrcwb.biz/get.php?username=WjB1e7&password=e6P6wK&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Falcao22" tvg-logo="" group-title="Canais",Falcao22
+http://rrcwb.biz/get.php?username=Falcao22&password=Andrebh25&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Cris25387" tvg-logo="" group-title="Canais",Cris25387
+http://rrcwb.biz/get.php?username=Cris25387&password=4603Cris&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="atx44722" tvg-logo="" group-title="Canais",atx44722
+http://rrcwb.biz/get.php?username=atx44722&password=At6231551&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="ana8572p2" tvg-logo="" group-title="Canais",ana8572p2
+http://rrcwb.biz/get.php?username=ana8572p2&password=Refeito1a&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="8nCaH7" tvg-logo="" group-title="Canais",8nCaH7
+http://rrcwb.biz/get.php?username=8nCaH7&password=SjeZ89&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Eduardoiptv431" tvg-logo="" group-title="Canais",Eduardoiptv431
+http://rrcwb.biz/get.php?username=Eduardoiptv431&password=73029683Ee&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="521832" tvg-logo="" group-title="Canais",521832
+http://rrcwb.biz/get.php?username=521832&password=EhwmM4&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="charlene050tv" tvg-logo="" group-title="Canais",charlene050tv
+http://rrcwb.biz/get.php?username=charlene050tv&password=1234587Xx&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="5519987277687" tvg-logo="" group-title="Canais",5519987277687
+http://rrcwb.biz/get.php?username=5519987277687&password=ga7687&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="RafaF12" tvg-logo="" group-title="Canais",RafaF12
+http://rrcwb.biz/get.php?username=RafaF12&password=4kC2rQ&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="asd987412471" tvg-logo="" group-title="Canais",asd987412471
+http://rrcwb.biz/get.php?username=asd987412471&password=Zaptv2026&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="878975" tvg-logo="" group-title="Canais",878975
+http://rrcwb.biz/get.php?username=878975&password=zPMyZ3&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="swrmPv3U" tvg-logo="" group-title="Canais",swrmPv3U
+http://rrcwb.biz/get.php?username=swrmPv3U&password=aPn39S&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Marcos3402" tvg-logo="" group-title="Canais",Marcos3402
+http://rrcwb.biz/get.php?username=Marcos3402&password=w8h2djkkMS&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="VanessaClubTV" tvg-logo="" group-title="Canais",VanessaClubTV
+http://rrcwb.biz/get.php?username=VanessaClubTV&password=VClub2024&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Jozival6543" tvg-logo="" group-title="Canais",Jozival6543
+http://rrcwb.biz/get.php?username=Jozival6543&password=Jozival1234&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="EXSK3wVqY" tvg-logo="" group-title="Canais",EXSK3wVqY
+http://rrcwb.biz/get.php?username=EXSK3wVqY&password=jA2j8J&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="p7eJ7Q" tvg-logo="" group-title="Canais",p7eJ7Q
+http://rrcwb.biz/get.php?username=p7eJ7Q&password=4jyV8D&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="MarcosP1909" tvg-logo="" group-title="Canais",MarcosP1909
+http://rrcwb.biz/get.php?username=MarcosP1909&password=FjR88w&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Joaobas1" tvg-logo="" group-title="Canais",Joaobas1
+http://rrcwb.biz/get.php?username=Joaobas1&password=W4gN8f&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Marcos_Andre" tvg-logo="" group-title="Canais",Marcos_Andre
+http://rrcwb.biz/get.php?username=Marcos_Andre&password=mz1X4E&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Amanda2024lg" tvg-logo="" group-title="Canais",Amanda2024lg
+http://rrcwb.biz/get.php?username=Amanda2024lg&password=Ac56283&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="gisele5522" tvg-logo="" group-title="Canais",gisele5522
+http://rrcwb.biz/get.php?username=gisele5522&password=TOPplay2300&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="SDpXWtZt" tvg-logo="" group-title="Canais",SDpXWtZt
+http://rrcwb.biz/get.php?username=SDpXWtZt&password=Z5N9wr&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Mario14014" tvg-logo="" group-title="Canais",Mario14014
+http://rrcwb.biz/get.php?username=Mario14014&password=Sar4164&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="AndreaCalvo2" tvg-logo="" group-title="Canais",AndreaCalvo2
+http://rrcwb.biz/get.php?username=AndreaCalvo2&password=Senha1234&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Victorrjsantos" tvg-logo="" group-title="Canais",Victorrjsantos
+http://rrcwb.biz/get.php?username=Victorrjsantos&password=EX89wf&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="lailaghilardi" tvg-logo="" group-title="Canais",lailaghilardi
+http://rrcwb.biz/get.php?username=lailaghilardi&password=Ghilardi2022&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="MarceloSuica21" tvg-logo="" group-title="Canais",MarceloSuica21
+http://rrcwb.biz/get.php?username=MarceloSuica21&password=82739172Mc&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Lau761534" tvg-logo="" group-title="Canais",Lau761534
+http://rrcwb.biz/get.php?username=Lau761534&password=Grin890175&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="UELTONTT" tvg-logo="" group-title="Canais",UELTONTT
+http://rrcwb.biz/get.php?username=UELTONTT&password=591645UeA&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="jyQ9K9" tvg-logo="" group-title="Canais",jyQ9K9
+http://rrcwb.biz/get.php?username=jyQ9K9&password=zCqQ57&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="9x485hxN" tvg-logo="" group-title="Canais",9x485hxN
+http://rrcwb.biz/get.php?username=9x485hxN&password=B67Ugj&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="elu2036" tvg-logo="" group-title="Canais",elu2036
+http://rrcwb.biz/get.php?username=elu2036&password=Ep5263145&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="marjanabp" tvg-logo="" group-title="Canais",marjanabp
+http://rrcwb.biz/get.php?username=marjanabp&password=M9173825a&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="6deSd4QJ" tvg-logo="" group-title="Canais",6deSd4QJ
+http://rrcwb.biz/get.php?username=6deSd4QJ&password=uFx67K&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="76432fE" tvg-logo="" group-title="Canais",76432fE
+http://rrcwb.biz/get.php?username=76432fE&password=24689gD&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="ttcHy" tvg-logo="" group-title="Canais",ttcHy
+http://rrcwb.biz/get.php?username=ttcHy&password=dGhkf21&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a47191068" tvg-logo="" group-title="Canais",a47191068
+http://rrcwb.biz/get.php?username=a47191068&password=112233Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="sVngRzSY" tvg-logo="" group-title="Canais",sVngRzSY
+http://rrcwb.biz/get.php?username=sVngRzSY&password=3967BWPTqzkd&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="sfASYqA3" tvg-logo="" group-title="Canais",sfASYqA3
+http://rrcwb.biz/get.php?username=sfASYqA3&password=xY8C9h&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Andersonteste10" tvg-logo="" group-title="Canais",Andersonteste10
+http://rrcwb.biz/get.php?username=Andersonteste10&password=Tayna10&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="may34220" tvg-logo="" group-title="Canais",may34220
+http://rrcwb.biz/get.php?username=may34220&password=qHk8Q5566&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="2danilloescocio" tvg-logo="" group-title="Canais",2danilloescocio
+http://rrcwb.biz/get.php?username=2danilloescocio&password=A63846847x&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="953609" tvg-logo="" group-title="Canais",953609
+http://rrcwb.biz/get.php?username=953609&password=wUu18K&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="anasilvatv" tvg-logo="" group-title="Canais",anasilvatv
+http://rrcwb.biz/get.php?username=anasilvatv&password=Asiptv123&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="889793" tvg-logo="" group-title="Canais",889793
+http://rrcwb.biz/get.php?username=889793&password=n4EhZ2&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="ViCtor25Sala" tvg-logo="" group-title="Canais",ViCtor25Sala
+http://rrcwb.biz/get.php?username=ViCtor25Sala&password=634YZCauw&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="546961" tvg-logo="" group-title="Canais",546961
+http://rrcwb.biz/get.php?username=546961&password=KsKuw4&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Antunes1" tvg-logo="" group-title="Canais",Antunes1
+http://rrcwb.biz/get.php?username=Antunes1&password=Azcv45211&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="329297" tvg-logo="" group-title="Canais",329297
+http://rrcwb.biz/get.php?username=329297&password=4y1Fst&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="w42Bhhgu" tvg-logo="" group-title="Canais",w42Bhhgu
+http://rrcwb.biz/get.php?username=w42Bhhgu&password=6AAk3e&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Madrtv41" tvg-logo="" group-title="Canais",Madrtv41
+http://rrcwb.biz/get.php?username=Madrtv41&password=5wX3aN&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="caioCarl1" tvg-logo="" group-title="Canais",caioCarl1
+http://rrcwb.biz/get.php?username=caioCarl1&password=neWsenha1&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="073998" tvg-logo="" group-title="Canais",073998
+http://rrcwb.biz/get.php?username=073998&password=FA4UDu&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="juliob8055" tvg-logo="" group-title="Canais",juliob8055
+http://rrcwb.biz/get.php?username=juliob8055&password=Smarters1a&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="351933469998" tvg-logo="" group-title="Canais",351933469998
+http://rrcwb.biz/get.php?username=351933469998&password=Aa25471&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="MarizaSoares" tvg-logo="" group-title="Canais",MarizaSoares
+http://rrcwb.biz/get.php?username=MarizaSoares&password=T9m1Uz&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Bruno1211" tvg-logo="" group-title="Canais",Bruno1211
+http://rrcwb.biz/get.php?username=Bruno1211&password=9856VSFKaaaa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="V2rnXTKJV" tvg-logo="" group-title="Canais",V2rnXTKJV
+http://rrcwb.biz/get.php?username=V2rnXTKJV&password=ByQ57y&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="AuritaTiangua" tvg-logo="" group-title="Canais",AuritaTiangua
+http://rrcwb.biz/get.php?username=AuritaTiangua&password=Brasil2024&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="19998259880tv1" tvg-logo="" group-title="Canais",19998259880tv1
+http://rrcwb.biz/get.php?username=19998259880tv1&password=123789456Ab&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="arthur2030" tvg-logo="" group-title="Canais",arthur2030
+http://rrcwb.biz/get.php?username=arthur2030&password=Matheus202&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="h12HaG" tvg-logo="" group-title="Canais",h12HaG
+http://rrcwb.biz/get.php?username=h12HaG&password=1pBW3w&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="QmVkGKVRe" tvg-logo="" group-title="Canais",QmVkGKVRe
+http://rrcwb.biz/get.php?username=QmVkGKVRe&password=hK75St&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="David17" tvg-logo="" group-title="Canais",David17
+http://rrcwb.biz/get.php?username=David17&password=Trio23&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="WYTAZzhpRT" tvg-logo="" group-title="Canais",WYTAZzhpRT
+http://rrcwb.biz/get.php?username=WYTAZzhpRT&password=4637FGDTqvnc&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Ubiratamcr" tvg-logo="" group-title="Canais",Ubiratamcr
+http://rrcwb.biz/get.php?username=Ubiratamcr&password=Fgh566u54&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="caiosc" tvg-logo="" group-title="Canais",caiosc
+http://rrcwb.biz/get.php?username=caiosc&password=5g8XPn&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="673588" tvg-logo="" group-title="Canais",673588
+http://rrcwb.biz/get.php?username=673588&password=nb6YX6&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="ubd317377" tvg-logo="" group-title="Canais",ubd317377
+http://rrcwb.biz/get.php?username=ubd317377&password=F4c5Fp&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="lindinalva8282" tvg-logo="" group-title="Canais",lindinalva8282
+http://rrcwb.biz/get.php?username=lindinalva8282&password=HcH9f1&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="uanderson" tvg-logo="" group-title="Canais",uanderson
+http://rrcwb.biz/get.php?username=uanderson&password=U203142son&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="jessica1442" tvg-logo="" group-title="Canais",jessica1442
+http://rrcwb.biz/get.php?username=jessica1442&password=Je52631452&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="DNgNrpbU" tvg-logo="" group-title="Canais",DNgNrpbU
+http://rrcwb.biz/get.php?username=DNgNrpbU&password=4HT7eb&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="PABLOMAR2" tvg-logo="" group-title="Canais",PABLOMAR2
+http://rrcwb.biz/get.php?username=PABLOMAR2&password=199525Pa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="helitw234QJv" tvg-logo="" group-title="Canais",helitw234QJv
+http://rrcwb.biz/get.php?username=helitw234QJv&password=85532NZqgmd&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="onatam" tvg-logo="" group-title="Canais",onatam
+http://rrcwb.biz/get.php?username=onatam&password=Cap1977&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="773137" tvg-logo="" group-title="Canais",773137
+http://rrcwb.biz/get.php?username=773137&password=YaBW9D&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Lr03" tvg-logo="" group-title="Canais",Lr03
+http://rrcwb.biz/get.php?username=Lr03&password=Le10203040&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="leandro6325a" tvg-logo="" group-title="Canais",leandro6325a
+http://rrcwb.biz/get.php?username=leandro6325a&password=Refeito3a&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="426613" tvg-logo="" group-title="Canais",426613
+http://rrcwb.biz/get.php?username=426613&password=Aws0824&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="4cJJAFCK" tvg-logo="" group-title="Canais",4cJJAFCK
+http://rrcwb.biz/get.php?username=4cJJAFCK&password=2Uev8X&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Marcelo421" tvg-logo="" group-title="Canais",Marcelo421
+http://rrcwb.biz/get.php?username=Marcelo421&password=Top10canais&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="marlon266" tvg-logo="" group-title="Canais",marlon266
+http://rrcwb.biz/get.php?username=marlon266&password=Ma152226&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="manastata051" tvg-logo="" group-title="Canais",manastata051
+http://rrcwb.biz/get.php?username=manastata051&password=8pbkP6nx77&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a62937617" tvg-logo="" group-title="Canais",a62937617
+http://rrcwb.biz/get.php?username=a62937617&password=112233Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="ThaDanTv" tvg-logo="" group-title="Canais",ThaDanTv
+http://rrcwb.biz/get.php?username=ThaDanTv&password=Senhadatv1&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Dantebrunosouza" tvg-logo="" group-title="Canais",Dantebrunosouza
+http://rrcwb.biz/get.php?username=Dantebrunosouza&password=6Cu9uY&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Stefany2685" tvg-logo="" group-title="Canais",Stefany2685
+http://rrcwb.biz/get.php?username=Stefany2685&password=5450Ste&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="515457" tvg-logo="" group-title="Canais",515457
+http://rrcwb.biz/get.php?username=515457&password=wc8JZz&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="590705" tvg-logo="" group-title="Canais",590705
+http://rrcwb.biz/get.php?username=590705&password=Fmm2M8&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Kelvin553" tvg-logo="" group-title="Canais",Kelvin553
+http://rrcwb.biz/get.php?username=Kelvin553&password=K492497k&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="maurilioone1" tvg-logo="" group-title="Canais",maurilioone1
+http://rrcwb.biz/get.php?username=maurilioone1&password=102030Ee&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="F6A6Y" tvg-logo="" group-title="Canais",F6A6Y
+http://rrcwb.biz/get.php?username=F6A6Y&password=1zZzZ9&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Mile5353" tvg-logo="" group-title="Canais",Mile5353
+http://rrcwb.biz/get.php?username=Mile5353&password=Iptv20252025&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="zeh2752a" tvg-logo="" group-title="Canais",zeh2752a
+http://rrcwb.biz/get.php?username=zeh2752a&password=Refeito1a&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="WwST8" tvg-logo="" group-title="Canais",WwST8
+http://rrcwb.biz/get.php?username=WwST8&password=jYC5u3&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Cassiano1011" tvg-logo="" group-title="Canais",Cassiano1011
+http://rrcwb.biz/get.php?username=Cassiano1011&password=Hubner8880&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="PN48qb" tvg-logo="" group-title="Canais",PN48qb
+http://rrcwb.biz/get.php?username=PN48qb&password=zQ6g9P&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Maxwell5680" tvg-logo="" group-title="Canais",Maxwell5680
+http://rrcwb.biz/get.php?username=Maxwell5680&password=R3aaS1&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Danielmenezes" tvg-logo="" group-title="Canais",Danielmenezes
+http://rrcwb.biz/get.php?username=Danielmenezes&password=Js15082023&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="676808" tvg-logo="" group-title="Canais",676808
+http://rrcwb.biz/get.php?username=676808&password=P2vCB6&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="jffXtVzDB" tvg-logo="" group-title="Canais",jffXtVzDB
+http://rrcwb.biz/get.php?username=jffXtVzDB&password=jkV61N&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="JeFdezd726" tvg-logo="" group-title="Canais",JeFdezd726
+http://rrcwb.biz/get.php?username=JeFdezd726&password=t1GHh7&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="938778" tvg-logo="" group-title="Canais",938778
+http://rrcwb.biz/get.php?username=938778&password=QrWHkq&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Joenia23" tvg-logo="" group-title="Canais",Joenia23
+http://rrcwb.biz/get.php?username=Joenia23&password=Kd2023&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Amauri896" tvg-logo="" group-title="Canais",Amauri896
+http://rrcwb.biz/get.php?username=Amauri896&password=4986474Am&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="879513" tvg-logo="" group-title="Canais",879513
+http://rrcwb.biz/get.php?username=879513&password=wxrMtt&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Ws224562" tvg-logo="" group-title="Canais",Ws224562
+http://rrcwb.biz/get.php?username=Ws224562&password=Ws098769&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="daliatv58" tvg-logo="" group-title="Canais",daliatv58
+http://rrcwb.biz/get.php?username=daliatv58&password=Aa88996177370&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="537641" tvg-logo="" group-title="Canais",537641
+http://rrcwb.biz/get.php?username=537641&password=rs3KXf&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="339557" tvg-logo="" group-title="Canais",339557
+http://rrcwb.biz/get.php?username=339557&password=YxC1Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Evandro0209" tvg-logo="" group-title="Canais",Evandro0209
+http://rrcwb.biz/get.php?username=Evandro0209&password=816YQNkrs&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Ravel2001" tvg-logo="" group-title="Canais",Ravel2001
+http://rrcwb.biz/get.php?username=Ravel2001&password=2vv9CR&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="douglashsampaio" tvg-logo="" group-title="Canais",douglashsampaio
+http://rrcwb.biz/get.php?username=douglashsampaio&password=Aa99617657&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="798405" tvg-logo="" group-title="Canais",798405
+http://rrcwb.biz/get.php?username=798405&password=q146RT&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="sErq782035" tvg-logo="" group-title="Canais",sErq782035
+http://rrcwb.biz/get.php?username=sErq782035&password=rRA4z76295&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="127861" tvg-logo="" group-title="Canais",127861
+http://rrcwb.biz/get.php?username=127861&password=QWxZzz&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="87sUnK" tvg-logo="" group-title="Canais",87sUnK
+http://rrcwb.biz/get.php?username=87sUnK&password=J9fPk2&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Renilson8838" tvg-logo="" group-title="Canais",Renilson8838
+http://rrcwb.biz/get.php?username=Renilson8838&password=Re88381991&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="GpMdMhUGzT" tvg-logo="" group-title="Canais",GpMdMhUGzT
+http://rrcwb.biz/get.php?username=GpMdMhUGzT&password=7884WKNEtwdt&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Aw5fV55np" tvg-logo="" group-title="Canais",Aw5fV55np
+http://rrcwb.biz/get.php?username=Aw5fV55np&password=3S1ceY&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="333taty3" tvg-logo="" group-title="Canais",333taty3
+http://rrcwb.biz/get.php?username=333taty3&password=909090Pkk&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="camilamachadoo" tvg-logo="" group-title="Canais",camilamachadoo
+http://rrcwb.biz/get.php?username=camilamachadoo&password=Cm19082025&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Antonio01" tvg-logo="" group-title="Canais",Antonio01
+http://rrcwb.biz/get.php?username=Antonio01&password=102030Ttt&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="vk4XM9" tvg-logo="" group-title="Canais",vk4XM9
+http://rrcwb.biz/get.php?username=vk4XM9&password=y61AcC&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="KbqnqS1X8" tvg-logo="" group-title="Canais",KbqnqS1X8
+http://rrcwb.biz/get.php?username=KbqnqS1X8&password=2234XREVurjh&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Katarinaproj" tvg-logo="" group-title="Canais",Katarinaproj
+http://rrcwb.biz/get.php?username=Katarinaproj&password=Lz7798133&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Brun22clb" tvg-logo="" group-title="Canais",Brun22clb
+http://rrcwb.biz/get.php?username=Brun22clb&password=K3V5kt&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="valdoir" tvg-logo="" group-title="Canais",valdoir
+http://rrcwb.biz/get.php?username=valdoir&password=Cap1977&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="luiz8090" tvg-logo="" group-title="Canais",luiz8090
+http://rrcwb.biz/get.php?username=luiz8090&password=Ade15258&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="772442" tvg-logo="" group-title="Canais",772442
+http://rrcwb.biz/get.php?username=772442&password=bSvSPe&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Ricardo3188" tvg-logo="" group-title="Canais",Ricardo3188
+http://rrcwb.biz/get.php?username=Ricardo3188&password=5f4GbS&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="zECJBhmzS" tvg-logo="" group-title="Canais",zECJBhmzS
+http://rrcwb.biz/get.php?username=zECJBhmzS&password=4KbpY7&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="jakeline1752" tvg-logo="" group-title="Canais",jakeline1752
+http://rrcwb.biz/get.php?username=jakeline1752&password=XD6wb1&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="522405" tvg-logo="" group-title="Canais",522405
+http://rrcwb.biz/get.php?username=522405&password=cVarAB&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="QF3sgsAv" tvg-logo="" group-title="Canais",QF3sgsAv
+http://rrcwb.biz/get.php?username=QF3sgsAv&password=kdHA58&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="fnTnUBXE" tvg-logo="" group-title="Canais",fnTnUBXE
+http://rrcwb.biz/get.php?username=fnTnUBXE&password=Sw4J4g&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="5972jffxbar1" tvg-logo="" group-title="Canais",5972jffxbar1
+http://rrcwb.biz/get.php?username=5972jffxbar1&password=S2Rv1z&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="rayanne1626" tvg-logo="" group-title="Canais",rayanne1626
+http://rrcwb.biz/get.php?username=rayanne1626&password=Pa58914632&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="amgCMsNZ" tvg-logo="" group-title="Canais",amgCMsNZ
+http://rrcwb.biz/get.php?username=amgCMsNZ&password=9hDK2n&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="WXhVs8cA" tvg-logo="" group-title="Canais",WXhVs8cA
+http://rrcwb.biz/get.php?username=WXhVs8cA&password=7296ZNEZpxru&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="jana1117d" tvg-logo="" group-title="Canais",jana1117d
+http://rrcwb.biz/get.php?username=jana1117d&password=Refeito1a&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a01870433" tvg-logo="" group-title="Canais",a01870433
+http://rrcwb.biz/get.php?username=a01870433&password=1234567Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="samuel289" tvg-logo="" group-title="Canais",samuel289
+http://rrcwb.biz/get.php?username=samuel289&password=k6ZwE8&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="q4XnX6" tvg-logo="" group-title="Canais",q4XnX6
+http://rrcwb.biz/get.php?username=q4XnX6&password=kZ9a3P&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="482082" tvg-logo="" group-title="Canais",482082
+http://rrcwb.biz/get.php?username=482082&password=sFPKGs&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="ricardo11zyrf" tvg-logo="" group-title="Canais",ricardo11zyrf
+http://rrcwb.biz/get.php?username=ricardo11zyrf&password=AJ54gdaez5&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="19lucas19" tvg-logo="" group-title="Canais",19lucas19
+http://rrcwb.biz/get.php?username=19lucas19&password=20Dmattos20&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a60926221" tvg-logo="" group-title="Canais",a60926221
+http://rrcwb.biz/get.php?username=a60926221&password=112233Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="vQBGs6BJc" tvg-logo="" group-title="Canais",vQBGs6BJc
+http://rrcwb.biz/get.php?username=vQBGs6BJc&password=GE7tb9&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="nilton279" tvg-logo="" group-title="Canais",nilton279
+http://rrcwb.biz/get.php?username=nilton279&password=Cb0379268&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Ciro8365" tvg-logo="" group-title="Canais",Ciro8365
+http://rrcwb.biz/get.php?username=Ciro8365&password=Fn937542&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Paula8374" tvg-logo="" group-title="Canais",Paula8374
+http://rrcwb.biz/get.php?username=Paula8374&password=Abpet929544&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Dionisio1" tvg-logo="" group-title="Canais",Dionisio1
+http://rrcwb.biz/get.php?username=Dionisio1&password=Pughn2315&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="293862" tvg-logo="" group-title="Canais",293862
+http://rrcwb.biz/get.php?username=293862&password=xkAAx3&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Geansanti01" tvg-logo="" group-title="Canais",Geansanti01
+http://rrcwb.biz/get.php?username=Geansanti01&password=Brasil2025&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="A134flavio" tvg-logo="" group-title="Canais",A134flavio
+http://rrcwb.biz/get.php?username=A134flavio&password=66vbGC&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="11966153231tv1" tvg-logo="" group-title="Canais",11966153231tv1
+http://rrcwb.biz/get.php?username=11966153231tv1&password=123789456Ab&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="asd86952362" tvg-logo="" group-title="Canais",asd86952362
+http://rrcwb.biz/get.php?username=asd86952362&password=Zaptv2026&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Givatv991" tvg-logo="" group-title="Canais",Givatv991
+http://rrcwb.biz/get.php?username=Givatv991&password=Toptudo10&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="017465" tvg-logo="" group-title="Canais",017465
+http://rrcwb.biz/get.php?username=017465&password=FM93Je&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="BuarqueRoku35" tvg-logo="" group-title="Canais",BuarqueRoku35
+http://rrcwb.biz/get.php?username=BuarqueRoku35&password=7Qwt5Z&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Za4kG5" tvg-logo="" group-title="Canais",Za4kG5
+http://rrcwb.biz/get.php?username=Za4kG5&password=fH52Be&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Ana4834" tvg-logo="" group-title="Canais",Ana4834
+http://rrcwb.biz/get.php?username=Ana4834&password=Zj3Kx2&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Bluuh4557" tvg-logo="" group-title="Canais",Bluuh4557
+http://rrcwb.biz/get.php?username=Bluuh4557&password=Dunna1627399&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Xerife16" tvg-logo="" group-title="Canais",Xerife16
+http://rrcwb.biz/get.php?username=Xerife16&password=Cb170427&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Tomcassi" tvg-logo="" group-title="Canais",Tomcassi
+http://rrcwb.biz/get.php?username=Tomcassi&password=swCB17&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="356592" tvg-logo="" group-title="Canais",356592
+http://rrcwb.biz/get.php?username=356592&password=vmdMw8&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="filipe7474" tvg-logo="" group-title="Canais",filipe7474
+http://rrcwb.biz/get.php?username=filipe7474&password=Kf5nG2&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="504299" tvg-logo="" group-title="Canais",504299
+http://rrcwb.biz/get.php?username=504299&password=DMKUdh&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="jorge4162" tvg-logo="" group-title="Canais",jorge4162
+http://rrcwb.biz/get.php?username=jorge4162&password=R3h2wQ&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="miguel9635" tvg-logo="" group-title="Canais",miguel9635
+http://rrcwb.biz/get.php?username=miguel9635&password=Casa152525&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="772946" tvg-logo="" group-title="Canais",772946
+http://rrcwb.biz/get.php?username=772946&password=kE18Cs&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="gabrieldutra" tvg-logo="" group-title="Canais",gabrieldutra
+http://rrcwb.biz/get.php?username=gabrieldutra&password=Gdiptv123&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="028josedream" tvg-logo="" group-title="Canais",028josedream
+http://rrcwb.biz/get.php?username=028josedream&password=K9kBh7&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Alisson113726" tvg-logo="" group-title="Canais",Alisson113726
+http://rrcwb.biz/get.php?username=Alisson113726&password=Hd10203040&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Vns9G6" tvg-logo="" group-title="Canais",Vns9G6
+http://rrcwb.biz/get.php?username=Vns9G6&password=4qGA1k&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="999913" tvg-logo="" group-title="Canais",999913
+http://rrcwb.biz/get.php?username=999913&password=S3CvUB&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="edilsonsala" tvg-logo="" group-title="Canais",edilsonsala
+http://rrcwb.biz/get.php?username=edilsonsala&password=228855tT99&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="carlosaraujo" tvg-logo="" group-title="Canais",carlosaraujo
+http://rrcwb.biz/get.php?username=carlosaraujo&password=9Addkksseu&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="942410" tvg-logo="" group-title="Canais",942410
+http://rrcwb.biz/get.php?username=942410&password=QFJXDk&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="KuRUEz85c" tvg-logo="" group-title="Canais",KuRUEz85c
+http://rrcwb.biz/get.php?username=KuRUEz85c&password=62yNQn&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Cliente6261one" tvg-logo="" group-title="Canais",Cliente6261one
+http://rrcwb.biz/get.php?username=Cliente6261one&password=A87jCn1010&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="171717" tvg-logo="" group-title="Canais",171717
+http://rrcwb.biz/get.php?username=171717&password=T1R5Qp&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Macintoxico" tvg-logo="" group-title="Canais",Macintoxico
+http://rrcwb.biz/get.php?username=Macintoxico&password=Lucasolr190xbr&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="aldofrota" tvg-logo="" group-title="Canais",aldofrota
+http://rrcwb.biz/get.php?username=aldofrota&password=Aldo2301&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="GabrielMuller01" tvg-logo="" group-title="Canais",GabrielMuller01
+http://rrcwb.biz/get.php?username=GabrielMuller01&password=5YydV3&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Mmra" tvg-logo="" group-title="Canais",Mmra
+http://rrcwb.biz/get.php?username=Mmra&password=FT2026v&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="368243" tvg-logo="" group-title="Canais",368243
+http://rrcwb.biz/get.php?username=368243&password=8hzdR2&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Club152715" tvg-logo="" group-title="Canais",Club152715
+http://rrcwb.biz/get.php?username=Club152715&password=Dunnas1426523&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="LuanAmx" tvg-logo="" group-title="Canais",LuanAmx
+http://rrcwb.biz/get.php?username=LuanAmx&password=Lk9080701&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="97391243a" tvg-logo="" group-title="Canais",97391243a
+http://rrcwb.biz/get.php?username=97391243a&password=404020AAa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="982012" tvg-logo="" group-title="Canais",982012
+http://rrcwb.biz/get.php?username=982012&password=RzCAv7&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Raquel98701" tvg-logo="" group-title="Canais",Raquel98701
+http://rrcwb.biz/get.php?username=Raquel98701&password=353ZKKtxt&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="IgorJFNovo" tvg-logo="" group-title="Canais",IgorJFNovo
+http://rrcwb.biz/get.php?username=IgorJFNovo&password=Brasil2025&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="2Brendow2631" tvg-logo="" group-title="Canais",2Brendow2631
+http://rrcwb.biz/get.php?username=2Brendow2631&password=Peihd1017&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Evandro3880" tvg-logo="" group-title="Canais",Evandro3880
+http://rrcwb.biz/get.php?username=Evandro3880&password=4JzB3n&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="621035" tvg-logo="" group-title="Canais",621035
+http://rrcwb.biz/get.php?username=621035&password=ySv6ah&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="robertofaust22" tvg-logo="" group-title="Canais",robertofaust22
+http://rrcwb.biz/get.php?username=robertofaust22&password=36562cxaA&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Ana8128c" tvg-logo="" group-title="Canais",Ana8128c
+http://rrcwb.biz/get.php?username=Ana8128c&password=Retiro21xS&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="sansc" tvg-logo="" group-title="Canais",sansc
+http://rrcwb.biz/get.php?username=sansc&password=Cap1977&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="VitorSaar482" tvg-logo="" group-title="Canais",VitorSaar482
+http://rrcwb.biz/get.php?username=VitorSaar482&password=Ashsw358as&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="renato0020" tvg-logo="" group-title="Canais",renato0020
+http://rrcwb.biz/get.php?username=renato0020&password=Cb704918&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="216047" tvg-logo="" group-title="Canais",216047
+http://rrcwb.biz/get.php?username=216047&password=gD9T3v&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Fabiana56961" tvg-logo="" group-title="Canais",Fabiana56961
+http://rrcwb.biz/get.php?username=Fabiana56961&password=Alpha9845&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="LucianaBDream" tvg-logo="" group-title="Canais",LucianaBDream
+http://rrcwb.biz/get.php?username=LucianaBDream&password=Admin9901&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="emersonsouto" tvg-logo="" group-title="Canais",emersonsouto
+http://rrcwb.biz/get.php?username=emersonsouto&password=Qaao8342xz&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="felipept845" tvg-logo="" group-title="Canais",felipept845
+http://rrcwb.biz/get.php?username=felipept845&password=Casa152525&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Adriano4k2025" tvg-logo="" group-title="Canais",Adriano4k2025
+http://rrcwb.biz/get.php?username=Adriano4k2025&password=5911RCTSetfq&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="leonardolima01" tvg-logo="" group-title="Canais",leonardolima01
+http://rrcwb.biz/get.php?username=leonardolima01&password=Leo10203040&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="081177" tvg-logo="" group-title="Canais",081177
+http://rrcwb.biz/get.php?username=081177&password=vJsYGq&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="RemilusUsina" tvg-logo="" group-title="Canais",RemilusUsina
+http://rrcwb.biz/get.php?username=RemilusUsina&password=Brasil2025&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="carlosvirginio2" tvg-logo="" group-title="Canais",carlosvirginio2
+http://rrcwb.biz/get.php?username=carlosvirginio2&password=Essa1044u&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="arthurhentique" tvg-logo="" group-title="Canais",arthurhentique
+http://rrcwb.biz/get.php?username=arthurhentique&password=YD6f4j&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Abn68547" tvg-logo="" group-title="Canais",Abn68547
+http://rrcwb.biz/get.php?username=Abn68547&password=Qdresi353&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="Daiana046" tvg-logo="" group-title="Canais",Daiana046
+http://rrcwb.biz/get.php?username=Daiana046&password=Dswxz4521&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="zJQNHMgq" tvg-logo="" group-title="Canais",zJQNHMgq
+http://rrcwb.biz/get.php?username=zJQNHMgq&password=hPsW31&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="901350" tvg-logo="" group-title="Canais",901350
+http://rrcwb.biz/get.php?username=901350&password=pGZ51u&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a00664402" tvg-logo="" group-title="Canais",a00664402
+http://rrcwb.biz/get.php?username=a00664402&password=1234567Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a75344711" tvg-logo="" group-title="Canais",a75344711
+http://rrcwb.biz/get.php?username=a75344711&password=112233Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="215458" tvg-logo="" group-title="Canais",215458
+http://rrcwb.biz/get.php?username=215458&password=zMKyAb&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="a50298324" tvg-logo="" group-title="Canais",a50298324
+http://rrcwb.biz/get.php?username=a50298324&password=112233Aa&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="029748" tvg-logo="" group-title="Canais",029748
+http://rrcwb.biz/get.php?username=029748&password=vbw28b&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="6ECqp3" tvg-logo="" group-title="Canais",6ECqp3
+http://rrcwb.biz/get.php?username=6ECqp3&password=h4Ku2X&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="450718" tvg-logo="" group-title="Canais",450718
+http://rrcwb.biz/get.php?username=450718&password=8Snppj&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="796014" tvg-logo="" group-title="Canais",796014
+http://rrcwb.biz/get.php?username=796014&password=PQAnyH&type=m3u_plus
+#EXTINF:-1 tvg-id="" tvg-name="FernandoC24" tvg-logo="" group-title="Canais",FernandoC24
+http://rrcwb.biz/get.php?username=FernandoC24&password=Pg3J2q&type=m3u_plus
