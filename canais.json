@@ -1,114 +1,86 @@
 [
   {
-    "id": 1001,
+    "id": 1,
     "nome": "TV GLOBO HD",
     "categoria": "Abertos",
     "logo": "https://i.imgur.com/vHqQ9zH.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1001.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1001.ts"
   },
   {
-    "id": 1002,
+    "id": 2,
     "nome": "RECORD TV HD",
     "categoria": "Abertos",
     "logo": "https://i.imgur.com/kLqO7zW.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1002.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1002.ts"
   },
   {
-    "id": 1003,
+    "id": 3,
     "nome": "SBT HD",
     "categoria": "Abertos",
     "logo": "https://i.imgur.com/J3yP9zA.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1003.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1003.ts"
   },
   {
-    "id": 1004,
+    "id": 4,
     "nome": "BAND HD",
     "categoria": "Abertos",
     "logo": "https://i.imgur.com/G4xF8zQ.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1004.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1004.ts"
   },
   {
-    "id": 2001,
+    "id": 5,
     "nome": "SPORTV HD",
     "categoria": "Esportes",
     "logo": "https://i.imgur.com/pYxL9zR.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2001.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2001.ts"
   },
   {
-    "id": 2002,
+    "id": 6,
     "nome": "SPORTV 2 HD",
     "categoria": "Esportes",
     "logo": "https://i.imgur.com/pYxL9zR.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2002.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2002.ts"
   },
   {
-    "id": 2003,
+    "id": 7,
     "nome": "SPORTV 3 HD",
     "categoria": "Esportes",
     "logo": "https://i.imgur.com/pYxL9zR.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2003.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2003.ts"
   },
   {
-    "id": 2004,
+    "id": 8,
     "nome": "ESPN HD",
     "categoria": "Esportes",
     "logo": "https://i.imgur.com/dKxM1zW.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2004.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2004.ts"
   },
   {
-    "id": 2005,
-    "nome": "ESPN 2 HD",
-    "categoria": "Esportes",
-    "logo": "https://i.imgur.com/dKxM1zW.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2005.m3u8"
-  },
-  {
-    "id": 2006,
+    "id": 9,
     "nome": "PREMIERE CLUBES HD",
     "categoria": "Esportes",
     "logo": "https://i.imgur.com/tZqR3zP.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2006.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2006.ts"
   },
   {
-    "id": 3001,
+    "id": 10,
     "nome": "HBO HD",
     "categoria": "Filmes e Séries",
     "logo": "https://i.imgur.com/hB3xL2Q.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3001.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3001.ts"
   },
   {
-    "id": 3002,
-    "nome": "HBO2 HD",
-    "categoria": "Filmes e Séries",
-    "logo": "https://i.imgur.com/hB3xL2Q.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3002.m3u8"
-  },
-  {
-    "id": 3003,
+    "id": 11,
     "nome": "TELECINE PREMIUM HD",
     "categoria": "Filmes e Séries",
     "logo": "https://i.imgur.com/mL9xK4W.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3003.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3003.ts"
   },
   {
-    "id": 3004,
-    "nome": "TELECINE ACTION HD",
-    "categoria": "Filmes e Séries",
-    "logo": "https://i.imgur.com/mL9xK4W.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3004.m3u8"
-  },
-  {
-    "id": 4001,
+    "id": 12,
     "nome": "CARTOON NETWORK HD",
     "categoria": "Infantil",
     "logo": "https://i.imgur.com/cN7xP9Q.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/4001.m3u8"
-  },
-  {
-    "id": 4002,
-    "nome": "DISNEY CHANNEL HD",
-    "categoria": "Infantil",
-    "logo": "https://i.imgur.com/dC3xM2W.png",
-    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/4002.m3u8"
+    "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/4001.ts"
   }
 ]
