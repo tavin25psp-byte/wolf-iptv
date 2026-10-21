@@ -59,17 +59,38 @@ private data class Media(
     val synopsis: String = ""
 )
 
+private data class CollectionSaga(
+    val title: String,
+    val keyword: String,
+    val icon: String,
+    val gradient: List<Color>
+)
+
 @Composable
 private fun WolfHome() {
     var selected by remember { mutableStateOf("Início") }
     var query by remember { mutableStateOf("") }
     var chosenMedia by remember { mutableStateOf<Media?>(null) }
+    var chosenSaga by remember { mutableStateOf<CollectionSaga?>(null) }
     var loadingCatalog by remember { mutableStateOf(true) }
     var catalogError by remember { mutableStateOf("") }
     var movies by remember { mutableStateOf<List<Media>>(emptyList()) }
     var series by remember { mutableStateOf<List<Media>>(emptyList()) }
     var animes by remember { mutableStateOf<List<Media>>(emptyList()) }
     var drawings by remember { mutableStateOf<List<Media>>(emptyList()) }
+
+    val sagas = remember {
+        listOf(
+            CollectionSaga("Saga Velozes e Furiosos", "velozes", "🏎️", listOf(Color(0xFF8E101D), Color(0xFF280B15))),
+            CollectionSaga("Saga Harry Potter", "harry potter", "⚡", listOf(Color(0xFF8B6A2D), Color(0xFF1F170B))),
+            CollectionSaga("Universo Marvel", "marvel", "🛡️", listOf(Color(0xFFB71C1C), Color(0xFF210000))),
+            CollectionSaga("Saga Star Wars", "star wars", "⚔️", listOf(Color(0xFF0D47A1), Color(0xFF031024))),
+            CollectionSaga("Saga Batman", "batman", "🦇", listOf(Color(0xFF37474F), Color(0xFF10171A))),
+            CollectionSaga("Senhor dos Anéis", "senhor dos anéis", "💍", listOf(Color(0xFF4A2C15), Color(0xFF1A0E06))),
+            CollectionSaga("Saga Homem-Aranha", "homem-aranha", "🕷️", listOf(Color(0xFFC62828), Color(0xFF0D47A1))),
+            CollectionSaga("Saga Jogos Vorazes", "jogos vorazes", "🏹", listOf(Color(0xFFE65100), Color(0xFF210A00)))
+        )
+    }
 
     LaunchedEffect(Unit) {
         Thread {
@@ -103,7 +124,6 @@ private fun WolfHome() {
         }.start()
     }
 
-    /* Dados remotos são usados no lugar de exemplos fixos. */
     val fallbackMovies = emptyList<Media>()
     val displayMovies = (if (movies.isNotEmpty()) movies else fallbackMovies).filter { query.isBlank() || it.title.contains(query, true) }
     val displaySeries = series.filter { query.isBlank() || it.title.contains(query, true) }
@@ -126,10 +146,10 @@ private fun WolfHome() {
             }
             val nav = listOf(
                 "Início" to Icons.Default.Home, "Filmes" to Icons.Default.Movie,
-                "Séries" to Icons.Default.LiveTv, "Doramas" to Icons.Default.Favorite,
-                "Anime" to Icons.Default.AutoAwesome, "Favoritos" to Icons.Default.Star,
-                "Continue assistindo" to Icons.Default.History, "Buscar" to Icons.Default.Search,
-                "Configurações" to Icons.Default.Settings
+                "Séries" to Icons.Default.LiveTv, "Coletâneas" to Icons.Default.FolderSpecial,
+                "Doramas" to Icons.Default.Favorite, "Anime" to Icons.Default.AutoAwesome,
+                "Favoritos" to Icons.Default.Star, "Continue assistindo" to Icons.Default.History,
+                "Buscar" to Icons.Default.Search, "Configurações" to Icons.Default.Settings
             )
             nav.forEach { (label, icon) ->
                 val active = selected == label
@@ -152,7 +172,7 @@ private fun WolfHome() {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
                 OutlinedTextField(
                     value = query, onValueChange = { query = it },
-                    placeholder = { Text("Buscar filmes, séries, doramas...", color = Muted, fontSize = 14.sp) },
+                    placeholder = { Text("Buscar filmes, séries, sagas...", color = Muted, fontSize = 14.sp) },
                     leadingIcon = { Icon(Icons.Default.Search, null, tint = White) },
                     singleLine = true,
                     shape = RoundedCornerShape(28.dp),
@@ -227,13 +247,60 @@ private fun WolfHome() {
                     if (catalogError.isNotBlank()) Text(catalogError, color = Color(0xFFFF7B87), fontSize = 12.sp)
                     if (displayMovies.isNotEmpty()) MediaSection("🔥", "Lançamentos", displayMovies.sortedByDescending { it.year.filter(Char::isDigit).toIntOrNull() ?: 0 }.take(15), onClick = { chosenMedia = it })
                 }
-                item { CategorySection("🎬", "Filmes", listOf("Ação", "Terror", "Comédia", "Drama", "Romance", "Ficção Científica", "Documentário")) }
-                item { if (displayMovies.isNotEmpty()) CategorySection("🎬", "Filmes", displayMovies.map { it.genre }.filter { it.isNotBlank() }.distinct().take(12)) }
+                item {
+                    SagasSection(sagas = sagas, onClick = { saga -> chosenSaga = saga })
+                }
+                item { CategorySection("🎬", "Gêneros", listOf("Ação", "Terror", "Comédia", "Drama", "Romance", "Ficção Científica", "Documentário")) }
+                item { if (displayMovies.isNotEmpty()) CategorySection("🎬", "Categorias", displayMovies.map { it.genre }.filter { it.isNotBlank() }.distinct().take(12)) }
                 item { if (displaySeries.isNotEmpty()) MediaSection("▣", "Séries", displaySeries, onClick = { chosenMedia = it }) }
                 item { if (displayAnimes.isNotEmpty()) MediaSection("✦", "Animes", displayAnimes, onClick = { chosenMedia = it }) }
                 item { if (displayDrawings.isNotEmpty()) MediaSection("🎨", "Desenhos", displayDrawings, onClick = { chosenMedia = it }) }
             }
         }
+    }
+
+    chosenSaga?.let { saga ->
+        val sagaMovies = movies.filter { it.title.contains(saga.keyword, ignoreCase = true) }
+        AlertDialog(
+            onDismissRequest = { chosenSaga = null },
+            title = {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(saga.icon, fontSize = 24.sp)
+                    Spacer(Modifier.width(8.dp))
+                    Text(saga.title, color = White, fontWeight = FontWeight.Bold)
+                }
+            },
+            text = {
+                Column(Modifier.fillMaxWidth()) {
+                    Text("Filmes encontrados nesta coletânea:", color = Muted, fontSize = 13.sp)
+                    Spacer(Modifier.height(10.dp))
+                    if (sagaMovies.isEmpty()) {
+                        Text("Nenhum filme desta saga encontrado no seu catalogo.json no momento.", color = White, fontSize = 14.sp)
+                    } else {
+                        LazyColumn(modifier = Modifier.heightIn(max = 300.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                            items(sagaMovies.size) { idx ->
+                                val m = sagaMovies[idx]
+                                Row(
+                                    Modifier.fillMaxWidth().clip(RoundedCornerShape(8.dp)).background(Color(0xFF181C28))
+                                        .clickable { chosenSaga = null; chosenMedia = m }.padding(10.dp),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Text("🎬", fontSize = 18.sp)
+                                    Spacer(Modifier.width(10.dp))
+                                    Column(Modifier.weight(1f)) {
+                                        Text(m.title, color = White, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                        Text("${m.year} • ${m.genre}", color = Muted, fontSize = 11.sp)
+                                    }
+                                    Icon(Icons.Default.PlayArrow, contentDescription = null, tint = Red)
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            confirmButton = { TextButton(onClick = { chosenSaga = null }) { Text("Fechar", color = Red) } },
+            containerColor = Panel
+        )
     }
 
     chosenMedia?.let { media ->
@@ -323,6 +390,36 @@ private fun findFirstArray(obj: JSONObject): JSONArray? {
 private fun Tag(text: String) {
     Surface(color = Color(0xCC111722), shape = RoundedCornerShape(9.dp), border = BorderStroke(1.dp, Color(0xFF3D4658))) {
         Text(text, color = White, fontSize = 12.sp, modifier = Modifier.padding(horizontal = 10.dp, vertical = 5.dp))
+    }
+}
+
+@Composable
+private fun SagasSection(sagas: List<CollectionSaga>, onClick: (CollectionSaga) -> Unit) {
+    Column {
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Text("📁", fontSize = 20.sp)
+            Spacer(Modifier.width(8.dp))
+            Text("Coletâneas & Sagas", color = White, fontSize = 19.sp, fontWeight = FontWeight.Bold)
+            Spacer(Modifier.weight(1f))
+            Text("Ver todas  ›", color = Color(0xFFE2E5ED), fontSize = 12.sp)
+        }
+        Spacer(Modifier.height(8.dp))
+        Row(Modifier.fillMaxWidth().horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            sagas.forEach { saga ->
+                Box(
+                    Modifier.width(180.dp).height(80.dp).clip(RoundedCornerShape(12.dp))
+                        .background(Brush.horizontalGradient(saga.gradient))
+                        .clickable { onClick(saga) }
+                        .padding(12.dp)
+                ) {
+                    Text(saga.icon, fontSize = 32.sp, modifier = Modifier.align(Alignment.TopEnd))
+                    Column(Modifier.align(Alignment.BottomStart)) {
+                        Text(saga.title, color = White, fontWeight = FontWeight.Bold, fontSize = 13.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
+                        Text("Coleção Completa", color = Color(0xFFD0D4DF), fontSize = 10.sp)
+                    }
+                }
+            }
+        }
     }
 }
 
