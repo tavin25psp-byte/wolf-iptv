@@ -344,7 +344,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // Degradê idêntico ao layout moderno da imagem
         val degrade = View(this)
         degrade.background = GradientDrawable(
             GradientDrawable.Orientation.TOP_BOTTOM,
@@ -362,7 +361,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // Layout principal em formato horizontal (Menu Lateral Esquerdo + Conteúdo)
         val layoutPrincipal = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             setPadding(dp(16), dp(12), dp(16), dp(12))
@@ -376,7 +374,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // ===== MENU LATERAL ESQUERDO FIXO (Estilo Imagem) =====
         val painelEsquerdo = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             gravity = Gravity.CENTER_HORIZONTAL
@@ -398,17 +395,16 @@ class MainActivity : AppCompatActivity() {
             )
         }
 
-        // Itens do Menu Fixo com ícones e seletor vermelho WOLF
         val itensMenuFixos = listOf(
-            Triple("Início", "🏠", true) { mostrarListaCards(filmes, true) },
-            Triple("Filmes", "🎬", false) { mostrarListaCards(filmes) },
-            Triple("Séries", "📺", false) { mostrarListaSeries(series) },
-            Triple("Doramas", "🌸", false) { mostrarListaSeries(doramas) },
-            Triple("Anime", "🍥", false) { mostrarListaSeries(animes) },
-            Triple("Favoritos", "★", false) { mostrarListaCards(filmes.filter { favoritos.contains(it.titulo) }) },
-            Triple("Continue assistindo", "⏳", false) { mostrarContinuarAssistindo() },
-            Triple("Buscar", "🔍", false) { abrirPesquisa() },
-            Triple("Configurações", "⚙", false) { verificarAssinatura() }
+            Triple("Início", "🏠", true),
+            Triple("Filmes", "🎬", false),
+            Triple("Séries", "📺", false),
+            Triple("Doramas", "🌸", false),
+            Triple("Anime", "🍥", false),
+            Triple("Favoritos", "★", false),
+            Triple("Continue assistindo", "⏳", false),
+            Triple("Buscar", "🔍", false),
+            Triple("Configurações", "⚙", false)
         )
 
         itensMenuFixos.forEach { (nome, icone, ativo) ->
@@ -426,7 +422,6 @@ class MainActivity : AppCompatActivity() {
                 setOnFocusChangeListener { _, foco ->
                     background = criarFundoMenuLateral(foco || ativo)
                 }
-                setOnClickListener { acao -> acao.let { _ -> } }
             }
 
             itemBtn.setOnClickListener {
@@ -460,20 +455,17 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // ===== PAINEL DE CONTEÚDO À DIREITA =====
         val painelDireito = LinearLayout(this).apply {
             orientation = LinearLayout.VERTICAL
             setPadding(dp(16), 0, 0, 0)
         }
 
-        // Barra Superior (Pesquisa + Ícones de Atalho + Relógio)
         val barraTopo = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
             setPadding(0, 0, 0, dp(14))
         }
 
-        // Campo de Pesquisa Superior
         val campoPesquisaTopo = TextView(this).apply {
             text = "🔍   Buscar filmes, séries, doramas..."
             setTextColor(Color.rgb(160, 165, 185))
@@ -495,7 +487,6 @@ class MainActivity : AppCompatActivity() {
             LinearLayout.LayoutParams(0, dp(44), 1f).apply { rightMargin = dp(20) }
         )
 
-        // Relógio do Topo Direito
         barraTopo.addView(
             criarRelogio(),
             LinearLayout.LayoutParams(
@@ -512,7 +503,6 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-        // Scroll com o Conteúdo Principal
         val scroll = ScrollView(this).apply {
             isFocusable = false
             isFocusableInTouchMode = false
@@ -546,7 +536,6 @@ class MainActivity : AppCompatActivity() {
             LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f)
         )
 
-        // Botão de menu legado de compatibilidade
         botaoMenu = TextView(this).apply { text = "☰" }
 
         setContentView(raiz)
@@ -566,7 +555,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val LOGO_PARTES = listOf(
-        "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"
+        "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"
     )
 
     private var splash: FrameLayout? = null
@@ -671,30 +660,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun dp(valor: Int): Int {
         return (valor * resources.displayMetrics.density).toInt()
-    }
-
-    private fun criarSeta(): android.graphics.drawable.Drawable {
-        val tamanho = dp(22)
-        return object : android.graphics.drawable.Drawable() {
-            private val pincel = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
-                color = Color.WHITE
-                textSize = dp(26).toFloat()
-                textAlign = android.graphics.Paint.Align.CENTER
-                typeface = Typeface.DEFAULT_BOLD
-            }
-
-            override fun draw(canvas: android.graphics.Canvas) {
-                val b = bounds
-                canvas.drawText("›", b.exactCenterX(), b.centerY() + dp(9).toFloat(), pincel)
-            }
-
-            override fun setAlpha(alpha: Int) { pincel.alpha = alpha }
-            override fun setColorFilter(filtro: android.graphics.ColorFilter?) { pincel.colorFilter = filtro }
-            @Suppress("OVERRIDE_DEPRECATION")
-            override fun getOpacity(): Int = android.graphics.PixelFormat.TRANSLUCENT
-            override fun getIntrinsicWidth(): Int = tamanho
-            override fun getIntrinsicHeight(): Int = tamanho
-        }
     }
 
     private fun tituloSecao(texto: String, cinza: Boolean = false): View {
@@ -1718,14 +1683,12 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (comDestaque) {
-            // Exibe o Banner de Destaque Superior (Mortal Kombat II / Lançamento)
             montarBannerDestaque(lista.firstOrNull() ?: filmes.first())
         }
 
         montarFileirasCategorizadas(lista)
     }
 
-    // Monta o Banner Cinematográfico no topo idêntico ao da imagem de referência
     private fun montarBannerDestaque(filme: Filme) {
         val bannerLayout = FrameLayout(this).apply {
             background = GradientDrawable().apply {
@@ -1743,7 +1706,6 @@ class MainActivity : AppCompatActivity() {
         carregarImagemFundoPrioritaria(filme.capa, imagemFundo)
         bannerLayout.addView(imagemFundo, FrameLayout.LayoutParams(-1, -1))
 
-        // Degradê sobre a imagem do banner
         val degradeBanner = View(this).apply {
             background = GradientDrawable(
                 GradientDrawable.Orientation.LEFT_RIGHT,
@@ -1758,7 +1720,6 @@ class MainActivity : AppCompatActivity() {
             gravity = Gravity.CENTER_VERTICAL
         }
 
-        // Tag "Lançamento 2026"
         val tagL = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             gravity = Gravity.CENTER_VERTICAL
@@ -1776,7 +1737,6 @@ class MainActivity : AppCompatActivity() {
         })
         infoLayout.addView(tagL, LinearLayout.LayoutParams(-2, -2).apply { bottomMargin = dp(10) })
 
-        // Título do Filme em Destaque
         infoLayout.addView(TextView(this).apply {
             text = filme.titulo.uppercase()
             setTextColor(Color.WHITE)
@@ -1785,7 +1745,6 @@ class MainActivity : AppCompatActivity() {
             setShadowLayer(6f, 0f, 2f, Color.BLACK)
         })
 
-        // Tags (Ano, Categoria, HD)
         val tagsRow = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             setPadding(0, dp(6), 0, dp(10))
@@ -1805,7 +1764,6 @@ class MainActivity : AppCompatActivity() {
         }
         infoLayout.addView(tagsRow)
 
-        // Sinopse curta
         infoLayout.addView(TextView(this).apply {
             text = if (filme.sinopse.isNotBlank()) filme.sinopse else "Os campeões favoritos de lendas, agora em uma nova batalha. O destino da Terra está em jogo."
             setTextColor(Color.rgb(210, 215, 230))
@@ -1814,7 +1772,6 @@ class MainActivity : AppCompatActivity() {
             ellipsize = TextUtils.TruncateAt.END
         })
 
-        // Botões de Ação do Banner ("Assistir agora" e "Mais info")
         val acoesRow = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
             setPadding(0, dp(14), 0, 0)
@@ -1870,16 +1827,13 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    // Organiza as fileiras por categorias na tela inicial (Filmes, Séries, Doramas)
     private fun montarFileirasCategorizadas(listaFilmes: List<Filme>) {
-        // Fileira 1: Filmes
         conteudo.addView(
             tituloSecao("Filmes"),
             LinearLayout.LayoutParams(-1, -2)
         )
         montarFileiraHorizontalFilmes(listaFilmes.take(colunas))
 
-        // Fileira 2: Séries (se houver)
         if (series.isNotEmpty()) {
             conteudo.addView(
                 tituloSecao("Séries"),
@@ -1888,7 +1842,6 @@ class MainActivity : AppCompatActivity() {
             montarFileiraHorizontalSeries(series.take(colunas))
         }
 
-        // Fileira 3: Doramas (se houver)
         if (doramas.isNotEmpty()) {
             conteudo.addView(
                 tituloSecao("Doramas"),
