@@ -1,0 +1,94 @@
+[
+  {
+    "group": "Abertos",
+    "canais": [
+      {
+        "id": 1,
+        "nome": "TV GLOBO HD",
+        "logo": "https://i.imgur.com/vHqQ9zH.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1001.ts"
+      },
+      {
+        "id": 2,
+        "nome": "RECORD TV HD",
+        "logo": "https://i.imgur.com/kLqO7zW.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1002.ts"
+      },
+      {
+        "id": 3,
+        "nome": "SBT HD",
+        "logo": "https://i.imgur.com/J3yP9zA.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1003.ts"
+      },
+      {
+        "id": 4,
+        "nome": "BAND HD",
+        "logo": "https://i.imgur.com/G4xF8zQ.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/1004.ts"
+      }
+    ]
+  },
+  {
+    "group": "Esportes",
+    "canais": [
+      {
+        "id": 5,
+        "nome": "SPORTV HD",
+        "logo": "https://i.imgur.com/pYxL9zR.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2001.ts"
+      },
+      {
+        "id": 6,
+        "nome": "SPORTV 2 HD",
+        "logo": "https://i.imgur.com/pYxL9zR.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2002.ts"
+      },
+      {
+        "id": 7,
+        "nome": "SPORTV 3 HD",
+        "logo": "https://i.imgur.com/pYxL9zR.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2003.ts"
+      },
+      {
+        "id": 8,
+        "nome": "ESPN HD",
+        "logo": "https://i.imgur.com/dKxM1zW.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2004.ts"
+      },
+      {
+        "id": 9,
+        "nome": "PREMIERE CLUBES HD",
+        "logo": "https://i.imgur.com/tZqR3zP.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/2006.ts"
+      }
+    ]
+  },
+  {
+    "group": "Filmes e Séries",
+    "canais": [
+      {
+        "id": 10,
+        "nome": "HBO HD",
+        "logo": "https://i.imgur.com/hB3xL2Q.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3001.ts"
+      },
+      {
+        "id": 11,
+        "nome": "TELECINE PREMIUM HD",
+        "logo": "https://i.imgur.com/mL9xK4W.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/3003.ts"
+      }
+    ]
+  },
+  {
+    "group": "Infantil",
+    "canais": [
+      {
+        "id": 12,
+        "nome": "CARTOON NETWORK HD",
+        "logo": "https://i.imgur.com/cN7xP9Q.png",
+        "url": "http://7spkgffyfn.pro:80/live/pedro342/Melhor571/4001.ts"
+      }
+    ]
+  }
+]
