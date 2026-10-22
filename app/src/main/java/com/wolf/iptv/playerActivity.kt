@@ -20,6 +20,7 @@ import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.DefaultLoadControl
+import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.ui.AspectRatioFrameLayout
@@ -325,10 +326,13 @@ class PlayerActivity : AppCompatActivity() {
         // Canal ao vivo não tem posição pra salvar.
         if (ehAoVivo) return
 
-        val p = player ?: return
-        val url = intent.getStringExtra("VIDEO_URL") ?: return
-        val duracao = p.duration
-        WolfProgress.salvar(this, url, p.currentPosition, if (duracao > 0) duracao else 0L)
+        try {
+            val p = player ?: return
+            val url = intent.getStringExtra("VIDEO_URL") ?: return
+            val duracao = p.duration
+            WolfProgress.salvar(this, url, p.currentPosition, if (duracao > 0) duracao else 0L)
+        } catch (_: Throwable) {
+        }
     }
 
     // =========================================================
@@ -377,7 +381,10 @@ class PlayerActivity : AppCompatActivity() {
 
         try {
             player =
-                ExoPlayer.Builder(this)
+                ExoPlayer.Builder(
+                    this,
+                    DefaultRenderersFactory(this).setEnableDecoderFallback(true)
+                )
                     .setMediaSourceFactory(
                         DefaultMediaSourceFactory(this)
                             .setDataSourceFactory(
@@ -391,7 +398,7 @@ class PlayerActivity : AppCompatActivity() {
                     .setLoadControl(
                         DefaultLoadControl.Builder()
                             .setBufferDurationsMs(15_000, 30_000, 2_500, 5_000)
-                            .setTargetBufferBytes(20 * 1024 * 1024)
+                            .setTargetBufferBytes(12 * 1024 * 1024)
                             .setPrioritizeTimeOverSizeThresholds(false)
                             .build()
                     )
@@ -435,6 +442,14 @@ class PlayerActivity : AppCompatActivity() {
                     }
 
                     override fun onPlayerError(error: PlaybackException) {
+                        try {
+                            tratarErroPlayer(error)
+                        } catch (e: Throwable) {
+                            mostrarErro("Erro ao reproduzir:\n\n" + error.errorCodeName)
+                        }
+                    }
+
+                    private fun tratarErroPlayer(error: PlaybackException) {
                         // Servidor não aceitou .m3u8: volta pro link original (.ts)
                         // e deixa o STATE_ENDED reconectar quando cortar.
                         if (ehAoVivo && !jaTentouOriginal && urlFinal != urlOriginal) {
@@ -499,7 +514,7 @@ class PlayerActivity : AppCompatActivity() {
                             return
                         }
 
-                        mostrarErro("Erro ao reproduzir o vídeo:\n\n" + error.errorCodeName)
+                        mostrarErro("Erro ao reproduzir o vídeo:\n\n" + error.errorCodeName + "\n" + (error.cause?.message ?: ""))
                     }
                 }
             )
