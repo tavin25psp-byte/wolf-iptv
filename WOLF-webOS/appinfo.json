@@ -1,12 +1,12 @@
 {
   "id": "com.wolf.iptv",
-  "version": "1.0.4",
-  "vendor": "Wolf",
+  "version": "1.0.5",
+  "vendor": "Lobo",
   "type": "web",
   "main": "index.html",
   "title": "WOLF IPTV",
-  "icon": "lobo.png",
-  "largeIcon": "lobo.png",
+  "icon": "auau.png",
+  "largeIcon": "auau.png",
   "bgImage": "fundo.jpg",
   "resolution": "1920x1080",
   "requiredPermissions": [
