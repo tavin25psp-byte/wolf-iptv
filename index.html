@@ -7,73 +7,113 @@
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: #121212; color: #ffffff; font-family: Arial, sans-serif; padding: 20px; }
-        h1 { text-align: center; margin-bottom: 20px; color: #00e676; }
-        .player-container { max-width: 800px; margin: 0 auto 30px auto; background: #000; border-radius: 8px; overflow: hidden; }
+        body { 
+            background-color: #06060a; 
+            color: #ffffff; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+            padding: 15px;
+            /* Fundo escuro com degradê idêntico ao aplicativo */
+            background-image: linear-gradient(to bottom, rgba(5, 7, 18, 0.85), rgba(2, 3, 10, 0.95)), url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAJYAlgDASIAAhEBAxEB/8QAHQAAAAcBAQEAAAAAAAAAAAAAAAECAwQFBgcICf/EAFAQAAIBAwIDBgIHBQUGBAQEBwECAwAEEQUhEjFBBhMiUWFxgZEHFDJCobHBI1Ji0fAVM3KC4QgkQ1OS8RZjorI0RHPCJTWDhJPSVGRFlOL/xAAbAQABBQEBAAAAAAAAAAAAAAAAAQIDBAUGB//EAEQRAAEDAgMFBQcCAwYFBAMAAAEAAgMEERIhBRMxQVEGYXGBkaGxwdHwQuEVI/EWM1JikqJDcoKywiQ0U9JEY+L/2gAMAwEAAhEDEQA/AP');
+            background-size: cover;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+        .header { text-align: center; margin-bottom: 25px; }
+        .header img { width: 90px; height: 90px; margin-bottom: 10px; border-radius: 50%; border: 2px solid #eb1c28; box-shadow: 0 0 15px rgba(235, 28, 40, 0.5); }
+        h1 { color: #ffffff; font-size: 22px; letter-spacing: 1px; }
+        .player-container { max-width: 800px; margin: 0 auto 25px auto; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 20px rgba(0,0,0,0.8); border: 1px solid #243264; }
         video { width: 100%; height: auto; display: block; }
-        .section-title { margin: 20px 0 10px 0; border-bottom: 2px solid #00e676; padding-bottom: 5px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; }
-        .card { background: #1e1e1e; padding: 10px; border-radius: 8px; text-align: center; cursor: pointer; }
-        .card img { width: 100%; height: 100px; object-fit: contain; margin-bottom: 8px; }
-        .card p { font-size: 14px; word-break: break-word; }
+        .section-title { margin: 25px 0 12px 0; border-left: 4px solid #eb1c28; padding-left: 10px; font-size: 16px; font-weight: bold; text-transform: uppercase; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+        .card { background: rgba(14, 18, 38, 0.9); padding: 8px; border-radius: 10px; text-align: center; cursor: pointer; transition: transform 0.2s; border: 1px solid #243264; }
+        .card:active { transform: scale(0.96); }
+        .card img { width: 100%; height: 160px; object-fit: cover; border-radius: 6px; margin-bottom: 6px; background: #0b0c10; }
+        .card p { font-size: 13px; word-break: break-word; color: #e0e0e0; font-weight: 500; line-height: 1.2; }
+        .loading { text-align: center; color: #aaa; font-size: 14px; grid-column: 1 / -1; padding: 20px; }
     </style>
 </head>
 <body>
-    <h1>Wolf IPTV</h1>
-    <div class="player-container">
-        <video id="videoPlayer" controls autoplay></video>
+    <div class="header">
+        <!-- Logotipo oficial extraído do app -->
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAYAAACtWK6eAAAgAElEQVR4Xuy9CVxV5fb///8z58y+DwwzDLIrCIoIqLhnIqJmpvm9XFNTc03zzcwtc/24qW1tZeaVqjT1Sjc1NS3yTRBwX0QQBebMQZgD5uV93tnm/b5/+2fP6r6uV8f53OdzD3Xv3Ttzvvf4//vW879n1yX+u5vI//+3/2f+z733/z/+69r7v1tPufd/v//399f9H044vA+z/t8b1/sM/c84B8/u3X//n+/T//89zDfv/1/w3gD/+nufR+95d43sM8/73L/rP83//zP7fMv9ffr14+v7z//7/7+v15/H4+8v/+/9N73P95//+5T//7+7/j43oPf//P//v3/n/O+P7/P19Pufd//32+7v1vOPn8Puf7v//3v//d//b//f//Z//z/f//v//v/+r/v///7//f/+/f363673//f7vf/3//f8Pufd//f3u3fv+/f//f/7//v/fvf/v//vv+/f//u7//v//v37f9f//u7f+7v//v//v//37//v//f//f//7f9//v/+9v7f9////f/3/7//v/f/7v/v3///f/7//u/+///v//v/+7v/+v3////u7v/+r/v//v//v//7//v/vv///f//u/f///u/+///u7v/+v7v//v//v//v//v7//v//v//v///7v//v//v//7v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//mdv//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//v//`)" alt="Wolf IPTV">
+        <h1>WOLF IPTV</h1>
     </div>
-    <h2 class="section-title">Canais</h2>
-    <div id="listaCanais" class="grid">Carregando canais...</div>
-    <h2 class="section-title">Catálogo</h2>
-    <div id="listaCatalogo" class="grid">Carregando catálogo...</div>
+    
+    <div class="player-container">
+        <video id="videoPlayer" controls playsinline></video>
+    </div>
+
+    <div class="section-title">Canais ao Vivo</div>
+    <div id="listaCanais" class="grid"><div class="loading">A carregar canais...</div></div>
+
+    <div class="section-title">Filmes</div>
+    <div id="listaFilmes" class="grid"><div class="loading">A carregar filmes...</div></div>
 
     <script>
         const video = document.getElementById('videoPlayer');
+
         function playStream(url) {
-            if (Hls.isSupported()) {
+            if (!url) {
+                alert('Link de vídeo inválido.');
+                return;
+            }
+            if (Hls.isSupported() && url.includes('.m3u8')) {
                 const hls = new Hls();
                 hls.loadSource(url);
                 hls.attachMedia(video);
                 hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            } else if (video.canPlayType('application/vnd.apple.mpegurl') || !url.includes('.m3u8')) {
                 video.src = url;
-                video.addEventListener('loadedmetadata', () => video.play());
+                video.play().catch(e => console.log("Erro ao reproduzir:", e));
             } else {
-                alert('Navegador não suporta a reprodução.');
+                alert('O seu navegador não suporta este formato de vídeo.');
             }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+        // Carregar Canais
         fetch('./canais.json')
             .then(res => res.json())
             .then(data => {
                 const container = document.getElementById('listaCanais');
                 container.innerHTML = '';
-                data.forEach(item => {
+                const lista = Array.isArray(data) ? data : (data.canais || data.channels || []);
+                if (lista.length === 0) {
+                    container.innerHTML = '<div class="loading">Nenhum canal encontrado.</div>';
+                    return;
+                }
+                lista.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'card';
                     card.onclick = () => playStream(item.url || item.link);
-                    const logo = item.logo || item.icon || 'https://via.placeholder.com/100?text=Canal';
+                    const logo = item.logo || 'https://via.placeholder.com/130x160?text=Canal';
                     const nome = item.nome || item.name || 'Canal';
-                    card.innerHTML = `<img src="${logo}" alt="${nome}"><p>${nome}</p>`;
+                    card.innerHTML = `<img src="${logo}" alt="${nome}" onerror="this.src='https://via.placeholder.com/130x160?text=Canal'"><p>${nome}</p>`;
                     container.appendChild(card);
                 });
-            }).catch(() => document.getElementById('listaCanais').innerText = 'Erro ao carregar canais.');
+            }).catch(() => document.getElementById('listaCanais').innerHTML = '<div class="loading">Erro ao carregar canais.json</div>');
 
-        fetch('./catalogo.json')
+        // Carregar Filmes (Lendo filmes.json)
+        fetch('./filmes.json')
             .then(res => res.json())
             .then(data => {
-                const container = document.getElementById('listaCatalogo');
+                const container = document.getElementById('listaFilmes');
                 container.innerHTML = '';
-                data.forEach(item => {
+                const lista = Array.isArray(data) ? data : (data.filmes || []);
+                if (lista.length === 0) {
+                    container.innerHTML = '<div class="loading">Nenhum filme encontrado.</div>';
+                    return;
+                }
+                lista.forEach(item => {
                     const card = document.createElement('div');
                     card.className = 'card';
-                    card.onclick = () => playStream(item.url || item.link);
-                    const logo = item.logo || item.poster || 'https://via.placeholder.com/100?text=Filme';
-                    const nome = item.nome || item.title || 'Filme/Série';
-                    card.innerHTML = `<img src="${logo}" alt="${nome}"><p>${nome}</p>`;
+                    card.onclick = () => playStream(item.url || item.video || item.link);
+                    const capa = item.capa || item.poster || 'https://via.placeholder.com/130x160?text=Filme';
+                    const nome = item.titulo || item.name || 'Filme';
+                    card.innerHTML = `<img src="${capa}" alt="${nome}" onerror="this.src='https://via.placeholder.com/130x160?text=Filme'"><p>${nome}</p>`;
                     container.appendChild(card);
                 });
-            }).catch(() => document.getElementById('listaCatalogo').innerText = 'Erro ao carregar catálogo.');
+            }).catch(() => document.getElementById('listaFilmes').innerHTML = '<div class="loading">Erro ao carregar filmes.json</div>');
     </script>
 </body>
 </html>
