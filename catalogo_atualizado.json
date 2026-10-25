@@ -1,0 +1,2403 @@
+{
+  "filmes": [
+    {
+      "titulo": "A Morte do Demônio em Chamas",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/L5zfffg6/images-(11).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Fiilmes/AMRTDPDMNIOEMCHMS.mp4"
+    },
+    {
+      "titulo": "Verity",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/mgZMzPLk/images-(13).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Fiilmes/Verity.mp4"
+    },
+    {
+      "titulo": "Caravana da Coragem",
+      "ano": 1984,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/9Qjp0mKC/IMG-a891fc61-7dbc-47d8-b4e3-d9304c910e25.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/caravana%20da%20coragem.mp4"
+    },
+    {
+      "titulo": "O Urso Sangrento: Noite do Terror",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/kg9Q9j6k/IMG-bb3e28d8-3bcf-4730-a251-93ed6bee54ba.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/o%20urso%20sangrento%20noite%20do%20terror.mp4"
+    },
+    {
+      "titulo": "A Lenda do Rei Macaco",
+      "ano": 2026,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/Yq2Ph8qg/IMG-09247523-76da-4408-8a49-93386d069279.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/ALNDRMC.mp4"
+    },
+    {
+      "titulo": "Dupla Perigosa",
+      "ano": 1999,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/9MKfrzyN/IMG-9a06eef7-63bc-499a-928a-2f66221669a0.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/DPLPRGSA.mp4",
+      "sinopse": "Uma mulher é condenada pelo suposto assassinato do marido, descobre que ele está vivo e, ao sair da prisão, parte atrás dele sabendo que não pode ser julgada de novo pelo mesmo crime."
+    },
+    {
+      "titulo": "A Milícia",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/VvPcxtjR/IMG-4123a02a-5a0f-4d04-b2de-65ffd093b0ca.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/AMLCIA.mp4"
+    },
+    {
+      "titulo": "Procurando Nemo",
+      "ano": 2003,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/wTFSVZbQ/IMG-00182e06-3ba9-40e5-8c11-ec608921af9e.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/PRCRNDONEM.mp4",
+      "sinopse": "O peixe-palhaço Marlin atravessa o oceano com a ajuda da peixe Dory para encontrar o filho Nemo, capturado por um mergulhador."
+    },
+    {
+      "titulo": "A Fera",
+      "ano": 2022,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/0yRjz31Y/images-(4).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/a%20fera2022.mp4",
+      "sinopse": "Um pai viúvo viaja com as filhas para uma reserva na África do Sul e acaba caçado por um leão que sobreviveu a caçadores."
+    },
+    {
+      "titulo": "Cara de Um, Focinho de Outro",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/xdjzd7LX/Cara-de-Um-Focinho-de-Outro-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/cara%20de%20um%20fucinho%20de%20outro.mp4",
+      "sinopse": "Mabel, uma jovem apaixonada por animais, usa uma tecnologia secreta para transferir sua mente para um castor robô e tentar salvar a floresta e o lago que correm risco por causa de uma obra."
+    },
+    {
+      "titulo": "Dia D",
+      "ano": 2026,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/xdFc1dfY/images-(6).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/dia%20d.mp4",
+      "sinopse": "A existência de vida extraterrestre se torna uma realidade inegável para todo o planeta de uma só vez, e o mundo entra em colapso diante da revelação."
+    },
+    {
+      "titulo": "Karatê Kid: Lendas",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/xTRjdd5K/images-(8).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/karat%C3%AA%20kid%20lendas.mp4",
+      "sinopse": "Um jovem prodígio de kung fu se muda para Nova York e, com a ajuda de dois mestres, se prepara para um torneio de karatê."
+    },
+    {
+      "titulo": "Kill: O Massacre no Trem",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fRGPncXy/images-(9).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/kill%20o%20massacre%20no%20trem.mp4",
+      "sinopse": "Um comando das forças especiais indiano embarca em um trem para impedir o sequestro da namorada e acaba enfrentando uma gangue de assaltantes em uma luta brutal."
+    },
+    {
+      "titulo": "Ladrões",
+      "ano": 2025,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/ryfYFXWh/images-(11).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/ladr%C3%B5es.mp4",
+      "sinopse": "Hank Thompson, ex-promessa do beisebol que trabalha como barman em Nova York nos anos 1990, é arrastado para o submundo criminoso por pessoas que querem algo dele."
+    },
+    {
+      "titulo": "Lilo & Stitch",
+      "ano": 2025,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/QNY0ZgZ3/images-(13).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/Lilo%20e%20stich.mp4",
+      "sinopse": "Lilo, uma menina havaiana solitária, adota um cachorro estranho que é na verdade o experimento alienígena Stitch, em fuga."
+    },
+    {
+      "titulo": "Minions & Monstros",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/yYSXqwT9/images-(15).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/Minions%20%26%20Monstros.mp4"
+    },
+    {
+      "titulo": "O Contador 2",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/6q4RXvnj/images-(16).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/o%20contador2.mp4",
+      "sinopse": "Christian Wolff, o contador com habilidades letais, volta à ação ao lado do irmão para investigar uma conspiração."
+    },
+    {
+      "titulo": "Percy Jackson e o Ladrão de Raios",
+      "ano": 2010,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/1tfM84DD/Percy-Jackson-e-o-Ladr-o-de-Raios-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/Percy%20Jackson%20e%20o%20Ladr%C3%A3o%20de%20Raios.mp4",
+      "sinopse": "Percy descobre ser filho de Poseidon e é acusado de roubar o raio de Zeus, precisando recuperá-lo para evitar uma guerra entre os deuses."
+    },
+    {
+      "titulo": "Percy Jackson e o Mar de Monstros",
+      "ano": 2013,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/Pfv2hpXt/images-(18).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/Percy%20Jackson%20e%20o%20Mar%20de%20Monstros.mp4",
+      "sinopse": "Percy e seus amigos partem em busca do Velocino de Ouro para salvar o acampamento meio-sangue e o amigo Grover."
+    },
+    {
+      "titulo": "Predador: Terras Selvagens",
+      "ano": 2025,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/cLhcTfmf/images-(20).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/predador%20terra%20selvagens.mp4",
+      "sinopse": "Um jovem Predador exilado do seu clã luta para sobreviver em um planeta hostil, com a ajuda de um aliado inesperado."
+    },
+    {
+      "titulo": "Superman",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/nzyKM2FF/images-(22).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/superman%202025.mp4",
+      "sinopse": "Superman precisa conciliar sua herança kryptoniana com sua vida humana em Metrópole e enfrentar a ameaça de Lex Luthor."
+    },
+    {
+      "titulo": "Um Cabra Bom de Bola",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/3wW2BVWQ/images-(24).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/um%20cabra%20bom%20de%20bola.mp4",
+      "sinopse": "Um jovem bode sonha em jogar numa liga esportiva dominada por animais gigantes e ganha a chance de entrar para um time profissional."
+    },
+    {
+      "titulo": "Uma Longa Marcha: Caminhe ou Morra",
+      "ano": 2025,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/zX5WMV3Q/eab7a05fb130708500f25a0c8e31be0d-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/uma%20longa%20marcha%20caminhe%20ou%20morra.mp4",
+      "sinopse": "Em uma competição brutal, jovens precisam caminhar sem parar, e quem desacelerar é eliminado."
+    },
+    {
+      "titulo": "Zootopia: Essa Cidade É o Bicho",
+      "ano": 2016,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/SNTsrs97/Zootopia-Capa-DVD-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/Zootopia%20essa%20cidade%20%C3%A9%20o%20bicho.mp4",
+      "sinopse": "A coelha Judy Hopps, primeira policial coelha da cidade de Zootopia, se une a uma raposa trambiqueira para desvendar um mistério."
+    },
+    {
+      "titulo": "Zootopia 2",
+      "ano": 2025,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/J4n7GLFZ/images-(26).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Mais/zootopia2.mp4",
+      "sinopse": "Judy e Nick voltam à ação para investigar um novo caso que mexe com toda a cidade."
+    },
+    {
+      "titulo": "Deu a Louca no Aladdin",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/bJn9bX2y/18860-cartaz-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/DEUALCNALDN.mp4"
+    },
+    {
+      "titulo": "Aladdin e a Princesa de Bagdá",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/wxchdQXD/images-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/ALDNEAPRNCSDBGDA.mp4"
+    },
+    {
+      "titulo": "A Lenda dos 108",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/cCstJPRr/swh-S5FSx24h8YWYH4ho-OUlj70Dk-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/ALNDS108.mp4"
+    },
+    {
+      "titulo": "Os Farofeiros",
+      "ano": 2018,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/4NxhRkNn/3938254-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/OSFAROFRS.mp4",
+      "sinopse": "Comédia brasileira sobre uma família que vai à praia para um fim de semana de diversão e acaba envolvida em confusões."
+    },
+    {
+      "titulo": "A Casa de Cera",
+      "ano": 2005,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/x8X4dC0r/20210636-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/ACSADCRA.mp4",
+      "sinopse": "Um grupo de jovens a caminho de um jogo de futebol se perde na estrada e vai parar numa cidade abandonada onde tudo é feito de cera, inclusive um museu com um segredo macabro."
+    },
+    {
+      "titulo": "Assassin's Creed",
+      "ano": 2016,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/Hxh6Fgb5/598039.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/ASINSCRD.mp4",
+      "sinopse": "Por meio de uma máquina que revive memórias genéticas, Callum Lynch vive as aventuras de um ancestral assassino na Espanha da Inquisição e descobre uma guerra secreta entre Assassinos e Templários."
+    },
+    {
+      "titulo": "Bem-Vindo à Selva",
+      "ano": 2014,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/sXvkMKcm/c8fce905246361542d70aba52901c00ccb9ecc0737e79b6a1d12fb4b76fd9aa1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/BMVNDASLV2014.mp4",
+      "sinopse": "Um grupo de funcionários participa de um retiro de trabalho numa ilha e acaba perdido na selva, onde precisa sobreviver e lidar com seus conflitos."
+    },
+    {
+      "titulo": "Creed: Nascido para Lutar",
+      "ano": 2015,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/5ttGrpZ9/220036-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/CRDNSCDPRLTR.mp4",
+      "sinopse": "Adonis Johnson, filho de Apollo Creed, procura Rocky Balboa para ser seu treinador e tentar construir seu próprio nome no boxe."
+    },
+    {
+      "titulo": "Creed 2",
+      "ano": 2018,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/qqcjqC95/0758382-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/CRED2.mp4",
+      "sinopse": "Adonis Creed enfrenta Viktor Drago, filho do boxeador que matou seu pai, numa luta carregada de questões pessoais."
+    },
+    {
+      "titulo": "Creed 3",
+      "ano": 2023,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/902Y6QrN/images-(53).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/Creed%20III.mp4",
+      "sinopse": "Já aposentado, Adonis Creed é confrontado por um amigo de infância que sai da prisão com sede de uma chance no ringue."
+    },
+    {
+      "titulo": "John Wick 3: Parabellum",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/bwZkFt33/images-(55).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/JHNWCK3DB.mp4",
+      "sinopse": "Com uma recompensa pela sua cabeça, John Wick é caçado por assassinos de todo o mundo enquanto tenta encontrar uma saída."
+    },
+    {
+      "titulo": "John Wick: Um Novo Dia para Matar",
+      "ano": 2017,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/d0MkHS76/y8z-WGEJt-Wlg-movieposter-maxres-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/JHNWCKUMNVDIAPRMTR.mp4",
+      "sinopse": "John Wick é forçado a sair da aposentadoria para cumprir um antigo juramento e acaba perseguido pelo submundo internacional de assassinos."
+    },
+    {
+      "titulo": "Jumanji: Próxima Fase",
+      "ano": 2019,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/QMkt6NZs/a467ea6d8fe01ac19fc24803814832d989a9a367f4ee4dbec23a89cd22f38b78-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/JMNJPRXMFASE.mp4",
+      "sinopse": "Os amigos voltam ao jogo para resgatar um deles, mas as regras mudam e eles se veem em novos cenários e com personagens diferentes."
+    },
+    {
+      "titulo": "John Wick 4: Baba Yaga",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/02TyPK9V/images-(57).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/John%20Wick%204%20Baba%20Yaga.mp4",
+      "sinopse": "John Wick enfrenta a Alta Cúpula e seus aliados num confronto que pode lhe dar a liberdade, atravessando o mundo em busca de uma saída."
+    },
+    {
+      "titulo": "Legião",
+      "ano": 2010,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/NfHQJGR6/images-(59).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/LGAO.mp4",
+      "sinopse": "O arcanjo Miguel desce à Terra para proteger um grupo de pessoas num restaurante isolado, enquanto um exército de anjos possuídos tenta exterminar a humanidade."
+    },
+    {
+      "titulo": "Shang-Chi e a Lenda dos Dez Anéis",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/xd0Y1KB0/poster-semd-c4c0dfaa-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/SNGCHEALNDSDZANS.mp4",
+      "sinopse": "Shang-Chi é arrastado para a organização criminosa do pai, que controla os Dez Anéis, e precisa enfrentar o passado que tentava esconder."
+    },
+    {
+      "titulo": "Transformers: O Despertar das Feras",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/1RggSQpc/2468619-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustafilmes/Transformers%20O%20Despertar%20das%20Feras.mp4",
+      "sinopse": "Nos anos 1990, os Autobots se unem aos Maximals para enfrentar uma ameaça devoradora de planetas, ao lado de dois humanos."
+    },
+    {
+      "titulo": "A Guerra do Amanhã",
+      "ano": 2021,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/85tBh5fL/IMG-35ccb8db-d153-436c-8854-594eec0de7e5.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/AGRADAMANHA.mp4",
+      "sinopse": "Um professor e ex-soldado é recrutado para viajar ao futuro e lutar numa guerra contra invasores alienígenas que ameaçam extinguir a humanidade."
+    },
+    {
+      "titulo": "Um Filme Minecraft",
+      "ano": 2025,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/L6rkkG5L/IMG-2c98bfb2-56d3-43ca-a35e-e43416d36853.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/UMFLMNCRFT.mp4",
+      "sinopse": "Quatro desajustados são transportados para o Overworld, um mundo cúbico e criativo, e precisam aprender a sobreviver ao lado de um artesão experiente para voltar para casa."
+    },
+    {
+      "titulo": "Moonfall",
+      "ano": 2022,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/d0F8pd8Q/IMG-0045a85b-00ea-4b38-8dea-bf4e19a9abcc.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/MONFLAMCLNR.mp4",
+      "sinopse": "Uma força misteriosa tira a Lua da órbita e a coloca em rota de colisão com a Terra, e um pequeno grupo tenta impedir o fim do mundo."
+    },
+    {
+      "titulo": "Madagascar",
+      "ano": 2005,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/zBtKyc4q/IMG-6d3b940b-4126-461d-aa61-0bdc6421ca68.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/MDGSCR01.mp4",
+      "sinopse": "Os animais do zoológico de Nova York, o leão Alex, a zebra Marty, a girafa Melman e a hipopótamo Gloria, vão parar na ilha de Madagascar e precisam se adaptar à vida selvagem."
+    },
+    {
+      "titulo": "Os Pinguins de Madagascar",
+      "ano": 2014,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/wMnNVsqH/IMG-82d94b94-4442-45b0-b6d6-89e4634c7ae6.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/OSPNGNSDMDGSCR.mp4",
+      "sinopse": "Os pinguins Capitão, Kowalski, Rico e Recruta se unem a uma agência secreta para impedir os planos do vilão Dr. Octavius Brine."
+    },
+    {
+      "titulo": "Tom e Jerry: O Filme",
+      "ano": 2021,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/FsJ3KGp9/IMG-20d9f479-2803-48c1-92cb-8653b0490fc7.png",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/TOMEJRYOFLME.mp4",
+      "sinopse": "Jerry se muda para um hotel de luxo em Nova York às vésperas de um grande casamento, e a recém-contratada Kayla é chamada para se livrar dele, o que traz Tom de volta à confusão."
+    },
+    {
+      "titulo": "Lágrimas do Sol",
+      "ano": 2003,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/852kXd6Y/images-(50).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/LGRMSDSOL.mp4",
+      "sinopse": "Um oficial da Marinha americana lidera uma equipe de elite para resgatar uma médica em plena guerra civil na Nigéria, e acaba tendo de proteger também os refugiados que estão com ela."
+    },
+    {
+      "titulo": "Pânico na Cabana",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/kGP9vn0s/images-(51).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/PANCNCABN.mp4"
+    },
+    {
+      "titulo": "15 Minutos de Guerra",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/sfGvPxhK/IMG-20261016-WA0105.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/15MNTSDGRA.mp4"
+    },
+    {
+      "titulo": "O Dia Depois de Amanhã",
+      "ano": 2004,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/Cxx0Nr28/IMG-b2cdc9d0-c227-431f-838e-7cd10d68c185.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20Samuel/ODIADPSDAMNHA.mp4",
+      "sinopse": "Uma mudança climática repentina provoca tempestades gigantes e uma nova era do gelo, e o climatologista Jack Hall tenta atravessar os Estados Unidos para resgatar o filho."
+    },
+    {
+      "titulo": "Sexta-Feira 13 Parte 6: Jason Vive",
+      "ano": 1986,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/L50DyyCS/images-(49).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/SXTFR13PTVI.mp4",
+      "sinopse": "Tommy Jarvis desenterra o túmulo de Jason para garantir que ele está morto, mas um raio traz o assassino de volta à vida e ele volta a atacar Crystal Lake."
+    },
+    {
+      "titulo": "Sexta-Feira 13 Parte 9: Jason Vai para o Inferno",
+      "ano": 1993,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/kgLZM5yD/dvd-jason-vai-para-o-inferno-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/SXTFR13PTIX.mp4",
+      "sinopse": "Depois de ser morto pelo FBI, Jason Voorhees passa de corpo em corpo para continuar matando em Crystal Lake, enquanto o único jeito de detê-lo é a própria família."
+    },
+    {
+      "titulo": "As Branquelas",
+      "ano": 2004,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/W11gH6R5/images-(30).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/ASBRNQLS.mp4",
+      "sinopse": "Dois agentes do FBI se disfarçam de socialites brancas para proteger duas herdeiras de um plano de sequestro, e a farsa vai ficando cada vez mais difícil de sustentar."
+    },
+    {
+      "titulo": "As Crônicas de Nárnia: A Viagem do Peregrino da Alvorada",
+      "ano": 2010,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/bJ9vPWkt/91GS3ZR8re-L-AC-UF1000-1000-QL80-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/ASCRNCSDNRNAVGMDPRGNDALV.mp4",
+      "sinopse": "Edmund e Lucy voltam a Nárnia com o primo Eustace e embarcam com o rei Caspian em uma viagem marítima rumo ao fim do mundo."
+    },
+    {
+      "titulo": "Busca Implacável",
+      "ano": 2008,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/9FRjts0q/images-(31).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/BSCIMPCVL.mp4",
+      "sinopse": "Um ex-agente da CIA faz de tudo para resgatar a filha, sequestrada por traficantes de pessoas durante uma viagem a Paris."
+    },
+    {
+      "titulo": "Busca Implacável 2",
+      "ano": 2012,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/Gp7CjRFW/images-(33).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/BSCIMPCVL2.mp4",
+      "sinopse": "Em Istambul, Bryan Mills e a família viram alvo de vingança dos parentes dos criminosos que ele eliminou."
+    },
+    {
+      "titulo": "Busca Implacável 3",
+      "ano": 2014,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/7Y3rW01X/images-(35).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/BSCIMPCVL3.mp4",
+      "sinopse": "Bryan Mills é acusado injustamente do assassinato da ex-mulher e foge da polícia enquanto tenta descobrir os verdadeiros culpados."
+    },
+    {
+      "titulo": "Eternos",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/vHdpfDRd/images-(37).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/ETRNS.mp4",
+      "sinopse": "Seres imortais que protegem a Terra há milênios saem da sombra para enfrentar os Deviantes."
+    },
+    {
+      "titulo": "Freddy vs. Jason",
+      "ano": 2003,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/FzXnyCBC/images-(39).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/FRDXJSN.mp4",
+      "sinopse": "Freddy Krueger traz Jason Voorhees de volta para espalhar o medo em Springwood, mas os dois assassinos acabam disputando as vítimas."
+    },
+    {
+      "titulo": "Godzilla e Kong: O Novo Império",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/TY9Hb9qB/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/GDZLAEKNGONVOIMPRIO.mp4",
+      "sinopse": "Godzilla e Kong precisam se unir contra uma ameaça colossal escondida no mundo subterrâneo que coloca em risco a humanidade."
+    },
+    {
+      "titulo": "Godzilla vs. Kong",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/BbJBZrzy/images-(43).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/GDZLAVSKNGDBL.mp4",
+      "sinopse": "Os dois titãs se enfrentam em uma batalha épica enquanto a humanidade busca um novo lar para Kong."
+    },
+    {
+      "titulo": "Jason X",
+      "ano": 2001,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/90fwnCKR/images-(45).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/JSNX.mp4",
+      "sinopse": "No futuro, Jason Voorhees é descongelado em uma nave espacial e volta a caçar uma nova geração de vítimas."
+    },
+    {
+      "titulo": "O Pequenino",
+      "ano": 2006,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/yNXJ6DzZ/images-(46).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/OPQNINO.mp4",
+      "sinopse": "Calvin, um ladrão de joias de baixa estatura, esconde um diamante roubado na bolsa de uma desconhecida e se disfarça de bebê para entrar na casa dela e recuperá-lo."
+    },
+    {
+      "titulo": "Shazam!",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/J4Nt5yG9/images-(48).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Gustavo%20filmes%202/SHRZM.mp4",
+      "sinopse": "O adolescente Billy Batson ganha o poder de se transformar em um super-herói adulto ao dizer a palavra mágica e precisa enfrentar o Dr. Sivana."
+    },
+    {
+      "titulo": "Aquaman",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/63vZXZZS/Aquaman-(2018)-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/AQAMN.mp4",
+      "sinopse": "Arthur Curry, meio humano e meio atlante, precisa assumir seu destino e enfrentar o meio-irmão Orm para impedir uma guerra entre Atlântida e a superfície."
+    },
+    {
+      "titulo": "As Aventuras de Tadeo e a Lâmpada Mágica",
+      "ano": 2022,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/2yCSKL7y/as-aventuras-de-tadeo-e-a-lampada-magica-posterportrait-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/ASAVNTRSDTADEALMPDAMGCA.mp4",
+      "sinopse": "Tadeo, Sara e o papagaio Belzoni se envolvem em uma nova aventura quando uma lâmpada mágica, com um gênio dentro, cai nas mãos erradas."
+    },
+    {
+      "titulo": "Crepúsculo: Amanhecer - Parte 2",
+      "ano": 2012,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/W38vtW0m/images-(29).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/crep%C3%BAsculo%20amanhecer%20parte%202.mp4",
+      "sinopse": "Bella, agora vampira, e Edward precisam reunir aliados para proteger a filha Renesmee da ameaça dos Volturi."
+    },
+    {
+      "titulo": "Crepúsculo: Amanhecer - Parte 1",
+      "ano": 2011,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/G3gWNsKT/images-(30).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/crep%C3%BAsculo%20amanhecer%20parte1.mp4",
+      "sinopse": "Bella e Edward se casam e a lua de mel traz uma surpresa que muda a vida de todos e coloca vampiros e lobisomens em conflito."
+    },
+    {
+      "titulo": "Crepúsculo: Lua Nova",
+      "ano": 2009,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/qvsZktsx/images-(32).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/crep%C3%BAsculo%20lua%20nova.mp4",
+      "sinopse": "Depois que Edward vai embora, Bella se aproxima de Jacob e descobre o segredo dele, enquanto corre perigo."
+    },
+    {
+      "titulo": "Crepúsculo: Eclipse",
+      "ano": 2010,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/CLjWK6YR/Twilight-Saga-Eclipse-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/Crepusculo.3.Eclipse.mp4",
+      "sinopse": "Bella precisa escolher entre Edward e Jacob enquanto uma ameaça vampírica cresce em Seattle."
+    },
+    {
+      "titulo": "Crepúsculo",
+      "ano": 2008,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/y60fhgGT/MV5BYWVk-OGNm-NWIt-NDE2MC00NTk2LWEw-Zm-Yt-Yj-Fk-Zm-Zl-ZTcx-ODhi-Xk-Ey-Xk-Fqc-Gc-V1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/Crepusculo.mp4",
+      "sinopse": "Bella Swan se muda para Forks e se apaixona por Edward Cullen, um vampiro que luta contra sua natureza."
+    },
+    {
+      "titulo": "Lobos",
+      "ano": 2014,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/bw5HfpMH/images-(33).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/LOBOS.mp4",
+      "sinopse": "Após uma tragédia, o jovem Cayden descobre ser um lobisomem e parte para a cidade de Lupine Ridge em busca de respostas sobre suas origens, onde enfrenta clãs rivais de lobisomens."
+    },
+    {
+      "titulo": "O Refúgio",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/HnS80t1Q/images-(34).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/ORFGIO2026.mp4"
+    },
+    {
+      "titulo": "Perdida no Ártico",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/nLYzY1vL/images-(35).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/PRDANARTCO.mp4"
+    },
+    {
+      "titulo": "Sua Culpa: Londres",
+      "ano": 2025,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/FHXNWLFH/images-(37).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/SUACLPLNDRS.mp4"
+    },
+    {
+      "titulo": "Alien: Covenant",
+      "ano": 2017,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/mr1RXgYX/images-(29).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20covenant.mp4",
+      "sinopse": "A tripulação da nave Covenant, rumo a um planeta remoto, descobre um paraíso aparente que esconde uma ameaça mortal e um sobrevivente sombrio."
+    },
+    {
+      "titulo": "Alien: A Ressurreição",
+      "ano": 1997,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/WzbHy9Rt/images-(31).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20a%20ressurrei%C3%A7%C3%A3o.mp4",
+      "sinopse": "Duzentos anos após sua morte, Ripley é clonada por cientistas que querem a criatura alienígena, e a experiência foge do controle."
+    },
+    {
+      "titulo": "Alien: O Oitavo Passageiro",
+      "ano": 1979,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/tJM2MptW/images-(34).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20o%20oitavo%20passageiro.mp4",
+      "sinopse": "A tripulação da nave Nostromo atende a um chamado em um planeta desconhecido e leva a bordo uma criatura mortal."
+    },
+    {
+      "titulo": "Aliens: O Resgate",
+      "ano": 1986,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/NMN4KBnn/images-(35).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20o%20resgate.mp4",
+      "sinopse": "Ripley volta ao planeta dos aliens acompanhada de fuzileiros coloniais para investigar o sumiço de uma colônia."
+    },
+    {
+      "titulo": "Alien: Romulus",
+      "ano": 2024,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/P5GMp66N/images-(36).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/alien%20romulos.mp4",
+      "sinopse": "Jovens colonos em busca de uma vida melhor invadem uma estação espacial abandonada e encontram a forma de vida mais aterrorizante do universo."
+    },
+    {
+      "titulo": "Sobrevivência",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/1X9bGCCp/IMG-1afbc8d5-5561-4cb8-8a40-602db7e3ba7d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/SBRVIVNCIA.mp4"
+    },
+    {
+      "titulo": "Soulm8te",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/QxcfbGKz/IMG-942d1335-b393-4af7-ac74-753b3da035ff.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/SOULM8TE.mp4"
+    },
+    {
+      "titulo": "Gladiadores",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/SRMDFwcp/IMG-5262889d-089f-44fd-ae6f-d78d1b3f2379.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/gladiadores%202026.mp4",
+      "sinopse": "Dois irmãos entram em um torneio clandestino de luta, tido como o mais letal do mundo, e precisam decidir entre seguir as regras ou se unir contra o sindicato do crime que o controla."
+    },
+    {
+      "titulo": "Uma Batalha Após a Outra",
+      "ano": 2025,
+      "categoria": "Ação, Comédia, Drama",
+      "capa": "https://i.postimg.cc/kG92Df2n/One-Battle-After-Another-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/uma%20batalha%20ap%C3%B3s%20a%20outra.mp4",
+      "sinopse": "Um ex-revolucionário reúne antigos companheiros para resgatar sua filha quando um inimigo do passado reaparece."
+    },
+    {
+      "titulo": "Pecadores",
+      "ano": 2025,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/kGtbtBcp/Pecadores-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Pecadores.mp4",
+      "sinopse": "Em 1932, irmãos gêmeos retornam à cidade natal no Mississippi para recomeçar a vida e abrir um negócio, mas acabam atraindo a atenção de uma força maligna ancestral."
+    },
+    {
+      "titulo": "Coração de Lutador: The Smashing Machine",
+      "ano": 2025,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/FRVqXHcT/images-(24).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/cora%C3%A7%C3%A3o%20de%20lutador.mp4",
+      "sinopse": "A cinebiografia acompanha o lutador de MMA Mark Kerr, que enfrenta os desafios da carreira, dores físicas, dependência de analgésicos e conflitos pessoais no auge de sua trajetória."
+    },
+    {
+      "titulo": "F1: O Filme",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/3Nbt34wj/images-(26).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/f1%20o%20filme.mp4",
+      "sinopse": "Um piloto veterano retorna à Fórmula 1 para competir ao lado de um jovem talento e ajudar uma equipe a voltar ao topo, enfrentando os riscos e a pressão das pistas."
+    },
+    {
+      "titulo": "Gladiador 2024",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/yNjFRfYB/IMG-e0b6a1d7-bfc9-4723-8b0e-d95bb810c2e5.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/gladiador%202024.mp4",
+      "sinopse": "Anos depois da morte de Máximo, Lúcio é levado prisioneiro a Roma e se torna gladiador, em um império governado por imperadores tiranos."
+    },
+    {
+      "titulo": "Pânico na Floresta",
+      "ano": 2003,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/Pfw8S6pc/IMG-80ad65aa-2e5a-4193-b718-3efbcf732c91.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/P%C3%A2nico%20na%20Floresta.mp4",
+      "sinopse": "Um grupo de viajantes fica perdido nas montanhas e passa a ser perseguido por habitantes violentos da floresta."
+    },
+    {
+      "titulo": "Pânico na Floresta 2",
+      "ano": 2007,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/Qt5xJyYj/IMG-57d5b4e5-74e0-4e45-b346-ac44280a3a7f.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/P%C3%A2nico%20na%20Floresta%202.mp4",
+      "sinopse": "Participantes de um reality show e sua equipe acabam presos na floresta e precisam lutar para sobreviver a caçadores deformados."
+    },
+    {
+      "titulo": "Pânico na Floresta 3",
+      "ano": 2009,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/jd8KPTq5/IMG-c300728b-d173-4799-a1c3-b94286422b75.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/P%C3%A2nico%20na%20Floresta%203.mp4",
+      "sinopse": "Um grupo de prisioneiros transportados pela floresta tenta escapar depois que o veículo sofre um acidente e eles encontram assassinos implacáveis."
+    },
+    {
+      "titulo": "Pânico na Floresta 4: Origens Sangrentas",
+      "ano": 2011,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/CMswMDW6/IMG-3cd25420-57b7-4730-8bf7-4e30ff89f2fb.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/P%C3%A2nico%20na%20Floresta%204%20Origens%20Sangrentas.mp4",
+      "sinopse": "Durante uma viagem de inverno, um grupo de jovens se abriga em um sanatório abandonado e enfrenta uma ameaça mortal."
+    },
+    {
+      "titulo": "Pânico na Floresta 5",
+      "ano": 2012,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/9FfHWkdk/IMG-196f8245-b8a0-475f-8a52-19957a652836.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/P%C3%A2nico%20na%20Floresta%205.mp4",
+      "sinopse": "Em uma pequena cidade durante uma festa local, um grupo de jovens se torna alvo de assassinos violentos vindos da floresta."
+    },
+    {
+      "titulo": "Pânico na Floresta 6",
+      "ano": 2014,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/4dGjj248/IMG-789201d4-6863-40b0-b7eb-a1d11eef66f7.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/P%C3%A2nico%20na%20Floresta%206.mp4",
+      "sinopse": "Um homem herda uma propriedade isolada nas montanhas e, ao visitar o local com amigos, descobre segredos sombrios e perigosos."
+    },
+    {
+      "titulo": "Gladiador",
+      "ano": 2000,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/JhZFWCxw/IMG-5b664262-cea5-46ca-ba79-81b334a567dd.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/gladiador.mp4",
+      "sinopse": "Traído e condenado à morte, o general romano Máximo vira gladiador e luta na arena em busca de vingança contra o imperador que destruiu sua família."
+    },
+    {
+      "titulo": "Pânico no Lago",
+      "ano": 1999,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/Zn3WGQmW/IMG-47d7c68d-ce1b-466c-b0d7-269db00a1367.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/P%C3%A2nico%20no%20lago%201999.mp4",
+      "sinopse": "Um crocodilo gigante aterroriza um lago tranquilo em Maine, e um grupo improvável precisa caçá-lo antes que mais pessoas morram."
+    },
+    {
+      "titulo": "Pânico no Lago 2",
+      "ano": 2007,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/RZGWxfk6/IMG-076a361e-f720-4858-a2b9-3fdc781b0498.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/P%C3%A2nico%20no%20lago%202%202007.mp4",
+      "sinopse": "O terror volta ao lago quando crocodilos gigantes passam a atacar moradores e visitantes da pacata cidade de Aroostook."
+    },
+    {
+      "titulo": "Pânico no Lago 3",
+      "ano": 2010,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/vTRBtvV3/IMG-b3d65bd8-81b2-4972-8852-4f5c409ca09a.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/P%C3%A2nico%20no%20lago%203.mp4",
+      "sinopse": "Um novo crocodilo gigante ameaça uma pequena comunidade, e um grupo precisa decidir entre caçá-lo ou fugir."
+    },
+    {
+      "titulo": "Pânico no Lago: O Legado",
+      "ano": 2018,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/PrQx1Yr2/IMG-c0e0ed96-6a2e-44b3-8b39-d734e04c6203.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/P%C3%A2nico%20no%20lago%20o%20legado.mp4",
+      "sinopse": "Ativistas ambientais invadem uma ilha isolada e cercada e encontram um laboratório abandonado onde crocodilos foram alterados com DNA pré-histórico. Um deles sobreviveu e continua caçando."
+    },
+    {
+      "titulo": "Pânico no Lago: O Capítulo Final",
+      "ano": 2013,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/Gm3pKt4T/IMG-bd53feee-7c80-4057-b11b-747ddfbeb446.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/P%C3%A2nico%20no%20lago%202013%20o%20cap%C3%ADtulo%20fina..mp4",
+      "sinopse": "Um lago transformado em santuário de crocodilos vira cenário de pesadelo quando uma equipe de natação de uma escola entra por engano na área cercada, onde também há uma policial corrupta e um caçador ilegal."
+    },
+    {
+      "titulo": "Pânico no Lago: O Projeto Anaconda",
+      "ano": 2015,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/7Z9vW2xp/IMG-d196208a-c07b-4bc1-8e89-93b1603b663b.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%203/P%C3%A2nico%20no%20lago%20o%20projeto%20anaconda.mp4",
+      "sinopse": "Em um lago isolado nos EUA, um crocodilo gigante e uma anaconda gigante entram em confronto, deixando mortos pelo caminho. O xerife local tenta conter a situação."
+    },
+    {
+      "titulo": "Rambo: Programado para Matar",
+      "ano": 1982,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/gcf2gY1N/IMG-3572f1ec-9dc4-49e5-af88-6f95634a9bae.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/Rambo%20Programado%20Para%20Matar.mp4",
+      "sinopse": "Veterano do Vietnã, John Rambo é perseguido por um xerife de cidade pequena e transforma a floresta em campo de guerra para sobreviver."
+    },
+    {
+      "titulo": "Rambo 2: A Missão",
+      "ano": 1985,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/xjH2TLFx/IMG-79fe0fbb-da45-4280-8d22-212f33b6955b.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/rambo%202.mp4",
+      "sinopse": "Rambo recebe a missão de resgatar prisioneiros de guerra no Vietnã, mas é traído por quem o enviou e luta quase sozinho contra tudo."
+    },
+    {
+      "titulo": "Rambo III",
+      "ano": 1988,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/0ytgHnbw/IMG-5d81b0fe-616e-4a8a-84e0-68027fec3d8e.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/a%20lista%20terminal%20lobo%20negro%20season%201/RMBO3.mp4",
+      "sinopse": "Rambo é arrastado de volta ao combate para salvar seu antigo comandante, preso por soldados soviéticos no Afeganistão."
+    },
+    {
+      "titulo": "Rambo IV",
+      "ano": 2008,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hPrNfs8N/IMG-77ddda7c-ed65-4302-bf59-a348f75675dc.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/Rambo%20IV.mp4",
+      "sinopse": "Rambo, vivendo na Tailândia, guia missionários até a Birmânia e precisa resgatá-los de uma ditadura impiedosa."
+    },
+    {
+      "titulo": "Rambo: Até o Fim",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/MZ0FF5LM/IMG-9be0494d-74c2-4c68-9db8-c8645cee269d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/rambo%20at%C3%A9%20o%20fim.mp4",
+      "sinopse": "Já velho, Rambo parte para o México para salvar a filha de uma amiga e enfrenta um cartel violento em sua própria fazenda."
+    },
+    {
+      "titulo": "O Último Grande Assalto",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzPgQYcq/IMG-d155953b-140b-4ff5-b799-3ea396a23cdd.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/O%20%C3%9Altimo%20Grande%20Assalto.mp4",
+      "sinopse": "O dono de um clube, Manco Kapak, é roubado e ameaçado por cartéis. Seu plano de vender o negócio e se aposentar com a namorada se complica quando um suposto comprador aparece com más intenções."
+    },
+    {
+      "titulo": "Matchbox: O Filme",
+      "ano": 2026,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/508VDpqk/images-(5).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/Matchbox%20-%20O%20Filme.mp4",
+      "sinopse": "Um grupo de velhos amigos de infância se reencontra e acaba no meio de uma conspiração internacional, tendo que agir para salvar o mundo."
+    },
+    {
+      "titulo": "O Corvo",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/43TwB5yP/MV5BMDE2Nj-Qw-OGEt-Njcw-Yy00ZWVk-LWI5Nz-At-OWQz-Yz-E5ZWFj-Mj-M1Xk-Ey-Xk-Fqc-Gc-V1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/O%20Corvo.mp4",
+      "sinopse": "Um músico assassinado retorna do além para vingar a morte da noiva em uma jornada sombria entre a vida e a morte."
+    },
+    {
+      "titulo": "A Captura",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/pdfDm9bP/IMG-f3595796-b8dd-4eb3-9070-4015bdd9d435.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/a%20captura.mp4",
+      "sinopse": "Thriller mexicano que recria a recaptura de El Chapo em 2016: dois policiais rodoviários abordam um carro roubado e precisam escolher entre prender o traficante ou aceitar uma oferta milionária para deixá-lo ir."
+    },
+    {
+      "titulo": "Até o Último Homem",
+      "ano": 2016,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/L6LLjXny/IMG-76305156-f170-461e-83ee-d9c6d2f6843e.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/at%C3%A9%20o%20%C3%BAltimo%20homem.mp4",
+      "sinopse": "Baseado em fatos reais, conta a história de Desmond Doss, médico do exército que, por convicção religiosa, serve na Segunda Guerra sem portar arma e se destaca pela coragem na Batalha de Okinawa."
+    },
+    {
+      "titulo": "Como Perder Sua Popularidade",
+      "ano": 2026,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/3Nd7cv37/IMG-0cd0e4fe-053f-4e30-aa5c-20e2775a73e3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/como%20perder%20sua%20popularidade.mp4",
+      "sinopse": "Uma estudante dedicada disputa o grêmio estudantil para impedir a vitória do ex-namorado e se une a um colega relapso para sabotá-lo, mas a parceria pode virar romance."
+    },
+    {
+      "titulo": "Homem-Aranha",
+      "ano": 2002,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/x1mh8P6s/IMG-9b2ffdff-1b10-47c5-af4f-7d53d44bdb86.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/homem%20aranha%202002.mp4",
+      "sinopse": "O estudante Peter Parker ganha poderes após a picada de uma aranha geneticamente modificada e se torna o herói Homem-Aranha, enfrentando o Duende Verde."
+    },
+    {
+      "titulo": "Homem-Aranha 2",
+      "ano": 2004,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/pr7cX9zX/IMG-00780c53-c733-4c88-ac7c-73c6c05c9d4a.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/homem%20aranha%202004.mp4",
+      "sinopse": "Peter Parker tenta equilibrar a vida pessoal e a de herói enquanto enfrenta o brilhante e perigoso Doutor Octopus."
+    },
+    {
+      "titulo": "Homem-Aranha 3",
+      "ano": 2007,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/RCnDXdB4/IMG-aa0e1045-d21d-4aca-9b90-6135e91a16a9.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/homem%20aranha2007.mp4",
+      "sinopse": "Com o traje negro mudando sua personalidade, Peter enfrenta o Homem-Areia, Venom e seu próprio lado sombrio."
+    },
+    {
+      "titulo": "Na Boca do Diabo",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/1tM5TS6M/IMG-7318079d-74ae-4cee-ac38-d6421b03fb91.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/na%20boca%20do%20diabo.mp4",
+      "sinopse": "Cinco amigos viajam à Tailândia para explorar as cavernas da Boca do Diabo, mas uma criatura mortal os espreita sob a água. No escuro, o grupo se desfaz e sobreviver vira a única meta."
+    },
+    {
+      "titulo": "Patrulha Canina: Uma Aventura Dino",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/CxYMFdND/IMG-2661eac6-f91c-4f1b-be0b-4e7314e173f6.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes%202/patrulha%20canina%20uma%20aventura%20dino.mp4",
+      "sinopse": "Uma tempestade leva os filhotes da Patrulha a uma ilha tropical cheia de dinossauros, onde conhecem o filhote Rex e precisam impedir os planos de mineração do vilão Humdinger."
+    },
+    {
+      "titulo": "Divergente: Convergente",
+      "ano": 2016,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/MHy2mVkB/IMG-5232f52d-d24a-41fc-8b06-82c99c433f75.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/divergente%20convergente.mp4",
+      "sinopse": "A rebelião chega ao ápice quando Tris e seus aliados cruzam o muro da cidade em busca da verdade sobre o mundo lá fora."
+    },
+    {
+      "titulo": "Divergente: Insurgente",
+      "ano": 2015,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/VNV8fzBd/IMG-4e463d07-ab4e-402f-ae3f-ceaba6b792d0.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/divergente%20insurgente.mp4",
+      "sinopse": "Tris luta contra uma conspiração das facções e tenta proteger quem ama enquanto a guerra se aproxima."
+    },
+    {
+      "titulo": "Divergente",
+      "ano": 2014,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/vZGMXqHz/IMG-b10af52b-17bc-45e9-bb67-d98c58a8ee87.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/divergente.mp4",
+      "sinopse": "Em uma sociedade dividida em facções, Beatrice descobre ser uma Divergente e precisa esconder isso para sobreviver."
+    },
+    {
+      "titulo": "Conexão Perigosa",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/vH0V5H9t/7c766f1b99432286e4f4617fed4190e9400f7def54a6e8eeff41918237d128a0.png",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/conex%C3%A3o%20perigosa.mp4"
+    },
+    {
+      "titulo": "Baleia Assassina",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/tTd1JXpb/20260908-baleia-assassina-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Bbaleia%20assassina.mp4",
+      "sinopse": "Duas melhores amigas ficam presas em uma ilha remota após uma tragédia, enquanto uma orca em busca de vingança por uma vida em cativeiro ronda a lagoa onde estão."
+    },
+    {
+      "titulo": "Kickboxer: A Retaliação",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/L8kVdMZ1/0843807-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/kickboxer%20a%20retalia%C3%A7%C3%A3o%20.mp4",
+      "sinopse": "Um homem que deixou família e terra natal anos atrás precisa voltar à Tailândia, onde os seus estão ameaçados por Mongkut, um adversário poderoso e perigoso."
+    },
+    {
+      "titulo": "Kraken: Terror no Mar",
+      "ano": 2022,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/W4Pfrn0T/MV5BMGU1Yz-Uw-Mzkt-Mzgx-Yy00ZGEw-LTg1Zjgt-ZTNh-Zjk3Mj-Zi-M2M5Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Kraken%20terror%20no%20mar.mp4"
+    },
+    {
+      "titulo": "Street Flow 3",
+      "ano": 2025,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/g0S8dcz1/images-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/street%20flow%203.mp4",
+      "sinopse": "Capítulo final da trilogia sobre três irmãos da periferia: um músico em ascensão, um que tenta recomeçar e um advogado engajado. As escolhas de cada um afetam o destino de toda a família."
+    },
+    {
+      "titulo": "Tekken: A Vingança de Kazuya",
+      "ano": 2014,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/NGN1QVZJ/IMG-c9ad5468-2e3b-4872-8022-0cd6ab594bc3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Tekken%20a%20vingan%C3%A7a%20de%20kazuya.mp4",
+      "sinopse": "Kazuya Mishima busca vingança contra seu pai, Heihachi, no torneio Rei do Punho de Ferro."
+    },
+    {
+      "titulo": "Tekken",
+      "ano": 2010,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/CKyGWqXP/IMG-c7792b66-4d99-45c7-80b2-3707aed109c9.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/tekken.mp4",
+      "sinopse": "Em um futuro distópico, um lutador entra no torneio Rei do Punho de Ferro para vingar a morte da mãe e enfrentar a poderosa corporação Tekken."
+    },
+    {
+      "titulo": "A Era do Gelo: O Big Bang",
+      "ano": 2016,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/L8GD27YN/IMG-823df687-e71c-4202-b383-fbacb97cea74.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/e%20era%20do%20gelo%20o%20big%20bang.mp4",
+      "sinopse": "Scrat e sua bolota continuam perseguindo o destino enquanto o bando de Manny, Sid e Diego enfrenta novas aventuras no gelo."
+    },
+    {
+      "titulo": "A Era do Gelo 4: Deriva Continental",
+      "ano": 2012,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/SQGgCD3x/IMG-056a8510-6052-42d9-b7fc-d09e18d68de5.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202012.mp4",
+      "sinopse": "O continente se parte e o bando precisa enfrentar piratas no mar para voltar para casa."
+    },
+    {
+      "titulo": "A Era do Gelo 3: O Despertar dos Dinossauros",
+      "ano": 2009,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/VvP2vvJH/IMG-9ab15f71-24b4-4913-ad3e-6a54f4409ffa.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202009.mp4",
+      "sinopse": "Manny, Sid e Diego descobrem um mundo perdido de dinossauros sob o gelo e enfrentam a perigosa caçada de Buck."
+    },
+    {
+      "titulo": "A Era do Gelo 2: O Degelo",
+      "ano": 2006,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/3NZfwB5g/IMG-01333ccf-352d-46ce-934f-d8fab80c64a3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202006.mp4",
+      "sinopse": "O derretimento do gelo ameaça inundar o vale, e o bando precisa encontrar uma saída antes que seja tarde."
+    },
+    {
+      "titulo": "A Era do Gelo",
+      "ano": 2002,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/VvP2vvJH/IMG-9ab15f71-24b4-4913-ad3e-6a54f4409ffa.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202002.mp4",
+      "sinopse": "Um mamute, uma preguiça e um tigre-dentes-de-sabre se unem para devolver um bebê humano à sua tribo durante a Era do Gelo."
+    },
+    {
+      "titulo": "Star Wars: O Mandaloriano e Grogu",
+      "ano": 2026,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/02qdmdtM/images-(51).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Star%20Wars%20O%20Mandaloriano%20e%20Grogu.mp4",
+      "sinopse": "Din Djarin e seu aprendiz Grogu partem em uma nova missão após a queda do Império, ajudando a Nova República a localizar esconderijos de senhores da guerra imperiais."
+    },
+    {
+      "titulo": "Dark Hollow",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/RZtB8m1x/225b82e3f7f4b312e1bbdf4ca12063cf9445bea0cd34fbcbf7a3388408e2ead6-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Dark%20Hollow.mp4",
+      "sinopse": "Uma jovem mãe dos Apalaches precisa enfrentar um monstro surgido de uma mina de carvão abandonada para proteger a casa e a família."
+    },
+    {
+      "titulo": "Avatar Aang: O Último Mestre do Ar",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/kgskL5VR/Avatar-Aang-The-Last-Airbender-poster-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Avatar%20Aang%20O%20%C3%9Altimo%20Mestre%20do%20Ar.mp4",
+      "sinopse": "Aang descobre um poder ancestral capaz de proteger a cultura dos mestres do ar e, com os amigos, viaja pelo mundo para chegar a ele antes de quem pretende usá-lo para o mal."
+    },
+    {
+      "titulo": "O Delator",
+      "ano": 2026,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/V6n4Q77Z/20260716-o-delator-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Delator.mp4"
+    },
+    {
+      "titulo": "Mayday",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/sgbpjYZW/MV5BM2Vm-YWEz-M2Ut-ODNj-Zi00YTk1LWEz-Zj-Et-Nz-Y4OGU0YTdk-Nm-Jm-Xk-Ey-Xk-Fqc-Gc-V1-FMjpg-UX1000-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Mayday.mp4",
+      "sinopse": "Em plena Guerra Fria, um piloto da Marinha dos EUA fica isolado em território russo após uma missão secreta falhar e forma uma improvável aliança com um ex-agente da KGB."
+    },
+    {
+      "titulo": "O Fim da Rua",
+      "ano": 2012,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/rw3X5sp3/5c7a1b24cfd95d86600b19d7fa3d3472.png",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Fim%20da%20Rua.mp4"
+    },
+    {
+      "titulo": "Pinóquio",
+      "ano": 2022,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/ryfYVWCk/IMG-20261002-044814.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Pin%C3%B3quio.mp4",
+      "sinopse": "O boneco de madeira Pinóquio ganha vida e parte em uma jornada fantástica para provar que pode se tornar um menino de verdade."
+    },
+    {
+      "titulo": "Céu em Fúria",
+      "ano": 2020,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/PJMnXB7d/ceu-em-furia.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/C%C3%A9u%20em%20f%C3%BAria%20.mp4"
+    },
+    {
+      "titulo": "Deadpool & Wolverine",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/2SZ6hyv9/IMG-20261002-100134.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Deadpool%20%26amp%3B%20Wolverine.mp4",
+      "sinopse": "Deadpool é recrutado pela TVA e forma uma dupla improvável com o Wolverine para salvar seu universo."
+    },
+    {
+      "titulo": "Jurassic World: Recomeço",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/4xqDnRp0/Jurassic-World-Recomec-o-1.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/G3W3UIYkg3IcTBwY.mp4",
+      "sinopse": "Um grupo de especialistas viaja a uma ilha proibida para colher DNA de dinossauros gigantes em busca de uma cura."
+    },
+    {
+      "titulo": "Planeta dos Macacos: O Reinado",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fL1HwP8X/MV5BYTkwMmIyNWQtNWEyZS00M2M3LTgxZGEtMDlmMGIzZGM4NWNhXkEyXkFqcGcV1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Planeta%20dos%20Macacos%20O%20Reinado.mp4",
+      "sinopse": "Muitos anos após César, um jovem chimpanzé inicia uma jornada que o fará questionar tudo que sabe sobre o passado."
+    },
+    {
+      "titulo": "Avatar: O Caminho da Água",
+      "ano": 2022,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/PrL263pT/images-(35).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Avatar%20O%20Caminho%20da%20%C3%81gua.mp4",
+      "sinopse": "Jake Sully e Neytiri protegem sua família enquanto a humanidade retorna a Pandora, levando a luta para os oceanos."
+    },
+    {
+      "titulo": "Supergirl",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/Z5L1fCgF/images-(38).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Supergirl.mp4",
+      "sinopse": "Após a destruição de Krypton, Supergirl vive à sombra do primo Super-Homem. Quando uma jovem alienígena cujo planeta também foi destruído exige justiça, ela se vê diante de uma escolha difícil."
+    },
+    {
+      "titulo": "Quarteto Fantástico: Primeiros Passos",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/BZ2q7zms/capa-fantastico.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Quarteto%20Fant%C3%A1stico%20Primeiros%20Passos.mp4",
+      "sinopse": "A Primeira Família da Marvel enfrenta o devorador de mundos Galactus em um universo retrofuturista."
+    },
+    {
+      "titulo": "Super Mario Galaxy: O Filme",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/W3Y1mvHd/images-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Super%20Mario%20Galaxy%20O%20Filme.mp4",
+      "sinopse": "Depois de derrotar Bowser, Mario enfrenta uma nova ameaça cósmica: a aliança entre Wario e Bowser Jr. Com a ajuda de Yoshi e dos amigos, ele tenta impedir que os vilões dominem a galáxia."
+    },
+    {
+      "titulo": "Sonic 2: O Filme",
+      "ano": 2022,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/VkMCSkzP/images-(16).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Sonic%202%20O%20Filme.mp4",
+      "sinopse": "Sonic e Tails se unem a Knuckles para impedir Dr. Robotnik de conquistar o poder de uma esmeralda lendária."
+    },
+    {
+      "titulo": "A Pequena Sereia",
+      "ano": 2023,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/vmDPnnSb/images-(10).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/A%20Pequena%20Sereia.mp4",
+      "sinopse": "A jovem sereia Ariel faz um pacto com a bruxa do mar para viver na superfície e conhecer o príncipe Eric."
+    },
+    {
+      "titulo": "Coringa",
+      "ano": 2019,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/yWC72Btj/Joker-(2019)-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Coringa.mp4",
+      "sinopse": "Arthur Fleck, um comediante fracassado, mergulha na loucura em Gotham e se transforma no vilão Coringa."
+    },
+    {
+      "titulo": "Gato de Botas 2: O Último Pedido",
+      "ano": 2022,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/TYqpXGWR/images-(34).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Gato%20de%20Botas%202%20O%20%C3%9Altimo%20Pedido.mp4",
+      "sinopse": "O Gato de Botas descobre que gastou oito de suas nove vidas e parte atrás da estrela dos desejos para recuperá-las."
+    },
+    {
+      "titulo": "Caça-Fantasmas: Apocalipse de Gelo",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/1zh5qR4V/2523057-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Ghostbusters%20Apocalipse%20de%20Gelo.mp4",
+      "sinopse": "A família Spengler, ao lado dos Caça-Fantasmas originais, enfrenta uma ameaça gelada que ameaça congelar Nova York."
+    },
+    {
+      "titulo": "Golpe Explosivo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/HnD0xZNY/images-(19).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Golpe%20Explosivo.mp4",
+      "sinopse": "Em Londres, a descoberta de uma bomba da Segunda Guerra obriga a evacuar o centro, e ladrões aproveitam o caos para um roubo de joias enquanto um militar tenta desarmar o explosivo."
+    },
+    {
+      "titulo": "Teen Wolf: O Filme",
+      "ano": 2023,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/HLYqwWDK/images-(53).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/teen%20Wolf.mp4",
+      "sinopse": "Quinze anos após o fim da série, um mal terrível surge e Scott McCall, o único lobisomem da história, precisa reunir novos aliados e velhos amigos para enfrentar o inimigo mais poderoso que já encarou."
+    },
+    {
+      "titulo": "Venom: A Última Rodada",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/76GM6jnH/sony-banner-venom-1400x2100.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Venom%20A%20%C3%9Altima%20Rodada.mp4",
+      "sinopse": "Eddie Brock e Venom são perseguidos e precisam tomar uma decisão que pode marcar o fim da dupla."
+    },
+    {
+      "titulo": "Fogo Contra Fogo",
+      "ano": 1995,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/P5PCgb6Q/images-(20).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Fogo%20Contra%20Fogo.mp4",
+      "sinopse": "Um policial obstinado de Los Angeles caça uma quadrilha de ladrões profissionais liderada por um criminoso experiente."
+    },
+    {
+      "titulo": "Mortal Kombat 2",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/ZRxyK7Fh/images-(13).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/MRTLKMBT2.mp4",
+      "sinopse": "Continuação da adaptação do game: os campeões da Terra e Johnny Cage enfrentam o regime tirânico de Shao Kahn em uma batalha sangrenta que decidirá o destino dos reinos."
+    },
+    {
+      "titulo": "Operação Sombra",
+      "ano": 2014,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/k5SB4JPc/images-(22).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Opera%C3%A7%C3%A3o%20Sombra.mp4",
+      "sinopse": "O jovem analista Jack Ryan, recrutado em segredo pela CIA, descobre na Rússia um plano capaz de provocar um colapso financeiro nos Estados Unidos e viaja a Moscou para detê-lo."
+    },
+    {
+      "titulo": "Duna: Parte Dois",
+      "ano": 2024,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/02DvmQy5/images-(28).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Duna%20Parte%20Dois.mp4",
+      "sinopse": "Paul Atreides se une aos Fremen em busca de vingança contra quem destruiu sua família, enquanto enfrenta um destino terrível."
+    },
+    {
+      "titulo": "O Projeto Adam",
+      "ano": 2022,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/rp8T2fm3/images-(15).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/O%20Projeto%20Adam.mp4",
+      "sinopse": "Um piloto viaja ao passado e encontra a si mesmo, com pistas sobre um futuro de guerra e sobre a morte do pai."
+    },
+    {
+      "titulo": "Aquaman 2: O Reino Perdido",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/13bDdvZB/Aquaman-and-the-Lost-Kingdom-poster-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Aquaman%202%20O%20Reino%20Perdido.mp4",
+      "sinopse": "Aquaman precisa se unir ao irmão Orm para impedir que o vilão Arraia Negra destrua Atlântida e o mundo."
+    },
+    {
+      "titulo": "Jogos Mortais X",
+      "ano": 2023,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/fRQwgdrH/images-(29).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Jogos%20Mortais%20X.mp4",
+      "sinopse": "John Kramer viaja ao México em busca de um tratamento experimental e descobre uma armadilha cruel contra os que o enganaram."
+    },
+    {
+      "titulo": "Morbius",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/7LtWSgNP/Morbius-cartaz-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Morbius.mp4",
+      "sinopse": "Dr. Michael Morbius tenta curar uma doença rara no sangue, mas o remédio o transforma em um vampiro."
+    },
+    {
+      "titulo": "As Tartarugas Ninja: Caos Mutante",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/yxrT8B2M/20230719-as-tartarugas-ninja-caos-mutante-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/Filmes%20/As%20Tartarugas%20Ninjas%20Caos%20Mutante.mp4",
+      "sinopse": "Quatro irmãos tartarugas adolescentes querem ser aceitos como heróis e enfrentam uma ameaça mutante em Nova York."
+    },
+    {
+      "titulo": "Top Gun: Maverick",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/NMyKp58N/Top-Gun-Maverick-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Top%20Gun%20Maverick.mp4",
+      "sinopse": "Maverick volta à academia Top Gun para treinar uma nova geração de pilotos para uma missão quase impossível."
+    },
+    {
+      "titulo": "O Mundo Depois de Nós",
+      "ano": 2023,
+      "categoria": "Suspense",
+      "capa": "https://i.postimg.cc/KYrTcZy8/images-(43).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Mundo%20Depois%20de%20N%C3%B3s.mp4",
+      "sinopse": "Uma família que aluga uma casa de luxo é surpreendida por um apagão e por estranhos que dizem que algo grave aconteceu."
+    },
+    {
+      "titulo": "Acerto de Sangue",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/2yq3WYg2/images-(40).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Acerto%20de%20Sangue.mp4"
+    },
+    {
+      "titulo": "O Justiceiro: Uma Última Morte",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/X74Y3wYK/images-(45).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Justiceiro%20Uma%20%C3%9Altima%20Morte.mp4",
+      "sinopse": "Foragido, Frank Castle tenta lidar com os traumas do passado e encontrar um sentido além da vingança, mas o caos o alcança e o arrasta de volta à luta. O especial se passa após Demolidor: Renascido."
+    },
+    {
+      "titulo": "Jack Ryan: Guerra Fantasma",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VNjhYb6W/images-(49).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/guerra%20fantasma.mp4",
+      "sinopse": "Jack Ryan volta relutante à CIA e descobre um esquema clandestino internacional. Ameaçado, une-se a Mike November e James Greer em sua operação mais arriscada."
+    },
+    {
+      "titulo": "Resident Evil",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/6QLjv2vk/images-(42).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/tavin%20filmes/Resident%20Evil.mp4",
+      "sinopse": "Um entregador de material médico precisa levar uma encomenda a um hospital de Raccoon City e se vê no meio de um surto de mutantes, tendo que sobreviver a uma noite de horror."
+    },
+    {
+      "titulo": "A Sociedade dos Assassinos",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hjvLtf1g/fcd33cd9a1015d1f1d005bcd6d57c935d2cd46fc4d84dd1821d2fec2ee61b0fa-(3).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/A%20Sociedade%20dos%20Assassinos.mp4"
+    },
+    {
+      "titulo": "Armadilha Mortal",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VN0jHn8B/images-(54).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Armadilha%20Mortal.mp4",
+      "sinopse": "Após a morte dos pais, os irmãos Scott e Ashley acampam com amigos, mas Scott cai em um poço com espinhos na trilha e fica preso, enquanto o grupo descobre que há um assassino na floresta."
+    },
+    {
+      "titulo": "Na Zona Cinzenta",
+      "ano": 2026,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/5N2Wnp0d/images-(48).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Na%20Zona%20Cinzenta.mp4",
+      "sinopse": "Dois especialistas em resgate são contratados para planejar a fuga de um negociador com milhões em dinheiro roubado. O trabalho vira uma teia de traições e perseguições."
+    },
+    {
+      "titulo": "Bad Boys: Até o Fim",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/sDv6PQmF/images-(4).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Bad%20Boys%20At%C3%A9%20o%20Fim.mp4",
+      "sinopse": "Os detetives Mike e Marcus Burnett perseguem os traidores que acusam o falecido capitão Howard de corrupção."
+    },
+    {
+      "titulo": "Besouro Azul",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fTjYRbCr/images-(9).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Besouro%20Azul.mp4",
+      "sinopse": "Um jovem recebe um artefato alienígena que o transforma no herói Besouro Azul."
+    },
+    {
+      "titulo": "Blades of The Guardians",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/jjLgXD2q/images-(58).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Blades%20of%20The%20Guardians.mp4",
+      "sinopse": "Um caçador de recompensas é contratado para escoltar um homem pelo deserto até Chang'an e descobre que seu protegido é o mais procurado do império, atraindo uma perseguição mortal."
+    },
+    {
+      "titulo": "Como Treinar o Seu Dragão",
+      "ano": 2025,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/664hkrZ6/treinar.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Como%20Treinar%20o%20Seu%20Drag%C3%A3o.mp4",
+      "sinopse": "O jovem Soluço faz amizade com o dragão Banguela e desafia a tradição de seu povo."
+    },
+    {
+      "titulo": "Coringa: Delírio a Dois",
+      "ano": 2024,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/LXN621K3/MV5BZTU0ZGI3YzMtZTUwMC00MGJjLWFkNDItMDUzNTUxOWY5N2Y4XkEyXkFqcGcV1.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Coringa%20Del%C3%ADrio%20a%20Dois.mp4",
+      "sinopse": "Arthur Fleck, internado em Arkham, conhece Lee e se envolve em um romance perturbador enquanto o julgamento se aproxima."
+    },
+    {
+      "titulo": "Destruição Iminente",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/HxPwwvRd/20260730-destruicao-iminente-papo-de-cinema-cartaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Destrui%C3%A7%C3%A3o%20Iminente.mp4"
+    },
+    {
+      "titulo": "Divertida Mente 2",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/0jgfgwN6/aa61ae8fb015160d802c4d5cb4fe6858058ea76485c3498ed9ff431eee4fc83f-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Divertida%20Mente%202.mp4",
+      "sinopse": "Riley entra na adolescência e novas emoções, como a Ansiedade, assumem o controle da central de comando."
+    },
+    {
+      "titulo": "Furiosa: Uma Saga Mad Max",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzZY7Hfn/71K2MccCQ2L-AC-UF894-1000-QL80.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Furiosa%20Uma%20Saga%20Mad%20Max.mp4",
+      "sinopse": "A jovem Furiosa é sequestrada e precisa sobreviver ao deserto e a dois senhores da guerra para voltar para casa."
+    },
+    {
+      "titulo": "Gran Turismo – De Jogador a Corredor",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/YSVWsL2p/images-(7).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Gran%20Turismo%20%E2%80%93%20De%20Jogador%20a%20Corredor.mp4",
+      "sinopse": "Um jovem gamer ganha a chance de virar piloto profissional em uma competição do jogo Gran Turismo."
+    },
+    {
+      "titulo": "Kung Fu Panda 4",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/XYyYqBNV/kung-fu-panda-4-cartaz-1zso1c-717x1200-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Kung%20Fu%20Panda%204.mp4",
+      "sinopse": "Po precisa escolher um sucessor como Dragão Guerreiro enquanto enfrenta a vilã Camaleoa."
+    },
+    {
+      "titulo": "Meu Malvado Favorito 4",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/5t0bhHHr/images-(6).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Meu%20Malvado%20Favorito%204.mp4",
+      "sinopse": "Gru e sua família precisam se esconder após a fuga de seu antigo rival Maxime Le Mal."
+    },
+    {
+      "titulo": "Moana",
+      "ano": 2016,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/pdj7VwhR/moana.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Moana.mp4",
+      "sinopse": "A corajosa Moana parte pelo oceano com o semideus Maui para salvar sua ilha e descobrir quem ela realmente é."
+    },
+    {
+      "titulo": "Mufasa: O Rei Leão",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/mgw3xmpz/917q7O0TJL.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Mufasa%20O%20Rei%20Le%C3%A3o.mp4",
+      "sinopse": "Rafiki conta a jovens filhotes a história de Mufasa, o órfão que se tornou um dos reis mais lendários da savana."
+    },
+    {
+      "titulo": "Pânico 7",
+      "ano": 2026,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/q7Dcvrs3/images-(60).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/P%C3%A2nico%207.mp4",
+      "sinopse": "Um novo assassino com a máscara de Ghostface volta a atormentar Sidney Prescott, agora na cidade onde ela criou a filha, que se torna o novo alvo. Sidney precisa enfrentar seus traumas para proteger a família."
+    },
+    {
+      "titulo": "Todo Mundo em Pânico 6",
+      "ano": 2026,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/sgfwW2VH/dfdb52dae07d0b0950bb9dfc98ab09c08e44a3f704815cc5a5a6af72d156f913.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Todo%20Mundo%20em%20P%C3%A2nico%204.mp4",
+      "sinopse": "Shorty, Ray, Cindy e Brenda voltam a ser perseguidos por um assassino mascarado, 26 anos depois, em nova paródia de sequências, refilmagens e hits do terror."
+    },
+    {
+      "titulo": "The Flash",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/SxvNfKMf/4500101g-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/The%20Flash.mp4",
+      "sinopse": "Barry Allen viaja no tempo para salvar a mãe, mas altera o curso da realidade e precisa enfrentar o general Zod."
+    },
+    {
+      "titulo": "Barbie",
+      "ano": 2023,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/C1MPMwvY/images-(31).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/BRBIE2023.mp4",
+      "sinopse": "Barbie é expulsa da Barbieland por não ser perfeita e vai ao mundo real em busca da verdadeira felicidade."
+    },
+    {
+      "titulo": "Super Mario Bros. O Filme",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/MKsjgqBV/The-Super-Mario-Bros-Movie-poster.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Super%20Mario%20Bros.%20O%20Filme.mp4",
+      "sinopse": "O encanador Mario e seu irmão Luigi são levados para o Reino dos Cogumelos e enfrentam o poderoso Bowser."
+    },
+    {
+      "titulo": "Dungeons & Dragons: Honra Entre Rebeldes",
+      "ano": 2023,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/1zdBSDN8/images-(33).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Dungeons%20%26amp%3B%20Dragons%20Honra%20Entre%20Rebeldes.mp4",
+      "sinopse": "Um bardo e uma guerreira reúnem um grupo de aventureiros para recuperar uma relíquia perdida."
+    },
+    {
+      "titulo": "Jumanji: Bem-Vindo à Selva",
+      "ano": 2017,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/k4ptjpsN/jumanji.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Jumanji%20bem%20vindo%20a%20selva.mp4",
+      "sinopse": "Quatro adolescentes são sugados para dentro de um videogame e precisam vencer o jogo para voltar para casa."
+    },
+    {
+      "titulo": "17 Outra Vez",
+      "ano": 2009,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/FFwTzW46/17.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Filmes%20/17%20Outra%20Vez.mp4",
+      "sinopse": "Um homem de 37 anos volta ao corpo de quando tinha 17 e tenta consertar os erros do passado."
+    },
+    {
+      "titulo": "A Noiva Cadáver",
+      "ano": 2005,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/Z54FvXD1/noiva.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/A%20Noiva%20Cad%C3%A1ver.mp4",
+      "sinopse": "Victor, um jovem tímido, vai parar sem querer no mundo dos mortos e se casa com uma noiva cadáver."
+    },
+    {
+      "titulo": "Avatar (2009)",
+      "ano": 2009,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/7LQgchYy/avatar.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Avatar%202009.mp4",
+      "sinopse": "Um fuzileiro paraplégico é enviado a Pandora e se divide entre a missão humana e o povo Na'vi."
+    },
+    {
+      "titulo": "Como Mágica",
+      "ano": 2026,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/9z5YzWLn/D-NQ-NP-674318-MLB111141123921-052026-O.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/como%20m%C3%A1gica.mp4",
+      "sinopse": "Um pássaro e uma pequena criatura da floresta, inimigos naturais, trocam de corpo após um incidente e precisam superar as diferenças para sobreviver no Vale, um reino animal."
+    },
+    {
+      "titulo": "Deu a Louca nos Bichos",
+      "ano": 2010,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/0N7W1734/deu-a-louca-nos-bichos.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20/Deu%20a%20Louca%20nos%20Bichos.mp4",
+      "sinopse": "Dan se muda com a família para uma floresta no Oregon para tocar uma obra de condomínio. Ao ameaçar o habitat local, vira alvo de sabotagens dos animais da região."
+    },
+    {
+      "titulo": "A Odisseia",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/K8WjhML7/odisseia.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20Gustavo/A%20Odisseia.mp4",
+      "sinopse": "Dirigido por Christopher Nolan, adapta o poema de Homero: Odisseu (Matt Damon) tenta voltar para casa após a Guerra de Troia, enfrentando criaturas míticas e deuses enquanto Penélope o espera em Ítaca."
+    },
+    {
+      "titulo": "Thunderbolts",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzbPQdZJ/D-NQ-NP-848607-CBT107833899597-022026-O.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Thunderbolts.mp4",
+      "sinopse": "Um grupo de anti-heróis é recrutado em uma missão perigosa que pode ser uma armadilha mortal."
+    },
+    {
+      "titulo": "Mestres do Universo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/PfSPYJgc/images-(55).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Mestres%20do%20Universo.mp4",
+      "sinopse": "O príncipe Adam precisa recuperar uma espada mítica e se tornar He-Man para salvar Eternia do vilão Esqueleto e de seu exército."
+    },
+    {
+      "titulo": "TRON: Ares",
+      "ano": 2025,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/hvLctyqf/f5500766daec594aa9f43d7bcce82abadde09318e7a0c3526414bbd0e7e3cdc4-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/TRON%20Ares.mp4",
+      "sinopse": "Um programa altamente sofisticado é levado ao mundo real, em uma missão perigosa com consequências inesperadas."
+    },
+    {
+      "titulo": "Missão Resgate: Vingança",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fLHPs1LC/dbe30e443f3fd796bbf650f720aacf44-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Miss%C3%A3o%20Resgate%20Vingan%C3%A7a.mp4",
+      "sinopse": "Tyler Rake volta à ação para resgatar a família de um perigoso criminoso preso na Geórgia."
+    },
+    {
+      "titulo": "Simbad e o Olho do Tigre",
+      "ano": 1977,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/Kvn8G5Ps/images-(63).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/358847.mp4",
+      "sinopse": "O príncipe Cassim, transformado em babuíno, parte numa aventura mágica com Simbad para recuperar seu corpo humano."
+    },
+    {
+      "titulo": "No Rastro do Perigo",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/bwygL3LM/images-(65).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/No%20Rastro%20do%20Perigo.mp4",
+      "sinopse": "Jaxen, ex-policial que virou investigador particular em Atlanta, é contratado para encontrar uma cantora de R&B desaparecida e acaba descobrindo uma conspiração maior."
+    },
+    {
+      "titulo": "Charlie: O Super Cão",
+      "ano": 2023,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/0QvFJfvZ/9a8b5217477062b71270db52c3cf42d5-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Charlie%20O%20Super%20C%C3%A3o.mp4"
+    },
+    {
+      "titulo": "Shazam! Fúria dos Deuses",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/kXg3RFK3/images-(69).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Shazam!%20F%C3%BAria%20dos%20Deuses.mp4",
+      "sinopse": "As filhas de Atlas chegam à Terra para recuperar o poder roubado e testam os poderes de Shazam e de sua família."
+    },
+    {
+      "titulo": "Projeto Gemini",
+      "ano": 2019,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/g09TsvXs/images-(71).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Projeto%20Gemini.mp4",
+      "sinopse": "Um assassino de elite do governo (Will Smith) decide se aposentar, mas passa a ser perseguido por um clone mais jovem de si mesmo, criado em laboratório para ser o soldado perfeito."
+    },
+    {
+      "titulo": "O Vingador Tóxico",
+      "ano": 2023,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/XqCbXnt1/images-(73).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/O%20Vingador%20T%C3%B3xico.mp4",
+      "sinopse": "Winston, pai desesperado para sustentar a família, sofre um acidente com resíduos tóxicos e vira um mutante. Ele passa a usar os novos poderes para ajudar as pessoas e acertar contas."
+    },
+    {
+      "titulo": "Animais Fantásticos: Os Segredos de Dumbledore",
+      "ano": 2022,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/Hns6Pz9t/20220406-animais-fantasticos-os-segredos-de-dumbledore-papo-de-cinema-crtaz-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Animais%20Fant%C3%A1sticos%20Os%20Segredos%20de%20Dumbledore.mp4",
+      "sinopse": "Dumbledore reúne Newt Scamander e aliados para impedir que Grindelwald domine o mundo bruxo."
+    },
+    {
+      "titulo": "Icefall: Saque no Gelo",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VkRtgm0b/bov-Ctz-WD9plfpquw-FIa-Zrifu-OKC-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Icefall%20Saque%20no%20Gelo.mp4",
+      "sinopse": "Um guarda florestal e uma caçadora ilegal se aliam para recuperar milhões em dinheiro de um avião caído, enquanto criminosos os perseguem sobre um lago cujo gelo está cedendo."
+    },
+    {
+      "titulo": "O Troll da Montanha 2",
+      "ano": 2025,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/HxJ7TMvG/c8c1cc998a762ec4bb71d3f7ed85fc79.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20Troll%20da%20Montanha%202.mp4",
+      "sinopse": "Um novo troll poderoso desperta e espalha o caos pela Noruega. Nora, Andreas e o capitão Kris precisam de novos aliados e armas, e buscam respostas na história antiga do país."
+    },
+    {
+      "titulo": "A Morte de Robin Hood",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fT4CVWh3/images-(17).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/The.Death.of.Robin.Hood.2026.1080p.Dublado.mp4",
+      "sinopse": "Em uma versão sombria da lenda, Robin Hood sobrevive por pouco a uma batalha que julgava ser a última e, gravemente ferido, é cuidado por uma mulher misteriosa enquanto encara os erros e a violência do passado."
+    },
+    {
+      "titulo": "It: A Coisa",
+      "ano": 2017,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/2y6xc9Fx/345288-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/It%20A%20Coisa.mpeg",
+      "sinopse": "Um grupo de crianças enfrenta um palhaço maligno que ressurge a cada 27 anos para atacar a cidade de Derry."
+    },
+    {
+      "titulo": "It: A Coisa - Capítulo 2",
+      "ano": 2019,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/FFfRQ5sr/250px-It-Chapter-Two-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/It%20A%20Coisa%202.mpeg",
+      "sinopse": "Vinte e sete anos depois, os Perdedores voltam a Derry para enfrentar de novo o palhaço Pennywise."
+    },
+    {
+      "titulo": "Toy Story 5",
+      "ano": 2026,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/xjKFFqDv/Toy-Story-5-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Toy%20Story%205%202026%20WEB-DL%201080p%20x264%20DUAL%205.1%20(1).mp4",
+      "sinopse": "Bonnie se encanta por um tablet que cria mundos virtuais e se afasta dos brinquedos. Woody volta para ajudar a turma a lidar com a chegada da tecnologia."
+    },
+    {
+      "titulo": "Toy Story 4",
+      "ano": 2019,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/gJ9b858F/0464387.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Toy%20Story%204.mpeg",
+      "sinopse": "Woody e os brinquedos vivem uma nova aventura quando Forky, um novo brinquedo, foge de Bonnie."
+    },
+    {
+      "titulo": "Toy Story 3",
+      "ano": 2010,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/y8wbbRdX/Toy-Story-3-Poster.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Toy%20Story%203%20.mpeg",
+      "sinopse": "Quando Andy vai para a faculdade, os brinquedos vão parar em uma creche e precisam escapar."
+    },
+    {
+      "titulo": "Toy Story 2",
+      "ano": 1999,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/FHcZ1Brh/20127443.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Toy%20Story%202%20.mpeg",
+      "sinopse": "Woody é raptado por um colecionador e Buzz lidera os outros brinquedos em uma operação de resgate."
+    },
+    {
+      "titulo": "Toy Story",
+      "ano": 1995,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/nh8K8G4J/Toy-Story-1995-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Toy%20Story%20.mpeg",
+      "sinopse": "O caubói Woody vê sua posição ameaçada quando chega o novo brinquedo, o astronauta Buzz Lightyear."
+    },
+    {
+      "titulo": "Alvin e os Esquilos",
+      "ano": 2007,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/mZmThT84/20394609.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%20.mpeg",
+      "sinopse": "Os três esquilos cantores Alvin, Simon e Theodore se tornam estrelas da música com a ajuda de Dave."
+    },
+    {
+      "titulo": "Alvin e os Esquilos 2",
+      "ano": 2009,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/HLgqBNB6/images-(59).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%202.mpeg",
+      "sinopse": "Os esquilos entram em uma nova escola e enfrentam as Esquilettes em uma disputa musical."
+    },
+    {
+      "titulo": "Alvin e os Esquilos 3",
+      "ano": 2011,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/BbL7q5MV/images-(61).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%203.mpeg",
+      "sinopse": "Os Esquilos e as Esquilettes ficam à deriva em uma ilha tropical depois de um cruzeiro."
+    },
+    {
+      "titulo": "Alvin e os Esquilos na Estrada",
+      "ano": 2015,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/0jSgtqRF/090865-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Alvin%20e%20os%20Esquilos%20na%20estrada%20.mpeg",
+      "sinopse": "Após uma festa que sai do controle, Dave viaja a Miami e Alvin, Simon e Theodore, achando que ele vai pedir a namorada em casamento, tentam impedir o noivado."
+    },
+    {
+      "titulo": "Carros",
+      "ano": 2006,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/hP4bb1Lt/e57d8af5744277576067a5b04a952db1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Carros.mpeg",
+      "sinopse": "O carro de corrida Relâmpago McQueen aprende que a amizade vale mais do que a fama ao parar na pequena Radiator Springs."
+    },
+    {
+      "titulo": "Carros 2",
+      "ano": 2011,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/sDB1rBy7/Carros-2-poster.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Carros%202%20.mpeg",
+      "sinopse": "Relâmpago McQueen e Mate se envolvem em espionagem internacional durante o Grande Prêmio Mundial."
+    },
+    {
+      "titulo": "Carros 3",
+      "ano": 2017,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/nLdCxqsk/Carros-3-(2017)-P-ster.webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Carros%203%20.mpeg",
+      "sinopse": "Relâmpago McQueen precisa enfrentar a nova geração de carros de corrida para provar que ainda pode vencer."
+    },
+    {
+      "titulo": "Deadpool",
+      "ano": 2016,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/k5kPW5zL/images-(62).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Deadpool.mpeg",
+      "sinopse": "O mercenário Wade Wilson, transformado em Deadpool, parte em busca de vingança contra o homem que o desfigurou."
+    },
+    {
+      "titulo": "Deadpool 2",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/FzCZJYnj/images-(68).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Deadpool%202.mpeg",
+      "sinopse": "Deadpool forma a X-Force para proteger um jovem mutante da fúria do guerreiro Cable."
+    },
+    {
+      "titulo": "Sonic: O Filme",
+      "ano": 2020,
+      "categoria": "Aventura",
+      "capa": "https://i.postimg.cc/d1bdMGXp/Sonic-the-Hedgehog-2019-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Sonic.mpeg",
+      "sinopse": "Sonic, o ouriço azul, vai parar na Terra e precisa de um policial local para escapar do Dr. Robotnik."
+    },
+    {
+      "titulo": "A Hora do Lobisomem",
+      "ano": 1985,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/7hCBDZd0/MV5BZWY5ZTc1MWMt-Nm-Ew-ZC00Mz-Yw-LWI5NTkt-Yz-Ay-ODJm-OGRk-Mj-M2Xk-Ey-Xk-Fqc-Gc-V1.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/proxy.mp4",
+      "sinopse": "Marty, garoto paraplégico de uma cidadezinha do interior, acredita que um lobisomem está por trás de mortes misteriosas e, com a ajuda da irmã, tenta caçá-lo sem que ninguém acredite."
+    },
+    {
+      "titulo": "Código de Vingança",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/SN16DsFV/MV5BYj-Zj-Nj-Vh-YTMt-Mj-M4MS00Zjhm-LWFh-MWIt-ZGY2MGUw-Mz-Fi-Zj-Rk-Xk-Ey-Xk-Fqc-Gc-V1-QL75-UY281-CR1.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/c%C3%B3digovingan%C3%A7a%202026.mp4",
+      "sinopse": "Cole Reed, funcionário de um bilionário, é acusado injustamente após testemunhar o assassinato do patrão e embarca num navio cargueiro para se vingar, descobrindo uma conspiração internacional."
+    },
+    {
+      "titulo": "Coyote vs. Acme",
+      "ano": 2026,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/ncmFwR6t/images-(61).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Coyote_Vs_Acme_2026_1080p_WEBRip_mkv.mp4",
+      "sinopse": "Wile E. Coyote, farto de fracassar contra o Papa-Léguas, culpa a ACME, fabricante de seus equipamentos, e decide enfrentar a empresa."
+    },
+    {
+      "titulo": "As Crônicas de Nárnia",
+      "ano": 2005,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/RFX5N8qT/20103781.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/as%20cr%C3%B4nica%20de%20N%C3%A1rnia%20.mp4",
+      "sinopse": "Quatro irmãos descobrem um mundo mágico pelo guarda-roupa e lutam ao lado de Aslam contra a Feiticeira Branca."
+    },
+    {
+      "titulo": "Homem-Aranha: Um Novo Dia",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/sfbySkTd/images-(70).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/homem%20aranha%20um%20novo%20dia.mp4",
+      "sinopse": "Quatro anos depois, Peter Parker não existe mais publicamente e o Homem-Aranha volta a ser um protetor anônimo de Nova York, até crimes incomuns o levarem a um mistério maior."
+    },
+    {
+      "titulo": "Coração Partido",
+      "ano": 2025,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/SQYbyZk7/images-(74).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/cora%C3%A7%C3%A3o%20partido.mp4",
+      "sinopse": "Polina, nova na escola e vítima de bullying, aceita fingir namoro com Bars, o aluno mais temido, em troca de proteção. Aos poucos, o sentimento entre os dois ganha ares de verdade."
+    },
+    {
+      "titulo": "Sete Atiradores",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/tg488kBZ/images-(76).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/sete%20atiradores.mp4",
+      "sinopse": "Uma ex-atiradora de elite que vive escondida em um rancho na Austrália precisa reunir sua antiga equipe quando um senhor da guerra obcecado por vingança ameaça sua filha."
+    },
+    {
+      "titulo": "Carta de Redenção",
+      "ano": 2025,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/MH7snfsk/images-(78).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/carta%20de%20reden%C3%A7%C3%A3o.mp4"
+    },
+    {
+      "titulo": "Ponte para Terabítia",
+      "ano": 2007,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/sfNqq5W1/images-(68).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/ponte%20para%20teraptia.mp4",
+      "sinopse": "Dois jovens criam um reino imaginário na floresta que os ajuda a lidar com a realidade."
+    },
+    {
+      "titulo": "Missão Refúgio",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/C57zFDZb/6a86a9c3b5beaabb4c5363f40a4af787-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/miss%C3%A3o/miss%C3%A3o%20ref%C3%BAgio.mp4",
+      "sinopse": "Um ex-assassino que vive isolado em uma ilha resgata uma menina durante uma tempestade e, para protegê-la, precisa deixar a aposentadoria e enfrentar o passado."
+    },
+    {
+      "titulo": "Resgate em Grande Altitude",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/4dZfmyTf/uq-Cmt-IJudf-BXo-VTM8Vy0Vk8Gbhn.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/Resgate%20em%20Grande%20Altitude.mp4",
+      "sinopse": "Ativistas tomam a gala de uma empresa de energia em Londres e fazem 300 reféns. Uma ex-militar que limpa janelas, pendurada do lado de fora do prédio, é a única que pode salvá-los."
+    },
+    {
+      "titulo": "O Último Tiro Certo",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/zXMqT01c/7f6984563579b117e000f39f9f9a8f0178a4bd22308c039e25f4428a6828ecea-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/O%20%C3%9Altimo%20Tiro%20Certo.mp4",
+      "sinopse": "Um militar da Marinha dos EUA precisa enfrentar seu antigo parceiro e o grupo de mercenários que ele lidera antes que consigam desativar o sistema antimíssil do país."
+    },
+    {
+      "titulo": "Werewolves",
+      "ano": 2024,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/QMMQT8kG/4db2b243c21424f935172e8f7be2ebe97969b8f3be585002bae0ba811e6dbc46.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/werewolves.mp4",
+      "sinopse": "Na noite de uma superlua, um ano após os humanos se transformarem em lobisomens, famílias tentam sobreviver enquanto cientistas correm para criar um soro que bloqueie o efeito da lua."
+    },
+    {
+      "titulo": "Duro de Matar",
+      "ano": 1988,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/3RJ5Dbn6/images-(62).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/duro%20de%20matar1.mp4",
+      "sinopse": "O policial John McClane enfrenta terroristas que tomaram um prédio em Los Angeles na noite de Natal."
+    },
+    {
+      "titulo": "Duro de Matar 2",
+      "ano": 1990,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/W135gcv0/DURO-DE-MATAR-2-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/dduro%20de%20matar2.mp4",
+      "sinopse": "John McClane enfrenta mais uma noite de Natal impossível, agora em um aeroporto dominado por mercenários."
+    },
+    {
+      "titulo": "Ninja War: Black Fox",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/wT3WsdHM/8cd863f6be8d033b5e0860548ba6f0c133d81f2b333291356f0a4a43d0fa68d4.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/ninja%20war%20black%20fox.mp4",
+      "sinopse": "Rikka, de uma linhagem ninja, parte em busca de vingança depois que o avô e o pai são mortos em uma invasão de uma empresa de armas que queria roubar suas pesquisas."
+    },
+    {
+      "titulo": "Operação Panda: A Tribo Mágica",
+      "ano": 2024,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/KzDZLMPN/images-(68).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/oopera%C3%A7%C3%A3o%20panda%20a%20tribo%20m%C3%A1gica.mp4",
+      "sinopse": "Uma quadrilha internacional volta a perseguir o panda Hu Hu, e Jackie e sua equipe se unem em uma nova missão para protegê-lo."
+    },
+    {
+      "titulo": "Unabomber",
+      "ano": 2021,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/pVBfVcFt/images-(69).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/uunabomber.mp4",
+      "sinopse": "Retrato da vida de Ted Kaczynski, vivido por Sharlto Copley, isolado em Lincoln, Montana, nos anos que antecederam sua prisão como o Unabomber."
+    },
+    {
+      "titulo": "Avatar: Fogo e Cinza",
+      "ano": 2025,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/hjmTQKZr/images-(61).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/AVTRFGOECNZS.mp4",
+      "sinopse": "Os Sully enfrentam um novo clã e novas ameaças em Pandora enquanto o conflito com os humanos se intensifica."
+    },
+    {
+      "titulo": "Homem-Aranha: Sem Volta Para Casa",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/qRHXLt3X/1541299.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/proxy.mp4",
+      "sinopse": "Com a identidade revelada, Peter pede ajuda ao Doutor Estranho, mas o feitiço abre o multiverso."
+    },
+    {
+      "titulo": "Eu e Você Contra o Mundo",
+      "ano": 2026,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/tg4YH9Gm/20260914-voce-eu-contra-o-mundo-papo-de-cinema-cartaz-(3).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Pasta%20do%20guzin/eu%20e%20voce%20contra%20o%20mundo.mp4"
+    },
+    {
+      "titulo": "60 Minutos",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/fTWg5QfP/IMG-862bb191-9ea5-4746-8b4f-43d07f01a5c3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/60minutos.mp4",
+      "sinopse": "Lutador de MMA a caminho da luta mais importante da carreira, Octavio corre contra o tempo para chegar à festa da filha e não perder a guarda, enquanto enfrenta pessoas perigosas."
+    },
+    {
+      "titulo": "A Volta do Todo Poderoso",
+      "ano": 2007,
+      "categoria": "Comédia",
+      "capa": "https://i.postimg.cc/xCYPCLsm/images-(62).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20volta%20do%20todo%20poderoso..mp4",
+      "sinopse": "Recém-eleito congressista, Evan se muda com a família para Washington e recebe a visita de Deus, que o manda construir uma arca antes de um dilúvio. Ele reluta, mas acaba aceitando."
+    },
+    {
+      "titulo": "Atraídos pelo Destino",
+      "ano": 2026,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/pLFQJs4D/images-(67).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/atra%C3%ADdos%20pelo%20destino.mp4",
+      "sinopse": "Marfil, filha de um empresário espanhol, é sequestrada em Nova York e reaparece sem memória. O pai contrata o guarda-costas Sebastian para protegê-la, e entre os dois nasce uma atração em meio a perigos."
+    },
+    {
+      "titulo": "Corrida Contra o Tempo",
+      "ano": 2026,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/xTkL9sfY/images-(69).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/corrida%20contra%20o%20tempo.mp4",
+      "sinopse": "Uma advogada vive uma corrida por Londres para resgatar o filho sequestrado, seguindo as instruções de um misterioso interlocutor ao telefone."
+    },
+    {
+      "titulo": "Mortal Kombat",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/xCTbh5xw/Mortal-Kombat-(2021).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Mortal%20Kombat.mp4",
+      "sinopse": "O lutador Cole Young descobre seu destino ao se unir aos defensores da Terra no torneio Mortal Kombat."
+    },
+    {
+      "titulo": "Terra À Deriva 2",
+      "ano": 2023,
+      "categoria": "Ficção",
+      "capa": "https://i.postimg.cc/fW1fS4gw/images-(72).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Terra%20a%20deriva%202.mp4",
+      "sinopse": "A humanidade tenta sobreviver a uma catástrofe global enquanto cria um plano para salvar o planeta."
+    },
+    {
+      "titulo": "A Maldição do Tubarão",
+      "ano": 2023,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/x8QjB1TW/images-(73).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/A.Maldicao.do.Tubarao%20(1).mp4"
+    },
+    {
+      "titulo": "O Escorpião Rei",
+      "ano": 2002,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/g0vhDdF7/IMG-f5393520-9457-405f-83bf-c8e8aec9054d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/O.Escorpiao.Rei.1.mp4",
+      "sinopse": "O guerreiro Mathayus, o Escorpião Rei, é contratado para matar uma feiticeira e acaba se envolvendo em uma guerra."
+    },
+    {
+      "titulo": "O Escorpião Rei 2: A Ascensão de um Guerreiro",
+      "ano": 2008,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/x8qqWVhK/IMG-29e2cb1d-46c5-40c4-9918-0de681c3ab10.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/O.Escorpiao.Rei.2.mp4",
+      "sinopse": "Mathayus busca vingança e lidera um exército contra um rei tirano."
+    },
+    {
+      "titulo": "O Escorpião Rei 3: Batalha pela Redenção",
+      "ano": 2012,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/3RfxjbNd/IMG-b01b043b-6ef5-4659-b8db-17af36707d76.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/escorpi%C3%A3o3.mp4",
+      "sinopse": "Mathayus se une a antigos inimigos para derrotar um senhor da guerra que ameaça o reino."
+    },
+    {
+      "titulo": "O Escorpião Rei 5: O Livro das Almas",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/J4Ntvxdp/IMG-65acb423-225e-437e-a223-b35ab6a1eec0.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/escorpi%C3%A3o%20rei%205.mp4",
+      "sinopse": "O Escorpião Rei se une a Tala, irmã do rei núbio, na busca pelo Livro das Almas, relíquia que pode ajudá-los a derrotar um senhor da guerra."
+    },
+    {
+      "titulo": "Drácula: A Última Viagem do Deméter",
+      "ano": 2023,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/y6L03gxT/image-4.png",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/Dr%C3%A1cula%20a%20%C3%BAltima%20viagem%20do%20demeter.mp4",
+      "sinopse": "A tripulação do navio Deméter enfrenta um terror a bordo na viagem que levou Drácula à Inglaterra."
+    },
+    {
+      "titulo": "Velozes e Furiosos",
+      "ano": 2001,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/T1jsHRpF/IMG-ff981530-a4c3-498a-bc70-721356b775fe.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos2001.mp4",
+      "sinopse": "O policial Brian se infiltra em uma gangue de corridas de rua liderada por Dominic Toretto."
+    },
+    {
+      "titulo": "Velozes e Furiosos: Desafio em Tóquio",
+      "ano": 2006,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/KjsGjr5m/ecc7f2b505efef5964205cd522e1174178f56cccc2e9a8413c20e2dba1f72f80.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%20desafio%20em%20toquio.mp4",
+      "sinopse": "Sean, um adolescente rebelde, vai ao Japão e se envolve no mundo das corridas de drift."
+    },
+    {
+      "titulo": "Velozes e Furiosos 4",
+      "ano": 2009,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VsSLZ2s0/IMG-b65ee3fa-1a45-4983-b465-0f2ac3a38146.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos4.mp4",
+      "sinopse": "Dom e Brian se reúnem para derrubar um traficante e vingar uma morte."
+    },
+    {
+      "titulo": "Velozes e Furiosos 5: Operação Rio",
+      "ano": 2011,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/tg9K0nhk/IMG-29514c56-a641-4afb-90e3-aad182630c39.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%205operscao%20rio.mp4",
+      "sinopse": "Dom, Brian e Mia planejam um grande assalto no Rio de Janeiro e são perseguidos por Hobbs."
+    },
+    {
+      "titulo": "Velozes e Furiosos 6",
+      "ano": 2013,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/hPT4cxd4/IMG-959ee3f5-4196-4354-9835-6a09da0d3ba1.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%206.mp4",
+      "sinopse": "Hobbs pede ajuda de Dom e sua equipe para derrubar um grupo de mercenários."
+    },
+    {
+      "titulo": "Velozes e Furiosos 7",
+      "ano": 2015,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/R0Vv7Db0/IMG-5b563910-861f-450d-8e35-4c5a9296e893.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos7.mp4",
+      "sinopse": "Dom e sua equipe enfrentam Deckard Shaw, que busca vingança pela morte do irmão."
+    },
+    {
+      "titulo": "Velozes e Furiosos 8",
+      "ano": 2017,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/nc4x6JyH/IMG-840bcde0-7b1f-4ac5-a84b-8d0851131ee3.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos8.mp4",
+      "sinopse": "Dom é manipulado por uma misteriosa vilã e trai sua família, que precisa trazê-lo de volta."
+    },
+    {
+      "titulo": "Velozes e Furiosos: Hobbs & Shaw",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/SQLt4xKK/IMG-83803a7c-f17d-4fcf-b71e-199763002338.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%20Robin%20e%20shaw.mp4",
+      "sinopse": "O agente Hobbs e o ex-mercenário Shaw formam uma dupla improvável para enfrentar um vilão ciborgue."
+    },
+    {
+      "titulo": "Velozes e Furiosos 9",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/wTp85r16/IMG-7efa4438-105b-4020-b9e2-c5e2c58c58b0.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos%209.mp4",
+      "sinopse": "Dom e sua família enfrentam seu passado e um inimigo ligado a um segredo antigo."
+    },
+    {
+      "titulo": "Velozes e Furiosos 10",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/vZYJk6Ld/IMG-67a558bf-050b-4f7c-bea7-39d339894d0b.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/velozes%20e%20furiosos10.mp4",
+      "sinopse": "Dom enfrenta Dante, um novo inimigo que quer destruir tudo o que ele ama."
+    },
+    {
+      "titulo": "Os Vingadores",
+      "ano": 2012,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/VvVqrRnX/IMG-d7fc30a9-3117-4771-939b-21dfc7f5cdf4.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores.mp4",
+      "sinopse": "Nick Fury reúne Homem de Ferro, Capitão América, Thor, Hulk e outros para deter Loki e sua invasão alienígena."
+    },
+    {
+      "titulo": "Vingadores: Era de Ultron",
+      "ano": 2015,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/rwS4Mcnb/IMG-07ffb357-87a8-4785-ba52-ee13d52e3679.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores%20a%20era%20de%20Ultron%20.mp4",
+      "sinopse": "Os Vingadores enfrentam Ultron, uma inteligência artificial criada por Tony Stark que quer extinguir a humanidade."
+    },
+    {
+      "titulo": "Vingadores: Guerra Infinita",
+      "ano": 2018,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/WpCqZtQs/IMG-53530941-5499-4c2c-86e5-8b90c12e013d.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores%20guerra%20infinita.mp4",
+      "sinopse": "Os Vingadores e seus aliados se unem para impedir que Thanos reúna as Joias do Infinito."
+    },
+    {
+      "titulo": "Vingadores: Ultimato",
+      "ano": 2019,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/rF4gbD47/IMG-77161c2b-6d77-4d6a-ba6c-7b4928a1c3cf.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/os%20vingadores%20ultimato.mp4",
+      "sinopse": "Depois do estalar de Thanos, os heróis restantes tentam desfazer o desastre em uma última missão."
+    },
+    {
+      "titulo": "365 Dias: Hoje",
+      "ano": 2022,
+      "categoria": "Romance",
+      "capa": "https://i.postimg.cc/wxhr8cw7/images-(7).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/365%20Dias%20Hoje.mp4",
+      "sinopse": "Laura e Massimo enfrentam novas crises em seu relacionamento, em meio a segredos e ciúmes."
+    },
+    {
+      "titulo": "A Freira 2",
+      "ano": 2023,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/pL9YxPPJ/images-(8).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/a%20freira%202.mp4",
+      "sinopse": "Quatro anos depois, uma investigação sobre a morte de um padre leva Irmã Irene a enfrentar de novo o demônio Valak."
+    },
+    {
+      "titulo": "A Mulher Rei",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/jjHfd5mC/images-(10).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/A%20Mulher%20Rei.mp4",
+      "sinopse": "A general Nanisca lidera as guerreiras Agojie para proteger o reino de Daomé contra seus inimigos."
+    },
+    {
+      "titulo": "A Substância",
+      "ano": 2024,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/T3mLC1RC/images-(12).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/a%20subst%C3%A2ncia.mp4",
+      "sinopse": "Uma atriz em declínio usa uma substância misteriosa que cria uma versão mais jovem e perfeita de si mesma."
+    },
+    {
+      "titulo": "Alerta Vermelho",
+      "ano": 2021,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/15Vf3XNX/images-(14).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Alerta%20Vermelho.mp4",
+      "sinopse": "Um agente do FBI persegue a ladra de arte mais procurada do mundo, e a captura leva a um golpe inesperado."
+    },
+    {
+      "titulo": "As Marvels",
+      "ano": 2023,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/1t4y77Gx/images-(15).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/As%20Marvels.mp4",
+      "sinopse": "Carol Danvers, Kamala Khan e Monica Rambeau trocam de lugar sempre que usam seus poderes e precisam se unir."
+    },
+    {
+      "titulo": "Bailarina: Do Universo de John Wick",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/X79BgXN1/images-(16).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/bailarina%20do%20universo%20de%20Jhon%20wick.mp4",
+      "sinopse": "Eve, uma jovem assassina treinada na tradição Ruska Roma, busca vingança pela morte do pai."
+    },
+    {
+      "titulo": "Cuidado com Quem Chama",
+      "ano": 2020,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/1Rq894F4/images-(17).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Cuidado%20com%20Quem%20Chama.mp4",
+      "sinopse": "Durante uma sessão espírita online em plena quarentena, um grupo de amigos desperta uma entidade maligna."
+    },
+    {
+      "titulo": "Doutor Estranho no Multiverso da Loucura",
+      "ano": 2022,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/tThGc0sS/495786.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Doutor%20Estranho%20no%20Multiverso%20da%20Loucura.mp4",
+      "sinopse": "Doutor Estranho viaja pelo multiverso para proteger uma jovem que atrai a ira da Feiticeira Escarlate."
+    },
+    {
+      "titulo": "Lightyear",
+      "ano": 2022,
+      "categoria": "Animação",
+      "capa": "https://i.postimg.cc/tT7Vd57g/3222857.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Lightyear.mp4",
+      "sinopse": "O Patrulheiro Espacial Buzz Lightyear fica preso em um planeta hostil e tenta voltar para casa."
+    },
+    {
+      "titulo": "Madame Teia",
+      "ano": 2024,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/R0pRKGvN/images-(21).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Madame%20Teia.mp4",
+      "sinopse": "Cassandra Webb, uma paramédica, descobre que tem poderes de clarividência e precisa proteger três jovens."
+    },
+    {
+      "titulo": "O Homem do Norte",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/0NjGkm7P/The-Northman-2022.jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/O%20Homem%20do%20Norte.mp4",
+      "sinopse": "Um jovem príncipe viking busca vingança contra o tio que matou seu pai e sequestrou sua mãe."
+    },
+    {
+      "titulo": "Oppenheimer",
+      "ano": 2023,
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/brmNwGQF/images-(22).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Oppenheimer.mp4",
+      "sinopse": "A história de J. Robert Oppenheimer e o desenvolvimento da bomba atômica durante a Segunda Guerra Mundial."
+    },
+    {
+      "titulo": "Doutor Estranho",
+      "ano": 2016,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/TYx3f0Gr/images-(19).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/filmes%20novos%20a%20ser%20botado/Doutor%20Estranho.mp4",
+      "sinopse": "O neurocirurgião Stephen Strange perde o uso das mãos e busca cura no Nepal, onde se torna um mago."
+    },
+    {
+      "titulo": "O Predador",
+      "ano": 1987,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/Pqjby9NC/images-(4).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20predador/OPRDR.mp4"
+    },
+    {
+      "titulo": "Predadores",
+      "ano": 2010,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/L6gzp21X/images-(6).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20predador/PRDRS2.mp4"
+    },
+    {
+      "titulo": "O Predador: A Caçada",
+      "ano": 2022,
+      "categoria": "Ação",
+      "capa": "https://i.postimg.cc/mZJHVJ5g/3429780-(2).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20predador/OPRDRACACDA.mp4"
+    },
+    {
+      "titulo": "Pague para Entrar, Reze para Sair",
+      "ano": 1981,
+      "categoria": "Terror",
+      "capa": "https://i.postimg.cc/XX6X3MRB/images-(9).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Filmes%20predador/pague%20para%20entra%20reze%20para%20sair.mp4"
+    },
+    {
+      "titulo": "Harry Potter e a Câmara Secreta",
+      "ano": 2002,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/j2nXkMkR/images-(11).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20a%20C%C3%A2mara%20Secreta.mp4"
+    },
+    {
+      "titulo": "Harry Potter e a Ordem da Fênix",
+      "ano": 2007,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/bNkXZgNn/20107766-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20a%20Ordem%20da%20F%C3%AAnix.mp4"
+    },
+    {
+      "titulo": "Harry Potter e a Pedra Filosofal",
+      "ano": 2001,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/yxRGS6Kp/21f17c9e863ce68047046a2d88bbdae5-L-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20a%20Pedra%20Filosofal.mp4"
+    },
+    {
+      "titulo": "Harry Potter e as Relíquias da Morte – Parte 1",
+      "ano": 2010,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/VNHZG0L9/373bfbaf8847694fa37fbd77b4ead796f1aca9c4f34622b24045216ee145f9cd-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20as%20Rel%C3%ADquias%20da%20Morte%20%E2%80%93%20Parte%201.mp4"
+    },
+    {
+      "titulo": "Harry Potter e as Relíquias da Morte – Parte 2",
+      "ano": 2011,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/DyKjMTnw/Harry-Potter-e-as-Rel-quias-da-Morte-Parte-2-(1).webp",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20as%20Rel%C3%ADquias%20da%20Morte%20%E2%80%93%20Parte%202.mp4"
+    },
+    {
+      "titulo": "Harry Potter e o Cálice de Fogo",
+      "ano": 2005,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/W4KS6R5T/MV5BNWJi-NDVk-Yjkt-ZDhj-Yy00NDU2LWFj-Njgt-NDI3MWJi-Yz-Vh-OGQ1Xk-Ey-Xk-Fqc-Gc-V1-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20o%20C%C3%A1lice%20de%20Fogo.mp4"
+    },
+    {
+      "titulo": "Harry Potter e o Enigma do Príncipe",
+      "ano": 2009,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/rFcj9NNK/47130c00188b444155b46e4d9423cc780d344f700fb53e0ccdd91e34e4092b9b-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20o%20Enigma%20do%20Pr%C3%ADncipe.mp4"
+    },
+    {
+      "titulo": "Harry Potter e o Prisioneiro de Azkaban",
+      "ano": 2004,
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/Yqb6zKSs/c3252cec645a77bc7bfb61a99e5737b02b1e6d4768b245a52d21ac541490c048-(1).jpg",
+      "video": "https://wolf-channel-cdn.b-cdn.net/Harry/Harry%20Potter%20e%20o%20Prisioneiro%20de%20Azkaban.mp4"
+    }
+  ]
+}
