@@ -27,7 +27,27 @@
             { "numero": 17, "titulo": "Meu Nome É Farah - Episódio 17", "video": "https://wolf-channel-cdn.b-cdn.net/Farah/17.mp4" },
             { "numero": 18, "titulo": "Meu Nome É Farah - Episódio 18", "video": "https://wolf-channel-cdn.b-cdn.net/Farah/18.mp4" },
             { "numero": 19, "titulo": "Meu Nome É Farah - Episódio 19", "video": "https://wolf-channel-cdn.b-cdn.net/Farah/19.mp4" },
-            { "numero": 20, "titulo": "Meu Nome É Farah - Episódio 20", "video": "https://wolf-channel-cdn.b-cdn.net/Farah/20.mp4" }
+            { "numero": 20, "titulo": "Meu Nome É Farah - Episódio 20", "video": "https://wolf-channel-cdn.b-cdn.net/Farah/20.mp4" },
+            { "numero": 21, "titulo": "Meu Nome É Farah - Episódio 21", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/meu%20nome%20%C3%A9%20farah%20ep21.mp4" },
+            { "numero": 22, "titulo": "Meu Nome É Farah - Episódio 22", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/22.mp4" },
+            { "numero": 23, "titulo": "Meu Nome É Farah - Episódio 23", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/23.mp4" },
+            { "numero": 24, "titulo": "Meu Nome É Farah - Episódio 24", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/24.mp4" },
+            { "numero": 25, "titulo": "Meu Nome É Farah - Episódio 25", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/25.mp4" },
+            { "numero": 26, "titulo": "Meu Nome É Farah - Episódio 26", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/26.mp4" },
+            { "numero": 27, "titulo": "Meu Nome É Farah - Episódio 27", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/27.mp4" },
+            { "numero": 28, "titulo": "Meu Nome É Farah - Episódio 28", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/28.mp4" },
+            { "numero": 29, "titulo": "Meu Nome É Farah - Episódio 29", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/29.mp4" },
+            { "numero": 30, "titulo": "Meu Nome É Farah - Episódio 30", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/30.mp4" },
+            { "numero": 31, "titulo": "Meu Nome É Farah - Episódio 31", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/31.mp4" },
+            { "numero": 32, "titulo": "Meu Nome É Farah - Episódio 32", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/32.mp4" },
+            { "numero": 33, "titulo": "Meu Nome É Farah - Episódio 33", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/33.mp4" },
+            { "numero": 34, "titulo": "Meu Nome É Farah - Episódio 34", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/34.mp4" },
+            { "numero": 35, "titulo": "Meu Nome É Farah - Episódio 35", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/35.mp4" },
+            { "numero": 36, "titulo": "Meu Nome É Farah - Episódio 36", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/36.mp4" },
+            { "numero": 37, "titulo": "Meu Nome É Farah - Episódio 37", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/37.mp4" },
+            { "numero": 38, "titulo": "Meu Nome É Farah - Episódio 38", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/38.mp4" },
+            { "numero": 39, "titulo": "Meu Nome É Farah - Episódio 39", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/39.mp4" },
+            { "numero": 40, "titulo": "Meu Nome É Farah - Episódio 40", "video": "https://wolf-channel-cdn.b-cdn.net/Farah%202/40.mp4" }
           ]
         }
       ]
