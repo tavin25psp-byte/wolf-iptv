@@ -1,6 +1,854 @@
 {
   "series": [
     {
+      "titulo": "Devil May Cry",
+      "categoria": "Anime",
+      "capa": "https://i.postimg.cc/zv9DrRNB/Devil-May-Cry-(serie-de-televisao).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%201/DVLMYCRY2025T01EP08.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP01.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP02.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP03.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP04.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP05.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP06.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP07.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "https://wolf-channel-cdn.b-cdn.net/Devil%20may%20cry%20season%202/DVLMYCRY2025T02EP08.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Solo Leveling",
+      "categoria": "Anime - Crunchyroll",
+      "capa": "https://i.postimg.cc/NfqwQtTm/IMG-030aa596-f630-4e09-87e0-e394ccc7df1e.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/242091.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/247244.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/247245.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/247246.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/248488.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/249873.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/251550.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/253371.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/254217.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/255068.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/256592.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/257012.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/307277.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/310763.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/310764.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/311378.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/313057.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/313678.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/315661.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/316554.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/317194.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/318062.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/318385.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/318932.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/319893.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Kaiju No. 8",
+      "categoria": "Anime - Crunchyroll",
+      "capa": "https://i.postimg.cc/sXQtRHgf/IMG-e01a9f69-75d3-43aa-a5b8-cb162b1c66c2.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262250.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262251.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262252.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262253.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262254.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262255.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/263031.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/263857.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/264691.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/265587.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/277887.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/277888.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 0,
+              "titulo": "Episódio 0",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/333588.mp4"
+            },
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/336100.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/336722.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/337953.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/339337.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/340194.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/340901.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/341197.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/342888.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/343833.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/344705.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/346582.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Ataque dos Titas",
+      "categoria": "Anime - Funimation Now",
+      "capa": "https://i.postimg.cc/gJm6CQDT/IMG-bee8b783-38f1-4d38-9246-100021a7fb79.jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89434.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89435.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89436.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89437.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89438.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89439.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89440.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89441.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89442.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89443.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89444.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89445.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89446.mp4"
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89447.mp4"
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89448.mp4"
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89449.mp4"
+            },
+            {
+              "numero": 17,
+              "titulo": "Episódio 17",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89450.mp4"
+            },
+            {
+              "numero": 18,
+              "titulo": "Episódio 18",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89451.mp4"
+            },
+            {
+              "numero": 19,
+              "titulo": "Episódio 19",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89452.mp4"
+            },
+            {
+              "numero": 20,
+              "titulo": "Episódio 20",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89453.mp4"
+            },
+            {
+              "numero": 21,
+              "titulo": "Episódio 21",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89454.mp4"
+            },
+            {
+              "numero": 22,
+              "titulo": "Episódio 22",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89455.mp4"
+            },
+            {
+              "numero": 23,
+              "titulo": "Episódio 23",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89456.mp4"
+            },
+            {
+              "numero": 24,
+              "titulo": "Episódio 24",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89457.mp4"
+            },
+            {
+              "numero": 25,
+              "titulo": "Episódio 25",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89458.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89459.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89460.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89461.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89462.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89463.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89464.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89465.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89466.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89467.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89468.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89469.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89470.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93661.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93662.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93663.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93664.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93665.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93666.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93667.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93668.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93669.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93670.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93671.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93672.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93673.mp4"
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93674.mp4"
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93675.mp4"
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93676.mp4"
+            },
+            {
+              "numero": 17,
+              "titulo": "Episódio 17",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93677.mp4"
+            },
+            {
+              "numero": 18,
+              "titulo": "Episódio 18",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93678.mp4"
+            },
+            {
+              "numero": 19,
+              "titulo": "Episódio 19",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93679.mp4"
+            },
+            {
+              "numero": 20,
+              "titulo": "Episódio 20",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93680.mp4"
+            },
+            {
+              "numero": 21,
+              "titulo": "Episódio 21",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93681.mp4"
+            },
+            {
+              "numero": 22,
+              "titulo": "Episódio 22",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93682.mp4"
+            }
+          ]
+        },
+        {
+          "numero": 4,
+          "episodios": [
+            {
+              "numero": 1,
+              "titulo": "Episódio 1",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93683.mp4"
+            },
+            {
+              "numero": 2,
+              "titulo": "Episódio 2",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93684.mp4"
+            },
+            {
+              "numero": 3,
+              "titulo": "Episódio 3",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96036.mp4"
+            },
+            {
+              "numero": 4,
+              "titulo": "Episódio 4",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96037.mp4"
+            },
+            {
+              "numero": 5,
+              "titulo": "Episódio 5",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96038.mp4"
+            },
+            {
+              "numero": 6,
+              "titulo": "Episódio 6",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96039.mp4"
+            },
+            {
+              "numero": 7,
+              "titulo": "Episódio 7",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98767.mp4"
+            },
+            {
+              "numero": 8,
+              "titulo": "Episódio 8",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98768.mp4"
+            },
+            {
+              "numero": 9,
+              "titulo": "Episódio 9",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98769.mp4"
+            },
+            {
+              "numero": 10,
+              "titulo": "Episódio 10",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98770.mp4"
+            },
+            {
+              "numero": 11,
+              "titulo": "Episódio 11",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/100151.mp4"
+            },
+            {
+              "numero": 12,
+              "titulo": "Episódio 12",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/100719.mp4"
+            },
+            {
+              "numero": 13,
+              "titulo": "Episódio 13",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/101801.mp4"
+            },
+            {
+              "numero": 14,
+              "titulo": "Episódio 14",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/102569.mp4"
+            },
+            {
+              "numero": 15,
+              "titulo": "Episódio 15",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/104093.mp4"
+            },
+            {
+              "numero": 16,
+              "titulo": "Episódio 16",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/104434.mp4"
+            },
+            {
+              "numero": 17,
+              "titulo": "Episódio 17",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151782.mp4"
+            },
+            {
+              "numero": 18,
+              "titulo": "Episódio 18",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151783.mp4"
+            },
+            {
+              "numero": 19,
+              "titulo": "Episódio 19",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151784.mp4"
+            },
+            {
+              "numero": 20,
+              "titulo": "Episódio 20",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151955.mp4"
+            },
+            {
+              "numero": 21,
+              "titulo": "Episódio 21",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/155627.mp4"
+            },
+            {
+              "numero": 22,
+              "titulo": "Episódio 22",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/156219.mp4"
+            },
+            {
+              "numero": 23,
+              "titulo": "Episódio 23",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/156859.mp4"
+            },
+            {
+              "numero": 24,
+              "titulo": "Episódio 24",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/157554.mp4"
+            },
+            {
+              "numero": 25,
+              "titulo": "Episódio 25",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159650.mp4"
+            },
+            {
+              "numero": 26,
+              "titulo": "Episódio 26",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159651.mp4"
+            },
+            {
+              "numero": 27,
+              "titulo": "Episódio 27",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159652.mp4"
+            },
+            {
+              "numero": 28,
+              "titulo": "Episódio 28",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159653.mp4"
+            },
+            {
+              "numero": 29,
+              "titulo": "Episódio 29",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/240245.mp4"
+            },
+            {
+              "numero": 30,
+              "titulo": "Episódio 30",
+              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/240246.mp4"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "titulo": "Naruto Shippuden",
       "categoria": "Anime - Crunchyroll",
       "capa": "https://i.postimg.cc/hGPBN0mY/810Xo-d8xl-L.jpg",
@@ -7754,7 +8602,7 @@
     {
       "titulo": "Boku no Hero Academia",
       "categoria": "Anime - Funimation Now",
-      "capa": "http://revendaimperio.net/images/_small.jpg",
+      "capa": "https://i.postimg.cc/jjrWfmBB/IMG-1b0e1816-90c8-40aa-be97-908fd3dda16e.jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -10937,481 +11785,9 @@
       ]
     },
     {
-      "titulo": "Ataque dos Titas",
-      "categoria": "Anime - Funimation Now",
-      "capa": "http://revendaimperio.net/images/jBWcxrPR2SlxPyt5jMQa1vZWF66_small.jpg",
-      "temporadas": [
-        {
-          "numero": 1,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89434.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89435.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89436.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89437.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89438.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89439.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89440.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89441.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89442.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89443.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89444.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89445.mp4"
-            },
-            {
-              "numero": 13,
-              "titulo": "Episódio 13",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89446.mp4"
-            },
-            {
-              "numero": 14,
-              "titulo": "Episódio 14",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89447.mp4"
-            },
-            {
-              "numero": 15,
-              "titulo": "Episódio 15",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89448.mp4"
-            },
-            {
-              "numero": 16,
-              "titulo": "Episódio 16",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89449.mp4"
-            },
-            {
-              "numero": 17,
-              "titulo": "Episódio 17",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89450.mp4"
-            },
-            {
-              "numero": 18,
-              "titulo": "Episódio 18",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89451.mp4"
-            },
-            {
-              "numero": 19,
-              "titulo": "Episódio 19",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89452.mp4"
-            },
-            {
-              "numero": 20,
-              "titulo": "Episódio 20",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89453.mp4"
-            },
-            {
-              "numero": 21,
-              "titulo": "Episódio 21",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89454.mp4"
-            },
-            {
-              "numero": 22,
-              "titulo": "Episódio 22",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89455.mp4"
-            },
-            {
-              "numero": 23,
-              "titulo": "Episódio 23",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89456.mp4"
-            },
-            {
-              "numero": 24,
-              "titulo": "Episódio 24",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89457.mp4"
-            },
-            {
-              "numero": 25,
-              "titulo": "Episódio 25",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89458.mp4"
-            }
-          ]
-        },
-        {
-          "numero": 2,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89459.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89460.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89461.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89462.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89463.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89464.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89465.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89466.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89467.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89468.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89469.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/89470.mp4"
-            }
-          ]
-        },
-        {
-          "numero": 3,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93661.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93662.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93663.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93664.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93665.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93666.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93667.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93668.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93669.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93670.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93671.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93672.mp4"
-            },
-            {
-              "numero": 13,
-              "titulo": "Episódio 13",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93673.mp4"
-            },
-            {
-              "numero": 14,
-              "titulo": "Episódio 14",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93674.mp4"
-            },
-            {
-              "numero": 15,
-              "titulo": "Episódio 15",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93675.mp4"
-            },
-            {
-              "numero": 16,
-              "titulo": "Episódio 16",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93676.mp4"
-            },
-            {
-              "numero": 17,
-              "titulo": "Episódio 17",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93677.mp4"
-            },
-            {
-              "numero": 18,
-              "titulo": "Episódio 18",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93678.mp4"
-            },
-            {
-              "numero": 19,
-              "titulo": "Episódio 19",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93679.mp4"
-            },
-            {
-              "numero": 20,
-              "titulo": "Episódio 20",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93680.mp4"
-            },
-            {
-              "numero": 21,
-              "titulo": "Episódio 21",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93681.mp4"
-            },
-            {
-              "numero": 22,
-              "titulo": "Episódio 22",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93682.mp4"
-            }
-          ]
-        },
-        {
-          "numero": 4,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93683.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/93684.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96036.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96037.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96038.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/96039.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98767.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98768.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98769.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/98770.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/100151.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/100719.mp4"
-            },
-            {
-              "numero": 13,
-              "titulo": "Episódio 13",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/101801.mp4"
-            },
-            {
-              "numero": 14,
-              "titulo": "Episódio 14",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/102569.mp4"
-            },
-            {
-              "numero": 15,
-              "titulo": "Episódio 15",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/104093.mp4"
-            },
-            {
-              "numero": 16,
-              "titulo": "Episódio 16",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/104434.mp4"
-            },
-            {
-              "numero": 17,
-              "titulo": "Episódio 17",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151782.mp4"
-            },
-            {
-              "numero": 18,
-              "titulo": "Episódio 18",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151783.mp4"
-            },
-            {
-              "numero": 19,
-              "titulo": "Episódio 19",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151784.mp4"
-            },
-            {
-              "numero": 20,
-              "titulo": "Episódio 20",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/151955.mp4"
-            },
-            {
-              "numero": 21,
-              "titulo": "Episódio 21",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/155627.mp4"
-            },
-            {
-              "numero": 22,
-              "titulo": "Episódio 22",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/156219.mp4"
-            },
-            {
-              "numero": 23,
-              "titulo": "Episódio 23",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/156859.mp4"
-            },
-            {
-              "numero": 24,
-              "titulo": "Episódio 24",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/157554.mp4"
-            },
-            {
-              "numero": 25,
-              "titulo": "Episódio 25",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159650.mp4"
-            },
-            {
-              "numero": 26,
-              "titulo": "Episódio 26",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159651.mp4"
-            },
-            {
-              "numero": 27,
-              "titulo": "Episódio 27",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159652.mp4"
-            },
-            {
-              "numero": 28,
-              "titulo": "Episódio 28",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/159653.mp4"
-            },
-            {
-              "numero": 29,
-              "titulo": "Episódio 29",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/240245.mp4"
-            },
-            {
-              "numero": 30,
-              "titulo": "Episódio 30",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/240246.mp4"
-            }
-          ]
-        }
-      ]
-    },
-    {
       "titulo": "Black Clover",
       "categoria": "Anime - Crunchyroll",
-      "capa": "http://revendaimperio.net/images/752c876758b9ee608084b6b4fbca00cb.jpg",
+      "capa": "https://i.postimg.cc/XJ54gYFz/images-(14).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -12764,7 +13140,7 @@
     {
       "titulo": "Blue Lock",
       "categoria": "Anime - Crunchyroll",
-      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ejH2YmotIR43Ly3rg4sFyRDpgTW.jpg",
+      "capa": "https://i.postimg.cc/NM6ZM9Rq/images-(16).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -20823,7 +21199,7 @@
     {
       "titulo": "Jujutsu Kaisen",
       "categoria": "Anime - Funimation Now",
-      "capa": "http://revendaimperio.net/images/85bY4VBeJyXSuxSy14kUdg0KLGF_small.jpg",
+      "capa": "https://i.postimg.cc/JhDL1zTy/images-(15).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -21204,143 +21580,6 @@
               "numero": 12,
               "titulo": "Episódio 12",
               "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/400357.mp4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "titulo": "Kaiju No. 8",
-      "categoria": "Anime - Crunchyroll",
-      "capa": "https://i.postimg.cc/sXQtRHgf/IMG-e01a9f69-75d3-43aa-a5b8-cb162b1c66c2.jpg",
-      "temporadas": [
-        {
-          "numero": 1,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262250.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262251.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262252.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262253.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262254.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/262255.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/263031.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/263857.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/264691.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/265587.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/277887.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/277888.mp4"
-            }
-          ]
-        },
-        {
-          "numero": 2,
-          "episodios": [
-            {
-              "numero": 0,
-              "titulo": "Episódio 0",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/333588.mp4"
-            },
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/336100.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/336722.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/337953.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/339337.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/340194.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/340901.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/341197.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/342888.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/343833.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/344705.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/346582.mp4"
             }
           ]
         }
@@ -33309,148 +33548,6 @@
               "numero": 10,
               "titulo": "Episódio 10",
               "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/347055.mp4"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "titulo": "Solo Leveling",
-      "categoria": "Anime - Crunchyroll",
-      "capa": "https://i.postimg.cc/NfqwQtTm/IMG-030aa596-f630-4e09-87e0-e394ccc7df1e.jpg",
-      "temporadas": [
-        {
-          "numero": 1,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/242091.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/247244.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/247245.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/247246.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/248488.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/249873.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/251550.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/253371.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/254217.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/255068.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/256592.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/257012.mp4"
-            }
-          ]
-        },
-        {
-          "numero": 2,
-          "episodios": [
-            {
-              "numero": 1,
-              "titulo": "Episódio 1",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/307277.mp4"
-            },
-            {
-              "numero": 2,
-              "titulo": "Episódio 2",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/310763.mp4"
-            },
-            {
-              "numero": 3,
-              "titulo": "Episódio 3",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/310764.mp4"
-            },
-            {
-              "numero": 4,
-              "titulo": "Episódio 4",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/311378.mp4"
-            },
-            {
-              "numero": 5,
-              "titulo": "Episódio 5",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/313057.mp4"
-            },
-            {
-              "numero": 6,
-              "titulo": "Episódio 6",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/313678.mp4"
-            },
-            {
-              "numero": 7,
-              "titulo": "Episódio 7",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/315661.mp4"
-            },
-            {
-              "numero": 8,
-              "titulo": "Episódio 8",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/316554.mp4"
-            },
-            {
-              "numero": 9,
-              "titulo": "Episódio 9",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/317194.mp4"
-            },
-            {
-              "numero": 10,
-              "titulo": "Episódio 10",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/318062.mp4"
-            },
-            {
-              "numero": 11,
-              "titulo": "Episódio 11",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/318385.mp4"
-            },
-            {
-              "numero": 12,
-              "titulo": "Episódio 12",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/318932.mp4"
-            },
-            {
-              "numero": 13,
-              "titulo": "Episódio 13",
-              "video": "http://revendaimperio.net:80/series/leomO107/pM107098a/319893.mp4"
             }
           ]
         }
