@@ -1,12 +1,10 @@
 package com.wolf.iptv
 
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.GradientDrawable
 import android.net.Uri
 import android.os.Bundle
-import android.provider.Settings
 import android.view.Gravity
 import android.view.KeyEvent
 import android.view.View
@@ -56,7 +54,7 @@ class PlayerActivity : AppCompatActivity() {
 
     private var engrenagemNativa: View? = null
 
-    // Botão "Espelhar na TV" (aparece junto com os controles do player).
+    // Botão "Transmitir para a TV" (aparece junto com os controles do player).
     private lateinit var botaoEspelhar: TextView
     // true enquanto o usuário está na tela de espelhamento do Android:
     // evita pausar o vídeo quando o app sai de cena por um instante.
@@ -153,9 +151,9 @@ class PlayerActivity : AppCompatActivity() {
 
         criarBotoesZoom()
 
-        // BOTÃO ESPELHAR NA TV
+        // BOTÃO TRANSMITIR PARA A TV
         botaoEspelhar = TextView(this)
-        botaoEspelhar.text = "📺  Espelhar na TV"
+        botaoEspelhar.text = "📺  Transmitir para a TV"
         botaoEspelhar.textSize = 16f
         botaoEspelhar.setTextColor(Color.WHITE)
         botaoEspelhar.setPadding(34, 20, 34, 20)
@@ -315,23 +313,25 @@ class PlayerActivity : AppCompatActivity() {
     }
 
     // =========================================================
-    // ESPELHAR NA TV
+    // TRANSMITIR PARA A TV
     // =========================================================
 
-    // Abre a tela de espelhamento do Android (Transmitir / Smart View).
-    // O celular espelha a tela inteira na TV, então funciona com
-    // qualquer vídeo (filmes, episódios e canais).
+    // Abre o menu com as TVs encontradas (Google Cast e DLNA) e o
+    // botão "Espelhar tela" (Smart View / Transmitir do sistema).
     private fun abrirEspelhamento() {
-        abrindoEspelhamento = true
-        try {
-            startActivity(Intent(Settings.ACTION_CAST_SETTINGS))
-        } catch (e: Exception) {
-            abrindoEspelhamento = false
-            Toast.makeText(
-                this,
-                "Puxe a barra do celular e toque em Transmitir / Smart View / Espelhar tela.",
-                Toast.LENGTH_LONG
-            ).show()
+        val p = player
+        Transmitir.mostrar(
+            activity = this,
+            titulo = intent.getStringExtra("VIDEO_TITLE") ?: "WOLF IPTV",
+            url = urlFinal,
+            capa = intent.getStringExtra("VIDEO_COVER") ?: "",
+            posicaoMs = p?.currentPosition ?: 0L,
+            aoVivo = ehAoVivo,
+            aoEspelhar = { abrindoEspelhamento = true }
+        ) {
+            // Transmissão começou: para o vídeo no celular.
+            salvarProgresso()
+            if (ehAoVivo) p?.stop() else p?.pause()
         }
     }
 
@@ -712,7 +712,15 @@ class PlayerActivity : AppCompatActivity() {
                 }
 
                 player?.let {
-                    if (it.isPlaying) it.pause() else it.play()
+                    if (it.playbackState == Player.STATE_IDLE) {
+                        // Depois de transmitir um canal ao vivo, o player ficou parado.
+                        it.prepare()
+                        it.play()
+                    } else if (it.isPlaying) {
+                        it.pause()
+                    } else {
+                        it.play()
+                    }
                 }
 
                 return true
