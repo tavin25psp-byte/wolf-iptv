@@ -3001,20 +3001,41 @@ class MainActivity : AppCompatActivity() {
         val grupos = LinkedHashMap<String, Pair<MutableList<Filme>, MutableList<Serie>>>()
         val nomes = HashMap<String, String>()
 
-        fun grupo(titulo: String, categoria: String): Pair<MutableList<Filme>, MutableList<Serie>>? {
-            val chave = chaveColetanea(titulo)
+        fun grupo(titulo: String, categoria: String, ano: Int = 0): Pair<MutableList<Filme>, MutableList<Serie>>? {
+            var chave = chaveColetanea(titulo)
             if (chave.length < 3) return null
-            nomes.getOrPut(chave) { titulo.split(":", " - ", " – ")[0].replace(Regex("\\s*\\(.*?\\)"), "").trim() }
+            var nomeExtra = ""
+            // Homem-Aranha: separa por ator (cada fase vira uma coletânea própria)
+            if (chave == "homem aranha") {
+                when {
+                    ano in 1..2007 -> { chave += " tobey"; nomeExtra = " (Tobey Maguire)" }
+                    ano in 2008..2015 -> { chave += " garfield"; nomeExtra = " (Andrew Garfield)" }
+                    ano >= 2016 -> { chave += " holland"; nomeExtra = " (Tom Holland)" }
+                }
+            }
+            nomes.getOrPut(chave) {
+                titulo.split(":", " - ", " – ")[0].replace(Regex("\\s*\\(.*?\\)"), "").trim() + nomeExtra
+            }
             return grupos.getOrPut(chave) { Pair(mutableListOf(), mutableListOf()) }
         }
 
-        listaFilmes.forEach { grupo(it.titulo, it.categoria)?.first?.add(it) }
+        listaFilmes.forEach { grupo(it.titulo, it.categoria, it.ano)?.first?.add(it) }
         listaSeries.forEach { grupo(it.titulo, it.categoria)?.second?.add(it) }
 
         return grupos.entries
             .filter { it.value.first.size + it.value.second.size >= 2 }
-            .map { Coletanea(nomes[it.key] ?: it.key, it.value.first, it.value.second) }
-            .sortedBy { normalizarTexto(it.nome) }
+            .map {
+                // Ordena do filme mais antigo para o mais novo (sem ano vai para o fim)
+                val filmesOrdenados = it.value.first.sortedWith(
+                    compareBy<Filme>({ f -> if (f.ano > 0) f.ano else Int.MAX_VALUE }, { f -> normalizarTexto(f.titulo) })
+                )
+                Coletanea(nomes[it.key] ?: it.key, filmesOrdenados, it.value.second)
+            }
+            // Sagas mais novas primeiro (pelo ano do filme mais recente da saga); sem ano vai para o fim
+            .sortedWith(
+                compareByDescending<Coletanea> { c -> c.filmes.maxOfOrNull { f -> f.ano } ?: 0 }
+                    .thenBy { c -> normalizarTexto(c.nome) }
+            )
     }
 
     private fun cardColetanea(c: Coletanea): FrameLayout {
@@ -3341,13 +3362,22 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        coletaneas.forEach { c ->
-            conteudo.addView(
-                tituloSecao("${c.nome}  (${c.total})", "📚"),
-                LinearLayout.LayoutParams(-1, -2)
-            )
-            montarGrade(c.filmes.map { criarCard(it) })
+        conteudo.addView(
+            tituloSecao("Coletâneas  (${coletaneas.size})", "📚"),
+            LinearLayout.LayoutParams(-1, -2)
+        )
+
+        // Aviso para o usuário saber que precisa clicar
+        val aviso = TextView(this).apply {
+            text = "👆 Toque em uma coletânea para ver todos os filmes da saga"
+            setTextColor(Color.rgb(190, 195, 215))
+            textSize = 14f
+            setPadding(dp(6), dp(2), dp(6), dp(10))
         }
+        conteudo.addView(aviso, LinearLayout.LayoutParams(-1, -2))
+
+        // Só o primeiro filme de cada saga; ao clicar abre a lista completa
+        montarGrade(coletaneas.map { cardColetanea(it) })
     }
 
     // ----- Filmes -----
