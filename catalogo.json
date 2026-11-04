@@ -1033,7 +1033,7 @@
       "titulo": "A Era do Gelo 3: O Despertar dos Dinossauros",
       "ano": 2009,
       "categoria": "Animação",
-      "capa": "https://i.postimg.cc/VvP2vvJH/IMG-9ab15f71-24b4-4913-ad3e-6a54f4409ffa.jpg",
+      "capa": "https://i.postimg.cc/VNq4wWFm/IMG-ba8c1b92-2acd-4c05-9f6f-5c906a0d26f6.jpg",
       "video": "https://wolf-channel-cdn.b-cdn.net/novos%20filmes/a%20era%20do%20gelo%202009.mp4",
       "sinopse": "Manny, Sid e Diego descobrem um mundo perdido de dinossauros sob o gelo e enfrentam a perigosa caçada de Buck."
     },
@@ -2765,72 +2765,84 @@
     },
     {
       "titulo": "Devorador",
+      "ano": 2026,
       "categoria": "Terror",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/zuhbisyyICXuYR8k3lE6pTpq5Vl.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/401897.mp4"
     },
     {
       "titulo": "Colisão Implacável",
+      "ano": 2026,
       "categoria": "Suspense",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2UcuNset77zceI6dCO59pkIcctZ.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/401894.mp4"
     },
     {
       "titulo": "Rota Mortal",
-      "categoria": "Ação",
+      "ano": 2006,
+      "categoria": "Terror",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/HcEocHjjJ1O0iZ4cNOJSgU2AHM.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/401824.mp4"
     },
     {
       "titulo": "Viajando com a Vovó",
+      "ano": 2023,
       "categoria": "Comédia",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/vF5vgaGohl0wbLNFyTr6DZl4gDx.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/401722.mp4"
     },
     {
       "titulo": "Rampage 2",
+      "ano": 2014,
       "categoria": "Ação",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/6R7xF3a3GO3h0NqxJMJeVgWzKWA.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/401527.mp4"
     },
     {
       "titulo": "Quarentena",
+      "ano": 2008,
       "categoria": "Terror",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ygA2l1dEcjJZthxTyJgzVjdn7h9.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/399692.mp4"
     },
     {
       "titulo": "Relíquia Macabra",
+      "ano": 2020,
       "categoria": "Terror",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/3wZ0gxLqsPleneFSTZILmM3BE8Q.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/399693.mp4"
     },
     {
       "titulo": "O Sorveteiro",
+      "ano": 2026,
       "categoria": "Terror",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/8bUXuKrdYQFMdx7ogoN0f5cm8iq.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/400965.mp4"
     },
     {
       "titulo": "O Fantasma da Ópera",
+      "ano": null,
       "categoria": "Terror",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/2C8aHB3xnN8LvlsNLHKumBXzgVu.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/400065.mp4"
     },
     {
       "titulo": "A Ilha Esquecida",
+      "ano": 2026,
       "categoria": "Animação",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/7OTbIk4TwYzpvf1GbOGXAFafxiz.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/401590.mp4"
     },
     {
       "titulo": "A Princesa e a Ervilha",
+      "ano": 2002,
       "categoria": "Animação",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/oC1wcIY9VECwRkRd6nS4DSHVrMR.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/400841.mp4"
     },
     {
       "titulo": "Tropas Estelares: Invasores de Marte",
+      "ano": 2017,
       "categoria": "Animação",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/g7Zxoo9LOazY9RrOaNmo4WBzKcG.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/400078.mp4"
@@ -3876,6 +3888,153 @@
       "categoria": "Aventura",
       "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/9ERu4fmY6N0J7NaTGPU0boJcy3X.jpg",
       "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/384189.mp4"
+    },
+    {
+      "titulo": "Morte Súbita",
+      "ano": 1995,
+      "categoria": "Ação",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/vBu3ggozN5xJjUzrkYgAVoI7LLI.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/223813.mp4"
+    },
+    {
+      "titulo": "Tubarão (1975)",
+      "ano": 1975,
+      "categoria": "Terror",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/iD2XVowFgHngYGamCAdq2T44gMr.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/382440.mp4"
+    },
+    {
+      "titulo": "Tubarão 2",
+      "ano": 1978,
+      "categoria": "Terror",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/qPO2Aelw74dXF1P8FZsHA0GgKQ1.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/145952.mp4"
+    },
+    {
+      "titulo": "Tubarão 3",
+      "ano": 1983,
+      "categoria": "Terror",
+      "capa": "http://5d2spzxh.xyz/images/800b13f631714f6e83aa155ee860538a.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/145956.mp4"
+    },
+    {
+      "titulo": "Tubarão 4: A Vingança",
+      "ano": 1987,
+      "categoria": "Terror",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/rbWaX7V6nyY0BowqPbQGNApmNoI.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/145966.mp4"
+    },
+    {
+      "titulo": "Anaconda (2025)",
+      "ano": 2025,
+      "categoria": "Ação",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/hRzpf8QELtzJnMt4SiDoFUmZ9KM.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/364795.mp4"
+    },
+    {
+      "titulo": "Anaconda (1997)",
+      "ano": 1997,
+      "categoria": "Ação",
+      "capa": "http://5d2spzxh.xyz/images/huhasXFLrKfPHEqbz4ALadOnXZZ_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/19915.mp4"
+    },
+    {
+      "titulo": "Anaconda 2: A Caçada pela Orquídea Sangrenta",
+      "ano": 2004,
+      "categoria": "Ação",
+      "capa": "http://5d2spzxh.xyz/images/yi3KRmJlEtRV090wgeEPiFQ6cxm_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/19912.mp4"
+    },
+    {
+      "titulo": "Anaconda 3",
+      "ano": 2008,
+      "categoria": "Ação",
+      "capa": "http://5d2spzxh.xyz/images/gaDcpcw14XdVk4EjJhNzLtmXeDI_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/19913.mp4"
+    },
+    {
+      "titulo": "Anaconda: Rastro de Sangue",
+      "ano": 2009,
+      "categoria": "Ação",
+      "capa": "http://5d2spzxh.xyz/images/rCp9VYqvBphiETtC86fGZFSXc63_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/19914.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio I — A Ameaça Fantasma",
+      "ano": 1999,
+      "categoria": "Ficção",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/pfC6UU9Dik01e80aUPCHI9idDZ.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/328180.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio II — Ataque dos Clones",
+      "ano": 2002,
+      "categoria": "Ficção",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/ri3Gu1dYMxDcT0t4sUi0Aqf7MRS.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/328181.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio III — A Vingança dos Sith",
+      "ano": 2005,
+      "categoria": "Ficção",
+      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/m8PpvsZqTb2RYYnPIF7DZii1DuA.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/328182.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio IV — Uma Nova Esperança",
+      "ano": 1977,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/3f27beb3513971396ce87bef67167366.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/21353.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio V — O Império Contra-Ataca",
+      "ano": 1980,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/iXXSUFpfBKZimPyugKQShUO5NMS_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/21354.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio VI — O Retorno de Jedi",
+      "ano": 1983,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/e57CeQLHE5WWzWy3oq03IVmAyfp_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/21355.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio VII — O Despertar da Força",
+      "ano": 2015,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/mc9hsb5BTTFGmPhHkXxonKP5rFN_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/21356.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio VIII — Os Últimos Jedi",
+      "ano": 2017,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/2iGN0aKHJYD0xQydlfuCUAcgNbO_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/21357.mp4"
+    },
+    {
+      "titulo": "Star Wars: Episódio IX — A Ascensão Skywalker",
+      "ano": 2019,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/lFx2i2pg1BoaD7grcpGDyHM1eML_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/41618.mp4"
+    },
+    {
+      "titulo": "Rogue One: Uma História Star Wars",
+      "ano": 2016,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/74C2YX0NLWnozVMRS56d5CKDdEv_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/20218.mp4"
+    },
+    {
+      "titulo": "Han Solo: Uma História Star Wars",
+      "ano": 2018,
+      "categoria": "Ficção",
+      "capa": "http://5d2spzxh.xyz/images/oIh5sn4Bk7bQrw8ZPHl32y86H4M_big.jpg",
+      "video": "http://5d2spzxh.xyz:80/movie/leomO107/pM107098a/21301.mp4"
     }
   ]
 }
