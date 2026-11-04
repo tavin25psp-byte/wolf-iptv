@@ -304,17 +304,31 @@ class MainActivity : AppCompatActivity() {
         return abrir().use { BitmapFactory.decodeStream(it, null, leitura) }
     }
 
-    private fun carregarFundoApp(fundo: ImageView) {
-        val larg = resources.displayMetrics.widthPixels
-        val alt = resources.displayMetrics.heightPixels
+    @Volatile
+    private var bitmapFundo: Bitmap? = null
+    private val travaFundo = Any()
 
-        executorImagens.execute {
-            var bitmap: Bitmap? = null
-            try {
-                val abrir = abridorFundoLocal()
-                if (abrir != null) bitmap = decodificarFundoAmostrado(abrir, larg, alt)
+    // Decodifica o fundo só UMA vez e reaproveita (app, banner e cada volta ao Início)
+    private fun obterFundoBitmap(): Bitmap? {
+        bitmapFundo?.let { return it }
+        synchronized(travaFundo) {
+            bitmapFundo?.let { return it }
+            return try {
+                val abrir = abridorFundoLocal() ?: return null
+                decodificarFundoAmostrado(
+                    abrir,
+                    resources.displayMetrics.widthPixels,
+                    resources.displayMetrics.heightPixels
+                ).also { bitmapFundo = it }
             } catch (_: Throwable) {
+                null
             }
+        }
+    }
+
+    private fun carregarFundoApp(fundo: ImageView) {
+        executorImagens.execute {
+            val bitmap: Bitmap? = obterFundoBitmap()
 
             val pronto = bitmap
             runOnUiThread {
@@ -1141,7 +1155,14 @@ class MainActivity : AppCompatActivity() {
     private val aguardandoImagem = HashMap<String, MutableList<ImageView>>()
     private val executorPrecarga = Executors.newFixedThreadPool(3)
 
+    private val travasCapas = ConcurrentHashMap<String, Any>()
+
     private fun baixarCapaParaCache(url: String): File? {
+        val trava = travasCapas.getOrPut(url) { Any() }
+        return synchronized(trava) { baixarCapaSemTrava(url) }
+    }
+
+    private fun baixarCapaSemTrava(url: String): File? {
         val arquivoCache = arquivoCacheImagem(url)
         if (arquivoCache.exists() && arquivoCache.length() > 0L) return arquivoCache
 
@@ -1193,8 +1214,10 @@ class MainActivity : AppCompatActivity() {
         return null
     }
 
+    private val capasEnfileiradas = ConcurrentHashMap.newKeySet<String>()
+
     private fun precarregarCapas(urls: List<String>) {
-        urls.filter { it.isNotBlank() }.distinct().forEach { url ->
+        urls.filter { it.isNotBlank() }.distinct().filter { capasEnfileiradas.add(it) }.forEach { url ->
             try {
                 executorPrecarga.execute {
                     try {
@@ -1612,14 +1635,15 @@ class MainActivity : AppCompatActivity() {
                     mostrarInicio()
                     esconderSplash()
 
+                    // Só o começo de cada categoria (o resto baixa quando aparecer na tela)
                     precarregarCapas(
-                        filmes.map { it.capa } +
-                            desenhos.map { it.capa } +
-                            desenhosSeries.map { it.capa } +
-                            series.map { it.capa } +
-                            doramas.map { it.capa } +
-                            novelas.map { it.capa } +
-                            animes.map { it.capa }
+                        filmes.take(40).map { it.capa } +
+                            desenhos.take(20).map { it.capa } +
+                            desenhosSeries.take(20).map { it.capa } +
+                            series.take(40).map { it.capa } +
+                            doramas.take(40).map { it.capa } +
+                            novelas.take(40).map { it.capa } +
+                            animes.take(40).map { it.capa }
                     )
 
                     if (cacheUsado) {
@@ -2481,15 +2505,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun carregarFundoBanner(img: ImageView, banner: View) {
-        val larg = resources.displayMetrics.widthPixels
         executorImagens.execute {
-            var bmp: Bitmap? = null
-            try {
-                val abrir = abridorFundoLocal()
-                if (abrir != null) bmp = decodificarFundoAmostrado(abrir, larg, larg * 9 / 16)
-            } catch (_: Throwable) {
-            }
-            val pronto = bmp ?: return@execute
+            val pronto = obterFundoBitmap() ?: return@execute
             runOnUiThread {
                 img.setImageBitmap(pronto)
                 fun ajustar() {
