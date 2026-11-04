@@ -1677,7 +1677,7 @@
     {
       "titulo": "Demolidor: Renascido",
       "categoria": "Ação",
-      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/nKAWO188PEIUAbVw80oE1od7huh.jpg",
+      "capa": "https://i.postimg.cc/Znx8YjTj/images-(49).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -1711,7 +1711,7 @@
     {
       "titulo": "Breaking Bad: A Química do Mal",
       "categoria": "Drama",
-      "capa": "http://5d2spzxh.xyz/images/kL1PCTiQAcQsZt9hzSirQSb4S23_small.jpg",
+      "capa": "https://i.postimg.cc/fyN7h1Q6/images-(50).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -1805,7 +1805,7 @@
     {
       "titulo": "Riverdale",
       "categoria": "Drama",
-      "capa": "http://5d2spzxh.xyz/images/64c41cc50f9008d5b2f1d8b743b08fe6.jpg",
+      "capa": "https://i.postimg.cc/Gp4xPkQR/070ca00ab89eab6f66d22fcb129d3271-(1).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -1981,7 +1981,7 @@
     {
       "titulo": "Arcane",
       "categoria": "Animação",
-      "capa": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/g7dMkFJvJECDYoL0TRzGQCfF3xD.jpg",
+      "capa": "https://i.postimg.cc/fycKtDv0/images-(52).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -2016,7 +2016,7 @@
     {
       "titulo": "Dexter",
       "categoria": "Crime / Drama",
-      "capa": "http://5d2spzxh.xyz/images/xuhfWK2MsOfSGcVU8FSvjUZ49Ga_small.jpg",
+      "capa": "https://i.postimg.cc/Njf4Fh2s/images-(51).jpg",
       "temporadas": [
         {
           "numero": 1,
@@ -2152,6 +2152,185 @@
             { "numero": 10, "titulo": "Episódio 10", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/14146.mp4" },
             { "numero": 11, "titulo": "Episódio 11", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/14147.mp4" },
             { "numero": 12, "titulo": "Episódio 12", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/14148.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Prison Break",
+      "categoria": "Drama",
+      "capa": "https://i.postimg.cc/j23jhJcF/images-(54).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63196.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63197.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63198.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63199.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63200.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63201.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63202.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63203.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63204.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63205.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63206.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63207.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63208.mp4" },
+            { "numero": 14, "titulo": "Episódio 14", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63209.mp4" },
+            { "numero": 15, "titulo": "Episódio 15", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63210.mp4" },
+            { "numero": 16, "titulo": "Episódio 16", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63211.mp4" },
+            { "numero": 17, "titulo": "Episódio 17", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63212.mp4" },
+            { "numero": 18, "titulo": "Episódio 18", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63213.mp4" },
+            { "numero": 19, "titulo": "Episódio 19", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63214.mp4" },
+            { "numero": 20, "titulo": "Episódio 20", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63215.mp4" },
+            { "numero": 21, "titulo": "Episódio 21", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63216.mp4" },
+            { "numero": 22, "titulo": "Episódio 22", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63217.mp4" }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63218.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63219.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63220.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63221.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63222.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63223.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63224.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63225.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63226.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63227.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63228.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63229.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63230.mp4" },
+            { "numero": 14, "titulo": "Episódio 14", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63231.mp4" },
+            { "numero": 15, "titulo": "Episódio 15", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63232.mp4" },
+            { "numero": 16, "titulo": "Episódio 16", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63233.mp4" },
+            { "numero": 17, "titulo": "Episódio 17", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63234.mp4" },
+            { "numero": 18, "titulo": "Episódio 18", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63235.mp4" },
+            { "numero": 19, "titulo": "Episódio 19", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63236.mp4" },
+            { "numero": 20, "titulo": "Episódio 20", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63237.mp4" },
+            { "numero": 21, "titulo": "Episódio 21", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63238.mp4" },
+            { "numero": 22, "titulo": "Episódio 22", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63239.mp4" }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63240.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63241.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63242.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63243.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63244.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63245.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63246.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63247.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63248.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63249.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63250.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63251.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63252.mp4" }
+          ]
+        },
+        {
+          "numero": 4,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63253.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63254.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63255.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63256.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63257.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63258.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63259.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63260.mp4" },
+            { "numero": 10, "titulo": "Episódio 10", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63261.mp4" },
+            { "numero": 11, "titulo": "Episódio 11", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63262.mp4" },
+            { "numero": 12, "titulo": "Episódio 12", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63263.mp4" },
+            { "numero": 13, "titulo": "Episódio 13", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63264.mp4" },
+            { "numero": 14, "titulo": "Episódio 14", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63265.mp4" },
+            { "numero": 15, "titulo": "Episódio 15", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63266.mp4" },
+            { "numero": 16, "titulo": "Episódio 16", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63267.mp4" },
+            { "numero": 17, "titulo": "Episódio 17", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63268.mp4" },
+            { "numero": 18, "titulo": "Episódio 18", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63269.mp4" },
+            { "numero": 19, "titulo": "Episódio 19", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63270.mp4" },
+            { "numero": 20, "titulo": "Episódio 20", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63271.mp4" },
+            { "numero": 21, "titulo": "Episódio 21", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63272.mp4" },
+            { "numero": 22, "titulo": "Episódio 22", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63273.mp4" },
+            { "numero": 23, "titulo": "Episódio 23", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63274.mp4" }
+          ]
+        },
+        {
+          "numero": 5,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63275.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63276.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63277.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63278.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63279.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63280.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63281.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63282.mp4" },
+            { "numero": 9, "titulo": "Episódio 9", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/63283.mp4" }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "The Witcher",
+      "categoria": "Fantasia",
+      "capa": "https://i.postimg.cc/zfYGpNwZ/images-(53).jpg",
+      "temporadas": [
+        {
+          "numero": 1,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31939.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31940.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31941.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31942.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31943.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31944.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31945.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/31946.mp4" }
+          ]
+        },
+        {
+          "numero": 2,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144163.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144164.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144165.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144166.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144167.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144168.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144169.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/144170.mp4" }
+          ]
+        },
+        {
+          "numero": 3,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/200712.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/200713.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/200714.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/200715.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/200716.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/205163.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/205164.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/205165.mp4" }
+          ]
+        },
+        {
+          "numero": 4,
+          "episodios": [
+            { "numero": 1, "titulo": "Episódio 1", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350443.mp4" },
+            { "numero": 2, "titulo": "Episódio 2", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350444.mp4" },
+            { "numero": 3, "titulo": "Episódio 3", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350445.mp4" },
+            { "numero": 4, "titulo": "Episódio 4", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350446.mp4" },
+            { "numero": 5, "titulo": "Episódio 5", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350447.mp4" },
+            { "numero": 6, "titulo": "Episódio 6", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350448.mp4" },
+            { "numero": 7, "titulo": "Episódio 7", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350449.mp4" },
+            { "numero": 8, "titulo": "Episódio 8", "video": "http://5d2spzxh.xyz:80/series/leomO107/pM107098a/350450.mp4" }
           ]
         }
       ]
