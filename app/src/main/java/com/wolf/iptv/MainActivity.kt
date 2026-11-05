@@ -1423,6 +1423,7 @@ class MainActivity : AppCompatActivity() {
                             Thread.sleep(250L)
                             espera++
                         }
+                        if (!noPrimeiroPlano) return@execute
                         baixarCapaParaCache(url)
                     } catch (_: Throwable) {
                     }
