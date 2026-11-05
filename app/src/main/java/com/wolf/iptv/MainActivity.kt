@@ -141,7 +141,15 @@ class MainActivity : AppCompatActivity() {
     ) {
         override fun sizeOf(chave: String, valor: Bitmap): Int = valor.byteCount
     }
-    private val executorImagens = Executors.newFixedThreadPool(4)
+    // Fila "o último que chegou sai primeiro": as capas que estão na tela agora
+    // passam na frente das que já saíram da tela.
+    private val executorImagens: java.util.concurrent.ExecutorService =
+        java.util.concurrent.ThreadPoolExecutor(
+            8, 8, 30L, java.util.concurrent.TimeUnit.SECONDS,
+            object : java.util.concurrent.LinkedBlockingDeque<Runnable>() {
+                override fun offer(e: Runnable): Boolean = offerFirst(e)
+            }
+        )
 
     private val pastaCacheImagens: File by lazy {
         File(cacheDir, "wolf_imagens").apply {
@@ -1339,7 +1347,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private val aguardandoImagem = HashMap<String, MutableList<ImageView>>()
-    private val executorPrecarga = Executors.newFixedThreadPool(3)
+    private val executorPrecarga = Executors.newFixedThreadPool(2)
 
     private val travasCapas = ConcurrentHashMap<String, Any>()
 
@@ -1352,7 +1360,7 @@ class MainActivity : AppCompatActivity() {
         val arquivoCache = arquivoCacheImagem(url)
         if (arquivoCache.exists() && arquivoCache.length() > 0L) return arquivoCache
 
-        for (tentativa in 1..3) {
+        for (tentativa in 1..2) {
             var conexao: HttpURLConnection? = null
             val temporario = File(
                 pastaCacheImagens,
@@ -1360,8 +1368,8 @@ class MainActivity : AppCompatActivity() {
             )
             try {
                 conexao = URL(url).openConnection() as HttpURLConnection
-                conexao.connectTimeout = 10000
-                conexao.readTimeout = 20000
+                conexao.connectTimeout = 6000
+                conexao.readTimeout = 12000
                 conexao.doInput = true
                 conexao.instanceFollowRedirects = true
                 conexao.setRequestProperty("User-Agent", "Mozilla/5.0 (Android)")
@@ -1392,7 +1400,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             try {
-                Thread.sleep(700L * tentativa)
+                Thread.sleep(300L * tentativa)
             } catch (_: InterruptedException) {
                 return null
             }
@@ -1408,6 +1416,13 @@ class MainActivity : AppCompatActivity() {
                 executorPrecarga.execute {
                     try {
                         if (!noPrimeiroPlano) return@execute
+                        // A pré-carga espera as capas da tela terminarem (não disputa a internet)
+                        val fila = executorImagens as? java.util.concurrent.ThreadPoolExecutor
+                        var espera = 0
+                        while (fila != null && (fila.queue.isNotEmpty() || fila.activeCount >= 4) && espera < 60) {
+                            Thread.sleep(250L)
+                            espera++
+                        }
                         baixarCapaParaCache(url)
                     } catch (_: Throwable) {
                     }
