@@ -830,10 +830,171 @@ class MainActivity : AppCompatActivity() {
     private var pulsoSplash: android.animation.ValueAnimator? = null
     private val inicioSplash = System.currentTimeMillis()
 
+    private fun abridorSplashLocal(base: String = "splash"): (() -> java.io.InputStream)? {
+        for (tipo in listOf("drawable", "raw", "mipmap")) {
+            val id = resources.getIdentifier(base, tipo, packageName)
+            if (id != 0) {
+                val abrirRes: () -> java.io.InputStream = { resources.openRawResource(id) }
+                return abrirRes
+            }
+        }
+        for (nome in listOf("$base.jpg", "$base.png", "$base.jpeg", "$base.webp")) {
+            try {
+                assets.open(nome).close()
+                val abrirAsset: () -> java.io.InputStream = { assets.open(nome) }
+                return abrirAsset
+            } catch (_: Throwable) {
+            }
+        }
+        return null
+    }
+
+    private inner class BarraSplash(contexto: android.content.Context) : View(contexto) {
+        var fracao = 0.08f
+        private val trilha = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.rgb(55, 55, 60)
+        }
+        private val preenchimento = android.graphics.Paint(android.graphics.Paint.ANTI_ALIAS_FLAG).apply {
+            color = Color.rgb(235, 25, 35)
+        }
+
+        override fun onDraw(canvas: android.graphics.Canvas) {
+            val raio = height / 2f
+            canvas.drawRoundRect(0f, 0f, width.toFloat(), height.toFloat(), raio, raio, trilha)
+            canvas.drawRoundRect(0f, 0f, width * fracao, height.toFloat(), raio, raio, preenchimento)
+        }
+    }
+
+    private var animBarraSplash: android.animation.ValueAnimator? = null
+
+    // Tela simples (lobo + círculo girando + "Carregando...")
+    private fun montarSobreposicaoSimples(tela: FrameLayout) {
+        val baseL = 1672f
+        val baseA = 941f
+        val e = minOf(tela.width / baseL, tela.height / baseA)
+        val ox = (tela.width - baseL * e) / 2f
+        val oy = (tela.height - baseA * e) / 2f
+
+        fun pos(x: Float, y: Float, w: Float, h: Float) = FrameLayout.LayoutParams(
+            (w * e).toInt(), (h * e).toInt(), Gravity.TOP or Gravity.START
+        ).apply {
+            leftMargin = (ox + x * e).toInt()
+            topMargin = (oy + y * e).toInt()
+        }
+
+        tela.addView(
+            android.widget.ProgressBar(this).apply {
+                isIndeterminate = true
+                indeterminateTintList =
+                    android.content.res.ColorStateList.valueOf(Color.rgb(235, 30, 40))
+            },
+            pos(788f, 615f, 100f, 100f)
+        )
+        tela.addView(
+            TextView(this).apply {
+                text = "Carregando..."
+                setTextColor(Color.WHITE)
+                setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, 32f * e)
+                gravity = Gravity.CENTER
+                includeFontPadding = false
+                maxLines = 1
+            },
+            pos(688f, 730f, 300f, 42f)
+        )
+    }
+
+    private fun montarSobreposicaoSplash(tela: FrameLayout) {
+        val baseL = 1672f
+        val baseA = 941f
+        val e = minOf(tela.width / baseL, tela.height / baseA)
+        val ox = (tela.width - baseL * e) / 2f
+        val oy = (tela.height - baseA * e) / 2f
+
+        fun pos(x: Float, y: Float, w: Float, h: Float) = FrameLayout.LayoutParams(
+            (w * e).toInt(), (h * e).toInt(), Gravity.TOP or Gravity.START
+        ).apply {
+            leftMargin = (ox + x * e).toInt()
+            topMargin = (oy + y * e).toInt()
+        }
+
+        fun texto(
+            conteudo: String, tamanho: Float, cor: Int, estilo: Int, alinhamento: Int
+        ) = TextView(this).apply {
+            text = conteudo
+            setTextColor(cor)
+            setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, tamanho * e)
+            setTypeface(null, estilo)
+            gravity = alinhamento
+            includeFontPadding = false
+            maxLines = 1
+        }
+
+        val local = Locale("pt", "BR")
+        val agora = Date()
+        val data = SimpleDateFormat("EEE, dd MMM", local).format(agora)
+            .replace(".", "")
+            .split(" ")
+            .joinToString(" ") { p -> p.replaceFirstChar { it.uppercase() } }
+
+        tela.addView(
+            texto(SimpleDateFormat("HH:mm", local).format(agora), 28f, Color.WHITE,
+                Typeface.BOLD, Gravity.CENTER),
+            pos(1566f, 36f, 106f, 34f)
+        )
+        tela.addView(
+            texto(data, 15f, Color.rgb(225, 225, 230), Typeface.NORMAL, Gravity.CENTER),
+            pos(1566f, 72f, 106f, 20f)
+        )
+
+        tela.addView(
+            texto("Carregando seu conteúdo...", 27f, Color.WHITE,
+                Typeface.NORMAL, Gravity.CENTER_VERTICAL or Gravity.START),
+            pos(895f, 772f, 450f, 34f)
+        )
+        tela.addView(
+            texto("Aproveite a melhor experiência!", 26f, Color.rgb(235, 30, 40),
+                Typeface.ITALIC, Gravity.CENTER_VERTICAL or Gravity.START),
+            pos(895f, 806f, 450f, 32f)
+        )
+
+        val barra = BarraSplash(this)
+        tela.addView(barra, pos(812f, 850f, 538f, 18f))
+        animBarraSplash = android.animation.ValueAnimator.ofFloat(0.08f, 1f).apply {
+            duration = 1800
+            repeatCount = android.animation.ValueAnimator.INFINITE
+            repeatMode = android.animation.ValueAnimator.RESTART
+            interpolator = android.view.animation.DecelerateInterpolator(1.4f)
+            addUpdateListener {
+                barra.fracao = it.animatedValue as Float
+                barra.invalidate()
+            }
+            start()
+        }
+    }
+
     private fun criarSplash() {
         val tela = FrameLayout(this).apply {
             setBackgroundColor(Color.BLACK)
             isClickable = true
+        }
+
+        val larguraTela = resources.displayMetrics.widthPixels
+        val alturaTela = resources.displayMetrics.heightPixels
+
+        // 1ª abertura do app: tela completa (com os botões). Depois: tela simples do lobo.
+        val prefsSplash = getSharedPreferences("wolf_prefs", MODE_PRIVATE)
+        val primeiraVez = !prefsSplash.getBoolean("splash_completo_visto", false)
+        val abrirSimples = abridorSplashLocal("carregando")
+        // Sempre a arte completa (a tela simples do lobo fica desligada)
+        @Suppress("UNUSED_VARIABLE") val ignorar = primeiraVez || abrirSimples == null
+        val usarSimples = false
+        if (primeiraVez) prefsSplash.edit().putBoolean("splash_completo_visto", true).apply()
+
+        val arte: Bitmap? = try {
+            (if (usarSimples) abrirSimples else abridorSplashLocal("splash"))
+                ?.let { decodificarFundoAmostrado(it, larguraTela, alturaTela) }
+        } catch (_: Throwable) {
+            null
         }
 
         val coluna = LinearLayout(this).apply {
@@ -841,48 +1002,71 @@ class MainActivity : AppCompatActivity() {
             gravity = Gravity.CENTER_HORIZONTAL
         }
 
-        val logoBitmap = try {
-            val bytes = android.util.Base64.decode(
-                LOGO_PARTES.joinToString(""),
-                android.util.Base64.DEFAULT
-            )
-            BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
-        } catch (_: Throwable) {
-            null
-        }
-
-        if (logoBitmap != null) {
-            val tamanho = minOf(
-                resources.displayMetrics.widthPixels,
-                resources.displayMetrics.heightPixels
-            ) * 3 / 4
-
-            coluna.addView(
-                ImageView(this).apply {
-                    setImageBitmap(logoBitmap)
-                    scaleType = ImageView.ScaleType.FIT_CENTER
-                },
-                LinearLayout.LayoutParams(tamanho, tamanho)
-            )
-        }
-
         val carregando = TextView(this).apply {
             text = "Carregando…"
-            setTextColor(Color.rgb(150, 155, 175))
-            textSize = 14f
+            textSize = 15f
             gravity = Gravity.CENTER
-            setPadding(0, dp(4), 0, 0)
+            setPadding(0, dp(6), 0, 0)
         }
-        coluna.addView(carregando)
 
-        tela.addView(
-            coluna,
-            FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT,
-                Gravity.CENTER
+        if (arte != null) {
+            // Tela de carregamento com a arte completa (1672x941), inteira na tela
+            tela.addView(
+                ImageView(this).apply {
+                    setImageBitmap(arte)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                },
+                FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
             )
-        )
+
+            // Relógio, texto e barra reais por cima da arte (posições em pixels da arte)
+            tela.viewTreeObserver.addOnGlobalLayoutListener(
+                object : android.view.ViewTreeObserver.OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        if (tela.width <= 0 || tela.height <= 0) return
+                        tela.viewTreeObserver.removeOnGlobalLayoutListener(this)
+                        if (usarSimples) montarSobreposicaoSimples(tela)
+                        else montarSobreposicaoSplash(tela)
+                    }
+                }
+            )
+        } else {
+            // Sem a arte no app: mantém a tela antiga
+            val logoBitmap = try {
+                val bytes = android.util.Base64.decode(
+                    LOGO_PARTES.joinToString(""),
+                    android.util.Base64.DEFAULT
+                )
+                BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+            } catch (_: Throwable) {
+                null
+            }
+
+            if (logoBitmap != null) {
+                val tamanho = minOf(larguraTela, alturaTela) * 3 / 4
+                coluna.addView(
+                    ImageView(this).apply {
+                        setImageBitmap(logoBitmap)
+                        scaleType = ImageView.ScaleType.FIT_CENTER
+                    },
+                    LinearLayout.LayoutParams(tamanho, tamanho)
+                )
+            }
+            carregando.setTextColor(Color.rgb(150, 155, 175))
+            coluna.addView(carregando)
+
+            tela.addView(
+                coluna,
+                FrameLayout.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    Gravity.CENTER
+                )
+            )
+        }
 
         pulsoSplash = android.animation.ValueAnimator.ofFloat(0.35f, 1f).apply {
             duration = 800
@@ -919,6 +1103,8 @@ class MainActivity : AppCompatActivity() {
         splash = null
         pulsoSplash?.cancel()
         pulsoSplash = null
+        animBarraSplash?.cancel()
+        animBarraSplash = null
         tela.animate()
             .alpha(0f)
             .setDuration(350)
@@ -1894,6 +2080,25 @@ class MainActivity : AppCompatActivity() {
             isFocusable = false
         }
 
+        // Paisagem + splash.jpg no app = arte nova. Retrato ou sem imagem = tela antiga.
+        val arteLogin: Bitmap? = if (alt <= larg) {
+            try {
+                abridorSplashLocal()?.let { decodificarFundoAmostrado(it, larg, alt) }
+            } catch (_: Throwable) {
+                null
+            }
+        } else null
+        val modoArte = arteLogin != null
+
+        if (modoArte) {
+            tela.addView(
+                ImageView(this).apply {
+                    setImageBitmap(arteLogin)
+                    scaleType = ImageView.ScaleType.FIT_CENTER
+                },
+                FrameLayout.LayoutParams(-1, -1)
+            )
+        } else {
         // Fundo: imagem do app bem escurecida + brilho vermelho embaixo
         val fundo = ImageView(this).apply {
             scaleType = ImageView.ScaleType.CENTER_CROP
@@ -1918,6 +2123,8 @@ class MainActivity : AppCompatActivity() {
             FrameLayout.LayoutParams(-1, -1)
         )
 
+        }
+
         val larguraColuna = minOf(larg - dp(32), dp(560))
 
         val coluna = LinearLayout(this).apply {
@@ -1926,6 +2133,7 @@ class MainActivity : AppCompatActivity() {
             setPadding(dp(16), dp(24), dp(16), dp(24))
         }
 
+        if (!modoArte) {
         // Logo
         bitmapLogoLogin()?.let { bmp ->
             val tamanho = minOf((larg * 0.7f).toInt(), (alt * 0.30f).toInt(), dp(300))
@@ -1953,6 +2161,7 @@ class MainActivity : AppCompatActivity() {
             letterSpacing = 0.05f
             gravity = Gravity.CENTER
         }, LinearLayout.LayoutParams(larguraColuna, -2).apply { bottomMargin = dp(18) })
+        }
 
         // Campo do código
         val caixa = LinearLayout(this).apply {
@@ -2117,7 +2326,7 @@ class MainActivity : AppCompatActivity() {
             })
             linhaIcones.addView(item, LinearLayout.LayoutParams(0, -2, 1f))
         }
-        coluna.addView(linhaIcones, LinearLayout.LayoutParams(larguraColuna, -2).apply { topMargin = dp(26) })
+        if (!modoArte) coluna.addView(linhaIcones, LinearLayout.LayoutParams(larguraColuna, -2).apply { topMargin = dp(26) })
 
         // Rodapé
         val rodape = LinearLayout(this).apply {
@@ -2134,15 +2343,98 @@ class MainActivity : AppCompatActivity() {
             setPadding(dp(10), 0, dp(10), 0)
         }, LinearLayout.LayoutParams(-2, -2))
         rodape.addView(View(this).apply { setBackgroundColor(vermelho) }, LinearLayout.LayoutParams(0, dp(2), 1f))
-        coluna.addView(rodape, LinearLayout.LayoutParams(larguraColuna, -2).apply { topMargin = dp(22) })
+        if (!modoArte) coluna.addView(rodape, LinearLayout.LayoutParams(larguraColuna, -2).apply { topMargin = dp(22) })
 
-        val rolagem = ScrollView(this).apply {
-            isFillViewport = true
-            isFocusable = false
-            isVerticalScrollBarEnabled = false
+        if (modoArte) {
+            // Campos dentro do cartão inferior da arte (posições em pixels da arte 1672x941)
+            coluna.removeView(caixa)
+            coluna.removeView(erro)
+            coluna.removeView(botao)
+
+            tela.viewTreeObserver.addOnGlobalLayoutListener(
+                object : android.view.ViewTreeObserver.OnGlobalLayoutListener {
+                    override fun onGlobalLayout() {
+                        if (tela.width <= 0 || tela.height <= 0) return
+                        tela.viewTreeObserver.removeOnGlobalLayoutListener(this)
+
+                        val baseL = 1672f
+                        val baseA = 941f
+                        val e = minOf(tela.width / baseL, tela.height / baseA)
+                        val ox = (tela.width - baseL * e) / 2f
+                        val oy = (tela.height - baseA * e) / 2f
+                        fun pos(x: Float, y: Float, w: Float, h: Float) = FrameLayout.LayoutParams(
+                            (w * e).toInt(), (h * e).toInt(), Gravity.TOP or Gravity.START
+                        ).apply {
+                            leftMargin = (ox + x * e).toInt()
+                            topMargin = (oy + y * e).toInt()
+                        }
+
+                        // Relógio real (no lugar do que veio desenhado)
+                        val local = Locale("pt", "BR")
+                        val agora = Date()
+                        val data = SimpleDateFormat("EEE, dd MMM", local).format(agora)
+                            .replace(".", "")
+                            .split(" ")
+                            .joinToString(" ") { p -> p.replaceFirstChar { it.uppercase() } }
+                        tela.addView(TextView(this@MainActivity).apply {
+                            text = SimpleDateFormat("HH:mm", local).format(agora)
+                            setTextColor(Color.WHITE)
+                            setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, 28f * e)
+                            setTypeface(null, Typeface.BOLD)
+                            gravity = Gravity.CENTER
+                            includeFontPadding = false
+                        }, pos(1566f, 36f, 106f, 34f))
+                        tela.addView(TextView(this@MainActivity).apply {
+                            text = data
+                            setTextColor(Color.rgb(225, 225, 230))
+                            setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, 15f * e)
+                            gravity = Gravity.CENTER
+                            includeFontPadding = false
+                        }, pos(1566f, 72f, 106f, 20f))
+
+                        // Título dentro do cartão
+                        tela.addView(TextView(this@MainActivity).apply {
+                            text = "Coloque o código que recebeu aqui"
+                            setTextColor(Color.WHITE)
+                            setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, 24f * e)
+                            setTypeface(null, Typeface.BOLD)
+                            gravity = Gravity.CENTER_VERTICAL or Gravity.START
+                            includeFontPadding = false
+                            maxLines = 1
+                        }, pos(880f, 760f, 510f, 30f))
+
+                        // Campo e botão
+                        caixa.setPadding((14 * e).toInt(), 0, (14 * e).toInt(), 0)
+                        campo.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, 24f * e)
+                        campo.hint = "Digite o código"
+                        botao.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, 24f * e)
+                        tela.addView(caixa, pos(880f, 796f, 345f, 62f))
+                        tela.addView(botao, pos(1238f, 796f, 156f, 62f))
+
+                        // Erro logo abaixo do cartão
+                        erro.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, 20f * e)
+                        erro.maxLines = 2
+                        tela.addView(erro, pos(760f, 884f, 660f, 48f))
+
+                        campo.requestFocus()
+                        if (!ehTv) {
+                            campo.post {
+                                (getSystemService(INPUT_METHOD_SERVICE) as? android.view.inputmethod.InputMethodManager)
+                                    ?.showSoftInput(campo, 0)
+                            }
+                        }
+                    }
+                }
+            )
+        } else {
+            val rolagem = ScrollView(this).apply {
+                isFillViewport = true
+                isFocusable = false
+                isVerticalScrollBarEnabled = false
+            }
+            rolagem.addView(coluna, FrameLayout.LayoutParams(-1, -2, Gravity.CENTER_HORIZONTAL))
+            tela.addView(rolagem, FrameLayout.LayoutParams(-1, -1))
         }
-        rolagem.addView(coluna, FrameLayout.LayoutParams(-1, -2, Gravity.CENTER_HORIZONTAL))
-        tela.addView(rolagem, FrameLayout.LayoutParams(-1, -1))
 
         tela.alpha = 0f
         raiz.addView(tela, FrameLayout.LayoutParams(-1, -1))
@@ -3001,41 +3293,20 @@ class MainActivity : AppCompatActivity() {
         val grupos = LinkedHashMap<String, Pair<MutableList<Filme>, MutableList<Serie>>>()
         val nomes = HashMap<String, String>()
 
-        fun grupo(titulo: String, categoria: String, ano: Int = 0): Pair<MutableList<Filme>, MutableList<Serie>>? {
-            var chave = chaveColetanea(titulo)
+        fun grupo(titulo: String, categoria: String): Pair<MutableList<Filme>, MutableList<Serie>>? {
+            val chave = chaveColetanea(titulo)
             if (chave.length < 3) return null
-            var nomeExtra = ""
-            // Homem-Aranha: separa por ator (cada fase vira uma coletânea própria)
-            if (chave == "homem aranha") {
-                when {
-                    ano in 1..2007 -> { chave += " tobey"; nomeExtra = " (Tobey Maguire)" }
-                    ano in 2008..2015 -> { chave += " garfield"; nomeExtra = " (Andrew Garfield)" }
-                    ano >= 2016 -> { chave += " holland"; nomeExtra = " (Tom Holland)" }
-                }
-            }
-            nomes.getOrPut(chave) {
-                titulo.split(":", " - ", " – ")[0].replace(Regex("\\s*\\(.*?\\)"), "").trim() + nomeExtra
-            }
+            nomes.getOrPut(chave) { titulo.split(":", " - ", " – ")[0].replace(Regex("\\s*\\(.*?\\)"), "").trim() }
             return grupos.getOrPut(chave) { Pair(mutableListOf(), mutableListOf()) }
         }
 
-        listaFilmes.forEach { grupo(it.titulo, it.categoria, it.ano)?.first?.add(it) }
+        listaFilmes.forEach { grupo(it.titulo, it.categoria)?.first?.add(it) }
         listaSeries.forEach { grupo(it.titulo, it.categoria)?.second?.add(it) }
 
         return grupos.entries
             .filter { it.value.first.size + it.value.second.size >= 2 }
-            .map {
-                // Ordena do filme mais antigo para o mais novo (sem ano vai para o fim)
-                val filmesOrdenados = it.value.first.sortedWith(
-                    compareBy<Filme>({ f -> if (f.ano > 0) f.ano else Int.MAX_VALUE }, { f -> normalizarTexto(f.titulo) })
-                )
-                Coletanea(nomes[it.key] ?: it.key, filmesOrdenados, it.value.second)
-            }
-            // Sagas mais novas primeiro (pelo ano do filme mais recente da saga); sem ano vai para o fim
-            .sortedWith(
-                compareByDescending<Coletanea> { c -> c.filmes.maxOfOrNull { f -> f.ano } ?: 0 }
-                    .thenBy { c -> normalizarTexto(c.nome) }
-            )
+            .map { Coletanea(nomes[it.key] ?: it.key, it.value.first, it.value.second) }
+            .sortedBy { normalizarTexto(it.nome) }
     }
 
     private fun cardColetanea(c: Coletanea): FrameLayout {
@@ -3362,22 +3633,13 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        conteudo.addView(
-            tituloSecao("Coletâneas  (${coletaneas.size})", "📚"),
-            LinearLayout.LayoutParams(-1, -2)
-        )
-
-        // Aviso para o usuário saber que precisa clicar
-        val aviso = TextView(this).apply {
-            text = "👆 Toque em uma coletânea para ver todos os filmes da saga"
-            setTextColor(Color.rgb(190, 195, 215))
-            textSize = 14f
-            setPadding(dp(6), dp(2), dp(6), dp(10))
+        coletaneas.forEach { c ->
+            conteudo.addView(
+                tituloSecao("${c.nome}  (${c.total})", "📚"),
+                LinearLayout.LayoutParams(-1, -2)
+            )
+            montarGrade(c.filmes.map { criarCard(it) })
         }
-        conteudo.addView(aviso, LinearLayout.LayoutParams(-1, -2))
-
-        // Só o primeiro filme de cada saga; ao clicar abre a lista completa
-        montarGrade(coletaneas.map { cardColetanea(it) })
     }
 
     // ----- Filmes -----
