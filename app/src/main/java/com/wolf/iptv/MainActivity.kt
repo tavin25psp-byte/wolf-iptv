@@ -3560,8 +3560,36 @@ class MainActivity : AppCompatActivity() {
 
         return grupos.entries
             .filter { it.value.first.size + it.value.second.size >= 2 }
-            .map { Coletanea(nomes[it.key] ?: it.key, it.value.first, it.value.second) }
+            .map {
+                Coletanea(
+                    nomes[it.key] ?: it.key,
+                    it.value.first.sortedWith(ordemSaga()),
+                    it.value.second.sortedBy { sr -> numeroNoTitulo(sr.titulo) }
+                )
+            }
             .sortedBy { normalizarTexto(it.nome) }
+    }
+
+    // Número da sequência no título ("Shrek 3" -> 3, "Parte 2" -> 2, "IV" -> 4)
+    private fun numeroNoTitulo(titulo: String): Int {
+        val t = normalizarTexto(titulo).replace(Regex("\\(.*?\\)"), " ")
+        Regex("(\\d+)\\s*$").find(t.trim())?.let { return it.groupValues[1].toIntOrNull() ?: 0 }
+        Regex("(?:^|[^a-z0-9])(\\d{1,2})(?:[^0-9]|$)").find(t)?.let { return it.groupValues[1].toIntOrNull() ?: 0 }
+        val romanos = mapOf("ii" to 2, "iii" to 3, "iv" to 4, "v" to 5, "vi" to 6, "vii" to 7, "viii" to 8, "ix" to 9, "x" to 10)
+        val ult = t.trim().split(" ").lastOrNull() ?: ""
+        return romanos[ult] ?: 0
+    }
+
+    // Ordem da saga: por ano (quando tem) e, sem ano, pelo número no título
+    private fun ordemSaga(): Comparator<Filme> = Comparator { a, b ->
+        val aa = if (a.ano > 0) a.ano else Int.MAX_VALUE
+        val ba = if (b.ano > 0) b.ano else Int.MAX_VALUE
+        if (aa != ba) aa.compareTo(ba)
+        else {
+            val na = numeroNoTitulo(a.titulo)
+            val nb = numeroNoTitulo(b.titulo)
+            if (na != nb) na.compareTo(nb) else normalizarTexto(a.titulo).compareTo(normalizarTexto(b.titulo))
+        }
     }
 
     private fun cardColetanea(c: Coletanea): FrameLayout {
@@ -3888,13 +3916,12 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        coletaneas.forEach { c ->
-            conteudo.addView(
-                tituloSecao("${c.nome}  (${c.total})", "📚"),
-                LinearLayout.LayoutParams(-1, -2)
-            )
-            montarGradeLazy(c.filmes) { criarCard(it) }
-        }
+        conteudo.addView(
+            tituloSecao("Coletâneas  (${coletaneas.size})", "📚"),
+            LinearLayout.LayoutParams(-1, -2)
+        )
+        // Um card por saga; ao clicar abre os filmes dela em ordem (mostrarColetanea)
+        montarGradeLazy(coletaneas) { cardColetanea(it) }
     }
 
     // ----- Filmes -----
