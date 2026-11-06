@@ -24,6 +24,8 @@ import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.DefaultRenderersFactory
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
+import androidx.media3.extractor.DefaultExtractorsFactory
+import androidx.media3.extractor.ts.DefaultTsPayloadReaderFactory
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
 
@@ -39,10 +41,12 @@ class PlayerActivity : AppCompatActivity() {
     private var ehAoVivo = false
     // Link original da lista (pode ser .ts).
     private var urlOriginal = ""
-    // Link realmente tocado (.ts trocado por .m3u8 nos canais ao vivo).
+    // Link realmente tocado (.ts ou .m3u8, conforme o botão de formato).
     private var urlFinal = ""
     // Já voltou pro link original depois que o .m3u8 falhou?
     private var jaTentouOriginal = false
+    // Formato escolhido para canais ao vivo (lembrado entre aberturas).
+    private var usarM3u8 = true
 
     private lateinit var container: FrameLayout
     private lateinit var playerView: PlayerView
@@ -56,12 +60,16 @@ class PlayerActivity : AppCompatActivity() {
 
     // Botão "Transmitir para a TV" (aparece junto com os controles do player).
     private lateinit var botaoEspelhar: TextView
+    // Botão que alterna entre TS e M3U8 nos canais ao vivo.
+    private lateinit var botaoFormato: TextView
     // true enquanto o usuário está na tela de espelhamento do Android:
     // evita pausar o vídeo quando o app sai de cena por um instante.
     private var abrindoEspelhamento = false
 
     private val zooms = floatArrayOf(1.0f, 1.1f, 1.25f, 1.5f, 2.0f)
     private val nomesZoom = arrayOf("1.0×   Normal", "1.1×", "1.25×", "1.5×", "2.0×")
+
+    private val prefs by lazy { getSharedPreferences("wolf_prefs", MODE_PRIVATE) }
 
     // Salva a posição do vídeo a cada 5 segundos (continuar assistindo).
     private val salvarLoop = object : Runnable {
@@ -88,6 +96,8 @@ class PlayerActivity : AppCompatActivity() {
             View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
             View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+
+        usarM3u8 = prefs.getBoolean("ao_vivo_m3u8", true)
 
         criarInterface()
         iniciarPlayer()
@@ -178,16 +188,103 @@ class PlayerActivity : AppCompatActivity() {
         espelharParams.setMargins(0, 36, 36, 0)
         container.addView(botaoEspelhar, espelharParams)
 
-        // O botão aparece e some junto com os controles do player.
+        // BOTÃO FORMATO (TS / M3U8) — só aparece em canal ao vivo
+        botaoFormato = TextView(this)
+        botaoFormato.textSize = 16f
+        botaoFormato.setTextColor(Color.WHITE)
+        botaoFormato.setPadding(34, 20, 34, 20)
+        botaoFormato.background = fundoArredondado(Color.argb(190, 10, 10, 10), 40f)
+        botaoFormato.elevation = 20f
+        botaoFormato.isFocusable = true
+        botaoFormato.isClickable = true
+        botaoFormato.visibility = View.GONE
+        botaoFormato.setOnClickListener { alternarFormato() }
+        botaoFormato.setOnFocusChangeListener { view, temFoco ->
+            view.background = if (temFoco) {
+                fundoArredondado(Color.rgb(190, 0, 0), 40f)
+            } else {
+                fundoArredondado(Color.argb(190, 10, 10, 10), 40f)
+            }
+        }
+
+        val formatoParams = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.WRAP_CONTENT,
+            FrameLayout.LayoutParams.WRAP_CONTENT
+        )
+        formatoParams.gravity = Gravity.TOP or Gravity.START
+        formatoParams.setMargins(36, 36, 0, 0)
+        container.addView(botaoFormato, formatoParams)
+
+        // Os botões aparecem e somem junto com os controles do player.
         playerView.setControllerVisibilityListener(
             PlayerView.ControllerVisibilityListener { visibilidade ->
                 botaoEspelhar.visibility = visibilidade
+                botaoFormato.visibility = if (ehAoVivo) visibilidade else View.GONE
             }
         )
 
         setContentView(container)
 
         playerView.postDelayed({ conectarEngrenagemNativa() }, 300)
+    }
+
+    // =========================================================
+    // FORMATO TS / M3U8
+    // =========================================================
+
+    private fun atualizarTextoFormato() {
+        val m3u8 = urlFinal.contains(".m3u8", ignoreCase = true)
+        botaoFormato.text = if (m3u8) "🔁  Formato: M3U8" else "🔁  Formato: TS"
+    }
+
+    // Troca entre TS e M3U8 na hora, sem precisar mexer no código.
+    private fun alternarFormato() {
+        if (!ehAoVivo || !urlOriginal.endsWith(".ts", ignoreCase = true)) {
+            Toast.makeText(this, "Só vale para canais ao vivo.", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        usarM3u8 = !urlFinal.contains(".m3u8", ignoreCase = true)
+        prefs.edit().putBoolean("ao_vivo_m3u8", usarM3u8).apply()
+
+        jaTentouOriginal = false
+        tentativasRede = 0
+        urlFinal = calcularUrlFinal(urlOriginal)
+        atualizarTextoFormato()
+        erroTexto.visibility = View.GONE
+
+        carregarMidia(0L)
+
+        Toast.makeText(
+            this,
+            if (usarM3u8) "Formato: M3U8" else "Formato: TS",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun calcularUrlFinal(url: String): String {
+        return if (ehAoVivo && usarM3u8 && url.endsWith(".ts", ignoreCase = true)) {
+            url.dropLast(3) + ".m3u8"
+        } else {
+            url
+        }
+    }
+
+    private fun carregarMidia(inicio: Long) {
+        val builder = MediaItem.Builder().setUri(Uri.parse(urlFinal))
+
+        if (urlFinal.contains(".m3u8", ignoreCase = true)) {
+            builder.setMimeType(MimeTypes.APPLICATION_M3U8)
+        }
+
+        if (inicio > 0L) {
+            player?.setMediaItem(builder.build(), inicio)
+        } else {
+            player?.setMediaItem(builder.build())
+        }
+
+        player?.prepare()
+        player?.playWhenReady = true
     }
 
     // =========================================================
@@ -427,12 +524,12 @@ class PlayerActivity : AppCompatActivity() {
         urlOriginal = url
         ehAoVivo = !url.contains("/movie/") && !url.contains("/series/")
 
-        // Nos canais ao vivo, tenta .m3u8 no lugar de .ts.
-        // O .ts puro é tratado como vídeo comum e "termina" em ~4s.
-        urlFinal = if (ehAoVivo && url.endsWith(".ts", ignoreCase = true)) {
-            url.dropLast(3) + ".m3u8"
-        } else {
-            url
+        // Nos canais ao vivo, o formato (TS ou M3U8) vem do botão e fica salvo.
+        urlFinal = calcularUrlFinal(url)
+
+        if (ehAoVivo && urlOriginal.endsWith(".ts", ignoreCase = true)) {
+            botaoFormato.visibility = View.VISIBLE
+            atualizarTextoFormato()
         }
 
         // Posição pra retomar (0 = começa do início).
@@ -444,13 +541,20 @@ class PlayerActivity : AppCompatActivity() {
         }
 
         try {
+            // Leitura do TS mais tolerante: ajuda com áudio fora de sincronia
+            // em streams de IPTV com marcação de tempo bagunçada.
+            val extratores = DefaultExtractorsFactory().setTsExtractorFlags(
+                DefaultTsPayloadReaderFactory.FLAG_ALLOW_NON_IDR_KEYFRAMES or
+                    DefaultTsPayloadReaderFactory.FLAG_DETECT_ACCESS_UNITS
+            )
+
             player =
                 ExoPlayer.Builder(
                     this,
                     DefaultRenderersFactory(this).setEnableDecoderFallback(true)
                 )
                     .setMediaSourceFactory(
-                        DefaultMediaSourceFactory(this)
+                        DefaultMediaSourceFactory(this, extratores)
                             .setDataSourceFactory(
                                 DefaultHttpDataSource.Factory()
                                     .setUserAgent("VLC/3.0.20 LibVLC/3.0.20")
@@ -519,6 +623,7 @@ class PlayerActivity : AppCompatActivity() {
                         if (ehAoVivo && !jaTentouOriginal && urlFinal != urlOriginal) {
                             jaTentouOriginal = true
                             urlFinal = urlOriginal
+                            atualizarTextoFormato()
                             player?.setMediaItem(MediaItem.fromUri(Uri.parse(urlOriginal)))
                             player?.prepare()
                             player?.playWhenReady = true
@@ -583,20 +688,7 @@ class PlayerActivity : AppCompatActivity() {
                 }
             )
 
-            val builder = MediaItem.Builder().setUri(Uri.parse(urlFinal))
-
-            if (urlFinal.contains(".m3u8", ignoreCase = true)) {
-                builder.setMimeType(MimeTypes.APPLICATION_M3U8)
-            }
-
-            if (inicio > 0L) {
-                player?.setMediaItem(builder.build(), inicio)
-            } else {
-                player?.setMediaItem(builder.build())
-            }
-
-            player?.prepare()
-            player?.playWhenReady = true
+            carregarMidia(inicio)
 
             playerView.postDelayed(salvarLoop, 5000)
 
@@ -703,6 +795,11 @@ class PlayerActivity : AppCompatActivity() {
 
                 if (foco != null && foco == botaoEspelhar) {
                     abrirEspelhamento()
+                    return true
+                }
+
+                if (foco != null && foco == botaoFormato) {
+                    alternarFormato()
                     return true
                 }
 
