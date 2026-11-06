@@ -3528,68 +3528,68 @@ class MainActivity : AppCompatActivity() {
         val total get() = filmes.size + series.size
     }
 
+    private val RX_PARENTESES = Regex("\\(.*?\\)|\\[.*?]")
+    private val RX_NAO_ALFANUM = Regex("[^a-z0-9 ]")
+    private val RX_NUM_FINAL_CHAVE = Regex("\\s+(\\d+|ii|iii|iv|v|vi|vii|viii|ix|x)$")
+    private val RX_ESPACOS = Regex("\\s+")
+    private val RX_PARENTESES_NOME = Regex("\\s*\\(.*?\\)")
+    private val RX_NUM_FIM = Regex("(\\d+)\\s*$")
+    private val RX_NUM_MEIO = Regex("(?:^|[^a-z0-9])(\\d{1,2})(?:[^0-9]|$)")
+    private val SEPARADORES_SAGA = listOf(":", " - ", " – ")
+    private val ROMANOS = mapOf("ii" to 2, "iii" to 3, "iv" to 4, "v" to 5, "vi" to 6, "vii" to 7, "viii" to 8, "ix" to 9, "x" to 10)
+
     private fun chaveColetanea(titulo: String): String {
         var t = normalizarTexto(titulo)
-        t = t.replace(Regex("\\(.*?\\)|\\[.*?]"), " ")
-        t = t.split(":", " - ", " – ")[0]
+        t = t.replace(RX_PARENTESES, " ")
+        t = t.split(*SEPARADORES_SAGA.toTypedArray())[0]
         for (sep in listOf(" e o ", " e a ", " e os ", " e as ")) {
             val i = t.indexOf(sep)
             if (i > 0 && t.substring(0, i).trim().contains(" ")) {
                 t = t.substring(0, i)
             }
         }
-        t = t.replace(Regex("[^a-z0-9 ]"), " ")
-        t = t.replace(Regex("\\s+(\\d+|ii|iii|iv|v|vi|vii|viii|ix|x)$"), "")
-        t = t.replace(Regex("\\s+"), " ").trim()
+        t = t.replace(RX_NAO_ALFANUM, " ")
+        t = t.replace(RX_NUM_FINAL_CHAVE, "")
+        t = t.replace(RX_ESPACOS, " ").trim()
         return t
+    }
+
+    // Número da sequência no título ("Shrek 3" -> 3, "Parte 2" -> 2, "IV" -> 4)
+    private fun numeroNoTitulo(titulo: String): Int {
+        val t = normalizarTexto(titulo).replace(RX_PARENTESES, " ").trim()
+        RX_NUM_FIM.find(t)?.let { return it.groupValues[1].toIntOrNull() ?: 0 }
+        RX_NUM_MEIO.find(t)?.let { return it.groupValues[1].toIntOrNull() ?: 0 }
+        return ROMANOS[t.substringAfterLast(' ')] ?: 0
     }
 
     private fun montarColetaneas(listaFilmes: List<Filme>, listaSeries: List<Serie>): List<Coletanea> {
         val grupos = LinkedHashMap<String, Pair<MutableList<Filme>, MutableList<Serie>>>()
         val nomes = HashMap<String, String>()
 
-        fun grupo(titulo: String, categoria: String): Pair<MutableList<Filme>, MutableList<Serie>>? {
+        fun grupo(titulo: String): Pair<MutableList<Filme>, MutableList<Serie>>? {
             val chave = chaveColetanea(titulo)
             if (chave.length < 3) return null
-            nomes.getOrPut(chave) { titulo.split(":", " - ", " – ")[0].replace(Regex("\\s*\\(.*?\\)"), "").trim() }
+            nomes.getOrPut(chave) {
+                titulo.split(*SEPARADORES_SAGA.toTypedArray())[0].replace(RX_PARENTESES_NOME, "").trim()
+            }
             return grupos.getOrPut(chave) { Pair(mutableListOf(), mutableListOf()) }
         }
 
-        listaFilmes.forEach { grupo(it.titulo, it.categoria)?.first?.add(it) }
-        listaSeries.forEach { grupo(it.titulo, it.categoria)?.second?.add(it) }
+        listaFilmes.forEach { grupo(it.titulo)?.first?.add(it) }
+        listaSeries.forEach { grupo(it.titulo)?.second?.add(it) }
 
         return grupos.entries
             .filter { it.value.first.size + it.value.second.size >= 2 }
-            .map {
-                Coletanea(
-                    nomes[it.key] ?: it.key,
-                    it.value.first.sortedWith(ordemSaga()),
-                    it.value.second.sortedBy { sr -> numeroNoTitulo(sr.titulo) }
-                )
+            .map { e ->
+                // Chaves de ordenação calculadas uma vez só (evita recalcular a cada comparação)
+                val filmesOrdenados = e.value.first
+                    .map { f -> Triple(if (f.ano > 0) f.ano else Int.MAX_VALUE, numeroNoTitulo(f.titulo), f) }
+                    .sortedWith(compareBy({ it.first }, { it.second }, { normalizarTexto(it.third.titulo) }))
+                    .map { it.third }
+                val seriesOrdenadas = e.value.second.sortedBy { sr -> numeroNoTitulo(sr.titulo) }
+                Coletanea(nomes[e.key] ?: e.key, filmesOrdenados, seriesOrdenadas)
             }
             .sortedBy { normalizarTexto(it.nome) }
-    }
-
-    // Número da sequência no título ("Shrek 3" -> 3, "Parte 2" -> 2, "IV" -> 4)
-    private fun numeroNoTitulo(titulo: String): Int {
-        val t = normalizarTexto(titulo).replace(Regex("\\(.*?\\)"), " ")
-        Regex("(\\d+)\\s*$").find(t.trim())?.let { return it.groupValues[1].toIntOrNull() ?: 0 }
-        Regex("(?:^|[^a-z0-9])(\\d{1,2})(?:[^0-9]|$)").find(t)?.let { return it.groupValues[1].toIntOrNull() ?: 0 }
-        val romanos = mapOf("ii" to 2, "iii" to 3, "iv" to 4, "v" to 5, "vi" to 6, "vii" to 7, "viii" to 8, "ix" to 9, "x" to 10)
-        val ult = t.trim().split(" ").lastOrNull() ?: ""
-        return romanos[ult] ?: 0
-    }
-
-    // Ordem da saga: por ano (quando tem) e, sem ano, pelo número no título
-    private fun ordemSaga(): Comparator<Filme> = Comparator { a, b ->
-        val aa = if (a.ano > 0) a.ano else Int.MAX_VALUE
-        val ba = if (b.ano > 0) b.ano else Int.MAX_VALUE
-        if (aa != ba) aa.compareTo(ba)
-        else {
-            val na = numeroNoTitulo(a.titulo)
-            val nb = numeroNoTitulo(b.titulo)
-            if (na != nb) na.compareTo(nb) else normalizarTexto(a.titulo).compareTo(normalizarTexto(b.titulo))
-        }
     }
 
     private fun cardColetanea(c: Coletanea): FrameLayout {
@@ -3905,17 +3905,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private var cacheColetaneas: List<Coletanea>? = null
+    private var cacheColetaneasTotal = -1
+
     private fun mostrarAbaColetaneas() {
         historicoConteudo.clear()
         voltarListaAtual = { abrirSecao("Coletâneas") }
         limparConteudo()
 
-        val coletaneas = montarColetaneas(filmes, emptyList())
+        val pronto = cacheColetaneas
+        if (pronto != null && cacheColetaneasTotal == filmes.size) {
+            exibirColetaneas(pronto)
+            return
+        }
+
+        // Montar as sagas de milhares de filmes é pesado: faz em segundo plano
+        mostrarMensagemVazia("Carregando coletâneas...")
+        val copia = filmes.toList()
+        Thread {
+            val resultado = try { montarColetaneas(copia, emptyList()) } catch (_: Throwable) { emptyList() }
+            runOnUiThread {
+                cacheColetaneas = resultado
+                cacheColetaneasTotal = copia.size
+                // só mostra se o usuário ainda estiver na aba Coletâneas
+                if (menuAtual == "Coletâneas") {
+                    limparConteudo()
+                    exibirColetaneas(resultado)
+                }
+            }
+        }.start()
+    }
+
+    private fun exibirColetaneas(coletaneas: List<Coletanea>) {
         if (coletaneas.isEmpty()) {
             mostrarMensagemVazia("Nenhuma coletânea encontrada")
             return
         }
-
         conteudo.addView(
             tituloSecao("Coletâneas  (${coletaneas.size})", "📚"),
             LinearLayout.LayoutParams(-1, -2)
