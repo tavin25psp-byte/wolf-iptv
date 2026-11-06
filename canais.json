@@ -1,248 +1,77 @@
-[
-  {
-    "nome": "AgroMais FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/71764.ts",
-    "logo": "http://www.acstatic.co/logos/canais/agromais.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "Band SP FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/79311.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/band.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "Canal do Boi FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/71820.ts",
-    "logo": "http://acstatic.co/logos/canais/canaldoboi.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "Canal Rural FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/178512.ts",
-    "logo": "http://rrcwb.biz/images/fd9212142eedf1910dcba86a14dfdd81.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "Cultura FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/71851.ts",
-    "logo": "http://acstatic.co/logos/canais/tvcultura.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "Futura FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/71962.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/futura.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "RedeTV FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/72297.ts",
-    "logo": "http://rrcwb.biz/images/730b1aa20e87fbb7b2101a02fe806630.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "SBT RJ FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/108681.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/sbt.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "SBT SP FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/77963.ts",
-    "logo": "http://rrcwb.biz/images/cdeca592bbb91b4c697cb75440c2bf83.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "TV Brasil FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/72399.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/tvbrasil.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "TV Gazeta SP FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/104917.ts",
-    "logo": "http://rrcwb.biz/images/2baf5152b328307749ffbafedb684497.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "TV Uniao Fortaleza FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/100420.ts",
-    "logo": "",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "SBT TV Alterosa FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218366.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s104210_ll_h3_aa.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "SBT RS FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218367.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s103756_ll_h3_aa.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "SBT VTV Santos Campinas FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350093.ts",
-    "logo": "http://rrcwb.biz/images/cdeca592bbb91b4c697cb75440c2bf83.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "SBT Thathi Vale FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350096.ts",
-    "logo": "http://rrcwb.biz/images/cdeca592bbb91b4c697cb75440c2bf83.png",
-    "categoria": "Canais | Abertos"
-  },
-  {
-    "nome": "RecordTV Itapoan FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/157406.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV RJ FHD",
-    "url": "http://5d2spzxh.xyz:80/leomO107/pM107098a/106638.ts",
-    "logo": "http://5d2spzxh.xyz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV RJ HD",
-    "url": "http://5d2spzxh.xyz:80/leomO107/pM107098a/72594.ts",
-    "logo": "http://5d2spzxh.xyz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV RJ SD",
-    "url": "http://5d2spzxh.xyz:80/leomO107/pM107098a/96526.ts",
-    "logo": "http://5d2spzxh.xyz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV RJ Interior FHD",
-    "url": "http://5d2spzxh.xyz:80/leomO107/pM107098a/218792.ts",
-    "logo": "http://5d2spzxh.xyz/images/772255b867c746a532039ecd6dbc6a72.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV RJ Interior HD",
-    "url": "http://5d2spzxh.xyz:80/leomO107/pM107098a/218793.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s76624_ll_h3_aa.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV SP FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/77654.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "TV Cidade RecordTV FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/92666.ts",
-    "logo": "https://imgur.com/DRX0wcK",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Vila Real FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218785.ts",
-    "logo": "http://rrcwb.biz/images/772255b867c746a532039ecd6dbc6a72.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Thathi Campinas FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218787.ts",
-    "logo": "http://rrcwb.biz/images/772255b867c746a532039ecd6dbc6a72.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV SIC Rondonia FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218789.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s104761_ll_h3_aa.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Rio Preto FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218794.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s76737_ll_h3_aa.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Paranaiba de Uberlandia FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218796.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Litoral Vale do Parnaiba FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218798.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s104761_ll_h3_aa.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Goias FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218822.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s104205_ll_h3_aa.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV RS FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/218791.ts",
-    "logo": "http://fanc.tmsimg.com/assets/s76674_ll_h3_aa.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Ribeirao FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350008.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Piaui A10 FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350011.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Leste FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350034.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Roraima FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350060.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Paulista FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350063.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Paraiba TV Correio FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350066.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Manaus FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350069.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Guararapes FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350072.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  },
-  {
-    "nome": "RecordTV Thathi Campinas FHD",
-    "url": "http://rrcwb.biz:80/286736/ZyRR68/350090.ts",
-    "logo": "http://rrcwb.biz/static/logos/canais/record.png",
-    "categoria": "Canais | RecordTV"
-  }
-]
+#EXTM3U
+#EXTINF:-1 tvg-id="123" tvg-name="AgroMais FHD" tvg-logo="http://www.acstatic.co/logos/canais/agromais.png" group-title="Canais | Abertos",AgroMais FHD
+http://rrcwb.biz:80/286736/ZyRR68/71764.ts
+#EXTINF:-1 tvg-id="127" tvg-name="Band SP FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/band.png" group-title="Canais | Abertos",Band SP FHD
+http://rrcwb.biz:80/286736/ZyRR68/79311.ts
+#EXTINF:-1 tvg-id="132" tvg-name="Canal do Boi FHD" tvg-logo="http://acstatic.co/logos/canais/canaldoboi.png" group-title="Canais | Abertos",Canal do Boi FHD
+http://rrcwb.biz:80/286736/ZyRR68/71820.ts
+#EXTINF:-1 tvg-id="136" tvg-name="Canal Rural FHD" tvg-logo="http://rrcwb.biz/images/fd9212142eedf1910dcba86a14dfdd81.png" group-title="Canais | Abertos",Canal Rural FHD
+http://rrcwb.biz:80/286736/ZyRR68/178512.ts
+#EXTINF:-1 tvg-id="142" tvg-name="Cultura FHD" tvg-logo="http://acstatic.co/logos/canais/tvcultura.png" group-title="Canais | Abertos",Cultura FHD
+http://rrcwb.biz:80/286736/ZyRR68/71851.ts
+#EXTINF:-1 tvg-id="147" tvg-name="Futura FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/futura.png" group-title="Canais | Abertos",Futura FHD
+http://rrcwb.biz:80/286736/ZyRR68/71962.ts
+#EXTINF:-1 tvg-id="151" tvg-name="RedeTV FHD" tvg-logo="http://rrcwb.biz/images/730b1aa20e87fbb7b2101a02fe806630.png" group-title="Canais | Abertos",RedeTV FHD
+http://rrcwb.biz:80/286736/ZyRR68/72297.ts
+#EXTINF:-1 tvg-id="157" tvg-name="SBT RJ FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/sbt.png" group-title="Canais | Abertos",SBT RJ FHD
+http://rrcwb.biz:80/286736/ZyRR68/108681.ts
+#EXTINF:-1 tvg-id="161" tvg-name="SBT SP FHD" tvg-logo="http://rrcwb.biz/images/cdeca592bbb91b4c697cb75440c2bf83.png" group-title="Canais | Abertos",SBT SP FHD
+http://rrcwb.biz:80/286736/ZyRR68/77963.ts
+#EXTINF:-1 tvg-id="167" tvg-name="TV Brasil FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/tvbrasil.png" group-title="Canais | Abertos",TV Brasil FHD
+http://rrcwb.biz:80/286736/ZyRR68/72399.ts
+#EXTINF:-1 tvg-id="172" tvg-name="TV Gazeta SP FHD" tvg-logo="http://rrcwb.biz/images/2baf5152b328307749ffbafedb684497.png" group-title="Canais | Abertos",TV Gazeta SP FHD
+http://rrcwb.biz:80/286736/ZyRR68/104917.ts
+#EXTINF:-1 tvg-id="176" tvg-name="TV Uniao Fortaleza FHD" tvg-logo="" group-title="Canais | Abertos",TV Uniao Fortaleza FHD
+http://rrcwb.biz:80/286736/ZyRR68/100420.ts
+#EXTINF:-1 tvg-id="180" tvg-name="SBT TV Alterosa FHD" tvg-logo="http://fanc.tmsimg.com/assets/s104210_ll_h3_aa.png" group-title="Canais | Abertos",SBT TV Alterosa FHD
+http://rrcwb.biz:80/286736/ZyRR68/218366.ts
+#EXTINF:-1 tvg-id="181" tvg-name="SBT RS FHD" tvg-logo="http://fanc.tmsimg.com/assets/s103756_ll_h3_aa.png" group-title="Canais | Abertos",SBT RS FHD
+http://rrcwb.biz:80/286736/ZyRR68/218367.ts
+#EXTINF:-1 tvg-id="184" tvg-name="SBT VTV Santos Campinas FHD" tvg-logo="http://rrcwb.biz/images/cdeca592bbb91b4c697cb75440c2bf83.png" group-title="Canais | Abertos",SBT VTV Santos Campinas FHD
+http://rrcwb.biz:80/286736/ZyRR68/350093.ts
+#EXTINF:-1 tvg-id="187" tvg-name="SBT Thathi Vale FHD" tvg-logo="http://rrcwb.biz/images/cdeca592bbb91b4c697cb75440c2bf83.png" group-title="Canais | Abertos",SBT Thathi Vale FHD
+http://rrcwb.biz:80/286736/ZyRR68/350096.ts
+#EXTINF:-1 tvg-id="1064" tvg-name="RecordTV Itapoan FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Itapoan FHD
+http://rrcwb.biz:80/286736/ZyRR68/157406.ts
+#EXTINF:-1 tvg-id="1067" tvg-name="RecordTV RJ FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV RJ FHD
+http://rrcwb.biz:80/286736/ZyRR68/106638.ts
+#EXTINF:-1 tvg-id="1070" tvg-name="RecordTV SP FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV SP FHD
+http://rrcwb.biz:80/286736/ZyRR68/77654.ts
+#EXTINF:-1 tvg-id="1075" tvg-name="TV Cidade RecordTV FHD" tvg-logo="https://imgur.com/DRX0wcK" group-title="Canais | RecordTV",TV Cidade RecordTV FHD
+http://rrcwb.biz:80/286736/ZyRR68/92666.ts
+#EXTINF:-1 tvg-id="1079" tvg-name="RecordTV Vila Real FHD" tvg-logo="http://rrcwb.biz/images/772255b867c746a532039ecd6dbc6a72.png" group-title="Canais | RecordTV",RecordTV Vila Real FHD
+http://rrcwb.biz:80/286736/ZyRR68/218785.ts
+#EXTINF:-1 tvg-id="1081" tvg-name="RecordTV Thathi Campinas FHD" tvg-logo="http://rrcwb.biz/images/772255b867c746a532039ecd6dbc6a72.png" group-title="Canais | RecordTV",RecordTV Thathi Campinas FHD
+http://rrcwb.biz:80/286736/ZyRR68/218787.ts
+#EXTINF:-1 tvg-id="1083" tvg-name="RecordTV SIC Rondonia FHD" tvg-logo="http://fanc.tmsimg.com/assets/s104761_ll_h3_aa.png" group-title="Canais | RecordTV",RecordTV SIC Rondonia FHD
+http://rrcwb.biz:80/286736/ZyRR68/218789.ts
+#EXTINF:-1 tvg-id="1084" tvg-name="RecordTV RJ Interior FHD" tvg-logo="http://rrcwb.biz/images/772255b867c746a532039ecd6dbc6a72.png" group-title="Canais | RecordTV",RecordTV RJ Interior FHD
+http://rrcwb.biz:80/286736/ZyRR68/218792.ts
+#EXTINF:-1 tvg-id="1086" tvg-name="RecordTV Rio Preto FHD" tvg-logo="http://fanc.tmsimg.com/assets/s76737_ll_h3_aa.png" group-title="Canais | RecordTV",RecordTV Rio Preto FHD
+http://rrcwb.biz:80/286736/ZyRR68/218794.ts
+#EXTINF:-1 tvg-id="1088" tvg-name="RecordTV Paranaiba de Uberlandia FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Paranaiba de Uberlandia FHD
+http://rrcwb.biz:80/286736/ZyRR68/218796.ts
+#EXTINF:-1 tvg-id="1090" tvg-name="RecordTV Litoral Vale do Parnaiba FHD" tvg-logo="http://fanc.tmsimg.com/assets/s104761_ll_h3_aa.png" group-title="Canais | RecordTV",RecordTV Litoral Vale do Parnaiba FHD
+http://rrcwb.biz:80/286736/ZyRR68/218798.ts
+#EXTINF:-1 tvg-id="1092" tvg-name="RecordTV Goias FHD" tvg-logo="http://fanc.tmsimg.com/assets/s104205_ll_h3_aa.png" group-title="Canais | RecordTV",RecordTV Goias FHD
+http://rrcwb.biz:80/286736/ZyRR68/218822.ts
+#EXTINF:-1 tvg-id="1095" tvg-name="RecordTV RS FHD" tvg-logo="http://fanc.tmsimg.com/assets/s76674_ll_h3_aa.png" group-title="Canais | RecordTV",RecordTV RS FHD
+http://rrcwb.biz:80/286736/ZyRR68/218791.ts
+#EXTINF:-1 tvg-id="1098" tvg-name="RecordTV Ribeirao FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Ribeirao FHD
+http://rrcwb.biz:80/286736/ZyRR68/350008.ts
+#EXTINF:-1 tvg-id="1101" tvg-name="RecordTV Piaui A10 FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Piaui A10 FHD
+http://rrcwb.biz:80/286736/ZyRR68/350011.ts
+#EXTINF:-1 tvg-id="1104" tvg-name="RecordTV Leste FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Leste FHD
+http://rrcwb.biz:80/286736/ZyRR68/350034.ts
+#EXTINF:-1 tvg-id="1107" tvg-name="RecordTV Roraima FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Roraima FHD
+http://rrcwb.biz:80/286736/ZyRR68/350060.ts
+#EXTINF:-1 tvg-id="1110" tvg-name="RecordTV Paulista FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Paulista FHD
+http://rrcwb.biz:80/286736/ZyRR68/350063.ts
+#EXTINF:-1 tvg-id="1113" tvg-name="RecordTV Paraiba TV Correio FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Paraiba TV Correio FHD
+http://rrcwb.biz:80/286736/ZyRR68/350066.ts
+#EXTINF:-1 tvg-id="1116" tvg-name="RecordTV Manaus FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Manaus FHD
+http://rrcwb.biz:80/286736/ZyRR68/350069.ts
+#EXTINF:-1 tvg-id="1119" tvg-name="RecordTV Guararapes FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Guararapes FHD
+http://rrcwb.biz:80/286736/ZyRR68/350072.ts
+#EXTINF:-1 tvg-id="1122" tvg-name="RecordTV Thathi Campinas FHD" tvg-logo="http://rrcwb.biz/static/logos/canais/record.png" group-title="Canais | RecordTV",RecordTV Thathi Campinas FHD
+http://rrcwb.biz:80/286736/ZyRR68/350090.ts
