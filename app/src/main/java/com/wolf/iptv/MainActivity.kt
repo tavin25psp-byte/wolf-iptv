@@ -4170,7 +4170,7 @@ class MainActivity : AppCompatActivity() {
         episodio: Episodio,
         aoMudar: () -> Unit
     ) {
-        val chave = chaveEpisodio(serie, numTemp, episodio.numero)
+        val chave = chaveEpisodio(serie, numTemp, episodio)
         val opcoes = ArrayList<Pair<String, () -> Unit>>()
         fun add(texto: String, acao: () -> Unit) { opcoes.add(Pair(texto, acao)) }
 
@@ -4210,24 +4210,33 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    private fun chaveEpisodio(serie: Serie, numTemp: Int, numEp: Int): String {
-        return "${serie.titulo}|T$numTemp|E$numEp"
+    // O "visto" é guardado por DUAS identidades do episódio:
+    //  1) chave antiga (título|Temporada|Episódio) -> compatível com o que já estava salvo
+    //  2) link do vídeo -> continua igual mesmo se a numeração/título mudar ao atualizar o catálogo
+    // O episódio conta como visto se QUALQUER uma delas bater.
+    private fun chaveEpisodio(serie: Serie, numTemp: Int, episodio: Episodio): String {
+        val antiga = "${serie.titulo}|T$numTemp|E${episodio.numero}"
+        val video = episodio.video.trim()
+        return if (video.isEmpty()) antiga else "$antiga\u0001V|$video"
     }
 
     private fun episodioAssistido(chave: String): Boolean {
-        return prefsWolf.getStringSet("assistidos", emptySet())?.contains(chave) == true
+        val salvos = prefsWolf.getStringSet("assistidos", emptySet()) ?: emptySet()
+        return chave.split('\u0001').any { it in salvos }
     }
 
     private fun marcarEpisodio(chave: String, assistido: Boolean) {
         val novo = HashSet(prefsWolf.getStringSet("assistidos", emptySet()) ?: emptySet())
-        if (assistido) novo.add(chave) else novo.remove(chave)
+        for (k in chave.split('\u0001')) {
+            if (assistido) novo.add(k) else novo.remove(k)
+        }
         prefsWolf.edit().putStringSet("assistidos", novo).apply()
     }
 
     private val prefsWolf by lazy { getSharedPreferences("wolf_prefs", MODE_PRIVATE) }
 
     private fun criarCardEpisodio(serie: Serie, numTemp: Int, episodio: Episodio): View {
-        val chave = chaveEpisodio(serie, numTemp, episodio.numero)
+        val chave = chaveEpisodio(serie, numTemp, episodio)
         val textoBase = "EP ${episodio.numero} • ${episodio.titulo}"
 
         val informacoes = TextView(this).apply {
