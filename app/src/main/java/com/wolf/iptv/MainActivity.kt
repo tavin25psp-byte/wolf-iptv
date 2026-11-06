@@ -104,6 +104,12 @@ class MainActivity : AppCompatActivity() {
     private val ARQUIVOS_RANGERS =
         listOf("rangers.json", "Rangers.json", "ranger.json", "Ranger.json")
 
+    private val ARQUIVOS_METAL =
+        listOf("metal.json", "Metal.json")
+
+    private val ARQUIVOS_SENTAI =
+        listOf("sentai.json", "Sentai.json")
+
     private val REQ_VOZ = 100
     private val TAMANHO_PAGINA = 60
 
@@ -124,6 +130,8 @@ class MainActivity : AppCompatActivity() {
         "Coletâneas" to "📚",
         "Desenhos" to "🧸",
         "Power Rangers" to "🦸",
+        "Heróis de Metal" to "🤖",
+        "Super Sentai" to "⚡",
         "Configurações" to "⚙",
         "Sobre" to "ℹ"
     )
@@ -173,6 +181,10 @@ class MainActivity : AppCompatActivity() {
     private val desenhosSeries = mutableListOf<Serie>()
     private val rangers = mutableListOf<Filme>()
     private val rangersSeries = mutableListOf<Serie>()
+    private val metais = mutableListOf<Filme>()
+    private val metaisSeries = mutableListOf<Serie>()
+    private val sentais = mutableListOf<Filme>()
+    private val sentaisSeries = mutableListOf<Serie>()
     private val canais = mutableListOf<Canal>()
 
     private val cardsAtuais = mutableListOf<View>()
@@ -837,10 +849,16 @@ class MainActivity : AppCompatActivity() {
             "Power Rangers" -> mostrarCategoriasColecao(
                 "Power Rangers", "🦸", rangers, rangersSeries, "Nenhum Power Ranger encontrado"
             ) { abrirSecao("Power Rangers") }
+            "Heróis de Metal" -> mostrarCategoriasColecao(
+                "Heróis de Metal", "🤖", metais, metaisSeries, "Nenhum herói de metal encontrado"
+            ) { abrirSecao("Heróis de Metal") }
+            "Super Sentai" -> mostrarCategoriasColecao(
+                "Super Sentai", "⚡", sentais, sentaisSeries, "Nenhum Super Sentai encontrado"
+            ) { abrirSecao("Super Sentai") }
             "Favoritos" -> mostrarColecao(
                 "Favoritos", "★",
-                (filmes + desenhos + rangers).filter { favoritos.contains(it.titulo) },
-                (series + doramas + novelas + animes + desenhosSeries + rangersSeries).filter { favoritos.contains(it.titulo) },
+                (filmes + desenhos + rangers + metais + sentais).filter { favoritos.contains(it.titulo) },
+                (series + doramas + novelas + animes + desenhosSeries + rangersSeries + metaisSeries + sentaisSeries).filter { favoritos.contains(it.titulo) },
                 "Nenhum favorito ainda.\nSegure o dedo em um título (ou use o botão ☆ nos detalhes)."
             ) { abrirSecao("Favoritos") }
             "Continue assistindo" -> mostrarContinuarAssistindo()
@@ -1808,6 +1826,8 @@ class MainActivity : AppCompatActivity() {
                 val textoAnimes = textoDe("animes", ARQUIVOS_ANIMES)
                 val textoDesenhos = textoDe("desenhos", ARQUIVOS_DESENHOS)
                 val textoRangers = textoDe("rangers", ARQUIVOS_RANGERS)
+                val textoMetal = textoDe("metal", ARQUIVOS_METAL)
+                val textoSentai = textoDe("sentai", ARQUIVOS_SENTAI)
 
                 val novasSeries = lerSeries(
                     extrairArray(textoSeries, "series")
@@ -1843,10 +1863,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 )
 
-                val novosRangers = lerDesenhos(textoRangers, "rangers")
-
-                val novosRangersSeries = lerSeries(
-                    extrairArray(textoRangers, "rangers")?.let { todos ->
+                fun soSeriesDe(texto: String?, chave: String): JSONArray? =
+                    extrairArray(texto, chave)?.let { todos ->
                         val soSeries = JSONArray()
                         for (i in 0 until todos.length()) {
                             val o = todos.optJSONObject(i)
@@ -1854,7 +1872,13 @@ class MainActivity : AppCompatActivity() {
                         }
                         soSeries
                     }
-                )
+
+                val novosRangers = lerDesenhos(textoRangers, "rangers")
+                val novosRangersSeries = lerSeries(soSeriesDe(textoRangers, "rangers"))
+                val novosMetais = lerDesenhos(textoMetal, "metal")
+                val novosMetaisSeries = lerSeries(soSeriesDe(textoMetal, "metal"))
+                val novosSentais = lerDesenhos(textoSentai, "sentai")
+                val novosSentaisSeries = lerSeries(soSeriesDe(textoSentai, "sentai"))
 
                 withContext(Dispatchers.Main) {
                     filmes.clear()
@@ -1882,6 +1906,16 @@ class MainActivity : AppCompatActivity() {
                     rangers.addAll(novosRangers)
                     rangersSeries.addAll(novosRangersSeries)
 
+                    metais.clear()
+                    metaisSeries.clear()
+                    metais.addAll(novosMetais)
+                    metaisSeries.addAll(novosMetaisSeries)
+
+                    sentais.clear()
+                    sentaisSeries.clear()
+                    sentais.addAll(novosSentais)
+                    sentaisSeries.addAll(novosSentaisSeries)
+
                     assinaturasCarregadas = mapOf(
                         "filmes" to resposta.trim().hashCode(),
                         "séries" to (textoSeries?.trim()?.hashCode() ?: 0),
@@ -1889,7 +1923,9 @@ class MainActivity : AppCompatActivity() {
                         "novelas" to (textoNovelas?.trim()?.hashCode() ?: 0),
                         "animes" to (textoAnimes?.trim()?.hashCode() ?: 0),
                         "desenhos" to (textoDesenhos?.trim()?.hashCode() ?: 0),
-                        "rangers" to (textoRangers?.trim()?.hashCode() ?: 0)
+                        "rangers" to (textoRangers?.trim()?.hashCode() ?: 0),
+                        "metal" to (textoMetal?.trim()?.hashCode() ?: 0),
+                        "sentai" to (textoSentai?.trim()?.hashCode() ?: 0)
                     )
                     novidades = emptyList()
                     aplicarNovidades()
@@ -1905,6 +1941,10 @@ class MainActivity : AppCompatActivity() {
                             desenhosSeries.take(20).map { it.capa } +
                             rangers.take(20).map { it.capa } +
                             rangersSeries.take(20).map { it.capa } +
+                            metais.take(20).map { it.capa } +
+                            metaisSeries.take(20).map { it.capa } +
+                            sentais.take(20).map { it.capa } +
+                            sentaisSeries.take(20).map { it.capa } +
                             series.take(40).map { it.capa } +
                             doramas.take(40).map { it.capa } +
                             novelas.take(40).map { it.capa } +
@@ -1926,6 +1966,10 @@ class MainActivity : AppCompatActivity() {
                     desenhosSeries.clear()
                     rangers.clear()
                     rangersSeries.clear()
+                    metais.clear()
+                    metaisSeries.clear()
+                    sentais.clear()
+                    sentaisSeries.clear()
                     limparConteudo()
 
                     val erroTexto = TextView(this@MainActivity).apply {
@@ -2614,7 +2658,9 @@ class MainActivity : AppCompatActivity() {
                     "novelas" to baixarPrimeiro(ARQUIVOS_NOVELAS),
                     "animes" to baixarPrimeiro(ARQUIVOS_ANIMES),
                     "desenhos" to baixarPrimeiro(ARQUIVOS_DESENHOS),
-                    "rangers" to baixarPrimeiro(ARQUIVOS_RANGERS)
+                    "rangers" to baixarPrimeiro(ARQUIVOS_RANGERS),
+                    "metal" to baixarPrimeiro(ARQUIVOS_METAL),
+                    "sentai" to baixarPrimeiro(ARQUIVOS_SENTAI)
                 )
 
                 if (textos["filmes"].isNullOrBlank()) return@launch
@@ -2723,7 +2769,8 @@ class MainActivity : AppCompatActivity() {
 
         if (filmes.isEmpty() && series.isEmpty() && doramas.isEmpty() &&
             novelas.isEmpty() && animes.isEmpty() && desenhos.isEmpty() && desenhosSeries.isEmpty() &&
-            rangers.isEmpty() && rangersSeries.isEmpty()
+            rangers.isEmpty() && rangersSeries.isEmpty() &&
+            metais.isEmpty() && metaisSeries.isEmpty() && sentais.isEmpty() && sentaisSeries.isEmpty()
         ) {
             mostrarMensagemVazia("Carregando catálogo…")
             return
@@ -2764,6 +2811,18 @@ class MainActivity : AppCompatActivity() {
             secao("Power Rangers", "🦸") {
                 if (rangers.isNotEmpty()) rangers.take(colunas).map { cardFilmePoster(it) }
                 else rangersSeries.take(colunas).map { cardSeriePoster(it) }
+            }
+        }
+        if (metais.isNotEmpty() || metaisSeries.isNotEmpty()) {
+            secao("Heróis de Metal", "🤖") {
+                if (metais.isNotEmpty()) metais.take(colunas).map { cardFilmePoster(it) }
+                else metaisSeries.take(colunas).map { cardSeriePoster(it) }
+            }
+        }
+        if (sentais.isNotEmpty() || sentaisSeries.isNotEmpty()) {
+            secao("Super Sentai", "⚡") {
+                if (sentais.isNotEmpty()) sentais.take(colunas).map { cardFilmePoster(it) }
+                else sentaisSeries.take(colunas).map { cardSeriePoster(it) }
             }
         }
 
@@ -3951,7 +4010,7 @@ class MainActivity : AppCompatActivity() {
         ) {
             val voltar = voltarListaAtual
             historicoConteudo.add { voltar() }
-            if (serie.temporadas.size == 1 && (desenhosSeries.any { it === serie } || rangersSeries.any { it === serie })) {
+            if (serie.temporadas.size == 1 && (desenhosSeries.any { it === serie } || rangersSeries.any { it === serie } || metaisSeries.any { it === serie } || sentaisSeries.any { it === serie })) {
                 mostrarEpisodios(serie, serie.temporadas[0])
             } else {
                 mostrarTemporadas(serie)
@@ -4650,8 +4709,8 @@ class MainActivity : AppCompatActivity() {
 
     private fun pesquisarAgora(consulta: String) {
         val termo = normalizarTexto(consulta)
-        val achadosFilmes = (filmes + desenhos + rangers).filter { normalizarTexto(it.titulo).contains(termo) }
-        val achadasSeries = (series + doramas + novelas + animes + desenhosSeries + rangersSeries)
+        val achadosFilmes = (filmes + desenhos + rangers + metais + sentais).filter { normalizarTexto(it.titulo).contains(termo) }
+        val achadasSeries = (series + doramas + novelas + animes + desenhosSeries + rangersSeries + metaisSeries + sentaisSeries)
             .filter { normalizarTexto(it.titulo).contains(termo) }
         val achadosCanais = canais.filter { canalCasaBusca(it, termo) }
             .sortedBy { chaveOrdemCanal(it.nome) }
