@@ -696,6 +696,7 @@ class MainActivity : AppCompatActivity() {
             val filho = scroll.getChildAt(0) ?: return@addOnScrollChangedListener
             val faltando = filho.height - (scroll.scrollY + scroll.height)
             if (faltando < dp(1200)) carregarMaisLinhas()
+            reciclarImagensDistantes(scroll)
         }
 
         conteudo = LinearLayout(this).apply {
@@ -2782,6 +2783,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun limparConteudo() {
         conteudo.removeAllViews()
+        ultimoScrollReciclado = Int.MIN_VALUE
         gradesPendentes.clear()
         cardsAtuais.clear()
         linhasCards.clear()
@@ -3328,6 +3330,42 @@ class MainActivity : AppCompatActivity() {
         return informacoes
     }
 
+    // Ao rolar listas grandes, tira a imagem das linhas que ficaram longe da tela
+    // (e devolve quando voltarem). Sem isso, cada capa vista ficava presa na memória
+    // até o app fechar por falta de RAM.
+    private var ultimoScrollReciclado = Int.MIN_VALUE
+
+    private fun reciclarImagensDistantes(scroll: ScrollView) {
+        try {
+            val y = scroll.scrollY
+            if (kotlin.math.abs(y - ultimoScrollReciclado) < dp(400)) return
+            ultimoScrollReciclado = y
+
+            val topo = y - dp(1500)
+            val base = y + scroll.height + dp(1500)
+
+            for (c in 0 until conteudo.childCount) {
+                val bloco = conteudo.getChildAt(c) as? ViewGroup ?: continue
+                for (r in 0 until bloco.childCount) {
+                    val linha = bloco.getChildAt(r) as? ViewGroup ?: continue
+                    val yLinha = bloco.top + linha.top
+                    val longe = yLinha + linha.height < topo || yLinha > base
+                    for (i in 0 until linha.childCount) {
+                        val card = linha.getChildAt(i) as? FrameLayout ?: continue
+                        val img = card.getChildAt(0) as? ImageView ?: continue
+                        val url = img.tag as? String ?: continue
+                        if (longe) {
+                            if (img.drawable != null) img.setImageDrawable(null)
+                        } else if (img.drawable == null) {
+                            carregarImagem(url, img, 0, 0, ehTv)
+                        }
+                    }
+                }
+            }
+        } catch (_: Throwable) {
+        }
+    }
+
     private fun criarCardBase(capa: String, rodape: View): Pair<FrameLayout, ImageView> {
         val card = FrameLayout(this).apply {
             isFocusable = true
@@ -3341,7 +3379,8 @@ class MainActivity : AppCompatActivity() {
             scaleType = ImageView.ScaleType.CENTER_CROP
         }
 
-        carregarImagem(capa, imagem)
+        // Na TV usa formato mais leve (RGB_565 = metade da memória por capa)
+        carregarImagem(capa, imagem, 0, 0, ehTv)
 
         card.addView(
             imagem,
