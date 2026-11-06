@@ -3387,7 +3387,7 @@ class MainActivity : AppCompatActivity() {
     // Grade que vai adicionando linhas aos poucos (evita travar/fechar com milhares de itens)
     private class GradePendente(
         val container: LinearLayout,
-        val restantes: ArrayDeque<List<View>>,
+        val restantes: ArrayDeque<() -> List<View>>,
         var ultima: List<View>?
     )
 
@@ -3417,7 +3417,8 @@ class MainActivity : AppCompatActivity() {
     private fun adicionarLinhasGrade(g: GradePendente, quantidade: Int) {
         var n = 0
         while (n < quantidade && g.restantes.isNotEmpty()) {
-            val grupo = g.restantes.removeFirst()
+            // Os cards só são criados agora, linha por linha (antes eram criados todos de uma vez)
+            val grupo = g.restantes.removeFirst().invoke()
             g.container.addView(
                 criarLinhaGrade(grupo),
                 LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(275))
@@ -3443,16 +3444,39 @@ class MainActivity : AppCompatActivity() {
             container,
             LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         )
-        val g = GradePendente(container, ArrayDeque(cards.chunked(colunas)), linhasCards.lastOrNull())
+        val g = GradePendente(
+            container,
+            ArrayDeque(cards.chunked(colunas).map { grupo -> { grupo } }),
+            linhasCards.lastOrNull()
+        )
         adicionarLinhasGrade(g, LINHAS_INICIAIS)
         if (g.restantes.isNotEmpty()) gradesPendentes.add(g)
 
         if (ehTv && focar) cardsAtuais.firstOrNull()?.requestFocus()
     }
 
-    // Mostra tudo de uma vez (sem botão "Mostrar mais")
+    // Igual ao montarGrade, mas cria cada card só quando a linha dele aparece.
+    // Essencial para listas enormes (ex.: "Todos" com milhares de filmes na TV).
+    private fun <T> montarGradeLazy(itens: List<T>, focar: Boolean = true, criar: (T) -> View) {
+        val container = LinearLayout(this).apply { orientation = LinearLayout.VERTICAL }
+        conteudo.addView(
+            container,
+            LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        )
+        val fila = ArrayDeque<() -> List<View>>()
+        for (grupo in itens.chunked(colunas)) {
+            fila.addLast { grupo.map { criar(it) } }
+        }
+        val g = GradePendente(container, fila, linhasCards.lastOrNull())
+        adicionarLinhasGrade(g, LINHAS_INICIAIS)
+        if (g.restantes.isNotEmpty()) gradesPendentes.add(g)
+
+        if (ehTv && focar) cardsAtuais.firstOrNull()?.requestFocus()
+    }
+
+    // Mostra tudo (as linhas são criadas aos poucos, sem botão "Mostrar mais")
     private fun <T> montarGradePaginada(itens: List<T>, inicio: Int = 0, criar: (T) -> View) {
-        montarGrade(itens.subList(inicio, itens.size).map { criar(it) })
+        montarGradeLazy(itens.subList(inicio, itens.size), true, criar)
     }
 
     // ----- Coletâneas (sagas / franquias) -----
@@ -3544,7 +3568,7 @@ class MainActivity : AppCompatActivity() {
                 tituloSecao(if (dois) "$titulo • Filmes" else "$titulo  (${listaFilmes.size})", icone),
                 LinearLayout.LayoutParams(-1, -2)
             )
-            if (dois) montarGrade(listaFilmes.map { criarCard(it) })
+            if (dois) montarGradeLazy(listaFilmes) { criarCard(it) }
             else montarGradePaginada(listaFilmes) { criarCard(it) }
         }
 
@@ -3553,7 +3577,7 @@ class MainActivity : AppCompatActivity() {
                 tituloSecao(if (dois) "$titulo • Séries" else "$titulo  (${listaSeries.size})", icone),
                 LinearLayout.LayoutParams(-1, -2).apply { if (dois) topMargin = dp(10) }
             )
-            if (dois) montarGrade(listaSeries.map { criarCardSerie(it) })
+            if (dois) montarGradeLazy(listaSeries) { criarCardSerie(it) }
             else montarGradePaginada(listaSeries) { criarCardSerie(it) }
         }
     }
@@ -3722,14 +3746,14 @@ class MainActivity : AppCompatActivity() {
                 tituloSecao(if (dois) "$rotulo • Filmes  (${f.size})" else "$rotulo  (${f.size})", icone),
                 LinearLayout.LayoutParams(-1, -2)
             )
-            montarGrade(f.map { criarCard(it) })
+            montarGradeLazy(f) { criarCard(it) }
         }
         if (sr.isNotEmpty()) {
             conteudo.addView(
                 tituloSecao(if (dois) "$rotulo • Séries  (${sr.size})" else "$rotulo  (${sr.size})", icone),
                 LinearLayout.LayoutParams(-1, -2).apply { if (dois) topMargin = dp(10) }
             )
-            montarGrade(sr.map { criarCardSerie(it) })
+            montarGradeLazy(sr) { criarCardSerie(it) }
         }
     }
 
@@ -3803,14 +3827,14 @@ class MainActivity : AppCompatActivity() {
                 tituloSecao("Resultados • ${if (dois) "Filmes " else ""}(${af.size})", "🔍"),
                 LinearLayout.LayoutParams(-1, -2)
             )
-            montarGrade(af.map { criarCard(it) })
+            montarGradeLazy(af) { criarCard(it) }
         }
         if (asr.isNotEmpty()) {
             conteudo.addView(
                 tituloSecao("Resultados • ${if (dois) "Séries " else ""}(${asr.size})", "🔍"),
                 LinearLayout.LayoutParams(-1, -2).apply { if (dois) topMargin = dp(10) }
             )
-            montarGrade(asr.map { criarCardSerie(it) })
+            montarGradeLazy(asr) { criarCardSerie(it) }
         }
     }
 
@@ -3830,7 +3854,7 @@ class MainActivity : AppCompatActivity() {
                 tituloSecao("${c.nome}  (${c.total})", "📚"),
                 LinearLayout.LayoutParams(-1, -2)
             )
-            montarGrade(c.filmes.map { criarCard(it) })
+            montarGradeLazy(c.filmes) { criarCard(it) }
         }
     }
 
@@ -4680,7 +4704,7 @@ class MainActivity : AppCompatActivity() {
             mostrarMensagemVazia("Nenhum canal encontrado")
             return
         }
-        montarGrade(achados.map { criarCardCanal(it) })
+        montarGradeLazy(achados) { criarCardCanal(it) }
     }
 
     private fun mostrarListaCanais() {
@@ -4738,7 +4762,7 @@ class MainActivity : AppCompatActivity() {
                 leftMargin = dp(6); rightMargin = dp(6); bottomMargin = dp(12)
             }
         )
-        montarGrade(lista.map { criarCardCanal(it) }, focar = ehTv)
+        montarGradeLazy(lista, ehTv) { criarCardCanal(it) }
     }
 
     private fun logoDoCanal(logo: String): String {
@@ -4836,7 +4860,7 @@ class MainActivity : AppCompatActivity() {
             tituloSecao("Resultados • Canais ao vivo  (${achadosCanais.size})", "📡"),
             LinearLayout.LayoutParams(-1, -2).apply { topMargin = dp(10) }
         )
-        montarGrade(achadosCanais.map { criarCardCanal(it) })
+        montarGradeLazy(achadosCanais) { criarCardCanal(it) }
     }
 
     private fun iniciarVoz() {
