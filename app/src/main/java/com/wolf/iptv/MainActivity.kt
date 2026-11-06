@@ -1820,14 +1820,25 @@ class MainActivity : AppCompatActivity() {
                         .thenBy { it.titulo.lowercase() }
                 )
 
-                val textoSeries = textoDe("series", ARQUIVOS_SERIES)
-                val textoDoramas = textoDe("doramas", ARQUIVOS_DORAMAS)
-                val textoNovelas = textoDe("novelas", ARQUIVOS_NOVELAS)
-                val textoAnimes = textoDe("animes", ARQUIVOS_ANIMES)
-                val textoDesenhos = textoDe("desenhos", ARQUIVOS_DESENHOS)
-                val textoRangers = textoDe("rangers", ARQUIVOS_RANGERS)
-                val textoMetal = textoDe("metal", ARQUIVOS_METAL)
-                val textoSentai = textoDe("sentai", ARQUIVOS_SENTAI)
+                // Guarda só a "assinatura" (hash) de cada arquivo e solta o texto grande
+                // assim que for lido, para não acumular dezenas de MB na memória.
+                val assinFilmes = resposta.trim().hashCode()
+                var textoSeries: String? = textoDe("series", ARQUIVOS_SERIES)
+                val assinSeries = textoSeries?.trim()?.hashCode() ?: 0
+                var textoDoramas: String? = textoDe("doramas", ARQUIVOS_DORAMAS)
+                val assinDoramas = textoDoramas?.trim()?.hashCode() ?: 0
+                var textoNovelas: String? = textoDe("novelas", ARQUIVOS_NOVELAS)
+                val assinNovelas = textoNovelas?.trim()?.hashCode() ?: 0
+                var textoAnimes: String? = textoDe("animes", ARQUIVOS_ANIMES)
+                val assinAnimes = textoAnimes?.trim()?.hashCode() ?: 0
+                var textoDesenhos: String? = textoDe("desenhos", ARQUIVOS_DESENHOS)
+                val assinDesenhos = textoDesenhos?.trim()?.hashCode() ?: 0
+                var textoRangers: String? = textoDe("rangers", ARQUIVOS_RANGERS)
+                val assinRangers = textoRangers?.trim()?.hashCode() ?: 0
+                var textoMetal: String? = textoDe("metal", ARQUIVOS_METAL)
+                val assinMetal = textoMetal?.trim()?.hashCode() ?: 0
+                var textoSentai: String? = textoDe("sentai", ARQUIVOS_SENTAI)
+                val assinSentai = textoSentai?.trim()?.hashCode() ?: 0
 
                 val novasSeries = lerSeries(
                     extrairArray(textoSeries, "series")
@@ -1880,6 +1891,15 @@ class MainActivity : AppCompatActivity() {
                 val novosSentais = lerDesenhos(textoSentai, "sentai")
                 val novosSentaisSeries = lerSeries(soSeriesDe(textoSentai, "sentai"))
 
+                textoSeries = null
+                textoDoramas = null
+                textoNovelas = null
+                textoAnimes = null
+                textoDesenhos = null
+                textoRangers = null
+                textoMetal = null
+                textoSentai = null
+
                 withContext(Dispatchers.Main) {
                     filmes.clear()
                     filmes.addAll(novosFilmes)
@@ -1917,15 +1937,15 @@ class MainActivity : AppCompatActivity() {
                     sentaisSeries.addAll(novosSentaisSeries)
 
                     assinaturasCarregadas = mapOf(
-                        "filmes" to resposta.trim().hashCode(),
-                        "séries" to (textoSeries?.trim()?.hashCode() ?: 0),
-                        "doramas" to (textoDoramas?.trim()?.hashCode() ?: 0),
-                        "novelas" to (textoNovelas?.trim()?.hashCode() ?: 0),
-                        "animes" to (textoAnimes?.trim()?.hashCode() ?: 0),
-                        "desenhos" to (textoDesenhos?.trim()?.hashCode() ?: 0),
-                        "rangers" to (textoRangers?.trim()?.hashCode() ?: 0),
-                        "metal" to (textoMetal?.trim()?.hashCode() ?: 0),
-                        "sentai" to (textoSentai?.trim()?.hashCode() ?: 0)
+                        "filmes" to assinFilmes,
+                        "séries" to assinSeries,
+                        "doramas" to assinDoramas,
+                        "novelas" to assinNovelas,
+                        "animes" to assinAnimes,
+                        "desenhos" to assinDesenhos,
+                        "rangers" to assinRangers,
+                        "metal" to assinMetal,
+                        "sentai" to assinSentai
                     )
                     novidades = emptyList()
                     aplicarNovidades()
@@ -2001,9 +2021,24 @@ class MainActivity : AppCompatActivity() {
             if (conexao.responseCode !in 200..299) {
                 null
             } else {
-                conexao.inputStream.bufferedReader(Charsets.UTF_8).use { it.readText() }
+                // Lê direto em bytes, já com o tamanho certo (readText() dobrava o buffer
+                // várias vezes e estourava a memória em arquivos grandes)
+                val tamanho = conexao.contentLength
+                val saida = java.io.ByteArrayOutputStream(
+                    if (tamanho in 1..(64 * 1024 * 1024)) tamanho + 1024 else 64 * 1024
+                )
+                conexao.inputStream.use { entrada ->
+                    val buffer = ByteArray(32 * 1024)
+                    while (true) {
+                        val n = entrada.read(buffer)
+                        if (n < 0) break
+                        saida.write(buffer, 0, n)
+                    }
+                }
+                val texto = String(saida.toByteArray(), Charsets.UTF_8)
+                texto
             }
-        } catch (_: Exception) {
+        } catch (_: Throwable) {
             null
         } finally {
             conexao?.disconnect()
@@ -2651,25 +2686,33 @@ class MainActivity : AppCompatActivity() {
 
         activityScope.launch(Dispatchers.IO) {
             try {
-                val textos = linkedMapOf(
-                    "filmes" to baixarTexto(CATALOGO_URL),
-                    "séries" to baixarPrimeiro(ARQUIVOS_SERIES),
-                    "doramas" to baixarPrimeiro(ARQUIVOS_DORAMAS),
-                    "novelas" to baixarPrimeiro(ARQUIVOS_NOVELAS),
-                    "animes" to baixarPrimeiro(ARQUIVOS_ANIMES),
-                    "desenhos" to baixarPrimeiro(ARQUIVOS_DESENHOS),
-                    "rangers" to baixarPrimeiro(ARQUIVOS_RANGERS),
-                    "metal" to baixarPrimeiro(ARQUIVOS_METAL),
-                    "sentai" to baixarPrimeiro(ARQUIVOS_SENTAI)
+                // Um arquivo por vez: baixa, confere e já descarta o texto.
+                // (Antes baixava TODOS juntos e guardava na memória -> OutOfMemoryError)
+                val fontes = linkedMapOf<String, () -> String?>(
+                    "filmes" to { baixarTexto(CATALOGO_URL) },
+                    "séries" to { baixarPrimeiro(ARQUIVOS_SERIES) },
+                    "doramas" to { baixarPrimeiro(ARQUIVOS_DORAMAS) },
+                    "novelas" to { baixarPrimeiro(ARQUIVOS_NOVELAS) },
+                    "animes" to { baixarPrimeiro(ARQUIVOS_ANIMES) },
+                    "desenhos" to { baixarPrimeiro(ARQUIVOS_DESENHOS) },
+                    "rangers" to { baixarPrimeiro(ARQUIVOS_RANGERS) },
+                    "metal" to { baixarPrimeiro(ARQUIVOS_METAL) },
+                    "sentai" to { baixarPrimeiro(ARQUIVOS_SENTAI) }
                 )
 
-                if (textos["filmes"].isNullOrBlank()) return@launch
-
                 val lista = ArrayList<String>()
-                for ((nome, texto) in textos) {
-                    if (texto.isNullOrBlank()) continue
+                for ((nome, baixar) in fontes) {
+                    var texto: String? = baixar()
+                    if (texto.isNullOrBlank()) {
+                        if (nome == "filmes") return@launch
+                        continue
+                    }
+
                     val assinatura = texto.trim().hashCode()
-                    if ((assinaturasCarregadas[nome] ?: 0) == assinatura) continue
+                    if ((assinaturasCarregadas[nome] ?: 0) == assinatura) {
+                        texto = null
+                        continue
+                    }
 
                     if (nome == "filmes") {
                         val total = extrairArray(texto, "filmes")?.length() ?: 0
@@ -2678,6 +2721,7 @@ class MainActivity : AppCompatActivity() {
                     } else {
                         lista.add(nome)
                     }
+                    texto = null
                 }
 
                 withContext(Dispatchers.Main) {
