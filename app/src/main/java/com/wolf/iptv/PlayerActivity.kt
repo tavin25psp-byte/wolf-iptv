@@ -66,6 +66,30 @@ class PlayerActivity : AppCompatActivity() {
     // evita pausar o vídeo quando o app sai de cena por um instante.
     private var abrindoEspelhamento = false
 
+    // ---- PRÓXIMO EPISÓDIO ----
+    private var filaUrls: List<String> = emptyList()
+    private var filaTitulos: List<String> = emptyList()
+    private var filaChaves: List<String> = emptyList()
+    private var indiceFila = 0
+    private var urlAtualVideo = ""
+    private var tituloAtualVideo = ""
+    private var controlesVisiveis = true
+    private lateinit var botaoProximo: TextView
+    // Quando o episódio acaba, passa sozinho pro próximo depois disso. 0 = desliga.
+    private val segundosAutoProximo = 10
+    private var contagemProximo = 0
+    private val contagemLoop = object : Runnable {
+        override fun run() {
+            if (contagemProximo <= 0) {
+                tocarProximo()
+                return
+            }
+            botaoProximo.text = "⏭  Próximo episódio ($contagemProximo)"
+            contagemProximo--
+            botaoProximo.postDelayed(this, 1000)
+        }
+    }
+
     private val zooms = floatArrayOf(1.0f, 1.1f, 1.25f, 1.5f, 2.0f)
     private val nomesZoom = arrayOf("1.0×   Normal", "1.1×", "1.25×", "1.5×", "2.0×")
 
@@ -215,17 +239,109 @@ class PlayerActivity : AppCompatActivity() {
         formatoParams.setMargins(36, 36, 0, 0)
         container.addView(botaoFormato, formatoParams)
 
+        // BOTÃO PRÓXIMO EPISÓDIO — só aparece quando existe um episódio depois
+        botaoProximo = TextView(this)
+        botaoProximo.text = "⏭  Próximo episódio"
+        botaoProximo.textSize = 16f
+        botaoProximo.setTextColor(Color.WHITE)
+        botaoProximo.setPadding(34, 20, 34, 20)
+        botaoProximo.background = fundoArredondado(Color.argb(190, 10, 10, 10), 40f)
+        botaoProximo.elevation = 20f
+        botaoProximo.isFocusable = true
+        botaoProximo.isClickable = true
+        botaoProximo.visibility = View.GONE
+        botaoProximo.setOnClickListener { tocarProximo() }
+        botaoProximo.setOnFocusChangeListener { view, temFoco ->
+            view.background = if (temFoco) {
+                fundoArredondado(Color.rgb(190, 0, 0), 40f)
+            } else {
+                fundoArredondado(Color.argb(190, 10, 10, 10), 40f)
+            }
+        }
+
+        val proximoParams = FrameLayout.LayoutParams(
+            FrameLayout.LayoutParams.WRAP_CONTENT,
+            FrameLayout.LayoutParams.WRAP_CONTENT
+        )
+        proximoParams.gravity = Gravity.TOP or Gravity.END
+        proximoParams.setMargins(0, 170, 36, 0)
+        container.addView(botaoProximo, proximoParams)
+
         // Os botões aparecem e somem junto com os controles do player.
         playerView.setControllerVisibilityListener(
             PlayerView.ControllerVisibilityListener { visibilidade ->
                 botaoEspelhar.visibility = visibilidade
                 botaoFormato.visibility = if (ehAoVivo) visibilidade else View.GONE
+                controlesVisiveis = visibilidade == View.VISIBLE
+                atualizarBotaoProximo()
             }
         )
 
         setContentView(container)
 
         playerView.postDelayed({ conectarEngrenagemNativa() }, 300)
+    }
+
+    // =========================================================
+    // PRÓXIMO EPISÓDIO
+    // =========================================================
+
+    private fun temProximo(): Boolean = !ehAoVivo && indiceFila < filaUrls.size
+
+    private fun atualizarBotaoProximo() {
+        botaoProximo.visibility =
+            if (temProximo() && controlesVisiveis) View.VISIBLE else View.GONE
+    }
+
+    private fun cancelarContagem() {
+        botaoProximo.removeCallbacks(contagemLoop)
+        contagemProximo = 0
+        botaoProximo.text = "⏭  Próximo episódio"
+    }
+
+    // Marca o episódio como visto (mesmo formato de chave usado no MainActivity).
+    private fun marcarVisto(chave: String) {
+        if (chave.isBlank()) return
+        try {
+            val novo = HashSet(prefs.getStringSet("assistidos", emptySet()) ?: emptySet())
+            for (k in chave.split('\u0001')) {
+                if (k.isNotBlank()) novo.add(k)
+            }
+            prefs.edit().putStringSet("assistidos", novo).apply()
+        } catch (_: Throwable) {
+        }
+    }
+
+    private fun tocarProximo() {
+        if (!temProximo()) return
+
+        cancelarContagem()
+        salvarProgresso()
+
+        val i = indiceFila
+        indiceFila++
+
+        val url = filaUrls[i]
+        val titulo = filaTitulos[i]
+
+        marcarVisto(filaChaves[i])
+        try {
+            WolfProgress.registrar(this, url, titulo, intent.getStringExtra("VIDEO_COVER") ?: "")
+        } catch (_: Throwable) {
+        }
+
+        urlAtualVideo = url
+        tituloAtualVideo = titulo
+        urlOriginal = url
+        urlFinal = url
+        jaTentouOriginal = false
+        tentativasRede = 0
+        erroTexto.visibility = View.GONE
+
+        carregarMidia(0L)
+        atualizarBotaoProximo()
+
+        Toast.makeText(this, "▶  $titulo", Toast.LENGTH_SHORT).show()
     }
 
     // =========================================================
@@ -419,7 +535,7 @@ class PlayerActivity : AppCompatActivity() {
         val p = player
         Transmitir.mostrar(
             activity = this,
-            titulo = intent.getStringExtra("VIDEO_TITLE") ?: "WOLF IPTV",
+            titulo = tituloAtualVideo.ifBlank { "WOLF IPTV" },
             url = urlFinal,
             capa = intent.getStringExtra("VIDEO_COVER") ?: "",
             posicaoMs = p?.currentPosition ?: 0L,
@@ -489,7 +605,8 @@ class PlayerActivity : AppCompatActivity() {
 
         try {
             val p = player ?: return
-            val url = intent.getStringExtra("VIDEO_URL") ?: return
+            val url = urlAtualVideo
+            if (url.isBlank()) return
             val duracao = p.duration
             WolfProgress.salvar(this, url, p.currentPosition, if (duracao > 0) duracao else 0L)
         } catch (_: Throwable) {
@@ -523,6 +640,20 @@ class PlayerActivity : AppCompatActivity() {
         // Canal ao vivo = link que não é filme nem série sob demanda.
         urlOriginal = url
         ehAoVivo = !url.contains("/movie/") && !url.contains("/series/")
+
+        urlAtualVideo = url
+        tituloAtualVideo = intent.getStringExtra("VIDEO_TITLE") ?: ""
+
+        // Fila dos próximos episódios (vem do MainActivity).
+        val fu = intent.getStringArrayExtra("FILA_URLS")?.toList() ?: emptyList()
+        val ft = intent.getStringArrayExtra("FILA_TITULOS")?.toList() ?: emptyList()
+        val fc = intent.getStringArrayExtra("FILA_CHAVES")?.toList() ?: emptyList()
+        val n = minOf(fu.size, ft.size, fc.size)
+        filaUrls = fu.take(n)
+        filaTitulos = ft.take(n)
+        filaChaves = fc.take(n)
+        indiceFila = 0
+        atualizarBotaoProximo()
 
         // Nos canais ao vivo, o formato (TS ou M3U8) vem do botão e fica salvo.
         urlFinal = calcularUrlFinal(url)
@@ -584,6 +715,7 @@ class PlayerActivity : AppCompatActivity() {
                             }
 
                             Player.STATE_READY -> {
+                                cancelarContagem()
                                 tentativasRede = 0
                                 erroTexto.visibility = View.GONE
 
@@ -601,6 +733,19 @@ class PlayerActivity : AppCompatActivity() {
                                 } else {
                                     // Filme/série terminou: atualiza "continuar assistindo".
                                     salvarProgresso()
+
+                                    // Tem próximo episódio: mostra o botão e conta pra passar.
+                                    if (temProximo()) {
+                                        controlesVisiveis = true
+                                        playerView.showController()
+                                        atualizarBotaoProximo()
+                                        botaoProximo.requestFocus()
+                                        if (segundosAutoProximo > 0) {
+                                            botaoProximo.removeCallbacks(contagemLoop)
+                                            contagemProximo = segundosAutoProximo
+                                            botaoProximo.post(contagemLoop)
+                                        }
+                                    }
                                 }
                             }
 
@@ -803,6 +948,11 @@ class PlayerActivity : AppCompatActivity() {
                     return true
                 }
 
+                if (foco != null && foco == botaoProximo) {
+                    tocarProximo()
+                    return true
+                }
+
                 if (foco != null && foco == engrenagem) {
                     abrirMenuZoom()
                     return true
@@ -836,6 +986,13 @@ class PlayerActivity : AppCompatActivity() {
                     player?.let { it.seekTo((it.currentPosition - 10_000).coerceAtLeast(0)) }
                 }
                 return true
+            }
+
+            KeyEvent.KEYCODE_MEDIA_NEXT -> {
+                if (temProximo()) {
+                    tocarProximo()
+                    return true
+                }
             }
 
             KeyEvent.KEYCODE_BACK -> {
@@ -916,12 +1073,14 @@ class PlayerActivity : AppCompatActivity() {
 
     override fun onStop() {
         playerView.removeCallbacks(salvarLoop)
+        cancelarContagem()
         salvarProgresso()
         if (!abrindoEspelhamento) player?.pause()
         super.onStop()
     }
 
     override fun onDestroy() {
+        botaoProximo.removeCallbacks(contagemLoop)
         salvarProgresso()
         playerView.removeCallbacks(salvarLoop)
         playerView.player = null
