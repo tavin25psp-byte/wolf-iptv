@@ -4055,6 +4055,7 @@ class MainActivity : AppCompatActivity() {
     private fun mostrarEpisodios(serie: Serie, temporada: Temporada) {
         limparConteudo()
         atualizadoresDownload.clear()
+        atualizadoresVisto.clear()
 
         val botaoBaixar = botaoPilula("⬇  BAIXAR TEMPORADA ${temporada.numero}", false) {
             baixarTemporada(serie, temporada)
@@ -4074,6 +4075,7 @@ class MainActivity : AppCompatActivity() {
     // ----- Downloads (salvar episódios no celular) -----
 
     private val atualizadoresDownload = mutableListOf<() -> Unit>()
+    private val atualizadoresVisto = mutableListOf<() -> Unit>()
 
     private fun atualizarDownloadsVisiveis() {
         atualizadoresDownload.toList().forEach { it() }
@@ -4297,6 +4299,7 @@ class MainActivity : AppCompatActivity() {
             imagem.alpha = if (visto) 0.45f else 1f
         }
         atualizarVisual()
+        atualizadoresVisto.add { atualizarVisual() }
 
         var proximaChecagem = false
         fun atualizarDownload() {
@@ -4344,7 +4347,12 @@ class MainActivity : AppCompatActivity() {
                 marcarEpisodio(chave, true)
                 atualizarVisual()
             }
-            abrirVideo("${serie.titulo} - EP ${episodio.numero}", episodio.video, serie.capa)
+            abrirVideo(
+                "${serie.titulo} - EP ${episodio.numero}",
+                episodio.video,
+                serie.capa,
+                filaDepois(serie, numTemp, episodio)
+            )
         }
 
         // Segurar o card: baixar / apagar download / marcar como visto
@@ -4361,7 +4369,37 @@ class MainActivity : AppCompatActivity() {
 
     // ----- Player -----
 
-    private fun abrirVideo(titulo: String, video: String, capa: String) {
+    // Episódio que vem depois do atual (usado pelo botão "Próximo" do player).
+    private data class ItemFila(val titulo: String, val video: String, val chave: String)
+
+    // Lista os episódios seguintes (mesma temporada e depois as próximas) que têm vídeo.
+    private fun filaDepois(serie: Serie, numTemp: Int, episodio: Episodio): List<ItemFila> {
+        val fila = ArrayList<ItemFila>()
+        var passou = false
+        for (temp in serie.temporadas) {
+            for (ep in temp.episodios) {
+                if (!passou) {
+                    if (ep === episodio) passou = true
+                    continue
+                }
+                if (ep.video.isBlank()) continue
+                val nome = if (temp.numero == numTemp) {
+                    "${serie.titulo} - EP ${ep.numero}"
+                } else {
+                    "${serie.titulo} - T${temp.numero} EP ${ep.numero}"
+                }
+                fila.add(ItemFila(nome, ep.video, chaveEpisodio(serie, temp.numero, ep)))
+            }
+        }
+        return fila
+    }
+
+    private fun abrirVideo(
+        titulo: String,
+        video: String,
+        capa: String,
+        fila: List<ItemFila> = emptyList()
+    ) {
         if (video.isBlank()) {
             Toast.makeText(this, "Vídeo indisponível", Toast.LENGTH_SHORT).show()
             return
@@ -4370,27 +4408,36 @@ class MainActivity : AppCompatActivity() {
         val pos = WolfProgress.posicao(this, video)
 
         if (pos <= 0L) {
-            iniciarPlayer(titulo, video, capa, 0L)
+            iniciarPlayer(titulo, video, capa, 0L, fila)
             return
         }
 
         AlertDialog.Builder(this)
             .setTitle(titulo)
             .setMessage("Continuar de onde parou (${WolfProgress.formatar(pos)})?")
-            .setPositiveButton("Continuar") { _, _ -> iniciarPlayer(titulo, video, capa, pos) }
+            .setPositiveButton("Continuar") { _, _ -> iniciarPlayer(titulo, video, capa, pos, fila) }
             .setNegativeButton("Do início") { _, _ ->
                 WolfProgress.apagar(this, video)
-                iniciarPlayer(titulo, video, capa, 0L)
+                iniciarPlayer(titulo, video, capa, 0L, fila)
             }
             .show()
     }
 
-    private fun iniciarPlayer(titulo: String, video: String, capa: String, posicaoMs: Long) {
+    private fun iniciarPlayer(
+        titulo: String,
+        video: String,
+        capa: String,
+        posicaoMs: Long,
+        fila: List<ItemFila> = emptyList()
+    ) {
         val intent = Intent(this, PlayerActivity::class.java).apply {
             putExtra("VIDEO_URL", video)
             putExtra("VIDEO_TITLE", titulo)
             putExtra("VIDEO_COVER", capa)
             putExtra("START_POSITION", posicaoMs)
+            putExtra("FILA_URLS", fila.map { it.video }.toTypedArray())
+            putExtra("FILA_TITULOS", fila.map { it.titulo }.toTypedArray())
+            putExtra("FILA_CHAVES", fila.map { it.chave }.toTypedArray())
         }
         startActivity(intent)
     }
@@ -4904,6 +4951,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        // Voltou do player: atualiza o selo "VISTO" dos episódios na tela.
+        atualizadoresVisto.toList().forEach {
+            try { it() } catch (_: Throwable) {}
+        }
         if (telaInicial && catalogoIniciado && filmes.isNotEmpty()) {
             try {
                 montarFileiraContinuar()
