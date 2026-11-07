@@ -36,6 +36,7 @@ video{width:100%;max-height:60vh;background:#000;border-radius:10px;margin-top:8
 .btn{display:inline-block;margin:6px 6px 0 0;padding:9px 16px;border-radius:18px;border:1px solid var(--red);background:#1b0609;color:var(--txt);font-size:14px;text-decoration:none}
 .btn.p{background:linear-gradient(90deg,#eb191e,#96140f)}
 .eps{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.ep{display:flex;gap:6px}.ep .pl{flex:1;min-width:0}.ep .dl{flex:none;width:48px;text-align:center;padding:0}
 .eps button{text-align:left;padding:11px 12px;border-radius:10px;border:1px solid #2a0d12;background:var(--card);color:var(--txt);font-size:14px}
 select{padding:9px;border-radius:10px;background:#120a0d;color:var(--txt);border:1px solid #5a1118;font-size:15px;margin-top:8px}
 #gate{position:fixed;inset:0;background:var(--bg);z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center}
@@ -218,10 +219,11 @@ dlg.addEventListener("close",()=>{ const v=body.querySelector("video"); if(v){v.
 dlg.addEventListener("click",e=>{ if(e.target===dlg) dlg.close(); });
 const fechar='<button class="x" onclick="dlg.close()" aria-label="Fechar">×</button>';
 
-function playerHTML(url){
+function playerHTML(url,titulo,baixavel=true){
   const u = seguro(url);
   return `<video id="vid" controls playsinline webkit-playsinline autoplay preload="metadata" src="${esc(u)}"></video>
   <div id="verr" class="mut" style="font-size:13px;margin-top:6px"></div>
+  ${baixavel?`<button class="btn p" data-dl="${esc(u)}" data-tt="${esc(titulo||"video")}">⬇ Baixar para a galeria</button>`:""}
   <a class="btn" href="${esc(u)}" target="_blank" rel="noopener">Abrir link direto</a>`;
 }
 function ligarErro(){
@@ -229,13 +231,13 @@ function ligarErro(){
   v.addEventListener("error",()=>{ $("#verr").textContent="Não foi possível reproduzir aqui. O iPhone só toca MP4 (H.264/AAC) ou HLS (.m3u8) em https. Tente 'Abrir link direto'."; });
 }
 function tocar(titulo,url){
-  body.innerHTML = `<div class="dlg">${fechar}<h2>${esc(titulo)}</h2>${playerHTML(url)}</div>`;
+  body.innerHTML = `<div class="dlg">${fechar}<h2>${esc(titulo)}</h2>${playerHTML(url,titulo,false)}</div>`;
   if(!dlg.open) dlg.showModal(); ligarErro();
   body.querySelector("video").play().catch(()=>{});
 }
 function abrirFilme(f){
   body.innerHTML = `<div class="dlg">${fechar}<h2>${esc(f.titulo)}</h2><div class="mut" style="font-size:13px">${esc(f.categoria)}</div>
-    <p>${esc(f.sinopse)}</p>${playerHTML(f.video)}</div>`;
+    <p>${esc(f.sinopse)}</p>${playerHTML(f.video,f.titulo)}</div>`;
   dlg.showModal(); ligarErro();
 }
 function abrirSerie(s){
@@ -246,17 +248,57 @@ function abrirSerie(s){
     <div class="eps" id="eps"></div></div>`;
   const lista = ()=>{
     const t=s.temporadas[+$("#sel").value]; store.set("t_"+s.titulo,$("#sel").value);
-    $("#eps").innerHTML = t.episodios.map((e,i)=>`<button data-e="${i}">${e.numero}. ${esc(e.titulo||"Episódio "+e.numero)}</button>`).join("");
+    $("#eps").innerHTML = t.episodios.map((e,i)=>`<div class="ep"><button class="pl" data-e="${i}">${e.numero}. ${esc(e.titulo||"Episódio "+e.numero)}</button><button class="dl" data-dl="${esc(seguro(e.video))}" data-tt="${esc(s.titulo+" T"+t.numero+" E"+e.numero)}" aria-label="Baixar">⬇</button></div>`).join("");
     $("#eps").onclick = ev=>{
       const b=ev.target.closest("[data-e]"); if(!b) return;
       const e=t.episodios[+b.dataset.e];
-      $("#pl").innerHTML = playerHTML(e.video); ligarErro();
+      $("#pl").innerHTML = playerHTML(e.video,s.titulo+" T"+t.numero+" E"+e.numero); ligarErro();
       $("#pl video").play().catch(()=>{}); $("#pl").scrollIntoView({behavior:"smooth",block:"nearest"});
     };
   };
   dlg.showModal();
   $("#sel").addEventListener("change",lista); lista();
 }
+
+/* ============ DOWNLOAD ============ */
+function salvarBlob(blob,nome){
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=nome;
+  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),60000);
+}
+async function baixarVideo(url,titulo,btn){
+  const orig=btn.dataset.o ?? (btn.dataset.o=btn.textContent);
+  const nome=(titulo||"video").replace(/[\\/:*?"<>|]+/g," ").trim()+".mp4";
+  if(/\.m3u8(\?|$)/i.test(url)){ btn.textContent="Formato não baixável"; setTimeout(()=>btn.textContent=orig,2500); return; }
+  btn.disabled=true;
+  try{
+    const r=await fetch(url); if(!r.ok||!r.body) throw 0;
+    const total=+r.headers.get("content-length")||0, rd=r.body.getReader(), parts=[]; let got=0;
+    for(;;){ const {done,value}=await rd.read(); if(done) break; parts.push(value); got+=value.length;
+      btn.textContent="⏳ "+(total?Math.round(got/total*100)+"%":(got/1048576).toFixed(0)+" MB"); }
+    const file=new File(parts,nome,{type:"video/mp4"});
+    const pode=navigator.canShare&&navigator.canShare({files:[file]});
+    if(pode){
+      try{ await navigator.share({files:[file],title:titulo}); btn.textContent="✅ Pronto"; }
+      catch(e){
+        if(e.name==="NotAllowedError"){            // o navegador exige um novo toque
+          btn.textContent="💾 Toque para salvar"; btn.disabled=false; btn.dataset.pronto="1";
+          btn.onclick=async ev=>{ ev.stopPropagation(); try{await navigator.share({files:[file],title:titulo});}catch{} btn.onclick=null; btn.textContent=orig; };
+          return;
+        }
+        if(e.name!=="AbortError") throw e; btn.textContent=orig;
+      }
+    } else { salvarBlob(file,nome); btn.textContent="✅ Baixado"; }
+  }catch{
+    // sem permissão (CORS) para ler o arquivo: deixa o navegador baixar direto
+    const a=document.createElement("a"); a.href=url; a.download=nome; a.target="_blank"; a.rel="noopener";
+    document.body.appendChild(a); a.click(); a.remove(); btn.textContent="↗ Aberto";
+  }
+  btn.disabled=false; setTimeout(()=>{ if(!btn.dataset.pronto) btn.textContent=orig; },3000);
+}
+document.addEventListener("click",e=>{
+  const b=e.target.closest("[data-dl]"); if(!b||b.onclick) return;
+  baixarVideo(b.dataset.dl,b.dataset.tt,b);
+});
 
 entrar();
 </script>
