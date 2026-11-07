@@ -261,39 +261,14 @@ function abrirSerie(s){
 }
 
 /* ============ DOWNLOAD ============ */
-function salvarBlob(blob,nome){
-  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=nome;
-  document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),60000);
-}
-async function baixarVideo(url,titulo,btn){
+// Entrega o arquivo ao gerenciador de downloads do navegador (barra de progresso/notificação, em segundo plano)
+function baixarVideo(url,titulo,btn){
   const orig=btn.dataset.o ?? (btn.dataset.o=btn.textContent);
-  const nome=(titulo||"video").replace(/[\\/:*?"<>|]+/g," ").trim()+".mp4";
   if(/\.m3u8(\?|$)/i.test(url)){ btn.textContent="Formato não baixável"; setTimeout(()=>btn.textContent=orig,2500); return; }
-  btn.disabled=true;
-  try{
-    const r=await fetch(url); if(!r.ok||!r.body) throw 0;
-    const total=+r.headers.get("content-length")||0, rd=r.body.getReader(), parts=[]; let got=0;
-    for(;;){ const {done,value}=await rd.read(); if(done) break; parts.push(value); got+=value.length;
-      btn.textContent="⏳ "+(total?Math.round(got/total*100)+"%":(got/1048576).toFixed(0)+" MB"); }
-    const file=new File(parts,nome,{type:"video/mp4"});
-    const pode=navigator.canShare&&navigator.canShare({files:[file]});
-    if(pode){
-      try{ await navigator.share({files:[file],title:titulo}); btn.textContent="✅ Pronto"; }
-      catch(e){
-        if(e.name==="NotAllowedError"){            // o navegador exige um novo toque
-          btn.textContent="💾 Toque para salvar"; btn.disabled=false; btn.dataset.pronto="1";
-          btn.onclick=async ev=>{ ev.stopPropagation(); try{await navigator.share({files:[file],title:titulo});}catch{} btn.onclick=null; btn.textContent=orig; };
-          return;
-        }
-        if(e.name!=="AbortError") throw e; btn.textContent=orig;
-      }
-    } else { salvarBlob(file,nome); btn.textContent="✅ Baixado"; }
-  }catch{
-    // sem permissão (CORS) para ler o arquivo: deixa o navegador baixar direto
-    const a=document.createElement("a"); a.href=url; a.download=nome; a.target="_blank"; a.rel="noopener";
-    document.body.appendChild(a); a.click(); a.remove(); btn.textContent="↗ Aberto";
-  }
-  btn.disabled=false; setTimeout(()=>{ if(!btn.dataset.pronto) btn.textContent=orig; },3000);
+  const nome=(titulo||"video").replace(/[\\/:*?"<>|]+/g," ").trim()+".mp4";
+  const a=document.createElement("a"); a.href=url; a.download=nome; a.rel="noopener";
+  document.body.appendChild(a); a.click(); a.remove();
+  btn.textContent="⬇ Iniciado..."; setTimeout(()=>btn.textContent=orig,3000);
 }
 document.addEventListener("click",e=>{
   const b=e.target.closest("[data-dl]"); if(!b||b.onclick) return;
