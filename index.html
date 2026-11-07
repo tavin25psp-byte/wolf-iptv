@@ -286,12 +286,23 @@ async function salvarVideo(btn){
     const ext=(url.split("?")[0].match(/\.([a-z0-9]{2,4})$/i)||[])[1]||"mp4";
     let tipo=r.headers.get("content-type")||""; if(!tipo.startsWith("video")) tipo="video/mp4";
     box._file=new File(parts,nome+"."+ext,{type:tipo});
-    btn.disabled=false; btn.textContent="✅ Pronto — toque para salvar";
-    st.textContent="No menu que abrir, escolha “Salvar vídeo” (iPhone) ou Galeria/Arquivos (Android).";
+    btn.disabled=false;
+    if(/Android/i.test(navigator.userAgent)){
+      baixarArquivo(box._file); btn.textContent="⬇ Baixar de novo";
+      st.textContent="✅ Baixado. Procure em Downloads (ou na Galeria, álbum Downloads).";
+    } else {
+      btn.textContent="✅ Pronto — toque para salvar";
+      st.textContent="No menu que abrir, escolha “Salvar vídeo”.";
+    }
   }catch(e){
     btn.disabled=false;
-    st.innerHTML="Não consegui baixar por aqui (o servidor do vídeo bloqueia ou o arquivo é grande demais). Toque em <b>Abrir link direto</b> e use Compartilhar › Salvar vídeo.";
+    const msg=String(e&&e.message||e); const motivo=/HTTP (\d+)/.test(msg)?"o servidor recusou ("+msg+")":/Failed to fetch|NetworkError|Load failed/i.test(msg)?"o servidor não permite baixar por dentro do app (bloqueio CORS) ou a conexão caiu":"erro: "+msg;
+    st.innerHTML="Não baixou: "+motivo+".<br><a class='btn' href='"+esc(url)+"' download='"+esc(nome)+"' target='_blank' rel='noopener'>Tentar download direto</a> <span class='mut'>(se abrir o player, toque em ⋮ › Baixar)</span>";
   }
+}
+function baixarArquivo(file){
+  const a=document.createElement("a"); a.href=URL.createObjectURL(file); a.download=file.name;
+  document.body.appendChild(a); a.click(); a.remove();
 }
 function compartilhar(file,st){
   if(navigator.canShare && navigator.canShare({files:[file]})){
