@@ -36,13 +36,17 @@ video{width:100%;max-height:60vh;background:#000;border-radius:10px;margin-top:8
 .btn{display:inline-block;margin:6px 6px 0 0;padding:9px 16px;border-radius:18px;border:1px solid var(--red);background:#1b0609;color:var(--txt);font-size:14px;text-decoration:none}
 .btn.p{background:linear-gradient(90deg,#eb191e,#96140f)}
 .eps{display:flex;flex-direction:column;gap:6px;margin-top:10px}
-.ep{display:flex;gap:6px}.ep .pl{flex:1;min-width:0}.ep .dl{flex:none;width:48px;text-align:center;padding:0}
 .eps button{text-align:left;padding:11px 12px;border-radius:10px;border:1px solid #2a0d12;background:var(--card);color:var(--txt);font-size:14px}
 select{padding:9px;border-radius:10px;background:#120a0d;color:var(--txt);border:1px solid #5a1118;font-size:15px;margin-top:8px}
 #gate{position:fixed;inset:0;background:var(--bg);z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:24px;text-align:center}
 #gate input{width:100%;max-width:320px;padding:13px;border-radius:12px;border:1px solid #aa1923;background:#060406;color:var(--txt);font-size:18px;text-align:center;text-transform:uppercase}
 #gmsg{color:#ff7a7a;min-height:20px}
 .hide{display:none!important}
+.fav.on{background:linear-gradient(90deg,#1a8fe0,#0d4f9a);border-color:#6cc4ff}
+.eps .ep{display:flex;gap:6px}.eps .ep button[data-e]{flex:1}
+.eps .ep .fav{flex:none;width:48px;text-align:center;padding:0;opacity:.45}.eps .ep .fav.on{opacity:1}
+.row .mid{flex:1;min-width:0}.row .mid div:first-child{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rm{flex:none;background:none;border:0;color:var(--mut);font-size:22px;padding:6px 10px}
 </style>
 </head>
 <body>
@@ -81,7 +85,7 @@ const ARQ = {
   sentai:  ["sentai.json","Sentai.json"],
 };
 const ABAS = [
-  ["filmes","🎬 Filmes"],["series","📺 Séries"],["doramas","🌸 Doramas"],["novelas","💕 Novelas"],
+  ["filmes","🎬 Filmes"],["geladeira","🧊 Geladeira"],["series","📺 Séries"],["doramas","🌸 Doramas"],["novelas","💕 Novelas"],
   ["animes","🍥 Anime"],["canais","📡 Canais"],["desenhos","🧸 Desenhos"],
   ["rangers","🦸 Rangers"],["metal","🤖 Metal"],["sentai","⚡ Sentai"]
 ];
@@ -93,6 +97,27 @@ const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">
 // iOS bloqueia http dentro de página https (conteúdo misto). Tenta subir para https.
 const seguro = u => (u||"").trim().replace(/^http:\/\//i,"https://");
 const store = { get(k){try{return localStorage.getItem(k)}catch{return null}}, set(k,v){try{localStorage.setItem(k,v)}catch{}} };
+
+/* ============ GELADEIRA (guardar pra depois) ============ */
+const REG = {};
+const gel = () => { try{ return JSON.parse(store.get("geladeira")||"[]"); }catch{ return []; } };
+const gelTem = id => gel().some(x=>x.id===id);
+function gelToggle(item){
+  let l = gel();
+  if(l.some(x=>x.id===item.id)) l = l.filter(x=>x.id!==item.id); else l.unshift(item);
+  store.set("geladeira",JSON.stringify(l));
+}
+function favBtn(item,mini){
+  REG[item.id]=item; const on=gelTem(item.id);
+  return `<button class="${mini?"":"btn "}fav ${on?"on":""}" data-fid="${esc(item.id)}" data-mini="${mini?1:0}" onclick="favClick(event,this)">${mini?"🧊":(on?"🧊 Na geladeira":"🧊 Guardar")}</button>`;
+}
+function favClick(ev,b){
+  ev.stopPropagation(); const item=REG[b.dataset.fid]; if(!item) return;
+  gelToggle(item); const on=gelTem(item.id);
+  b.classList.toggle("on",on);
+  if(b.dataset.mini!=="1") b.textContent = on?"🧊 Na geladeira":"🧊 Guardar";
+}
+const itFilme = f => ({id:"f|"+f.titulo+"|"+f.video,tipo:"filme",titulo:f.titulo,capa:f.capa,video:f.video,categoria:f.categoria,sinopse:f.sinopse});
 
 async function baixar(nome){
   try{
@@ -193,11 +218,33 @@ function desenharNav(){
 }
 $("#q").oninput = e=>{ filtro=norm(e.target.value); limite=PAGINA; desenhar(); };
 
+function desenharGeladeira(){
+  const m = $("#main");
+  const l = gel().filter(x=>!filtro||norm(x.titulo||x.nome).includes(filtro));
+  if(!l.length){ m.onclick=null; m.innerHTML='<div class="empty">🧊 A geladeira está vazia.<br>Toque em “Guardar” num filme, série, episódio ou canal.</div>'; return; }
+  const sub = x => x.tipo==="filme" ? "🎬 Filme" : x.tipo==="serie" ? "📺 Série" : x.tipo==="canal" ? "📡 Canal ao vivo" : "▶ T"+x.temp+" · Ep "+x.num+(x.etitulo?" · "+x.etitulo:"");
+  m.innerHTML = l.map((x,i)=>{
+    const img = x.capa||x.logo;
+    return `<div class="row" data-g="${i}">${img?`<img loading="lazy" src="${esc(seguro(img))}" alt="">`:"<div style='width:42px;text-align:center'>🧊</div>"}<div class="mid"><div>${esc(x.titulo||x.nome)}</div><div class="mut" style="font-size:12px">${esc(sub(x))}</div></div><button class="rm" data-rm="${i}" aria-label="Remover">✕</button></div>`;
+  }).join("");
+  m.onclick = e=>{
+    const rm=e.target.closest("[data-rm]");
+    if(rm){ gelToggle(l[+rm.dataset.rm]); desenhar(); return; }
+    const r=e.target.closest("[data-g]"); if(!r) return;
+    const x=l[+r.dataset.g];
+    if(x.tipo==="filme") abrirFilme(x);
+    else if(x.tipo==="canal") tocar(x.nome,x.url);
+    else if(x.tipo==="ep") tocar(x.titulo+" — T"+x.temp+" Ep "+x.num,x.video);
+    else { const s=(D[x.aba]||[]).find(y=>y.titulo===x.titulo&&y.temporadas); s ? abrirSerie(s,x.aba) : alert("Série não encontrada no catálogo."); }
+  };
+}
+
 function desenhar(){
   const m = $("#main");
+  if(aba==="geladeira") return desenharGeladeira();
   if(aba==="canais"){
     const l = D.canais.filter(c=>!filtro||norm(c.nome).includes(filtro));
-    m.innerHTML = l.length ? l.slice(0,limite).map((c,i)=>`<div class="row" data-c="${i}">${c.logo?`<img loading="lazy" src="${esc(seguro(c.logo))}" alt="">`:"<div style='width:42px'>📡</div>"}<div><div>${esc(c.nome)}</div><div class="mut" style="font-size:12px">${esc(c.categoria)}</div></div></div>`).join("") : '<div class="empty">Nenhum canal.</div>';
+    m.innerHTML = l.length ? l.slice(0,limite).map((c,i)=>`<div class="row" data-c="${i}">${c.logo?`<img loading="lazy" src="${esc(seguro(c.logo))}" alt="">`:"<div style='width:42px'>📡</div>"}<div><div>${esc(c.nome)}</div><div class="mut" style="font-size:12px">${esc(c.categoria)}</div></div><div style="margin-left:auto">${favBtn({id:"c|"+c.url,tipo:"canal",nome:c.nome,url:c.url,logo:c.logo},true)}</div></div>`).join("") : '<div class="empty">Nenhum canal.</div>';
     m.onclick = e=>{ const r=e.target.closest("[data-c]"); if(r) tocar(l[+r.dataset.c].nome,l[+r.dataset.c].url); };
     return;
   }
@@ -215,65 +262,86 @@ function desenhar(){
 
 /* ============ PLAYER / DETALHES ============ */
 const dlg=$("#dlg"), body=$("#dbody");
-dlg.addEventListener("close",()=>{ const v=body.querySelector("video"); if(v){v.pause();v.removeAttribute("src");v.load();} body.innerHTML=""; });
+dlg.addEventListener("close",()=>{ const v=body.querySelector("video"); if(v){v.pause();v.removeAttribute("src");v.load();} body.innerHTML=""; if(aba==="geladeira") desenhar(); });
 dlg.addEventListener("click",e=>{ if(e.target===dlg) dlg.close(); });
 const fechar='<button class="x" onclick="dlg.close()" aria-label="Fechar">×</button>';
 
-function playerHTML(url,titulo,baixavel=true){
+function playerHTML(url,nome){
   const u = seguro(url);
-  return `<video id="vid" controls playsinline webkit-playsinline autoplay preload="metadata" src="${esc(u)}"></video>
+  const salvar = /\.m3u8/i.test(u) ? "" : `<div class="salvar"><button class="btn p" data-url="${esc(u)}" data-nome="${esc(nome||"video")}" onclick="salvarVideo(this)">⬇ Salvar no celular</button><div class="sst mut" style="font-size:13px;margin-top:6px"></div></div>`;
+  return `<video id="vid" controls playsinline webkit-playsinline autoplay preload="metadata" data-orig="${esc((url||"").trim())}" src="${esc(u)}"></video>
   <div id="verr" class="mut" style="font-size:13px;margin-top:6px"></div>
-  ${baixavel?`<button class="btn p" data-dl="${esc(u)}" data-tt="${esc(titulo||"video")}">⬇ Baixar para a galeria</button>`:""}
-  <a class="btn" href="${esc(u)}" target="_blank" rel="noopener">Abrir link direto</a>`;
+  <a class="btn" href="${esc(u)}" target="_blank" rel="noopener">Abrir link direto</a>${salvar}`;
+}
+async function salvarVideo(btn){
+  const box=btn.parentElement, st=box.querySelector(".sst");
+  if(box._file) return compartilhar(box._file,st);
+  const url=btn.dataset.url, nome=(btn.dataset.nome||"video").replace(/[\\\/:*?"<>|]/g,"").trim()||"video";
+  btn.disabled=true; st.textContent="Baixando... 0%";
+  try{
+    const r=await fetch(url); if(!r.ok) throw new Error("HTTP "+r.status);
+    const total=+r.headers.get("content-length")||0, rd=r.body.getReader(), parts=[]; let got=0;
+    for(;;){ const {done,value}=await rd.read(); if(done) break; parts.push(value); got+=value.length;
+      st.textContent="Baixando... "+(total?Math.round(got/total*100)+"%":(got/1048576).toFixed(0)+" MB"); }
+    const ext=(url.split("?")[0].match(/\.([a-z0-9]{2,4})$/i)||[])[1]||"mp4";
+    let tipo=r.headers.get("content-type")||""; if(!tipo.startsWith("video")) tipo="video/mp4";
+    box._file=new File(parts,nome+"."+ext,{type:tipo});
+    btn.disabled=false; btn.textContent="✅ Pronto — toque para salvar";
+    st.textContent="No menu que abrir, escolha “Salvar vídeo” (iPhone) ou Galeria/Arquivos (Android).";
+  }catch(e){
+    btn.disabled=false;
+    st.innerHTML="Não consegui baixar por aqui (o servidor do vídeo bloqueia ou o arquivo é grande demais). Toque em <b>Abrir link direto</b> e use Compartilhar › Salvar vídeo.";
+  }
+}
+function compartilhar(file,st){
+  if(navigator.canShare && navigator.canShare({files:[file]})){
+    navigator.share({files:[file]}).then(()=>{st.textContent="Pronto ✔";}).catch(err=>{ if(err.name!=="AbortError") st.textContent="Não consegui abrir o menu de compartilhar."; });
+  } else {
+    const a=document.createElement("a"); a.href=URL.createObjectURL(file); a.download=file.name;
+    document.body.appendChild(a); a.click(); a.remove(); st.textContent="Baixado — veja em Arquivos/Downloads.";
+  }
 }
 function ligarErro(){
   const v=body.querySelector("video"); if(!v) return;
-  v.addEventListener("error",()=>{ $("#verr").textContent="Não foi possível reproduzir aqui. O iPhone só toca MP4 (H.264/AAC) ou HLS (.m3u8) em https. Tente 'Abrir link direto'."; });
+  v.addEventListener("error",()=>{
+    const orig=(v.getAttribute("src")||"");
+    const ext=(orig.split("?")[0].match(/\.([a-z0-9]{2,4})$/i)||[])[1]||"?";
+    const cod=v.error?v.error.code:"?";
+    const motivo={1:"cancelado",2:"erro de rede/servidor recusou",3:"erro ao decodificar",4:"formato ou link não suportado"}[cod]||"desconhecido";
+    $("#verr").innerHTML="Não tocou ("+motivo+"). Extensão: <b>."+esc(ext)+"</b> · código "+cod+".<br>Link: <span style='word-break:break-all'>"+esc(orig)+"</span>";
+  });
 }
 function tocar(titulo,url){
-  body.innerHTML = `<div class="dlg">${fechar}<h2>${esc(titulo)}</h2>${playerHTML(url,titulo,false)}</div>`;
+  body.innerHTML = `<div class="dlg">${fechar}<h2>${esc(titulo)}</h2>${playerHTML(url,titulo)}</div>`;
   if(!dlg.open) dlg.showModal(); ligarErro();
   body.querySelector("video").play().catch(()=>{});
 }
 function abrirFilme(f){
   body.innerHTML = `<div class="dlg">${fechar}<h2>${esc(f.titulo)}</h2><div class="mut" style="font-size:13px">${esc(f.categoria)}</div>
-    <p>${esc(f.sinopse)}</p>${playerHTML(f.video,f.titulo)}</div>`;
+    <p>${esc(f.sinopse)}</p>${favBtn(itFilme(f))}${playerHTML(f.video,f.titulo)}</div>`;
   dlg.showModal(); ligarErro();
 }
-function abrirSerie(s){
+function abrirSerie(s,origem){
+  origem = origem||aba;
   const salva = +store.get("t_"+s.titulo)||0;
   body.innerHTML = `<div class="dlg">${fechar}<h2>${esc(s.titulo)}</h2><p class="mut">${esc(s.sinopse)}</p>
+    ${favBtn({id:"s|"+origem+"|"+s.titulo,tipo:"serie",aba:origem,titulo:s.titulo,capa:s.capa})}
     <div id="pl"></div>
     <select id="sel">${s.temporadas.map((t,i)=>`<option value="${i}" ${i===salva?"selected":""}>Temporada ${t.numero}</option>`).join("")}</select>
     <div class="eps" id="eps"></div></div>`;
   const lista = ()=>{
     const t=s.temporadas[+$("#sel").value]; store.set("t_"+s.titulo,$("#sel").value);
-    $("#eps").innerHTML = t.episodios.map((e,i)=>`<div class="ep"><button class="pl" data-e="${i}">${e.numero}. ${esc(e.titulo||"Episódio "+e.numero)}</button><button class="dl" data-dl="${esc(seguro(e.video))}" data-tt="${esc(s.titulo+" T"+t.numero+" E"+e.numero)}" aria-label="Baixar">⬇</button></div>`).join("");
+    $("#eps").innerHTML = t.episodios.map((e,i)=>`<div class="ep"><button data-e="${i}">${e.numero}. ${esc(e.titulo||"Episódio "+e.numero)}</button>${favBtn({id:"e|"+s.titulo+"|"+t.numero+"|"+e.numero,tipo:"ep",titulo:s.titulo,temp:t.numero,num:e.numero,etitulo:e.titulo,video:e.video,capa:s.capa},true)}</div>`).join("");
     $("#eps").onclick = ev=>{
       const b=ev.target.closest("[data-e]"); if(!b) return;
       const e=t.episodios[+b.dataset.e];
-      $("#pl").innerHTML = playerHTML(e.video,s.titulo+" T"+t.numero+" E"+e.numero); ligarErro();
+      $("#pl").innerHTML = playerHTML(e.video,s.titulo+" T"+t.numero+"E"+e.numero); ligarErro();
       $("#pl video").play().catch(()=>{}); $("#pl").scrollIntoView({behavior:"smooth",block:"nearest"});
     };
   };
   dlg.showModal();
   $("#sel").addEventListener("change",lista); lista();
 }
-
-/* ============ DOWNLOAD ============ */
-// Entrega o arquivo ao gerenciador de downloads do navegador (barra de progresso/notificação, em segundo plano)
-function baixarVideo(url,titulo,btn){
-  const orig=btn.dataset.o ?? (btn.dataset.o=btn.textContent);
-  if(/\.m3u8(\?|$)/i.test(url)){ btn.textContent="Formato não baixável"; setTimeout(()=>btn.textContent=orig,2500); return; }
-  const nome=(titulo||"video").replace(/[\\/:*?"<>|]+/g," ").trim()+".mp4";
-  const a=document.createElement("a"); a.href=url; a.download=nome; a.rel="noopener";
-  document.body.appendChild(a); a.click(); a.remove();
-  btn.textContent="⬇ Iniciado..."; setTimeout(()=>btn.textContent=orig,3000);
-}
-document.addEventListener("click",e=>{
-  const b=e.target.closest("[data-dl]"); if(!b||b.onclick) return;
-  baixarVideo(b.dataset.dl,b.dataset.tt,b);
-});
 
 entrar();
 </script>
