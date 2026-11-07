@@ -95,7 +95,7 @@ const $ = s => document.querySelector(s);
 const norm = t => (t||"").normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase().trim();
 const esc = s => String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 // iOS bloqueia http dentro de página https (conteúdo misto). Tenta subir para https.
-const seguro = u => (u||"").trim().replace(/^http:\/\//i,"https://");
+const seguro = u => { u=(u||"").trim(); if(location.protocol!=="https:") return u; if(/^http:\/\/[^\/]*:\d+/i.test(u)) return u; return u.replace(/^http:\/\//i,"https://"); };
 const store = { get(k){try{return localStorage.getItem(k)}catch{return null}}, set(k,v){try{localStorage.setItem(k,v)}catch{}} };
 
 /* ============ GELADEIRA (guardar pra depois) ============ */
@@ -267,11 +267,11 @@ dlg.addEventListener("click",e=>{ if(e.target===dlg) dlg.close(); });
 const fechar='<button class="x" onclick="dlg.close()" aria-label="Fechar">×</button>';
 
 function playerHTML(url,nome){
-  const u = seguro(url);
-  const salvar = /\.m3u8/i.test(u) ? "" : `<div class="salvar"><button class="btn p" data-url="${esc(u)}" data-nome="${esc(nome||"video")}" onclick="salvarVideo(this)">⬇ Salvar no celular</button><div class="sst mut" style="font-size:13px;margin-top:6px"></div></div>`;
+  const u = seguro(url), o = (url||"").trim();
+  const salvar = /\.m3u8/i.test(u) ? "" : `<div class="salvar"><button class="btn p" data-url="${esc(u)}" data-orig="${esc(o)}" data-nome="${esc(nome||"video")}" onclick="salvarVideo(this)">⬇ Salvar no celular</button><div class="sst mut" style="font-size:13px;margin-top:6px"></div></div>`;
   return `<video id="vid" controls playsinline webkit-playsinline autoplay preload="metadata" data-orig="${esc((url||"").trim())}" src="${esc(u)}"></video>
   <div id="verr" class="mut" style="font-size:13px;margin-top:6px"></div>
-  <a class="btn" href="${esc(u)}" target="_blank" rel="noopener">Abrir link direto</a>${salvar}`;
+  <a class="btn" href="${esc(o)}" target="_blank" rel="noopener">Abrir link direto</a>${salvar}`;
 }
 async function salvarVideo(btn){
   const box=btn.parentElement, st=box.querySelector(".sst");
@@ -296,8 +296,8 @@ async function salvarVideo(btn){
     }
   }catch(e){
     btn.disabled=false;
-    const msg=String(e&&e.message||e); const motivo=/HTTP (\d+)/.test(msg)?"o servidor recusou ("+msg+")":/Failed to fetch|NetworkError|Load failed/i.test(msg)?"o servidor não permite baixar por dentro do app (bloqueio CORS) ou a conexão caiu":"erro: "+msg;
-    st.innerHTML="Não baixou: "+motivo+".<br><a class='btn' href='"+esc(url)+"' download='"+esc(nome)+"' target='_blank' rel='noopener'>Tentar download direto</a> <span class='mut'>(se abrir o player, toque em ⋮ › Baixar)</span>";
+    const msg=String(e&&e.message||e); const orig=btn.dataset.orig||url; const motivo=/^http:/i.test(orig)&&location.protocol==="https:"?"esse link é http (sem cadeado) e o navegador bloqueia dentro do app":/HTTP (\d+)/.test(msg)?"o servidor recusou ("+msg+")":/Failed to fetch|NetworkError|Load failed/i.test(msg)?"o servidor não permite baixar por dentro do app (bloqueio CORS) ou a conexão caiu":"erro: "+msg;
+    st.innerHTML="Não baixou: "+motivo+".<br><a class='btn' href='"+esc(orig)+"' download='"+esc(nome)+"' target='_blank' rel='noopener'>Tentar download direto</a> <span class='mut'>(se abrir o vídeo, no iPhone use Compartilhar › Salvar em Arquivos; no Android, ⋮ › Baixar)</span>";
   }
 }
 function baixarArquivo(file){
