@@ -1,0 +1,20 @@
+name: WolfIOS
+options:
+  bundleIdPrefix: com.wolf
+targets:
+  WolfIOS:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources: [WolfIOS]
+    info:
+      path: WolfIOS/Info.plist
+      properties:
+        UILaunchScreen: {}
+        CFBundleDisplayName: Wolf
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.wolf.iptv.ios
+        SWIFT_VERSION: "5.0"
